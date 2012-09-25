@@ -1,0 +1,3 @@
+[submodule "virt"]
+	path = virt
+	url = git://github.com/autotest/virt-test.git
