@@ -8,6 +8,7 @@ Autotest test for testing cgroup functionalities
 """
 import os, sys, logging, time
 from tempfile import NamedTemporaryFile
+from subprocess import Popen
 
 from autotest.client import test, utils
 from autotest.client.shared import error
@@ -31,7 +32,7 @@ class cgroup(test.test):
         logging.info('Starting cgroup testing')
         err = ""
         # Run available tests
-        for subtest in ['memory', 'cpuset']:
+        for subtest in ['memory', 'cpuset', 'cpu']:
             logging.info("---< 'test_%s' START >---", subtest)
             try:
                 if not self.modules.get_pwd(subtest):
@@ -367,6 +368,138 @@ class cgroup(test.test):
                                      % (stat1, stat2))
         logging.debug("test_cpuset: Cpu allocation test passed")
 
+        ################################################
+        # CLEANUP
+        ################################################
+        cleanup()
+
+    def test_cpu(self):
+        """
+        tests cpu subsystem.
+        Currently only smoke and many_cgroups test is written
+        """
+        def cleanup(supress=False):
+            """ cleanup """
+            logging.debug("test_cpu: Cleanup")
+            err = []
+            if hasattr(self, 'item'):
+                while self.item.cgroups:
+                    for _ in range(10):
+                        try:
+                            self.item.rm_cgroup(0)
+                            break
+                        except ValueError:
+                            break
+                        except Exception:
+                            pass
+                    else:
+                        logging.error("Can't remove cgroup %s",
+                                      self.item.cgroups[0])
+                        del(self.item.cgroups[0])
+                try:
+                    del(self.item)
+                except Exception, failure_detail:
+                    err += "\nCan't remove Cgroup: %s" % failure_detail
+
+            if err:
+                if supress:
+                    logging.warn("Some parts of cleanup failed%s", err)
+                else:
+                    raise error.TestFail("Some parts of cleanup failed%s"
+                                         % err)
+
+        def _stress_find(cmd):
+            """ returns the time of cmd execution """
+            duration = time.time()
+            err = utils.system(cmd, ignore_status=True)
+            duration = time.time() - duration
+            if err not in [0, 1]:
+                cleanup()
+                raise error.TestFail("test cmd failed, ret = %s" % err)
+            return duration
+
+        def _stress_cpu(no_cpus):
+            """ returns the time of all cpu stress execution """
+            stress_cmd = ("for i in `seq 1 128`; do for i in `seq 1 128`;"
+                          "do A=$((1024/34)); done; done")
+            print "Running %d*'%s'" % (no_cpus, stress_cmd)
+            threads = []
+            start = time.time()
+            for _ in xrange(80):
+                threads.append(Popen(stress_cmd, shell=True))
+            while threads:
+                thread = threads.pop()
+                thread.wait()
+            return time.time() - start
+
+        # Preparation
+        self.item = Cgroup('cpu', self._client)
+        self.item.initialize(self.modules)
+        self.item.smoke_test()
+        logging.info("test_cpu: smoke_test passed")
+
+        ################################################
+        # test_cpu_many_cgroups
+        # Tests known issue with lots of cgroups in cpu subsystem defined on
+        # large SMP host.
+        # The test creates 10 cgroups, measure go-throught time, than the same
+        # with 110 and 1110 cgroups.
+        # IMPORTANT: Is reproducible only on large SMP > 64 cpus
+        ################################################
+        no_cpus = utils.count_cpus()
+        if no_cpus < 64:
+            logging.warn("test_cpu_many_cgroups: SKIPPED as it needs >64 "
+                         "CPUs on the tested machine.")
+            return
+        find_cmd = ('find %s -type f -exec cat {} + &>/dev/null' %
+                    self.modules.get_pwd('cpu'))
+        results_find = []
+        results_cpu = []
+        # dry run
+        _stress_find(find_cmd)
+        _stress_cpu(no_cpus)
+
+        logging.debug("test_cpu_many_cgroups: 10 cgroups")
+        for i in range(10):
+            self.item.mk_cgroup()
+        results_find.append(_stress_find(find_cmd))
+        results_cpu.append(_stress_cpu(no_cpus))
+
+        logging.debug("test_cpu_many_cgroups: 110 cgroups")
+        for i in range(100):
+            self.item.mk_cgroup()
+        results_find.append(_stress_find(find_cmd))
+        results_cpu.append(_stress_cpu(no_cpus))
+
+        logging.debug("test_cpu_many_cgroups: 1110 cgroups")
+        for i in range(1000):
+            self.item.mk_cgroup()
+        results_find.append(_stress_find(find_cmd))
+        results_cpu.append(_stress_cpu(no_cpus))
+
+        table = utils.matrix_to_string([['results_cpu'] + results_cpu,
+                                       ['results_find'] + results_find],
+                                       ['test', '10cgroups', '110cgroups',
+                                        '1110cgroups'])
+        logging.debug("Results matrix for n-cgroups:\n %s" % table)
+
+        # Those limits are nonlinear and set empirically (based on 80CPUs)
+        # Usual ratios on broken kernels:
+        # [1, 13, 190] [1, 3, 120]
+        # Usual ratios on current kernels:
+        # [1, 1, 1.4] [1, 2, 9]
+        limits = [None, 3, 15]
+        for i in xrange(1, len(results_find)):
+            if results_find[i] > (results_find[0] * limits[i]):
+                cleanup()
+                raise error.TestFail("Find %d took over %s-times longer than "
+                                     "find with 10 cgroups" % (i, limits[i]))
+        limits = [None, 1.2, 1.5]
+        for i in xrange(1, len(results_cpu)):
+            if results_cpu[i] > (results_cpu[0] * limits[i]):
+                cleanup()
+                raise error.TestFail("CPU stress %d took over %s-times longer"
+                                     " than with 10 cgroups" % (i, limits[i]))
         ################################################
         # CLEANUP
         ################################################
