@@ -8,5 +8,4 @@ TEST_TYPE = "client"
 DOC = """
 This test checks basic functionality of cgroups
 """
-
 job.run_test('cgroup')

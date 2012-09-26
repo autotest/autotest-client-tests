@@ -53,7 +53,7 @@ class Cgroup(object):
     def mk_cgroup(self, pwd=None):
         """
         Creates new temporary cgroup
-        @param root: where to create this cgroup (default: self.root)
+        @param pwd: where to create this cgroup (default: self.root)
         @return: 0 when PASSED
         """
         if pwd == None:
@@ -74,6 +74,8 @@ class Cgroup(object):
 
         @param pwd: cgroup directory.
         """
+        if isinstance(pwd, int):
+            pwd = self.cgroups[pwd]
         try:
             os.rmdir(pwd)
             self.cgroups.remove(pwd)
