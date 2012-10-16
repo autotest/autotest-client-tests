@@ -7,7 +7,7 @@ TEST_CATEGORY = 'Functional'
 
 DOC = '''
 Tests basic huge pages functionality when using libhugetlbfs. For more info
-about libhugetlbfs see http://libhugetlbfs.ozlabs.org/
+about libhugetlbfs see http://libhugetlbfs.sourceforge.net
 '''
 
-job.run_test('libhugetlbfs', dir='/mnt')
+job.run_test('libhugetlbfs', hugetlbfs_dir='/mnt')
