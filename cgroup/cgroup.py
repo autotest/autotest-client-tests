@@ -12,7 +12,7 @@ from subprocess import Popen
 
 from autotest.client import test, utils
 from autotest.client.shared import error
-from cgroup_common import Cgroup, CgroupModules, get_load_per_cpu
+from autotest.client.cgroup_utils import Cgroup, CgroupModules, get_load_per_cpu
 
 
 class cgroup(test.test):
