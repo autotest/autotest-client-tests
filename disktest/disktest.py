@@ -18,20 +18,24 @@ class disktest(test.test):
     version = 2
     preserve_srcdir = True
 
-    def setup(self):
-        """
-        Compiles disktest.
-        """
-        os.chdir(self.srcdir)
-        utils.make('clean')
-        utils.make()
-
 
     def initialize(self):
         """
         Verifies if we have gcc to compile disktest.
         """
         self.job.require_gcc()
+        self.job.setup_dep(['disktest'])
+        self.disk_srcdir = self.autodir + '/deps/disktest/src/'
+        self.build(self.disk_srcdir)
+
+
+    def build(self, srcdir):
+        """
+        Compiles disktest.
+        """
+        os.chdir(srcdir)
+        utils.make('clean')
+        utils.make()
 
 
     def test_one_disk_chunk(self, disk, chunk):
@@ -44,7 +48,7 @@ class disktest(test.test):
         logging.info("Testing %d MB files on %s in %d MB memory, chunk %s",
                      self.chunk_mb, disk, self.memory_mb, chunk)
         cmd = ("%s/disktest -m %d -f %s/testfile.%d -i -S" %
-               (self.srcdir, self.chunk_mb, disk, chunk))
+               (self.disk_srcdir, self.chunk_mb, disk, chunk))
         logging.debug("Running '%s'", cmd)
         p = subprocess.Popen(cmd, shell=True)
         return(p.pid)
@@ -60,9 +64,9 @@ class disktest(test.test):
         @param chunk_mb: Size of the portion of the disk used to run the test.
                 Cannot be larger than the total amount of free RAM.
         """
-        os.chdir(self.srcdir)
+        os.chdir(self.disk_srcdir)
         if chunk_mb is None:
-            chunk_mb = utils.memtotal() / 1024
+            chunk_mb = utils.memtotal() / 1024/8
         if disks is None:
             disks = [self.tmpdir]
         if gigabytes is None:
@@ -74,7 +78,7 @@ class disktest(test.test):
             sys.stdout.flush()
 
         self.chunk_mb = chunk_mb
-        self.memory_mb = utils.memtotal()/1024
+        self.memory_mb = utils.memtotal()/1024/8
         if self.memory_mb > chunk_mb:
             raise error.TestError("Too much RAM (%dMB) for this test to work" %
                                   self.memory_mb)
