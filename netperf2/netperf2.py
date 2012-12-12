@@ -9,14 +9,13 @@ NETPERF_IX = 1
 class netperf2(test.test):
     version = 3
 
-    # ftp://ftp.netperf.org/netperf/netperf-2.4.5.tar.bz2
-    def setup(self, tarball = 'netperf-2.4.5.tar.bz2'):
+    # ftp://ftp.netperf.org/netperf/netperf-2.6.0.tar.bz2
+    def setup(self, tarball = 'netperf-2.6.0.tar.bz2'):
         self.job.require_gcc()
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
 
-        utils.system('patch -p0 < %s/wait_before_data.patch' % self.bindir)
         utils.configure()
         utils.make()
         utils.system('sync')
