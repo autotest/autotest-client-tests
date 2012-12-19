@@ -100,6 +100,11 @@ package_md5 = 1c499114dec5fb0123edad4e89b26370
 jvm_pkg_url = http://myhost.foo.com/packages/java/sun16/i386/jre-6u3-linux-i586.rpm
 java_root = /usr/java/jre1.6.0_03
 package_md5 = e94c47adedf329200fc975662d667307
+
+[f18-devel-openjdk-x86_64]
+jvm_pkg_url = http://mirrors.kernel.org/fedora/development/18/x86_64/os/Packages/j/java-1.7.0-openjdk-1.7.0.9-2.3.3.fc18.1.x86_64.rpm
+java_root = /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.9.x86_64/jre
+package_md5 = 32eaf92fd7f8f1a668e1618253aed6e5
 '''
 
 dacapo_config = dacapo_base_config + java_config
