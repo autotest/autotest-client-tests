@@ -1,7 +1,7 @@
 import os, re, logging, shutil
-from autotest.client import utils, package, test
+from autotest.client import utils, test
 from autotest.client.test_config import config_loader
-from autotest.client.shared import error
+from autotest.client.shared import error, software_manager
 
 
 class dacapo(test.test):
@@ -57,7 +57,8 @@ class dacapo(test.test):
             jvm_pkg_md5 = cfg.get(jvm, 'package_md5')
             jvm_pkg = utils.unmap_url_cache(cachedir, jvm_pkg_url, jvm_pkg_md5)
             # Install it
-            package.install(jvm_pkg)
+            swman = software_manager.SoftwareManager()
+            swman.install(jvm_pkg)
             # Basic Java environment variables setup
             java_root = cfg.get(jvm, 'java_root')
             self.set_java_environment(jvm, java_root)
