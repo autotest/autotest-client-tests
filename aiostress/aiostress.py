@@ -17,7 +17,8 @@ class aiostress(test.test):
 
     # ftp://ftp.suse.com/pub/people/mason/utils/aio-stress.c
     def setup(self, tarball = None):
-        os.mkdir(self.srcdir)
+        if not os.path.exists(self.srcdir):
+            os.mkdir(self.srcdir)
         os.chdir(self.srcdir)
         utils.system('cp ' + self.bindir+'/aio-stress.c .')
         self.gcc_flags += ' -Wall -lpthread -laio'
