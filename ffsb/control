@@ -11,6 +11,14 @@ profiles to measure of different workloads, and it supports
 multiple groups of threads across multiple filesystems.
 
 For more info, see http://sourceforge.net/projects/ffsb/
+
+To override the default cfg file use the following syntax -
+
+Using a cfg file in the test's root directory -
+job.run_test('ffsb', cfg='new_profile.cfg')
+
+Using a URL -
+job.run_test('ffsb', cfg='http://myserver.com/new_profile.cfg')
 """
 
 job.run_test('ffsb')

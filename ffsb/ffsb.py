@@ -157,9 +157,7 @@ class ffsb(test.test):
         @param tarball: FFSB tarball. Could be either a path relative to
                 self.srcdir or a URL.
         """
-        profile_src = os.path.join(self.bindir, 'profile.cfg.sample')
-        profile_dst = os.path.join(os.path.dirname(self.srcdir), 'profile.cfg')
-        shutil.copyfile(profile_src, profile_dst)
+        self.update_config('profile.cfg.sample')
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -168,10 +166,28 @@ class ffsb(test.test):
         utils.make()
 
 
-    def run_once(self):
+    def update_config(self, cfg):
+        """
+        Update the profile.cfg file.
+
+        @param cfg: Basename of the cfg file, that should be on the
+                    test module folder (client/tests/ffsb) or URL of the
+                    remote config file.
+        """
+        utils.unmap_url(self.bindir, cfg, self.bindir)
+        filename = os.path.basename(cfg)
+        profile_src = os.path.join(self.bindir, filename)
+        profile_dst = os.path.join(os.path.dirname(self.srcdir), 'profile.cfg')
+        shutil.copyfile(profile_src, profile_dst)
+
+
+    def run_once(self, cfg=None):
         """
         Runs a single iteration of the FFSB.
         """
+        if cfg is not None:
+            self.update_config(cfg)
+
         self.dup_ffsb_profilefl()
         # Run FFSB using abspath
         cmd = '%s/ffsb %s/profile.cfg' % (self.srcdir, self.srcdir)
