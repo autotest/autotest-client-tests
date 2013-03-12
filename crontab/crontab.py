@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python
 import os, shutil, glob, logging
 from autotest.client import test, utils
 from autotest.client.shared import error
