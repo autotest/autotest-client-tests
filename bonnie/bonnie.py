@@ -30,14 +30,13 @@ class bonnie(test.test):
         self.job.require_gcc()
         self.results = []
 
-    # http://www.coker.com.au/bonnie++/bonnie++-1.03a.tgz
-    def setup(self, tarball = 'bonnie++-1.03a.tgz'):
+    # http://www.coker.com.au/bonnie++/experimental/bonnie++-1.96.tgz
+    def setup(self, tarball = 'bonnie++-1.96.tgz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
 
         os_dep.command('g++')
-        utils.system('patch -p1 < %s/bonnie++-1.03a-gcc43.patch' % self.bindir)
         utils.configure()
         utils.make()
 
