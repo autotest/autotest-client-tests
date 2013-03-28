@@ -33,7 +33,8 @@ class selftest(test.test):
                     "%d when %d expected" % (current, checkpoint))
 
     def __throw(self):
-        __does_not_exist = __does_not_exist_either
+        # pylint: disable=E0602
+        __does_not_exist = __does_not_exist_either # @UndefinedVariable
 
     def __print(self, msg):
         sys.stdout.write(msg)
