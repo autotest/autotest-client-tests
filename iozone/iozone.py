@@ -19,17 +19,17 @@ class iozone(test.test):
     @author: Ying Tao (yingtao@cn.ibm.com)
     @see: http://www.iozone.org
     """
-    version = 5
+    version = 6
 
     def initialize(self):
         self.job.require_gcc()
 
 
-    def setup(self, tarball='iozone3_408.tar'):
+    def setup(self, tarball='iozone3_414.tar'):
         """
         Builds the given version of IOzone from a tarball.
         @param tarball: Tarball with IOzone
-        @see: http://www.iozone.org/src/current/iozone3_408.tar
+        @see: http://www.iozone.org/src/current/iozone3_414.tar
         """
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
