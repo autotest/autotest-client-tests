@@ -28,10 +28,12 @@ class cpu_hotplug(test.test):
         utils.system('dmesg -c > /dev/null')
         for cpu in utils.cpu_online_map():
             if os.path.isfile('/sys/devices/system/cpu/cpu%s/online' % cpu):
-                utils.system('echo 0 > /sys/devices/system/cpu/cpu%s/online' % cpu, 1)
+                cmd = "echo 0 > /sys/devices/system/cpu/cpu%s/online" % cpu
+                utils.system(cmd, 60)
                 utils.system('dmesg -c')
                 time.sleep(3)
-                utils.system('echo 1 > /sys/devices/system/cpu/cpu%s/online' % cpu, 1)
+                cmd = "echo 1 > /sys/devices/system/cpu/cpu%s/online" % cpu
+                utils.system(cmd, 30)
                 utils.system('dmesg -c')
                 time.sleep(3)
 
