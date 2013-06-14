@@ -78,7 +78,7 @@ class kernelinstall(test.test):
         kernel = self.job.kernel(base_tree, self.outputdir)
         if patch_list:
             patches = []
-            for p in patch_list.split():
+            for p in patch_list:
                 # Make sure all the patches are in local.
                 if not utils.is_url(p):
                     continue
