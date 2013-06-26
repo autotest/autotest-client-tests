@@ -21,6 +21,8 @@ params = {
 #   "kernel_deps_rpms": "http://kojipkgs.fedoraproject.org/packages/linux-firmware/20120510/0.3.git375e954.fc17/noarch/linux-firmware-20120510-0.3.git375e954.fc17.noarch.rpm",
 ## params for 'koji' 'brew' method
 #    kernel_dep_pkgs = "linux-firmware module-init-tools",
+## Need set kernel_sub_pkgs for rhel guest.
+#    kernel_sub_pkgs = "kernel-firmware"
 #    kernel_koji_tag = "f17-updates",
 ## params for 'git' method
 #    kernel_git_repo = "",
