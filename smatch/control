@@ -1,0 +1,32 @@
+NAME='Smatch Kernel Test'
+EXPERIMENTAL='True'
+TIME='MEDIUM'
+TEST_TYPE='client'
+TEST_CATEGORY='Functional'
+TEST_CLASS='Kernel'
+AUTHOR='Dmitry Monakhov <dmonakhov@openvz.org>'
+DOC='''\
+Smatch -- The Source Matcher, Official repo git://repo.or.cz/smatch.git
+Kernel usage example:
+       make C=1 CHECK="/path/to/smatch --full-path -p=kernel" | tee warns.txt
+
+Will disable dynamic debugging option aka(CONFIG_DYNAMIC_DEBUG)
+
+After the compile finishes logs stored to smatch_log and smatch_error
+key values = [ 'warnings', 'errors' ]
+'''
+
+##################
+# Following example  check kernel with smatch on vanila kernel, and for patched one
+# Later one can check that number of errors is not higher than before the patch.
+#kern = job.kernel('3.9.4')
+#kern.config()
+print job.resultdir
+#job.run_test('smatch', kernel = kern, build_target = 'fs/ext4/', tag='ext4-clean')
+#kern.patch('/tmp/my-patches')
+#job.run_test('smatch', kernel = kern, build_target = 'fs/ext4/', tag='ext4-w-fixes')
+
+
+
+#job.run_test('smatch', base_tree = '3.6')
+
