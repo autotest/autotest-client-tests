@@ -1,0 +1,15 @@
+# default svn:ignore property:
+*.o
+*.lo
+*.la
+#*#
+.*.rej
+*.rej
+.*~
+*~
+.#*
+.DS_Store.
+# additional patterns:
+RELEASE-VERSION
+*.pyc
+*.pid
