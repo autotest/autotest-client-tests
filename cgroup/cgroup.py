@@ -12,7 +12,13 @@ from subprocess import Popen
 
 from autotest.client import test, utils
 from autotest.client.shared import error
-from autotest.client.cgroup_utils import Cgroup, CgroupModules, get_load_per_cpu
+try:
+    from autotest.client.shared.utils_cgroup import Cgroup, CgroupModules
+    from autotest.client.shared.utils_cgroup import get_load_per_cpu
+except ImportError:
+    # TODO: Obsoleted path used prior autotest-0.15.2
+    from autotest.client.cgroup_utils import Cgroup, CgroupModules
+    from autotest.client.cgroup_utils import get_load_per_cpu
 
 
 class cgroup(test.test):
