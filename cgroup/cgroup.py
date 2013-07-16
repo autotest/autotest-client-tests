@@ -80,6 +80,7 @@ class cgroup(test.test):
         self.modules = CgroupModules()
         if (self.modules.init(_modules) <= 0):
             raise error.TestFail('Can\'t mount any cgroup modules')
+        self.version += 1
 
     def cleanup(self):
         """ Cleanup """
