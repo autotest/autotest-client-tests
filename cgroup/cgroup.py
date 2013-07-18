@@ -67,9 +67,10 @@ class cgroup(test.test):
             logging.error('Some subtests failed (%s)', err[:-2])
             raise error.TestFail('Some subtests failed (%s)' % err[:-2])
 
-    def setup(self):
+    def initialize(self):
         """
-        Setup
+        Test initialization, Init and prepares listed cgroups for use. Not all
+        of them have to pass the initialization.
         """
         logging.debug('Setting up cgroups modules')
 
