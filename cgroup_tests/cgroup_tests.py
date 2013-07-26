@@ -3,6 +3,7 @@ from autotest.client import test
 from autotest.client.shared import error, utils, utils_cgroup
 try:
     import device_rate_test
+    import memory_migrate_test
     # TODO other sub systems test
 except ImportError:
     raise error.TestError("Cgroup test module doesn't exist!")
@@ -32,6 +33,17 @@ class cgroup_tests(test.test):
             fail_detail.append(detail)
             self._test_result = False
 
+        try:
+            logging.info("---< 'memory migrate test' START >---")
+            self.memory_migrate_test()
+            logging.info("---< 'memory migrate test' PASSED >---")
+        except Exception:
+            logging.info("---< 'memory migrate test' FAILED >---")
+            detail = utils.etraceback("memory migrate", sys.exc_info())
+            logging.error("Failure details:\n%s", detail)
+            fail_detail.append(detail)
+            self._test_result = False
+
         # TODO other sub systems test
         if not self._test_result:
             raise error.TestFail("There are fail test cases:\n%s" %
@@ -55,3 +67,12 @@ class cgroup_tests(test.test):
         """
         device_test = device_rate_test.DeviceRate(self._cgroup_dir)
         device_test.test()
+
+
+    def memory_migrate_test(self):
+        """
+        Test file create rate in desired device with cgroup
+        """
+        memory_test = memory_migrate_test.MemoryMigrate(self._cgroup_dir,
+                                                        self.tmpdir)
+        memory_test.test()
