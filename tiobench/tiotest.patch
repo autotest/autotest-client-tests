@@ -1,0 +1,22 @@
+diff --git a/tiotest.c b/tiotest.c
+index 38f54e7..8ec3e10 100644
+--- a/tiotest.c
++++ b/tiotest.c
+@@ -31,7 +31,7 @@ static const char* versionStr = "tiotest v0.3.3 (C) 1999-2000 Mika Kuoppala <mik
+ */
+ ArgumentOptions args;
+ 
+-static void * aligned_alloc(ssize_t size)
++static void * aligned_alloc_t(ssize_t size)
+ {
+ 	caddr_t a;
+ 	a = mmap((caddr_t )0, size, 
+@@ -281,7 +281,7 @@ void initialize_test( ThreadTest *d )
+ 		pthread_attr_setscope(&(d->threads[i].thread_attr),
+ 				      PTHREAD_SCOPE_SYSTEM);
+ 
+-		d->threads[i].buffer = aligned_alloc( d->threads[i].blockSize );
++		d->threads[i].buffer = aligned_alloc_t( d->threads[i].blockSize );
+ 		if( d->threads[i].buffer == NULL )
+ 		{
+ 			perror("Error allocating memory");
