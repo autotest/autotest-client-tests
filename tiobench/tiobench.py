@@ -11,6 +11,7 @@ class tiobench(test.test):
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
         utils.system('patch -p1 < %s/makefile.patch' % self.bindir)
+        utils.system('patch -p1 < %s/tiotest.patch' % self.bindir)
         utils.system('make')
 
 
