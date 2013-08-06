@@ -1,6 +1,6 @@
 import os, sys, subprocess, logging
 from autotest.client import test, utils
-from autotest.client.shared import error
+from autotest.client.shared import error, utils_memory
 
 
 class disktest(test.test):
@@ -66,7 +66,7 @@ class disktest(test.test):
         """
         os.chdir(self.disk_srcdir)
         if chunk_mb is None:
-            chunk_mb = utils.memtotal() / 1024/8
+            chunk_mb = utils_memory.memtotal() / 1024/8
         if disks is None:
             disks = [self.tmpdir]
         if gigabytes is None:
@@ -78,7 +78,7 @@ class disktest(test.test):
             sys.stdout.flush()
 
         self.chunk_mb = chunk_mb
-        self.memory_mb = utils.memtotal()/1024/8
+        self.memory_mb = utils_memory.memtotal()/1024/8
         if self.memory_mb > chunk_mb:
             raise error.TestError("Too much RAM (%dMB) for this test to work" %
                                   self.memory_mb)

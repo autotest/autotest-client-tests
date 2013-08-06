@@ -1,5 +1,6 @@
 import signal, os
 from autotest.client import utils, test
+from autotest.client.shared import utils_memory
 
 class bash_shared_mapping(test.test):
     version = 3
@@ -25,7 +26,7 @@ class bash_shared_mapping(test.test):
         file = os.path.join(testdir, 'foo')
         # Want to use 3/4 of all memory for each of
         # bash-shared-mapping and usemem
-        kilobytes = (3 * utils.memtotal()) / 4
+        kilobytes = (3 * utils_memory.memtotal()) / 4
 
         # Want two usemem -m megabytes in parallel in background.
         pid = [None, None]

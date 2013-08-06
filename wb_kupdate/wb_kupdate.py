@@ -1,6 +1,6 @@
 import datetime, logging, os, time
 from autotest.client import test, utils
-from autotest.client.shared import error
+from autotest.client.shared import error, utils_memory
 
 class wb_kupdate(test.test):
     version = 1
@@ -213,7 +213,7 @@ class wb_kupdate(test.test):
         self._create_partition()
 
         # Flush read and write cache.
-        utils.drop_caches()
+        utils_memory.drop_caches()
 
         # Start iterations.
         logging.info('Starting test operations.')
@@ -247,7 +247,7 @@ class wb_kupdate(test.test):
 
             # Flush cache.
             logging.debug('Flush cache between iterations.')
-            utils.drop_caches()
+            utils_memory.drop_caches()
 
            # Update the result map.
             self.result_map[counter] = time_taken.seconds

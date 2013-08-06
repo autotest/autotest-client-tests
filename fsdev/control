@@ -11,7 +11,7 @@ and then runs a given subset of tests against each file system.
 """
 
 import fsdev_disks
-from autotest.client import utils
+from autotest.client.shared import utils_memory
 
 # Initialize the FS_LIST variable below to the desired file system list; each
 # entry should contain the following (single) string:
@@ -61,13 +61,13 @@ for fstline in FS_LIST:
                  dir=disks[0]['mountpt'],
                  args='-l8 -u8 -M -s 8m -r16k +p80 -I -T -i0 -i8',
                  tag='small.'+tag)
-    utils.drop_caches()
+    utils_memory.drop_caches()
 
     job.run_test('iozone',
                  dir=disks[0]['mountpt'],
                  args='-l8 -u8 -M -s 8g -r16k +p80 -I -T -i0 -i8',
                  tag='large.'+tag)
-    utils.drop_caches()
+    utils_memory.drop_caches()
 
     # Clean up after the test
     if using_one_disk:
