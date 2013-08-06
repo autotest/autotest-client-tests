@@ -1,5 +1,6 @@
 import os
 from autotest.client import test, utils
+from autotest.client.shared import utils_memory
 
 
 class stress(test.test):
@@ -35,7 +36,8 @@ class stress(test.test):
             # Sometimes the default memory used by each memory worker (256 M)
             # might make our machine go OOM and then funny things might start to
             # happen. Let's avoid that.
-            mb = utils.freememtotal() + utils.read_from_meminfo('SwapFree') / 2
+            mb = (utils_memory.freememtotal()
+                  + utils_memory.read_from_meminfo('SwapFree') / 2)
             memory_per_thread = (mb * 1024) / threads
 
             # Even though unlikely, it's good to prevent from allocating more
