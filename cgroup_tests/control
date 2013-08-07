@@ -1,0 +1,11 @@
+AUTHOR = "Li Yang <liyang.fnst@cn.fujitsu.com>"
+NAME = "cgroup_tests"
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "General"
+TEST_TYPE = "client"
+
+DOC = """
+This test checks basic functionality of cgroups
+"""
+job.run_test('cgroup_tests')
