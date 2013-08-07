@@ -70,12 +70,12 @@ class kernelinstall(test.test):
         pkgs = c.get_pkg_rpm_file_names(k)
         for pkg in pkgs:
             for sub_pkg in sub_pkgs:
-                if sub_pkg in pkg: 
+                if sub_pkg in pkg:
                     deps_rpms += os.path.join(self.bindir, pkg)
                     break
             else:
                 kernel_rpm = os.path.join(self.bindir, pkg)
-        
+
         # Then install kernel rpm packages.
         self._kernel_install_rpm(kernel_rpm, deps_rpms, need_reboot)
 
