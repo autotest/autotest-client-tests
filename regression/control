@@ -1,0 +1,65 @@
+TIME="LONG"
+AUTHOR = "Dmitry Monakhov <dmonakhov@openvz.org>"
+NAME = 'Compare key value files'
+TEST_CLASS = 'generic'
+TEST_CATEGORY = 'Functional'
+TEST_TYPE = 'client'
+
+def less_or_equal(old, new):
+    return int(old) < int(new)
+
+"""
+ Test regression helper
+ Accept two directories with keyval files (usualy result directories for a test)
+ and compare given fields according to given pattern
+
+### EXAMPLE: ext4 patch queue validation scenario #####
+# Following example run two static analyzers('smatch' and 'sparse') on vanila kernel.
+# Step 1: Each analizer produces keyvalue file with number of warnings,errors
+# Step 2: apply patches against vanila kernel and run analizers one more time.
+# Step 3: Compare number of warnings and errors from vanilla and patched kernel
+#         and fail if number of errors increased.
+
+import os
+kernel = job.kernel('3.10-rc7')
+kernel.config()
+kerne_patch='/tmp/my-comined.patch'
+# I Do not want to check full kernel, but ext4 subsystem only.
+btarget='fs/ext4/'
+vtag = 'ext4'
+
+
+source_analizers_list = ['sparse', 'smatch']
+keyval_list = [('errors',  less_or_equal),
+                    ('warnings', less_or_equal)]
+
+def step_init():
+    job.next_step(check_original)
+    job.next_step(check_patched)
+    job.next_step(compare_results)
+
+def check_original():
+    for analyzer in source_analizers_list:
+	job.run_test(analyzer, kernel = kernel, build_target = btarget, tag= vtag + '-orig')
+
+def check_patched():
+    # Patch kernel and run checks again
+    kernel.patch('/tmp/my-patch-2.diff')
+    for analyzer in source_analizers_list:
+        job.run_test(analyzer, kernel = kernel, build_target = btarget, tag= vtag + '-patched')
+
+def compare_results():
+    # Compare each pair of analizer results and fail in case of regression
+    for analyzer in source_analizers_list:
+        job.run_test('regression', 
+                     old = os.path.join(job.resultdir, analyzer + '.' + vtag + '-orig'),
+                     new = os.path.join(job.resultdir, analyzer + '.' + vtag + '-patched'),
+                     compare_list = keyval_list,
+                     tag = analyzer)
+
+"""
+job.run_test('regression', 
+             old = os.path.join(job.resultdir, "test.run1"),
+             new = os.path.join(job.resultdir, "test.run2"),
+             compare_list = [('field1', less_or_equal)])
+
