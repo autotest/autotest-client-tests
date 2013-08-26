@@ -1,7 +1,7 @@
 import os, itertools, tempfile
 from autotest.client.shared import error, utils_cgroup
 
-class DeviceRate():
+class DeviceRate(object):
     """
     Test cgroup blkio sub system.
     Use it to control file write/read rate.

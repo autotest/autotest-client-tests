@@ -1,7 +1,7 @@
 import os, itertools, tempfile, subprocess, signal, time
 from autotest.client.shared import error, utils_cgroup
 
-class MemoryMigrate():
+class MemoryMigrate(object):
     """
     Test memory sub system.
     Use it to control file write/read rate.
