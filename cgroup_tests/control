@@ -8,4 +8,11 @@ TEST_TYPE = "client"
 DOC = """
 This test checks basic functionality of cgroups
 """
-job.run_test('cgroup_tests')
+import os
+os.environ['LANG'] = 'en_US.UTF-8'
+cgroup_test_dir = os.path.join(os.environ['AUTODIR'],'tests/cgroup_tests')
+sys.path.insert(0, cgroup_test_dir)
+test_cfg = os.path.join(cgroup_test_dir, 'test.cfg')
+test_case_list = [_.strip() for _ in open(test_cfg)]
+for item in test_case_list:
+    job.run_test('cgroup_tests', item=item, subdir_tag=item)
