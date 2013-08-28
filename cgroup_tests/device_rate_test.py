@@ -120,3 +120,15 @@ class DeviceRate(object):
             if os.path.exists(tmp_file):
                 os.remove(tmp_file)
             utils_cgroup.cgconfig_restart()
+
+
+def execute(cgroup_cls):
+    """
+    Execute device test.
+
+    @param: cgroup_cls: Cgroup class
+    """
+    if cgroup_cls is None:
+        raise error.TestNAError("Got a none cgroup class")
+    device_test = DeviceRate(cgroup_cls._cgroup_dir)
+    device_test.test()

@@ -144,3 +144,15 @@ int main(void) {
             # Recover environment
             os.kill(pid, signal.SIGUSR1)
             utils_cgroup.cgconfig_restart()
+
+
+def execute(cgroup_cls):
+    """
+    Execute memory test.
+
+    @param: cgroup_cls: Cgroup class
+    """
+    if cgroup_cls is None:
+        raise error.TestNAError("Got a none cgroup class")
+    memory_test = MemoryMigrate(cgroup_cls._cgroup_dir, cgroup_cls.tmpdir)
+    memory_test.test()
