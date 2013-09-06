@@ -23,7 +23,7 @@ the KVM guest for :
 (4) use multithreaded workloads to stress the filesystem.
 (5) Exert weighted combination of I/O workloads to analyze the I/O performace
     for a specific scenario.
-(6) Age filesystem according to a specified workload upto a specified limit.
+(6) Age filesystem according to a specified workload up to a specified limit.
 
     Since the only interface used for the integration is a FFSB configuration file;
 Autotest will be able to run variety of I/O tests on guest as FFSB improves,

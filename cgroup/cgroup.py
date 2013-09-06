@@ -94,7 +94,7 @@ class cgroup(test.test):
         """
         Memory test
         """
-        def cleanup(supress=False):
+        def cleanup(suppress=False):
             """ cleanup """
             logging.debug("test_memory: Cleanup")
             err = ""
@@ -104,7 +104,7 @@ class cgroup(test.test):
             utils.system("swapon -a")
 
             if err:
-                if supress:
+                if suppress:
                     logging.warn("Some parts of cleanup failed%s", err)
                 else:
                     raise error.TestFail("Some parts of cleanup failed%s" %
@@ -214,11 +214,11 @@ class cgroup(test.test):
                 filled = int(out[-2].split()[1][:-1])
                 if mem / 2 > 1.5 * filled:
                     logging.error("test_memory: Limit = %dM, Filled = %dM (+ "
-                                  "python overhead upto 1/3 (mem))", mem / 2,
+                                  "python overhead up to 1/3 (mem))", mem / 2,
                                   filled)
                 else:
                     logging.debug("test_memory: Limit = %dM, Filled = %dM (+ "
-                                  "python overhead upto 1/3 (mem))", mem / 2,
+                                  "python overhead up to 1/3 (mem))", mem / 2,
                                   filled)
         logging.debug("test_memory: Memfill mem only cgroup passed")
 
@@ -256,11 +256,11 @@ class cgroup(test.test):
                 filled = int(out[-2].split()[1][:-1])
                 if mem / 2 > 1.5 * filled:
                     logging.error("test_memory: Limit = %dM, Filled = %dM (+ "
-                                  "python overhead upto 1/3 (memsw))", mem / 2,
+                                  "python overhead up to 1/3 (memsw))", mem / 2,
                                   filled)
                 else:
                     logging.debug("test_memory: Limit = %dM, Filled = %dM (+ "
-                                  "python overhead upto 1/3 (memsw))", mem / 2,
+                                  "python overhead up to 1/3 (memsw))", mem / 2,
                                   filled)
             logging.debug("test_memory: Memfill mem + swap cgroup passed")
 
@@ -274,7 +274,7 @@ class cgroup(test.test):
         Cpuset test
         1) Initiate CPU load on CPU0, than spread into CPU* - CPU0
         """
-        def cleanup(supress=False):
+        def cleanup(suppress=False):
             """ cleanup """
             logging.debug("test_cpuset: Cleanup")
             err = ""
@@ -293,7 +293,7 @@ class cgroup(test.test):
             if item.rm_cgroup(pwd):
                 err += "\nCan't remove cgroup direcotry"
             if err:
-                if supress:
+                if suppress:
                     logging.warn("Some parts of cleanup failed%s", err)
                 else:
                     raise error.TestFail("Some parts of cleanup failed%s"
@@ -385,7 +385,7 @@ class cgroup(test.test):
         tests cpu subsystem.
         Currently only smoke and many_cgroups test is written
         """
-        def cleanup(supress=False):
+        def cleanup(suppress=False):
             """ cleanup """
             logging.debug("test_cpu: Cleanup")
             err = []
@@ -409,7 +409,7 @@ class cgroup(test.test):
                     err += "\nCan't remove Cgroup: %s" % failure_detail
 
             if err:
-                if supress:
+                if suppress:
                     logging.warn("Some parts of cleanup failed%s", err)
                 else:
                     raise error.TestFail("Some parts of cleanup failed%s"

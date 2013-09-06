@@ -7,7 +7,7 @@ alignio=1
 [filesystem0]
 #   For KVM Autotest , this will by-default
 #   be / , unless and until the user is absolutely
-#   sure what is is upto.
+#   sure what is is up to.
     location=/
     num_files=2
     min_filesize=1G

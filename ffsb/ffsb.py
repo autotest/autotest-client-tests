@@ -40,7 +40,7 @@ class ffsb(test.test):
     def set_ffsb_params(self, usrfl):
         """
         This function checks for the user supplied FFSB profile file
-        and validates it against the availble resources on the
+        and validates it against the available resources on the
         guest - currently only disk space validation is supported
         but adjusting the number of threads according to the vcpus
         exported by the qemu-kvm also needs to be added.

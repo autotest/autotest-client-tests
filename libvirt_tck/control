@@ -6,7 +6,7 @@ hypervisor technology, related operating system services and system
 configuration.
 
 Thus the libvirt TCK will allow developers, administrators and users
-to determine the level of compatability of their platform, and
+to determine the level of compatibility of their platform, and
 evaluate whether it will meet their needs, and get awareness of any
 regressions that may have occurred since a previous test run
 """

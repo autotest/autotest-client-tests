@@ -3,10 +3,10 @@ ISIC -- IP Stack Integrity Checker
 Description:
 ISIC is a suite of utilities to exercise the stability of an IP Stack and its
 component stacks (TCP, UDP, ICMP et. al.) It generates piles of pseudo random
-packets of the target protocol. The packets be given tendancies to conform to.
+packets of the target protocol. The packets be given tendencies to conform to.
 Ie 50% of the packets generated can have IP Options. 25% of the packets can
 be IP fragments... But the percentages are arbitrary and most of the packet
-fields have a configurable tendancy.
+fields have a configurable tendency.
 
 The packets are then sent against the target machine to either penetrate its
 firewall rules or find bugs in the IP stack.

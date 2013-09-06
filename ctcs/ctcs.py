@@ -13,7 +13,7 @@ class ctcs(test.test):
     the now extinct VA Linux's manufacturing system it has several hardware
     and software stress tests that can be run in parallel. It does have a
     control file system that allows testers to specify the sorts of tests that
-    they want to see executed. It's an excelent stress test for hardware and
+    they want to see executed. It's an excellent stress test for hardware and
     kernel.
 
     @author Manas Kumar Nayak (maknayak@in.ibm.com) (original code)

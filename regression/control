@@ -10,7 +10,7 @@ def less_or_equal(old, new):
 
 """
  Test regression helper
- Accept two directories with keyval files (usualy result directories for a test)
+ Accept two directories with keyval files (usually result directories for a test)
  and compare given fields according to given pattern
 
 ### EXAMPLE: ext4 patch queue validation scenario #####

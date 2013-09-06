@@ -50,7 +50,7 @@ class compilebench(test.test):
             ('stat compiled tree', TIME, 7, 'stat_compiled_tree'),
         )
 
-# intial create total runs 10 avg 149.82 MB/s (user 0.63s sys 0.85s)
+# initial create total runs 10 avg 149.82 MB/s (user 0.63s sys 0.85s)
 # create total runs 5 avg 27.50 MB/s (user 0.62s sys 0.83s)
 # patch total runs 4 avg 15.01 MB/s (user 0.33s sys 0.63s)
 # compile total runs 7 avg 41.47 MB/s (user 0.14s sys 0.75s)

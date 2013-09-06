@@ -32,7 +32,7 @@ class tsc(test.test):
             ## following conditions are met:
             ## (i) result.exit_status = 1
             ## (ii) result.stdout ends with 'FAIL'
-            ## (iii) "FAIL" is preceeded by one or more
+            ## (iii) "FAIL" is preceded by one or more
             ##       lines in the following format:
             ##       CPU x - CPU y = <delta>
             ## Set as a reason the line that contains max abs(delta)

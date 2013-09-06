@@ -707,7 +707,7 @@ char *yytext_ptr;
  *
  * States:
  *	SCAN_OUTSIDE
- *		start-up state, inbetween tests
+ *		start-up state, between tests
  *	SCAN_RTSKEY			valid from SCAN_OUTSIDE
  *		from rts_keyword_start to _end
  *		accompanied by lex KEY state.

@@ -76,7 +76,7 @@ class libvirt_test_api(test.test):
         config_files_cfg = os.path.join(self.bindir, 'config_files.cfg')
         test_items = self.get_tests_from_cfg(config_files_cfg, item)
         if not test_items:
-            raise error.TestError('No test avaliable for item %s in '
+            raise error.TestError('No test available for item %s in '
                                  'config_files.cfg' % item)
 
         os.chdir(self.srcdir)
