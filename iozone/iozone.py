@@ -1,9 +1,11 @@
-import os, re
+import os
+import re
 from autotest.client import test, utils
 import postprocessing
 
 
 class iozone(test.test):
+
     """
     This autotest module runs the IOzone filesystem benchmark. The benchmark
     generates and measures a variety of file operations. Iozone has been ported
@@ -23,7 +25,6 @@ class iozone(test.test):
 
     def initialize(self):
         self.job.require_gcc()
-
 
     def setup(self, tarball='iozone3_414.tar'):
         """
@@ -46,7 +47,6 @@ class iozone(test.test):
             utils.make('linux-AMD64')
         else:
             utils.make('linux')
-
 
     def run_once(self, dir=None, args=None):
         """
@@ -73,10 +73,8 @@ class iozone(test.test):
 
         utils.open_write_close(self.results_path, self.results)
 
-
     def __get_section_name(self, desc):
         return desc.strip().replace(' ', '_')
-
 
     def generate_keyval(self):
         keylist = {}
@@ -97,13 +95,13 @@ class iozone(test.test):
                     key_name = "%d-%d-%s" % (fields[0], fields[1], l)
                     keylist[key_name] = v
         else:
-            child_regexp  = re.compile('Children see throughput for[\s]+'
-                            '([\d]+)\s+([-\w]+[-\w\s]*)\=[\s]+([\d\.]*) KB/sec')
+            child_regexp = re.compile('Children see throughput for[\s]+'
+                                      '([\d]+)\s+([-\w]+[-\w\s]*)\=[\s]+([\d\.]*) KB/sec')
             parent_regexp = re.compile('Parent sees throughput for[\s]+'
-                            '([\d]+)\s+([-\w]+[-\w\s]*)\=[\s]+([\d\.]*) KB/sec')
+                                       '([\d]+)\s+([-\w]+[-\w\s]*)\=[\s]+([\d\.]*) KB/sec')
 
-            KBsec_regexp  = re.compile('\=[\s]+([\d\.]*) KB/sec')
-            KBval_regexp  = re.compile('\=[\s]+([\d\.]*) KB')
+            KBsec_regexp = re.compile('\=[\s]+([\d\.]*) KB/sec')
+            KBval_regexp = re.compile('\=[\s]+([\d\.]*) KB')
 
             section = None
             w_count = 0
@@ -155,7 +153,6 @@ class iozone(test.test):
                             keylist[key_name] = result
 
         self.write_perf_keyval(keylist)
-
 
     def postprocess_iteration(self):
         self.generate_keyval()

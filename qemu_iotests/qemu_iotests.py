@@ -1,9 +1,12 @@
-import os, re, logging
+import os
+import re
+import logging
 from autotest.client import test, utils, os_dep
 from autotest.client.shared import error
 
 
 class qemu_iotests(test.test):
+
     """
     This autotest module runs the qemu_iotests testsuite.
 
@@ -12,18 +15,18 @@ class qemu_iotests(test.test):
     @see: http://www.kernel.org/pub/scm/linux/kernel/git/hch/qemu-iotests.git
     """
     version = 2
+
     def initialize(self, qemu_path=''):
         if qemu_path:
             # Prepending the path at the beginning of $PATH will make the
             # version found on qemu_path be preferred over other ones.
-            os.environ['PATH'] =  qemu_path + ":" + os.environ['PATH']
+            os.environ['PATH'] = qemu_path + ":" + os.environ['PATH']
         try:
             self.qemu_img_path = os_dep.command('qemu-img')
             self.qemu_io_path = os_dep.command('qemu-io')
         except ValueError, e:
             raise error.TestNAError('Commands qemu-img or qemu-io missing')
         self.job.require_gcc()
-
 
     def setup(self, tarball='qemu-iotests.tar.bz2'):
         """
@@ -35,7 +38,6 @@ class qemu_iotests(test.test):
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
         utils.make('clean')
-
 
     def run_once(self, options='', testlist=''):
         """

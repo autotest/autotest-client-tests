@@ -4,37 +4,36 @@ from autotest.client import test, utils
 
 test_name = 'compilebench'
 
+
 class compilebench(test.test):
     version = 1
 
-    def setup(self, tarball = 'compilebench-0.6.tar.gz'):
+    def setup(self, tarball='compilebench-0.6.tar.gz'):
         self.tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(self.tarball, self.srcdir)
         os.chdir(self.srcdir)
         utils.system('patch -p1 < %s/compilebench.patch' % self.bindir)
-
 
     def run_once(self, dir=None, num_kernel_trees=10, num_random_runs=30):
         if not dir:
             dir = self.tmpdir
 
         cmd = "%s -D %s -s %s -i %d -r %d" % (
-                         os.path.join(self.srcdir, test_name),
-                         dir,
-                         self.srcdir,
-                         num_kernel_trees,
-                         num_random_runs)
+            os.path.join(self.srcdir, test_name),
+            dir,
+            self.srcdir,
+            num_kernel_trees,
+            num_random_runs)
 
         output = utils.system_output(cmd)
 
         self.__format_results(output)
 
-
     def __format_results(self, output):
         keylist = {}
 
         THROUGHPUT = "MB_s"
-        TIME       = "secs"
+        TIME = "secs"
 
         run_type_list = (
             ('intial create', THROUGHPUT, 6, 'initial_create'),

@@ -1,6 +1,8 @@
-import os, re
+import os
+import re
 
 from autotest.client import utils, test
+
 
 class dbench(test.test):
     version = 3
@@ -16,12 +18,10 @@ class dbench(test.test):
         utils.configure()
         utils.make()
 
-
     def initialize(self):
         self.job.require_gcc()
         self.results = []
         self.dbench = os.path.join(self.srcdir, 'dbench')
-
 
     def run_once(self, dir='.', nprocs=None, seconds=600, args=''):
         if not nprocs:
@@ -31,8 +31,7 @@ class dbench(test.test):
                                               dir, loadfile, seconds)
         self.results = utils.system_output(cmd, retain_output=True)
 
-
     def postprocess_iteration(self):
         pattern = re.compile(r"Throughput (.*?) MB/sec (.*?) procs")
         (throughput, procs) = pattern.findall(self.results)[0]
-        self.write_perf_keyval({'throughput':throughput, 'procs':procs})
+        self.write_perf_keyval({'throughput': throughput, 'procs': procs})

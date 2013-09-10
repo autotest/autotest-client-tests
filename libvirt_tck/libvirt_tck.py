@@ -1,10 +1,14 @@
-import os, re, shutil, logging
+import os
+import re
+import shutil
+import logging
 
 from autotest.client.shared import error
 from autotest.client import utils, test
 
 
 class libvirt_tck(test.test):
+
     """
     Autotest wrapper for the libvirt Technology Compatibility toolkit.
 

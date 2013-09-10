@@ -1,4 +1,5 @@
-import os, logging
+import os
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
@@ -6,8 +7,8 @@ from autotest.client.shared import error
 class pktgen(test.test):
     version = 1
 
-    def execute(self, eth='eth0', count=50000, clone_skb=1, \
-                    dst_ip='192.168.210.210', dst_mac='01:02:03:04:05:07'):
+    def execute(self, eth='eth0', count=50000, clone_skb=1,
+                dst_ip='192.168.210.210', dst_mac='01:02:03:04:05:07'):
         if not os.path.exists('/proc/net/pktgen'):
             utils.system('/sbin/modprobe pktgen')
         if not os.path.exists('/proc/net/pktgen'):
@@ -23,8 +24,8 @@ class pktgen(test.test):
         # Configure the individual devices
         logging.info('Configuring devices')
 
-        self.ethdev='/proc/net/pktgen/' + eth
-        self.pgdev=self.ethdev
+        self.ethdev = '/proc/net/pktgen/' + eth
+        self.pgdev = self.ethdev
 
         if clone_skb:
             self.pgset('clone_skb %d' % (count))
@@ -35,16 +36,15 @@ class pktgen(test.test):
         self.pgset('count %d' % (count))
 
         # Time to run
-        self.pgdev='/proc/net/pktgen/pgctrl'
+        self.pgdev = '/proc/net/pktgen/pgctrl'
         self.pgset('start')
 
         output = os.path.join(self.resultsdir, eth)
-        utils.system ('cp %s %s' % (self.ethdev, output))
-
+        utils.system('cp %s %s' % (self.ethdev, output))
 
     def pgset(self, command):
         file = open(self.pgdev, 'w')
-        file.write(command + '\n');
+        file.write(command + '\n')
         file.close
 
         if not utils.grep('Result: OK', self.pgdev):

@@ -1,9 +1,13 @@
-import os, shutil, glob, logging
+import os
+import shutil
+import glob
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
 
 class ctcs(test.test):
+
     """
     This autotest module runs CTCS (Cerberus Test Control System), that is being
     maintained on a new location, since both CTCS and CTCS2 on sourceforge
@@ -29,7 +33,6 @@ class ctcs(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-
 
     def setup(self, tarball='ctcs.tar.bz2', length='4h', tc_opt='-k',
               tcf_contents=None):
@@ -72,7 +75,6 @@ class ctcs(test.test):
         buf = tcf.read()
         logging.debug(buf)
 
-
     def run_once(self):
         """
         Runs the test, with the appropriate control file.
@@ -88,7 +90,6 @@ class ctcs(test.test):
         logging.debug('Copying %s log directory to results dir', log_dir)
         dst = os.path.join(self.resultsdir, os.path.basename(log_dir))
         shutil.move(log_dir, dst)
-
 
     def cleanup(self):
         """

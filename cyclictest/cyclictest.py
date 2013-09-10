@@ -11,11 +11,9 @@ class cyclictest(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     def setup(self):
         os.chdir(self.srcdir)
         utils.make()
 
-
-    def execute(self, args = '-t 10 -l 100000'):
+    def execute(self, args='-t 10 -l 100000'):
         utils.system(self.srcdir + '/cyclictest ' + args)

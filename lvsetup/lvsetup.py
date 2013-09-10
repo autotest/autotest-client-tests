@@ -10,6 +10,7 @@ from autotest.client.shared import error
 
 
 class lvsetup(test.test):
+
     """
     Test class inheriting from test with main method run_once().
     """
@@ -19,9 +20,9 @@ class lvsetup(test.test):
                  lv_size='1G', lv_snapshot_name='autotest_sn',
                  lv_snapshot_size='1G',
                  # size in MB
-                 ramdisk_vg_size = "40000",
-                 ramdisk_basedir = "/tmp",
-                 ramdisk_sparse_filename = "virtual_hdd",
+                 ramdisk_vg_size="40000",
+                 ramdisk_basedir="/tmp",
+                 ramdisk_sparse_filename="virtual_hdd",
                  override_flag=0):
         """
         General logical volume setup.
@@ -60,7 +61,7 @@ class lvsetup(test.test):
 
             # perform normal check policy
             if (lv_utils.lv_check(vg_name, lv_snapshot_name)
-                and lv_utils.lv_check(vg_name, lv_name)):
+                    and lv_utils.lv_check(vg_name, lv_name)):
                 lv_utils.lv_revert(vg_name, lv_name, lv_snapshot_name)
                 lv_utils.lv_take_snapshot(vg_name, lv_name,
                                           lv_snapshot_name,

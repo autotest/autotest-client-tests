@@ -1,5 +1,6 @@
 # Needs autoconf & automake & libtool to be installed. Ewwwwwwwwwwwwwwwwwwwwww
-import re, os
+import re
+import os
 from autotest.client import test, utils, os_dep
 
 
@@ -7,7 +8,7 @@ class reaim(test.test):
     version = 1
 
     # http://prdownloads.sourceforge.net/re-aim-7/osdl-aim-7.0.1.13.tar.gz
-    def setup(self, tarball = 'osdl-aim-7.0.1.13.tar.gz'):
+    def setup(self, tarball='osdl-aim-7.0.1.13.tar.gz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
 
@@ -15,7 +16,7 @@ class reaim(test.test):
         libs = '-L' + self.autodir + '/deps/libaio/lib -laio'
         cflags = '-I ' + self.autodir + '/deps/libaio/include'
         var_libs = 'LIBS="' + libs + '"'
-        var_cflags  = 'CFLAGS="' + cflags + '"'
+        var_cflags = 'CFLAGS="' + cflags + '"'
         self.make_flags = var_libs + ' ' + var_cflags
 
         os_dep.commands('autoconf', 'automake', 'libtoolize')
@@ -31,15 +32,13 @@ class reaim(test.test):
         utils.system(self.make_flags + ' make')
         os.rename('src/reaim', 'reaim')
 
-
     def initialize(self):
         self.job.require_gcc()
-        self.ldlib = 'LD_LIBRARY_PATH=%s/deps/libaio/lib'%(self.autodir)
+        self.ldlib = 'LD_LIBRARY_PATH=%s/deps/libaio/lib' % (self.autodir)
 
-
-    def execute(self, iterations = 1, workfile = 'workfile.short',
-                    start = 1, end = 10, increment = 2,
-                    extra_args = '', tmpdir = None):
+    def execute(self, iterations=1, workfile='workfile.short',
+                start=1, end=10, increment=2,
+                extra_args='', tmpdir=None):
         if not tmpdir:
             tmpdir = self.tmpdir
 
@@ -71,7 +70,6 @@ class reaim(test.test):
             profilers.report(self)
 
         self.__format_results("\n".join(results))
-
 
     def __format_results(self, results):
         out = open(self.resultsdir + '/keyval', 'w')

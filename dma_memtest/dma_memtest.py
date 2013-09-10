@@ -1,9 +1,15 @@
-import os, time, re, subprocess, shutil, logging
+import os
+import time
+import re
+import subprocess
+import shutil
+import logging
 from autotest.client import utils, test
 from autotest.client.shared import error
 
 
 class dma_memtest(test.test):
+
     """
     A test for the memory subsystem against heavy IO and DMA operations,
     implemented based on the work of Doug Leford
@@ -13,10 +19,10 @@ class dma_memtest(test.test):
         @author Rodrigo Sampaio Vaz (rsampaio@br.ibm.com)
     """
     version = 1
+
     def initialize(self):
         self.cachedir = os.path.join(os.path.dirname(self.srcdir), 'cache')
         self.nfail = 0
-
 
     def setup(self, tarball_base='linux-2.6.18.tar.bz2', parallel=True):
         """
@@ -51,7 +57,6 @@ class dma_memtest(test.test):
         logging.info('Number of copies: %s' % self.sim_cps)
         logging.info('Parallel: %s' % parallel)
 
-
     def get_sim_cps(self, est_size):
         '''
         Calculate the amount of simultaneous copies that can be uncompressed
@@ -77,7 +82,6 @@ class dma_memtest(test.test):
             sim_cps += 1
 
         return int(sim_cps)
-
 
     def run_once(self):
         """
@@ -120,7 +124,7 @@ class dma_memtest(test.test):
         logging.info('Comparing test copies with base copy')
         for j in range(self.sim_cps):
             tmp_dir = 'linux.%s/%s' % (j,
-                            os.path.basename(self.tarball).strip('.tar.bz2'))
+                                       os.path.basename(self.tarball).strip('.tar.bz2'))
             if self.parallel:
                 diff_cmd = ['diff', '-U3', '-rN', 'linux.orig', tmp_dir]
                 logging.debug("Comparing linux.orig with %s", tmp_dir)
@@ -152,7 +156,6 @@ class dma_memtest(test.test):
             tmp_dir = 'linux.%s' % j
             shutil.rmtree(tmp_dir)
         shutil.rmtree(base_dir)
-
 
     def cleanup(self):
         if self.nfail != 0:

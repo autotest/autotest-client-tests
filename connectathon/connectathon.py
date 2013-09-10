@@ -1,9 +1,13 @@
-import os, shutil, glob, logging
+import os
+import shutil
+import glob
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
 
 class connectathon(test.test):
+
     """
     Connectathon test is an nfs testsuite which can run on
     both BSD and System V based systems. The tests.init file
@@ -16,12 +20,12 @@ class connectathon(test.test):
     @author Poornima.Nayak (Poornima.Nayak@in.ibm.com)(original code)
     """
     version = 1
+
     def initialize(self):
         """
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-
 
     def setup(self, tarball='connectathon.tar.bz2'):
         connectathon_tarball = utils.unmap_url(self.bindir, tarball,
@@ -31,7 +35,6 @@ class connectathon(test.test):
         os.chdir(self.srcdir)
         utils.system('make clean')
         utils.system('make')
-
 
     def run_once(self, testdir=None, args='', cthon_iterations=1):
         """
@@ -57,7 +60,6 @@ class connectathon(test.test):
         except error.CmdError, e:
             self.nfail += 1
             logging.error("Test failed: %s", e)
-
 
     def postprocess(self):
         """

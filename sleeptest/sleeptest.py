@@ -1,6 +1,7 @@
 import time
 from autotest.client import test
 
+
 class sleeptest(test.test):
     version = 1
 

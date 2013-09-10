@@ -1,10 +1,14 @@
-import os, re, logging, shutil
+import os
+import re
+import logging
+import shutil
 from autotest.client import utils, test
 from autotest.client.test_config import config_loader
 from autotest.client.shared import error, software_manager
 
 
 class dacapo(test.test):
+
     """
     This autotest module runs the dacapo benchmark suite.
 
@@ -31,14 +35,13 @@ class dacapo(test.test):
         else:
             java_home = java_root
         java_bin = os.path.join(java_home, 'bin')
-        java_lib =  os.path.join(java_home, 'lib')
+        java_lib = os.path.join(java_home, 'lib')
         os.environ['JAVA_ROOT'] = java_root
         os.environ['JAVA_HOME'] = java_home
         os.environ['JRE_HOME'] = java_home
         os.environ['CLASSPATH'] = java_lib
         os.environ['JAVA_BINDIR'] = java_bin
         os.environ['PATH'] = java_bin + ':' + os.environ['PATH']
-
 
     def run_once(self, test='antlr', config='./dacapo.cfg', jvm='default'):
         cfg = config_loader(cfg=config, tmpdir=self.tmpdir, raise_errors=True)
@@ -91,7 +94,6 @@ class dacapo(test.test):
         except error.CmdError, e:
             raise error.TestError('Dacapo benchmark %s has failed: %s' %
                                   (test, e))
-
 
     def postprocess_iteration(self):
         result_line = self.results.splitlines()[-1]

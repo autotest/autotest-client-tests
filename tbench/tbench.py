@@ -1,4 +1,7 @@
-import time, os, signal, re
+import time
+import os
+import signal
+import re
 from autotest.client import test, utils
 
 
@@ -8,9 +11,8 @@ class tbench(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     # http://samba.org/ftp/tridge/dbench/dbench-3.04.tar.gz
-    def setup(self, tarball = 'dbench-3.04.tar.gz'):
+    def setup(self, tarball='dbench-3.04.tar.gz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -18,8 +20,7 @@ class tbench(test.test):
         utils.configure()
         utils.make()
 
-
-    def run_once(self, nprocs = None, args = ''):
+    def run_once(self, nprocs=None, args=''):
         # only supports combined server+client model at the moment
         # should support separate I suppose, but nobody uses it
         if not nprocs:
@@ -40,8 +41,7 @@ class tbench(test.test):
             server = self.srcdir + '/tbench_srv'
             os.execlp(server, server)
 
-
     def postprocess_iteration(self):
         pattern = re.compile(r"Throughput (.*?) MB/sec (.*?) procs")
         (throughput, procs) = pattern.findall(self.results)[0]
-        self.write_perf_keyval({'throughput':throughput, 'procs':procs})
+        self.write_perf_keyval({'throughput': throughput, 'procs': procs})

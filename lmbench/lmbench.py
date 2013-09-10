@@ -10,8 +10,7 @@ class lmbench(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
-    def setup(self, tarball = 'lmbench3.tar.bz2', fsdir=None, file=None):
+    def setup(self, tarball='lmbench3.tar.bz2', fsdir=None, file=None):
         """
         Uncompresses the original lmbench tarball, applies a patch to fix
         some build issues, configures lmbench and then modifies the config
@@ -61,11 +60,9 @@ class lmbench(test.test):
         utils.system("sed 's!^FILE=.*$!FILE=%s!' '%s' > '%s'" %
                      (file, tmp_config_file, config_file))
 
-
     def run_once(self):
         os.chdir(self.srcdir)
         utils.make('rerun')
-
 
     def postprocess(self):
         # Get the results:

@@ -1,4 +1,7 @@
-import os, time, re, pwd
+import os
+import time
+import re
+import pwd
 from autotest.client import test, utils
 from autotest.client.shared import error
 
@@ -11,7 +14,7 @@ class sysbench(test.test):
         self.results = []
 
     # http://osdn.dl.sourceforge.net/sourceforge/sysbench/sysbench-0.4.8.tar.gz
-    def setup(self, tarball = 'sysbench-0.4.8.tar.bz2'):
+    def setup(self, tarball='sysbench-0.4.8.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         self.job.setup_dep(['pgsql', 'mysql'])
@@ -27,14 +30,13 @@ class sysbench(test.test):
             % (pgsql_dir, mysql_dir))
         utils.make('-j %d' % utils.count_cpus())
 
-
-    def run_once(self, db_type = 'pgsql', build = 1, \
-                    num_threads = utils.count_cpus(), max_time = 60, \
-                    read_only = 0, args = ''):
+    def run_once(self, db_type='pgsql', build=1,
+                 num_threads=utils.count_cpus(), max_time=60,
+                 read_only=0, args=''):
         plib = os.path.join(self.autodir, 'deps/pgsql/pgsql/lib')
         mlib = os.path.join(self.autodir, 'deps/mysql/mysql/lib/mysql')
         ld_path = utils.prepend_path(plib,
-            utils.environ('LD_LIBRARY_PATH'))
+                                     utils.environ('LD_LIBRARY_PATH'))
         ld_path = utils.prepend_path(mlib, ld_path)
         os.environ['LD_LIBRARY_PATH'] = ld_path
 
@@ -54,7 +56,6 @@ class sysbench(test.test):
         elif (db_type == 'mysql'):
             self.execute_mysql(build, num_threads, max_time, read_only, args)
 
-
     def execute_pgsql(self, build, num_threads, max_time, read_only, args):
         bin = os.path.join(self.autodir, 'deps/pgsql/pgsql/bin')
         data = os.path.join(self.autodir, 'deps/pgsql/pgsql/data')
@@ -68,24 +69,24 @@ class sysbench(test.test):
 
         # Database must be able to write its output into debugdir
         os.chown(self.debugdir, self.dbuid, 0)
-        utils.system(self.sudo + bin + '/pg_ctl -D %s -l %s start' %(data, log))
+        utils.system(self.sudo + bin + '/pg_ctl -D %s -l %s start' % (data, log))
 
         # Wait for database to start
         time.sleep(5)
 
         try:
             base_cmd = self.srcdir + '/sysbench/sysbench --test=oltp ' \
-                       '--db-driver=pgsql --pgsql-user=' + self.dbuser
+                '--db-driver=pgsql --pgsql-user=' + self.dbuser
 
             if build == 1:
                 utils.system(self.sudo + bin + '/createdb sbtest')
-                cmd = base_cmd +' prepare'
+                cmd = base_cmd + ' prepare'
                 utils.system(cmd)
 
             cmd = base_cmd + \
-                    ' --num-threads=' + str(num_threads) + \
-                    ' --max-time=' + str(max_time) + \
-                    ' --max-requests=0'
+                ' --num-threads=' + str(num_threads) + \
+                ' --max-time=' + str(max_time) + \
+                ' --max-requests=0'
 
             if read_only:
                 cmd = cmd + ' --oltp-read-only=on'
@@ -99,7 +100,6 @@ class sysbench(test.test):
 
         utils.system(self.sudo + bin + '/pg_ctl -D ' + data + ' stop')
 
-
     def execute_mysql(self, build, num_threads, max_time, read_only, args):
         bin = os.path.join(self.autodir, 'deps/mysql/mysql/bin')
         data = os.path.join(self.autodir, 'deps/mysql/mysql/var')
@@ -111,8 +111,8 @@ class sysbench(test.test):
             os.chown(data, self.dbuid, 0)
             utils.system(bin + '/mysql_install_db --user=' + self.dbuser)
 
-        utils.system(bin + '/mysqld_safe --log-error=' + log + \
-                ' --user=' + self.dbuser + ' &')
+        utils.system(bin + '/mysqld_safe --log-error=' + log +
+                     ' --user=' + self.dbuser + ' &')
 
         # Wait for database to start
         time.sleep(5)
@@ -122,15 +122,15 @@ class sysbench(test.test):
                                      '--db-driver=mysql --mysql-user=root'
 
             if build == 1:
-                utils.system('echo "create database sbtest" | ' + \
-                        bin + '/mysql -u root')
-                cmd = base_cmd +' prepare'
+                utils.system('echo "create database sbtest" | ' +
+                             bin + '/mysql -u root')
+                cmd = base_cmd + ' prepare'
                 utils.system(cmd)
 
             cmd = base_cmd + \
-                    ' --num-threads=' + str(num_threads) + \
-                    ' --max-time=' + str(max_time) + \
-                    ' --max-requests=0'
+                ' --num-threads=' + str(num_threads) + \
+                ' --max-time=' + str(max_time) + \
+                ' --max-requests=0'
 
             if read_only:
                 cmd = cmd + ' --oltp-read-only=on'
@@ -143,7 +143,6 @@ class sysbench(test.test):
             raise
 
         utils.system(bin + '/mysqladmin shutdown')
-
 
     def postprocess(self):
         self.__format_results("\n".join(self.results))

@@ -3,6 +3,7 @@ from autotest.client import test, utils
 
 
 class fio(test.test):
+
     """
     fio is an I/O tool mean for benchmark and stress/hardware verification.
 
@@ -13,8 +14,7 @@ class fio(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
-    def setup(self, tarball = 'fio-2.0.5.tar.bz2'):
+    def setup(self, tarball='fio-2.0.5.tar.bz2'):
         """
         Compiles and installs fio.
 
@@ -27,14 +27,13 @@ class fio(test.test):
         ldflags = '-L' + self.autodir + '/deps/libaio/lib'
         cflags = '-I' + self.autodir + '/deps/libaio/include'
         var_ldflags = 'LDFLAGS="' + ldflags + '"'
-        var_cflags  = 'CFLAGS="' + cflags + '"'
+        var_cflags = 'CFLAGS="' + cflags + '"'
 
         os.chdir(self.srcdir)
         utils.system('patch -p1 < %s/Makefile.patch' % self.bindir)
         utils.system('%s %s make' % (var_ldflags, var_cflags))
 
-
-    def run_once(self, args = '', user = 'root'):
+    def run_once(self, args='', user='root'):
         os.chdir(self.srcdir)
         ##vars = 'TMPDIR=\"%s\" RESULTDIR=\"%s\"' % (self.tmpdir, self.resultsdir)
         vars = 'LD_LIBRARY_PATH="' + self.autodir + '/deps/libaio/lib"'

@@ -12,7 +12,9 @@ from autotest.client.shared import error
 from autotest.client.shared.test_utils import mock
 from autotest.client.tests.wb_kupdate import wb_kupdate
 
+
 class WbKupdateUnitTest(unittest.TestCase):
+
     def setUp(self):
         """Set up all required variables for the Unittest.
         """
@@ -27,14 +29,14 @@ class WbKupdateUnitTest(unittest.TestCase):
 
         # Obvious failure - since start_time < start_time + 1.
         self.assertTrue(self._wbkupdate_obj._needs_more_time(
-                start_time=datetime.datetime.now(),
-                duration=1))
+            start_time=datetime.datetime.now(),
+            duration=1))
 
         # Check if 1 minute has elapsed since start_time.
         self.assertFalse(self._wbkupdate_obj._needs_more_time(
-                start_time=datetime.datetime.now(),
-                duration=1,
-                _now=datetime.datetime.now() + datetime.timedelta(seconds=60)))
+            start_time=datetime.datetime.now(),
+            duration=1,
+            _now=datetime.datetime.now() + datetime.timedelta(seconds=60)))
 
     def test_wait_until_data_flushed_pass(self):
         """Tests the _wait_until_data_flushed method.
@@ -62,7 +64,6 @@ class WbKupdateUnitTest(unittest.TestCase):
 
         # Ensure all stubbed methods called.
         self._god.check_playback()
-
 
     def test_wait_until_data_flushed_fail(self):
         """Tests the _wait_until_data_flushed method.
@@ -92,8 +93,10 @@ class WbKupdateUnitTest(unittest.TestCase):
 
 
 class WbKupdateSubclass(wb_kupdate.wb_kupdate):
+
     """Sub-classing the wb_kupdate class.
     """
+
     def __init__(self):
         """Empty constructor.
         """

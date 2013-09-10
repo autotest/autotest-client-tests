@@ -1,13 +1,14 @@
 from autotest.client import test
 from autotest.client.shared import error, utils_cgroup
 
+
 class cgroup_tests(test.test):
+
     """
     Test cgroup sub systems.
     """
     version = 1
     _cgroup_dir = "/cgroup"
-
 
     def run_once(self, item=""):
         """
@@ -21,7 +22,6 @@ class cgroup_tests(test.test):
         except ImportError:
             raise error.TestNAError("%s module doesn't exist!" % item)
         mod.execute(self)
-
 
     def initialize(self):
         """

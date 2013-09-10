@@ -1,4 +1,5 @@
-import os, shutil
+import os
+import shutil
 from autotest.client import test, utils
 
 
@@ -11,9 +12,8 @@ class dbt2(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     # http://osdn.dl.sourceforge.net/sourceforge/osdldbt/dbt2-0.39.tar.gz
-    def setup(self, tarball = 'dbt2-0.39.tar.bz2'):
+    def setup(self, tarball='dbt2-0.39.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         profile_src = os.path.join(self.bindir, 'pgpool.conf')
@@ -44,8 +44,7 @@ class dbt2(test.test):
         utils.system('ln -s %s %s' %
                      (self.resultsdir, self.srcdir + '.pgsql/scripts/output'))
 
-
-    def execute(self, db_type, args = ''):
+    def execute(self, db_type, args=''):
         logfile = self.resultsdir + '/dbt2.log'
 
         if (db_type == "mysql"):
@@ -55,21 +54,18 @@ class dbt2(test.test):
         elif (db_type == "pgsql"):
             self.execute_pgsql(args)
 
-
-    def execute_mysql(self, args = ''):
+    def execute_mysql(self, args=''):
         args = args
         utils.system(self.srcdir + '.mysql/scripts/mysql/build_db.sh -g -w 1')
         utils.system(self.srcdir + '.mysql/scripts/run_workload.sh ' + args)
 
-
-    def execute_pgpool(self, args = ''):
-        utils.system('%s/deps/pgpool/pgpool/bin/pgpool -f %s/../pgpool.conf' \
-                        % (self.autodir, self.srcdir))
+    def execute_pgpool(self, args=''):
+        utils.system('%s/deps/pgpool/pgpool/bin/pgpool -f %s/../pgpool.conf'
+                     % (self.autodir, self.srcdir))
         self.execute_pgsql(args)
         utils.system('%s/deps/pgpool/pgpool/bin/pgpool stop' % self.autodir)
 
-
-    def execute_pgsql(self, args = ''):
+    def execute_pgsql(self, args=''):
         utils.system(self.srcdir + '.pgsql/scripts/pgsql/build_db.sh -g -w 1')
         utils.system(self.srcdir + '.pgsql/scripts/run_workload.sh ' + args)
         #

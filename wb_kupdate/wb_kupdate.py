@@ -1,10 +1,13 @@
-import datetime, logging, os, time
+import datetime
+import logging
+import os
+import time
 from autotest.client import test, utils
 from autotest.client.shared import error, utils_memory
 
+
 class wb_kupdate(test.test):
     version = 1
-
 
     def _check_parameters(self, mount_point, write_size, file_count,
                           old_cleanup=False):
@@ -34,9 +37,8 @@ class wb_kupdate(test.test):
             raise error.TestError('Write size should be a positive integer.')
 
         # Check file_count > 0.
-        if not (file_count > 0) :
+        if not (file_count > 0):
             raise error.TestError('File count shoulde be a positive integer.')
-
 
     def _reset_device(self):
         """
@@ -54,14 +56,13 @@ class wb_kupdate(test.test):
         logging.debug('Cleanup - removing the mount_point.')
         os.rmdir(self.mount_point)
 
-
     def _create_partition(self):
         """
         Create and initialize the sparse file.
         """
         # Recreate sparse_file.
         utils.system('dd if=/dev/zero of=%s bs=1M seek=1024 count=1' %
-                      self.sparse_file)
+                     self.sparse_file)
 
         # Format sparse_file.
         utils.system('echo "y" |  mkfs -t %s %s' %
@@ -70,7 +71,6 @@ class wb_kupdate(test.test):
         # Mount sparse_file.
         utils.system('mount -o loop -t %s %s %s' %
                      (self.file_system, self.sparse_file, self.mount_point))
-
 
     def _needs_more_time(self, start_time, duration, _now=None):
         """
@@ -89,8 +89,7 @@ class wb_kupdate(test.test):
             time_diff = datetime.datetime.now() - start_time
         else:
             time_diff = _now - start_time
-        return time_diff <= datetime.timedelta(seconds=duration*60)
-
+        return time_diff <= datetime.timedelta(seconds=duration * 60)
 
     def _write_data(self, destination, counter, write_size):
         """
@@ -115,7 +114,6 @@ class wb_kupdate(test.test):
         # Return write completion time.
         return write_completion_time
 
-
     def _get_disk_usage(self, file_name):
         """
         Returns the disk usage of given file.
@@ -134,7 +132,6 @@ class wb_kupdate(test.test):
         output = output.split('\t')
 
         return int(output[0])
-
 
     def _wait_until_data_flushed(self, start_time, max_wait_time):
         """
@@ -167,7 +164,6 @@ class wb_kupdate(test.test):
         # Return time waited.
         return datetime.datetime.now() - start_time
 
-
     def initialize(self):
         """
         Initialize all private and global member variables.
@@ -179,10 +175,9 @@ class wb_kupdate(test.test):
         self.result_map = {}
         self.file_system = None
 
-
     def run_once(self, mount_point, file_count, write_size,
                  max_flush_time=1, file_system=None, remove_previous=False,
-                 sparse_file=os.path.join(os.getcwd(),'sparse_file'),
+                 sparse_file=os.path.join(os.getcwd(), 'sparse_file'),
                  old_cleanup=False):
         """
         Control execution of the test.
@@ -254,7 +249,6 @@ class wb_kupdate(test.test):
 
             # Increment the counter.
             counter += 1
-
 
     def postprocess(self):
         """

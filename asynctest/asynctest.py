@@ -1,12 +1,15 @@
-import os, re, time
+import os
+import re
+import time
 
 from autotest.client import utils, test
+
 
 class asynctest(test.test):
     version = 1
 
     def run_once(self):
-        #We create 2 processes to show that progress continues on each independently
+        # We create 2 processes to show that progress continues on each independently
         x = utils.AsyncJob("sleep 1 && echo hi && sleep 1 && echo hi && sleep 1 && echo hi && sleep 1")
         y = utils.AsyncJob("sleep 100")
         time.sleep(2)
@@ -16,4 +19,4 @@ class asynctest(test.test):
 
         t = time.time()
         y.wait_for(timeout=1)
-        print "Process 2 took %d to be killed" % (time.time()-t)
+        print "Process 2 took %d to be killed" % (time.time() - t)

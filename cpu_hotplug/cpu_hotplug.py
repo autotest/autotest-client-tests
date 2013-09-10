@@ -1,18 +1,22 @@
-import time, os, logging, re, sys
+import time
+import os
+import logging
+import re
+import sys
 from autotest.client import test, utils, os_dep
 from autotest.client.shared import error
+
 
 class cpu_hotplug(test.test):
     version = 2
 
     # http://developer.osdl.org/dev/hotplug/tests/lhcs_regression-1.6.tgz
-    def setup(self, tarball = 'lhcs_regression-1.6.tgz'):
+    def setup(self, tarball='lhcs_regression-1.6.tgz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
-        utils.run('patch -p1 < %s/0001-LHCS-Cleanups-and-bugfixes.patch' \
-                      % self.bindir)
-
+        utils.run('patch -p1 < %s/0001-LHCS-Cleanups-and-bugfixes.patch'
+                  % self.bindir)
 
     def initialize(self):
         # Check if the kernel supports cpu hotplug
@@ -36,7 +40,6 @@ class cpu_hotplug(test.test):
                 utils.system(cmd, 30)
                 utils.system('dmesg -c')
                 time.sleep(3)
-
 
     def run_once(self):
         tests_fail = []

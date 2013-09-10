@@ -1,6 +1,7 @@
 from autotest.client.shared import error
 from autotest.client import test
 
+
 class aborttest(test.test):
     version = 1
 

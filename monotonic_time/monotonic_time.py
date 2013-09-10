@@ -1,6 +1,9 @@
-import os, re, logging
+import os
+import re
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
+
 
 class monotonic_time(test.test):
     version = 1
@@ -11,12 +14,10 @@ class monotonic_time(test.test):
         os.chdir(self.srcdir)
         utils.make()
 
-
     def initialize(self):
         self.job.require_gcc()
 
-
-    def run_once(self, test_type = None, duration = 300, threshold = None):
+    def run_once(self, test_type=None, duration=300, threshold=None):
         if not test_type:
             raise error.TestError('missing test type')
 

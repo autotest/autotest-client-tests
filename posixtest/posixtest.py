@@ -6,15 +6,15 @@ from autotest.client import test, utils
 
 __author__ = '''mohd.omar@in.ibm.com (Mohammed Omar)'''
 
+
 class posixtest(test.test):
     version = 1
 
     def initialize(self):
         self.job.require_gcc()
 
-
     # http://ufpr.dl.sourceforge.net/sourceforge/posixtest/posixtestsuite-1.5.2.tar.gz
-    def setup(self, tarball = 'posixtestsuite-1.5.2.tar.gz'):
+    def setup(self, tarball='posixtestsuite-1.5.2.tar.gz'):
         self.posix_tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(self.posix_tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -22,7 +22,6 @@ class posixtest(test.test):
         # linking options
         utils.system('patch -p1 < %s/posix-linux.patch' % self.bindir)
         utils.make()
-
 
     def execute(self):
         os.chdir(self.srcdir)

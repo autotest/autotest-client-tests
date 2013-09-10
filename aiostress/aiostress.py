@@ -14,23 +14,21 @@ class aiostress(test.test):
         cflags = '-I ' + self.autodir + '/deps/libaio/include'
         self.gcc_flags = ldflags + ' ' + cflags
 
-
     # ftp://ftp.suse.com/pub/people/mason/utils/aio-stress.c
-    def setup(self, tarball = None):
+    def setup(self, tarball=None):
         if not os.path.exists(self.srcdir):
             os.mkdir(self.srcdir)
         os.chdir(self.srcdir)
-        utils.system('cp ' + self.bindir+'/aio-stress.c .')
+        utils.system('cp ' + self.bindir + '/aio-stress.c .')
         self.gcc_flags += ' -Wall -lpthread -laio'
         cmd = 'gcc ' + self.gcc_flags + ' aio-stress.c -o aio-stress'
         utils.system(cmd)
 
-
-    def run_once(self, args = ''):
+    def run_once(self, args=''):
         os.chdir(self.tmpdir)
-        libs = self.autodir+'/deps/libaio/lib/'
+        libs = self.autodir + '/deps/libaio/lib/'
         ld_path = utils.prepend_path(libs,
-                                      utils.environ('LD_LIBRARY_PATH'))
+                                     utils.environ('LD_LIBRARY_PATH'))
         var_ld_path = 'LD_LIBRARY_PATH=' + ld_path
         cmd = self.srcdir + '/aio-stress ' + args + ' poo'
 
@@ -38,7 +36,6 @@ class aiostress(test.test):
         utils.system('%s %s 2> %s' % (var_ld_path, cmd, stderr))
         report = open(stderr)
         self.format_results(report)
-
 
     def format_results(self, report):
         for line in report:

@@ -13,9 +13,8 @@ class fsx(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     # http://www.zip.com.au/~akpm/linux/patches/stuff/ext3-tools.tar.gz
-    def setup(self, tarball = 'ext3-tools.tar.gz'):
+    def setup(self, tarball='ext3-tools.tar.gz'):
         self.tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(self.tarball, self.srcdir)
 
@@ -23,7 +22,7 @@ class fsx(test.test):
         ldflags = '-L' + self.autodir + '/deps/libaio/lib'
         cflags = '-I' + self.autodir + '/deps/libaio/include'
         var_ldflags = 'LDFLAGS="' + ldflags + '"'
-        var_cflags  = 'CFLAGS="' + cflags + '"'
+        var_cflags = 'CFLAGS="' + cflags + '"'
         self.make_flags = var_ldflags + ' ' + var_cflags
 
         os.chdir(self.srcdir)
@@ -33,15 +32,14 @@ class fsx(test.test):
         utils.system('patch -p1 < %s/%s' % (self.bindir, p2))
         utils.system(self.make_flags + ' make fsx-linux')
 
-
     def run_once(self, dir=None, repeat=100000):
         args = '-N %s' % repeat
         if not dir:
             dir = self.tmpdir
         os.chdir(dir)
-        libs = self.autodir+'/deps/libaio/lib/'
+        libs = self.autodir + '/deps/libaio/lib/'
         ld_path = utils.prepend_path(libs,
-                           utils.environ('LD_LIBRARY_PATH'))
+                                     utils.environ('LD_LIBRARY_PATH'))
         var_ld_path = 'LD_LIBRARY_PATH=' + ld_path
         cmd = self.srcdir + '/fsx-linux ' + args + ' poo'
         utils.system(var_ld_path + ' ' + cmd)

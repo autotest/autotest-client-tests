@@ -3,6 +3,7 @@ from autotest.client import test, utils
 
 
 class flail(test.test):
+
     """
     This autotest module runs the flail system call fuzzer.
 
@@ -18,8 +19,7 @@ class flail(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
-    def setup(self, tarball = 'flail-0.2.0.tar.gz'):
+    def setup(self, tarball='flail-0.2.0.tar.gz'):
         """
         Compiles flail with the appropriate parameters.
 
@@ -30,8 +30,7 @@ class flail(test.test):
         os.chdir(self.srcdir)
         utils.make()
 
-
-    def run_once(self, fstype = 'iso9660'):
+    def run_once(self, fstype='iso9660'):
         """
         Runs flail with the appropriate parameters.
 

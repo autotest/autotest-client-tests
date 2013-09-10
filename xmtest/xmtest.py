@@ -13,14 +13,13 @@ class xmtest(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     # This test expects just the xm-test directory, as a tarball
     # from the Xen source tree
     # hg clone http://xenbits.xensource.com/xen-unstable.hg
     # or wget http://www.cl.cam.ac.uk/Research/SRG/netos/xen/downloads/xen-unstable-src.tgz
     # cd tools
     # tar -czf xm-test.tgz xm-test
-    def setup(self, tarball = 'xm-test.tar.bz2'):
+    def setup(self, tarball='xm-test.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -29,8 +28,7 @@ class xmtest(test.test):
         utils.configure()
         utils.make('existing')
 
-
-    def execute(self, args = ''):
+    def execute(self, args=''):
         os.chdir(self.srcdir)
         utils.system('./runtest.sh ' + args)
         utils.system('mv xmtest.* ' + self.resultsdir)

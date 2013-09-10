@@ -1,4 +1,5 @@
-import time, os
+import time
+import os
 from autotest.client import test, os_dep, utils
 from autotest.client.shared import error
 
@@ -7,7 +8,7 @@ class btreplay(test.test):
     version = 1
 
     # http://brick.kernel.dk/snaps/blktrace-git-latest.tar.gz
-    def setup(self, tarball = 'blktrace-git-latest.tar.gz'):
+    def setup(self, tarball='blktrace-git-latest.tar.gz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
 
@@ -15,7 +16,7 @@ class btreplay(test.test):
         libs = '-L' + self.autodir + '/deps/libaio/lib -laio'
         cflags = '-I ' + self.autodir + '/deps/libaio/include'
         var_libs = 'LIBS="' + libs + '"'
-        var_cflags  = 'CFLAGS="' + cflags + '"'
+        var_cflags = 'CFLAGS="' + cflags + '"'
         self.make_flags = var_libs + ' ' + var_cflags
 
         os.chdir(self.srcdir)
@@ -23,12 +24,10 @@ class btreplay(test.test):
         utils.system('patch -p1 < %s/Makefile.patch' % self.bindir)
         utils.system(self.make_flags + ' make')
 
-
     def initialize(self):
         self.job.require_gcc()
-        self.ldlib = 'LD_LIBRARY_PATH=%s/deps/libaio/lib'%(self.autodir)
+        self.ldlib = 'LD_LIBRARY_PATH=%s/deps/libaio/lib' % (self.autodir)
         self.results = []
-
 
     def run_once(self, dev="", devices="", extra_args='', tmpdir=None):
         # @dev: The device against which the trace will be replayed.
@@ -59,8 +58,8 @@ class btreplay(test.test):
 
         # time a replay that omits "thinktime" between requests
         # (by use of the -N flag)
-        cmd = self.ldlib + " /usr/bin/time ./btreplay/btreplay -d "+\
-              tmpdir+" -N -W "+dev+" "+extra_args+" 2>&1"
+        cmd = self.ldlib + " /usr/bin/time ./btreplay/btreplay -d " +\
+            tmpdir + " -N -W " + dev + " " + extra_args + " 2>&1"
         self.results.append(utils.system_output(cmd, retain_output=True))
 
         # trace a replay that reproduces inter-request delays, and
@@ -68,7 +67,7 @@ class btreplay(test.test):
         # completion latency
         utils.system("./blktrace -D %s %s >/dev/null &" % (tmpdir, alldevs))
         cmd = self.ldlib + " ./btreplay/btreplay -d %s -W %s %s" %\
-              (tmpdir, dev, extra_args)
+            (tmpdir, dev, extra_args)
         self.results.append(utils.system_output(cmd, retain_output=True))
         utils.system("killall -INT blktrace")
 
@@ -86,23 +85,22 @@ class btreplay(test.test):
         cmd = "./btt/btt -i %s/trace.bin" % tmpdir
         self.results.append(utils.system_output(cmd, retain_output=True))
 
-
     def postprocess(self):
         for n in range(len(self.results)):
             if self.results[n].strip() == "==================== All Devices ====================":
-                words = self.results[n-2].split()
+                words = self.results[n - 2].split()
                 s = words[1].strip('sytem').split(':')
                 e = words[2].strip('elapsd').split(':')
                 break
 
         systime = 0.0
         for n in range(len(s)):
-            i = (len(s)-1) - n
-            systime += float(s[i]) * (60**n)
+            i = (len(s) - 1) - n
+            systime += float(s[i]) * (60 ** n)
         elapsed = 0.0
         for n in range(len(e)):
-            i = (len(e)-1) - n
-            elapsed += float(e[i]) * (60**n)
+            i = (len(e) - 1) - n
+            elapsed += float(e[i]) * (60 ** n)
 
         q2c = 0.0
         for line in self.results:
@@ -113,5 +111,5 @@ class btreplay(test.test):
                 q2c = float(words[2])
                 break
 
-        self.write_perf_keyval({'time':elapsed, 'systime':systime,
-                                'avg_q2c_latency':q2c})
+        self.write_perf_keyval({'time': elapsed, 'systime': systime,
+                                'avg_q2c_latency': q2c})

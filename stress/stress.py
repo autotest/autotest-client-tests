@@ -4,6 +4,7 @@ from autotest.client.shared import utils_memory
 
 
 class stress(test.test):
+
     """
     Calls stress, a simple program which aims to impose certain types of
     computing stress on the target machine.
@@ -17,9 +18,8 @@ class stress(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     # http://weather.ou.edu/~apw/projects/stress/stress-1.0.4.tar.gz
-    def setup(self, tarball = 'stress-1.0.4.tar.gz'):
+    def setup(self, tarball='stress-1.0.4.tar.gz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -27,8 +27,7 @@ class stress(test.test):
         utils.configure()
         utils.make()
 
-
-    def run_once(self, args = '', stress_length=60):
+    def run_once(self, args='', stress_length=60):
         if not args:
             # We will use 2 workers of each type for each CPU detected
             threads = 2 * utils.count_cpus()

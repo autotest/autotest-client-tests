@@ -12,15 +12,14 @@ class isic(test.test):
         self.job.require_gcc()
         self.job.setup_dep(['libnet'])
 
-
-    def setup(self, tarball = 'isic-0.06.tar.bz2'):
+    def setup(self, tarball='isic-0.06.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
 
         utils.system('patch -p1 < %s/build-fixes.patch' % self.bindir)
-        utils.system('PREFIX=%s/deps/libnet/libnet/ ./configure' %self.autodir)
+        utils.system('PREFIX=%s/deps/libnet/libnet/ ./configure' % self.autodir)
         utils.system('make')
 
-    def execute(self, args = '-s rand -d 127.0.0.1 -p 10000000'):
+    def execute(self, args='-s rand -d 127.0.0.1 -p 10000000'):
         utils.system(self.srcdir + '/isic ' + args)

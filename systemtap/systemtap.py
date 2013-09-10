@@ -1,9 +1,12 @@
-import os, shutil, re
+import os
+import shutil
+import re
 from autotest.client import test, utils
 from autotest.client.shared import error
 
 
 class systemtap(test.test):
+
     """
     This autotest module runs the systemtap test suite.
 
@@ -11,13 +14,14 @@ class systemtap(test.test):
     """
 
     version = 1
+
     def initialize(self, local=False):
         self.job.require_gcc()
 
         self.systemtap_dir = ''
         if local == False:
             self.systemtap_dir = os.path.join(self.autodir,
-                'deps/systemtap/systemtap')
+                                              'deps/systemtap/systemtap')
 
     def setup(self, local=False, tarball_systemtap='systemtap-1.8.tar.gz',
               tarball_elfutils='elfutils-0.155.tar.bz2'):
@@ -55,7 +59,6 @@ class systemtap(test.test):
         except Exception:
             raise error.TestError('simple systemtap test failed, kernel debuginfo package may be missing: %s' % script)
 
-
     def run_once(self):
         testsuite = os.path.join(self.srcdir, 'testsuite')
         os.chdir(testsuite)
@@ -63,7 +66,7 @@ class systemtap(test.test):
         dejagnu_dir = os.path.join(self.autodir, 'deps/dejagnu/dejagnu')
 
         utils.system('PATH=%s/bin:%s/bin:$PATH make installcheck' %
-            (self.systemtap_dir, dejagnu_dir))
+                    (self.systemtap_dir, dejagnu_dir))
 
         # After we are done with this iteration, we move the log files to
         # the results dir
@@ -82,7 +85,6 @@ class systemtap(test.test):
 
         shutil.move(log, self.logfile)
         shutil.move(sum, self.sumfile)
-
 
     def postprocess_iteration(self):
         os.chdir(self.resultsdir)

@@ -1,4 +1,6 @@
-import os, re, sys
+import os
+import re
+import sys
 
 from autotest.client import test
 from autotest.client.shared import utils
@@ -13,11 +15,9 @@ class ipv6connect(test.test):
         os.chdir(self.srcdir)
         utils.system('gcc ipv6connect.c -o ipv6connect -lpthread -static -s')
 
-
     def initialize(self):
         self.job.require_gcc()
         self.results = []
-
 
     def run_once(self, dir=None, nprocs=None, args=''):
         (lower, upper) = utils.get_ip_local_port_range()
@@ -29,7 +29,6 @@ class ipv6connect(test.test):
         finally:
             utils.set_ip_local_port_range(lower, upper)
         self.results.append(result.stderr)
-
 
     def postprocess(self):
         pattern = re.compile(r'\nTotal time = ([0-9.]+)s\n')

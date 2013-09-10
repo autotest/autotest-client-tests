@@ -1,4 +1,5 @@
-import os, re
+import os
+import re
 from autotest.client.shared import error
 from autotest.client import test, utils, kernel
 
@@ -17,14 +18,12 @@ class sparse(test.test):
 
         utils.make()
 
-        self.top_dir = self.job.tmpdir+'/sparse'
-
+        self.top_dir = self.job.tmpdir + '/sparse'
 
     def execute(self, kernel=None, patch=None, build_target=None, base_tree=None, config=None):
 
         if (kernel is None) and (base_tree is None):
             raise error.TestError("Test requires at least kernel or base_tree parameters")
-
 
         if not kernel:
             kernel = self.job.kernel(base_tree)
@@ -45,13 +44,13 @@ class sparse(test.test):
         kernel.clean()
 
         if not build_target:
-            build_target =  self.build_target
+            build_target = self.build_target
 
         # TODO Add more debug defines
-        debug_def='CF="-D__CHECK_ENDIAN__"'
+        debug_def = 'CF="-D__CHECK_ENDIAN__"'
         make_opts = 'C=2 %s CHECK="%s -p=kernel"' % (debug_def, os.path.join(self.srcdir, 'sparse'))
 
-        make_cmd = " %s %s 2> %s | tee %s" %(make_opts, build_target, errlog, logfile)
+        make_cmd = " %s %s 2> %s | tee %s" % (make_opts, build_target, errlog, logfile)
         utils.make(make_cmd)
 
         # Account number of warnings and error and store as key-value

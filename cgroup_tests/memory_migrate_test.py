@@ -1,7 +1,14 @@
-import os, itertools, tempfile, subprocess, signal, time
+import os
+import itertools
+import tempfile
+import subprocess
+import signal
+import time
 from autotest.client.shared import error, utils_cgroup
 
+
 class MemoryMigrate(object):
+
     """
     Test memory sub system.
     Use it to control file write/read rate.
@@ -21,7 +28,6 @@ class MemoryMigrate(object):
         """
         self.cgroup_dir = cgroup_dir
         self.tmpdir = tmpdir
-
 
     def memory_use_flle(self, memory, memory_file, binary_file):
         """
@@ -46,13 +52,12 @@ int main(void) {
 
         try:
             process = subprocess.Popen(binary_file, shell=True,
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.PIPE)
+                                       stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE)
             return process.pid
         except Exception, err:
             raise error.TestError("Execute malloc process failed!\n"
                                   "%s", err)
-
 
     def test(self):
         """
@@ -67,10 +72,10 @@ int main(void) {
         set_mode_list = ["file", "cgset"]
         cgroup_name1 = "test1"
         cgroup_name2 = "test2"
-        property_value1 = {'memory.move_charge_at_immigrate':'0'}
-        property_value2 = {'memory.move_charge_at_immigrate':'1'}
+        property_value1 = {'memory.move_charge_at_immigrate': '0'}
+        property_value2 = {'memory.move_charge_at_immigrate': '1'}
         get_property = "memory.usage_in_bytes"
-        memory_use = 10 # M
+        memory_use = 10  # M
         tmp_file = tempfile.NamedTemporaryFile(dir=self.tmpdir).name
         memory_file = tmp_file + ".c"
         binary_file = tmp_file + ".o"

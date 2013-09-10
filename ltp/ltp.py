@@ -3,6 +3,7 @@ import shutil
 from autotest.client import utils, test
 from autotest.client.shared import error
 
+
 class ltp(test.test):
     version = 10
 
@@ -18,14 +19,12 @@ class ltp(test.test):
         else:
             self.site_ignore_tests = []
 
-
     def initialize(self):
         self._import_site_config()
         self.job.require_gcc()
 
-
     # http://sourceforge.net/projects/ltp/files/LTP%20Source/ltp-20130503/
-    def setup(self, tarball = 'ltp-full-20130503.bz2'):
+    def setup(self, tarball='ltp-full-20130503.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -39,11 +38,10 @@ class ltp(test.test):
         utils.make('-j %d all' % utils.count_cpus())
         utils.system('yes n | make SKIP_IDCHECK=1 install')
 
-
     # Note: to run a specific test, try '-f cmdfile -s test' in the
     # in the args (-f for test file and -s for the test case)
     # eg, job.run_test('ltp', '-f math -s float_bessel')
-    def run_once(self, args = '', script = 'runltp', ignore_tests=[]):
+    def run_once(self, args='', script='runltp', ignore_tests=[]):
 
         ignore_tests = ignore_tests + self.site_ignore_tests
 
@@ -71,7 +69,7 @@ class ltp(test.test):
             if set(('TFAIL', 'TBROK', 'TWARN')).intersection(line.split()):
                 test_name = line.strip().split(' ')[0]
                 if (not test_name in ignore_tests and
-                    not test_name in failed_tests):
+                        not test_name in failed_tests):
                     failed_tests.append(test_name)
 
         if failed_tests:

@@ -6,6 +6,7 @@ from autotest.client import utils
 import tracers
 import base_tracer
 
+
 class tracing_microbenchmark(test.test):
     version = 1
     preserve_srcdir = True

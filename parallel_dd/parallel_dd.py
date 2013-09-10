@@ -1,4 +1,9 @@
-import os, re, time, subprocess, sys, logging
+import os
+import re
+import time
+import subprocess
+import sys
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
@@ -6,8 +11,8 @@ from autotest.client.shared import error
 class parallel_dd(test.test):
     version = 2
 
-    def initialize(self, fs, fstype = 'ext2', megabytes = 1000, streams = 2,
-                   seq_read = True):
+    def initialize(self, fs, fstype='ext2', megabytes=1000, streams=2,
+                   seq_read=True):
         self.megabytes = megabytes
         self.blocks = megabytes * 256
         self.blocks_per_file = self.blocks / streams
@@ -25,14 +30,12 @@ class parallel_dd(test.test):
         logging.info('Dumping %d megabytes across %d streams', megabytes,
                      streams)
 
-
     def raw_write(self):
         logging.info("Timing raw write of %d megabytes" % self.megabytes)
         sys.stdout.flush()
         dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % (self.fs.device,
                                                        self.blocks)
         utils.system(dd + ' > /dev/null')
-
 
     def raw_read(self):
         logging.info("Timing raw read of %d megabytes", self.megabytes)
@@ -41,14 +44,13 @@ class parallel_dd(test.test):
                                                        self.blocks)
         utils.system(dd + ' > /dev/null')
 
-
     def fs_write(self):
         p = []
         # Write out 'streams' files in parallel background tasks
         for i in range(self.streams):
-            file = os.path.join(self.job.tmpdir, 'poo%d' % (i+1))
+            file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % \
-                                    (file, self.blocks_per_file)
+                (file, self.blocks_per_file)
             p.append(subprocess.Popen(dd + ' > /dev/null', shell=True))
         logging.info("Waiting for %d streams", self.streams)
         # Wait for everyone to complete
@@ -59,14 +61,13 @@ class parallel_dd(test.test):
         sys.stdout.flush()
         sys.stderr.flush()
 
-
     def fs_read(self):
         p = []
         # Read in 'streams' files in parallel background tasks
         for i in range(self.streams):
-            file = os.path.join(self.job.tmpdir, 'poo%d' % (i+1))
+            file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=%s of=/dev/null bs=4k count=%d' % \
-                                    (file, self.blocks_per_file)
+                (file, self.blocks_per_file)
             if self.seq_read:
                 utils.system(dd + ' > /dev/null')
             else:
@@ -80,7 +81,6 @@ class parallel_dd(test.test):
             sys.stdout.flush()
             os.waitpid(p[i].pid, 0)
 
-
     def _device_to_fstype(self, file):
         device = self.fs.device
         try:
@@ -92,7 +92,6 @@ class parallel_dd(test.test):
         except error.CmdError, e:
             logging.error('No %s found in %s', device, file)
             return None
-
 
     def run_once(self):
         try:
@@ -125,11 +124,10 @@ class parallel_dd(test.test):
         self.fs_read_rate = self.megabytes / (time.time() - start)
 
         self.write_perf_keyval({
-            'raw_write' : self.raw_write_rate,
-            'raw_read'  : self.raw_read_rate,
-            'fs_write'  : self.fs_write_rate,
-            'fs_read'   : self.fs_read_rate })
-
+            'raw_write': self.raw_write_rate,
+            'raw_read': self.raw_read_rate,
+            'fs_write': self.fs_write_rate,
+            'fs_read': self.fs_read_rate})
 
     def cleanup(self):
         try:

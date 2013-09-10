@@ -1,7 +1,11 @@
-import os, itertools, tempfile
+import os
+import itertools
+import tempfile
 from autotest.client.shared import error, utils_cgroup
 
+
 class DeviceRate(object):
+
     """
     Test cgroup blkio sub system.
     Use it to control file write/read rate.
@@ -20,7 +24,6 @@ class DeviceRate(object):
         """
         self.cgroup_dir = cgroup_dir
 
-
     def get_create_rate(self, output):
         """
         Get file create rate by "dd" command output.
@@ -35,7 +38,6 @@ class DeviceRate(object):
         except (IndexError, ValueError):
             return None
 
-
     def test(self):
         """
         Start testing
@@ -48,8 +50,8 @@ class DeviceRate(object):
         # file: file write directly. cgset: cgset command
         set_mode_list = ["file", "cgset"]
         cgroup_name = "test"
-        property_value = {'blkio.throttle.read_bps_device':'8:0  1048576',
-                          'blkio.throttle.write_bps_device':'8:0  524288'}
+        property_value = {'blkio.throttle.read_bps_device': '8:0  1048576',
+                          'blkio.throttle.write_bps_device': '8:0  524288'}
         # Must belong to "8:0"(sda)
         tmp_file = tempfile.NamedTemporaryFile(dir="/").name
         file_size = "20M"

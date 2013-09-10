@@ -1,4 +1,6 @@
-import os, time, logging
+import os
+import time
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
@@ -15,7 +17,6 @@ class netpipe(test.test):
         utils.system('patch -p1 < %s/makefile.patch' % self.bindir)
         utils.make()
 
-
     def initialize(self):
         self.job.require_gcc()
 
@@ -30,7 +31,6 @@ class netpipe(test.test):
         # Just in case...
         utils.system('killall -9 NPtcp', ignore_status=True)
 
-
     def run_once(self, server_ip, client_ip, role, bidirectional=False,
                  buffer_size=None, upper_bound=None,
                  perturbation_size=3):
@@ -44,7 +44,6 @@ class netpipe(test.test):
             args += '-b %d ' % buffer_size
         if upper_bound:
             args += '-u %d ' % upper_bound
-
 
         server_tag = server_ip + '#netpipe-server'
         client_tag = client_ip + '#netpipe-client'
@@ -68,11 +67,9 @@ class netpipe(test.test):
         else:
             raise error.TestError('invalid role specified')
 
-
     def server_start(self, args):
         cmd = self.server_path % args
         self.results.append(utils.system_output(cmd, retain_output=True))
-
 
     def client(self, server_ip, args):
         cmd = self.client_path % (server_ip, args)
@@ -91,11 +88,10 @@ class netpipe(test.test):
             works for now"""
 
             if ('within' in e.additional_text
-                or 'non-zero' in e.additional_text):
+                    or 'non-zero' in e.additional_text):
                 logging.debug(e.additional_text)
             else:
                 raise
-
 
     def postprocess(self):
         if self.role == 'client':
@@ -103,8 +99,8 @@ class netpipe(test.test):
                 output = open(self.NP_FILE)
                 for line in output.readlines():
                     buff, bandwidth, latency = line.split()
-                    attr = {'buffer_size':buff}
-                    keyval = {'bandwidth':bandwidth, 'latency':latency}
+                    attr = {'buffer_size': buff}
+                    keyval = {'bandwidth': bandwidth, 'latency': latency}
                     self.write_iteration_keyval(attr, keyval)
             finally:
                 output.close()

@@ -1,5 +1,12 @@
-import os, tempfile, signal, time, threading, stat, logging
+import os
+import tempfile
+import signal
+import time
+import threading
+import stat
+import logging
 from autotest.client.shared import error, utils_cgroup, utils, pexpect
+
 
 def cpu_use_flle(shell_file):
     """
@@ -19,7 +26,7 @@ EOF"""
     sh_file = open(shell_file, 'w')
     sh_file.write(shell_detail)
     sh_file.close()
-    os.chmod(shell_file, stat.S_IRWXU|stat.S_IRGRP|stat.S_IROTH)
+    os.chmod(shell_file, stat.S_IRWXU | stat.S_IRGRP | stat.S_IROTH)
 
 
 def get_cpu_rate(pid_list):
@@ -102,7 +109,7 @@ def cgconfig_file_modify(cgconfig_file, controller_list,
             time.sleep(1)
             dic_controller_property = dic_cgroup_property.get(cgroup)
             for controller in dic_controller_property:
-                session.sendline('%s {' %  controller)
+                session.sendline('%s {' % controller)
                 time.sleep(1)
                 dic_property = dic_controller_property.get(controller)
                 if dic_property is None or dic_property == '':
@@ -126,6 +133,7 @@ def cgconfig_file_modify(cgconfig_file, controller_list,
 
 
 class CpuHighLoad(object):
+
     """
     Test cpu sub system.
     Use it to control cpu rate.
@@ -145,7 +153,6 @@ class CpuHighLoad(object):
         self.cgroup_dir = cgroup_dir
         self.tmpdir = tmpdir
 
-
     def test(self):
         """
         Start testing
@@ -155,12 +162,12 @@ class CpuHighLoad(object):
         cgroup_name1 = "test1"
         cgroup_name2 = "test2"
         cgconfig_file = "/etc/cgconfig.conf"
-        property_value1 = {"cpu.shares":"500",
-                           "cpuset.cpus":"1",
-                           "cpuset.mems":"0"}
-        property_value2 = {"cpu.shares":"1000",
-                           "cpuset.cpus":"1",
-                           "cpuset.mems":"0"}
+        property_value1 = {"cpu.shares": "500",
+                           "cpuset.cpus": "1",
+                           "cpuset.mems": "0"}
+        property_value2 = {"cpu.shares": "1000",
+                           "cpuset.cpus": "1",
+                           "cpuset.mems": "0"}
         tmp_file1 = tempfile.NamedTemporaryFile(dir=self.tmpdir).name + ".sh"
         tmp_file2 = tempfile.NamedTemporaryFile(dir=self.tmpdir).name + ".sh"
         cpu_use_flle(tmp_file1)

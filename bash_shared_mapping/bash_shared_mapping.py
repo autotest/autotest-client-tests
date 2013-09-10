@@ -1,12 +1,14 @@
-import signal, os
+import signal
+import os
 from autotest.client import utils, test
 from autotest.client.shared import utils_memory
+
 
 class bash_shared_mapping(test.test):
     version = 3
 
     # http://www.zip.com.au/~akpm/linux/patches/stuff/ext3-tools.tar.gz
-    def setup(self, tarball = 'ext3-tools.tar.gz'):
+    def setup(self, tarball='ext3-tools.tar.gz'):
         self.tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(self.tarball, self.srcdir)
 
@@ -14,12 +16,10 @@ class bash_shared_mapping(test.test):
         utils.system('patch -p1 < %s/makefile.patch' % self.bindir)
         utils.make('bash-shared-mapping usemem')
 
-
     def initialize(self):
         self.job.require_gcc()
 
-
-    def execute(self, testdir = None, iterations = 10000):
+    def execute(self, testdir=None, iterations=10000):
         if not testdir:
             testdir = self.tmpdir
         os.chdir(testdir)
@@ -33,12 +33,12 @@ class bash_shared_mapping(test.test):
         usemem = os.path.join(self.srcdir, 'usemem')
         args = ('usemem', '-N', '-m', '%d' % (kilobytes / 1024))
         # print_to_tty ('2 x ' + ' '.join(args))
-        for i in (0,1):
+        for i in (0, 1):
             pid[i] = os.spawnv(os.P_NOWAIT, usemem, args)
 
         cmd = "%s/bash-shared-mapping %s %d -t %d -n %d" % \
-                        (self.srcdir, file, kilobytes,
-                         utils.count_cpus(), iterations)
+            (self.srcdir, file, kilobytes,
+             utils.count_cpus(), iterations)
         os.system(cmd)
 
         for i in (0, 1):

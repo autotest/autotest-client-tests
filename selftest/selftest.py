@@ -1,4 +1,6 @@
-import os, sys, logging
+import os
+import sys
+import logging
 from autotest.client import test
 from autotest.client.shared import error
 
@@ -30,11 +32,11 @@ class selftest(test.test):
 
         if (current != checkpoint):
             raise error.JobError("selftest: sequence was " +
-                    "%d when %d expected" % (current, checkpoint))
+                                 "%d when %d expected" % (current, checkpoint))
 
     def __throw(self):
         # pylint: disable=E0602
-        __does_not_exist = __does_not_exist_either # @UndefinedVariable
+        __does_not_exist = __does_not_exist_either  # @UndefinedVariable
 
     def __print(self, msg):
         sys.stdout.write(msg)

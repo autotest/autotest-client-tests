@@ -5,9 +5,9 @@
 from autotest.client import test
 from autotest.client.shared import barrier
 
+
 class profiler_sync(test.test):
     version = 1
-
 
     def execute(self, timeout_sync, timeout_start, timeout_stop,
                 hostid, masterid, all_ids):

@@ -6,7 +6,6 @@ from autotest.client import test, utils
 class profiler_test(test.test):
     version = 2
 
-
     def initialize(self, profiler=None, profiler_args=(), profiler_dargs=None):
         """
         Initialize this test with the profiler name, args and dargs.
@@ -20,7 +19,6 @@ class profiler_test(test.test):
         self._profiler = profiler
         self._profiler_args = profiler_args
         self._profiler_dargs = profiler_dargs or {}
-
 
     def execute(self, seconds=5):
         """

@@ -1,13 +1,13 @@
 # This is used directly by server/tests/barriertest/control.srv
 
-import logging, time
+import logging
+import time
 from autotest.client import test
 from autotest.client.shared import barrier, error
 
 
 class barriertest(test.test):
     version = 2
-
 
     def run_once(self, our_addr, hostnames, master, timeout=120):
         # A reusable local server as we're using multiple barriers in one test.

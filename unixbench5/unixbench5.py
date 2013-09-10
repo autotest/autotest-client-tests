@@ -1,9 +1,11 @@
-import os, re
+import os
+import re
 from autotest.client import test, utils
 from autotest.client.shared import error
 
 
 class unixbench5(test.test):
+
     """
     This test measure system wide performance by running the following tests:
       - Dhrystone - focuses on string handling.
@@ -22,11 +24,9 @@ class unixbench5(test.test):
     """
     version = 1
 
-
     def initialize(self):
         self.job.require_gcc()
         self.err = []
-
 
     def setup(self, tarball='unixbench-5.1.3.tgz'):
         """
@@ -42,7 +42,6 @@ class unixbench5(test.test):
         utils.system('patch -p0 < %s/Makefile.patch' % self.bindir)
         utils.make()
 
-
     def run_once(self, args=''):
         vars = 'UB_TMPDIR="%s" UB_RESULTDIR="%s"' % (self.tmpdir,
                                                      self.resultsdir)
@@ -52,7 +51,6 @@ class unixbench5(test.test):
                                          'raw_output_%s' % self.iteration)
         utils.open_write_close(self.results_path, self.report_data)
 
-
     def cleanup(self):
         """
         Check error index list and throw TestError if necessary.
@@ -61,7 +59,6 @@ class unixbench5(test.test):
             e_msg = ("No measured results for output lines: %s\nOutput:%s" %
                      (" ".join(self.err), self.report_data))
             raise error.TestError(e_msg)
-
 
     def process_section(self, section, suffix):
         keyval = {}
@@ -89,10 +86,9 @@ class unixbench5(test.test):
 
         self.write_perf_keyval(keyval)
 
-
     def postprocess_iteration(self):
         # Break up sections around dividing lines.
-        sections = self.report_data.split('-'*72)
+        sections = self.report_data.split('-' * 72)
 
         # First section is junk to us, second has results for single CPU run.
         if len(sections) > 1:

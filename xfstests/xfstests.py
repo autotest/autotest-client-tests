@@ -1,6 +1,10 @@
-import os, re, glob, logging
+import os
+import re
+import glob
+import logging
 from autotest.client.shared import error, software_manager
 from autotest.client import test, utils, os_dep
+
 
 class xfstests(test.test):
 
@@ -19,7 +23,6 @@ class xfstests(test.test):
         tests_list = [t[:-4] for t in tests if os.path.exists(t[:-4])]
         tests_list.sort()
         return tests_list
-
 
     def _run_sub_test(self, test):
         os.chdir(self.srcdir)
@@ -49,7 +52,6 @@ class xfstests(test.test):
             raise error.TestError('Could not assert test success or failure, '
                                   'assuming failure. Please check debug logs')
 
-
     def _get_groups(self):
         '''
         Returns the list of groups known to xfstests
@@ -66,7 +68,6 @@ class xfstests(test.test):
                         groups.add(g)
         return groups
 
-
     def _get_tests_for_group(self, group):
         '''
         Returns the list of tests that belong to a certain test group
@@ -81,7 +82,6 @@ class xfstests(test.test):
                     if test not in tests:
                         tests.append(test)
         return tests
-
 
     def setup(self, tarball='xfstests.tar.bz2'):
         '''
@@ -111,7 +111,6 @@ class xfstests(test.test):
 
         logging.debug("Available tests in srcdir: %s" %
                       ", ".join(self._get_available_tests()))
-
 
     def run_once(self, test_number, skip_dangerous=True):
         os.chdir(self.srcdir)

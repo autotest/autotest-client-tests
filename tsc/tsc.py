@@ -1,6 +1,9 @@
-import os, re, logging
+import os
+import re
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
+
 
 class tsc(test.test):
     version = 3
@@ -11,12 +14,10 @@ class tsc(test.test):
         os.chdir(self.srcdir)
         utils.make()
 
-
     def initialize(self):
         self.job.require_gcc()
 
-
-    def run_once(self, args = '-t 650'):
+    def run_once(self, args='-t 650'):
         result = utils.run(self.srcdir + '/checktsc ' + args,
                            stdout_tee=open(os.path.join(self.resultsdir,
                                                         'checktsc.log'), 'w'),
@@ -26,21 +27,21 @@ class tsc(test.test):
                           result.exit_status)
             default_reason = ("UNKNOWN FAILURE: rc=%d from %s" %
                               (result.exit_status, result.command))
-            ## Analyze result.stdout to see if it is possible to form qualified
-            ## reason of failure and to raise an appropriate exception.
-            ## For this test we qualify the reason of failure if the
-            ## following conditions are met:
-            ## (i) result.exit_status = 1
-            ## (ii) result.stdout ends with 'FAIL'
-            ## (iii) "FAIL" is preceded by one or more
-            ##       lines in the following format:
-            ##       CPU x - CPU y = <delta>
-            ## Set as a reason the line that contains max abs(delta)
+            # Analyze result.stdout to see if it is possible to form qualified
+            # reason of failure and to raise an appropriate exception.
+            # For this test we qualify the reason of failure if the
+            # following conditions are met:
+            # (i) result.exit_status = 1
+            # (ii) result.stdout ends with 'FAIL'
+            # (iii) "FAIL" is preceded by one or more
+            # lines in the following format:
+            # CPU x - CPU y = <delta>
+            # Set as a reason the line that contains max abs(delta)
             if result.exit_status == 1:
                 if result.stdout.strip('\n').endswith('FAIL'):
-                    ## find all lines
-                    ## CPU x - CPU y = <delta>
-                    ## and parse out delta of max abs value
+                    # find all lines
+                    # CPU x - CPU y = <delta>
+                    # and parse out delta of max abs value
                     max_delta = 0
                     reason = ''
                     threshold = int(args.split()[1])
@@ -56,6 +57,6 @@ class tsc(test.test):
                                                                       threshold)
                         raise error.TestFail(reason)
 
-            ## If we are here, we failed to qualify the reason of test failre
-            ## Consider it as a test error
+            # If we are here, we failed to qualify the reason of test failre
+            # Consider it as a test error
             raise error.TestError(default_reason)

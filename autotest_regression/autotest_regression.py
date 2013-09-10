@@ -1,9 +1,12 @@
-import logging, os
+import logging
+import os
 from autotest.client import test, utils
 from autotest.client.shared import git, error
 
+
 class autotest_regression(test.test):
     version = 1
+
     @error.context_aware
     def run_once(self, uri='git://github.com/autotest/autotest.git',
                  branch='next', commit=None, base_uri=None):

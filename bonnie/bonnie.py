@@ -1,4 +1,5 @@
-import os, re
+import os
+import re
 from autotest.client import test, os_dep, utils
 
 
@@ -10,14 +11,14 @@ def convert_size(values):
     else:
         chunk = 0
     if size.endswith('G') or size.endswith('g'):
-        size = int(size[:-1]) * 2**30
+        size = int(size[:-1]) * 2 ** 30
     else:
         if size.endswith('M') or size.endswith('m'):
             size = int(size[:-1])
-        size = int(size) * 2**20
+        size = int(size) * 2 ** 20
     if chunk:
         if chunk.endswith('K') or chunk.endswith('k'):
-            chunk = int(chunk[:-1]) * 2**10
+            chunk = int(chunk[:-1]) * 2 ** 10
         else:
             chunk = int(chunk)
     return [size, chunk]
@@ -31,7 +32,7 @@ class bonnie(test.test):
         self.results = []
 
     # http://www.coker.com.au/bonnie++/experimental/bonnie++-1.96.tgz
-    def setup(self, tarball = 'bonnie++-1.96.tgz'):
+    def setup(self, tarball='bonnie++-1.96.tgz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -39,7 +40,6 @@ class bonnie(test.test):
         os_dep.command('g++')
         utils.configure()
         utils.make()
-
 
     def run_once(self, dir=None, extra_args='', user='root'):
         if not dir:
@@ -52,7 +52,6 @@ class bonnie(test.test):
         cmd = self.srcdir + '/bonnie++ ' + args
 
         self.results.append(utils.system_output(cmd, retain_output=True))
-
 
     def postprocess(self):
         strip_plus = lambda s: re.sub(r"^\++$", "0", s)
@@ -77,4 +76,4 @@ class bonnie(test.test):
             fields = [strip_plus(f) for f in fields]
             fields = convert_size(fields[1]) + fields[2:]
 
-            self.write_perf_keyval(dict(zip(keys,fields)))
+            self.write_perf_keyval(dict(zip(keys, fields)))

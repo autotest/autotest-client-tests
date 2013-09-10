@@ -2,6 +2,7 @@ import logging
 from autotest.client import test, utils
 from autotest.client.shared import error
 
+
 class regression(test.test):
     version = 1
 
@@ -14,20 +15,20 @@ class regression(test.test):
         """
         kv_old = utils.read_keyval(old)
         kv_new = utils.read_keyval(new)
-        failed = 0;
-        first_regression = None;
+        failed = 0
+        first_regression = None
         logging.info('========= Comparison table for %30s '
-                     '=========' %  self.tagged_testname)
+                     '=========' % self.tagged_testname)
         logging.info("%20s | %10s | %10s | %10s | %10s | %s" %
-                         ('field name', 'old value', 'new value',
-                          'cmp res', 'status', 'cmp function'))
+                    ('field name', 'old value', 'new value',
+                     'cmp res', 'status', 'cmp function'))
         for field, cmpfn in compare_list:
             if not field in kv_old:
-                raise error.TestError('Cant not find field:%s in %s' \
-                                          % (field, old + '/keyval'))
+                raise error.TestError('Cant not find field:%s in %s'
+                                      % (field, old + '/keyval'))
             if not field in kv_new:
-                raise error.TestError('Cant not find field:%s in %s' \
-                                          % (field, new + '/keyval'))
+                raise error.TestError('Cant not find field:%s in %s'
+                                      % (field, new + '/keyval'))
             res = cmpfn(kv_old[field], kv_new[field])
             if res:
                 failed += 1
@@ -38,7 +39,7 @@ class regression(test.test):
                 msg = 'OK'
             logging.info("%20s | %10s | %10s | %5s | %5s | %s" %
                          (field, kv_old[field],
-                          kv_new[field],res, msg, cmpfn))
+                          kv_new[field], res, msg, cmpfn))
 
         logging.info("========= RESULT: total:%10d failed:%10d "
                      "==================" %

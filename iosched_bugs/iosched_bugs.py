@@ -1,4 +1,5 @@
-import os, time
+import os
+import time
 import subprocess
 from autotest.client import test
 from autotest.client.shared import utils, error
@@ -11,11 +12,9 @@ class iosched_bugs(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     def setup(self):
         os.chdir(self.srcdir)
         utils.make()
-
 
     def execute(self):
         os.chdir(self.tmpdir)

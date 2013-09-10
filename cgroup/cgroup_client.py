@@ -8,8 +8,13 @@ instrumentation will inspect whether the linux box behaved as it should.
 @copyright: 2011 Red Hat Inc.
 @author: Lukas Doktor <ldoktor@redhat.com>
 """
-import array, sys, time, math, os
+import array
+import sys
+import time
+import math
+import os
 from tempfile import mktemp
+
 
 def test_smoke(args):
     """
@@ -59,7 +64,7 @@ def test_cpu(args):
     print "TEST: wait for input"
     raw_input()
     while True:
-        for i in range (1000, 10000):
+        for i in range(1000, 10000):
             math.factorial(i)
 
 
@@ -85,7 +90,7 @@ def test_devices_read():
     while True:
         print "TEST: tick"
         dev.flush()
-        dev.read(1024*1024)
+        dev.read(1024 * 1024)
         time.sleep(1)
 
 
@@ -99,7 +104,7 @@ def test_devices_write():
 
     dev = open("/dev/null", 'w')
     buf = ""
-    for _ in range(1024*1024):
+    for _ in range(1024 * 1024):
         buf += '\x00'
     while True:
         print "TEST: tick"

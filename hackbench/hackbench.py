@@ -3,6 +3,7 @@ from autotest.client import test, utils
 
 
 class hackbench(test.test):
+
     """
     This module will run the hackbench benchmark. Hackbench is a benchmark for
     measuring the performance, overhead and scalability of the Linux scheduler.
@@ -14,7 +15,6 @@ class hackbench(test.test):
     version = 1
     preserve_srcdir = True
 
-
     def setup(self):
         os.chdir(self.srcdir)
         if 'CC' in os.environ:
@@ -23,11 +23,9 @@ class hackbench(test.test):
             cc = 'cc'
         utils.system('%s -lpthread hackbench.c -o hackbench' % cc)
 
-
     def initialize(self):
         self.job.require_gcc()
         self.results = None
-
 
     def run_once(self, num_groups=90):
         """
@@ -43,7 +41,6 @@ class hackbench(test.test):
 
         path = os.path.join(self.resultsdir, 'raw_output_%s' % self.iteration)
         utils.open_write_close(path, raw_output)
-
 
     def postprocess_iteration(self):
         """

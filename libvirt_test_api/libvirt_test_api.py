@@ -1,4 +1,8 @@
-import os, re, shutil, glob, logging
+import os
+import re
+import shutil
+import glob
+import logging
 
 from autotest.client.shared import error
 from autotest.client import utils, test, os_dep
@@ -6,10 +10,10 @@ from autotest.client import utils, test, os_dep
 
 class libvirt_test_api(test.test):
     version = 1
+
     def setup(self, tarball='libvirt-test-API.tar.gz'):
         tarpath = utils.unmap_url(self.bindir, tarball)
         utils.extract_tarball_to_dir(tarpath, self.srcdir)
-
 
     def initialize(self):
         try:
@@ -24,7 +28,6 @@ class libvirt_test_api(test.test):
             raise error.TestError("Missing required command nmap. You have to"
                                   "install the package nmap or the equivalent"
                                   "for your distro")
-
 
     def get_tests_from_cfg(self, cfg, item):
         """
@@ -60,7 +63,6 @@ class libvirt_test_api(test.test):
         cfg.close()
         return testcases
 
-
     def run_once(self, item=''):
         if not item:
             raise error.TestError('No test item provided')
@@ -77,7 +79,7 @@ class libvirt_test_api(test.test):
         test_items = self.get_tests_from_cfg(config_files_cfg, item)
         if not test_items:
             raise error.TestError('No test available for item %s in '
-                                 'config_files.cfg' % item)
+                                  'config_files.cfg' % item)
 
         os.chdir(self.srcdir)
         failed_tests = []

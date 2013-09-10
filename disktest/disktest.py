@@ -1,9 +1,13 @@
-import os, sys, subprocess, logging
+import os
+import sys
+import subprocess
+import logging
 from autotest.client import test, utils
 from autotest.client.shared import error, utils_memory
 
 
 class disktest(test.test):
+
     """
     Autotest module for disktest.
 
@@ -18,7 +22,6 @@ class disktest(test.test):
     version = 2
     preserve_srcdir = True
 
-
     def initialize(self):
         """
         Verifies if we have gcc to compile disktest.
@@ -28,7 +31,6 @@ class disktest(test.test):
         self.disk_srcdir = os.path.join(self.autodir, 'deps', 'disktest', 'src')
         self.build(self.disk_srcdir)
 
-
     def build(self, srcdir):
         """
         Compiles disktest.
@@ -36,7 +38,6 @@ class disktest(test.test):
         os.chdir(srcdir)
         utils.make('clean')
         utils.make()
-
 
     def test_one_disk_chunk(self, disk, chunk):
         """
@@ -53,7 +54,6 @@ class disktest(test.test):
         p = subprocess.Popen(cmd, shell=True)
         return(p.pid)
 
-
     def run_once(self, disks=None, gigabytes=None, chunk_mb=None):
         """
         Runs one iteration of disktest.
@@ -66,19 +66,19 @@ class disktest(test.test):
         """
         os.chdir(self.disk_srcdir)
         if chunk_mb is None:
-            chunk_mb = utils_memory.memtotal() / 1024/8
+            chunk_mb = utils_memory.memtotal() / 1024 / 8
         if disks is None:
             disks = [self.tmpdir]
         if gigabytes is None:
-            free = 100 # cap it at 100GB by default
+            free = 100  # cap it at 100GB by default
             for disk in disks:
-                free = min(utils.freespace(disk) / 1024**3, free)
+                free = min(utils.freespace(disk) / 1024 ** 3, free)
             gigabytes = free
             logging.info("Resizing to %s GB", gigabytes)
             sys.stdout.flush()
 
         self.chunk_mb = chunk_mb
-        self.memory_mb = utils_memory.memtotal()/1024/8
+        self.memory_mb = utils_memory.memtotal() / 1024 / 8
         if self.memory_mb > chunk_mb:
             raise error.TestError("Too much RAM (%dMB) for this test to work" %
                                   self.memory_mb)

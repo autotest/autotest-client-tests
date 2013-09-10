@@ -1,26 +1,29 @@
-import os, subprocess, re, commands, logging
+import os
+import subprocess
+import re
+import commands
+import logging
 from autotest.client import utils, test
 from autotest.client.shared import error
+
 
 class memory_api(test.test):
     version = 1
 
     def setup(self):
         utils.system("%s %s -o %s" %
-                      (utils.get_cc(),
-                       os.path.join(self.bindir, "memory_api.c"),
-                       os.path.join(self.tmpdir, "memory_api")))
+                    (utils.get_cc(),
+                     os.path.join(self.bindir, "memory_api.c"),
+                     os.path.join(self.tmpdir, "memory_api")))
         utils.system("%s %s -o %s" %
-                      (utils.get_cc(),
-                       os.path.join(self.bindir, "mremaps.c"),
-                       os.path.join(self.tmpdir, "mremaps")))
-
+                    (utils.get_cc(),
+                     os.path.join(self.bindir, "mremaps.c"),
+                     os.path.join(self.tmpdir, "mremaps")))
 
     def initialize(self):
         self.job.require_gcc()
 
-
-    def run_once(self, memsize = "1000000000", args=''):
+    def run_once(self, memsize="1000000000", args=''):
 
         vma_re = re.compile("([0-9,a-f]+)-([0-9,a-f]+)")
         memory_re = re.compile("(\d+) bytes @(0x[0-9,a-f]+)")
@@ -28,8 +31,8 @@ class memory_api(test.test):
         vma_max_shift = 0
         if os.access("/proc/sys/vm/vma_max_shift", os.R_OK):
             vma_max_shift = int(
-                      open("/proc/sys/vm/vma_max_shift").read().rstrip())
-        p1 = subprocess.Popen('%s/memory_api ' % self.tmpdir  + memsize,
+                open("/proc/sys/vm/vma_max_shift").read().rstrip())
+        p1 = subprocess.Popen('%s/memory_api ' % self.tmpdir + memsize,
                               shell=True, stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE)
         while p1.poll() is None:
@@ -50,11 +53,11 @@ class memory_api(test.test):
             for line in map_output:
                 m = vma_re.search(line)
                 if m:
-                    vma_start = int("0x%s" % m.group(1),16)
-                    vma_end = int("0x%s" % m.group(2),16)
+                    vma_start = int("0x%s" % m.group(1), 16)
+                    vma_end = int("0x%s" % m.group(2), 16)
                     if ((vma_start >= mem_start) and
-                        (vma_start < (mem_start + mem_len))):
-                        vma_count+=1
+                            (vma_start < (mem_start + mem_len))):
+                        vma_count += 1
 
             if (('file' not in output) and (vma_max_shift != 0)):
                 expected_vma_count = mem_len >> vma_max_shift
@@ -71,4 +74,4 @@ class memory_api(test.test):
         if p1.poll() != 0:
             raise error.TestFail("Unexpected application abort")
 
-        utils.system('%s/mremaps ' % self.tmpdir  + '100000000')
+        utils.system('%s/mremaps ' % self.tmpdir + '100000000')

@@ -3,6 +3,7 @@ from autotest.client import test, utils
 
 
 class scrashme(test.test):
+
     """
     Runs the scrashme syscalls test suite. This test mode will exercise
     kernel syscalls randomically, or in a sequential fashion.
@@ -38,13 +39,11 @@ class scrashme(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
-    def setup(self, tarball = 'scrashme-git-snapshot-03-18-2010.tar.bz2'):
+    def setup(self, tarball='scrashme-git-snapshot-03-18-2010.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
         utils.make()
-
 
     def run_once(self, args_list=''):
         if args_list:

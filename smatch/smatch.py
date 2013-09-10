@@ -1,6 +1,11 @@
-import os, logging, commands, re, shutil
+import os
+import logging
+import commands
+import re
+import shutil
 from autotest.client import kernel, test, utils
 from autotest.client.shared import software_manager, error
+
 
 class smatch(test.test):
     version = 1
@@ -39,7 +44,6 @@ class smatch(test.test):
         if (kernel is None) and (base_tree is None):
             raise error.TestError("Test requires at least one parameter {kernel | base_tree}")
 
-
         if not kernel:
             kernel = self.job.kernel(base_tree)
             own_kernel = True
@@ -69,16 +73,15 @@ class smatch(test.test):
         logfile = os.path.join(self.resultsdir, 'smatch.log')
         errlog = os.path.join(self.resultsdir, 'smatch.log.error')
 
-
         if not build_target:
-            build_target =  self.build_target
+            build_target = self.build_target
 
         # TODO Add more debug defines
-        debug_def='CF="-D__CHECK_ENDIAN__"'
+        debug_def = 'CF="-D__CHECK_ENDIAN__"'
         make_opts = 'C=2 %s CHECK="%s -p=kernel"' % \
             (debug_def, os.path.join(self.srcdir, 'smatch'))
 
-        make_cmd = " %s %s 2> %s | tee %s" %(make_opts, build_target, errlog, logfile)
+        make_cmd = " %s %s 2> %s | tee %s" % (make_opts, build_target, errlog, logfile)
         utils.make(make_cmd)
 
         # Account errors and warnings and save it in key-value

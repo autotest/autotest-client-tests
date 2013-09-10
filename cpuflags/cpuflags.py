@@ -4,13 +4,16 @@ Autotest test for testing main group of cpu flags functionality.
 @copyright: 2011 Red Hat Inc.
 @author: Jiri Zupka <jzupka@redhat.com>
 """
-import os, logging
+import os
+import logging
 
 from autotest.client import test, utils
 from autotest.client.shared import error
 from virttest import utils_misc
 
+
 class cpuflags(test.test):
+
     """
     Tests the cpuflags functionality.
     """
@@ -27,12 +30,12 @@ class cpuflags(test.test):
         utils.make()
         utils.system('sync')
 
-
     def run_once(self):
         """
         Try to access different resources which are restricted by cgroup.
         """
         logging.info('Starting cpuflags testing')
+
         def check_cpuflags_work(flags):
             """
             Check which flags work.
@@ -56,7 +59,6 @@ class cpuflags(test.test):
                     not_tested.append(f)
             return (pass_Flags, not_working, not_tested)
 
-
         def run_stress(timeout, flags, smp):
             """
             Run stress on vm for timeout time.
@@ -71,10 +73,8 @@ class cpuflags(test.test):
                 ret = True
             return ret
 
-
         os.chdir(self.srcdir)
         run_stress(60, set(map(utils_misc.Flag, utils_misc.get_cpu_flags())), 4)
-
 
     def cleanup(self):
         """

@@ -1,4 +1,5 @@
-import os, shutil
+import os
+import shutil
 from autotest.client import test, utils
 from autotest.client.shared import utils_memory
 
@@ -12,10 +13,8 @@ class linus_stress(test.test):
         os.chdir(self.srcdir)
         utils.system(utils.get_cc() + ' linus_stress.c -D_POSIX_C_SOURCE=200112 -o linus_stress')
 
-
     def initialize(self):
         self.job.require_gcc()
-
 
     def run_the_test(self, iterations):
         utils.write_one_line('/proc/sys/vm/dirty_ratio', '4')
@@ -35,8 +34,7 @@ class linus_stress(test.test):
             profilers.stop(self)
             profilers.report(self)
 
-
-    def execute(self, iterations = 1):
+    def execute(self, iterations=1):
         dirty_ratio = utils.read_one_line('/proc/sys/vm/dirty_ratio')
         dirty_background_ratio = utils.read_one_line('/proc/sys/vm/dirty_background_ratio')
         try:

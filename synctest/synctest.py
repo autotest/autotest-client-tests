@@ -10,11 +10,9 @@ class synctest(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-
     def setup(self):
         os.chdir(self.srcdir)
         utils.make()
-
 
     def run_once(self, len, loop, testdir=None):
         args = len + ' ' + loop

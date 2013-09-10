@@ -3,6 +3,7 @@ from autotest.client import utils
 
 
 class Tracer(object):
+
     """
     Common interface for tracing.
     """
@@ -18,13 +19,18 @@ class Tracer(object):
 
     def warmup(self, buffer_size_kb):
         pass
+
     def cleanup(self):
         pass
+
     def start_tracing(self):
         pass
+
     def stop_tracing(self):
         pass
+
     def gather_stats(self, results):
         pass
+
     def reset_tracing(self):
         pass

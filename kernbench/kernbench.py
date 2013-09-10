@@ -1,4 +1,7 @@
-import re, pickle, os, logging
+import re
+import pickle
+import os
+import logging
 from autotest.client import utils, test
 
 
@@ -8,7 +11,6 @@ class kernbench(test.test):
     def initialize(self):
         self.job.require_gcc()
         self.job.drop_caches_between_iterations = False
-
 
     def __init_tree(self, version=None):
         #
@@ -38,12 +40,11 @@ class kernbench(test.test):
         kernel.config(defconfig=True, logged=False)
         return kernel
 
-
     def warmup(self, threads=None, version=None):
         if threads:
             self.threads = threads
         else:
-            self.threads = self.job.cpu_count()*2
+            self.threads = self.job.cpu_count() * 2
 
         self.kernel = self.__init_tree(version)
         logging.info("Warmup run ...")
@@ -53,7 +54,6 @@ class kernbench(test.test):
         finally:
             if os.path.exists(logfile):
                 utils.system("gzip -9 '%s'" % logfile, ignore_status=True)
-
 
     def run_once(self):
         logging.info("Performance run, iteration %d,"
@@ -65,10 +65,8 @@ class kernbench(test.test):
         self.timefile = os.path.join(self.resultsdir, timefile)
         self.kernel.build_timed(self.threads, self.timefile)
 
-
     def cleanup(self):
         self.kernel.clean(logged=False)    # Don't leave litter lying around
-
 
     def postprocess_iteration(self):
         os.chdir(self.resultsdir)
@@ -76,7 +74,7 @@ class kernbench(test.test):
 
         results = open(self.timefile).read()
         (user, system, elapsed) = utils.extract_all_time_results(results)[0]
-        self.write_perf_keyval({'user':user,
-                                'system':system,
-                                'elapsed':elapsed
-                               })
+        self.write_perf_keyval({'user': user,
+                                'system': system,
+                                'elapsed': elapsed
+                                })

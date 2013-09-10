@@ -22,7 +22,16 @@ Usage: check_patch.py -p [/path/to/patch]
 @author: Lucas Meneghel Rodrigues <lmr@redhat.com>
 """
 
-import os, stat, logging, sys, optparse, re, urllib, shutil, unittest, tempfile
+import os
+import stat
+import logging
+import sys
+import optparse
+import re
+import urllib
+import shutil
+import unittest
+import tempfile
 try:
     import autotest.common as common
 except ImportError:
@@ -30,7 +39,8 @@ except ImportError:
 
 from autotest.client.shared import utils, error, logging_config
 from autotest.client.shared import logging_manager
-import run_pylint, reindent
+import run_pylint
+import reindent
 
 # Hostname of patchwork server to use
 PWHOST = "patchwork.virt.bos.redhat.com"
@@ -38,17 +48,22 @@ PWHOST = "patchwork.virt.bos.redhat.com"
 TMP_FILE_DIR = tempfile.gettempdir()
 LOG_FILE_PATH = os.path.join(TMP_FILE_DIR, 'check-patch.log')
 
+
 class CheckPatchLoggingConfig(logging_config.LoggingConfig):
+
     def configure_logging(self, results_dir=None, verbose=True):
         super(CheckPatchLoggingConfig, self).configure_logging(
             use_console=True,
             verbose=verbose)
         self.add_file_handler(file_path=LOG_FILE_PATH)
 
+
 class VCS(object):
+
     """
     Abstraction layer to the version control system.
     """
+
     def __init__(self):
         """
         Class constructor. Guesses the version control name and instantiates it
@@ -64,7 +79,6 @@ class VCS(object):
         else:
             self.backend = None
 
-
     def guess_vcs_name(self):
         if os.path.isdir(".svn"):
             return "SVN"
@@ -75,13 +89,11 @@ class VCS(object):
                           "on a working directory? Aborting.")
             sys.exit(1)
 
-
     def get_unknown_files(self):
         """
         Return a list of files unknown to the VCS.
         """
         return self.backend.get_unknown_files()
-
 
     def get_modified_files(self):
         """
@@ -89,13 +101,11 @@ class VCS(object):
         """
         return self.backend.get_modified_files()
 
-
     def is_file_tracked(self, fl):
         """
         Return whether a file is tracked by the VCS.
         """
         return self.backend.is_file_tracked(fl)
-
 
     def add_untracked_file(self, fl):
         """
@@ -103,20 +113,17 @@ class VCS(object):
         """
         return self.backend.add_untracked_file(file)
 
-
     def revert_file(self, fl):
         """
         Restore file according to the latest state on the reference repo.
         """
         return self.backend.revert_file(file)
 
-
     def apply_patch(self, patch):
         """
         Applies a patch using the most appropriate method to the particular VCS.
         """
         return self.backend.apply_patch(patch)
-
 
     def update(self):
         """
@@ -126,13 +133,14 @@ class VCS(object):
 
 
 class SubVersionBackend(object):
+
     """
     Implementation of a subversion backend for use with the VCS abstraction
     layer.
     """
+
     def __init__(self):
         self.ignored_extension_list = ['.orig', '.bak']
-
 
     def get_unknown_files(self):
         status = utils.system_output("svn status --ignore-externals")
@@ -145,7 +153,6 @@ class SubVersionBackend(object):
                         unknown_files.append(line[1:].strip())
         return unknown_files
 
-
     def get_modified_files(self):
         status = utils.system_output("svn status --ignore-externals")
         modified_files = []
@@ -154,7 +161,6 @@ class SubVersionBackend(object):
             if line and status_flag == "M" or status_flag == "A":
                 modified_files.append(line[1:].strip())
         return modified_files
-
 
     def is_file_tracked(self, fl):
         stdout = None
@@ -176,7 +182,6 @@ class SubVersionBackend(object):
         else:
             return False
 
-
     def add_untracked_file(self, fl):
         """
         Add an untracked file under revision control.
@@ -189,7 +194,6 @@ class SubVersionBackend(object):
             logging.error("Problem adding file %s to svn: %s", fl, e)
             sys.exit(1)
 
-
     def revert_file(self, fl):
         """
         Revert file against last revision.
@@ -201,7 +205,6 @@ class SubVersionBackend(object):
         except error.CmdError, e:
             logging.error("Problem reverting file %s: %s", fl, e)
             sys.exit(1)
-
 
     def apply_patch(self, patch):
         """
@@ -228,12 +231,13 @@ class SubVersionBackend(object):
 
 
 class GitBackend(object):
+
     """
     Implementation of a git backend for use with the VCS abstraction layer.
     """
+
     def __init__(self):
         self.ignored_extension_list = ['.orig', '.bak']
-
 
     def get_unknown_files(self):
         status = utils.system_output("git status --porcelain")
@@ -247,7 +251,6 @@ class GitBackend(object):
                             unknown_files.append(line[2:].strip())
         return unknown_files
 
-
     def get_modified_files(self):
         status = utils.system_output("git status --porcelain")
         modified_files = []
@@ -258,7 +261,6 @@ class GitBackend(object):
                     modified_files.append(line[1:].strip())
         return modified_files
 
-
     def is_file_tracked(self, fl):
         try:
             utils.run("git ls-files %s --error-unmatch" % fl,
@@ -266,7 +268,6 @@ class GitBackend(object):
             return True
         except error.CmdError:
             return False
-
 
     def add_untracked_file(self, fl):
         """
@@ -280,7 +281,6 @@ class GitBackend(object):
             logging.error("Problem adding file %s to git: %s", fl, e)
             sys.exit(1)
 
-
     def revert_file(self, fl):
         """
         Revert file against last revision.
@@ -292,7 +292,6 @@ class GitBackend(object):
         except error.CmdError, e:
             logging.error("Problem reverting file %s: %s", fl, e)
             sys.exit(1)
-
 
     def apply_patch(self, patch):
         """
@@ -311,7 +310,6 @@ class GitBackend(object):
             logging.error("Failed to apply patch to the git repo: %s" % e)
             sys.exit(1)
 
-
     def update(self):
         return
         try:
@@ -321,10 +319,12 @@ class GitBackend(object):
 
 
 class FileChecker(object):
+
     """
     Picks up a given file and performs various checks, looking after problems
     and eventually suggesting solutions.
     """
+
     def __init__(self, path=None, vcs=None, confirm=False):
         """
         Class constructor, sets the path attribute.
@@ -373,13 +373,11 @@ class FileChecker(object):
         else:
             self.bkp_path = None
 
-
     def _get_checked_filename(self):
         if self.bkp_path is not None:
             return self.bkp_path
         else:
             return self.path
-
 
     def _check_indent(self):
         """
@@ -396,7 +394,7 @@ class FileChecker(object):
         """
         success = True
         for exc in self.indent_exceptions:
-            if re.search (exc, self.path):
+            if re.search(exc, self.path):
                 return success
 
         path = self._get_checked_filename()
@@ -423,7 +421,6 @@ class FileChecker(object):
 
         return success
 
-
     def _check_code(self):
         """
         Verifies the file with run_pylint.
@@ -435,7 +432,7 @@ class FileChecker(object):
         """
         success = True
         for exc in self.check_exceptions:
-            if re.search (exc, self.path):
+            if re.search(exc, self.path):
                 return success
 
         path = self._get_checked_filename()
@@ -449,7 +446,6 @@ class FileChecker(object):
             success = False
 
         return success
-
 
     def _check_unittest(self):
         """
@@ -485,7 +481,6 @@ class FileChecker(object):
 
         return success
 
-
     def _check_permissions(self):
         """
         Verifies the execution permissions.
@@ -510,7 +505,6 @@ class FileChecker(object):
                     utils.run("chmod -x %s" % self.path,
                               ignore_status=True)
 
-
     def report(self, skip_unittest=False):
         """
         Executes all required checks, if problems are found, the possible
@@ -534,6 +528,7 @@ class FileChecker(object):
 
 
 class PatchChecker(object):
+
     def __init__(self, patch=None, patchwork_id=None, github_id=None,
                  pwhost=None, vcs=None, confirm=False):
         self.confirm = confirm
@@ -575,7 +570,6 @@ class PatchChecker(object):
         self.untracked_files_before = self.vcs.get_unknown_files()
         self.vcs.update()
 
-
     def _fetch_from_patchwork(self, pw_id):
         """
         Gets a patch file from patchwork and puts it under the cwd so it can
@@ -616,7 +610,6 @@ class PatchChecker(object):
         patch_dest = os.path.join(self.base_dir, 'github-%s.patch' % gh_id)
         urllib.urlretrieve(patch_url, patch_dest)
         return patch_dest
-
 
     def _check_files_modified_patch(self):
         modified_files_after = []
@@ -661,7 +654,6 @@ class PatchChecker(object):
             return False
         else:
             return True
-
 
     def check(self):
         self.vcs.apply_patch(self.patch)

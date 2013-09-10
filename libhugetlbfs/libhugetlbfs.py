@@ -1,4 +1,5 @@
-import re, os
+import re
+import os
 from autotest.client import utils, test, os_dep
 from autotest.client.shared import error
 
@@ -18,7 +19,7 @@ class libhugetlbfs(test.test):
         pages_available = 0
         if os.path.exists('/proc/sys/vm/nr_hugepages'):
             utils.write_one_line('/proc/sys/vm/nr_hugepages',
-                                          str(pages_requested))
+                                 str(pages_requested))
             nr_hugepages = utils.read_one_line('/proc/sys/vm/nr_hugepages')
             pages_available = int(nr_hugepages)
         else:
@@ -26,7 +27,7 @@ class libhugetlbfs(test.test):
 
         if pages_available < pages_requested:
             raise error.TestError('%d pages available, < %d pages requested'
-                                   % (pages_available, pages_requested))
+                                  % (pages_available, pages_requested))
 
         # Check if hugetlbfs has been mounted
         if not utils.file_contains_pattern('/proc/mounts', 'hugetlbfs'):

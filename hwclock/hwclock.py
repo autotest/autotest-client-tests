@@ -1,6 +1,9 @@
 from autotest.client import test, utils
 from autotest.client.shared import error
-import re, os, logging
+import re
+import os
+import logging
+
 
 class hwclock(test.test):
     version = 1
@@ -16,7 +19,6 @@ class hwclock(test.test):
         if not re.match('Sat *Feb *2 *03:04:.. 1980', date):
             raise error.TestFail("Failed to set hwclock back to the eighties. "
                                  "Output of hwclock is '%s'" % date)
-
 
     def cleanup(self):
         """

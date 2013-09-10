@@ -1,4 +1,5 @@
-import os, re
+import os
+import re
 from autotest.client import test, utils
 from autotest.client.shared import error
 
@@ -10,9 +11,8 @@ class unixbench(test.test):
         self.job.require_gcc()
         self.err = None
 
-
     # http://www.tux.org/pub/tux/niemi/unixbench/unixbench-4.1.0.tgz
-    def setup(self, tarball = 'unixbench-4.1.0.tar.bz2'):
+    def setup(self, tarball='unixbench-4.1.0.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
@@ -22,7 +22,6 @@ class unixbench(test.test):
         utils.make()
         utils.system('rm pgms/select')
 
-
     def run_once(self, args='', stepsecs=0):
         vars = ('TMPDIR=\"%s\" RESULTDIR=\"%s\"' %
                (self.tmpdir, self.resultsdir))
@@ -31,7 +30,7 @@ class unixbench(test.test):
             #   10 secs for small tests, 30 secs for bigger tests
             vars += ' systime=%i looper=%i seconds=%i'\
                     ' dhrytime=%i arithtime=%i' \
-                    % ((stepsecs,)*5)
+                    % ((stepsecs,) * 5)
 
         os.chdir(self.srcdir)
         try:
@@ -47,12 +46,10 @@ class unixbench(test.test):
         report_path = os.path.join(self.resultsdir, 'report')
         self.report_data = open(report_path).readlines()[9:]
 
-
     def cleanup(self):
         # check err string and possible throw
         if self.err is not None:
             raise error.TestError(self.err)
-
 
     def check_for_error(self, words):
         l = len(words)
@@ -66,7 +63,6 @@ class unixbench(test.test):
             return True
         else:
             return False
-
 
     def postprocess_iteration(self):
         keyval = {}

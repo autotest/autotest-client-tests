@@ -1,4 +1,5 @@
-import os, logging
+import os
+import logging
 from autotest.client import test
 from autotest.client import utils
 from autotest.client.shared import git, utils_koji, error, software_manager
@@ -31,7 +32,6 @@ class kernelinstall(test.test):
         else:
             kernel.add_to_bootloader()
 
-
     def _kernel_install_koji(self, koji_tag, package="kernel", dep_pkgs=None,
                              need_reboot=True, sub_pkgs=None):
         sm = software_manager.SoftwareManager()
@@ -51,11 +51,11 @@ class kernelinstall(test.test):
             for p in dep_pkgs.split():
                 logging.info('Fetching kernel dependencies: %s', p)
                 k_dep = utils_koji.KojiPkgSpec(tag=koji_tag, package=p,
-                                                subpackages=[p])
+                                               subpackages=[p])
                 c.get_pkgs(k_dep, self.bindir)
                 deps_rpms += " "
                 deps_rpms += os.path.join(self.bindir,
-                                         c.get_pkg_rpm_file_names(k_dep)[0])
+                                          c.get_pkg_rpm_file_names(k_dep)[0])
 
         if sub_pkgs:
             sub_pkgs = sub_pkgs.split()
@@ -79,9 +79,8 @@ class kernelinstall(test.test):
         # Then install kernel rpm packages.
         self._kernel_install_rpm(kernel_rpm, deps_rpms, need_reboot)
 
-
     def _kernel_install_src(self, base_tree, config, config_list=None,
-                           patch_list=None, need_reboot=True):
+                            patch_list=None, need_reboot=True):
         if not utils.is_url(base_tree):
             base_tree = os.path.join(self.bindir, base_tree)
         if not utils.is_url(config):
@@ -106,7 +105,6 @@ class kernelinstall(test.test):
         else:
             kernel.add_to_bootloader()
 
-
     def _kernel_install_git(self, repo, config, repo_base=None,
                             branch="master", commit=None, config_list=None,
                             patch_list=None, need_reboot=True):
@@ -115,8 +113,7 @@ class kernelinstall(test.test):
                                destination_dir=repodir,
                                commit=commit, base_uri=repo_base)
         self._kernel_install_src(repodir, config, config_list, patch_list,
-                                need_reboot)
-
+                                 need_reboot)
 
     def execute(self, install_type="koji", params=None):
         need_reboot = params.get("need_reboot") == "yes"

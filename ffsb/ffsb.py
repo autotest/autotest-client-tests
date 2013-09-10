@@ -1,4 +1,9 @@
-import os, string, logging, re, random, shutil
+import os
+import string
+import logging
+import re
+import random
+import shutil
 from autotest.client import test, os_dep, utils
 from autotest.client.shared import error
 
@@ -16,6 +21,7 @@ def find_mnt_pt(path):
 
 
 class ffsb(test.test):
+
     """
     This class wraps FFSB (Flexible File System Benchmark) execution
     under autotest.
@@ -25,17 +31,15 @@ class ffsb(test.test):
     version = 1
     params = {}
     tempdirs = []
-    bytes = {'K':1024 , 'k':1024,
-             'M':1048576, 'm':1048576,
-             'G':1073741824, 'g':1073741824,
-             'T':1099511627776 , 't':1099511627776}
-
+    bytes = {'K': 1024, 'k': 1024,
+             'M': 1048576, 'm': 1048576,
+             'G': 1073741824, 'g': 1073741824,
+             'T': 1099511627776, 't': 1099511627776}
 
     def initialize(self):
         self.job.require_gcc()
         self.results = []
         self.nfail = 0
-
 
     def set_ffsb_params(self, usrfl):
         """
@@ -48,7 +52,7 @@ class ffsb(test.test):
         @param usrfl: Path to the user profile file.
         """
         d = {}
-        fr = open(usrfl,'r')
+        fr = open(usrfl, 'r')
         for line in fr.read().split('\n'):
             p = re.compile(r'\s*\t*\[{1}filesystem(\d+)\]{1}')
             m = p.match(line)
@@ -78,7 +82,7 @@ class ffsb(test.test):
                 usrmaxflsz = int(usrmaxflsz[0:-1]) * self.bytes[usrmaxflsz[-1]]
                 d[fsno].append(usrmaxflsz)
         for k in d.keys():
-            while d[k][2]*d[k][3] >= d[k][1]:
+            while d[k][2] * d[k][3] >= d[k][1]:
                 d[k][2] -= 1
             if d[k][2] == 0:
                 d[k][2] = 1
@@ -88,10 +92,9 @@ class ffsb(test.test):
             # tests
             for k1 in d.keys():
                 if d[k1][0] == d[k][0]:
-                    d[k1][1] -= (d[k][2]*d[k][3])
+                    d[k1][1] -= (d[k][2] * d[k][3])
         fr.close()
         return d
-
 
     def dup_ffsb_profilefl(self):
         """
@@ -101,14 +104,14 @@ class ffsb(test.test):
         generating the workload according to the available disk space
         on the guest.
         """
-        self.usrfl = '%s/%s' % (os.path.split(self.srcdir)[0],'profile.cfg')
-        self.sysfl = '%s/%s' % (self.srcdir,'profile.cfg')
+        self.usrfl = '%s/%s' % (os.path.split(self.srcdir)[0], 'profile.cfg')
+        self.sysfl = '%s/%s' % (self.srcdir, 'profile.cfg')
 
         params = self.set_ffsb_params(self.usrfl)
 
         fsno = 0
-        fr = open(self.usrfl,'r')
-        fw = open(self.sysfl,'w')
+        fr = open(self.usrfl, 'r')
+        fw = open(self.sysfl, 'w')
         for line in fr.read().split('\n'):
             p = re.compile(r'\s*\t*\[{1}filesystem(\d+)\]{1}')
             m = p.match(line)
@@ -131,24 +134,23 @@ class ffsb(test.test):
                     else:
                         os.makedirs(ffsbdir)
                         break
-                fw.write(newline+'\n')
+                fw.write(newline + '\n')
                 continue
             p = re.compile(r'(\s*\t*num_files)\=(.*)')
             m = p.match(line)
             if m:
                 newline = '%s=%s' % (line[0:m.end(1)], str(params[fsno][2]))
-                fw.write(newline+'\n')
+                fw.write(newline + '\n')
                 continue
             p = re.compile(r'(\s*\t*max_filesize)\=(\d+[kKMmGgTt]?)')
             m = p.match(line)
             if m:
                 newline = '%s%s' % (line[0:m.start(2)], str(params[fsno][3]))
-                fw.write(newline+'\n')
+                fw.write(newline + '\n')
                 continue
-            fw.write(line+'\n')
+            fw.write(line + '\n')
         fr.close()
         fw.close()
-
 
     def setup(self, tarball='ffsb-6.0-rc2.tar.bz2'):
         """
@@ -165,7 +167,6 @@ class ffsb(test.test):
         utils.configure()
         utils.make()
 
-
     def update_config(self, cfg):
         """
         Update the profile.cfg file.
@@ -179,7 +180,6 @@ class ffsb(test.test):
         profile_src = os.path.join(self.bindir, filename)
         profile_dst = os.path.join(os.path.dirname(self.srcdir), 'profile.cfg')
         shutil.copyfile(profile_src, profile_dst)
-
 
     def run_once(self, cfg=None):
         """
@@ -201,7 +201,6 @@ class ffsb(test.test):
         except error.CmdError, e:
             self.nfail += 1
             logging.error('Failed to execute FFSB : %s', e)
-
 
     def postprocess(self):
         """

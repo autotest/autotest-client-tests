@@ -14,14 +14,18 @@
 #          Non-zero if results differ, or bad input
 
 
-import sys, string, re
+import sys
+import string
+import re
 from autotest.client.shared import utils
+
 
 def usage():
     print "\nUsage: \n\
 ltp-diff results1 results2 ... locationN \n\
 Note: location[1,2,N] may be local files or URLs of LTP results\n"
     sys.exit(1)
+
 
 def get_results(results_files):
     """
@@ -56,7 +60,6 @@ def get_results(results_files):
     return (runs, testnames)
 
 
-
 def compare_results(runs):
     """
     Loop through all testnames alpahbetically.
@@ -74,15 +77,15 @@ def compare_results(runs):
     all_testnames.sort()
     for testname in all_testnames:
         differ = 0
-        for i in range(1,len(runs)):
+        for i in range(1, len(runs)):
             # Must handle testcases that executed in one run
             # but not another by setting status to "null"
             if not runs[i].has_key(testname):
                 runs[i][testname] = "null"
-            if not runs[i-1].has_key(testname):
-                runs[i-1][testname] = "null"
+            if not runs[i - 1].has_key(testname):
+                runs[i - 1][testname] = "null"
             # Check for the results inconsistencies
-            if runs[i][testname] != runs[i-1][testname]:
+            if runs[i][testname] != runs[i - 1][testname]:
                 differ = 1
         if differ:
             if header == 0:
@@ -98,7 +101,7 @@ def compare_results(runs):
             all_results = ""
             for i in range(len(runs)):
                 all_results += runs[i][testname]
-                if i+1<len(runs):
+                if i + 1 < len(runs):
                     all_results += "/"
             print all_results
     if rc == 0:
@@ -106,9 +109,9 @@ def compare_results(runs):
     return rc
 
 
-########
+#
 # Main #
-########
+#
 sys.argv.pop(0)
 if (len(sys.argv) < 2):
     usage()

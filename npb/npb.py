@@ -1,8 +1,13 @@
-import os, shutil, logging, re
+import os
+import shutil
+import logging
+import re
 from autotest.client import test, utils
 from autotest.client.shared import error
 
+
 class npb(test.test):
+
     """
     This module runs the NAS Parallel Benchmarks on the client machine
 
@@ -11,6 +16,7 @@ class npb(test.test):
     @see: http://www.nas.nasa.gov/Resources/Software/npb.html
     """
     version = 1
+
     def initialize(self, tests=''):
         # Initialize failure counter
         self.n_fail = 0
@@ -20,7 +26,6 @@ class npb(test.test):
         self.ratio = 1.0 / utils.count_cpus()
         logging.debug('Ratio (1/n_cpus) found for this system: %s' % self.ratio)
 
-
     def setup(self, tarball='NPB3.3.tar.gz'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
@@ -28,7 +33,6 @@ class npb(test.test):
         # Prepare the makefile and benchmarks to generate.
         utils.system('patch -p1 < %s/enable-all-tests.patch' % self.bindir)
         utils.system('cd NPB3.3-OMP && make suite')
-
 
     def run_once(self):
         """
@@ -58,7 +62,7 @@ class npb(test.test):
             itest_cmd = os.path.join('NPB3.3-OMP/bin/', itest)
             try:
                 itest = utils.run(itest_cmd)
-            except Exception, e :
+            except Exception, e:
                 logging.error('NPB benchmark %s has failed. Output: %s',
                               itest_cmd, e)
                 self.n_fail += 1
@@ -82,7 +86,7 @@ class npb(test.test):
             logging.info('Time (s): %s', time_seconds)
             logging.info('Total operations executed (mops/s): %s', mops_total)
             logging.info('Total operations per thread (mops/s/thread): %s',
-                          mops_per_thread)
+                         mops_per_thread)
 
             self.write_test_keyval({'test': itest_cmd})
             self.write_test_keyval({'time_seconds': time_seconds})
@@ -107,7 +111,7 @@ class npb(test.test):
             itest_single_cmd = ''.join(['OMP_NUM_THREADS=1 ', itest_cmd])
             try:
                 itest_single = utils.run(itest_single_cmd)
-            except Exception, e :
+            except Exception, e:
                 logging.error('NPB benchmark single thread %s has failed. '
                               'Output: %s', itest_single_cmd, e)
                 self.n_fail += 1
@@ -133,7 +137,6 @@ class npb(test.test):
                 self.n_fail += 1
             else:
                 logging.debug('NPB benchmark %s sanity check PASS' % itest_cmd)
-
 
     def cleanup(self):
         """

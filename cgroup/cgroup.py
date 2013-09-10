@@ -6,7 +6,10 @@ Autotest test for testing cgroup functionalities
 @copyright: 2011 Red Hat Inc.
 @author: Lukas Doktor <ldoktor@redhat.com>
 """
-import os, sys, logging, time
+import os
+import sys
+import logging
+import time
 from tempfile import NamedTemporaryFile
 from subprocess import Popen
 
@@ -22,6 +25,7 @@ except ImportError:
 
 
 class cgroup(test.test):
+
     """
     Tests the cgroup functionalities. It works by creating a process (which is
     also a python application) that will try to use CPU and memory. We will
@@ -87,9 +91,9 @@ class cgroup(test.test):
         logging.debug('cgroup_test cleanup')
         del (self.modules)
 
-    #############################
+    #
     # TESTS
-    #############################
+    #
     def test_memory(self):
         """
         Memory test
@@ -150,10 +154,10 @@ class cgroup(test.test):
                                   dir="/tmp")
         logging.debug("test_memory: Initializition passed")
 
-        ################################################
+        #
         # Fill the memory without cgroup limitation
         # Should pass
-        ################################################
+        #
         logging.debug("test_memory: Memfill WO cgroup")
         ps = item.test("memfill %d %s" % (mem, outf.name))
         ps.stdin.write('\n')
@@ -177,11 +181,11 @@ class cgroup(test.test):
                                  "(WO cgroup)")
         logging.debug("test_memory: Memfill WO cgroup passed")
 
-        ################################################
+        #
         # Fill the memory with 1/2 memory limit
         # memsw: should swap out part of the process and pass
         # WO memsw: should fail (SIGKILL)
-        ################################################
+        #
         logging.debug("test_memory: Memfill mem only limit")
         ps = item.test("memfill %d %s" % (mem, outf.name))
         item.set_cgroup(ps.pid, pwd)
@@ -201,7 +205,7 @@ class cgroup(test.test):
         out = outf.readlines()
         if (len(out) < 2):
             raise error.TestFail("Process failed (mem); output:\n%s"
-                          "\nReturn: %d" % (out, ps.poll()))
+                                 "\nReturn: %d" % (out, ps.poll()))
         if memsw:
             if not out[-1].startswith("PASS"):
                 logging.error("test_memory: cgroup_client.py returned %d; "
@@ -222,11 +226,11 @@ class cgroup(test.test):
                                   filled)
         logging.debug("test_memory: Memfill mem only cgroup passed")
 
-        ################################################
+        #
         # Fill the memory with 1/2 memory+swap limit
         # Should fail
         # (memory.limit_in_bytes have to be set prior to this test)
-        ################################################
+        #
         if memsw:
             logging.debug("test_memory: Memfill mem + swap limit")
             ps = item.test("memfill %d %s" % (mem, outf.name))
@@ -251,7 +255,7 @@ class cgroup(test.test):
                                      "\nReturn: %d" % (out, ps.poll()))
             if out[-1].startswith("PASS"):
                 raise error.TestFail("Unexpected memory filling (memsw)",
-                              mem)
+                                     mem)
             else:
                 filled = int(out[-2].split()[1][:-1])
                 if mem / 2 > 1.5 * filled:
@@ -264,9 +268,9 @@ class cgroup(test.test):
                                   filled)
             logging.debug("test_memory: Memfill mem + swap cgroup passed")
 
-        ################################################
+        #
         # CLEANUP
-        ################################################
+        #
         cleanup()
 
     def test_cpuset(self):
@@ -306,7 +310,7 @@ class cgroup(test.test):
 
         # in cpuset cgroup it's necessarily to set certain values before
         # usage. Thus smoke_test will fail.
-        #if item.smoke_test():
+        # if item.smoke_test():
         #    raise error.TestFail("smoke_test failed")
 
         try:
@@ -327,10 +331,10 @@ class cgroup(test.test):
             raise error.TestFail("Failed to set cpus and mems of"
                                  "a new cgroup")
 
-        ################################################
+        #
         # Cpu allocation test
         # Use cpu0 and verify, than all cpu* - cpu0 and verify
-        ################################################
+        #
         logging.debug("test_cpuset: Cpu allocation test")
 
         tasks = []
@@ -375,9 +379,9 @@ class cgroup(test.test):
                                      % (stat1, stat2))
         logging.debug("test_cpuset: Cpu allocation test passed")
 
-        ################################################
+        #
         # CLEANUP
-        ################################################
+        #
         cleanup()
 
     def test_cpu(self):
@@ -445,14 +449,14 @@ class cgroup(test.test):
         self.item.smoke_test()
         logging.info("test_cpu: smoke_test passed")
 
-        ################################################
+        #
         # test_cpu_many_cgroups
         # Tests known issue with lots of cgroups in cpu subsystem defined on
         # large SMP host.
         # The test creates 10 cgroups, measure go-throught time, than the same
         # with 110 and 1110 cgroups.
         # IMPORTANT: Is reproducible only on large SMP > 64 cpus
-        ################################################
+        #
         no_cpus = utils.count_cpus()
         if no_cpus < 64:
             logging.warn("test_cpu_many_cgroups: SKIPPED as it needs >64 "
@@ -507,7 +511,7 @@ class cgroup(test.test):
                 cleanup()
                 raise error.TestFail("CPU stress %d took over %s-times longer"
                                      " than with 10 cgroups" % (i, limits[i]))
-        ################################################
+        #
         # CLEANUP
-        ################################################
+        #
         cleanup()

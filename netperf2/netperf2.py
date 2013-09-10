@@ -1,4 +1,7 @@
-import os, time, re, logging
+import os
+import time
+import re
+import logging
 from autotest.client import test, utils
 from autotest.client.net import net_utils
 from autotest.client.shared import error
@@ -6,11 +9,12 @@ from autotest.client.shared import error
 MPSTAT_IX = 0
 NETPERF_IX = 1
 
+
 class netperf2(test.test):
     version = 3
 
     # ftp://ftp.netperf.org/netperf/netperf-2.6.0.tar.bz2
-    def setup(self, tarball = 'netperf-2.6.0.tar.bz2'):
+    def setup(self, tarball='netperf-2.6.0.tar.bz2'):
         self.job.require_gcc()
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
@@ -19,7 +23,6 @@ class netperf2(test.test):
         utils.configure()
         utils.make()
         utils.system('sync')
-
 
     def initialize(self):
         self.server_prog = '%s&' % os.path.join(self.srcdir, 'src/netserver')
@@ -32,10 +35,9 @@ class netperf2(test.test):
         self.network = net_utils.network()
         self.network_utils = net_utils.network_utils()
 
-
-    def run_once(self, server_ip, client_ip, role, test = 'TCP_STREAM',
-                 test_time = 15, stream_list = [1], test_specific_args = '',
-                 cpu_affinity = '', dev = '', bidi = False, wait_time = 5):
+    def run_once(self, server_ip, client_ip, role, test='TCP_STREAM',
+                 test_time=15, stream_list=[1], test_specific_args='',
+                 cpu_affinity='', dev='', bidi=False, wait_time=5):
         """
         server_ip: IP address of host running netserver
         client_ip: IP address of host running netperf client(s)
@@ -93,7 +95,7 @@ class netperf2(test.test):
                     # Wait up to test_time + 5 minutes for the test to
                     # complete
                     self.job.barrier(server_tag, 'stop_%d' % num_streams,
-                                     test_time+300).rendezvous(*all)
+                                     test_time + 300).rendezvous(*all)
                 finally:
                     self.server_stop()
 
@@ -111,18 +113,15 @@ class netperf2(test.test):
 
         self.restore_interface()
 
-
     def configure_interface(self, dev, ip_addr):
         self.netif = net_utils.netif(dev)
         self.netif.up()
         if self.netif.get_ipaddr() != ip_addr:
             self.netif.set_ipaddr(ip_addr)
 
-
     def restore_interface(self):
         if self.netif:
             self.netif.restore()
-
 
     def server_start(self, cpu_affinity):
         utils.system('killall netserver', ignore_status=True)
@@ -132,10 +131,8 @@ class netperf2(test.test):
 
         self.results.append(utils.system_output(cmd, retain_output=True))
 
-
     def server_stop(self):
         utils.system('killall netserver', ignore_status=True)
-
 
     def client(self, server_ip, test, test_time, num_streams,
                test_specific_args, cpu_affinity):
@@ -189,19 +186,18 @@ class netperf2(test.test):
             works for now"""
 
             if ('within' in e.additional_text
-                or 'non-zero' in e.additional_text):
+                    or 'non-zero' in e.additional_text):
                 logging.debug(e.additional_text)
                 self.results.append(None)
                 self.actual_times.append(1)
             else:
                 raise
 
-
     def postprocess(self):
         if self.role == 'client':
             # if profilers are enabled, the test gets runs twice
             if (len(self.stream_list) != len(self.results) and
-               2*len(self.stream_list) != len(self.results)):
+               2 * len(self.stream_list) != len(self.results)):
                 raise error.TestError('Mismatched number of results')
 
             function = None
@@ -222,7 +218,7 @@ class netperf2(test.test):
                 raise error.TestError('Unhandled test')
 
             for i, streams in enumerate(self.stream_list):
-                attr = {'stream_count':streams}
+                attr = {'stream_count': streams}
                 keyval = {}
                 temp_vals = []
 
@@ -263,12 +259,11 @@ class netperf2(test.test):
 
                 # record 'Efficiency' as perf/CPU
                 if keyval['CPU_C'] != 0:
-                    keyval['Efficieny_C'] = keyval[keys[0]]/keyval['CPU_C']
+                    keyval['Efficieny_C'] = keyval[keys[0]] / keyval['CPU_C']
                 else:
                     keyval['Efficieny_C'] = keyval[keys[0]]
 
                 self.write_iteration_keyval(attr, keyval)
-
 
     def process_tcp_stream(self, output):
         """Parses the following (works for both TCP_STREAM, TCP_MAERTS and
@@ -285,7 +280,6 @@ class netperf2(test.test):
         """
 
         return float(output.splitlines()[6].split()[4]),
-
 
     def process_udp_stream(self, output):
         """Parses the following and returns a touple containing throughput
@@ -304,7 +298,6 @@ class netperf2(test.test):
         line_tokens = output.splitlines()[5].split()
         return float(line_tokens[5]), int(line_tokens[4])
 
-
     def process_request_response(self, output):
         """Parses the following which works for both rr (TCP and UDP) and crr
         tests and returns a singleton containing transfer rate.
@@ -321,7 +314,6 @@ class netperf2(test.test):
         """
 
         return float(output.splitlines()[6].split()[5]),
-
 
     def ping(self, ip, timeout):
         curr_time = time.time()
