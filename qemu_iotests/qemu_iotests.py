@@ -32,7 +32,7 @@ class qemu_iotests(test.test):
         """
         Uncompresses the tarball and cleans any leftover output files.
 
-        @param tarball: Relative path to the testsuite tarball.
+        :param tarball: Relative path to the testsuite tarball.
         """
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
@@ -65,9 +65,9 @@ class qemu_iotests(test.test):
         #     NNN                 include test NNN
         #     NNN-NNN             include test range (eg. 012-021)
 
-        @param qemu_path: Optional qemu install path.
-        @param options: Options accepted by the testsuite.
-        @param testlist: List of tests that will be executed (by default, all
+        :param qemu_path: Optional qemu install path.
+        :param options: Options accepted by the testsuite.
+        :param testlist: List of tests that will be executed (by default, all
                 testcases will be executed).
         """
         os.chdir(self.srcdir)

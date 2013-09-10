@@ -28,8 +28,8 @@ class DeviceRate(object):
         """
         Get file create rate by "dd" command output.
 
-        @param: output: "dd" command output
-        @return: File create rate.(1.1M: return 1.1, 512Kib: return 512)
+        :param output: "dd" command output
+        :return: File create rate.(1.1M: return 1.1, 512Kib: return 512)
         """
         try:
             rate_line = output.splitlines()[-1]
@@ -128,7 +128,7 @@ def execute(cgroup_cls):
     """
     Execute device test.
 
-    @param: cgroup_cls: Cgroup class
+    :param cgroup_cls: Cgroup class
     """
     if cgroup_cls is None:
         raise error.TestNAError("Got a none cgroup class")

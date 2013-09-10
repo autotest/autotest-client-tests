@@ -43,8 +43,8 @@ class disktest(test.test):
         """
         Tests one part of the disk by spawning a disktest instance.
 
-        @param disk: Directory (usually a mountpoint).
-        @param chunk: Portion of the disk used.
+        :param disk: Directory (usually a mountpoint).
+        :param chunk: Portion of the disk used.
         """
         logging.info("Testing %d MB files on %s in %d MB memory, chunk %s",
                      self.chunk_mb, disk, self.memory_mb, chunk)
@@ -58,10 +58,10 @@ class disktest(test.test):
         """
         Runs one iteration of disktest.
 
-        @param disks: List of directories (usually mountpoints) to be passed
+        :param disks: List of directories (usually mountpoints) to be passed
                 to the test.
-        @param gigabytes: Disk space that will be used for the test to run.
-        @param chunk_mb: Size of the portion of the disk used to run the test.
+        :param gigabytes: Disk space that will be used for the test to run.
+        :param chunk_mb: Size of the portion of the disk used to run the test.
                 Cannot be larger than the total amount of free RAM.
         """
         os.chdir(self.disk_srcdir)

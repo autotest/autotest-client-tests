@@ -10,9 +10,9 @@ class profiler_test(test.test):
         """
         Initialize this test with the profiler name, args and dargs.
 
-        @param profiler: Profiler name.
-        @param profiler_args: Profiler non-keyword arguments.
-        @param profiler_dargs: Profiler keyword arguments.
+        :param profiler: Profiler name.
+        :param profiler_args: Profiler non-keyword arguments.
+        :param profiler_dargs: Profiler keyword arguments.
         """
         if not profiler:
             raise error.TestError('No profiler specified.')
@@ -27,7 +27,7 @@ class profiler_test(test.test):
         We override "execute" and not "run_once" because we need to control
         profilers here and in "run_once" it would be too late for that.
 
-        @param seconds: Number of seconds to sleep while the profiler is
+        :param seconds: Number of seconds to sleep while the profiler is
                 running.
         """
         profilers = self.job.profilers

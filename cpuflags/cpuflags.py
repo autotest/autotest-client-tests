@@ -40,10 +40,10 @@ class cpuflags(test.test):
             """
             Check which flags work.
 
-            @param vm: Virtual machine.
-            @param path: Path of cpuflags_test
-            @param flags: Flags to test.
-            @return: Tuple (Working, not working, not tested) flags.
+            :param vm: Virtual machine.
+            :param path: Path of cpuflags_test
+            :param flags: Flags to test.
+            :return: Tuple (Working, not working, not tested) flags.
             """
             pass_Flags = []
             not_tested = []

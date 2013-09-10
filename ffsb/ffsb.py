@@ -12,7 +12,7 @@ def find_mnt_pt(path):
     """
     Find on which mount point a given path is mounted.
 
-    @param path: Path we want to figure its mount point.
+    :param path: Path we want to figure its mount point.
     """
     pth = os.path.abspath(path)
     while not os.path.ismount(pth):
@@ -49,7 +49,7 @@ class ffsb(test.test):
         but adjusting the number of threads according to the vcpus
         exported by the qemu-kvm also needs to be added.
 
-        @param usrfl: Path to the user profile file.
+        :param usrfl: Path to the user profile file.
         """
         d = {}
         fr = open(usrfl, 'r')
@@ -156,7 +156,7 @@ class ffsb(test.test):
         """
         Uncompress the FFSB tarball and compiles it.
 
-        @param tarball: FFSB tarball. Could be either a path relative to
+        :param tarball: FFSB tarball. Could be either a path relative to
                 self.srcdir or a URL.
         """
         self.update_config('profile.cfg.sample')
@@ -171,7 +171,7 @@ class ffsb(test.test):
         """
         Update the profile.cfg file.
 
-        @param cfg: Basename of the cfg file, that should be on the
+        :param cfg: Basename of the cfg file, that should be on the
                     test module folder (client/tests/ffsb) or URL of the
                     remote config file.
         """

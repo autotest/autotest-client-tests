@@ -32,8 +32,8 @@ def unique(list):
     """
     Return a list of the elements in list, but without duplicates.
 
-    @param list: List with values.
-    @return: List with non duplicate elements.
+    :param list: List with values.
+    :return: List with non duplicate elements.
     """
     n = len(list)
     if n == 0:
@@ -52,8 +52,8 @@ def geometric_mean(values):
     """
     Evaluates the geometric mean for a list of numeric values.
 
-    @param values: List with values.
-    @return: Single value representing the geometric mean for the list values.
+    :param values: List with values.
+    :return: Single value representing the geometric mean for the list values.
     @see: http://en.wikipedia.org/wiki/Geometric_mean
     """
     try:
@@ -71,9 +71,9 @@ def compare_matrices(matrix1, matrix2, treshold=0.05):
     """
     Compare 2 matrices nxm and return a matrix nxm with comparison data
 
-    @param matrix1: Reference Matrix with numeric data
-    @param matrix2: Matrix that will be compared
-    @param treshold: Any difference bigger than this percent treshold will be
+    :param matrix1: Reference Matrix with numeric data
+    :param matrix2: Matrix that will be compared
+    :param treshold: Any difference bigger than this percent treshold will be
             reported.
     """
     improvements = 0
@@ -130,10 +130,10 @@ class IOzoneAnalyzer(object):
         """
         Flattens a list containing performance results.
 
-        @param results: List of n lists containing data from performance runs.
-        @param size: Numerical value of a size (say, file_size) that was used
+        :param results: List of n lists containing data from performance runs.
+        :param size: Numerical value of a size (say, file_size) that was used
                 to filter the original results list.
-        @return: List with 1 list containing average data from the performance
+        :return: List with 1 list containing average data from the performance
                 run.
         """
         average_line = []
@@ -153,7 +153,7 @@ class IOzoneAnalyzer(object):
                 geometric mean results, in practical term either 'file_size'
                 or 'record_size'.
         @result: A list of n x m columns with original iozone results.
-        @return: A list of n-? x (m-1) columns with geometric averages for
+        :return: A list of n-? x (m-1) columns with geometric averages for
                 values of each label (ex, average for all file_sizes).
         """
         performance = []
@@ -173,8 +173,8 @@ class IOzoneAnalyzer(object):
         """
         Parse an IOzone results file.
 
-        @param file: File object that will be parsed.
-        @return: Matrix containing IOzone results extracted from the file.
+        :param file: File object that will be parsed.
+        :return: Matrix containing IOzone results extracted from the file.
         """
         lines = []
         for line in file.readlines():
@@ -194,11 +194,11 @@ class IOzoneAnalyzer(object):
         Generates a report to both logs (where it goes with nice headers) and
         output files for further processing (graph generation).
 
-        @param overall_results: 1x15 Matrix containing IOzone results for all
+        :param overall_results: 1x15 Matrix containing IOzone results for all
                 file sizes
-        @param record_size_results: nx15 Matrix containing IOzone results for
+        :param record_size_results: nx15 Matrix containing IOzone results for
                 each record size tested.
-        @param file_size_results: nx15 Matrix containing file size results
+        :param file_size_results: nx15 Matrix containing file size results
                 for each file size tested.
         """
         # Here we'll use the logging system to put the output of our analysis
@@ -264,8 +264,8 @@ class IOzoneAnalyzer(object):
         If a difference higher or smaller than 5% is found, a warning is
         triggered.
 
-        @param record: Tuple with 4 elements containing results for record size.
-        @param file: Tuple with 4 elements containing results for file size.
+        :param record: Tuple with 4 elements containing results for record size.
+        :param file: Tuple with 4 elements containing results for file size.
         """
         (record_size, record_improvements, record_regressions,
          record_total) = record

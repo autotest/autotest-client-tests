@@ -39,9 +39,9 @@ class ctcs(test.test):
         """
         Builds the test suite, and sets up the control file that is going to
         be processed by the ctcs engine.
-        @param tarball: CTCS tarball
-        @param length: The amount of time we'll run the test suite
-        @param tcf_contents: If the user wants to specify the contents of
+        :param tarball: CTCS tarball
+        :param length: The amount of time we'll run the test suite
+        :param tcf_contents: If the user wants to specify the contents of
                 the CTCS control file, he could do so trough this parameter.
                 If this parameter is provided, length is ignored.
         """

@@ -23,7 +23,7 @@ class flail(test.test):
         """
         Compiles flail with the appropriate parameters.
 
-        @param tarball: Path or URL for the flail tarball.
+        :param tarball: Path or URL for the flail tarball.
         """
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
@@ -34,7 +34,7 @@ class flail(test.test):
         """
         Runs flail with the appropriate parameters.
 
-        @param fstype: Filesystem type you wish to run flail on.
+        :param fstype: Filesystem type you wish to run flail on.
         """
         args = fstype + ' 1'
         flail_cmd = os.path.join(self.srcdir, 'flail %s' % args)

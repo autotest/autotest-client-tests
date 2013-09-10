@@ -32,7 +32,7 @@ class hackbench(test.test):
         Run hackbench, store the output in raw output files per iteration and
         also in the results list attribute.
 
-        @param num_groups: Number of children processes hackbench will spawn.
+        :param num_groups: Number of children processes hackbench will spawn.
         """
         hackbench_bin = os.path.join(self.srcdir, 'hackbench')
         cmd = '%s %s' % (hackbench_bin, num_groups)

@@ -14,10 +14,10 @@ class wb_kupdate(test.test):
         """
         Check all test parameters.
 
-        @param mount_point: the path to the desired mount_point.
-        @param write_size: the size of data in MB to write.
-        @param file_count: the number of files to write.
-        @param old_cleanup: removes previous mount_point if it exists and is
+        :param mount_point: the path to the desired mount_point.
+        :param write_size: the size of data in MB to write.
+        :param file_count: the number of files to write.
+        :param old_cleanup: removes previous mount_point if it exists and is
                 not mounted. Default is False.
         """
         # Check mount_point.
@@ -76,13 +76,13 @@ class wb_kupdate(test.test):
         """
         Checks to see if the test has run its course.
 
-        @param start_time: a datetime object specifying the start time of the
+        :param start_time: a datetime object specifying the start time of the
                 test.
-        @param duration: test duration in minutes.
-        @param _now: used mostly for testing - ensures that the function returns
+        :param duration: test duration in minutes.
+        :param _now: used mostly for testing - ensures that the function returns
                 pass/fail depnding on the value of _now.
 
-        @return: True if the test still needs to run longer.
+        :return: True if the test still needs to run longer.
                  False if the test has run for 'duration' minutes.
         """
         if not _now:
@@ -95,12 +95,12 @@ class wb_kupdate(test.test):
         """
         Writes data to the cache/memory.
 
-        @param destination: the absolute path to where the data needs to be
+        :param destination: the absolute path to where the data needs to be
         written.
-        @param counter: the file counter.
-        @param write_size: the size of data to be written.
+        :param counter: the file counter.
+        :param write_size: the size of data to be written.
 
-        @return: the time when the write completed as a datetime object.
+        :return: the time when the write completed as a datetime object.
         """
         # Write data to disk.
         file_name = os.path.join(destination, 'test_file_%s' % counter)
@@ -118,9 +118,9 @@ class wb_kupdate(test.test):
         """
         Returns the disk usage of given file.
 
-        @param file_name: the name of the file.
+        :param file_name: the name of the file.
 
-        @return: the disk usage as an integer.
+        :return: the disk usage as an integer.
         """
         # Check du stats.
         cmd = '%s %s' % (self._DU_CMD, file_name)
@@ -137,11 +137,11 @@ class wb_kupdate(test.test):
         """
         Check to see if the sparse file size increases.
 
-        @param start_time: the time when data was actually written into the
+        :param start_time: the time when data was actually written into the
                 cache.
-        @param max_wait_time: the max amount of time to wait.
+        :param max_wait_time: the max amount of time to wait.
 
-        @return: time waited as a datetime.timedelta object.
+        :return: time waited as a datetime.timedelta object.
         """
         current_size = self._get_disk_usage(self.sparse_file)
         flushed_size = current_size
@@ -182,17 +182,17 @@ class wb_kupdate(test.test):
         """
         Control execution of the test.
 
-        @param mount_point: the absolute path to the mount point.
-        @param file_count: the number of files to write.
-        @param write_size: the size of each file in MB.
-        @param max_flush_time: the maximum time to wait for the writeback to
+        :param mount_point: the absolute path to the mount point.
+        :param file_count: the number of files to write.
+        :param write_size: the size of each file in MB.
+        :param max_flush_time: the maximum time to wait for the writeback to
                 flush dirty data to disk. Default = 1 minute.
-        @param file_system: the new file system to be mounted, if any.
+        :param file_system: the new file system to be mounted, if any.
                 Default = None.
-        @param remove_previous: boolean that allows the removal of previous
+        :param remove_previous: boolean that allows the removal of previous
                 files before creating a new one. Default = False.
-        @param sparse_file: the absolute path to the sparse file.
-        @param old_cleanup: removes previous mount_point if it exists and is
+        :param sparse_file: the absolute path to the sparse file.
+        :param old_cleanup: removes previous mount_point if it exists and is
                 not mounted. Default is False.
         """
         # Check validity of parameters.

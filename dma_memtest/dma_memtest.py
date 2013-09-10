@@ -30,9 +30,9 @@ class dma_memtest(test.test):
         the uncompressed tarball, use this value to calculate the number of
         copies of the linux kernel that will be uncompressed.
 
-            @param tarball_base: Name of the kernel tarball location that will
+            :param tarball_base: Name of the kernel tarball location that will
             be looked up on the kernel.org mirrors.
-            @param parallel: If we are going to uncompress the copies of the
+            :param parallel: If we are going to uncompress the copies of the
             kernel in parallel or not
         """
         if not os.path.isdir(self.cachedir):
@@ -62,7 +62,7 @@ class dma_memtest(test.test):
         Calculate the amount of simultaneous copies that can be uncompressed
         so that it will make the system swap.
 
-            @param est_size: Estimated size of uncompressed linux tarball
+            :param est_size: Estimated size of uncompressed linux tarball
         '''
         mem_str = utils.system_output('grep MemTotal /proc/meminfo')
         mem = int(re.search(r'\d+', mem_str).group(0))

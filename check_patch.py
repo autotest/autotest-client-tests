@@ -186,7 +186,7 @@ class SubVersionBackend(object):
         """
         Add an untracked file under revision control.
 
-        @param file: Path to untracked file.
+        :param file: Path to untracked file.
         """
         try:
             utils.run('svn add %s' % fl)
@@ -198,7 +198,7 @@ class SubVersionBackend(object):
         """
         Revert file against last revision.
 
-        @param file: Path to file to be reverted.
+        :param file: Path to file to be reverted.
         """
         try:
             utils.run('svn revert %s' % fl)
@@ -211,7 +211,7 @@ class SubVersionBackend(object):
         Apply a patch to the code base. Patches are expected to be made using
         level -p1, and taken according to the code base top level.
 
-        @param patch: Path to the patch file.
+        :param patch: Path to the patch file.
         """
         try:
             utils.system_output("patch -p1 < %s" % patch)
@@ -273,7 +273,7 @@ class GitBackend(object):
         """
         Add an untracked file under revision control.
 
-        @param file: Path to untracked file.
+        :param file: Path to untracked file.
         """
         try:
             utils.run('git add %s' % fl)
@@ -285,7 +285,7 @@ class GitBackend(object):
         """
         Revert file against last revision.
 
-        @param file: Path to file to be reverted.
+        :param file: Path to file to be reverted.
         """
         try:
             utils.run('git checkout %s' % fl)
@@ -299,7 +299,7 @@ class GitBackend(object):
 
         A new branch will be created with the patch name.
 
-        @param patch: Path to the patch file.
+        :param patch: Path to the patch file.
         """
         utils.run("git checkout next")
         utils.run("git checkout -b %s" %
@@ -329,9 +329,9 @@ class FileChecker(object):
         """
         Class constructor, sets the path attribute.
 
-        @param path: Path to the file that will be checked.
-        @param vcs: Version control system being used.
-        @param confirm: Whether to answer yes to all questions asked without
+        :param path: Path to the file that will be checked.
+        :param vcs: Version control system being used.
+        :param confirm: Whether to answer yes to all questions asked without
                 prompting the user.
         """
         if path is not None:
@@ -575,7 +575,7 @@ class PatchChecker(object):
         Gets a patch file from patchwork and puts it under the cwd so it can
         be applied.
 
-        @param id: Patchwork patch id. It can be a string with comma separated
+        :param id: Patchwork patch id. It can be a string with comma separated
                 github ids.
         """
         collection = os.path.join(self.base_dir, 'patchwork-%s.patch' %
@@ -603,7 +603,7 @@ class PatchChecker(object):
         Gets a patch file from patchwork and puts it under the cwd so it can
         be applied.
 
-        @param gh_id: Patchwork patch id.
+        :param gh_id: Patchwork patch id.
         """
         url_template = "https://github.com/autotest/autotest-client-tests/pull/%s.patch"
         patch_url = url_template % gh_id

@@ -11,8 +11,8 @@ from autotest.client.shared import error, utils_cgroup, utils, pexpect
 def cpu_use_flle(shell_file):
     """
     Make a shell file to get high load cpu
-    @param: file_path: Shell file path
-    @param: file_name: Shell file name
+    :param file_path: Shell file path
+    :param file_name: Shell file name
     """
     if os.path.isfile(shell_file):
         os.remove(shell_file)
@@ -33,7 +33,7 @@ def get_cpu_rate(pid_list):
     """
     Get pid's cpu rate
 
-    @return dict: {pid1:rate1, pid2:rate2}
+    :return: dict: {pid1:rate1, pid2:rate2}
     """
     try:
         dic_pid = {}
@@ -233,7 +233,7 @@ def execute(cgroup_cls):
     """
     Execute cpu test.
 
-    @param: cgroup_cls: Cgroup class
+    :param cgroup_cls: Cgroup class
     """
     if cgroup_cls is None:
         raise error.TestNAError("Got a none cgroup class")

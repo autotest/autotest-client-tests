@@ -33,8 +33,8 @@ class libvirt_test_api(test.test):
         """
         Get all available tests for the given item in the config file cfg.
 
-        @param cfg: Path to config file.
-        @param item: Item that we're going to find tests for.
+        :param cfg: Path to config file.
+        :param item: Item that we're going to find tests for.
         """
         flag = 0
         testcases = []

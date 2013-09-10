@@ -16,10 +16,10 @@ class lmbench(test.test):
         some build issues, configures lmbench and then modifies the config
         files to use appropriate directory and file locations.
 
-        @param tarball: Lmbench tarball.
-        @param fsdir: Directory where file system tests will run
+        :param tarball: Lmbench tarball.
+        :param fsdir: Directory where file system tests will run
                 (defaults to standard test temp dir).
-        @param file: Path to the file lmbench will use for status output
+        :param file: Path to the file lmbench will use for status output
                 (defaults to a random named file inside standard test temp dir).
         @see: http://www.bitmover.com/lm/lmbench/lmbench3.tar.gz
                 (original tarball, shipped as is in autotest).

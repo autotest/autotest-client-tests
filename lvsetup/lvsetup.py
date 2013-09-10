@@ -33,15 +33,15 @@ class lvsetup(test.test):
         if there is logical volume but no snapshot, and merges with the snapshot
         if both the snapshot and the logical volume are present.
 
-        @param vg_name: Name of the volume group.
-        @param lv_name: Name of the logical volume.
-        @param lv_size: Size of the logical volume as string in the form "#G"
+        :param vg_name: Name of the volume group.
+        :param lv_name: Name of the logical volume.
+        :param lv_size: Size of the logical volume as string in the form "#G"
                 (for example 30G).
-        @param lv_snapshot_name: Name of the snapshot with origin the logical
+        :param lv_snapshot_name: Name of the snapshot with origin the logical
                 volume.
-        @param lv_snapshot_size: Size of the snapshot with origin the logical
+        :param lv_snapshot_size: Size of the snapshot with origin the logical
                 volume also as "#G".
-        @param override_flag: Flag to override default policy. Override flag
+        :param override_flag: Flag to override default policy. Override flag
                 can be set to -1 to force remove, 1 to force create, and 0
                 for default policy.
         """

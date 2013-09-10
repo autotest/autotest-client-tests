@@ -29,7 +29,7 @@ class iozone(test.test):
     def setup(self, tarball='iozone3_414.tar'):
         """
         Builds the given version of IOzone from a tarball.
-        @param tarball: Tarball with IOzone
+        :param tarball: Tarball with IOzone
         @see: http://www.iozone.org/src/current/iozone3_414.tar
         """
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
@@ -53,8 +53,8 @@ class iozone(test.test):
         Runs IOzone with appropriate parameters, record raw results in a per
         iteration raw output file as well as in the results attribute
 
-        @param dir: IOzone file generation dir.
-        @param args: Arguments to the iozone program.
+        :param dir: IOzone file generation dir.
+        :param args: Arguments to the iozone program.
         """
         if not dir:
             dir = self.tmpdir

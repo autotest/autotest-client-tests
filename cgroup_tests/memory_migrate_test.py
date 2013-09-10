@@ -33,7 +33,7 @@ class MemoryMigrate(object):
         """
         Make a C file and compile it
 
-        @param: memory: used memroy
+        :param memory: used memroy
         """
         cfile_detail = """
 #include <malloc.h>
@@ -155,7 +155,7 @@ def execute(cgroup_cls):
     """
     Execute memory test.
 
-    @param: cgroup_cls: Cgroup class
+    :param cgroup_cls: Cgroup class
     """
     if cgroup_cls is None:
         raise error.TestNAError("Got a none cgroup class")
