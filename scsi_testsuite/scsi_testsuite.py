@@ -66,7 +66,7 @@ class scsi_testsuite(test.test):
                     self.devname = os.path.join("/dev/disk/by-id", diskfile)
                     break
         elif disk_addr[0] == "file":
-            if os.access(disk_addr[1], os.F_OK) == True:
+            if os.access(disk_addr[1], os.F_OK):
                 self.devname = disk_addr[1]
 
         if self.devname == "":

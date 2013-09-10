@@ -19,7 +19,7 @@ class systemtap(test.test):
         self.job.require_gcc()
 
         self.systemtap_dir = ''
-        if local == False:
+        if not local:
             self.systemtap_dir = os.path.join(self.autodir,
                                               'deps/systemtap/systemtap')
 
@@ -34,7 +34,7 @@ class systemtap(test.test):
         utils.extract_tarball_to_dir(tarball_elfutils, elfdir)
 
         self.job.setup_dep(['dejagnu'])
-        if local == False:
+        if not local:
             self.job.setup_dep(['systemtap'])
 
         # Try grabbing the systemtap tarball out of the deps directory

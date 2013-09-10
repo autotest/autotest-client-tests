@@ -162,7 +162,7 @@ class cgroup(test.test):
         ps = item.test("memfill %d %s" % (mem, outf.name))
         ps.stdin.write('\n')
         i = 0
-        while ps.poll() == None:
+        while ps.poll() is not None:
             if i > 60:
                 break
             i += 1
@@ -192,7 +192,7 @@ class cgroup(test.test):
         item.set_property_h("memory.limit_in_bytes", ("%dM" % (mem / 2)), pwd)
         ps.stdin.write('\n')
         i = 0
-        while ps.poll() == None:
+        while ps.poll() is not None:
             if i > 120:
                 break
             i += 1
@@ -239,7 +239,7 @@ class cgroup(test.test):
                                 % (mem / 2), pwd)
             ps.stdin.write('\n')
             i = 0
-            while ps.poll() == None:
+            while ps.poll() is not None:
                 if i > 120:
                     break
                 i += 1
@@ -287,7 +287,7 @@ class cgroup(test.test):
                     i = 0
                     for i in range(10):
                         task.terminate()
-                        if task.poll() != None:
+                        if task.poll() is not None:
                             break
                         time.sleep(1)
                     if i >= 9:
