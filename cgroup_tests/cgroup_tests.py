@@ -1,5 +1,6 @@
+import logging
 from autotest.client import test
-from autotest.client.shared import error, utils_cgroup
+from autotest.client.shared import error, utils
 
 
 class cgroup_tests(test.test):
@@ -28,8 +29,13 @@ class cgroup_tests(test.test):
         Initialize environment.
         """
         try:
-            utils_cgroup.all_cgroup_delete()
-        except Exception:
-            raise error.TestNAError("'cgclear' command failed. "
-                                    "Some subsystems are busy or "
-                                    "you don't have libcgroup-tool installed!")
+            utils.run("cgclear", ignore_status=False)
+        except error.CmdError:
+            try:
+                utils.run("which cgclear", ignore_status=False)
+                logging.warn("cgclear cmd failed which might affect the "
+                             "following test.")
+            except error.CmdError:
+                raise error.TestNAError("'cgclear' command doesn't exist. "
+                                        "Please install libcgroup-tool to "
+                                        "execute this test.")
