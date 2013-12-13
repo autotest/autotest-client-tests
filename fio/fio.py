@@ -33,12 +33,22 @@ class fio(test.test):
         utils.system('patch -p1 < %s/Makefile.patch' % self.bindir)
         utils.system('%s %s make' % (var_ldflags, var_cflags))
 
-    def run_once(self, args='', user='root'):
+    def run_once(self, opts=None, job=None, user='root'):
+        log = os.path.join(self.resultsdir, 'fio-mixed.log')
+        _opts = '--output %s ' % (log)
+
+        if opts:
+            _opts += opts
+
+        if job is None:
+            job = os.path.join(self.bindir, 'fio-mixed.job')
+        else:
+            if not os.path.isabs(job):
+                job = os.path.join(self.bindir, job)
+        _opts += ' %s' % (job)
+
         os.chdir(self.srcdir)
         ##vars = 'TMPDIR=\"%s\" RESULTDIR=\"%s\"' % (self.tmpdir, self.resultsdir)
-        vars = 'LD_LIBRARY_PATH="' + self.autodir + '/deps/libaio/lib"'
-        ##args = '-m -o ' + self.resultsdir + '/fio-tio.log ' + self.srcdir + '/examples/tiobench-example'
-        log = os.path.join(self.resultsdir, 'fio-mixed.log')
-        job = os.path.join(self.bindir, 'fio-mixed.job')
-        args = '--output %s %s' % (log, job)
-        utils.system(vars + ' ./fio ' + args)
+        env_vars = 'LD_LIBRARY_PATH="' + self.autodir + '/deps/libaio/lib"'
+        ##opts = '-m -o ' + self.resultsdir + '/fio-tio.log ' + self.srcdir + '/examples/tiobench-example'
+        utils.system(env_vars + ' ./fio ' + _opts)
