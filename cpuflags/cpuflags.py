@@ -21,7 +21,7 @@ class cpuflags(test.test):
 
     def setup(self):
         self.job.require_gcc()
-        scriptdir = os.path.join(self.job.autodir, "tests","virt",
+        scriptdir = os.path.join(self.job.autodir, "tests", "virt",
                                  "shared", "deps", "test_cpu_flags")
         if not os.path.exists(self.srcdir):
             os.makedirs(self.srcdir)

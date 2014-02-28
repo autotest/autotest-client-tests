@@ -29,7 +29,6 @@ class MemoryLimit(object):
         self.tmpdir = tmpdir
         self.bindir = bindir
 
-
     def test(self):
         """
         Start testing
@@ -42,13 +41,13 @@ class MemoryLimit(object):
         test_memory1 = memory_use + 10  # M
         test_memory2 = memory_use - 10  # M
         property_values1 = {'memory.move_charge_at_immigrate': '1',
-                            'memory.limit_in_bytes':'%dM' % test_memory1,
-                            'memory.memsw.limit_in_bytes':'%dM' % test_memory1,
-                            'memory.swappiness':'0'}
+                            'memory.limit_in_bytes': '%dM' % test_memory1,
+                            'memory.memsw.limit_in_bytes': '%dM' % test_memory1,
+                            'memory.swappiness': '0'}
         property_values2 = {'memory.move_charge_at_immigrate': '1',
-                           'memory.limit_in_bytes':'%dM' % test_memory2,
-                           'memory.memsw.limit_in_bytes':'%dM' % test_memory2,
-                           'memory.swappiness':'0'}
+                            'memory.limit_in_bytes': '%dM' % test_memory2,
+                            'memory.memsw.limit_in_bytes': '%dM' % test_memory2,
+                            'memory.swappiness': '0'}
         get_property_list = ['memory.limit_in_bytes',
                              'memory.max_usage_in_bytes',
                              'memory.memsw.usage_in_bytes',
@@ -155,7 +154,7 @@ def execute_stresser(memory, memory_file, binary_file):
         return process.pid
     except Exception, err:
         raise error.TestNAError("Execute malloc process failed!\n"
-                              "%s", err)
+                                "%s", err)
 
 
 def property_check(property_dict, memory):
@@ -179,11 +178,11 @@ def property_check(property_dict, memory):
         if memsw_max != memory_limit:
             raise error.TestFail("memsw_max should equal with memory_limit")
     else:
-        if max_usage / 1024 /1024 != memory:
+        if max_usage / 1024 / 1024 != memory:
             raise error.TestFail("max_usage should equal with memory use")
         if not memsw_usage:
             raise error.TestFail("memsw_usage should not be 0!")
-        if memsw_max / 1024 /1024 != memory:
+        if memsw_max / 1024 / 1024 != memory:
             raise error.TestFail("memsw_max should equal with memory use")
 
 

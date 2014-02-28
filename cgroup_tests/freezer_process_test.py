@@ -1,5 +1,10 @@
-import os, tempfile, subprocess, signal, stat
+import os
+import tempfile
+import subprocess
+import signal
+import stat
 from autotest.client.shared import error, utils_cgroup, utils
+
 
 def stress_process(shell_file):
     """
@@ -19,7 +24,7 @@ done
     sh_file = open(shell_file, 'w')
     sh_file.write(shell_detail)
     sh_file.close()
-    os.chmod(shell_file, stat.S_IRWXU|stat.S_IRGRP|stat.S_IROTH)
+    os.chmod(shell_file, stat.S_IRWXU | stat.S_IRGRP | stat.S_IROTH)
     try:
         process = subprocess.Popen(shell_file, shell=True,
                                    stdout=subprocess.PIPE,
@@ -56,6 +61,7 @@ SLEEPING = "D"
 
 
 class FreezerProcess(object):
+
     """
     Test freezer sub system.
     Use it to control process state in cgroup.
@@ -77,15 +83,14 @@ class FreezerProcess(object):
         self.cgroup_dir = cgroup_dir
         self.tmpdir = tmpdir
 
-
     def test(self):
         """
         Start testing
         """
         controller_name = 'freezer'
         cgroup_name = "test"
-        property_value_frozen = {'freezer.state':'FROZEN'}
-        property_value_thawed = {'freezer.state':'THAWED'}
+        property_value_frozen = {'freezer.state': 'FROZEN'}
+        property_value_thawed = {'freezer.state': 'THAWED'}
         tmp_file = tempfile.NamedTemporaryFile(dir=self.tmpdir).name
         shell_file = tmp_file + ".sh"
         pid = stress_process(shell_file)
@@ -116,7 +121,7 @@ class FreezerProcess(object):
             # Set property value to frozen process
             for pro in property_value_frozen:
                 cgroup.cgset_property(pro, property_value_frozen.get(pro),
-                                          cgroup_index, check=False)
+                                      cgroup_index, check=False)
             pid_state_frozen = get_pid_state([pid])
             if pid_state_frozen.get(pid).strip() != SLEEPING:
                 # If freezer.state isn't set to 'THAWED',

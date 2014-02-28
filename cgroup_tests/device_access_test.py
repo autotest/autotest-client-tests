@@ -24,7 +24,6 @@ class DeviceAccess(object):
         """
         self.cgroup_dir = cgroup_dir
 
-
     def test(self):
         """
         Start testing
@@ -33,8 +32,8 @@ class DeviceAccess(object):
         controller_list = []
         controller_list.append(controller_name)
         cgroup_name = "test"
-        property_value_before = {"devices.deny":"a 8:0 r"}
-        property_value_after = {"devices.allow":"a 8:0 r"}
+        property_value_before = {"devices.deny": "a 8:0 r"}
+        property_value_after = {"devices.allow": "a 8:0 r"}
         # Must belong to "8:0"(sda)
         tmp_file = tempfile.NamedTemporaryFile(dir="/").name
         file_size = "20M"
