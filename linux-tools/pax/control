@@ -1,0 +1,22 @@
+AUTHOR = "Rajeev S <rajeevs1992 gmail com>"
+NAME = "crontab"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test for testing the pax archiving utility.
+Tests 4 functionalities of Pax archiver,defined in
+the variable tests
+
+Creates and extracts archives using pax under /tmp/
+
+Args:ARCHIVE:Absolute path to the Archive 
+
+'''
+
+ARCHIVE = '/tmp/archive-%s' % time.strftime('%Y-%m-%d-%H.%M.%S')
+
+tests = ['create', 'list', 'extract', 'copy']
+for i in tests:
+    job.run_test('pax', test = i, tag = i, archive = ARCHIVE)

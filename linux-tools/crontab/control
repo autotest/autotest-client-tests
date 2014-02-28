@@ -1,0 +1,22 @@
+AUTHOR = "Rajeev S <rajeevs1992@gmail.com>"
+NAME = "crontab"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Kernel"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test for testing the crontab.
+
+Uses run-parts to execute the scripts under the standard cron directories,/etc/cron.xxxx.
+Automation is done using the /etc/crontab file.
+
+Args:
+    wait_time:Duration of the sleep time.Should be greater than 60(sec)
+'''
+import time
+
+LOGFILE = '/tmp/autotest_cron-%s' % time.strftime('%Y-%m-%d-%H.%M.%S')
+
+tests = ['normal_cron', 'deny_cron', 'allow_cron']
+for i in range(0,3):
+    job.run_test('crontab', test = tests[i], wait_time = 65, tag = tests[i], log = LOGFILE)
