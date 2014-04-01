@@ -1,0 +1,62 @@
+diff --git a/003.out b/003.out
+index d5248ba..5fb2714 100644
+--- a/003.out
++++ b/003.out
+@@ -2,13 +2,7 @@ QA output created by 003
+     cdb to send: 03 00 00 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+     cdb to send: 1a 00 01 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+ *** done
+diff --git a/004.out b/004.out
+index 6b84e4e..47d2533 100644
+--- a/004.out
++++ b/004.out
+@@ -2,25 +2,13 @@ QA output created by 004
+     cdb to send: 28 00 00 00 00 00 00 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+     cdb to send: 2a 00 00 00 00 00 00 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+     cdb to send: 88 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+     cdb to send: 8a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+ *** done
+diff --git a/007.out b/007.out
+index e5e270b..19f32b1 100644
+--- a/007.out
++++ b/007.out
+@@ -4,9 +4,6 @@ QA output created by 007
+     cdb to send: 12 01 83 00 02 00
+ SCSI Status: Good
+
+-Sense Information:
+-sense buffer empty
+-
+ Received 2 bytes of data:
+  00     00 83                                               ..
+ *** done
