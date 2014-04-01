@@ -43,7 +43,8 @@ job.run_test('scsi_testsuite',
               source_type='tar',
               source_location='scsi_testsuite.tar',
               disk_addr=(disk_id_type,disk_id),
-              run_tests=tests_to_run)
+              run_tests=tests_to_run,
+              patches=[])
 
 
 # Get testsuit from original repository
@@ -51,4 +52,5 @@ job.run_test('scsi_testsuite',
 #               source_type='git',
 #               source_location='git://risingtidesystems.com/scsi-testsuite.git'
 #               disk_addr=(disk_id_type,disk_id),
-#               run_tests=tests_to_run)
+#               run_tests=tests_to_run,
+#               patches=[])

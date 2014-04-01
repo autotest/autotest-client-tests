@@ -28,7 +28,8 @@ class scsi_testsuite(test.test):
     version = 1
     scsi_testsuite_config = "/etc/scsi-testsuite.config"
 
-    def setup(self, source_type, source_location, disk_addr, **kwargs):
+    def setup(self, source_type, source_location, disk_addr, patches,
+              **kwargs):
         if source_type == "tar":
             tarball = utils.unmap_url(self.bindir, source_location, self.tmpdir)
             self.repodir = os.path.join(self.tmpdir, "scsi_testsuite")
@@ -81,6 +82,10 @@ class scsi_testsuite(test.test):
         except IOError:
             logging.warning("Can't write configuration file. Using defaults")
 
+        for patch in patches:
+            utils.system("cd %s; patch -p1 < %s/%s" % (self.repodir,
+                                                       self.bindir, patch))
+
     def run_once(self, run_tests, **kwargs):
         os.chdir(self.repodir)
 
@@ -107,6 +112,9 @@ class scsi_testsuite(test.test):
             raise error.TestFail("Failed %d of %d tests" % (failed, run))
 
     def cleanup(self):
+        autotest_tmpdir = os.path.dirname(os.path.dirname(self.tmpdir))
+        scsi_testsuit_tmpdir = os.path.join(autotest_tmpdir, "scsi_testsuite")
+        shutil.rmtree(scsi_testsuit_tmpdir)
         shutil.rmtree(self.repodir)
         if os.access(self.scsi_testsuite_config, os.F_OK):
             os.remove(self.scsi_testsuite_config)
