@@ -5,7 +5,7 @@ TEST_CATEGORY = "FUNCTIONAL"
 TEST_CLASS = "KERNEL"
 TEST_TYPE = "CLIENT"
 DOC = """
-Linux Test Project. See http://ltp.sourceforge.net/
+Linux Test Project. See http://linux-test-project.github.io/
 """
 
 job.run_test('ltp')
