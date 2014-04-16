@@ -13,3 +13,9 @@
 RELEASE-VERSION
 *.pyc
 *.pid
+.project
+.pydevproject
+.settings
+.coverage
+coverage.xml
+xunit.xml
