@@ -20,6 +20,7 @@ try:
     from autotest.client.shared.utils_cgroup import get_load_per_cpu
 except ImportError:
     # TODO: Obsoleted path used prior autotest-0.15.2
+    # pylint: disable=E0611
     from autotest.client.cgroup_utils import Cgroup, CgroupModules
     from autotest.client.cgroup_utils import get_load_per_cpu
 
