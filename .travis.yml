@@ -6,6 +6,9 @@ branches:
     only:
         - master
 
+git:
+    submodules: false
+
 virtualenv:
     system_site_packages: true
 
