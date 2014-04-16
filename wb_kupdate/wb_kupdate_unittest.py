@@ -10,7 +10,7 @@ from autotest.client import test
 from autotest.client import utils
 from autotest.client.shared import error
 from autotest.client.shared.test_utils import mock
-from autotest.client.tests.wb_kupdate import wb_kupdate
+import wb_kupdate
 
 
 class WbKupdateUnitTest(unittest.TestCase):
