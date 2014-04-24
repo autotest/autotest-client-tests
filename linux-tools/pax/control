@@ -1,5 +1,5 @@
 AUTHOR = "Rajeev S <rajeevs1992 gmail com>"
-NAME = "crontab"
+NAME = "pax"
 TEST_CATEGORY = "Functional"
 TEST_CLASS = "Linux Tools"
 TEST_TYPE = "client"
