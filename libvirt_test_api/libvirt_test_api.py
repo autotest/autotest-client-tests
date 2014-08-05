@@ -86,7 +86,7 @@ class libvirt_test_api(test.test):
         for test_item in test_items:
             try:
                 cfg_test = os.path.join('cases', test_item)
-                utils.system('python libvirt-test-api.py -c %s' % cfg_test)
+                utils.system('python libvirt-test-api -c %s' % cfg_test)
             except error.CmdError:
                 logs = glob.glob(os.path.join('log', '*'))
                 for log in logs:
