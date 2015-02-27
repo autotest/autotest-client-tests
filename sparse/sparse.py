@@ -1,7 +1,8 @@
 import os
 import re
+
 from autotest.client.shared import error
-from autotest.client import test, utils, kernel
+from autotest.client import test, utils
 
 
 class sparse(test.test):

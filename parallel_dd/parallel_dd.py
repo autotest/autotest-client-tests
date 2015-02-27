@@ -1,9 +1,9 @@
 import os
-import re
 import time
 import subprocess
 import sys
 import logging
+
 from autotest.client import test, utils
 from autotest.client.shared import error
 

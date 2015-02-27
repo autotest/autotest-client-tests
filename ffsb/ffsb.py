@@ -4,6 +4,7 @@ import logging
 import re
 import random
 import shutil
+
 from autotest.client import test, os_dep, utils
 from autotest.client.shared import error
 

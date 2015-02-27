@@ -1,5 +1,6 @@
 import os
-from autotest.client import test, utils, os_dep
+
+from autotest.client import test, utils
 
 
 class rttester(test.test):

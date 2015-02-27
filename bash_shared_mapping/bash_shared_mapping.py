@@ -1,5 +1,6 @@
 import signal
 import os
+
 from autotest.client import utils, test
 from autotest.client.shared import utils_memory
 

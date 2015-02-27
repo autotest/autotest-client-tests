@@ -1,7 +1,8 @@
 import os
-import re
+
 from autotest.client import utils, test
 from autotest.client.shared import error
+
 
 # test requires at least 2.6.26, will skip otherwise (check is internal)
 

@@ -1,6 +1,7 @@
-import re
 import os
+
 from autotest.client import utils, test, os_dep
+
 from autotest.client.shared import error
 
 

@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+
 from autotest.client import test
 from autotest.client.shared import error
 

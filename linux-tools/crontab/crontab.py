@@ -1,11 +1,12 @@
 #!/bin/python
 import os
 import shutil
-import glob
 import logging
-from autotest.client import test, utils
-from autotest.client.shared import error
 from time import sleep
+
+from autotest.client import test, utils
+
+from autotest.client.shared import error
 
 
 class crontab(test.test):

@@ -3,9 +3,11 @@ import re
 import socket
 import time
 import logging
+
 from autotest.client import test, utils
 from autotest.client.net import net_utils
 from autotest.client.shared import error
+
 
 MPSTAT_IX = 0
 IPERF_IX = 1

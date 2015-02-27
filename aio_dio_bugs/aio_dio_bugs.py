@@ -1,5 +1,7 @@
 import os
+
 from autotest.client import test, utils
+
 
 
 # tests is a simple array of "cmd" "arguments"

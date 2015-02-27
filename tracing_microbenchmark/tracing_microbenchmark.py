@@ -1,8 +1,8 @@
 import os
 import re
+
 from autotest.client import test
 from autotest.client import utils
-
 import tracers
 import base_tracer
 

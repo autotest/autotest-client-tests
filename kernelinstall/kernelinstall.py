@@ -1,5 +1,6 @@
 import os
 import logging
+
 from autotest.client import test
 from autotest.client import utils
 from autotest.client.shared import git, utils_koji, error, software_manager

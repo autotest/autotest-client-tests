@@ -1,7 +1,6 @@
-import re
-import pickle
 import os
 import logging
+
 from autotest.client import utils, test
 
 

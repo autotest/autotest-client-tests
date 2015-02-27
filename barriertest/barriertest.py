@@ -2,6 +2,7 @@
 
 import logging
 import time
+
 from autotest.client import test
 from autotest.client.shared import barrier, error
 

@@ -1,6 +1,7 @@
 import time
+
 from autotest.client.shared import error
-from autotest.client import test, utils
+from autotest.client import test
 
 
 class profiler_test(test.test):

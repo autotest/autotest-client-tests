@@ -13,7 +13,6 @@ import sys
 import time
 import math
 import os
-from tempfile import mktemp
 
 
 def test_smoke(args):

@@ -3,7 +3,8 @@ import tempfile
 import subprocess
 import signal
 import stat
-from autotest.client.shared import error, utils_cgroup, utils
+
+from autotest.client.shared import error, utils_cgroup
 
 
 def stress_process(shell_file):

@@ -1,4 +1,4 @@
-from autotest.client import test, kernel
+from autotest.client import test
 
 
 class kernelbuild(test.test):

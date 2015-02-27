@@ -1,13 +1,9 @@
 #!/usr/bin/python
 
-import common
 import datetime
 import logging
-import os
-import time
 import unittest
-from autotest.client import test
-from autotest.client import utils
+
 from autotest.client.shared import error
 from autotest.client.shared.test_utils import mock
 import wb_kupdate

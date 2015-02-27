@@ -16,17 +16,17 @@
 
 __author__ = 'Lucas Meneghel Rodrigues <lmr@redhat.com>'
 
-from nose.selector import Selector
-
-from nose.plugins import Plugin
-from nose.plugins.attrib import AttributeSelector
-from nose.plugins.xunit import Xunit
-from nose.plugins.cover import Coverage
-
 import logging
 import os
-import nose
 import sys
+
+from nose.selector import Selector
+from nose.plugins import Plugin
+from nose.plugins.attrib import AttributeSelector
+
+from nose.plugins.xunit import Xunit
+from nose.plugins.cover import Coverage
+import nose
 
 
 logger = logging.getLogger(__name__)

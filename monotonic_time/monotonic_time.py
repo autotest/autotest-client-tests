@@ -1,6 +1,6 @@
 import os
-import re
 import logging
+
 from autotest.client import test, utils
 from autotest.client.shared import error
 

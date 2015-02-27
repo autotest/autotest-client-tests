@@ -1,4 +1,3 @@
-from autotest.client.shared import error
 from autotest.client import test
 
 

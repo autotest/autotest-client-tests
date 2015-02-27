@@ -1,6 +1,7 @@
 # POSIX test suite wrapper class. More information about the suite can be found
 # at http://posixtest.sourceforge.net/
 import os
+
 from autotest.client import test, utils
 
 
