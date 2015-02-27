@@ -185,8 +185,8 @@ class netperf2(test.test):
             Looking for 'within' is probably not the best way to do this but
             works for now"""
 
-            if ('within' in e.additional_text
-                    or 'non-zero' in e.additional_text):
+            if ('within' in e.additional_text or
+                    'non-zero' in e.additional_text):
                 logging.debug(e.additional_text)
                 self.results.append(None)
                 self.actual_times.append(1)
@@ -197,7 +197,7 @@ class netperf2(test.test):
         if self.role == 'client':
             # if profilers are enabled, the test gets runs twice
             if (len(self.stream_list) != len(self.results) and
-               2 * len(self.stream_list) != len(self.results)):
+                    2 * len(self.stream_list) != len(self.results)):
                 raise error.TestError('Mismatched number of results')
 
             function = None

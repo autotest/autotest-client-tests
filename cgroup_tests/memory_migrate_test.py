@@ -99,10 +99,8 @@ int main(void) {
                     cgroup_index1 = cgroup.mk_cgroup(cgroup=cgroup_name1)
                     cgroup_index2 = cgroup.mk_cgroup(cgroup=cgroup_name2)
                 elif cgroup_create_mode == "cmd":
-                    cgroup_index1 = cgroup.mk_cgroup_cgcreate(cgroup=
-                                                              cgroup_name1)
-                    cgroup_index2 = cgroup.mk_cgroup_cgcreate(cgroup=
-                                                              cgroup_name2)
+                    cgroup_index1 = cgroup.mk_cgroup_cgcreate(cgroup=cgroup_name1)
+                    cgroup_index2 = cgroup.mk_cgroup_cgcreate(cgroup=cgroup_name2)
 
                 # Set property value
                 if property_set_mode == "cgset":

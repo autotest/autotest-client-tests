@@ -60,19 +60,19 @@ class lvsetup(test.test):
         else:
 
             # perform normal check policy
-            if (lv_utils.lv_check(vg_name, lv_snapshot_name)
-                    and lv_utils.lv_check(vg_name, lv_name)):
+            if (lv_utils.lv_check(vg_name, lv_snapshot_name) and
+                    lv_utils.lv_check(vg_name, lv_name)):
                 lv_utils.lv_revert(vg_name, lv_name, lv_snapshot_name)
                 lv_utils.lv_take_snapshot(vg_name, lv_name,
                                           lv_snapshot_name,
                                           lv_snapshot_size)
 
-            elif (lv_utils.lv_check(vg_name, lv_snapshot_name)
-                  and not lv_utils.lv_check(vg_name, lv_name)):
+            elif (lv_utils.lv_check(vg_name, lv_snapshot_name) and
+                  not lv_utils.lv_check(vg_name, lv_name)):
                 raise error.TestError("Snapshot origin not found")
 
-            elif (not lv_utils.lv_check(vg_name, lv_snapshot_name)
-                  and lv_utils.lv_check(vg_name, lv_name)):
+            elif (not lv_utils.lv_check(vg_name, lv_snapshot_name) and
+                  lv_utils.lv_check(vg_name, lv_name)):
                 lv_utils.lv_take_snapshot(vg_name, lv_name,
                                           lv_snapshot_name,
                                           lv_snapshot_size)

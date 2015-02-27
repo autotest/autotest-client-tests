@@ -490,7 +490,7 @@ class cgroup(test.test):
         results_cpu.append(_stress_cpu(no_cpus))
 
         table = utils.matrix_to_string([['results_cpu'] + results_cpu,
-                                       ['results_find'] + results_find],
+                                        ['results_find'] + results_find],
                                        ['test', '10cgroups', '110cgroups',
                                         '1110cgroups'])
         logging.debug("Results matrix for n-cgroups:\n %s" % table)

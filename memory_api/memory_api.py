@@ -12,13 +12,13 @@ class memory_api(test.test):
 
     def setup(self):
         utils.system("%s %s -o %s" %
-                    (utils.get_cc(),
-                     os.path.join(self.bindir, "memory_api.c"),
-                     os.path.join(self.tmpdir, "memory_api")))
+                     (utils.get_cc(),
+                      os.path.join(self.bindir, "memory_api.c"),
+                      os.path.join(self.tmpdir, "memory_api")))
         utils.system("%s %s -o %s" %
-                    (utils.get_cc(),
-                     os.path.join(self.bindir, "mremaps.c"),
-                     os.path.join(self.tmpdir, "mremaps")))
+                     (utils.get_cc(),
+                      os.path.join(self.bindir, "mremaps.c"),
+                      os.path.join(self.tmpdir, "mremaps")))
 
     def initialize(self):
         self.job.require_gcc()

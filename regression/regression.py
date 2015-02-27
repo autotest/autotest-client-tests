@@ -20,13 +20,13 @@ class regression(test.test):
         logging.info('========= Comparison table for %30s '
                      '=========' % self.tagged_testname)
         logging.info("%20s | %10s | %10s | %10s | %10s | %s" %
-                    ('field name', 'old value', 'new value',
-                     'cmp res', 'status', 'cmp function'))
+                     ('field name', 'old value', 'new value',
+                      'cmp res', 'status', 'cmp function'))
         for field, cmpfn in compare_list:
-            if not field in kv_old:
+            if field not in kv_old:
                 raise error.TestError('Cant not find field:%s in %s'
                                       % (field, old + '/keyval'))
-            if not field in kv_new:
+            if field not in kv_new:
                 raise error.TestError('Cant not find field:%s in %s'
                                       % (field, new + '/keyval'))
             res = cmpfn(kv_old[field], kv_new[field])
