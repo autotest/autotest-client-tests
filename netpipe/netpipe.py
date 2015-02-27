@@ -87,8 +87,8 @@ class netpipe(test.test):
             Looking for 'within' is probably not the best way to do this but
             works for now"""
 
-            if ('within' in e.additional_text
-                    or 'non-zero' in e.additional_text):
+            if ('within' in e.additional_text or
+                    'non-zero' in e.additional_text):
                 logging.debug(e.additional_text)
             else:
                 raise

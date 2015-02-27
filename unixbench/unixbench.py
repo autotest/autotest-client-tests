@@ -24,7 +24,7 @@ class unixbench(test.test):
 
     def run_once(self, args='', stepsecs=0):
         vars = ('TMPDIR=\"%s\" RESULTDIR=\"%s\"' %
-               (self.tmpdir, self.resultsdir))
+                (self.tmpdir, self.resultsdir))
         if stepsecs:
             # change time per subtest from unixbench's defaults of
             #   10 secs for small tests, 30 secs for bigger tests

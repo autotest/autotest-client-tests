@@ -54,7 +54,8 @@ class bonnie(test.test):
         self.results.append(utils.system_output(cmd, retain_output=True))
 
     def postprocess(self):
-        strip_plus = lambda s: re.sub(r"^\++$", "0", s)
+        def strip_plus(s):
+            return re.sub(r"^\++$", "0", s)
 
         keys = ('size', 'chnk', 'seqout_perchr_ksec',
                 'seqout_perchr_pctcp', 'seqout_perblk_ksec',

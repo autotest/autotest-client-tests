@@ -27,7 +27,7 @@ class cpuflags(test.test):
             os.makedirs(self.srcdir)
         os.chdir(self.srcdir)
         utils.system('cp -r %s %s' % (os.path.join(scriptdir, "*"),
-                     self.srcdir))
+                                      self.srcdir))
         utils.make()
         utils.system('sync')
 

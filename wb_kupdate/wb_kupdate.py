@@ -244,7 +244,7 @@ class wb_kupdate(test.test):
             logging.debug('Flush cache between iterations.')
             utils_memory.drop_caches()
 
-           # Update the result map.
+            # Update the result map.
             self.result_map[counter] = time_taken.seconds
 
             # Increment the counter.

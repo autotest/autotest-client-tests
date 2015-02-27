@@ -54,7 +54,7 @@ class connectathon(test.test):
                 args = "-b -t"
 
             self.results = utils.system_output('./runtests -N %s %s %s' %
-                                              (cthon_iterations, args, testdir))
+                                               (cthon_iterations, args, testdir))
             utils.open_write_close(self.results_path, self.results)
 
         except error.CmdError, e:

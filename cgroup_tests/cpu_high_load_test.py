@@ -118,7 +118,7 @@ def cgconfig_file_modify(cgconfig_file, controller_list,
                     continue
                 for property in dic_property:
                     session.sendline("""%s = "%s";""" % (property,
-                                     dic_property.get(property)))
+                                                         dic_property.get(property)))
                     time.sleep(1)
                 session.sendline('}')
                 time.sleep(1)

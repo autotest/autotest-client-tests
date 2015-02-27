@@ -66,7 +66,7 @@ class systemtap(test.test):
         dejagnu_dir = os.path.join(self.autodir, 'deps/dejagnu/dejagnu')
 
         utils.system('PATH=%s/bin:%s/bin:$PATH make installcheck' %
-                    (self.systemtap_dir, dejagnu_dir))
+                     (self.systemtap_dir, dejagnu_dir))
 
         # After we are done with this iteration, we move the log files to
         # the results dir
