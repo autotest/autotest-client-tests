@@ -14,7 +14,7 @@ class fio(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-    def setup(self, tarball='fio-2.0.5.tar.bz2'):
+    def setup(self, tarball='fio-2.1.10.tar.bz2'):
         """
         Compiles and installs fio.
 
@@ -30,7 +30,6 @@ class fio(test.test):
         var_cflags = 'CFLAGS="' + cflags + '"'
 
         os.chdir(self.srcdir)
-        utils.system('patch -p1 < %s/Makefile.patch' % self.bindir)
         utils.system('%s %s make' % (var_ldflags, var_cflags))
 
     def run_once(self, opts=None, job=None, user='root'):
