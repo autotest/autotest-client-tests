@@ -12,7 +12,8 @@ class parallel_dd(test.test):
     version = 2
 
     def initialize(self, fs, fstype='ext2', megabytes=1000, streams=2,
-                   seq_read=True):
+                   seq_read=True, dd_woptions='', dd_roptions='',
+                   fs_dd_woptions='', fs_dd_roptions=''):
         self.megabytes = megabytes
         self.blocks = megabytes * 256
         self.blocks_per_file = self.blocks / streams
@@ -20,6 +21,10 @@ class parallel_dd(test.test):
         self.fstype = fstype
         self.streams = streams
         self.seq_read = seq_read
+        self.dd_woptions = dd_woptions
+        self.dd_roptions = dd_roptions
+        self.fs_dd_woptions = fs_dd_woptions
+        self.fs_dd_roptions = fs_dd_roptions
 
         self.old_fstype = self._device_to_fstype('/etc/mtab')
         if not self.old_fstype:
@@ -35,6 +40,9 @@ class parallel_dd(test.test):
         sys.stdout.flush()
         dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % (self.fs.device,
                                                        self.blocks)
+
+        for option in self.dd_woptions.split():
+            dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
         utils.system(dd + ' > /dev/null')
 
     def raw_read(self):
@@ -42,6 +50,8 @@ class parallel_dd(test.test):
         sys.stdout.flush()
         dd = 'dd if=%s of=/dev/null bs=4k count=%d' % (self.fs.device,
                                                        self.blocks)
+        for option in self.dd_roptions.split():
+            dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
         utils.system(dd + ' > /dev/null')
 
     def fs_write(self):
@@ -51,6 +61,8 @@ class parallel_dd(test.test):
             file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % \
                 (file, self.blocks_per_file)
+            for option in self.fs_dd_woptions.split():
+                dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
             p.append(subprocess.Popen(dd + ' > /dev/null', shell=True))
         logging.info("Waiting for %d streams", self.streams)
         # Wait for everyone to complete
@@ -68,6 +80,8 @@ class parallel_dd(test.test):
             file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=%s of=/dev/null bs=4k count=%d' % \
                 (file, self.blocks_per_file)
+            for option in self.fs_dd_roptions.split():
+                dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
             if self.seq_read:
                 utils.system(dd + ' > /dev/null')
             else:
