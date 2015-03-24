@@ -1,8 +1,8 @@
+import re
+import logging
+
 from autotest.client import test, utils
 from autotest.client.shared import error
-import re
-import os
-import logging
 
 
 class hwclock(test.test):

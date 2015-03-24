@@ -1,9 +1,9 @@
 import os
 import logging
-import commands
 import re
 import shutil
-from autotest.client import kernel, test, utils
+
+from autotest.client import test, utils
 from autotest.client.shared import software_manager, error
 
 

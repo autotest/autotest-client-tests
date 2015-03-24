@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import logging
+
 from autotest.client import test, utils
 from autotest.client.shared import error, utils_memory
 

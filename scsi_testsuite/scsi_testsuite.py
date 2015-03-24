@@ -2,6 +2,7 @@ import re
 import os
 import logging
 import shutil
+
 from autotest.client import utils, test
 from autotest.client.shared import git, software_manager, error
 

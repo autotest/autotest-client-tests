@@ -1,6 +1,7 @@
 # This requires aio headers to build.
 # Should work automagically out of deps now.
 import os
+
 from autotest.client import test, utils
 
 

@@ -1,5 +1,6 @@
 # This will need more work on the configuration stuff before it will function
 import os
+
 from autotest.client import test, utils
 from autotest.client.shared import error
 

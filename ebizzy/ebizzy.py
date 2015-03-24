@@ -1,6 +1,6 @@
 import os
+
 from autotest.client import utils, test
-from autotest.client.shared import error
 
 
 class ebizzy(test.test):

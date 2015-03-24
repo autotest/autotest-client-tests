@@ -1,6 +1,8 @@
 import os
 import re
+
 from autotest.client import test, utils
+
 
 test_name = 'compilebench'
 

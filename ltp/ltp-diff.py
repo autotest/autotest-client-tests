@@ -15,8 +15,8 @@
 
 
 import sys
-import string
 import re
+
 from autotest.client.shared import utils
 
 

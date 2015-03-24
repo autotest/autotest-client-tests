@@ -2,6 +2,7 @@ import os
 import re
 import logging
 import shutil
+
 from autotest.client import utils, test
 from autotest.client.test_config import config_loader
 from autotest.client.shared import error, software_manager

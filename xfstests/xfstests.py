@@ -2,7 +2,8 @@ import os
 import re
 import glob
 import logging
-from autotest.client.shared import error, software_manager
+
+from autotest.client.shared import error
 from autotest.client import test, utils, os_dep
 
 

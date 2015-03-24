@@ -1,4 +1,5 @@
 import logging
+
 from autotest.client import test
 from autotest.client.shared import error, utils
 

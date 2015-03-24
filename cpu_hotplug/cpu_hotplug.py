@@ -3,7 +3,8 @@ import os
 import logging
 import re
 import sys
-from autotest.client import test, utils, os_dep
+
+from autotest.client import test, utils
 from autotest.client.shared import error
 
 

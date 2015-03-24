@@ -1,7 +1,8 @@
 import os
-from autotest.client import utils
 
+from autotest.client import utils
 import base_tracer
+
 try:
     from site_tracers import *
 except ImportError:

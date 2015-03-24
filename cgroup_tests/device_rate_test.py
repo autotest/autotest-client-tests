@@ -1,6 +1,7 @@
 import os
 import itertools
 import tempfile
+
 from autotest.client.shared import error, utils_cgroup
 
 

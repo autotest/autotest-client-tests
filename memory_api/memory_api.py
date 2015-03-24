@@ -1,8 +1,8 @@
 import os
 import subprocess
 import re
-import commands
 import logging
+
 from autotest.client import utils, test
 from autotest.client.shared import error
 
