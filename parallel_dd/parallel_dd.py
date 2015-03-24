@@ -11,15 +11,27 @@ from autotest.client.shared import error
 class parallel_dd(test.test):
     version = 2
 
-    def initialize(self, fs, fstype='ext2', megabytes=1000, streams=2,
-                   seq_read=True):
+    def initialize(self, fs, fstype='', megabytes=1000, streams=2,
+                   seq_read=True, dd_woptions='', dd_roptions='',
+                   fs_dd_woptions='', fs_dd_roptions=''):
         self.megabytes = megabytes
         self.blocks = megabytes * 256
         self.blocks_per_file = self.blocks / streams
         self.fs = fs
-        self.fstype = fstype
         self.streams = streams
         self.seq_read = seq_read
+        self.dd_woptions = dd_woptions
+        self.dd_roptions = dd_roptions
+        self.fs_dd_woptions = fs_dd_woptions
+        self.fs_dd_roptions = fs_dd_roptions
+
+        root_fs_device_cmd = "df | egrep /$ | awk '{print $1}'"
+        root_fs_device = utils.system_output(root_fs_device_cmd)
+        self.root_fstype = self._device_to_fstype('/etc/fstab', root_fs_device)
+
+        self.fstype = fstype
+        if not self.fstype and self.root_fstype:
+            self.fstype = self.root_fstype
 
         self.old_fstype = self._device_to_fstype('/etc/mtab')
         if not self.old_fstype:
@@ -35,6 +47,9 @@ class parallel_dd(test.test):
         sys.stdout.flush()
         dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % (self.fs.device,
                                                        self.blocks)
+
+        for option in self.dd_woptions.split():
+            dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
         utils.system(dd + ' > /dev/null')
 
     def raw_read(self):
@@ -42,6 +57,8 @@ class parallel_dd(test.test):
         sys.stdout.flush()
         dd = 'dd if=%s of=/dev/null bs=4k count=%d' % (self.fs.device,
                                                        self.blocks)
+        for option in self.dd_roptions.split():
+            dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
         utils.system(dd + ' > /dev/null')
 
     def fs_write(self):
@@ -51,6 +68,8 @@ class parallel_dd(test.test):
             file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=/dev/zero of=%s bs=4k count=%d' % \
                 (file, self.blocks_per_file)
+            for option in self.fs_dd_woptions.split():
+                dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
             p.append(subprocess.Popen(dd + ' > /dev/null', shell=True))
         logging.info("Waiting for %d streams", self.streams)
         # Wait for everyone to complete
@@ -68,6 +87,8 @@ class parallel_dd(test.test):
             file = os.path.join(self.job.tmpdir, 'poo%d' % (i + 1))
             dd = 'dd if=%s of=/dev/null bs=4k count=%d' % \
                 (file, self.blocks_per_file)
+            for option in self.fs_dd_roptions.split():
+                dd += " %s=%s" % (option.split(":")[0], option.split(":")[1])
             if self.seq_read:
                 utils.system(dd + ' > /dev/null')
             else:
@@ -81,8 +102,9 @@ class parallel_dd(test.test):
             sys.stdout.flush()
             os.waitpid(p[i].pid, 0)
 
-    def _device_to_fstype(self, file):
-        device = self.fs.device
+    def _device_to_fstype(self, file, device=None):
+        if not device:
+            device = self.fs.device
         try:
             line = utils.system_output('egrep ^%s %s' % (device, file))
             logging.debug(line)
