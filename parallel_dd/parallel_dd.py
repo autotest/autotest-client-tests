@@ -11,20 +11,27 @@ from autotest.client.shared import error
 class parallel_dd(test.test):
     version = 2
 
-    def initialize(self, fs, fstype='ext2', megabytes=1000, streams=2,
+    def initialize(self, fs, fstype='', megabytes=1000, streams=2,
                    seq_read=True, dd_woptions='', dd_roptions='',
                    fs_dd_woptions='', fs_dd_roptions=''):
         self.megabytes = megabytes
         self.blocks = megabytes * 256
         self.blocks_per_file = self.blocks / streams
         self.fs = fs
-        self.fstype = fstype
         self.streams = streams
         self.seq_read = seq_read
         self.dd_woptions = dd_woptions
         self.dd_roptions = dd_roptions
         self.fs_dd_woptions = fs_dd_woptions
         self.fs_dd_roptions = fs_dd_roptions
+
+        root_fs_device_cmd = "df | egrep /$ | awk '{print $1}'"
+        root_fs_device = utils.system_output(root_fs_device_cmd)
+        self.root_fstype = self._device_to_fstype('/etc/fstab', root_fs_device)
+
+        self.fstype = fstype
+        if not self.fstype and self.root_fstype:
+            self.fstype = self.root_fstype
 
         self.old_fstype = self._device_to_fstype('/etc/mtab')
         if not self.old_fstype:
@@ -95,8 +102,9 @@ class parallel_dd(test.test):
             sys.stdout.flush()
             os.waitpid(p[i].pid, 0)
 
-    def _device_to_fstype(self, file):
-        device = self.fs.device
+    def _device_to_fstype(self, file, device=None):
+        if not device:
+            device = self.fs.device
         try:
             line = utils.system_output('egrep ^%s %s' % (device, file))
             logging.debug(line)
