@@ -1,0 +1,12 @@
+AUTHOR = "Vesity, Inc"
+NAME = "vsm_smoke"
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "General"
+TEST_TYPE = "client"
+
+DOC = """
+This is a smoke test to verify basic VSM functionality.
+"""
+
+job.run_test('vsm_smoke')

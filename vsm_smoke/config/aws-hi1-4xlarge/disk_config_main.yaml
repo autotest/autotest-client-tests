@@ -1,0 +1,62 @@
+#
+# configuration for the main set of disks
+#
+
+# 2 main SSD (vdb, vdc)
+# 6 EBS SSD (gp2) as xvd[e-i]
+
+# SSD partitioned to
+# - 64GB MA
+# - 480GB MR
+# - 480GB MR
+#
+
+
+
+# format is
+# /path/to/disk:
+#   partno:
+#     size: 64GB
+
+
+partitions:
+  /dev/xvdb:
+    1:
+      size: 64GB
+    2:
+      size: 480GB
+    3:
+      size: 480GB
+  /dev/xvdc:
+    1:
+      size: 64GB
+    2:
+      size: 480GB
+    3:
+      size: 480GB
+
+#
+# describe the disks/partitions in terms of VSM filesystems
+# mm: meta data devices
+# mr: data devices, can double as mm or mr
+# md: strictly md for disk archiving or other slower access
+#
+vsm_disks:
+    mm:
+      - /dev/xvdb1
+      - /dev/xvdc1
+    mr:
+      - /dev/xvdb2
+      - /dev/xvdc2
+      - /dev/xvdb3
+      - /dev/xvdc3
+    md:
+      - /dev/xvdd
+      - /dev/xvde
+
+# 
+# list of qfs configurations that are valid
+#
+valid_qfs_configs: all, -fast-dk2
+
+

@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+#
+#
+
+@OurPath = `pwd`;
+chop($OurPath[0]);
+
+printf(" Into main umounter. \n");
+my $Index = 0;
+my ($i, @out, $Umounter, @FileSys);
+$umount = "samd umount";
+$fuser = "/sbin/fuser";
+open (__MOUNTER__,"mount -v | ");
+while (<__MOUNTER__> ) {
+        if (/type samfs/) {
+                @out = split;
+                if ($DEBUG) {
+                        printf(" name= %s \n",$out[0]);
+                }
+                $FileSys[$Index++] = $out[0];
+        }
+}
+close (__MOUNTER__);
+
+if ($Index == 0) {
+        printf(" No samfs file systems to umount. \n");
+        exit (0);
+}
+@dater = `date`;
+chop (@dater);
+$PkillCall = "pkill  -9 samu";
+$iret = system($PkillCall);
+sleep 5;
+for ($i=0;$i<$Index;$i++) {
+        printf(" Umounting file system= %s Do a fuser call first. \n",$FileSys[$i]);
+        #$StopCall = "samd  stop";
+        #$iret = system($StopCall);
+#	$StopCall = "samd  hastop";
+#	$iret = system($StopCall);
+
+        $FuserCall = $fuser." -ck /".$FileSys[$i];
+        $iret = system($FuserCall);
+	sleep (5);
+        $Umounter = $umount." ".$FileSys[$i];
+        if ($DEBUG) {
+                printf(" Umount call will be done for file system= %s \n",$FileSys[$i]);
+        }
+        $iret = system($Umounter);
+        if ($iret != 0) {
+               	printf(" Iret = %d Umount failed try again, return error.\n",$iret);
+		sleep (10);
+        	$iret = system($Umounter);
+        	if ($iret != 0) {
+               		printf(" Iret = %d Umount failed again, return error.\n",$iret);
+               		exit (1);
+		} else {
+               		printf(" Umount succeeded for filesystem %s.\n",$FileSys[$i]);
+		}
+	} else {
+       		printf(" Umount succeeded for filesystem %s.\n",$FileSys[$i]);
+	}
+}
+
+# Now double check that all samfs file systems are unmounted.
+
+$Index = 0;
+open (__MOUNTER__,"mount -v | ");
+while (<__MOUNTER__> ) {
+        if (/type samfs/) {
+                @out = split;
+                if ($DEBUG) {
+                        printf(" name= %s \n",$out[0]);
+                }
+                $FileSys[$Index++] = $out[0];
+        }
+}
+close (__MOUNTER__);
+
+if ($Index == 0) {
+        printf(" ***** All samfs file systems umounted successfully. ***** \n");
+        printf(" ***** All samfs file systems umounted successfully. ***** \n");
+        printf(" ***** All samfs file systems umounted successfully. ***** \n");
+        exit (0);
+}
