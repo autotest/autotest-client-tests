@@ -1,0 +1,14 @@
+#
+# auto-mcf-generated
+#
+Qfs2			10	ma	Qfs2	-	-
+/dev/sdb		11	mm	Qfs2	-	-
+/dev/sdc1		12	mr	Qfs2	-	-
+/dev/sdc2		13	mr	Qfs2	-	-
+
+Qfs3			20	ms	Qfs3	-	-
+/dev/sdd1		21	md	Qfs3	-	-
+
+Qfs4			30	ms	Qfs4	-	-
+/dev/sdd2		31	md	Qfs4	-	-
+
