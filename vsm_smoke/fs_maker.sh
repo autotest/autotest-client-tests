@@ -28,8 +28,10 @@ SAMFSCK_OPTS[3]=""
 SAMFSCK_OPTS[4]=""
 SAMFSCK_OPTS[5]=""
 
-SAMMOUNT_OPTS_GLOBAL="$(cat /usr/tmp/mountopts)"
-echo "Global mount options: $SAMMOUNT_OPTS_GLOBAL"
+if test -f /usr/tmp/mountopts; then
+    SAMMOUNT_OPTS_GLOBAL="$(cat /usr/tmp/mountopts)"
+    echo "Global mount options: $SAMMOUNT_OPTS_GLOBAL"
+fi
 
 # define these in your tests to choose which ones to use
 #
@@ -45,7 +47,7 @@ echo "Global mount options: $SAMMOUNT_OPTS_GLOBAL"
 # FILESYS4='qfs5'
 
 # bump if needing larger
-MAX_FS_IDX=6
+MAX_FS_IDX=3
 
 sammkfs0()
 {

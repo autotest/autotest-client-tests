@@ -1,6 +1,5 @@
 #!/bin/sh
 
-source ./fs_config.sh
 source ./fs_maker.sh
 
 TAPFILE=./vsm_smoke.tap
@@ -202,9 +201,9 @@ fi
 # mcf -> normal
 # mcf_shared -> normal_shared
 # etc until nausea
-cp $VSM_TEST_DIR/config/$HOST_CONFIG/mcf /etc/opt/vsm/mcf
-cp $VSM_TEST_DIR/config/$HOST_CONFIG/archiver.cmd /etc/opt/vsm/archiver.cmd
-cp $VSM_TEST_DIR/config/$HOST_CONFIG/diskvols.conf /etc/opt/vsm/diskvols.conf
+# cp $VSM_TEST_DIR/config/$HOST_CONFIG/mcf /etc/opt/vsm/mcf
+# cp $VSM_TEST_DIR/config/$HOST_CONFIG/archiver.cmd /etc/opt/vsm/archiver.cmd
+# cp $VSM_TEST_DIR/config/$HOST_CONFIG/diskvols.conf /etc/opt/vsm/diskvols.conf
 
 echo " Now remove trace files. "
 

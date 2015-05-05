@@ -1,2 +1,0 @@
-logfile=/var/log/vsm/stager.log
-maxactive=20000

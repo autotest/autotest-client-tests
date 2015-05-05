@@ -1,6 +1,0 @@
-command mklabel gpt
-command print
-command mkpart primary 1MB 128GB
-command mkpart primary 128GB 256GB
-command print
-command quit
