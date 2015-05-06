@@ -2,15 +2,17 @@
 
 source ./fs_maker.sh
 
+export PATH=/opt/vsm/bin:/opt/vsm/sbin:$PATH
+
 TAPFILE=./vsm_smoke.tap
 TESTNUMB=0
 
+FILESYS1='/mnt/qfs2'
 MILESYS1='Qfs2'
-FILESYS1='qfs2'
+FILESYS2='/mnt/qfs3'
 MILESYS2='Qfs3'
-FILESYS2='qfs3'
+FILESYS3='/mnt/qfs4'
 MILESYS3='Qfs4'
-FILESYS3='qfs4'
 
 # mkfs opts for each filesys
 SAMMKFS_OPTS[1]="-a 64"
@@ -22,8 +24,8 @@ umountfs0()
 	samd stop
 	samd stopsam
 	samd stopsam
-	fuser -ck $MILESYS1
-        umount  $MILESYS1
+	fuser -ck $FILESYS1
+        umount  $FILESYS1
 	EXITEM=$?
         if [ $EXITEM != 0 ]
         then
@@ -32,12 +34,12 @@ umountfs0()
 		samd stop
 		samd stopsam
 		samd stopsam
-		fuser -ck $MILESYS1
-        	umount  $MILESYS1
+		fuser -ck $FILESYS1
+        	umount  $FILESYS1
 		EXITEM=$?
         	if [ $EXITEM != 0 ]
         	then
-                	echo "Bail out! second umount of $MILESYS1 FAILED. " >> $TAPFILE
+                	echo "Bail out! second umount of $FILESYS1 FAILED. " >> $TAPFILE
 			echo " second umount FAILED"
                 	exit 1
         	fi
@@ -50,8 +52,8 @@ umountfs1()
 	samd stop
 	samd stopsam
 	samd stopsam
-	fuser -ck $MILESYS2
-        umount  $MILESYS2
+	fuser -ck $FILESYS2
+        umount  $FILESYS2
 	EXITEM=$?
         if [ $EXITEM != 0 ]
         then
@@ -60,12 +62,12 @@ umountfs1()
 		samd stop
 		samd stopsam
 		samd stopsam
-		fuser -ck $MILESYS2
-        	umount  $MILESYS2
+		fuser -ck $FILESYS2
+        	umount  $FILESYS2
 		EXITEM=$?
         	if [ $EXITEM != 0 ]
         	then
-                	echo "Bail out! second umount of $MILESYS2 FAILED. " >> $TAPFILE
+                	echo "Bail out! second umount of $FILESYS2 FAILED. " >> $TAPFILE
 			echo " second umount failed"
                 	exit 1
         	fi
@@ -78,8 +80,8 @@ umountfs2()
 	samd stop
 	samd stopsam
 	samd stopsam
-	fuser -ck $MILESYS3
-        umount  $MILESYS3
+	fuser -ck $FILESYS3
+        umount  $FILESYS3
 	EXITEM=$?
         if [ $EXITEM != 0 ]
         then
@@ -87,12 +89,12 @@ umountfs2()
 		samd stop
 		samd stopsam
 		samd stopsam
-		fuser -ck $MILESYS3
-        	umount  $MILESYS3
+		fuser -ck $FILESYS3
+        	umount  $FILESYS3
 		EXITEM=$?
         	if [ $EXITEM != 0 ]
         	then
-                	echo "Bail out! second umount of $MILESYS3 FAILED. " >> $TAPFILE
+                	echo "Bail out! second umount of $FILESYS3 FAILED. " >> $TAPFILE
 			echo " second umount FAILED"
                 	exit 1
         	fi
@@ -171,7 +173,7 @@ SUITEDIR='/Harness'
 
 rm -f $TAPFILE
 
-echo "1..20" >> $TAPFILE
+echo "1..20" > $TAPFILE
 
 if test -f /usr/tmp/mountopts; then
   echo "Mount extras are in file mountopts. "
@@ -188,22 +190,6 @@ if test -d /etc/opt/SAVER; then
   cp /etc/opt/SAVER/* /etc/opt/vsm/
   cp /etc/opt/SAVER/* /etc/opt/VSMsamfs/
 fi
-
-rm -f /etc/opt/vsm/archiver.cmd
-rm -f /etc/opt/vsm/diskvols.conf
-
-if test -d /etc/opt/VSMsamfs; then
-  rm -f /etc/opt/VSMsamfs/archiver.cmd
-  rm -f /etc/opt/VSMsamfs/diskvols.conf
-fi
-
-# XXX HORRRRRRIBLE
-# mcf -> normal
-# mcf_shared -> normal_shared
-# etc until nausea
-# cp $VSM_TEST_DIR/config/$HOST_CONFIG/mcf /etc/opt/vsm/mcf
-# cp $VSM_TEST_DIR/config/$HOST_CONFIG/archiver.cmd /etc/opt/vsm/archiver.cmd
-# cp $VSM_TEST_DIR/config/$HOST_CONFIG/diskvols.conf /etc/opt/vsm/diskvols.conf
 
 echo " Now remove trace files. "
 
@@ -270,7 +256,7 @@ do
         then
                 if [ $sleepcount -gt 6 ]; then
                     echo "Archiving taking too long.  Bailing."
-		    echo "Bail out! archiving taking too long."
+		    echo "Bail out! archiving taking too long." >> $TAPFILE
                     exit 1
                 fi
                 echo "Archiving to be done."
