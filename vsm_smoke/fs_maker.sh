@@ -1,11 +1,6 @@
 #!/bin/sh
 #set -v
 
-if [ -z "$VSM_TEST_DIR" ]; then
-    echo "You must include fs_config.sh, not $0 directly"
-    exit 1
-fi
-
 # optional configuration items to be set from tests
 # mkfs opts for each filesys
 SAMMKFS_OPTS[1]=""
@@ -108,11 +103,11 @@ mount_one()
     local fsname=${!fs}
     local fs_mnt=${!fs_dir}
 
-    mkdir -p /$fs_mnt
+    mkdir -p $fs_mnt
 
     local rc=0
     for attempt in 0 1; do
-        mount -t samfs $mntopt $fsname /$fs_mnt
+        mount -t samfs $mntopt $fsname $fs_mnt
         if [ $? == 0 ]; then
             echo "filesystem $fs_idx mounted"
             return 0
