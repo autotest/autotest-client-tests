@@ -2,7 +2,7 @@
 
 source ./fs_maker.sh
 
-export PATH=/opt/vsm/bin:/opt/vsm/sbin:$PATH
+export PATH=/opt/vsm/bin:/opt/vsm/sbin:/sbin:$PATH
 
 TAPFILE=./vsm_smoke.tap
 TESTNUMB=0
