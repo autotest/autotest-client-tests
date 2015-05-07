@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ./fs_maker.sh
 
@@ -24,13 +24,13 @@ SAMMKFS_OPTS[3]="-a 64"
 
 start_time()
 {
-        START=`date +%s%3N`
+        START=`date +%s.%3N`
 }
 
 end_time()
 {
-        END=`date +%s%3N`
-        DURATION_MS=`expr $END - $START`
+        END=`date +%s.%3N`
+        DURATION_MS=$(echo "$END - $START"|bc)
 }
 
 umountfs0()
