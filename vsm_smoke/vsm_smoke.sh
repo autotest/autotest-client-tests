@@ -125,10 +125,10 @@ PostTestResult()
                 echo "not ok $TESTNUMB - $TESTNAME" >> $TAPFILE
         else
 		echo " Test passed."
-                echo "ok $TESTNUMB - $TESTNAME"  >> $TAPFILE
-                echo "---"                       >> $TAPFILE
-                echo "duration_ms: $DURATION_MS" >> $TAPFILE
-                echo "..."                       >> $TAPFILE
+                echo "ok $TESTNUMB - $TESTNAME"    >> $TAPFILE
+                echo "  ---"                       >> $TAPFILE
+                echo "  duration_ms: $DURATION_MS" >> $TAPFILE
+                echo "  ..."                       >> $TAPFILE
         fi
 }
 
