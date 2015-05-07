@@ -6,6 +6,9 @@ export PATH=/opt/vsm/bin:/opt/vsm/sbin:/sbin:$PATH
 
 TAPFILE=./vsm_smoke.tap
 TESTNUMB=0
+START=0
+END=0
+DURATION_MS=0
 
 FILESYS1='/mnt/qfs2'
 MILESYS1='Qfs2'
@@ -18,6 +21,17 @@ MILESYS3='Qfs4'
 SAMMKFS_OPTS[1]="-a 64"
 SAMMKFS_OPTS[2]="-a 64"
 SAMMKFS_OPTS[3]="-a 64"
+
+start_time()
+{
+        START=`date +%s%3N`
+}
+
+end_time()
+{
+        END=`date +%s%3N`
+        DURATION_MS=`expr $END - $START`
+}
 
 umountfs0()
 {
@@ -111,7 +125,10 @@ PostTestResult()
                 echo "not ok $TESTNUMB - $TESTNAME" >> $TAPFILE
         else
 		echo " Test passed."
-                echo "ok $TESTNUMB - $TESTNAME" >> $TAPFILE
+                echo "ok $TESTNUMB - $TESTNAME"  >> $TAPFILE
+                echo "---"                       >> $TAPFILE
+                echo "duration_ms: $DURATION_MS" >> $TAPFILE
+                echo "..."                       >> $TAPFILE
         fi
 }
 
@@ -220,14 +237,16 @@ sleep 5
 # Do a sammkfs test first.
 
 TESTNAME=$TESTNAME1
-#Secsone=`$SUITEDIR/timesec`
+start_time
 sammkfs0
+end_time
 EXITEM=$?
 PostTestResult
 
 # Next do a mount test.
 
 TESTNAME=$TESTNAME2
+start_time
 mountfs0
 mkdir /$FILESYS2/sam_1
 mkdir /$FILESYS3/sam_2
@@ -236,18 +255,22 @@ sleep 5
 
 mountfs1
 EXITEM=$?
+end_time
 PostTestResult
 sleep 5
 
 
 # create some files!
 TESTNAME=$TESTNAME3
+start_time
 /opt/vsm/tools/mtf -g -s 1k-1G /$FILESYS1/One/file[0-9]
+end_time
 EXITEM=$?
 PostTestResult
 
 TESTNAME=$TESTNAME4
 sleepcount=0
+start_time
 while true
 do
         COUNT=`sfind /$FILESYS1/One/f* ! -copies 2 | wc -l`
@@ -269,12 +292,15 @@ do
         fi
 done
 EXITEM=$?
+end_time
 PostTestResult
 
 # Next do a release test.
 
 TESTNAME=$TESTNAME8
+start_time
 release -r /$FILESYS1/One
+end_time
 EXITEM=$?
 check_exitem_for_crash
 PostTestResult
@@ -283,6 +309,7 @@ PostTestResult
 # Check files are released.
 
 TESTNAME=$TESTNAME12
+start_time
 COUNT=`sfind /$FILESYS1/One/f* ! -offline | grep file | wc -l`
 echo $COUNT
 if [ $COUNT != 0 ]
@@ -293,15 +320,21 @@ else
         echo "Files Are All offline."
         break
 fi
+end_time
 EXITEM=$?
 PostTestResult
 
 # Now samfsdump the main file system.
 
 TESTNAME=$TESTNAME16
+start_time
 samfsdump -f /$FILESYS2/Sammy /$FILESYS1/*
+end_time
 EXITEM=$?
 PostTestResult
+
+# Do we want to capture CPU time for archiver/arfind/stager?  At the end
+# of the test?  At key points?  Both?
 
 # Capture cpu time used by archiver.
 
@@ -326,13 +359,17 @@ PostTestResult
 # Now stage the One files backin.
 
 TESTNAME=$TESTNAME19
+start_time
 stage -r /$FILESYS1/One
+end_time
 EXITEM=$?
 check_exitem_for_crash
 PostTestResult
 
-stage -w -r /$FILESYS1/One
 TESTNAME=$TESTNAME19-w
+start_time
+stage -w -r /$FILESYS1/One
+end_time
 EXITEM=$?
 check_exitem_for_crash
 PostTestResult
@@ -346,48 +383,62 @@ TESTNAME=$TESTNAME23
 # Time umount of fs.
 
 TESTNAME=$TESTNAME24
+start_time
 umountfs0
+end_time
 EXITEM=$?
 PostTestResult
 
 # Time samfsck of fs.
 
 TESTNAME=$TESTNAME25
+start_time
 samfsck -V $MILESYS1
+end_time
 EXITEM=$?
 PostTestResult
 
 # Do another sammkfs test.
 
 TESTNAME=$TESTNAME26
+start_time
 sammkfs1
+end_time
 EXITEM=$?
 PostTestResult
 
 # Now mount the file system.
 
 TESTNAME=$TESTNAME27
+start_time
 mountfs1
+end_time
 EXITEM=$?
 PostTestResult
 
 # Now samfsrestore the main file system.
 
 TESTNAME=$TESTNAME28
+start_time
 samfsrestore -f /$FILESYS2/Sammy
+end_time
 EXITEM=$?
 PostTestResult
 
 # Now stage the One files backin.
 
 TESTNAME=$TESTNAME29
+start_time
 stage -r /$FILESYS1/One
+end_time
 EXITEM=$?
 check_exitem_for_crash
 PostTestResult
 
 TESTNAME=$TESTNAME29-w
+start_time
 stage -w -r /$FILESYS1/One
+end_time
 EXITEM=$?
 check_exitem_for_crash
 PostTestResult
@@ -395,14 +446,18 @@ PostTestResult
 # Time umount of fs.
 
 TESTNAME=$TESTNAME33
+start_time
 umountfs0
+end_time
 EXITEM=$?
 PostTestResult
 
 # Time samfsck of fs.
 
 TESTNAME=$TESTNAME34
+start_time
 samfsck -V $MILESYS1
+end_time
 EXITEM=$?
 PostTestResult
 
@@ -410,13 +465,17 @@ PostTestResult
 
 umountfs1
 TESTNAME=$TESTNAME35
+start_time
 samfsck -V $MILESYS2
+end_time
 EXITEM=$?
 PostTestResult
 
 umountfs2
 TESTNAME=$TESTNAME36
+start_time
 samfsck -V $MILESYS3
+end_time
 EXITEM=$?
 PostTestResult
 
