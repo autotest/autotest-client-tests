@@ -318,7 +318,6 @@ then
 	date
 else
         echo "Files Are All offline."
-        break
 fi
 end_time
 EXITEM=$?
