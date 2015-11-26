@@ -1,0 +1,17 @@
+AUTHOR = "Abhilash B <abhilashb1289@gmail.com>, Abhay Krishnan P K <abhayk44@gmail.com>"
+NAME = "cryptsetup"
+TIME='SHORT'
+TEST_CLASS = 'Kernel'
+TEST_CATEGORY = 'Functional'
+TEST_TYPE='client'
+
+
+DOC = '''
+Test for testing cryptsetup
+
+Tests cryptsetup in both plain mode and Luks mode.
+
+'''
+tests = ['luks','plain']
+for i in tests:
+	job.run_test('cryptsetup', test = i,tag=i)
