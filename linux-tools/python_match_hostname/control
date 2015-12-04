@@ -1,0 +1,11 @@
+AUTHOR = "Athira Rajeev<atrajeev@linux.vnet.ibm.com>"
+NAME = "python-backports-ssl_match_hostname"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test python-backports-ssl_match_hostname package
+'''
+
+job.run_test('python_match_hostname')
