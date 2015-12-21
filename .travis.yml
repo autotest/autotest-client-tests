@@ -1,26 +1,20 @@
 language: python
 python:
     - "2.7"
+    - "2.6"
 
 branches:
     only:
         - master
 
+sudo: false
+
 git:
     submodules: false
 
-virtualenv:
-    system_site_packages: true
-
-before_script:
-    - echo "deb http://ppa.launchpad.net/lmr/autotest/ubuntu utopic main" | sudo tee -a /etc/apt/sources.list
-    - sudo apt-get update -q
-    - sudo apt-get -y --force-yes install autotest
-
 install:
-    - pip install sphinx tox simplejson MySQL-python pylint autopep8
-    - pip install inspektor
-    - pip install -r requirements.txt
+    - pip install sphinx
+    - pip install -r requirements-selftests.txt
 
 script:
     - ./runtests.py -c .nose.cfg
