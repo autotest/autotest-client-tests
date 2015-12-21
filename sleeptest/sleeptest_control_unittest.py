@@ -25,9 +25,9 @@ import __builtin__
 import unittest
 
 try:
-    import autotest.common as common
+    import autotest.common as common  # pylint: disable=W0611
 except ImportError:
-    import common
+    import common  # pylint: disable=W0611
 
 from autotest.client.shared.mock import patch, MagicMock, call
 from autotest.client.shared.file_module_loader import load_module_from_file
