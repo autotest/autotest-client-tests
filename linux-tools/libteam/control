@@ -1,0 +1,11 @@
+AUTHOR = "Athira Rajeev<atrajeev@linux.vnet.ibm.com>"
+NAME = "libteam"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test libteam package
+'''
+
+job.run_test('linux-tools/libteam')
