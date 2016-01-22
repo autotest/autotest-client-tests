@@ -1,0 +1,11 @@
+AUTHOR = "Athira Rajeev<atrajeev@linux.vnet.ibm.com>"
+NAME = "avahi-autoipd"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test avahi-autoipd package
+'''
+
+job.run_test('linux-tools/avahi_autoipd')
