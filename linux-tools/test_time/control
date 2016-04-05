@@ -1,0 +1,11 @@
+AUTHOR = "Basheer Khadarsabgari <basheer@linux.vnet.ibm.com>"
+NAME = "test_time"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test for time package.
+'''
+
+job.run_test('linux-tools/test_time')
