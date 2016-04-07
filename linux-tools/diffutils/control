@@ -1,0 +1,11 @@
+AUTHOR = " Shoji Sugiyama (shoji@jp.ibm.com)  " 
+NAME = "diffutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test diffutils package 
+    ''' 
+path = '' 
+job.run_test('diffutils',test_path=path) 

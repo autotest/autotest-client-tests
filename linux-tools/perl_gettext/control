@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G <kumuda.govind@in.ibm.com>                           ##  " 
+NAME = "perl_gettext" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-gettext package 
+    ''' 
+path = '' 
+job.run_test('perl_gettext',test_path=path) 

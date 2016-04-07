@@ -1,0 +1,29 @@
+dnsmasq is a small, lightweight, and easy-to-configure caching DNS proxy
+and DHCP server targeted at small or home networks. It can serve the
+names of local hosts which are not in the global DNS, and its DHCP
+server integrates with its DNS server to allow hosts with DHCP-allocated
+addresses to appear in the DNS along with names configured either in
+each host or in its configuration file. dnsmasq supports static and
+dynamic DHCP leases and even BOOTP/TFTP for network booting of diskless
+hosts.
+
+From FIV point of view, below test cases are verified by configuring
+dnsmasq as:
+
+dnsmasq server
+ - configure dnsmasq for additional DNS server lookup and check if it
+   caches the entries (use dig for Query Time and see if it is less
+   than 10s ideally).
+
+dhcp server
+ - configure minimally dhcp settings in dnsmasq.conf and check if a
+   NIC receives DHCP ip.
+ - check dhcp-option 6 (for additional name server entries).
+ - check if dnsmasq can recognise dhcp-host for static ip allocation.
+ - check if dnsmasq can recognise /etc/ethers for static ip allocation.
+
+tftp server
+ - enable-tftp server and check simple file transfer using tftp client.
+
+As above are server/client tests, virtual ethernet pairs are used
+(ip veth peers) and checked above functionalities with them.

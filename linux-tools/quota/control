@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
+NAME = "quota" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test quota package 
+    ''' 
+path = '' 
+job.run_test('quota',test_path=path) 

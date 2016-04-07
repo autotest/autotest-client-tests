@@ -1,0 +1,8 @@
+perl-Filter is a little-known feature of Perl called source filters .Source filters alter the program text of a module before Perl sees it, much as a C preprocessor alters the source text of a C program before the compiler sees it. The original purpose of source filters was to let us encrypt our program source to prevent casual piracy.
+
+building and running the in-built test suite is same as running individual perl scripts plus some supporting files from source .
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Filter
+./perl-Filter.sh

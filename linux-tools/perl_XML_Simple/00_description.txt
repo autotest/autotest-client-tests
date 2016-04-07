@@ -1,0 +1,13 @@
+XML::Simple - Easily read/write XML (esp config files)
+The XML::Simple module provides a simple API layer on top of an underlying XML parsing module
+(either XML::Parser or one of the SAX2 parser modules).
+Two functions are exported: XMLin() andXMLout().
+
+Usage:
+To run all tests:
+
+./perl-XML-Simple.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-Simple
+perl t/<test.t>

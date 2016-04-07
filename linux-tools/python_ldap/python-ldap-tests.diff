@@ -1,0 +1,147 @@
+diff -Naurp Tests/matchedvalues.py.org Tests/matchedvalues.py
+--- Tests/matchedvalues.py.org	2013-01-20 22:22:53.000000000 -0500
++++ Tests/matchedvalues.py	2013-01-20 13:32:48.000000000 -0500
+@@ -40,24 +40,24 @@ def print_result(search_result):
+         print
+ 
+ 
+-uri = "ldap://ldap.example.com"
+-base = "dc=example,dc=com"
++uri = "ldap://localhost"
++base = "dc=python-ldap,dc=org"
+ scope = ldap.SCOPE_SUBTREE
+-filter = "(&(objectClass=inetOrgPerson)(mail=*@example.org))"
+-control_filter = "(mail=*@example.org)"
++filter = "(&(objectClass=organization))"
++control_filter = "(objectClass=*)"
+ 
+ ld = ldap.initialize(uri)
+ 
+ mv = MatchedValuesControl(criticality=True, controlValue=control_filter)
+ 
+-res = ld.search_ext_s(base, scope, filter, attrlist = ['mail'])
++res = ld.search_ext_s(base, scope, filter, attrlist = ['objectClass'])
+ print "LDAP filter used: %s" % filter
+-print "Requesting 'mail' attribute back"
++print "Requesting 'objectClass' attribute back"
+ print
+ print "No matched values control:"
+ print_result(res)
+ 
+-res = ld.search_ext_s(base, scope, filter, attrlist = ['mail'], serverctrls = [mv])
++res = ld.search_ext_s(base, scope, filter, attrlist = ['objectClass'], serverctrls = [mv])
+ print "Matched values control: %s" % control_filter
+ print_result(res)
+ 
+diff -Naurp Tests/resiter.py.org Tests/resiter.py
+--- Tests/resiter.py.org	2013-01-20 22:22:53.000000000 -0500
++++ Tests/resiter.py	2013-01-20 13:32:48.000000000 -0500
+@@ -15,9 +15,9 @@ import ldap,ldap.resiter
+ class LDAPObject(ldap.ldapobject.LDAPObject,ldap.resiter.ResultProcessor):
+   pass
+ 
+-l = LDAPObject('ldap://localhost:1390',trace_level=1)
++l = LDAPObject('ldap://localhost',trace_level=1)
+ l.protocol_version = 3
+-msgid = l.search('dc=stroeder,dc=de',ldap.SCOPE_SUBTREE,'(cn=m*)')
++msgid = l.search('dc=python-ldap,dc=org',ldap.SCOPE_SUBTREE,'(cn=Manager)')
+ 
+ result_iter = l.allresults(msgid)
+ for result_type,result_list,result_msgid,result_serverctrls in result_iter:
+diff -Naurp Tests/ldifwriter.py.org Tests/ldifwriter.py
+--- Tests/ldifwriter.py.org	2013-01-20 22:22:53.000000000 -0500
++++ Tests/ldifwriter.py	2013-01-20 13:32:48.000000000 -0500
+@@ -17,12 +17,12 @@ Tested on Python 2.0+, should run on Pyt
+ import sys,ldap,ldap.async
+ 
+ s = ldap.async.LDIFWriter(
+-  ldap.initialize('ldap://localhost:1390'),
++  ldap.initialize('ldap://localhost'),
+   sys.stdout
+ )
+ 
+ s.startSearch(
+-  'dc=stroeder,dc=de',
++  'cn=Foo1,dc=python-ldap,dc=org',
+   ldap.SCOPE_SUBTREE,
+   '(objectClass=*)',
+ )
+--- Tests/matchedvalues.py.orig	2015-09-29 08:29:39.619118358 +0000
++++ Tests/matchedvalues.py	2015-09-29 08:31:08.423118263 +0000
+@@ -48,7 +48,7 @@ control_filter = "(objectClass=*)"
+ 
+ ld = ldap.initialize(uri)
+ 
+-mv = MatchedValuesControl(criticality=True, controlValue=control_filter)
++mv = MatchedValuesControl(criticality=True, filterstr=control_filter)
+ 
+ res = ld.search_ext_s(base, scope, filter, attrlist = ['objectClass'])
+ print "LDAP filter used: %s" % filter
+--- Tests/initialize.py.orig	2015-09-29 08:29:13.106118386 +0000
++++ Tests/initialize.py	2015-09-29 08:33:45.280118095 +0000
+@@ -21,64 +21,7 @@ ldapmodule_trace_file = sys.stderr
+ ldap._trace_level = ldapmodule_trace_level
+ 
+ # Complete path name of the file containing all trusted CA certs
+-CACERTFILE='/etc/ssl/ca-bundle.pem'
+-
+-print """##################################################################
+-# LDAPv3 connection with StartTLS ext. op.
+-##################################################################
+-"""
+-
+-# Create LDAPObject instance
+-l = ldap.initialize('ldap://localhost:1390',trace_level=ldapmodule_trace_level,trace_file=ldapmodule_trace_file)
+-
+-# Set LDAP protocol version used
+-l.protocol_version=ldap.VERSION3
+-
+-# Force cert validation
+-l.set_option(ldap.OPT_X_TLS_REQUIRE_CERT,ldap.OPT_X_TLS_DEMAND)
+-# Set path name of file containing all trusted CA certificates
+-l.set_option(ldap.OPT_X_TLS_CACERTFILE,CACERTFILE)
+-# Force libldap to create a new SSL context (must be last TLS option!)
+-l.set_option(ldap.OPT_X_TLS_NEWCTX,0)
+-
+-# Now try StartTLS extended operation
+-l.start_tls_s()
+-
+-print '***ldap.OPT_X_TLS_VERSION',l.get_option(ldap.OPT_X_TLS_VERSION)
+-print '***ldap.OPT_X_TLS_CIPHER',l.get_option(ldap.OPT_X_TLS_CIPHER)
+-
+-# Try an explicit anon bind to provoke failure
+-l.simple_bind_s('','')
+-
+-# Close connection
+-l.unbind_s()
+-
+-print """##################################################################
+-# LDAPv3 connection over SSL
+-##################################################################
+-"""
+-
+-# Create LDAPObject instance
+-l = ldap.initialize('ldaps://localhost:1391',trace_level=ldapmodule_trace_level,trace_file=ldapmodule_trace_file)
+-
+-# Set LDAP protocol version used
+-l.protocol_version=ldap.VERSION3
+-
+-# Force cert validation
+-l.set_option(ldap.OPT_X_TLS_REQUIRE_CERT,ldap.OPT_X_TLS_DEMAND)
+-# Set path name of file containing all trusted CA certificates
+-l.set_option(ldap.OPT_X_TLS_CACERTFILE,CACERTFILE)
+-# Force libldap to create a new SSL context (must be last TLS option!)
+-l.set_option(ldap.OPT_X_TLS_NEWCTX,0)
+-
+-# Try an explicit anon bind to provoke failure
+-l.simple_bind_s('','')
+-
+-print '***ldap.OPT_X_TLS_VERSION',l.get_option(ldap.OPT_X_TLS_VERSION)
+-print '***ldap.OPT_X_TLS_CIPHER',l.get_option(ldap.OPT_X_TLS_CIPHER)
+-
+-# Close connection
+-l.unbind_s()
++CACERTFILE='/etc/pki/tls/certs/ca-bundle.crt'
+ 
+ print """##################################################################
+ # LDAPv3 connection over Unix domain socket

@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
+NAME = "bash" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test bash package 
+    ''' 
+path = '' 
+job.run_test('bash',test_path=path) 

@@ -1,0 +1,13 @@
+man-pages-overrides package contains corrected or additional man pages for various packages
+in various languages.
+
+man-pages-overrides tests whether man pages exists or not for the listed packages that are covered by man-pages-overrides package
+man-pages package contains linux man pages for 2, 3, 4, 5, and 7 sections. Its
+also covers posix man pages for 0,1,3 man sections.
+
+This testcase covers testing of both man-pages and man-pages-overrides
+package.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/man-pages
+./man-pages.sh <pkg name> [ pkg name can be man-pages or man-pages-overrides ]

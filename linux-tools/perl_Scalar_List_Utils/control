@@ -1,0 +1,11 @@
+AUTHOR = " Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##  " 
+NAME = "perl_Scalar_List_Utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Scalar-List-Utils package 
+    ''' 
+path = '' 
+job.run_test('perl_Scalar_List_Utils',test_path=path) 

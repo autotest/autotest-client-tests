@@ -1,0 +1,18 @@
+Description : Perl extension providing access to the GSSAPIv2 library
+This module gives access to the routines of the GSSAPI library. This module
+wraps the GSSAPI C-Bindings.
+
+Some of the usages are:
+getcred_hostbased.pl :gets a GSSAPI Token for a service specified on
+commandline. (like kgetcred on Heimdal or kvno on MIT)
+gss-client.pl: a simple GSSAPI TCP client.
+gss-server.pl: a simple GSSAPI TCP server. Use both as templates if you need
+quickhacking GSSAPI enabeled GSSAPI TCP services.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-GSSAPI/
+./perl-GSSAPI.sh 
+
+To run individual test,
+perl t/<testname>

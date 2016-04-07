@@ -1,0 +1,9 @@
+shared-mime-info package contains a MIME database. This allows central updates of MIME information for all supporting applications. 
+
+Automated tests:
+cd /opt/fiv/ltp/testcases/fivextra/shared-mime-info
+./shared-mime-info.sh
+
+Manual tests:
+cd /opt/fiv/ltp/testcases/fivextra/shared-mime-info
+Follow instruction from shared-mime-info.txt

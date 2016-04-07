@@ -1,0 +1,21 @@
+Linux tools directory contains collection of testcases to test functionality of packages in Linux OS distribution. Most of these testcases are test cases from Linux Source package and some of these testcases were developed by IBMers. Objective of these testcases under Autotest is for enabling usage of Linux package test cases under one umbrellas that is Autotest. Thereby improve usage of Linux package test cases and also to improve quality of test cases. All these test cases are made available with GPLv2 license.
+
+Reusable utility functions and scripts are maintained in linux-tools/shared directory. Test cases for each package is maintaind under linux-tools/package. Some of the directories are suffixed with _test as there are some python modules in the Autotest with simillar name.
+
+Steps to execute package tests
+1. Execute gen_control_file.sh to generate control file. Based on rpms available in the system and tests available under linux-tools control file will be generated
+2. Update test path variable in control files by executing update_path_control.sh. Ensure your new tests control file does not have variable test_path=path because this script overwrites value of path variable in control file.
+3. To test all the tests listed in control file under linux-tools directory, in linux-tools directory execute PATH_OF_autotest_client/client/autotest-local -d PATH_OF_autotest-client-tests/linux-tools control
+4. For executing test of particular package, goto PATH_OF_autotest-client-tests/linux-tools/package-name and then execute
+PATH_OF_autotest_client/client/autotest-local -d PATH_OF_autotest-client-tests/linux-tools control
+
+In job_report.html, each testcase is a package name. To have a better readability of the test report, it would be better to cover all permutations and combinations inside the Python class for that package. Hence while writting or integrating new testcases into linux-tools ensure control file only calls the class name of the package under test. Also ensure to use standard template for control files like other existing control files for tests under linux-tools.
+          
+What Next: Enable syncing of test sources from CentOS git or from packages upstream git. Integrate additional test sources from Linux packages which has binary files by supporting build and execute tools. To enhance usage of Linux testcases from the community, enhance testcases to work on SUSE and Ubuntu
+
+Limitations: At present works seemlessly on CentOS. Not yet verified if it runs on Fedora.  
+
+Developing fixes for some of these known bugs is in progress by some of the test folks at Linux Technology Center, IBM. As and when fixes are developed patches will be committed to Autotest git. Fixes from users in the community will help us to fasten the process of fixing issues in test cases. Also support to take it to next level is most welcome. These testcases where making use of LTP's pan test driver, so there could be some of the unused variables in scripts. Sometime down the line we will focus on cleaning up them.
+
+Known bugs: In testcases of packages audit, httpd, iprutils, iptables, kpartx, mailx, mdadm, mtdutils, nfs4acltools, postfix,procmail, psacct,rdate, samba, samba-winbind, star, telnet, yummetadatparser. 
+

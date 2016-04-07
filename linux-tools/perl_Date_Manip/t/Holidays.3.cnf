@@ -1,0 +1,15 @@
+*HOLIDAYS
+
+# Multiple holidays
+##################
+
+1*1:0:1:0:0:0*DWD    = New Years Day (observed)
+Jan 1                = New Years Day
+
+# first tuesday after the first monday in november
+1*11:1:1:0:0:0*FD1   = Election Day
+Nov 2                = Day of the Dead
+
+3rd Sunday in June   = Father's Day
+Jun 17               = Bunker Hill Day
+

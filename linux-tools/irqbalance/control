@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana, madhuria@linux.vnet.ibm.com  " 
+NAME = "irqbalance" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test irqbalance package 
+    ''' 
+path = '' 
+job.run_test('irqbalance',test_path=path) 

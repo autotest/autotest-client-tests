@@ -1,0 +1,10 @@
+Description:
+Since Perl 5.8, thread programming has been available using a model called interpreter threads which provides a new Perl interpreter for each thread, and, by default, results in no data or state information being shared between threads.
+Prior to Perl 5.8, 5005threads was available through the "Thread.pm" API. This threading model has been deprecated, and was removed as of Perl 5.10.0.
+
+URL: http://search.cpan.org/dist/threads/
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-threads
+./perl-threads.sh

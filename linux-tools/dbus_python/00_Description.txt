@@ -1,0 +1,5 @@
+Author: Suzuki K P <suzuki@in.ibm.com>
+
+dbus-python testcases are shipped as a sub-package.
+
+Dependency : dbus-launch command, shipped by dbus-x11.

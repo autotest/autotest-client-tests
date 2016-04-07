@@ -1,0 +1,11 @@
+AUTHOR = " Hong Bo Peng <penghb@cn.ibm.com>  " 
+NAME = "net_tools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test net-tools package 
+    ''' 
+path = '' 
+job.run_test('net_tools',test_path=path) 

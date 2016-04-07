@@ -1,0 +1,6 @@
+1 1
+1
+1 1
+0 0 1
+gawk: aadelete1.awk:11: fatal: attempt to use scalar `a["1"]' as an array
+EXIT CODE: 2

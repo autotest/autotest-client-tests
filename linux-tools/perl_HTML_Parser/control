@@ -1,0 +1,11 @@
+AUTHOR = " Basheer Khadarsabgari <bkhadars@in.ibm.com>                               ##  " 
+NAME = "perl_HTML_Parser" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTML-Parser package 
+    ''' 
+path = '' 
+job.run_test('perl_HTML_Parser',test_path=path) 

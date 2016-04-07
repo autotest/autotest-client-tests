@@ -1,0 +1,32 @@
+#! /usr/bin/expect
+set timeout 5
+proc abort {} { exit 1 }
+
+spawn sedismod policy.mod
+
+expect {
+	timeout abort
+	"Command ('m' for menu):"
+	{ send "3\r" }
+}
+expect {
+	timeout abort
+	"3\r\n user_u: unconfined_r\r\n system_u: unconfined_r\r\n\r\nCommand ('m' for menu):  "
+	{ send  "5\r" }
+}
+expect {
+	timeout abort
+	"5\r\nrole: object_r types: \r\nrole: unconfined_r types:  unconfined_t\r\n\r\nCommand ('m' for menu):  "
+	{ send "6\r" }
+}
+expect {
+	timeout abort
+	"type flags:0\r\n\r\nCommand ('m' for menu):  "
+	{ send "7\r" }
+}
+expect {
+	timeout abort
+	"7\r\nrole transitions:\r\n--- begin avrule block ---\r\ndecl "
+	{ send "\q\r" }
+}
+expect eof

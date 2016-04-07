@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao  " 
+NAME = "ebtables" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ebtables package 
+    ''' 
+path = '' 
+job.run_test('ebtables',test_path=path) 

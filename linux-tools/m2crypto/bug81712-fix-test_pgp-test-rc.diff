@@ -1,0 +1,20 @@
+--- tests/test_pgp.py.orig	2012-05-28 04:57:43.759368444 -0500
++++ tests/test_pgp.py	2012-05-28 04:58:01.527369673 -0500
+@@ -6,6 +6,7 @@ Copyright (c) 1999 Ng Pheng Siong. All r
+ 
+ import unittest
+ from M2Crypto import EVP, PGP
++from M2Crypto import Rand
+ from cStringIO import StringIO
+ 
+ 
+--- tests/test_rc4.py.orig	2012-05-28 05:04:31.028369691 -0500
++++ tests/test_rc4.py	2012-05-28 05:04:47.828293956 -0500
+@@ -7,6 +7,7 @@ Copyright (c) 2009 Heikki Toivonen. All 
+ import unittest
+ from binascii import hexlify
+ from M2Crypto import RC4
++from M2Crypto import Rand
+ 
+ class RC4TestCase(unittest.TestCase):
+ 

@@ -1,0 +1,27 @@
+Mtr is a network diagnostic tool that combines ping and traceroute into one program.
+xmtr tool provides the GTK+ interface for X.
+
+Steps to test:
+1. ssh to the test system with x-windows(X11 forwarding) option enabled.
+# ssh -X root@test.example.com
+
+2. Install mtr-gtk RPM if its not installed by default.
+
+3. Execute command "xmtr <hostname>".
+# xmtr test1.example.com
+
+This will open a new window; it shows the hostname of destination, its trace path, number of
+packets sent/received and so on.
+
+4. Use the combo box to increase and/or decrease the ping intervals.
+
+5. Press Alt+P to Pause and/or resume the pings sent to the destination.
+
+6. Press Alt+R to Reset the ping counters.
+
+7. Enter new hostname in the Hostname input field and press Enter button. 
+All the counters should be reset and packet sent/recevied to/from the entered hostname should 
+be shown. Also the trace route to the destination has to be seen on the screen.
+For instance, give any internet URL google.com.
+
+8. Press Alt+q to close the window.

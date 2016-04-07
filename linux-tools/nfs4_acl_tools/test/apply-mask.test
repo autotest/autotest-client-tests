@@ -1,0 +1,83 @@
+No write-through
+
+$ umask 022
+$ cd /NFS_PARTITION
+$ rm -rf d
+$ mkdir d
+$ cd d
+
+$ touch x
+
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rtcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -s "A::OWNER@:rw A::GROUP@:rwa A::EVERYONE@:rwa" x
+$ chmod 664 x
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -a 'A::OWNER@:rwaxco' x
+$ nfs4_getfacl x
+> A::OWNER@:rwaxtTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rtcy
+
+$ chmod 644 x
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rtcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -s 'A::root@domain:rwa' x
+$ chmod 664 x
+$ nfs4_getfacl x | grep -w A::root@domain:rwatcy
+> A::root@domain:rwatcy
+
+$ nfs4_setfacl -s 'A::root@domain:r A::EVERYONE@:rwa' x
+$ chmod 664 x
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::root@domain:rwatcy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -s 'D::root@domain:w A::EVERYONE@:rw' x
+$ chmod 664 x
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::root@domain:rtcy
+> A::GROUP@:rtcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -s 'A::root@domain:r D::root@domain:w A::EVERYONE@:rwa' x
+$ chmod 664 x
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> D::root@domain:wa
+> A::root@domain:rtcy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -s 'A::EVERYONE@:rwa' x
+$ chmod 066 x
+$ nfs4_getfacl x
+> D::OWNER@:rwa
+> A::OWNER@:tTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rwatcy
+
+$ chmod 006 x
+$ nfs4_getfacl x | grep -w D::GROUP@:rwa
+> D::GROUP@:rwa
+
+$ nfs4_setfacl -s 'A::root@domain:rwa A::EVERYONE@:rwa' x
+$ chmod 606 x
+$ nfs4_getfacl x | grep -w D::root@domain:rwa
+> D::root@domain:rwa
+
+$ cd ..
+$ rm -rf d

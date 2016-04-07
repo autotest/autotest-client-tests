@@ -1,0 +1,9 @@
+samba.sh:
+	Test suite to test samba, samba client.
+	Robb Romans <robb@austin.ibm.com>
+
+Implicate test:
+	samba-client,samba-doc,ibsmbclient,libsmbclient-devel
+
+Won't test:
+	samba-krb-printing

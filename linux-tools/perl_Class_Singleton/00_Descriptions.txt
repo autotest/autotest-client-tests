@@ -1,0 +1,28 @@
+This is the "Class::Singleton" module. A Singleton describes an object class that can have only one instance in any system. An example of a
+    Singleton might be a print spooler or system registry. This module implements a Singleton class from which other classes can be derived. By
+    itself, the "Class::Singleton" module does very little other than manage the instantiation of a single object. In deriving a class from
+    "Class::Singleton", your module will inherit the Singleton instantiation method and can implement whatever specific functionality is required.
+
+Singletons can be used for many things. If you only want one database connection for a particular application,
+ or a limited number of connections a singleton database class can handle managing your open connections.
+
+
+Functionality of the test:
+
+* Creates 2 instances in the same class (calls Singleton->instance(), DerivedSingleton->instance(), AnotherSingleton->instance( x => 10 )) 
+    and checks that each instance of the same class is the same.
+
+* check that the instances of the separate classes are actually different from each other.
+
+* test ListSingleton - checks if both list instances are the same object
+
+* test ConfigSingleton - creates a ConfigSingleton and an instance 1 is created
+                                      add another parameter
+                                      instance 2 is created, this time it shouldn't call new() so the parameter added in second step shouldn't matter
+                                      now compare instance 1 and 2 - both should be same.
+
+
+How to run the test:
+-------------------
+./perl-Class-Singleton.sh
+To run individual test : perl t/<testname>.t

@@ -1,0 +1,49 @@
+No write-through
+
+$ cd /NFS_PARTITION
+$ rm -rf d
+$ mkdir d
+$ cd d
+
+$ touch x
+$ nfs4_setfacl -s 'A::OWNER@:rwa, A:g:GROUP@:rwa, A::EVERYONE@:rwa' x
+$ ls -l x | cut -d ' ' -f 1
+> -rw-rw-rw-
+
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rwatcy
+
+$ chmod 664 x
+$ ls -l x | cut -d ' ' -f 1
+> -rw-rw-r--
+
+$ nfs4_getfacl x
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rtcy
+
+$ touch g
+$ nfs4_getfacl g
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rtcy
+> A::EVERYONE@:rtcy
+
+$ nfs4_setfacl -S /opt/fiv/ltp/testcases/fivextra/nfs4-acl-tools/test/acl_txt g
+$ nfs4_getfacl g
+> A::OWNER@:rwaxtTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rwatcy
+
+$ nfs4_setfacl -x "A::EVERYONE@:rwatcy" g
+$ nfs4_getfacl g
+> A::OWNER@:rwaxtTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:tcy
+
+$ nfs4_setfacl -m A::OWNER@:rwaxtTcCy  A::OWNER@:rwatTcCy g
+$ nfs4_getfacl g
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:tcy

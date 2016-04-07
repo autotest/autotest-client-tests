@@ -1,0 +1,18 @@
+Package Name	:	xorg-x11-font-utils
+Author		:	Nilesh Borate, nilesh.borate@in.ibm.com
+
+This testcase covers tests for xorg-x11-font-utils package.
+xorg-x11-font-utils includes X.Org X11 font utilities required for font installation, conversion, and generation.
+
+This testcase covers tests for commands mkfontscale, mkfontdir, fonttosfnt, ucs2any & bdftopcf.
+
+mkfontscale     - create an index of scalable font files for X
+mkfontdir     	- create an index of X font files in a directory
+fonttosfnt     	- Wrap a bitmap font in a sfnt (TrueType) wrapper
+ucs2any     	- generate BDF fonts containing subsets of ISO 10646-1 codepoints
+bdftopcf     	- convert X font from Bitmap Distribution Format to Portable Compiled Format
+
+This testcase requires few sample font files, which have been packaged and checked in along with the testcase.
+
+How to run ->
+./xorg-x11-font-utils.sh

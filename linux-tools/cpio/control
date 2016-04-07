@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer, manjo@mail.utexas.edu  " 
+NAME = "cpio" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test cpio package 
+    ''' 
+path = '' 
+job.run_test('cpio',test_path=path) 

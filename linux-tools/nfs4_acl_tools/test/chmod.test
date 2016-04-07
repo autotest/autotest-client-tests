@@ -1,0 +1,32 @@
+$ cd /NFS_PARTITION
+$ mkdir d
+$ cd d
+
+$ whoami
+> root
+
+$ touch a
+	
+Need to have write_acl permission to chmod or set the acl:
+	$ su bin
+	$ chmod 666 a
+	> chmod: changing permissions of `a': Operation not permitted
+	$ nfs4_setfacl -a 'A::daemon@domain:rw' a
+	> Failed setxattr operation: Operation not permitted
+	
+$ su
+$ nfs4_setfacl -a 'A::bin@domain:rwC' a
+	
+Can set the acl now:
+	$ su bin
+	$ nfs4_setfacl -a 'A::bin@domain:rwC' a
+	
+A chmod limits the permissions to the specified mode, which always disables
+write_acl:
+	$ chmod 666 a
+	$ nfs4_setfacl -a 'A::bin@domain:rwC' a
+	> Failed setxattr operation: Operation not permitted
+
+$ su
+$ cd ..
+$ rm -rf d

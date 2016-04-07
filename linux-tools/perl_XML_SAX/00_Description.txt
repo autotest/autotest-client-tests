@@ -1,0 +1,16 @@
+
+Description : 
+
+XML::SAX
+========
+XML::SAX consists of several framework classes for using and building
+Perl SAX2 XML parsers, filters, and drivers. It is designed around the
+need to be able to "plug in" different SAX parsers to an application
+without requiring programmer intervention.
+
+Source : http://search.cpan.org/~grantm/XML-SAX-0.99/SAX.pm
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-SAX
+run the script 
+./perl-XML-SAX.sh 

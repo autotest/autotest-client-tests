@@ -1,0 +1,29 @@
+1. cd to /opt/fiv/ltp/testcases/fivextra/pycairo/tests
+2. There are 7 manual testcases, 6 in the dir "gtk" and 1 in the dir "cairo_snippets"
+3. cd to gtk
+4. Run the tests individually , For example -- ./cairo-demo.py
+   Each test attempts to draw various types of images with python code.
+5. Each test will pop-out a window with an image. Verify the image and close the image window.
+   *cairo-demon.py -- It will display an image with some geometrical shape.
+		      Verify that the image is not distorted.
+   *cairo-knockout.py -- It will display an image with 3 partially overlapped circle of red,green and
+		      blue colour on top of a black circle which is on top of a chess-board design.
+   *hangman.py -- As the name suggests, it is an image of a pedestal where
+		  people are executed by hanging. The colour is light brown.
+   *lsystem.py -- It displays a lindenmeyer system. It is drawn by recursively
+                  designing the same shape by changing the dimensions. To visualize a
+                  lindenmeyer system , search the term in google images.
+   *png_view.py -- It just displays the file given to it as output. Run it as-
+                 ./png_view.py /opt/fiv/ltp/testcases/fivextra/pycairo/tests/cairo_snippets/data/romedalen.png
+   *text.py -- The image displayed is of the words "Hello World" inside a blue
+                rectangle
+6. cd to /opt/fiv/ltp/testcases/fivextra/pycairo/tests/cairo_snippets
+7. Run the test "snippets_gtk.py" similarly as the above tests .
+   *snippets_gtk.py -- It will display a window with three different parts.
+                 The top-half of the window has some code in it .verify that this part of the
+                 window can be scrolled. The bottom half of the window is
+                 divided into two parts (left and right). The left half of the window contains
+                 names of various geometrical shapes (eg, arc, clip, ellipse). Click on the names, 
+                 one by one and see that the shapes are displayed as images on the right side of the bottom half.
+                 Verify that the images are displayed according to the names.
+

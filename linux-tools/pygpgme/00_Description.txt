@@ -1,0 +1,10 @@
+pygpgme - A Python module for working with OpenPGP messages
+
+PyGPGME is a Python module that lets you sign, verify, encrypt and decrypt messages
+using the OpenPGP format. It is built on top of GNU Privacy Guard and
+the GPGME library. GPGME provides a high-level crypto API for
+encryption, decryption, signing, signature verification and key.
+
+How to run the tests:
+cd /opt/fiv/ltp/testcases/fivextra/pygpgme
+./pygpgme.sh

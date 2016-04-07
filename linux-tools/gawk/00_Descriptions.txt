@@ -1,0 +1,17 @@
+===============================================================================
+# TestCase       	: gawk.sh
+#
+# Description		: This program tests basic functionality of gawk
+#
+# Author		: Gaurav Saxena - gaurav.saxena@in.ibm.com
+#
+===============================================================================
+Howto:
+1) Install the gawk-tests rpm to install the tests
+2) Run gawk.sh to test this package.
+
+Test coverage:
+----------------------------------
+gawk
+----------------------------------
+

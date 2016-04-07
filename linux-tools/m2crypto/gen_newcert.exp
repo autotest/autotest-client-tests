@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+set file1 [lindex $argv 0]
+set file2 [lindex $argv 1]
+set pass [lindex $argv 2]
+
+spawn openssl ca -policy policy_anything -out $file1 -infiles $file2
+
+expect "Enter pass phrase for*:"
+send -- "$pass\r"
+expect "Sign the certificate?*:"
+send -- "y\r"
+expect "*certificate requests certified, commit?*"
+send -- "y\r"
+
+expect eof

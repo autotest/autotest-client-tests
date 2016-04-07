@@ -1,0 +1,7 @@
+cifs-utils : The cifs-utils provides a means for mounting SMB/CIFS shares on a
+Linux system. CIFS means Common Internet File System. 
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/cifs-utils
+./cifs-utils.sh

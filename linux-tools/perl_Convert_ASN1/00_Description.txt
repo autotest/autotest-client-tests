@@ -1,0 +1,6 @@
+#Convert::ASN1 encodes and decodes ASN.1 data structures using BER/DER rules.
+#
+#How to run test
+#-------------------------------------------------------------
+#cd /opt/fiv/ltp/testcases/fivextra/perl-Convert-ASN1/
+#./perl-Convert-ASN1.sh 

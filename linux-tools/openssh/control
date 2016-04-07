@@ -1,0 +1,12 @@
+AUTHOR = " Yu-Pao Lee, yplee@us.ibm.com
+sed '/AuthorizedKeysFile/ d' <$TMPBASE/sshd_config >/etc/ssh/sshd_config  " 
+NAME = "openssh" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test openssh package 
+    ''' 
+path = '' 
+job.run_test('openssh',test_path=path) 

@@ -1,0 +1,11 @@
+mtr - a network diagnostic tool, combines the functionality of the traceroute and ping programs into a single program.
+Mtr provides two interfaces: an ncurses interface, useful for using Mtr from a telnet session
+and a GTK+ interface for X.
+
+How to run the tests:
+--------------------
+1. Automated tests can be executed from the path /opt/fiv/ltp/testcases/fivextra/mtr
+# ./mtr.sh
+
+2. For manual tests to test the GTK+ interface for X , instructions are available in 
+/opt/fiv/ltp/testcases/fivextra/mtr/mtr.txt

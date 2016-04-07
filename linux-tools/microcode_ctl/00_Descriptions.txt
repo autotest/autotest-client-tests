@@ -1,0 +1,11 @@
+The Microcode_ctl utility is a companion to the IA32 microcode
+which updates the microcode on Intel x86/x86-64 CPU's
+
+The utility has two uses:
+       a) it decodes and sends new microcode to the kernel driver to be uploaded to Intel IA32 processors. (Pentium Pro, PII, Celeron, PIII, Xeon, Pentium 4, etc)
+       b) it  signals  the  kernel  driver to release the buffers containing the copy of microcode data actually applied to given CPU.
+
+HOW TO RUN
+-------------------
+cd /opt/fiv/ltp/testcases/fivextra/microcode_ctl
+./microcode_ctl.sh 

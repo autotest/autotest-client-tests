@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>                     ##  " 
+NAME = "perl_Net_SSLeay" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Net-SSLeay package 
+    ''' 
+path = '' 
+job.run_test('perl_Net_SSLeay',test_path=path) 

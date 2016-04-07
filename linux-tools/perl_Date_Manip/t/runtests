@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Usage:
+#   runtests [-T] [prefix]
+#
+# Runs all tests (or those starting with prefix),optionally in taint mode
+
+TI_MODE='inter'
+export TI_MODE
+
+TI_QUIET=2
+export TI_QUIET
+
+TI_SKIPPOD=1
+export TI_SKIPPOD
+
+if [ "$1" = "-T" ]; then
+   taint="-T -I../lib -I."
+   shift
+else
+   taint=
+fi
+
+subset=$1
+
+for test in ${subset}*.t ;do
+  perl $taint ./$test
+done

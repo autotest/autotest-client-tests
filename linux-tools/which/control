@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev<atrajeev@in.ibm.com>  " 
+NAME = "which" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test which package 
+    ''' 
+path = '' 
+job.run_test('which',test_path=path) 

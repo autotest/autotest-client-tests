@@ -1,0 +1,11 @@
+AUTHOR = " Nilesh Borate, nilesh.borate@in.ibm.com  " 
+NAME = "xorg_x11_xinit" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xorg-x11-xinit package 
+    ''' 
+path = '' 
+job.run_test('xorg_x11_xinit',test_path=path) 

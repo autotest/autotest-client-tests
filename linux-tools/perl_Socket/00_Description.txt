@@ -1,0 +1,8 @@
+Description: This module provides a variety of constants, structure manipulators and other functions related to socket-based networking. The values and functions provided are useful when used in conjunction with Perl core functions such as socket(), setsockopt() and bind().  It also provides several other support functions, mostly for dealing with conversions of network addresses between human-readable and native binary forms, and for hostname resolver operations.
+
+URL: http://search.cpan.org/dist/Socket/
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Socket
+./perl-Socket.sh

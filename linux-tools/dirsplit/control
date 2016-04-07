@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev  " 
+NAME = "dirsplit" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dirsplit package 
+    ''' 
+path = '' 
+job.run_test('dirsplit',test_path=path) 

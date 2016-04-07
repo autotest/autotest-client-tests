@@ -1,0 +1,15 @@
+perl-URI: A Perl module implementing URI parsing and manipulation.
+This module implements the URI class. Objects of this class represent
+"Uniform Resource Identifier references" as specified in RFC 2396 (and
+updated by RFC 2732).
+
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-URI/
+./perl-URI.sh
+
+Individual test execution
+------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-URI
+perl t/<test_name>.t

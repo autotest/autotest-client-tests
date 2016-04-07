@@ -1,0 +1,37 @@
+nfs4-acl-tools:
+          The testcase for automated test for nfs4-acl-tools
+usage:
+       ./nfs4-acl-tools.sh
+
+For manual tests refer
+/opt/fiv/ltp/testcases/fivextra/nfs4-acl-tools/nfs4-acl-tools.txt
+
+Note:
+----------
+
+This package contains commandline and GUI ACL utilities for the Linux
+NFSv4 client
+
+The binaries provided by package includes:
+/usr/bin/nfs4_editfacl
+/usr/bin/nfs4_getfacl
+/usr/bin/nfs4_setfacl
+
+These are to manipulate NFSv4 file/directory access control lists.
+
+nfs4_setfacl manipulates the NFSv4 Access Control List (ACL)
+of one or more files (or directories), provided
+they are on a mounted NFSv4 filesystem which supports ACLs.
+
+nfs4_editfacl is equivalent to nfs4_setfacl -e.
+This will edit the file's ACL in the editor
+defined in the EDITOR environment variable (DEFAULT: vi(1))
+and set the resulting ACL
+
+nfs4_getfacl will display the NFSv4 Access Control List (ACL)
+for file (a file or directory), provided file
+is on a mounted NFSv4 filesystem which supports ACLs.
+
+In nfs4_acl, an ACL is a list of permissions
+associated with a file or directory and
+consists of one or more Access Control Entries (ACEs)

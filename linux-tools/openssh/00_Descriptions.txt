@@ -1,0 +1,8 @@
+openssh	
+	Test the functionality of sshd.
+	Test the basic functionality of OpenSSH ssh-keygen command.
+	Test the basic functionality of scp - secure copy (remote file copy program).
+
+openssh-askpass
+        Uses ssh-add and ssh-agent to verify the password prompt is displayed
+    and accepts a password properly.

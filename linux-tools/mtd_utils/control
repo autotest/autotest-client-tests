@@ -1,0 +1,11 @@
+AUTHOR = " Gong Jie <gongjie@cn.ibm.com>  " 
+NAME = "mtd_utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test mtd-utils package 
+    ''' 
+path = '' 
+job.run_test('mtd_utils',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>                     ##  " 
+NAME = "perl_Authen_SASL" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Authen-SASL package 
+    ''' 
+path = '' 
+job.run_test('perl_Authen_SASL',test_path=path) 

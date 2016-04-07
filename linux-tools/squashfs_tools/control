@@ -1,0 +1,11 @@
+AUTHOR = " Sandesh Chopdekar, sandesh_vc@in.ibm.com  " 
+NAME = "squashfs_tools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test squashfs-tools package 
+    ''' 
+path = '' 
+job.run_test('squashfs_tools',test_path=path) 

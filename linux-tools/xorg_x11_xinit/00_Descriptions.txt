@@ -1,0 +1,12 @@
+Package Name	:	xorg-x11-xinit
+Author		:	Nilesh Borate, nilesh.borate@in.ibm.com
+
+This testcase covers tests for xorg-x11-xinit package.
+
+xinit is a X Window System initializer.
+
+The testcase starts xinit with customized parameters and further checks
+for proper Xvnc server and .xinitrc invocation.
+
+How to run ->
+./xorg-x11-xinit.sh

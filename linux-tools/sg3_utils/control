@@ -1,0 +1,11 @@
+AUTHOR = " Xie Jue <xiejue@cn.ibm.com>  " 
+NAME = "sg3_utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sg3_utils package 
+    ''' 
+path = '' 
+job.run_test('sg3_utils',test_path=path) 

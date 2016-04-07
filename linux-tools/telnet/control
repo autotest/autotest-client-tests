@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@austin.ibm.com  " 
+NAME = "telnet" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test telnet package 
+    ''' 
+path = '' 
+job.run_test('telnet',test_path=path) 

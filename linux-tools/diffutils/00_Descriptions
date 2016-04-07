@@ -1,0 +1,19 @@
+===============================================================================
+#
+# File :        diffutils.sh
+#
+# Description:  This script invokes a series of diffutils test scripts
+#
+# Author:       Shoji Sugiyama (shoji@jp.ibm.com)
+===============================================================================
+Howto:
+
+Run diffutils.sh will test this package.
+
+Test coverage:
+----------------------------------
+cmp
+diff
+diff3
+sdiff
+----------------------------------

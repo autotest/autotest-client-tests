@@ -1,0 +1,28 @@
+#!/usr/bin/expect --
+
+set file1 [lindex $argv 0]
+set country [lindex $argv 1]
+set State [lindex $argv 2]
+set city [lindex $argv 3]
+set org [lindex $argv 4]
+set orgunit [lindex $argv 5]
+set CN [lindex $argv 6]
+set email [lindex $argv 7]
+
+spawn openssl req -new -x509 -days 365 -nodes -out $file1 -keyout $file1
+
+expect "Country Name*:"
+send -- "$country\r"
+expect "State or Province Name*:"
+send -- "$State\r"
+expect "Locality Name*:"
+send -- "$city\r"
+expect "Organization Name*:"
+send -- "$org\r"
+expect "Organizational Unit Name*:"
+send -- "$orgunit\r"
+expect "Common Name*:"
+send -- "$CN\r"
+expect "Email Address*:"
+send -- "$email\r"
+expect eof

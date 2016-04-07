@@ -1,0 +1,6 @@
+libcap is a library for getting and setting POSIX.1e (formerly POSIX 6)
+draft 15 capabilities.
+
+To run the test:
+--------------------
+Run libcap.sh

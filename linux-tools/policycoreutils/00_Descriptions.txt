@@ -1,0 +1,23 @@
+policycoreutils --The policycoreutils packages contain the core utilities that are required for the basic operationof a Security-Enhanced Linux (SELinux) system and its policies. 
+
+The following binaries are tested in this test.
+** load_policy --load_policy loads the installed policy file into the kernel. The existing policy boolean values are automatically preserved across policy reloads rather than being reset to the default values in the policy file.
+
+** secon -- It shows various context of the policy.It is basically a querying tool. 
+-- output --
+[root@testp62 policycoreutils] # secon
+user: system_u
+role: system_r
+type: kernel_t
+sensitivity: s0
+clearance: s0
+mls-range: s0
+[root@testp62 policycoreutils] #
+
+** restorecond: This daemon uses inotify to watch files listed in the /etc/selinux/restorecond.conf, when they are created, this daemon will make sure they have the correct file context associated with the policy. 
+
+** semodule : semodule: semodule is the tool used to manage SELinux policy modules, including installing, upgrading, listing and removing modules.semodule may also be used to force a rebuild of policy from the module store and/or to force a reload of policy without performing any other transaction.semodule acts on module packages created by semodule_package. Conventionally, these files have a .pp suffix (policy package), although this is not mandated in any way.
+
+**  sestatus : This tool is used to get the status of a system running SELinux. It displays data about whether SELinux is enabled, disabled, the loaded policy and whether it is in enforcing or permissive mode. It can also be used to display the security context of files and processes listed in the /etc/sestatus.conf file. 
+
+**  setsebool : setsebool sets the current state of a particular SELinux boolean or a list of booleans to a given value. The value may be 1 or true or on to enable the boolean, or 0 or false or off to disable it. It can be verified by the command getsebool provided by the libselinux-utils package. 

@@ -1,0 +1,20 @@
+===============================================================================
+#
+# File :        squashfs-tools.sh
+#
+# Description:  Test squashfs-tools package
+#
+# Author:       Sandesh Chopdekar, sandesh_vc@in.ibm.com
+#
+#
+===============================================================================
+Howto:
+
+Run squashfs-tools.sh will test this package.
+
+Test coverage:
+----------------------------------
+mksquashfs
+unsquashfs
+----------------------------------
+~                                                           

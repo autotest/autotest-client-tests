@@ -1,0 +1,13 @@
+#!/usr/bin/expect -f
+
+set file1 [lindex $argv 0]
+set file2 [lindex $argv 1]
+set file3 [lindex $argv 2]
+set pass [lindex $argv 3]
+
+spawn openssl ca -create_serial -out $file1 -days 1095 -batch -keyfile $file2 -selfsign -extensions v3_ca -infiles $file3
+
+expect "Enter pass phrase for*:"
+send -- "$pass\r"
+
+expect eof

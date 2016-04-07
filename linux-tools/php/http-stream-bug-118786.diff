@@ -1,0 +1,11 @@
+--- php-tests/ext/standard/tests/network/http-stream.phpt.orig	2015-02-27 05:31:41.240089024 +0000
++++ php-tests/ext/standard/tests/network/http-stream.phpt	2015-02-27 06:37:26.900087647 +0000
+@@ -11,7 +11,7 @@ allow_url_fopen=1
+ --FILE--
+ <?php
+ $d = new DomDocument;
+-$e = $d->load("http://php.net/news.rss");
++$e = $d->load("http://test1.au.example.com/bug-118786.html");
+ echo "ALIVE\n";
+ ?>
+ --EXPECTF--

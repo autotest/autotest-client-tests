@@ -1,0 +1,8 @@
+nfs-utils.sh
+	Tests for the nfs-utils package
+
+how to run 
+	nfs-utils.sh
+
+notes
+	some commands not covered.

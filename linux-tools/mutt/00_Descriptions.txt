@@ -1,0 +1,9 @@
+mutt:
+	The testcase for routed.Automated test for mutt.
+
+usage:
+	./mutt.sh
+
+Note:
+	Very simple test that uses mutt to send emai. There is also a more
+	extensive manual test.

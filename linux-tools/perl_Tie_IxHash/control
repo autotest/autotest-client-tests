@@ -1,0 +1,11 @@
+AUTHOR = " Avinesh Kumar <avinesku at linux.vnet.ibm.com>                            ##  " 
+NAME = "perl_Tie_IxHash" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Tie-IxHash package 
+    ''' 
+path = '' 
+job.run_test('perl_Tie_IxHash',test_path=path) 

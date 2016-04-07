@@ -1,0 +1,11 @@
+AUTHOR = " Hoisaleshwara Madan V S  <madan.vsh@in.ibm.com>  " 
+NAME = "perl_Pod_Usage" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Pod-Usage package 
+    ''' 
+path = '' 
+job.run_test('perl_Pod_Usage',test_path=path) 

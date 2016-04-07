@@ -1,0 +1,15 @@
+------------------------------------------------------------------------------------------------------------
+Author          :	ldy 
+------------------------------------------------------------------------------------------------------------
+Howto           :	sysstat.sh [sar|iostat]
+------------------------------------------------------------------------------------------------------------
+Evaluation      :	1. sysstat.sh 
+			Tests the sysstat package, including sar service, sadc, sar, iostat, mpstat and sadf. 
+			2. sysstat.sh sar
+			Tests the sar package, including sar service, sadc and sar.
+    			3. sysstat.sh iostat
+			Tests the iostat package, including iostat.
+------------------------------------------------------------------------------------------------------------
+Notes           :	sar and iostat are subpackages of package sysstat. 
+			isag must be tested manully.    
+------------------------------------------------------------------------------------------------------------

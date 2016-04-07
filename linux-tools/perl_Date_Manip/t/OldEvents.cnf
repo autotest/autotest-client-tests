@@ -1,0 +1,37 @@
+################################
+# EVENTS
+################################
+*EVENTS
+
+# These are events that occur over a range of time.  Useful for scheduling
+# or calendar applications.
+
+# Forms include
+#  date          = event  # Sets an event lasting 1 day or 1 hour (if no time)
+
+2000-02-01               = Event1
+2000-05-01               = Event2
+2000-04-01-12:00:00      = Event3
+
+#  recur         = event  # Sets a recurring event lasting 1 day or 1 hour
+
+1*01:0:10:0:0:0          = Recurring event 1 day long
+1*02:0:10:12:0:0         = Recurring event 1 hour long
+
+#  date0 ; date1 = event  # Sets an event lasting from date0 to date1 inclusive
+#                           (i.e. if date1 doesn't contain a a time, it ends at
+#                           midnight of that date)
+
+2000-01-01 ; 2000-03-21  = Winter
+2000-03-22 ; 2000-06-21  = Spring
+2000-06-22 ; 2000-09-21  = Summer
+2000-09-22 ; 2000-12-21  = Fall
+2000-12-22 ; 2000-12-31  = Winter
+
+#  recur ; delta = event  # Sets an event of this duration
+
+1*03:0:10:12:0:0 ; 0:0:0:0:2:30:0 = Recurring event 2:30 long
+
+# Local Variables:
+# indent-tabs-mode: nil
+# End:

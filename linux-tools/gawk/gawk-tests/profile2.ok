@@ -1,0 +1,170 @@
+	# BEGIN block(s)
+
+	BEGIN {
+     1  	if (sortcmd == "") {
+			sortcmd = "sort"
+		}
+     1  	asplit("BEGIN:END:atan2:break:close:continue:cos:delete:" "do:else:exit:exp:for:getline:gsub:if:in:index:int:" "length:log:match:next:print:printf:rand:return:sin:" "split:sprintf:sqrt:srand:sub:substr:system:while", keywords, ":")
+     1  	split("00:00:00:00:00:00:00:00:00:00:" "20:10:10:12:12:11:07:00:00:00:" "08:08:08:08:08:33:08:00:00:00:" "08:44:08:36:08:08:08:00:00:00:" "08:44:45:42:42:41:08", machine, ":")
+     1  	state = 1
+   571  	for (; ; ) {
+   571  		symb = lex()
+   571  		nextstate = substr(machine[state symb], 1, 1)
+   571  		act = substr(machine[state symb], 2, 1)
+   571  		if (act == "0") { # 12
+   559  		} else {
+   559  			if (act == "1") { # 8
+     8  				if (! inarray(tok, names)) { # 3
+     3  					names[++nnames] = tok
+					}
+     8  				lines[tok, ++xnames[tok]] = NR
+   551  			} else {
+   551  				if (act == "2") { # 426
+   426  					if (tok in local) { # 309
+   309  						tok = tok "(" funcname ")"
+   309  						if (! inarray(tok, names)) { # 22
+    22  							names[++nnames] = tok
+							}
+   309  						lines[tok, ++xnames[tok]] = NR
+   117  					} else {
+   117  						tok = tok "()"
+   117  						if (! inarray(tok, names)) { # 22
+    22  							names[++nnames] = tok
+							}
+   117  						lines[tok, ++xnames[tok]] = NR
+						}
+   125  				} else {
+   125  					if (act == "3") { # 4
+     4  						funcname = tok
+     4  						flines[tok] = NR
+   121  					} else {
+   121  						if (act == "4") { # 49
+    49  							braces++
+    72  						} else {
+    72  							if (act == "5") { # 49
+    49  								braces--
+    49  								if (braces == 0) { # 4
+    22  									for (temp in local) {
+    22  										delete local[temp]
+										}
+     4  									funcname = ""
+     4  									nextstate = 1
+									}
+    23  							} else {
+    23  								if (act == "6") { # 22
+    22  									local[tok] = 1
+     1  								} else {
+     1  									if (act == "7") { # 1
+     1  										break
+										} else {
+											if (act == "8") {
+												print("error: xref.awk: line " NR ": aborting") > "/dev/con"
+												exit 1
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+   570  		state = nextstate
+		}
+    47  	for (i = 1; i <= nnames; i++) {
+    47  		printf("%d ", xnames[names[i]]) | sortcmd
+    47  		if (index(names[i], "(") == 0) { # 3
+     3  			printf("%s(%d)", names[i], flines[names[i]]) | sortcmd
+    44  		} else {
+    44  			printf("%s", names[i]) | sortcmd
+			}
+   434  		for (j = 1; j <= xnames[names[i]]; j++) {
+   434  			if (lines[names[i], j] != lines[names[i], j - 1]) { # 390
+   390  				printf(" %d", lines[names[i], j]) | sortcmd
+				}
+			}
+    47  		printf("\n") | sortcmd
+		}
+     1  	close(sortcmd)
+	}
+
+
+	# Functions, listed alphabetically
+
+     1  function asplit(str, arr, fs, n)
+	{
+     1  	n = split(str, temp_asplit, fs)
+    36  	for (i = 1; i <= n; i++) {
+    36  		arr[temp_asplit[i]]++
+		}
+	}
+
+   434  function inarray(val, arr, j, tmp)
+	{
+ 16297  	for (j in arr) {
+ 16297  		tmp[arr[j]]++
+		}
+   434  	return (val in tmp)
+	}
+
+   571  function lex()
+	{
+  1702  	for (; ; ) {
+  1702  		if (tok == "(eof)") {
+				return 7
+			}
+   326  		while (length(line) == 0) {
+   326  			if ((getline line) == 0) { # 1
+     1  				tok = "(eof)"
+     1  				return 7
+				}
+			}
+  1701  		sub(/^[ \t]+/, "", line)
+  1701  		sub(/^"([^"]|\\")*"/, "", line)
+  1701  		sub(/^\/([^\/]|\\\/)+\//, "", line)
+  1701  		sub(/^#.*/, "", line)
+  1701  		if (line ~ /^function/) { # 4
+     4  			tok = "function"
+     4  			line = substr(line, 9)
+     4  			return 1
+  1697  		} else {
+  1697  			if (line ~ /^{/) { # 53
+    53  				tok = "{"
+    53  				line = substr(line, 2)
+    53  				return 2
+  1644  			} else {
+  1644  				if (line ~ /^}/) { # 53
+    53  					tok = "}"
+    53  					line = substr(line, 2)
+    53  					return 3
+  1591  				} else {
+  1591  					if (match(line, /^[[:alpha:]_][[:alnum:]]*\[/)) { # 43
+    43  						tok = substr(line, 1, RLENGTH - 1)
+    43  						line = substr(line, RLENGTH + 1)
+    43  						return 5
+  1548  					} else {
+  1548  						if (match(line, /^[[:alpha:]_][[:alnum:]]*\(/)) { # 87
+    87  							tok = substr(line, 1, RLENGTH - 1)
+    87  							line = substr(line, RLENGTH + 1)
+    87  							if (! (tok in keywords)) { # 12
+    12  								return 6
+								}
+  1461  						} else {
+  1461  							if (match(line, /^[[:alpha:]_][[:alnum:]]*/)) { # 525
+   525  								tok = substr(line, 1, RLENGTH)
+   525  								line = substr(line, RLENGTH + 1)
+   525  								if (! (tok in keywords)) { # 405
+   405  									return 4
+									}
+   936  							} else {
+   936  								match(line, /^[^[:alpha:]_{}]/)
+   936  								tok = substr(line, 1, RLENGTH)
+   936  								line = substr(line, RLENGTH + 1)
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}

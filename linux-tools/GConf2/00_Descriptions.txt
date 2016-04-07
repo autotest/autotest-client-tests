@@ -1,0 +1,19 @@
+===============================================================================
+#TestCase        : gconf.sh
+#
+# Description: This program tests basic functionality of gconftool
+#
+# Author:      Poornima Nayak - mpnayak@linux.vnet.ibm.com
+#
+===============================================================================
+About package:
+Gconf is Gnome configuration tool. GConf includes a command line tool,
+gconftool-2. You can use the gconftool–2 & gconf-merge-tree.
+
+Howto:
+1) Execute ./gconf.sh
+
+Test coverage:
+--------------------------------
+GConf2
+--------------------------------

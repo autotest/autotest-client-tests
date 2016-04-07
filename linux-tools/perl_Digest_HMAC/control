@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##  " 
+NAME = "perl_Digest_HMAC" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Digest-HMAC package 
+    ''' 
+path = '' 
+job.run_test('perl_Digest_HMAC',test_path=path) 

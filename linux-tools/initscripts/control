@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "initscripts" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test initscripts package 
+    ''' 
+path = '' 
+job.run_test('initscripts',test_path=path) 

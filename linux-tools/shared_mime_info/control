@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##  " 
+NAME = "shared_mime_info" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test shared-mime-info package 
+    ''' 
+path = '' 
+job.run_test('shared_mime_info',test_path=path) 

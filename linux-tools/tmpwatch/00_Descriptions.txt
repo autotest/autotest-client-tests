@@ -1,0 +1,20 @@
+tmpwatch is a handy tool for administrators to delete unwanted files
+automatically by checking their timestamp, which could be access time
+(default), modification time or change time.
+
+http://linux.die.net/man/8/tmpwatch
+
+Along with other fancy options, there are two useful options
+  "--fuser" - to remove file only after checking with fuser command.
+  "--exclude-user" - do not remove files owned by this user.
+
+FIV test design is to
+1. delete a dir once its access time is more than a minute now.
+2. delete a dir once its modification time is more than a minute now.
+3. delete a dir once its change time is more than a minute now.
+   FYI, change time is reflected when file inode is undergoing change
+   in its meta data like permission mode.
+4. delete a dir by checking along with fuser.
+5. delete a dir by checking along with exclude-user.
+
+To run tests: ./tmpwatch.sh

@@ -1,0 +1,4 @@
+tests/classes/bug63462.phpt
+tests/security/open_basedir_linkinfo.phpt
+ext/standard/tests/math/bug45712.phpt
+ext/standard/tests/general_functions/bug60723.phpt

@@ -1,0 +1,5 @@
+apache2:
+	The testcase for apache2.	
+
+usage:
+	apache2.sh 	test httpd event, prefork & worker, apache perl module & php modules

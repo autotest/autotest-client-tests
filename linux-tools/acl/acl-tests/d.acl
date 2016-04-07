@@ -1,0 +1,24 @@
+# file: d
+# owner: root
+# group: root
+# flags: --t
+user::rwx
+group::r-x
+other::r-x
+
+# file: d/g
+# owner: root
+# group: root
+# flags: -s-
+user::rw-
+group::r--
+other::r--
+
+# file: d/u
+# owner: root
+# group: root
+# flags: s--
+user::rw-
+group::r--
+other::r--
+

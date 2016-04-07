@@ -1,0 +1,11 @@
+AUTHOR = " Mithu Ganesan miganesa@in.ibm.com  " 
+NAME = "ed" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ed package 
+    ''' 
+path = '' 
+job.run_test('ed',test_path=path) 

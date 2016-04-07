@@ -1,0 +1,313 @@
+XREF(AWK)                   Philip L. Bewig                   XREF(AWK)
+
+NAME
+
+        xref(awk) - produce a cross reference listing of an awk program
+
+SYNOPSIS
+
+        awk -f xref.awk [ file ... ]
+
+DESCRIPTION
+
+        XREF(AWK) takes as input a valid awk program and produces as out-
+        put a cross-reference listing of all variables and function calls
+        which appear in the program.
+
+        For ordinary variables and array variables, a line of the form
+
+                count var(func) lines ...
+
+        is produced, where "count" is the number of times the variable is
+        used, "var" is the name of the variable, "func" is the function
+        name to which the variable is local (a null "func" indicates that
+        the variable is global), and "lines" is the number of each line
+        where the variable appears.  Appearances of the variable in a
+        function's parameter list are ignored.  The number of lines shown
+        may differ from "count" if the variable appears more than once on
+        the same line.
+
+        For functions, a line of the form
+
+                count func(define) lines ...
+
+        is produced, where "count" is the number of times the function is
+        called, "func" is the name of the function, "define" is the lime
+        number where the function is defined, and "lines" is the number of
+        each line where the function is called.  As for variables, the
+        number of lines shown may differ from "count."
+
+        Output lines for variables and functions are intermixed and are
+        sorted by name.  Though terse, the output is informative, easy to
+        read, and amenable to further processing.
+
+EXAMPLE
+
+        The cross-reference listing produced by running xref.awk against
+        itself is shown below:
+
+                5 NR() 39 45 50 53 68
+                8 RLENGTH() 119 120 123 124 127 128 132 133
+                10 act() 31 34 36 40 51 54 56 63 65 67
+                1 arr(asplit) 90
+                2 arr(inarray) 93 94
+                1 asplit(89) 6
+                3 braces() 55 57 58
+                2 flines() 53 79
+                1 fs(asplit) 89
+                3 funcname() 42 52 61
+                16 i() 76 77 78 79 81 82 83 84 90
+                3 inarray(92) 37 43 48
+                6 j() 82 83 84
+                3 j(inarray) 93 94
+                3 keywords() 10 125 129
+                1 lex(97) 29
+                31 line() 103 104 107 108 109 110 112 113 114 115 116 117 118
+                        119 120 122 123 124 126 127 128 131 132 133
+                6 lines() 39 45 50 83 84
+                4 local() 41 59 60 64
+                3 machine() 17 30 31
+                2 n(asplit) 89 90
+                15 names() 37 38 43 44 48 49 77 78 79 81 82 83 84
+                3 nextstate() 30 62 73
+                4 nnames() 38 44 49 76
+                4 state() 23 30 31 73
+                1 str(asplit) 89
+                3 symb() 29 30 31
+                2 temp() 59 60
+                2 temp_asplit() 89 90
+                31 tok() 37 38 39 41 42 43 44 45 47 48 49 50 52 53 64 101 105
+                        113 115 117 119 123 125 127 129 132
+                1 val(inarray) 94
+                5 xnames() 39 45 50 77 82
+
+        For readability, some lines have been folded.
+
+SOURCE CODE
+
+        # xref.awk - cross reference an awk program
+
+        BEGIN {
+
+                # create array of keywords to be ignored by lexer
+                asplit("BEGIN:END:atan2:break:close:continue:cos:delete:" \
+                        "do:else:exit:exp:for:getline:gsub:if:in:index:int:"  \
+                        "length:log:match:next:print:printf:rand:return:sin:" \
+                        "split:sprintf:sqrt:srand:sub:substr:system:while",
+                        keywords,":")
+
+                # build the symbol-state table
+                split("00:00:00:00:00:00:00:00:00:00:" \
+                          "20:10:10:12:12:11:07:00:00:00:" \
+                          "08:08:08:08:08:33:08:00:00:00:" \
+                          "08:44:08:36:08:08:08:00:00:00:" \
+                          "08:44:45:42:42:41:08",machine,":")
+
+                # parse the input and store an intermediate representation
+                # of the cross-reference information
+
+                # set up the machine
+                state = 1
+
+                # run the machine
+                for (;;) {
+
+                        # get next symbol
+                        symb = lex()
+                        nextstate = substr(machine[state symb],1,1)
+                        act = substr(machine[state symb],2,1)
+
+                        # perform required action
+                        if ( act == "0" )
+                                ; # do nothing
+                        else if ( act == "1" ) {
+                                if ( ! inarray(tok,names) )
+                                        names[++nnames] = tok
+                                lines[tok,++xnames[tok]] = NR }
+                        else if ( act == "2" ) {
+                                if ( tok in local ) {
+                                        tok = tok "(" funcname ")"
+                                        if ( ! inarray(tok,names) )
+                                                names[++nnames] = tok
+                                        lines[tok,++xnames[tok]] = NR }
+                                else {
+                                        tok = tok "()"
+                                        if ( ! inarray(tok,names) )
+                                                names[++nnames] = tok
+                                        lines[tok,++xnames[tok]] = NR } }
+                        else if ( act == "3" ) {
+                                funcname = tok
+                                flines[tok] = NR }
+                        else if ( act == "4" )
+                                braces++
+                        else if ( act == "5" ) {
+                                braces--
+                                if ( braces == 0 ) {
+                                        for ( temp in local )
+                                                delete local[temp]
+                                        funcname = ""
+                                        nextstate = 1 } }
+                        else if ( act == "6" ) {
+                                local[tok] = 1 }
+                        else if ( act == "7" )
+                                break
+                        else if ( act == "8" ) {
+                                print "error: xref.awk: line " NR ": aborting" \
+                                        > "/dev/con"
+                                exit 1 }
+
+                        # finished with current token
+                        state = nextstate }
+
+                # finished parsing, now ready to print output
+                for ( i = 1; i <= nnames; i++ ) {
+                        printf "%d ", xnames[names[i]] |"sort +1"
+                        if ( index(names[i],"(") == 0 )
+                                printf "%s(%d)", names[i], flines[names[i]] |"sort +1"
+                        else
+                                printf "%s", names[i] |"sort +1"
+                        for ( j = 1; j <= xnames[names[i]]; j++ )
+                                if ( lines[names[i],j] != lines[names[i],j-1] )
+                                        printf " %d", lines[names[i],j] |"sort +1"
+                        printf "\n" |"sort +1" }
+
+                } # END OF PROGRAM
+
+        function asplit(str,arr,fs,  n) { n = split(str,temp_asplit,fs)
+                for ( i = 1; i <= n; i++ ) arr[temp_asplit[i]]++ }
+
+        function inarray(val,arr,  j) {
+            for ( j in arr )
+                if ( arr[j] == val ) return j
+            return "" }
+
+        function lex() {
+
+                for (;;) {
+
+                        if ( tok == "(eof)" ) return 7
+
+                        while ( length(line) == 0 )
+                                if ( getline line == 0 ) {
+                                        tok = "(eof)"; return 7 }
+
+                        sub(/^[ \t]+/,"",line)                                # remove white space,
+                        sub(/^"([^"]|\\")*"/,"",line)             # quoted strings,
+                        sub(/^\/([^\/]|\\\/)+\//,"",line)     # regular expressions,
+                        sub(/^#.*/,"",line)                                   # and comments
+
+                        if ( line ~ /^function/ ) {
+                                tok = "function"; line = substr(line,9); return 1 }
+                        else if ( line ~ /^{/ ) {
+                                tok = "{"; line = substr(line,2); return 2 }
+                        else if ( line ~ /^}/ ) {
+                                tok = "}"; line = substr(line,2); return 3 }
+                        else if ( match(line,/^[A-Za-z_][A-Za-z_0-9]*\[/) ) {
+                                tok = substr(line,1,RLENGTH-1)
+                                line = substr(line,RLENGTH+1)
+                                return 5 }
+                        else if ( match(line,/^[A-Za-z_][A-Za-z_0-9]*\(/) ) {
+                                tok = substr(line,1,RLENGTH-1)
+                                line = substr(line,RLENGTH+1)
+                                if ( ! ( tok in keywords ) ) return 6 }
+                        else if ( match(line,/^[A-Za-z_][A-Za-z_0-9]*/) ) {
+                                tok = substr(line,1,RLENGTH)
+                                line = substr(line,RLENGTH+1)
+                                if ( ! ( tok in keywords ) ) return 4 }
+                        else {
+                                match(line,/^[^A-Za-z_{}]/)
+                                tok = substr(line,1,RLENGTH)
+                                line = substr(line,RLENGTH+1) } } }
+
+TECHNICAL DISCUSSION
+
+        Broadly, XREF(AWK) parses an awk program using a symbol-state
+        table, in much the same way as a yacc-generated parser.  The
+        lexical analyzer recognizes seven distinct symbols:  the word
+        "function", the left brace, the right brace, identifiers used
+        as variables, identifiers used as arrays, identifiers used as
+        functions, and end of file.  The type of symbol is returned to
+        the parser as the value of the "lex" function, and the global
+        variable "tok" is set to the text of the current token.
+
+        The symbol-state table is stored in the "machine" array.  The
+        table can be represented as follows:
+
+                       symbol |     1       2  3   4     5     6     7
+                              |
+        state                 | "function"  {  }  var  array  func  eof
+        -- -- -- -- -- -- -- -+- -- -- -- -- -- -- -- -- -- -- -- -- --
+        1 any                 |     20     10  10  12    12    11   07
+        2 "function"          |     08     08  08  08    08    33   08
+        3 "function" name     |     08     44  08  36    08    08   08
+        4 "function" name "{" |     08     44  45  42    42    41   08
+
+        where the first digit is the state to be entered after process-
+        ing the current token and the second digit is an action to be
+        performed.  The actions are listed below:
+
+                1       found a function call
+                2       found a variable or array
+                3       found a function definition
+                4       found a left brace
+                5       found a right brace
+                6       found a local variable declaration
+                7       found end of file
+                8       found an error
+
+        Each of the first six actions causes some information about the
+        target program to be stored for later processing; the structures
+        used will be discussed below.  The seventh action causes the
+        parser to exit.  The eighth action causes errors to be reported
+        to standard error and the program to abort.
+
+        Before describing the intermediate data structures, we will
+        discuss some of the more interesting points in the action calls.
+        The "braces" variable keeps track of whether we are currently
+        within a functions; it is positive within a function and zero
+        without.  When the right brace which causes the value of "braces"
+        to go from one to zero is found, the value of "nextstate" is
+        changed from four (scanning a function) to one (any) and the
+        names of local variables are forgotten.  The "local" array is
+        accumulated from the variables found after the function name but
+        before the opening left brace of the function; action two care-
+        fully checks whether a variable is global or local before writing
+        to the intermediate data structure.  The variable "funcname" is
+        the name of the current function when within a function and null
+        without.
+
+        The following arrays store an intermediate representation of the
+        variable and function identifiers of the target program:
+
+                names[1..nnames] = list of all identifiers, both variable and
+                        function names; for variables, the name has the form
+                        var(func), but for functions, there are no parentheses
+
+                xnames[names[i]] = number of times names[i] is used
+
+                lines[names[i],1..xnames[names[i]]] = list of line numbers
+                        where names[i] is used
+
+                flines[names[i]] = line number where function names[i] is
+                        defined
+
+        These arrays are created as the parser reads the input; when the
+        parser is finished, the arrays are output in user-readable form.
+
+PORTABILITY
+
+        XREF(AWK) will work with any implementation of nawk.  The MKS
+        ToolKit implementation requires the large-model version of awk.
+
+HISTORY
+
+        Written by Phil Bewig on February 10, 1990.  Inspired by
+        Exercise 3-16 of the book "The Awk Programming Language" by
+        Alfred V. Aho, Brian W. Kernighan and Peter J. Weinberger
+        (Addison-Wesley:  1988).
+
+COPYRIGHT
+
+        This program is placed in the public domain.  However, the
+        author requests credit when distributed. 
+

@@ -1,0 +1,19 @@
+Pexpect is a pure Python module that makes Python a better tool for controlling and automating other programs.
+Pexpect is similar to the Don Libes `Expect` system, but Pexpect as a different interface that is easier to understand.
+ Pexpect is basically a pattern matching system. It runs programs and watches output.
+When output matches a given pattern Pexpect can respond as if a human were typing responses.
+Pexpect can be used for automation, testing, and screen scraping.
+Pexpect can be used for automating interactive console applications such as ssh, ftp, passwd, telnet, etc.
+
+Modules provided by pexpect:
+pexpect - The main module
+pxssh - Pexpect SSH is an extension of 'pexpect.spawn' that specializes in SSH.
+fdpexpect - fdpexpect extension of 'pexpect.spawn' that uses an open file descriptor.
+          You can pass it any file descriptor and use pexpect commands to
+           match output from your fd.
+screen - This represents a virtual 'screen'.
+ANSI - This parses ANSI/VT-100 terminal escape codes.
+FSM - This is a finite state machine used by ANSI. 
+
+Usage:
+pexpect:	./pexpect.sh

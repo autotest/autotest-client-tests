@@ -1,0 +1,48 @@
+#
+# slapd config -- for perl-ldap testing
+#
+
+# load schema files
+include $SLAPD_SCHEMA_DIR/core.schema
+include $SLAPD_SCHEMA_DIR/cosine.schema
+include $SLAPD_SCHEMA_DIR/inetorgperson.schema
+include $SLAPD_SCHEMA_DIR/openldap.schema
+
+# get required dynmaic modules
+#modulepath     $SLAPD_MODULE_DIR
+#moduleload     back_$SLAPD_DB
+#moduleload	sssvlv
+
+# PID & args file
+pidfile         $TESTDB/slapd.pid
+argsfile        $TESTDB/slapd.args
+
+# TLS info
+TLSCertificateFile    ./data/cert.pem
+TLSCertificateKeyFile ./data/key.pem
+
+#password-hash   {CLEARTEXT}
+
+# SASL info
+#sasl-host localhost
+#sasl-realm testing
+#sasl-secprops passcred
+#sasl-secprops noanonymous
+sasl-secprops none
+sasl-regexp "uid=(.*),cn=.*,cn=auth" "cn=$1,o=University of Michigan,c=US"
+
+
+#######################################################################
+# database definitions
+#######################################################################
+
+database	$SLAPD_DB
+suffix		"$BASEDN"
+directory	$TESTDB
+
+rootdn		"$MANAGERDN"
+rootpw		$PASSWD
+
+overlay		sssvlv
+
+# EOF

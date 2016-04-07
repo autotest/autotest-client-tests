@@ -1,0 +1,11 @@
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
+NAME = "ncftp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ncftp package 
+    ''' 
+path = '' 
+job.run_test('ncftp',test_path=path) 

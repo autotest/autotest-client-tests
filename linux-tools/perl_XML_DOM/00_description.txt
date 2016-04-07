@@ -1,0 +1,14 @@
+XML::DOM - A perl module for building DOM Level 1 compliant document structures
+
+This is a Perl extension to XML::Parser. It adds a new 'Style' to XML::Parser,
+called 'Dom', that allows XML::Parser to build an Object Oriented data structure
+with a DOM Level 1 compliant interface.
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-DOM
+./perl-XML-DOM.sh	
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-DOM
+perl t/<test.t>

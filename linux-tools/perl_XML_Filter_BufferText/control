@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "perl_XML_Filter_BufferText" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-XML-Filter-BufferText package 
+    ''' 
+path = '' 
+job.run_test('perl_XML_Filter_BufferText',test_path=path) 

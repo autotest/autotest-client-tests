@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "nss_pam_ldapd" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test nss-pam-ldapd package 
+    ''' 
+path = '' 
+job.run_test('nss_pam_ldapd',test_path=path) 

@@ -1,0 +1,100 @@
+GnuTLS is a portable ANSI C based library which implements the protocols
+ranging from SSL 3.0 to TLS 1.2 accompanied with the required framework
+for authentication and public key infrastructure.
+
+The GnuTLS library consists of three independent parts, namely the “TLS
+protocol part”, the “Certificate part”, and the “Cryptographic back-end”
+part. The “TLS protocol part” is the actual protocol implementation, and
+is entirely implemented within the GnuTLS library. The “Certificate
+part” consists of the certificate parsing, and verification functions
+and it uses functionality from the libtasn1(1) library. The “Cryptogra-
+phic back-end” is provided by the nettle(2) library.
+
+There are command line tools available to make use of library APIs
+for verifying/generating certificates. Hence, instead of doing unit
+testing on TLS library apis, we will test using gnutls-utils package
+(certtool, gnutls-cli and gnutls-serv).
+
+To test certtool
+
+1. To generate parameters for DH exchange
+certtool --generate-dh-params --outfile dh.pem
+certtool --get-dh-params --infile dh.pem
+
+2. To generate private key for RSA exchange
+certtool --generate-privkey --bits 512 --outfile key.pem
+
+3. To generate self-signed certificate
+certtool --generate-privkey --outfile ca-key.pem
+certtool --generate-self-signed --load-privkey ca-key.pem \
+--outfile ca-cert.pem
+
+4. To generate certificate
+certtool --generate-certificate --load-privkey key.pem \
+--outfile cert.pem --load-ca-certificate ca-cert.pem \
+--load-ca-privkey ca-key.pem
+
+5. To generate certificate using request
+certtool --generate-request --load-privkey key.pem \
+--outfile request.pem
+
+certtool --generate-certificate --load-request request.pem \
+--load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem \
+--outfile cert.pem
+
+6. To generate a PKCS #12 structure using previous key and certificate
+certtool --load-certificate cert.pem --load-privkey key.pem \
+--to-p12 --outder --outfile key.p12
+
+certtool --p12-info --infile key.p12
+
+7. To view certificate information
+certtool --certificate-info --infile cert.pem
+
+Use --template option to non-interactively feed certificate information.
+
+To start gnutls-serv to listen for incoming TLC connections
+gnutls-serv --http
+
+But we start gnutls-serv with x509, openPGP and PSK supports and
+hence verify if all are enabled using gnutls-cli-debug tool.
+
+gnutls-serv --http \
+--x509keyfile x509-server-key.pem \
+--x509cafile x509-ca.pem \
+--x509certfile x509-server.pem
+
+To generate x509keyfile, refer section (2) in certtool test.
+To generate x509cafile, refer section (3) in certtool test.
+To generate x509certfile, refer section (4) in certtool test.
+
+Create x509-client-key.pem and x509-client.pem using section (2) and
+(4) of certtest tests. To be able to import the client key/cert-
+ificate, we need to convert them into a PKCS#12 structure as done in
+Section (6) of certtool tests.
+
+gnutls-serv --http \
+--pgpkeyfile openpgp-server-key.txt \
+--pgpcertfile openpgp-server.txt
+
+pgpkeyfile and pgpcertfile are created using gpg tool.
+
+gnutls-serv --http \
+--pskpasswd psk-passwd.txt
+
+psktool can be used to create psk-passwd file.
+
+Connect gnutls-cli-debug to gnutls-serv (listening on 5556 port) to
+extract the current configuration/support and validate the data.
+
+gnutls-cli-debug localhost -p 5556 -v
+
+I also planned to include LDAP Integration scenario with TLS, but /
+RHEL does not use LDAP with TLS, but SSL. Hence I am dropping it.
+
+$# ldd /usr/sbin/slapd | egrep '(tls|ssl)'
+libssl3.so => /usr/lib64/libssl3.so (0x00007f6e37a45000)
+
+While checking packages relying on gnutls library, tools like vnc, libvirtd,
+lp/cups use it. Hence, having integration check with these tools as well
+make the FIV robust (TODO).

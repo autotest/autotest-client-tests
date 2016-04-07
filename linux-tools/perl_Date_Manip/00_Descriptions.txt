@@ -1,0 +1,16 @@
+perl-Date-Manip package provides series of modules designed to make any common
+date/time operation easy to do. Operations such as comparing two times,
+determining a data a given amount of time from another, or parsing
+international times are all easily done. It deals with time as it is used in
+the Gregorian calendar (the one currently in use) with full support for time
+changes due to daylight saving time.
+
+For more info: http://search.cpan.org/~sbeck/Date-Manip-6.30/lib/Date/Manip.pod
+
+How to run the test:
+--------------------
+Run the wrapper script perl-Date-Manip.sh
+to run all the tests.
+You can also run a single test inside the test dir by
+perl <name>.t
+

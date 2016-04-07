@@ -1,0 +1,69 @@
+################################
+# CONFIG VARIABLES
+################################
+# See Date::Manip::Config man page for a description of all
+# config variables.
+
+EraseHolidays           = 1
+EraseEvents             = 1
+Language                = English
+DateFormat              = US
+#TZ                     = America/New_York
+WorkWeekBeg             = 1
+WorkWeekEnd             = 5
+WorkDay24Hr             = 0
+WorkDayBeg              = 08:00
+WorkDayEnd              = 17:00
+YYtoYYYY                = 89
+FirstDay                = 1
+Jan1Week1               = 0
+Printable               = 0
+TomorrowFirst           = 1
+#ForceDate              =
+RecurRange              = none
+DefaultTime             = midnight
+
+################################
+# HOLIDAYS
+################################
+# See the Date::Manip::Holidays man page for a description of
+# this section.
+*HOLIDAYS
+
+# FEDERAL HOLIDAYS
+##################
+
+# Jan 1                         = New Year's Day
+1*1:0:1:0:0:0*DWD               = New Year's Day
+
+third Monday in Jan             = Martin Luther King Jr.'s Birthday
+
+# Observed by federal employees in Washington D.C.
+# Jan 20                        = Inauguration day
+
+third Monday in Feb             = Washington's Birthday
+
+last Monday in May              = Memorial Day
+
+# Jul 4                         = Independence Day
+1*7:0:4:0:0:0*DWD               = Independence Day
+
+1st Monday in Sep               = Labor Day
+
+second Monday in Oct            = Columbus Day
+
+# 11/11                         = Veterans Day
+1*11:0:11:0:0:0*DWD             = Veteran's Day
+
+fourth Thu in Nov               = Thanksgiving
+1*11:4:4:0:0:0*FD1              =
+
+# Dec 25                        = Christmas
+1*12:0:25:0:0:0*DWD             = Christmas
+
+# TEST HOLIDAYS
+##################
+
+6/2/1999                        = A special test holiday for 1999
+1*2:0:1:0:0:0***Jan 1 1950*Dec 31 1952 = Feb 2 from 1950-1952
+

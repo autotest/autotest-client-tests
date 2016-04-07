@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev<atrajeev@in.ibm.com>  " 
+NAME = "pexpect_test" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pexpect package 
+    ''' 
+path = '' 
+job.run_test('pexpect_test',test_path=path) 

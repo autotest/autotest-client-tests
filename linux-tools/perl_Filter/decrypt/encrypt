@@ -1,0 +1,71 @@
+
+require 5.002 ;
+
+use strict;
+use warnings;
+
+use vars qw($XOR $BLOCKSIZE $HEADERSIZE $CRYPT_MAGIC_1 $CRYPT_MAGIC_2
+	    $size $mode $line $Fingerprint $file $block
+	   ) ;
+
+$XOR	 	= 'Perl' ;
+$BLOCKSIZE       = length $XOR ;
+$HEADERSIZE      = 2 ;
+$CRYPT_MAGIC_1   = 0xff ;
+$CRYPT_MAGIC_2   = 0x00 ;
+
+$Fingerprint     = pack ("C*", $CRYPT_MAGIC_1, $CRYPT_MAGIC_2) ;
+
+die "Usage: encrypt file...\n"
+  unless @ARGV ;
+
+# Loop throught each file in turn.
+foreach $file (@ARGV)
+{
+
+    if (! -T $file)
+    {
+	print "Skipping directory $file\n" if -d $file ;
+	print "Skipping non-text $file\n" if ! -d $file ;
+	next ;
+    }
+
+    open (F, "<$file") or die "Cannot open $file: $!\n" ;
+    open (O, ">${file}.pe") or die "Cannot open ${file}.pe: $!\n" ;
+    binmode O;
+
+    # Get the mode
+    $mode = (stat F)[2] ;
+
+    # Check for "#!perl" line
+    $line = <F> ;
+
+    if ( $line =~ /^#!/ ) 
+      { print O $line }
+    else
+      { seek F, 0, 0 }
+    
+    print O "use Filter::decrypt ;\n" ;
+    print O $Fingerprint ;
+
+
+    $block = '';
+    while ($size = read(F, $block, $BLOCKSIZE) )
+    {
+        print O ($block ^ substr($XOR, 0, length $block)) ;
+    }
+
+    close F ;
+    close O ;
+
+    unlink ($file) 
+	or die "Could not remove '$file': $!\n" ;
+
+    rename ("${file}.pe", $file) 
+	or die "Could not rename $file.pe to $file: $!\n" ;
+
+    chmod $mode, $file unless $^O eq 'MSWin32' ;
+
+    print "encrypted $file\n" ;
+}
+

@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev  " 
+NAME = "sendmail" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sendmail package 
+    ''' 
+path = '' 
+job.run_test('sendmail',test_path=path) 

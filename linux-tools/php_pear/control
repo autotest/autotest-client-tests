@@ -1,0 +1,11 @@
+AUTHOR = " Yan Li - liyanbj@cn.ibm.com  " 
+NAME = "php_pear" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test php-pear package 
+    ''' 
+path = '' 
+job.run_test('php_pear',test_path=path) 

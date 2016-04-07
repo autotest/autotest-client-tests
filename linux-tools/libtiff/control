@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@austin.ibm.com  " 
+NAME = "libtiff" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libtiff package 
+    ''' 
+path = '' 
+job.run_test('libtiff',test_path=path) 

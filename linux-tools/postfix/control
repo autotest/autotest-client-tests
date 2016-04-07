@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>                                 ##  " 
+NAME = "postfix" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test postfix package 
+    ''' 
+path = '' 
+job.run_test('postfix',test_path=path) 

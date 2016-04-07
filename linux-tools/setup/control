@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana, madhuria@linux.vnet.ibm.com  " 
+NAME = "setup" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test setup package 
+    ''' 
+path = '' 
+job.run_test('setup',test_path=path) 

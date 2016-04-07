@@ -1,0 +1,18 @@
+The perl-ldap distribution is a collection of perl modules which provide an object orientated interface to LDAP servers.
+perl-ldap provides the Net::LDAP perl module, which enables easy access to the data contained in LDAP directories from Perl scripts
+
+Net::LDAP is a collection of modules that implements a LDAP services API
+for Perl programs. The module may be used to search directories or perform
+maintenance functions such as adding, deleting or modifying entries.
+
+The perl-ldap distribution has several advantages over other LDAP interfaces for perl:
+
+    By using the perl object interface the perl-ldap modules provide programmers with an interface which allows complex searches of LDAP directories with only a small amount of code.
+    All the perl-ldap modules are written entirely in perl, which means that the library is truly cross-platform compatible. No C or XS extensions are used so no C compiler is needed to install the modules.
+
+How to run the test:
+--------------------
+./perl-LDAP.sh
+
+
+

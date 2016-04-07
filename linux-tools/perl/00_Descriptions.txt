@@ -1,0 +1,31 @@
+===============================================================================
+TestCase        : Perl
+
+Description     : Use Perl's official testcases to test the basic
+                  functionality of perl and modules.
+
+Author          : Robert Paulsen <rpaulsen@us.ibm.com>
+                  James He <hejianj@cn.ibm.com>
+		  Yan Li <liyanbj@cn.ibm.com>
+
+===============================================================================
+
+* INTRODUCTION
+
+Use Perl's official testcases to test the basic functionality of perl
+and modules.   For more, please read the Perl Test Documentation.
+
+* RUN
+
+1. To test the basic functionalities of Perl, run:
+
+   $ ./perltest.sh
+
+2. To test individual module:
+
+   $ ./perltest.sh <module>
+
+3. To test perl-fastcgi support set varible to yes
+ 
+   $ PERL_FCGI=yes ./perltest.sh
+

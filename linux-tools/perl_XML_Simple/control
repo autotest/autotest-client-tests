@@ -1,0 +1,11 @@
+AUTHOR = " Avinesh Kumar <avinesku at linux.vnet.ibm.com>                            ##  " 
+NAME = "perl_XML_Simple" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-XML-Simple package 
+    ''' 
+path = '' 
+job.run_test('perl_XML_Simple',test_path=path) 

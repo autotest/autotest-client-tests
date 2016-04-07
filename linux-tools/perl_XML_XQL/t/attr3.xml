@@ -1,0 +1,23 @@
+<!DOCTYPE root [
+
+ <!NOTATION default_notation SYSTEM "perl.exe">
+
+ <!ENTITY ent "gen_ent">
+ <!ENTITY dq '"'>
+ <!ENTITY sq "'">
+ <!ENTITY bothq "&quote;'">
+ <!ENTITY ent "second_def">
+ <!ENTITY % pent "param_ent">
+ <!ENTITY % pent "second_def">
+
+ <!ENTITY % any "ANY">
+
+ <!ELEMENT root ANY>
+ <!ELEMENT a ANY>
+ <!ATTLIST a
+	attr CDATA "&ent;">
+]>
+
+<root>
+ <a attr="uses &ent;">Entity ref &ent; in text</a>
+</root>

@@ -1,0 +1,157 @@
+2012-12-24         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* 4.0.2: Release tar ball made.
+
+2012-12-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (paramuninitglobal): New test.
+	* paramuninitglobal.awk, paramuninitglobal.ok: New files.
+	Thanks to John Haque.
+
+2012-10-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): Add jarebug.sh.
+
+2012-09-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* lintwarn.ok: Updated.
+
+2012-08-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (charasbytes): Revise test to canonicalize
+	whitespace. (For Mac OS X 10.5, at least.)
+	* charasbytes.ok: Updated.
+
+2012-08-12         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (regexprange): New test.
+	* regexprange.awk, regexprange.ok: New files.
+
+2012-08-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	New test from Nelson Beebe.
+
+	* Makefile.am (ofs1): New test.
+	* ofs1.awk, ofs1.in, ofs1.ok: New files.
+
+2012-07-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (getline5): New test.
+	* getline5.awk, getline5.ok: New files.
+
+2012-06-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (charasbytes): New test.
+	* charasbytes.awk, charasbytes.in, charasbytes.ok: New files.
+
+2012-05-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* jarebug.sh: New file. Handles Mac OS X also.
+	* Makefile.am (jarebug): Use jarebug.sh to run the test.
+
+2012-05-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (jarebug): Remove leading `-' from $(CMP) line.
+
+2012-05-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (jarebug): Move to charset tests. Adjust to check
+	for existence of needed Japanese locale before running the test.
+
+2012-05-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (jarebug): New test.
+	* jarebug.awk, jarebug.in, jarebug.ok: New files.
+
+2012-03-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* 4.0.1: Release tar ball made.
+
+2012-03-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (printfbad3): New test.
+	* printfbad3.awk, printfbad3.ok: New files.
+
+2012-02-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (beginfile2, next): Set LC_ALL=C so that error
+	messages will be in English for comparison with .ok files.
+	Thanks to Jeroen Schot <schot@a-eskwadraat.nl>.
+
+2011-12-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (rri1): New test.
+	* rri1.awk, rri1.in, rri1.ok: New files.
+
+2011-12-06         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am: Rationalize the $(CMP) lines wherever possible.
+
+2011-10-24         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* beginfile2.sh: Use `...` instead of $(...) for broken systems
+	where /bin/sh doesn't support $(...).  Thanks to Nelson Beebe for
+	the report.
+
+2011-10-21         John Haque      <j.eh@mchsi.com>
+
+	* beginfile2.in, beginfile2.sh, beginfile2.ok: Adjust input file names.
+
+2011-10-21         Corinna Vinschen      <vinschen@redhat.com>
+
+	* Makefile.am (beginfile2): Adjust for running out of srcdir.
+	* beginfile2.sh: Same.
+
+2011-10-02         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (rtlen, rtlen01, rtlenmb): New tests.
+	* rtlen.ok, rtlen.sh, rtlen01.ok, rtlen01.sh: New files.
+	Thanks to Rogier <rogier777@gmail.com> as forwarded by
+	Jeroen Schot <schot@A-Eskwadraat.nl>.
+
+2011-08-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (beginfile2, fpat3, fwtest3): New tests.
+	* beginfile2.awk, beginfile2.in, beginfile2.ok: New files.
+	* fpat3.awk, fpat3.in, fpat3.ok: New files.
+	* fwtest3.awk, fwtest3.in, fwtest3.ok: New files.
+
+2011-08-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* pty1.awk, pty1.ok: New files.
+	* Makefile.am (pty1): New test.
+	(profile1, profile2, profile3): Use unique names for the profile
+	files to avoid problems with parallel 'make check'
+
+2011-07-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (next): Redirect output to output file!
+
+2011-07-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* sortu.awk, sortu.ok: Modified to make numeric comparison do
+	a stable sort.  Thanks to Peter Fales <Peter.Fales@alcatel-lucent.com>.
+	* backgsub.ok: Update for change in code.
+	* Makefile.am (posix2008sub): Add --posix to invocation.
+
+2011-07-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (getline4, gsubtst8): New tests.
+	* getline4.awk, getline4.in, getline4.ok: New files.
+	* gsubtst8.awk, gsubtst8.in, gsubtst8.ok: New files.
+
+2011-07-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (gsubtst7): New test.
+	* gsubtst7.awk, gsubtst7.in, gsubtst7.ok: New files.
+
+2011-06-24         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): Add ChangeLog.0.
+	* 4.0.0: Remake the tar ball.
+
+2011-06-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* ChangeLog.0: Rotated ChangeLog into this file.
+	* ChangeLog: Created anew for gawk 4.0.0 and on.
+	* 4.0.0: Release tar ball made.

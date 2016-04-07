@@ -1,0 +1,12 @@
+Description: perl-Scalar-List-Utils is the combined distribution for the scalar and list utils.
+
+List::Util contains a selection of subroutines that people have expressed would be nice to have in the perl core, but the usage would not really be high enough to warrant the use of a keyword, and the size so small such that beingi individual extensions would be wasteful.
+
+Scalar::Util contains a selection of subroutines that people have expressed would be nice to have in the perl core, but the usage would not really be high enough to warrant the use of a keyword, and the size so small such that being individual extensions would be wasteful.
+
+building and running the in-built test suite is same as running individual perl scripts plus some supporting files from source.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Scalar-List-Utils
+./perl-Scalar-List-Utils.sh

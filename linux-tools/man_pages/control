@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana, madhuria@linux.vnet.ibm.com  " 
+NAME = "man_pages" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test man-pages package 
+    ''' 
+path = '' 
+job.run_test('man_pages',test_path=path) 

@@ -1,0 +1,10 @@
+--- test/runtests.py.orig	2012-05-30 08:48:01.069369662 -0500
++++ test/runtests.py	2012-05-30 08:48:13.240369687 -0500
+@@ -31,7 +31,6 @@ def main():
+     # it's okay to import now that sys.path is setup.
+     import test_grabber, test_byterange, test_mirror
+     suite = TestSuite( (test_grabber.suite(),
+-                        test_byterange.suite(), 
+                         test_mirror.suite()) )
+     suite.description = 'urlgrabber tests'
+     runner = TextTestRunner(stream=sys.stdout,

@@ -1,0 +1,12 @@
+tst_unzip.dir/d.0
+tst_unzip.dir/d.0/file.0
+tst_unzip.dir/d.0/file.1
+tst_unzip.dir/d.0/file.2
+tst_unzip.dir/d.0/d.1
+tst_unzip.dir/d.0/d.1/file.0
+tst_unzip.dir/d.0/d.1/file.1
+tst_unzip.dir/d.0/d.1/file.2
+tst_unzip.dir/d.0/d.1/d.2
+tst_unzip.dir/d.0/d.1/d.2/file.0
+tst_unzip.dir/d.0/d.1/d.2/file.1
+tst_unzip.dir/d.0/d.1/d.2/file.2

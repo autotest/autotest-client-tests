@@ -1,0 +1,7 @@
+libcgroup is a library that abstracts the control group file system in Linux.
+It has tools and library help manipulate, control, administrate and monitor
+control groups and the associated controllers.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/libcgroup
+./libcgroup.sh

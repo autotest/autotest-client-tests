@@ -1,0 +1,13 @@
+#########################################################################################
+The Exporter module implements an import method which allows a module to export functions and variables to its users' namespaces. Many modules use Exporter rather than implementing their own import method because Exporter provides a highly flexible interface, with an implementation optimised for the common case.
+
+Perl automatically calls the import method when processing a use statement for a module. Modules and use are documented in perlfunc and perlmod.
+
+Sources: http://perldoc.perl.org/Exporter.html
+
+#########################################################################################
+How to run tests ??
+Ans: cd /opt/fiv/ltp/testcases/fivextra/perl-Exporter
+	run the perl-Exporter.sh script
+How to interpret test results ??
+Ans: Prove will exit with non zero if any test fails. 

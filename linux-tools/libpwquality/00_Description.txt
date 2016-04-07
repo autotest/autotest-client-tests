@@ -1,0 +1,10 @@
+The libpwquality.sh script tests the following
+pwscore tool: reads the password to be checked from the standard input. Optional argument is an user name for additional checks.
+pwmake tool: generates a random password Required argument is number of bits of entropy used to generate the password. 
+PAM module: pam_pwquality Linux PAM module that can be used instead of pam_cracklib to disallow weak new passwords when user's login password is changed.
+
+The file /etc/security/pwquality.conf is also tested by making a few changes to it.
+
+How to execute the test.
+1. cd /opt/fiv/ltp/testcases/fivextra/libpwquality
+2. Execute ./libpwquality.sh  

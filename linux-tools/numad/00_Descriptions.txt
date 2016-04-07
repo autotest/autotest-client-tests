@@ -1,0 +1,21 @@
+Numad is a system daemon that monitors NUMA topology and usage. It will
+       attempt  to  locate  processes  for optimum NUMA locality and affinity,
+       dynamically adjusting to changing system conditions.  Numad  also  provides 
+       guidance  to  assist management applications with initial manual
+       binding of CPU and memory resources for their processes.
+       
+  About NUMA:
+        Non Uniform Memory Access provides a method by a which a system can schedule
+        a process or task on a Node which has the required CPU resource and memory
+        for it to optimally execute.
+        A node is: a region of memory in which every byte has the same distance from each CPU.
+        
+More Info on NUMA:
+    http://lse.sourceforge.net/numa/faq/index.html#architectures
+
+If a two or more node system is present then, memhog ( part of numactl package) is used to test resource utilization with the -u, -S and -w options .
+memhog reserves the amount of memory specified in the parameter as its own , so process affinity to nodes can be checked with that.o
+
+HOW TO RUN:
+./numad.sh
+numad.sh is the shell script which runs all the tests

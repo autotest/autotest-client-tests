@@ -1,0 +1,7 @@
+passwd is a system utility (passwd) which sets
+or changes passwords, using PAM (Pluggable Authentication
+Modules) library.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/passwd
+./passwd.sh

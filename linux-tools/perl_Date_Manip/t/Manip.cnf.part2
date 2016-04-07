@@ -1,0 +1,22 @@
+################################
+# HOLIDAYS
+################################
+# See the Date::Manip::Holidays man page for a description of
+# this section.
+*HOLIDAYS
+
+# Jul 4                         = Independence Day
+1*7:0:4:0:0:0*DWD               = Independence Day
+
+1st Monday in Sep               = Labor Day
+
+second Monday in Oct            = Columbus Day
+
+# 11/11                         = Veterans Day
+1*11:0:11:0:0:0*DWD             = Veteran's Day
+
+fourth Thu in Nov               = Thanksgiving
+1*11:4:4:0:0:0*FD1              =
+
+# Dec 25                        = Christmas
+1*12:0:25:0:0:0*DWD             = Christmas

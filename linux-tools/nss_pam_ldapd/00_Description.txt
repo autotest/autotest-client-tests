@@ -1,0 +1,64 @@
+TEST: nss_ldap
+
+AUTHOR:	Suzuki K P <suzuki@in.ibm.com>
+
+
+What is NSS ?
+
+NSS is a mechanism to lookup for various information from the system. Things like user, group, passwd, hosts, networks, services, protocols, rpc etc.
+
+
+What is nss_ldap ?
+
+nss_ldap test provides NSS library functions to retrieve information from an LDAP server. 
+
+Testcase:
+
+1) Setup an LDAP server with NIS information.
+
+2) Setup client lookup to go to ldap server. (Modififying /etc/nsswitch.conf & /etc/nslcd.conf)
+
+3) Perform lookups for user, group, host, network, protocol, service.
+
+4) Restore the client
+
+
+FILES:
+
+db/		: Path for LDAP Server database
+
+ldapserver/ 	: Configs for LDAP Server and databases. 
+
+	nslcd.conf	- Client configs for ldap. This becomes /etc/nslcd.conf
+	
+	ldap-master.conf	- This is how the slapd.conf will look like. We create it runtime
+
+	nis_sample.ldif		- Sample definitions of NIS entries.
+
+	nsswitch.conf.ldap	- Config for nsswitch to use ldap. Becomes /etc/nsswitch.conf
+			(Note: hosts start with file, because, we have to find the ldapserver using this.)
+
+	schema/			- Contains standard definitions about LDAP classes.
+
+log/		:	Where the logs of helper programs and the LDAP server are placed
+
+results/	:	Expected results from the programs
+
+
+utils/		:	Helper programs to do the real test for nss_ldap.
+
+
+HOWTO Run :
+===========
+
+./nss_ldap.sh
+
+HOWTO Analyze
+==============
+
+The log/ directory will have all the log files. You may check them to find what really went wrong.
+
+TODO:
+
+Extend this to pam_ldap. Add a user/passwd to the server and use it to test some command like vsftp. May use the expect scripts to automate password.
+

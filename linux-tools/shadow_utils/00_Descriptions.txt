@@ -1,0 +1,4 @@
+pwdutils:
+	CSDL: xu zheng<zhengxu@cn.ibm.com>
+usage:
+	pwdutils.sh

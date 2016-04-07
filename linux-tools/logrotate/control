@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  " 
+NAME = "logrotate" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test logrotate package 
+    ''' 
+path = '' 
+job.run_test('logrotate',test_path=path) 

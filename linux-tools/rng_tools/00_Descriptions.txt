@@ -1,0 +1,21 @@
+rng-tools:
+          The testcase for automated test for rng-tools
+
+usage:
+       ./rng-tools.sh
+
+Note:
+About rng-tools:
+-------------
+
+rng-tools provides the daemon to use a Hardware true random number generator
+
+The rngd daemon acts as a bridge between a Hardware TRNG (true random number generator)
+and the kernel's PRNG (pseudo-random number generator).
+It tests the data received from the TRNG using the FIPS 140-2 tests
+to verify that it is indeed random,
+and feeds the random data to the kernel entropy pool.
+
+It provides
+1) rngtest - to verify the randomness of the block of data
+2) rngd - the random number generator daemon

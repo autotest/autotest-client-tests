@@ -1,0 +1,11 @@
+AUTHOR = " Liu Deyan, liudeyan@cn.ibm.com  " 
+NAME = "attr" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test attr package 
+    ''' 
+path = '' 
+job.run_test('attr',test_path=path) 

@@ -1,0 +1,22 @@
+===============================================================================
+# TestCase:    php5-pear
+#
+# Description: This program tests basic functionality of the PEAR of PHP.
+#
+# Author:      Yan Li - liyanbj@cn.ibm.com
+#
+===============================================================================
+
+* INTRODUCTION
+
+  Invoking the pear CLI tool with various command and check the
+  output.
+
+* RUN
+
+  Simply run php5-pear.sh.
+
+* TEST COVERAGE
+
+  The "list" and "info" commands of PEAR.
+

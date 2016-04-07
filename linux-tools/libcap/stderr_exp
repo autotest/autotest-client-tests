@@ -1,0 +1,6 @@
+prctl(PR_SET_KEEPCAPS, 1) failed: Operation not permitted
+Unable to set group list for user: Operation not permitted
+Unable to set group list for user: Operation not permitted
+/bin/bash: ./privileged: Operation not permitted
+execve /bin/bash failed!
+execve /bin/bash failed!

@@ -1,0 +1,22 @@
+wget:
+          The testcase for automated test for wget
+usage:
+       ./wget.sh
+
+Note:
+----------
+
+GNU Wget is a free utility for non-interactive download of files from the Web.
+Features include:
+1. Download a single file.
+2. Log messages to a log file instead of stderr Using wget -o:
+   $ wget -o download.log DOWNLOAD-URL
+3. Check for broken links using wget as a spider: ( --spider )
+4. Download and Store With a Different File name Using wget -O
+5. Recursive Retrieval Options
+6. Download Multiple Files / URLs Using Wget -i
+7. FTP download using wget  etc
+
+How to run the tests:
+1. To execute all the tests ./run-px 
+2. To execute each test, run the "<test>-px" script in the tests directory

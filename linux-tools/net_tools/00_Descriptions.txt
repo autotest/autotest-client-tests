@@ -1,0 +1,25 @@
+net-tools
+-----------------------------------------------------------------------------------------------
+Author          :       Hong Bo Peng, penghb@cn.ibm.com
+-----------------------------------------------------------------------------------------------
+Maintainer      :       penghb
+-----------------------------------------------------------------------------------------------
+Howto           :       net-tools.sh
+-----------------------------------------------------------------------------------------------
+Evaluation      :       
+			hostname: set/get hostname by cmd. Check it with the expected result.
+			ifconfig: setup an alias for lo. Check it can be listed.
+			netstat: run it with different options. Check the return code.
+			arp: run it with different options. Check the return code.
+			traceroute: run for localhost. It should report 1 hop.
+			route: run it with -n. Check the return code.
+			ipmaddr: run it and check the return code.
+			iptunnel: create sit1 and check it can be list. Then remove it and
+				  check it is removed from the list.
+			nameif: change lo to vlo. Check lo is not available. And vlo is
+				configable.
+-----------------------------------------------------------------------------------------------
+Notes		:	IPv6 includes the Neighbor Discovery Protocol which replaces
+			ARP (broadcast disappears, so does ARP)	
+-----------------------------------------------------------------------------------------------
+

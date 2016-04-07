@@ -1,0 +1,5 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=euc-jp"
+
+msgid "test"
+msgstr "¥Æ¥¹¥È"

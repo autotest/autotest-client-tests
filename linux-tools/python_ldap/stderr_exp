@@ -1,0 +1,11 @@
+*** _ldap.initialize (('ldapi://%2ftmp%2fopenldap-socket',), {})
+*** <ldap.ldapobject.SimpleLDAPObject instance at 0x> ldapi://%2ftmp%2fopenldap-socket - SimpleLDAPObject.set_option
+((17, 3), {})
+*** <ldap.ldapobject.SimpleLDAPObject instance at 0x> ldapi://%2ftmp%2fopenldap-socket - SimpleLDAPObject.set_option
+((17, 3), {})
+*** <ldap.ldapobject.SimpleLDAPObject instance at 0x> ldapi://%2ftmp%2fopenldap-socket - SimpleLDAPObject.simple_bind
+(('', '', None, None), {})
+*** <ldap.ldapobject.SimpleLDAPObject instance at 0x> ldapi://%2ftmp%2fopenldap-socket - SimpleLDAPObject.result4
+((1, 1, -1, 0, 0, 0), {})
+*** <ldap.ldapobject.SimpleLDAPObject instance at 0x> ldapi://%2ftmp%2fopenldap-socket - SimpleLDAPObject.unbind_ext
+((None, None), {})

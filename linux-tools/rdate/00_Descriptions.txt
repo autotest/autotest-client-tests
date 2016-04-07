@@ -1,0 +1,6 @@
+rdate connects to an RFC 868 time server over a TCP/IP network, printing the
+returned time and/or setting the system clock.
+
+How to run the test:
+--------------------------
+./rdate.sh

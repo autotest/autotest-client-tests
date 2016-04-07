@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "perl_Crypt_PasswdMD5" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Crypt-PasswdMD5 package 
+    ''' 
+path = '' 
+job.run_test('perl_Crypt_PasswdMD5',test_path=path) 

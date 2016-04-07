@@ -1,0 +1,30 @@
+diff -Naur tests-orig/locale.sh tests/locale.sh
+--- tests-orig/locale.sh	2010-01-04 02:17:06.000000000 -0600
++++ tests/locale.sh	2010-06-08 06:19:33.000000000 -0500
+@@ -136,11 +136,11 @@
+ 	unset LC_CTYPE
+ 	export LANG=$utf_8
+ 	export LC_ALL=C
+-	command wc -C < $tmp/two_euro_chars.txt
++	command wc -m < $tmp/two_euro_chars.txt
+ 	unset LC_ALL
+-	command wc -C < $tmp/two_euro_chars.txt
++	command wc -m < $tmp/two_euro_chars.txt
+ 	export LC_ALL=C
+-	command wc -C < $tmp/two_euro_chars.txt
++	command wc -m < $tmp/two_euro_chars.txt
+ ")
+ got=$*
+ [[ $got == $exp ]] || err_exit "command wc LC_ALL default failed -- expected '$exp', got '$got'"
+diff -Naur tests-orig/path.sh tests/path.sh
+--- tests-orig/path.sh	2009-10-13 15:58:16.000000000 -0500
++++ tests/path.sh	2010-06-02 08:08:30.000000000 -0500
+@@ -269,7 +269,7 @@
+ getconf UNIVERSE - att # override sticky default 'UNIVERSE = foo'
+ 
+ [[ $(PATH=/usr/ucb/bin:/usr/bin echo -n ucb) == 'ucb' ]] || err_exit "ucb universe echo ignores -n option"
+-[[ $(PATH=/usr/xpg/bin:/usr/bin echo -n att) == '-n att' ]] || err_exit "att universe echo does not ignore -n option"
++[[ $(PATH=/usr/xpg/bin:/usr/bin echo -n att) == 'att' ]] || err_exit "att universe echo does not ignore -n option"
+ 
+ PATH=$path
+ 

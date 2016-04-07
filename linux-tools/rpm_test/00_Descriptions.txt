@@ -1,0 +1,28 @@
+rpm.sh
+~~~~~~~~
+	Tested functionality of the rpm command and other commands in the rpm.rpm
+
+
+rpm-python.sh
+~~~~~~~~~~~~~~
+rpm-python introduces the high-level RPM API for Python programming. 
+You can use this API from Python scripts to perform RPM functionality, e.g.  
+   To query the RPM database, call dbMatch on the transaction set object. 
+   To install or upgrade packages, call addInstall, check, order, and run on the transaction set. 
+
+In general, the Python API is simpler and requires fewer code statements than the corresponding functionality in the C API.
+
+Python testcases are adapted from http://fedora.redhat.com/docs/drafts/rpm-guide-en/ch-rpm-programming-python.html
+
+
+Testcases
+=========
+
+rpmupgrade.py tst_rpm*.rpm: upgrade/install rpm
+rpmglob.py "tst_rpm*"  :  rpm -qa "tst_rpm*"
+rpminfo.py tst_rpm:  list info for installed rpm package
+rpmqa.py: list all the install packages
+rpmreadheader.py <rpm file>: read rpm header
+rpmvercomp.py tst_rpm*.rpm: 
+rpmremove.py tst_rpm
+

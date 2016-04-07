@@ -1,0 +1,4 @@
+lsscsi
+
+lsscsi lists the scsi devices on the machine with their address (LUN, Target, Bus) and their model, vendor info.
+This could be read from the /sys/bus/scsi/devices/ :). We do that to verify the results.

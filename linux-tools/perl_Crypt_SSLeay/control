@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##  " 
+NAME = "perl_Crypt_SSLeay" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Crypt-SSLeay package 
+    ''' 
+path = '' 
+job.run_test('perl_Crypt_SSLeay',test_path=path) 

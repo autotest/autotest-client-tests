@@ -1,0 +1,17 @@
+This module includes a number of smaller modules suited for manipulation of time and date strings with Perl.  In particular, the
+Date::Format and Date::Parse modules can display and read times and dates in various formats, providing a more reliable interface to
+textual representations of points in time.
+
+       The tests uses :        
+       ** Date::Format - capable of formatting into several languages by creating a language specific object and calling methods
+                * time2str(TEMPLATE, TIME[ZONE])
+                time2str converts TIME into an ASCII string using the conversion specification given in TEMPLATE.
+                ZONE if given specifies the zone which the output is required to be in, ZONE defaults to your current zone.
+
+       ** Date::Language - Language specific date formatting and parsing
+
+       ** Date::Parse - Parse date strings into time values
+
+How to run the test:
+-------------------
+./perl-TimeDate.sh

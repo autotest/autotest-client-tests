@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G <kumuda.govind@in.ibm.com>                           ##  " 
+NAME = "perl_Carp_Clan" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Carp-Clan package 
+    ''' 
+path = '' 
+job.run_test('perl_Carp_Clan',test_path=path) 
