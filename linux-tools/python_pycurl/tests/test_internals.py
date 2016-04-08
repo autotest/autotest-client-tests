@@ -15,7 +15,7 @@ try:
     gc.enable()
 except ImportError:
     gc = None
-import copy, os, sys
+import copy, sys
 from StringIO import StringIO
 try:
     import cPickle

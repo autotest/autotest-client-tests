@@ -3,7 +3,6 @@
 # vi:ts=4:et
 # $Id: test_multi6.py,v 1.6 2005/03/11 13:24:45 kjetilja Exp $
 
-import sys, select, time
 import pycurl
 
 c1 = pycurl.Curl()

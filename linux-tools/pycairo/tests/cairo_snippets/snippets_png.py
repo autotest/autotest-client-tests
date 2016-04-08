@@ -3,14 +3,13 @@
 """
 
 from __future__ import division
-from math import pi as M_PI  # used by many snippets
 import sys
 
 import cairo
 if not (cairo.HAS_IMAGE_SURFACE and cairo.HAS_PNG_FUNCTIONS):
   raise SystemExit ('cairo was not compiled with ImageSurface and PNG support')
 
-from snippets import snip_list, snippet_normalize
+from snippets import snip_list
 
 
 width, height = 256, 256 # used by snippet_normalize()

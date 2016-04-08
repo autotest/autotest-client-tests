@@ -21,7 +21,6 @@
 import unittest
 #import sha
 from M2Crypto import EC, Rand
-from test_ecdsa import ECDSATestCase as ECDSATest
 
 
 curves = [

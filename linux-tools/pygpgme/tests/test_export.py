@@ -20,7 +20,6 @@ try:
     from io import BytesIO
 except ImportError:
     from StringIO import StringIO as BytesIO
-from textwrap import dedent
 
 import gpgme
 from tests.util import GpgHomeTestCase

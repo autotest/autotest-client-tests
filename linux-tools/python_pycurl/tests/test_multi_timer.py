@@ -3,7 +3,7 @@
 # vi:ts=4:et
 # $Id: test_multi_timer.py,v 1.1 2006/11/10 12:25:29 kjetilja Exp $
 
-import os, sys
+import sys
 try:
     from cStringIO import StringIO
 except ImportError:

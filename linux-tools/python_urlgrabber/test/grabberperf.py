@@ -21,13 +21,9 @@
 
 import sys
 import os
-from os.path import dirname, join as joinpath
-import tempfile
 import time
 
-import urlgrabber.grabber as grabber
-from urlgrabber.grabber import URLGrabber, urlgrab, urlopen, urlread
-from urlgrabber.progress import text_progress_meter
+from urlgrabber.grabber import urlgrab
 
 tempsrc = '/tmp/ug-test-src'
 tempdst = '/tmp/ug-test-dst'

@@ -16,12 +16,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import unittest
-import os
 try:
     from io import BytesIO
 except ImportError:
     from StringIO import StringIO as BytesIO
-from textwrap import dedent
 
 import gpgme
 from tests.util import GpgHomeTestCase

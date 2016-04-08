@@ -1,4 +1,4 @@
-import ldap, unittest
+import ldap
 import slapd
 
 from ldap.ldapobject import LDAPObject

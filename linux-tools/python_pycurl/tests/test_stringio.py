@@ -3,7 +3,6 @@
 # vi:ts=4:et
 # $Id: test_stringio.py,v 1.6 2003/04/21 18:46:11 mfx Exp $
 
-import sys
 try:
     from cStringIO import StringIO
 except ImportError:

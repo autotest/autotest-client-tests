@@ -5,7 +5,6 @@
 
 # same as test_multi2.py, but enforce some debugging and strange API-calls
 
-import os, sys
 try:
     from cStringIO import StringIO
 except ImportError:

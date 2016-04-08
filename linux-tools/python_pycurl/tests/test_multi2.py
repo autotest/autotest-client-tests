@@ -2,8 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 # vi:ts=4:et
 # $Id: test_multi2.py,v 1.15 2007/04/10 13:26:45 kjetilja Exp $
-
-import os, sys
+import sys
 try:
     from cStringIO import StringIO
 except ImportError:

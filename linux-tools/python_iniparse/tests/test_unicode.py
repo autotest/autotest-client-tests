@@ -1,6 +1,6 @@
 import unittest
 from StringIO import StringIO
-from iniparse import compat, ini
+from iniparse import ini
 
 class test_unicode(unittest.TestCase):
     """Test files read in unicode-mode."""

@@ -3,7 +3,7 @@
 # vi:ts=4:et
 # $Id: test_multi_vs_thread.py,v 1.16 2005/04/12 03:39:01 mfx Exp $
 
-import os, sys, time
+import time
 from threading import Thread, RLock
 try:
     from cStringIO import StringIO

@@ -1,3 +1,0 @@
-Run some overall system verification checks.
-
-So far the only thing we have is "rpm verify".

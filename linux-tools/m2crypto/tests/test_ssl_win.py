@@ -14,7 +14,7 @@ except ImportError:
     win32process = None
 
 if win32process:
-    from M2Crypto import Rand, SSL
+    from M2Crypto import Rand
     import test_ssl
     
     def find_openssl():

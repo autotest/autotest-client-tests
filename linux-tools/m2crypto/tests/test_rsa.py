@@ -6,7 +6,7 @@ Copyright (c) 2000 Ng Pheng Siong. All rights reserved."""
 
 import unittest
 import sha, md5, os, sys
-from M2Crypto import RSA, BIO, Rand, m2, EVP, X509
+from M2Crypto import RSA, BIO, Rand, m2, X509
 
 from fips import fips_mode
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import fdpexpect, pexpect, traceback 
-import sys
 import os
 TEST_DIR = os.environ['TSTDIR']
 file = TEST_DIR+"/"+"TESTDATA.txt"

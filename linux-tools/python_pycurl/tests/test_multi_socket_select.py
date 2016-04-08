@@ -3,7 +3,7 @@
 # vi:ts=4:et
 # $Id: test_multi_socket_select.py,v 1.1 2008/06/11 18:11:46 kjetilja Exp $
 
-import os, sys
+import sys
 try:
     from cStringIO import StringIO
 except ImportError:

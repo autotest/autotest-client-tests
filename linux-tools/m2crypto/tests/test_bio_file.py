@@ -5,7 +5,6 @@
 Copyright (c) 1999-2002 Ng Pheng Siong. All rights reserved."""
 
 import unittest
-import M2Crypto
 from M2Crypto.BIO import File, openfile
 import os, sys
 

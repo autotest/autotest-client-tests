@@ -29,14 +29,12 @@ run in isolation.
 from __future__ import unicode_literals
 
 import sys
-import os
 import unittest
 
 #builddir = os.path.normpath(os.environ["DBUS_TOP_BUILDDIR"])
 #pydir = os.path.normpath(os.environ["DBUS_TOP_SRCDIR"])
 
 import _dbus_bindings
-import dbus
 import dbus.lowlevel as lowlevel
 import dbus.types as types
 from dbus._compat import is_py2, is_py3

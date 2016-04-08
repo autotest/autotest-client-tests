@@ -10,8 +10,8 @@ Author: Heikki Toivonen
 """
 
 import unittest
-import os, time, base64, sys
-from M2Crypto import X509, EVP, RSA, Rand, ASN1, m2, util, BIO
+import os, time, base64 
+from M2Crypto import X509, EVP, RSA, Rand, ASN1, m2, BIO
 
 class X509TestCase(unittest.TestCase):
 

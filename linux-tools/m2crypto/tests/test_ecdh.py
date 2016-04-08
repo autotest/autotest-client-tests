@@ -8,8 +8,7 @@ Portions copyright (c) 2005-2006 Vrije Universiteit Amsterdam. All rights reserv
 
 
 import unittest
-from M2Crypto import EC, BIO, Rand, m2
-import sys
+from M2Crypto import EC, Rand
 
 class ECDHTestCase(unittest.TestCase):
 

@@ -1,10 +1,9 @@
 #!/bin/python
 import os, subprocess
-import shutil
 import logging
 
-from autotest.client import test, utils
-from autotest.client.shared import error, software_manager
+from autotest.client import test
+from autotest.client.shared import error
 
 class xorg_x11_font_utils(test.test):
 

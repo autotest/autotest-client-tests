@@ -14,7 +14,7 @@ This exposes an shell terminal on a socket.
 # Having the password on the command line is not a good idea, but
 # then this entire project is probably not the most security concious thing
 # I've ever built. This should be considered an experimental tool -- at best.
-import pxssh, pexpect, ANSI
+import pxssh, ANSI
 import time, sys, os, getopt, getpass, traceback, threading, socket
 
 def exit_with_usage(exit_code=1):

@@ -4,14 +4,13 @@ create a file for each example rather than one large file for all examples
 """
 
 from __future__ import division
-from math import pi as M_PI  # used by many snippets
 import sys
 
 import cairo
 if not cairo.HAS_PDF_SURFACE:
     raise SystemExit ('cairo was not compiled with PDF support')
 
-from snippets import snip_list, snippet_normalize
+from snippets import snip_list
 
 
 width_in_inches, height_in_inches = 2, 2

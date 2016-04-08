@@ -20,7 +20,7 @@ Others:
 - ThreadingSSLServer
 """
 
-import os, signal, socket, string, sys, tempfile, thread, time, unittest
+import os, signal, socket, string, sys, tempfile, time, unittest
 from M2Crypto import Rand, SSL, m2, Err
 
 from fips import fips_mode

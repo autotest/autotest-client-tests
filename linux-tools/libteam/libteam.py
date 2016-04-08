@@ -7,7 +7,7 @@ import logging
 import glob
 import subprocess
 from distutils.spawn import find_executable
-from autotest.client import test, utils
+from autotest.client import test
 from autotest.client.shared import error
 
 

@@ -6,7 +6,7 @@ Copyright (c) 2000 Ng Pheng Siong. All rights reserved."""
 
 import unittest
 import sha
-from M2Crypto import DSA, BIO, Rand, m2
+from M2Crypto import DSA, Rand
 
 class DSATestCase(unittest.TestCase):
 

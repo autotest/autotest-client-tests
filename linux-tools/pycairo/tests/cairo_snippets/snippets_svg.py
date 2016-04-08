@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
 from __future__ import division
-from math import pi as M_PI  # used by many snippets
 import sys
 
 import cairo
 if not cairo.HAS_SVG_SURFACE:
     raise SystemExit ('cairo was not compiled with SVG support')
 
-from snippets import snip_list, snippet_normalize
+from snippets import snip_list
 
 
 width_in_inches, height_in_inches = 2, 2

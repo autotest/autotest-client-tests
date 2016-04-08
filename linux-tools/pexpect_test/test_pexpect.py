@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import pexpect, fdpexpect
+import pexpect
 import commands
-import sys, os
+import os
 import traceback
 
 testdata = 'BEGIN\nHello world\nEND'

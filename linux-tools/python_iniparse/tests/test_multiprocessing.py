@@ -1,12 +1,12 @@
 import unittest
 import time
 try:
-    from multiprocessing import Process, Queue, Pipe
+    from multiprocessing import Process, Queue
     disabled = False
 except ImportError:
     disabled = True
 
-from iniparse import compat, ini
+from iniparse import ini
 
 class test_ini(unittest.TestCase):
     """Test sending INIConfig objects."""

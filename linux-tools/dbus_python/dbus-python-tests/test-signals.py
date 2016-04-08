@@ -23,10 +23,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-import sys
 import os
 import unittest
-import time
 import logging
 
 builddir = os.path.normpath(os.environ["DBUS_TOP_BUILDDIR"])

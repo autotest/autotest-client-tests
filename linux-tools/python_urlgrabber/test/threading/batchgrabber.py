@@ -36,8 +36,8 @@ if __name__ == '__main__':
 
 from threading import Thread, Semaphore
 from urlgrabber.grabber import URLGrabber, URLGrabError
-from urlgrabber.progress import MultiFileMeter, TextMultiFileMeter
-from time import sleep, time
+from urlgrabber.progress import MultiFileMeter 
+from time import sleep
 
 DEBUG=0
 

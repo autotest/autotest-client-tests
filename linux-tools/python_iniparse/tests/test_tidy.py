@@ -3,7 +3,6 @@ from textwrap import dedent
 from StringIO import StringIO
 
 from iniparse import tidy,INIConfig
-from iniparse.ini import  EmptyLine
 from iniparse.compat import ConfigParser
 
 class test_tidy(unittest.TestCase):

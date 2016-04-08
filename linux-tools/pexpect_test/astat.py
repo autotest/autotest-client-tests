@@ -13,9 +13,9 @@ Example:
 
 """
 
-import os, sys, time, re, getopt, getpass
+import os, sys, getopt, getpass
 import traceback
-import pexpect, pxssh
+import pxssh
 
 def exit_with_usage():
 

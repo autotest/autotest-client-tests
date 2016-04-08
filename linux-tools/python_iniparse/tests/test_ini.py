@@ -1,7 +1,6 @@
 import unittest
 from StringIO import StringIO
 
-from iniparse import ini
 from iniparse import compat
 from iniparse import config
 

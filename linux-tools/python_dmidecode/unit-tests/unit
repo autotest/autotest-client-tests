@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #.awk '$0 ~ /case [0-9]+: .. 3/ { sys.stdout.write($2 }' src/dmidecode.c|tr ':\n' ', '
 
-from pprint import pprint
 import os, sys, random, tempfile, time
 import commands
 from getopt import getopt

@@ -3,7 +3,7 @@
 # Usage:
 # python rpmqa.py
 
-import os, rpm
+import rpm
 #rpm.addMacro("_dbpath", "/tmp/rpm1")
 ts = rpm.TransactionSet()
 mi = ts.dbMatch()

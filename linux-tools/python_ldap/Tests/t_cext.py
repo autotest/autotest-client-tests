@@ -1,7 +1,6 @@
 
 import unittest, slapd
 import _ldap
-import logging
 
 reusable_server = None
 def get_reusable_server():

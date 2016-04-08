@@ -28,7 +28,6 @@ except ImportError:
 
 from lxml import etree as ElementTree
 from lxml import _elementpath as ElementPath
-from lxml import ElementInclude
 ET = ElementTree
 
 #from elementtree import ElementTree

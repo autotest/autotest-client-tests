@@ -25,7 +25,7 @@
 
 import sys
 import os
-import string, tempfile, random, cStringIO, os
+import string, tempfile, cStringIO, os
 import urllib2
 import socket
 
@@ -33,8 +33,7 @@ from base_test_code import *
 
 import urlgrabber
 import urlgrabber.grabber as grabber
-from urlgrabber.grabber import URLGrabber, URLGrabError, CallbackObject, \
-     URLParser
+from urlgrabber.grabber import URLGrabber, URLGrabError, CallbackObject
 from urlgrabber.progress import text_progress_meter
 
 class FileObjectTests(TestCase):

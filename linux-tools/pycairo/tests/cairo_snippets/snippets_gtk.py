@@ -2,15 +2,13 @@
 """Python version of cairo-demo/cairo_snippets/cairo_snippets_gtk.c
 """
 from __future__ import division
-from math import pi as M_PI  # used by many snippets
 import os.path
 import sys
 
-import cairo
 import gtk
 import pango
 
-from snippets import snip_list, snippet_normalize
+from snippets import snip_list
 
 
 Width, Height = 400, 400
