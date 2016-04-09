@@ -12,7 +12,7 @@ def progress(download_t, download_d, upload_t, upload_d):
     print "Total to download %d bytes, have %d bytes so far" % \
           (download_t, download_d)
 
-url = "http://www.cnn.com"
+url = "http://localhost/python-pycurl/noindex.html"
 
 print "Starting downloading", url
 print

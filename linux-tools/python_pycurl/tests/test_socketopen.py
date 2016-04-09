@@ -12,6 +12,6 @@ sio = StringIO.StringIO()
 
 c = pycurl.Curl()
 c.setopt(pycurl.OPENSOCKETFUNCTION, socketopen)
-c.setopt(pycurl.URL, 'http://camvine.com')
+c.setopt(pycurl.URL, 'http://localhost/python-pycurl/learnHTML.html')
 c.setopt(pycurl.WRITEFUNCTION, sio.write)
 c.perform()

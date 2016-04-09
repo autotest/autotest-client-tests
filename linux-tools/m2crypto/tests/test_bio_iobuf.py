@@ -7,7 +7,6 @@ Copyright (c) 2000 Ng Pheng Siong. All rights reserved."""
 from cStringIO import StringIO
 
 import unittest
-import M2Crypto
 from M2Crypto.BIO import IOBuffer, MemoryBuffer
 
 class IOBufferTestCase(unittest.TestCase):

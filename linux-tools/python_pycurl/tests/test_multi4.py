@@ -9,9 +9,9 @@ import pycurl
 c1 = pycurl.Curl()
 c2 = pycurl.Curl()
 c3 = pycurl.Curl()
-c1.setopt(c1.URL, "http://www.python.org")
-c2.setopt(c2.URL, "http://curl.haxx.se")
-c3.setopt(c3.URL, "http://slashdot.org")
+c1.setopt(c1.URL, "localhost/noindex.html")
+c2.setopt(c2.URL, "http://localhost/python-pycurl/multiple_links.net")
+c3.setopt(c3.URL, "http://localhost/python-pycurl/README.html")
 c1.body = open("doc1", "wb")
 c2.body = open("doc2", "wb")
 c3.body = open("doc3", "wb")
@@ -52,6 +52,6 @@ c3.body.close()
 c1.close()
 c2.close()
 c3.close()
-print "http://www.python.org is in file doc1"
-print "http://curl.haxx.se is in file doc2"
-print "http://slashdot.org is in file doc3"
+print "localhost/noindex.html is in file doc1"
+print "http://localhost/python-pycurl/multiple_links.net is in file doc2"
+print "http://localhost/python-pycurl/README.html is in file doc3"

@@ -11,7 +11,7 @@ pf = [('field1', 'this is a test using httppost & stuff'),
      ]
 
 c = pycurl.Curl()
-c.setopt(c.URL, 'http://www.contactor.se/~dast/postit.cgi')
+c.setopt(c.URL, 'http://localhost/python-pycurl/cag.html')
 c.setopt(c.HTTPPOST, pf)
 c.setopt(c.VERBOSE, 1)
 c.perform()

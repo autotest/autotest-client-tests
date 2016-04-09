@@ -23,7 +23,7 @@ class test:
 import pycurl
 c = pycurl.Curl()
 t = test()
-c.setopt(c.URL, 'http://pycurl.sourceforge.net/tests/testpostvars.php')
+c.setopt(c.URL, 'http://localhost/python-pycurl/testpostvars.php')
 c.setopt(c.POST, 1)
 c.setopt(c.POSTFIELDSIZE, len(POSTSTRING))
 c.setopt(c.READFUNCTION, t.read_cb)

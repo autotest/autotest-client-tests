@@ -15,7 +15,6 @@ import pycurl
 # the libcurl tutorial for more info.
 try:
     import signal
-    from signal import SIGPIPE, SIG_IGN
     signal.signal(signal.SIGPIPE, signal.SIG_IGN)
 except ImportError:
     pass
@@ -27,7 +26,7 @@ NUM_THREADS = 10
 assert NUM_PAGES % NUM_THREADS == 0
 
 ##URL = "http://pycurl.sourceforge.net/tests/testgetvars.php?%d"
-URL = "http://pycurl.sourceforge.net/tests/teststaticpage.html?%d"
+URL = "http://localhost/python-pycurl/teststaticpage.html?%d"
 
 
 #

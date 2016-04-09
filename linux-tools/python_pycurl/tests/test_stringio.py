@@ -9,7 +9,7 @@ except ImportError:
     from StringIO import StringIO
 import pycurl
 
-url = "http://curl.haxx.se/dev/"
+url = "http://localhost/python-pycurl/README.html"
 
 print "Testing", pycurl.version
 

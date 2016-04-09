@@ -17,7 +17,7 @@ pf = {'field1':'value1', 'field2':'value2 with blanks and & chars',
       'field3':'value3'}
 
 c = pycurl.Curl()
-c.setopt(c.URL, 'http://pycurl.sourceforge.net/tests/testpostvars.php')
+c.setopt(c.URL, 'http://localhost/python-pycurl/testpostvars.php')
 c.setopt(c.POSTFIELDS, urllib.urlencode(pf))
 c.setopt(c.VERBOSE, 1)
 c.perform()

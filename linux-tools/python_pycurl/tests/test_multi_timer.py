@@ -12,9 +12,9 @@ import pycurl
 
 
 urls = (
-    "http://curl.haxx.se",
-    "http://www.python.org",
-    "http://pycurl.sourceforge.net",
+    "http://localhost/python-pycurl/top.html",
+    "http://localhost/python-pycurl/noindex.html",
+    "http://localhost/python-pycurl/README.html",
 )
 
 # Read list of URIs from file specified on commandline

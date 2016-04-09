@@ -11,11 +11,11 @@ import pycurl
 
 
 urls = (
-    "http://curl.haxx.se",
-    "http://www.python.org",
-    "http://pycurl.sourceforge.net",
-    "http://pycurl.sourceforge.net/tests/403_FORBIDDEN",  # that actually exists ;-)
-    "http://pycurl.sourceforge.net/tests/404_NOT_FOUND",
+    "http://localhost/python-pycurl/README.html",
+    "http://localhost/python-pycurl/bottom.html",
+    "http://localhost/python-pycurl/multiple_links.net",
+    "http://localhost/python-pycurl/multiple_links.net/tests/403_FORBIDDEN",  # that actually exists ;-)
+    "http://localhost/python-pycurl/multiple_links.net/tests/404_NOT_FOUND",
 )
 
 # Read list of URIs from file specified on commandline

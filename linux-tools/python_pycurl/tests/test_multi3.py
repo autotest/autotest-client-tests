@@ -13,10 +13,10 @@ import pycurl
 
 
 urls = (
-    "http://curl.haxx.se",
-    "http://www.python.org",
+    "http://localhost/python-pycurl/README.html",
+    "http://localhost/python-pycurl/noindex.html",
     "http://pycurl.sourceforge.net",
-    "http://pycurl.sourceforge.net/THIS_HANDLE_IS_CLOSED",
+    "http://localhost/python-pycurl/multiple_links.net/THIS_HANDLE_IS_CLOSED",
 )
 
 # init

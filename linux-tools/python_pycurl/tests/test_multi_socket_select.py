@@ -15,9 +15,8 @@ sockets = set()
 timeout = 0
 
 urls = (
-    "http://curl.haxx.se",
-    "http://www.python.org",
-    "http://pycurl.sourceforge.net",
+    "http://localhost/python-pycurl/top.html",
+    "http://localhost/python-pycurl/README.html",
 )
 
 # Read list of URIs from file specified on commandline

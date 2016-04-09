@@ -15,7 +15,7 @@ class Test(threading.Thread):
     def __init__(self, share):
         threading.Thread.__init__(self)
         self.curl = pycurl.Curl()
-        self.curl.setopt(pycurl.URL, 'http://curl.haxx.se')
+        self.curl.setopt(pycurl.URL, 'http://localhost/python-pycurl/noindex.html')
         self.curl.setopt(pycurl.SHARE, share)
 
     def run(self):

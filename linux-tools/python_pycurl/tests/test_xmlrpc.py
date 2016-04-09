@@ -19,7 +19,7 @@ xmlrpc_template = """
 
 # Engage
 c = pycurl.Curl()
-c.setopt(c.URL, 'http://betty.userland.com/RPC2')
+c.setopt(c.URL, 'http://localhost/python-pycurl/bettyuserland.com')
 c.setopt(c.POST, 1)
 c.setopt(c.HTTPHEADER, xmlrpc_header)
 c.setopt(c.POSTFIELDS, xmlrpc_template % ("examples.getStateName", xmlrpclib.dumps((5,))))
