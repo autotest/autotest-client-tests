@@ -1,5 +1,5 @@
 import os
-
+import platform
 from autotest.client import test, utils
 
 
@@ -15,7 +15,7 @@ class fio(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-    def setup(self, tarball='fio-2.1.10.tar.bz2'):
+    def setup(self, tarball='fio-2.3.tar.bz2'):
         """
         Compiles and installs fio.
 
@@ -39,9 +39,14 @@ class fio(test.test):
 
         if opts:
             _opts += opts
+        arch = platform.machine()
+        if "ppc" in arch:
+            job_cfg_file = 'fio-mixed-ppc.job'
+        else:
+            job_cfg_file = 'fio-mixed.job'
 
         if job is None:
-            job = os.path.join(self.bindir, 'fio-mixed.job')
+            job = os.path.join(self.bindir, job_cfg_file)
         else:
             if not os.path.isabs(job):
                 job = os.path.join(self.bindir, job)
