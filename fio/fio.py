@@ -1,5 +1,5 @@
 import os
-import commands
+import platform
 from autotest.client import test, utils
 
 
@@ -39,8 +39,8 @@ class fio(test.test):
 
         if opts:
             _opts += opts
-        arch_output = commands.getoutput("arch")
-        if "ppc" in arch_output:
+        arch = platform.machine()
+        if "ppc" in arch:
             job_cfg_file = 'fio-mixed-ppc.job'
         else:
             job_cfg_file = 'fio-mixed.job'
