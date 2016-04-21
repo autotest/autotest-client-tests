@@ -9,9 +9,14 @@ class test_time(test.test):
     """
     Autotest module for time utility.
     time - time is a simple command,it gives resource usage.
+<<<<<<< HEAD
     The time utility runs the specified program/command with the given arguments.When program/command finishes,
     time writes a message to standard error giving timing statistics about the program/command run.
     These statistics consist of
+=======
+    The  time utility runs the specified program/command with the given arguments.  When program/command finishes,
+    time writes a message to standard error giving timing statistics about the program/command run. These statistics consist of
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
         (i)   The elapsed real time between invocation and termination,
         (ii)  The user CPU time , and
         (iii) The system CPU time .
@@ -47,13 +52,21 @@ class test_time(test.test):
         else:
             self.nfail += 1
             raise error.TestError(
+<<<<<<< HEAD
                 "\n Failed to verify --portability option of time utility")
+=======
+                "\n Failed To verify --portability option of time utility")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def test_exit_status_of_cmd(self, cmd, expected_status):
         """
         Method Name:test_exit_status_of_cmd
         This method will verify the exit status of the command invoked using time utility
+<<<<<<< HEAD
         Ex:/usr/bin/time -f "%x is Exit status of the cmd %C" <cmd>
+=======
+        Ex:/usr/bin/time -f "%x is Exit status od the cmd %C" <cmd>
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
         """
         cmd_to_execute = "%s " % self.time_exe + \
             " -f '%x is the Exit status of the cmd %C' " + cmd
@@ -66,7 +79,11 @@ class test_time(test.test):
         else:
             self.nfail += 1
             raise error.TestError(
+<<<<<<< HEAD
                 "\n Failed to verify Exit status of the command %s" % cmd)
+=======
+                "\n Failed To verify --portability option of time utility")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def test_output_option(self):
         """
@@ -91,7 +108,11 @@ class test_time(test.test):
             else:
                 self.nfail += 1
                 raise error.TestError(
+<<<<<<< HEAD
                     "\n Failed to create output file using -o option")
+=======
+                    "\n Failed To create output file using -o option")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def test_append_option(self):
         """
@@ -115,7 +136,11 @@ class test_time(test.test):
             else:
                 self.nfail += 1
                 raise error.TestError(
+<<<<<<< HEAD
                     "\n Failed to append the output to a file using -a option")
+=======
+                    "\n Failed To create output file using -o option")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def test_format_option(self):
         """
@@ -136,7 +161,11 @@ class test_time(test.test):
         else:
             self.nfail += 1
             raise error.TestError(
+<<<<<<< HEAD
                 "\n Failed to verify --format option of time utility")
+=======
+                "\n Failed To verify --format option of time utility")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def test_custom_script(self):
         """
@@ -159,11 +188,19 @@ echo "Current direcotry `pwd`"
         cmd_output = utils.commands.getoutput(cmd)
         if utils.re.search("%s" % (self.custom_script), cmd_output):
             utils.logging.info(
+<<<<<<< HEAD
                 "verified execution of custom script using time utility successfully")
         else:
             self.nfail += 1
             raise error.TestError(
                 "\n Failed to execute custom script using time utility")
+=======
+                "verified execution of custom script using time utility..successfully")
+        else:
+            self.nfail += 1
+            raise error.TestError(
+                "\n Failed To execute custom script using time utility")
+>>>>>>> 5b77e068c86a2306b26ff9b1779b779191aa4fbe
 
     def run_once(self):
         """
