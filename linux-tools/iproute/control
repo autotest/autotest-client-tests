@@ -1,0 +1,12 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com
+Manoj Iyer, manjo@mail.utexas.edu  " 
+NAME = "iproute" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test iproute package 
+    ''' 
+path = '' 
+job.run_test('iproute',test_path=path) 

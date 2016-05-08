@@ -1,0 +1,18 @@
+<!DOCTYPE root [
+
+ <!NOTATION default_notation SYSTEM "perl.exe">
+
+ <!ELEMENT root ANY>
+ <!ELEMENT abc (a,b,c)>
+ <!ELEMENT a EMPTY>
+ <!ELEMENT b EMPTY>
+ <!ELEMENT c EMPTY>
+ <!ELEMENT c01 (c)?> 
+]>
+
+<root>
+ <abc><a/><b/><c/><a/></abc>
+ <c01></c01>
+ <c01><c/></c01>
+ <c01><c/><c/></c01>
+</root>

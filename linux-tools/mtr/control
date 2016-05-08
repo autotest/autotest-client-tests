@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G, kumuda@linux.vnet.ibm.com  " 
+NAME = "mtr" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test mtr package 
+    ''' 
+path = '' 
+job.run_test('mtr',test_path=path) 

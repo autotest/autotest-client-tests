@@ -1,0 +1,44 @@
+$ cd /NFS_PARTITION
+$ rm -rf d
+$ mkdir d
+$ cd d
+
+$ mkdir sub
+$ nfs4_setfacl -a 'A:fd:EVERYONE@:rDwax' sub
+$ ls -dl sub | cut -d ' ' -f 1
+> drwxrwxrwx
+
+$ nfs4_getfacl sub
+> A::OWNER@:rwaDxtTcCy
+> A::GROUP@:rwaDxtcy
+> A::EVERYONE@:rwaDxtcy
+> A:fdi:OWNER@:rwaDxtTcCy
+> A:fdi:GROUP@:rwaDxtcy
+> A:fdi:EVERYONE@:rwaDxtcy
+
+$ chmod 775 sub
+$ ls -dl sub | cut -d ' ' -f 1
+> drwxrwxr-x
+$ nfs4_getfacl sub
+> A::OWNER@:rwaDxtTcCy
+> A::GROUP@:rwaDxtcy
+> A::EVERYONE@:rxtcy
+> A:fdi:OWNER@:rwaDxtTcCy
+> A:fdi:GROUP@:rwaDxtcy
+> A:fdi:EVERYONE@:rwaDxtcy
+
+$ touch sub/f
+$ ls -l sub/f | cut -d ' ' -f 1
+> -rw-rw-rw-
+
+$ nfs4_getfacl sub/f
+> A::OWNER@:rwatTcCy
+> A::GROUP@:rwatcy
+> A::EVERYONE@:rwatcy
+
+$ mkdir sub/sub2
+$ ls -dl sub/sub2 | cut -d ' ' -f 1
+> drwxrwxrwx
+
+$ cd ..
+$ rm -rf d

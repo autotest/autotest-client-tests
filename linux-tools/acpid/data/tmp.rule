@@ -1,0 +1,2 @@
+event=tmp/tmp.event
+action=/bin/echo %e >> $ACTION_LOG

@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev.linux.vnet.ibm.com>  " 
+NAME = "yum_metadata_parser" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test yum-metadata-parser package 
+    ''' 
+path = '' 
+job.run_test('yum_metadata_parser',test_path=path) 

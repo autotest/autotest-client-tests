@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "socat" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test socat package 
+    ''' 
+path = '' 
+job.run_test('socat',test_path=path) 

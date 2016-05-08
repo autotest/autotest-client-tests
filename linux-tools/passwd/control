@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G, kumuda@linux.vnet.ibm.com  " 
+NAME = "passwd" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test passwd package 
+    ''' 
+path = '' 
+job.run_test('passwd',test_path=path) 

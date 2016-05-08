@@ -1,0 +1,24 @@
+################################
+# HOLIDAYS
+################################
+# See the Date::Manip::Holidays man page for a description of
+# this section.
+*HOLIDAYS
+
+# FEDERAL HOLIDAYS
+##################
+
+# Jan 1                         = New Year's Day
+1*1:0:1:0:0:0*DWD               = New Year's Day
+
+third Monday in Jan             = Martin Luther King Jr.'s Birthday
+
+# Observed by federal employees in Washington D.C.
+# Jan 20                        = Inauguration day
+
+third Monday in Feb             = Washington's Birthday
+
+last Monday in May              = Memorial Day
+
+# Jul 4                         = Independence Day
+1*7:0:4:0:0:0*DWD               = Independence Day

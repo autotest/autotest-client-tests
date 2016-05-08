@@ -1,0 +1,18 @@
+Testcase for perl-Net-SSLeay
+
+Net::SSLeay - Perl extension for using OpenSSL
+
+This module offers some high level convinience functions for accessing web
+pages on SSL servers ,
+ a sslcat() function for writing own clients, and finally access to the SSL
+api of SSLeay/OpenSSL package
+so that can write servers or clients for more complicated applications. 
+
+Usage:
+To run all tests:
+
+perl-Net-SSLeay	perl-Net-SSLeay.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Net-SSLeay
+perl t/<test.t>

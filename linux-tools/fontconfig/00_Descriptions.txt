@@ -1,0 +1,13 @@
+fontconfig
+-----------------------------------------------------------------------------------------------
+Author          :       Hong Bo Peng, penghb@cn.ibm.com
+-----------------------------------------------------------------------------------------------
+Maintainer      :       penghb
+-----------------------------------------------------------------------------------------------
+Howto           :       fontconfig.sh
+-----------------------------------------------------------------------------------------------
+Evaluation      :       Copy two pcf files to some place. Then use fc-list, fc-cache to check
+			that fontconfig can provide the expected font information.
+			fc-match is also checked by match some patern.
+-----------------------------------------------------------------------------------------------
+

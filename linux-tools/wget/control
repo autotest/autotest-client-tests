@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>  " 
+NAME = "wget" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test wget package 
+    ''' 
+path = '' 
+job.run_test('wget',test_path=path) 

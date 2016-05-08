@@ -1,0 +1,13 @@
+python-ldap - An object-oriented API to access LDAP directory servers
+
+python-ldap provides an object-oriented API for working with LDAP within
+Python programs.  It allows access to LDAP directory servers by wrapping the
+OpenLDAP 2.x libraries, and contains modules for other LDAP-related tasks
+(including processing LDIF, LDAPURLs, LDAPv3 schema, etc.)
+
+The tests from the sources plus some additional
+tests from Demo directory of the source is integrated
+to fivextra tests. Also additional test is written to cover ldap.sasl module
+
+Usage:
+python-ldap:	./python-ldap.sh

@@ -1,10 +1,9 @@
 #!/bin/python
 import os
-import shutil
 import logging
 from time import sleep
 
-from autotest.client import test, utils
+from autotest.client import test
 
 from autotest.client.shared import error
 

@@ -1,0 +1,17 @@
+===============================================================================
+#TestCase        : attr.sh
+#
+# Description: This program tests basic functionality of attr
+#
+# Author:      Gaurav Saxena - gaurav.saxena@in.ibm.com
+===============================================================================
+Howto:
+1) Install the rpm 'attr-tests' to install the attr-tests folder
+2) Run attr.sh will test this package.
+
+Test coverage:
+----------------------------------
+attr
+libattr
+----------------------------------
+

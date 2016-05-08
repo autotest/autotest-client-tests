@@ -1,0 +1,2 @@
+gawk: reg/func2.awk:2: error: function `dummy' called with space between name and `(',
+or used as a variable or an array

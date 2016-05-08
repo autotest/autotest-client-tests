@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "python_urlgrabber" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-urlgrabber package 
+    ''' 
+path = '' 
+job.run_test('python_urlgrabber',test_path=path) 

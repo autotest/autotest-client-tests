@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@austin.ibm.com  " 
+NAME = "autofs" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test autofs package 
+    ''' 
+path = '' 
+job.run_test('autofs',test_path=path) 

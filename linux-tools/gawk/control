@@ -1,0 +1,11 @@
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
+NAME = "gawk" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gawk package 
+    ''' 
+path = '' 
+job.run_test('gawk',test_path=path) 

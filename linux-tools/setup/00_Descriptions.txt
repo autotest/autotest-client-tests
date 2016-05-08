@@ -1,0 +1,6 @@
+The setup package contains a set of important system configuration and
+setup files, such as passwd, group, and profile.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/setup
+./setup.sh

@@ -1,0 +1,74 @@
+Author:
+
+	Helen Pang <hpang@us.ibm.com>
+	Dan Streetman <ddstreet@us.ibm.com>
+
+Introduction:
+	
+	mutt is highly configurable and very powerful text-based program
+	for reading and writing electronic mail under unix and linux 
+	operation systems
+
+	General steps to run mutt:
+	--------------------------
+
+		- Press Enter twice after you verify mail address sent 
+		  and the subject title;
+		- Press 'Esc' and 'i' to start writing the mail;
+		- Press 'Esc', ':', 'x', and Enter to save your mail;
+		- Press 'y' for send;
+		- Press 'q' for abort and Press Enter when ask you to postpone 
+		  this message;
+		- Press 'c' for cc and Press Enter after you add the Cc's
+		  address and Press 'y' for send the mail
+
+
+Instructions:
+	
+	1. Login as root on the test machine, run:
+		
+		/etc/init.d/sendmail start
+
+	2. Run pre_mutt.sh
+
+		* Expected results: local user mutt_1 and mutt_2 are
+		created; myfile with its content of "Hello, this is my first
+		mutt mail" is created by mutt_1 and saved at /home/mutt_1;
+		.muttrc filse for user mutt_1 and mutt_2 are created ans
+		saved at their local home dir. 
+
+	3. Run alias_mutt.sh
+
+		This will switch you to user mutt_1 and invoke the mutt
+		comand to send mail to mutt_2 using the alias mq2. Follow
+		the on-screen directions for using mutt. After the mail is
+		sent, you will revert back to being the root user.
+
+		From root, issue "su - mutt_2" and verify that the mail was
+		received. You can use the mutt command to do this.
+
+		* Expected result: mutt_2 should have received the email.
+
+	4. Run batch_mutt.sh
+
+		* Expected result: Switch user id to mutt_2; Type mail and
+		then Press return key; you should find the subject as
+		'wonder' mail with its content of "Hello, this is my first
+		mutt mail" 
+
+	5. Run attach_mutt.sh
+
+		According to the 'General steps to run mutt'
+
+		* Expected result: you should find myfile right after to the
+		 new message file, and both are included in the mail with
+		 subject as 'wonder'
+
+
+	6. Run include_mutt.sh
+
+		According to the 'General steps to run mutt'
+
+		* Expected result: you should find the content of myfile is
+		included in part of a new composed message
+

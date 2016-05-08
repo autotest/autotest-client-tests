@@ -1,0 +1,32 @@
+shared-mime-info package contains a MIME database. This allows central updates of MIME information for all supporting applications. 
+
+update-mime-database assists in adding MIME data to the database.
+It is a program to build the Shared MIME-Info database cache.
+The MIME database is a collection of files that include information like
+set of known MIME types, meta information regarding a mime type.
+It contains directories and files like:
+1. /usr/share/mime/packages - This directory can contain any number of XML files. Each XML file describes the collection of MIME types.
+2. /usr/share/mime/globs - Each line in this file contains a MIME type and a glob pattern, separated by a colon.
+
+More info on mime database - http://docs.oracle.com/cd/E26502_01/html/E28056/glvaq.html
+
+Testcase includes adding a new mime type and file association.
+
+Add a new MIME Type by having an XML description file in /usr/share/mime/packages/
+Add this information to various files in /usr/share/mime using the command update-mime-database.
+Files in the database gets updated. Then create the file association by specifying application
+to open the file in desktop file.
+
+How to run test:
+--------------------------------
+After executing shared-mine-info.sh from /opt/fiv/ltp/testcases/fivextra/shared-mime-info
+
+- Copy any image file (png/jpeg/jpg) to /root and rename it to .imagefile
+
+- Run vncserver on test machine
+
+- From your machine do vnc to test machine
+# vncviewer <test machine IP>:<port number>
+
+- Open a terminal in the X-window and run the following command. The command should display the .imagefile
+# gnome-open <filename>.imagefile

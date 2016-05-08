@@ -1,0 +1,16 @@
+===============================================================================
+#TestCase        : bash.sh
+#
+# Description:  Check that the bash shell can run
+#
+# Author:       Robert Paulsen, rpaulsen@us.ibm.com
+#
+===============================================================================
+Howto:
+
+Run bash.sh will test this package.
+
+Test coverage:
+----------------------------------
+Run a bash script.
+----------------------------------

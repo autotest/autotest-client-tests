@@ -1,0 +1,18 @@
+This packages provides a perl module to generate checksums from strings and
+from files. The crc32() function shall return the new checksum value.
+
+The checksums are the same as those calculated by ZMODEM, PKZIP, PICCHECK and
+many others.
+
+There's another perl module called String::CRC, which supports calculation of
+CRC values of various widths (i.e. not just 32 bits), but the generated sums
+differ from those of the programs mentioned above.
+
+CRC stands for - Cyclic Redundancy Check checksum
+
+Functionality of the Test: Tests the CRC of a - string variable, string, sub-strings and  file
+
+How to run the test:
+-------------------
+./perl-String-CRC32.sh
+To run a individual test: perl t/<testname.t>

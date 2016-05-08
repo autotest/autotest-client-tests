@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "lsscsi" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lsscsi package 
+    ''' 
+path = '' 
+job.run_test('lsscsi',test_path=path) 

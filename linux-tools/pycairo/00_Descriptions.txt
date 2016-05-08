@@ -1,0 +1,8 @@
+Cairo is a library for drawing vector graphics which do not lose clarity
+while resizing or transforming. Pycairo is a python module which provides
+wrapper over cairo commands. Some of the tests available in source can
+be run in command line to generate pdf/png/ps files whose type can then
+be examined later by commands such as identify. Some tests are in manual
+category to verify through GTK.
+
+To execute FIV tests, run ./pycairo.sh 

@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "perl_Net_Telnet" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Net-Telnet package 
+    ''' 
+path = '' 
+job.run_test('perl_Net_Telnet',test_path=path) 

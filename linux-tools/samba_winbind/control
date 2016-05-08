@@ -1,0 +1,11 @@
+AUTHOR = " GONG Jie <gongjie@cn.ibm.com>  " 
+NAME = "samba_winbind" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test samba-winbind package 
+    ''' 
+path = '' 
+job.run_test('samba_winbind',test_path=path) 

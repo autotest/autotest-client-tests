@@ -1,0 +1,18 @@
+HTML::Parser - HTML parser class
+
+Objects of the HTML::Parser class will recognize markup and separate 
+it from plain text (alias data content) in HTML documents.
+
+• new() - HTML::Parser constructor.
+• parse( $string )-Parse $string as the next chunk of the HTML document 
+• parse_file( $file )-Parse text directly from a file
+• eof - Signals the end of the HTML document
+
+Usage:
+To run all tests:
+
+./perl-HTML-Parser.sh	
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTML-Parser
+perl t/<test.t>

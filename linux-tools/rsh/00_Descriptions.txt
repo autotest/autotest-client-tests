@@ -1,0 +1,29 @@
+rsh test case
+
+
+INTRODUCTION
+
+	test rsh packages commands
+
+
+COVERAGE
+
+	rsh rexec rcp;
+
+
+HOWTO RUN
+
+	1. Make sure environment variables RSH_SERVER,
+           RSH_USER(non-root) and RSH_PASSWD are set properly.
+
+	2. ./rsh.sh
+
+NOTE
+
+	Environment variables RSH_SERVER, RSH_USER(non-root) and
+        RSH_PASSWD could be set manually or thru ABAT machines.xml
+
+	In CDL, test0 is maintained to be a suitable RSH_SERVER for
+	this test, thus this test could be run as this:
+
+	# RSH_SERVER=test0 RSH_USER=fivtest RSH_PASSWD=fivtest ./rsh.sh

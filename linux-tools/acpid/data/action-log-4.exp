@@ -1,0 +1,9 @@
+button/power.press
+video/lid.close
+button/suspend.press
+video/lid.open
+button/power.press
+video/lid.close
+button/suspend.press
+video/lid.open
+tmp/tmp.event

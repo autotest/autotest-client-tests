@@ -1,0 +1,58 @@
+#
+# OpenSSL configuration file for perl-ldap demo/test certificates.
+#
+
+# This definition stops the following lines choking if HOME isn't
+# defined.
+HOME			= .
+RANDFILE		= $ENV::HOME/.rnd
+
+####################################################################
+[ req ]
+default_bits		= 2048
+default_keyfile 	= privkey.pem
+distinguished_name	= req_distinguished_name
+x509_extensions		= server_cert	# The extentions to add to the self signed cert
+
+# This sets a mask for permitted string types. There are several options. 
+string_mask = utf8only
+
+req_extensions = v3_req # The extensions to add to a certificate request
+
+[ req_distinguished_name ]
+0.domainComponent		= 1st level Domain Component
+0.domainComponent_default	= perl-ldap
+
+1.domainComponent		= 2nd level Domain Component
+1.domainComponent_default	= demo
+
+commonName			= Common Name (e.g. server FQDN or YOUR name)
+commonName_default		= localhost
+commonName_max			= 64
+
+####################################################################
+# These extensions are added when 'ca' signs a request.
+[ server_cert ]
+
+# This goes against PKIX guidelines but some CAs do it and some software
+# requires this to avoid interpreting an end user certificate as a CA.
+basicConstraints=CA:FALSE
+
+# This is OK for an SSL server.
+nsCertType			= server
+
+# This will be displayed in Netscape's comment listbox.
+nsComment			= "demo certificate for perl-ldap tests"
+
+# PKIX recommendations harmless if included in all certificates.
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid,issuer
+
+####################################################################
+# Extensions to add to a certificate request
+[ v3_req ]
+
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+
+# EOF

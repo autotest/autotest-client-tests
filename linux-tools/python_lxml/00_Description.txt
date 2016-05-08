@@ -1,0 +1,9 @@
+lxml is the most feature-rich and easy-to-use library for processing XML and HTML in the Python language.
+
+building and running the in-built test suite is clearly mentioned in the link:
+http://lxml.de/build.html#running-the-tests-and-reporting-errors
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/python-lxml
+./python-lxml.sh

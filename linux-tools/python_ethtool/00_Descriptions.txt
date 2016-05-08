@@ -1,0 +1,6 @@
+Python bindings for the ethtool kernel interface, that allows querying and
+changing of ethernet card settings, such as speed, port, autonegotiation, and PCI locations.
+
+Automated tests:
+cd /opt/fiv/ltp/testcases/fivextra/python-ethtool
+./python-ethtool.sh

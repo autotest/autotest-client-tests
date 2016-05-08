@@ -1,0 +1,16 @@
+===============================================================================
+# TestCase:       cpio_test.sh
+#
+# Description:  Test basic functionality of cpio command
+#                               - Test #1:  cpio -o can create an archive.
+#
+# Author:       Manoj Iyer, manjo@mail.utexas.edu
+===============================================================================
+Howto:
+
+Run cpio_test.sh will test this package.
+
+Test coverage:
+----------------------------------
+cpio
+----------------------------------

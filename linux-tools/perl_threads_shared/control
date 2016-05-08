@@ -1,0 +1,11 @@
+AUTHOR = " Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##  " 
+NAME = "perl_threads_shared" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-threads-shared package 
+    ''' 
+path = '' 
+job.run_test('perl_threads_shared',test_path=path) 

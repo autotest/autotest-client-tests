@@ -1,0 +1,14 @@
+	# BEGIN block(s)
+
+	BEGIN {
+     1  	the_func = "p"
+     1  	print @the_func("Hello")
+	}
+
+
+	# Functions, listed alphabetically
+
+     1  function p(str)
+	{
+     1  	print "! " str " !"
+	}

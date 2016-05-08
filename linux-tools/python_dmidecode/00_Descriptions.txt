@@ -1,0 +1,7 @@
+python-dmidecode is a python extension module that uses the
+code-base of the 'dmidecode' utility, and presents the data
+as python data structures or as XML data using libxml2.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/python-dmidecode
+./python-dmideocde.sh

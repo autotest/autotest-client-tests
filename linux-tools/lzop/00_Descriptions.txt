@@ -1,0 +1,11 @@
+lzop is a compression utility which is designed to be a companion to gzip. It
+is based on the LZO library and its main advantages over gzip are much higher
+compression and decompression speed at the cost of compression ratio.
+
+lzop was designed with reliability, speed, portibility and as a reasonable
+drop-in compatiblity to gzip.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/lzop
+./lzop.sh
+

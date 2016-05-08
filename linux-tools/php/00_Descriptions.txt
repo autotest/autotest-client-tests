@@ -1,0 +1,31 @@
+===============================================================================
+Test Case Name  : php5
+
+Description     : Test PHP5 basic functions and modules.
+
+Author          : Gong, Jie,   gongjie@cn.ibm.com
+                  Hu, Chen Li, huchenli@cn.ibm.com
+                  Wang, Tao,   wangttao@cn.ibm.com
+                  Yan Li,      liyanbj@cn.ibm.com
+
+===============================================================================
+
+* INTRODUCTION
+
+This testcase PHP5 basic functions and modules.  
+
+
+INSTALL:
+
+  Install the php5-tests rpm prior to running the test script
+
+
+* RUN
+
+1. To test the basic functionalities of PHP:
+
+   $ ./php5.sh
+
+2. To test modules of PHP:
+
+   $ ./php5.sh <module>

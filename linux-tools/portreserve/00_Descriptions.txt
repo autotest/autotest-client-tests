@@ -1,0 +1,23 @@
+portreserve - reserve ports to prevent portmap mapping them.
+
+The portreserve program aims to help services with well-known ports
+that lie in the bindresvport range. It prevents portmap (or other
+programs using bindresvport) from occupying a real service´s port by
+occupying it itself, until the real service tells it to release the
+port (generally in its init script).
+
+Run the test:
+---------------
+./portreserve.sh
+
+
+        TODO
+--------------------------------------------------
+Note: As of now our test script only test the simple
+functionality of portreserve and portrelease command.
+
+portrelease doesnt have proper error reporting
+which may confuse a service to start using a port.
+
+Once the feature is in , we need to include
+negative scenarios in our test script. 

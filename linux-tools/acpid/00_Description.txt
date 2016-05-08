@@ -1,0 +1,69 @@
+-----------------------------------------------------------------------------------------------------------------------------
+Author		:	Suzuki K P <suzukikp@in.ibm.com>
+----------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------
+Testcase	:	acpid - ACPI Daemon
+-----------------------------------------------------------------------------------------------------------------------------
+		
+	ACPI daemon runs in userspace reading the events from /proc/acpi/event to which ACPI events are reported by the kernel. The daemon could
+be made to execute specific actions upon the events by specifying the rules in the conf/ directory. It also allows clients to connect to the socket
+and sends the events to all the connected clients. Refer. man acpid for more details.
+
+-----------------------------------------------------------------------------------------------------------------------------
+Howto		:	Execute acpid.sh testcase
+-----------------------------------------------------------------------------------------------------------------------------
+
+Files/Dirs	:	acpid.sh	- Wrapper for acpid-test.sh. This is in place due to a bash bug (LTC #50650)
+			acpid-test.sh	- The actual testcases
+			conf/		- Configuration directory for acpid rules/actions
+			log/		- Log files for the testcases
+			data/		- Expected results and other misc. data
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Description	:
+	We create a FIFO file on the fly to simulate the behaviour of kernel generated events. The acpid is made to read the events
+from the fifo making it behave like the real acpi/event file waiting for the events. The testcase writes the events to the pipe to simulate
+the generation of the events.
+
+	The client behaviour is tested using the acpi_listen program shipped with the acpid package.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Test Scenarios	: 
+
+	We test 4 scenarios.
+
+	1)	Test the following :
+		a) acpid starts fine
+		b) acpi client is able to connect to the server (acpi_listen)
+
+	2) 	Test the -S option :
+
+		a) Start the acpid with -S option (by setting the SOCKOPT env. variable in the tests)
+
+		b) Try connecting the client to the server. We should receive "Connection refused" error.
+
+	3)	Test the rules and related actions for the acpi events.
+
+		a) Start the acpid 
+		b) Also start the acpi client
+		c) Now generate the events by writing some events to the EVENT_FILE.
+		d) We should see the action taken by the acpid with the rules in conf/ and also the client's out put.
+
+	4)	Test the SIGHUP behaviour of acpid. ACPID should reload the rules on SIGHUP.
+
+		a) Start the acpid as well as the clients.
+		b) Generate the events by writing the data to EVENT_FILE
+		c) Now add a new rule to the conf/ directory
+		d) Send a SIGHUP to the acpid
+		e) Check the results for the client and actions. We should see the actions for the new rule added.
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+NOTE:	There is one environment variable that you could try experimenting with in case of failures. 
+
+	*) INTERVAL 	-	In acpid-test.sh, is the interval to wait for the acpid daemon to settle itself before the client tries to connect.
+				The default is 1sec. You could increase it to see if it helps in getting rid of the problems. 
+				
+				There is really no way to find out if the acpid has finished reading the rules and configs. 
+--------------------------------------------------------------------------------------------------------------------------------------------
+

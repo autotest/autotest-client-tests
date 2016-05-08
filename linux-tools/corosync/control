@@ -1,0 +1,11 @@
+AUTHOR = " Sohny Thomas <sohthoma@in.ibm.com>  " 
+NAME = "corosync" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test corosync package 
+    ''' 
+path = '' 
+job.run_test('corosync',test_path=path) 

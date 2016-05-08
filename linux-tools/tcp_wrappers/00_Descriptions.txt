@@ -1,0 +1,12 @@
+tcpd_test01
+	this test will verify basic functionality of tcpd (tcp wrappers),
+check if adding entry or deleting entry from hosts.deny file will 
+actually deny or grant access to ssh.
+
+sshd and all the other serices started via xinetd, 
+will be controlled by hosts.allow and hosts.deny to grant access.
+
+ldd sshd or xinetd, you'll find:
+	 libwrap.so.0 => /lib/libwrap.so.0
+
+											-- rende

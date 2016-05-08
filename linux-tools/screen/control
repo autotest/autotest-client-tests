@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "screen" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test screen package 
+    ''' 
+path = '' 
+job.run_test('screen',test_path=path) 

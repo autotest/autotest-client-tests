@@ -1,0 +1,29 @@
+Author : Suzuki K P <suzuki@in.ibm.com>
+
+NOTE: The elfutils tests are subpackaged with the rpm build process.
+
+The TESTS file in the current directory contains the "individual" tests to be executed.
+This list is manually created from the "make check" output. Typical output looks like:
+
+[root@testshost]# make check
+make  check-TESTS
+make[1]: Entering directory `/home/suzie/rpmbuild/BUILD/elfutils-0.147/tests'
+Extracting symbols... done
+PASS: run-arextract.sh
+PASS: run-arsymtest.sh
+PASS: newfile
+PASS: test-nlist
+PASS: update1
+PASS: update2
+PASS: update3
+[...]
+PASS: asm-tst6
+PASS: asm-tst7
+PASS: asm-tst8
+PASS: asm-tst9
+===================
+All 69 tests passed
+===================
+
+So I just picked the "test" names from the list above and created the file TESTS.
+This may be updated during test merge process.

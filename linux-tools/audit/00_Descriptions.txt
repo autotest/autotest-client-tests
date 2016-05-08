@@ -1,0 +1,40 @@
+auditd is the userspace component to the Linux Auditing System. It's
+responsible for writing audit records to the disk. Viewing the logs
+is done  with  the  ausearch  or aureport utilities. Configuring the
+audit rules is done with the auditctl utility.
+
+During startup, the rules in /etc/audit/audit.rules are read by auditctl.
+The audit daemon itself has some configuration options that the admin may
+wish to customize.They are found in the auditd.conf file.
+
+# audit control related files
+/sbin/auditctl
+/etc/audit/audit.rules
+
+# audit daemon related files
+/sbin/auditd
+/etc/rc.d/init.d/auditd
+/etc/sysconfig/auditd
+/etc/audit/auditd.conf
+
+# audit reporting tools and files
+/sbin/aureport
+/sbin/ausearch
+/sbin/autrace
+/usr/bin/aulast
+/usr/bin/aulastlog
+/usr/bin/ausyscall
+/var/log/audit
+
+# audit development libraries
+/usr/lib64/audit
+
+/sbin/audispd
+/etc/audisp/audispd.conf
+/etc/audisp/plugins.d
+/etc/audisp/plugins.d/af_unix.conf
+/etc/audisp/plugins.d/syslog.conf
+
+audit.sh is the test script which verifies the guarenteed functionality of
+auditctl and audit daemon installed by the package. It also checks the tracing
+and logging functionalities.

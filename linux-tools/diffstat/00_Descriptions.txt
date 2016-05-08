@@ -1,0 +1,9 @@
+Diffstat reads the output of the diff command and displays a histogram of the insertions,
+deletions and modifications in each file.  Diffstat is commonly used
+to provide a summary of the changes in large, complex patch files.
+
+Basically diffstat provides a summary of the diff command's output.
+
+How to run the tests :
+--------------------
+./diffstat.sh

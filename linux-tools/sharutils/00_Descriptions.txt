@@ -1,0 +1,4 @@
+sharutils.sh:
+	Simple test against sharutils package.
+	uuencode/uudecode, shar/unshar are tested for both ascii and binary files.
+

@@ -1,0 +1,11 @@
+AUTHOR = " Liu Deyan, liudeyan@cn.ibm.com  " 
+NAME = "acl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test acl package 
+    ''' 
+path = '' 
+job.run_test('acl',test_path=path) 

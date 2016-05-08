@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>         		          ##  " 
+NAME = "python_pycurl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-pycurl package 
+    ''' 
+path = '' 
+job.run_test('python_pycurl',test_path=path) 

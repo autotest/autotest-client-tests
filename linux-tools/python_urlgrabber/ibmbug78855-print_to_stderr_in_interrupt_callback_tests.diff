@@ -1,0 +1,18 @@
+--- test/test_grabber.py.orig	2012-08-08 07:01:35.759477866 -0400
++++ test/test_grabber.py	2012-08-08 07:02:39.353406002 -0400
+@@ -342,6 +342,7 @@ class InterruptTestCase(TestCase):
+         
+     def test_interrupt_callback_called(self):
+         "interrupt callback is called on retry"
++	print >> sys.stderr, 'interrupt callback tests start' 
+         self.interrupt_callback_called = 0
+         ic = (self._interrupt_callback, (), {})
+         g = grabber.URLGrabber(progress_obj=self.InterruptProgress(),
+@@ -357,6 +358,7 @@ class InterruptTestCase(TestCase):
+         g = grabber.URLGrabber(progress_obj=self.InterruptProgress(),
+                                interrupt_callback=ic)
+         self.assertRaises(self.TestException, g.urlgrab, ref_http)
++	print >> sys.stderr, 'interrupt callback tests end' 	
+ 
+ class CheckfuncTestCase(TestCase):
+     """Test checkfunc behavior"""

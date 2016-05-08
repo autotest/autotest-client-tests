@@ -1,0 +1,97 @@
+checkpolicy: checkpolicy is a program that checks and compiles a
+SELinux security policy configuration into a binary representation
+that can be loaded into the kernel. If no input file name is specified,
+checkpolicy will attempt to read from policy.conf or policy, depending
+on whether the -b flag is specified.
+
+1) checkpolicy's (The checkpolicy package) main task is to compile the policy
+(The compilation is done by the "checkmodule" command, which is a part of checkpolicy package ),
+---output ---
+[root@testp62 checkpolicy] # checkmodule -o policy.mod policy.conf
+checkmodule:  loading policy configuration from policy.conf
+checkmodule:  policy configuration loaded
+checkmodule:  writing binary representation (version 10) to policy.mod
+[root@testp62 checkpolicy] #
+
+2) The second task is to query the policy in high level . It is done by the "checkpolicy" command.
+It can be run on the source file or on the binary file (created in the above step)
+---output---
+** [root@testp62 checkpolicy] # checkpolicy policy.conf
+checkpolicy:  loading policy configuration from policy.conf
+checkpolicy:  policy configuration loaded
+[root@testp62 checkpolicy] # checkpolicy -b policy.mod
+checkpolicy:  loading policy configuration from policy.mod
+libsepol.policydb_index_others: security:  2 users, 2 roles, 1 types, 0 bools
+libsepol.policydb_index_others: security:  77 classes, 0 rules, 0 cond rules
+checkpolicy:  policy configuration loaded
+
+
+3) The sedismod is used to query the policy in micro level , ie, the individual rules and policies of the policy file.
+---output---
+***[root@testp62 checkpolicy] # sedismod          
+usage:  sedismod binary_pol_file
+
+[root@testp62 checkpolicy] # sedismod policy.mod
+Reading policy...
+libsepol.policydb_index_others: security:  2 users, 2 roles, 1 types, 0 bools
+libsepol.policydb_index_others: security:  77 classes, 0 rules, 0 cond rules
+libsepol.policydb_index_others: security:  2 users, 2 roles, 1 types, 0 bools
+libsepol.policydb_index_others: security:  77 classes, 0 rules, 0 cond rules
+Binary base policy file loaded.
+
+Select a command:
+1)  display unconditional AVTAB
+2)  display conditional AVTAB
+3)  display users
+4)  display bools
+5)  display roles
+6)  display types, attributes, and aliases
+7)  display role transitions
+8)  display role allows
+9)  Display policycon
+0)  Display initial SIDs
+
+a)  Display avrule requirements
+b)  Display avrule declarations
+c)  Display policy capabilities
+l)  Link in a module
+u)  Display the unknown handling setting
+
+f)  set output file
+m)  display menu
+q)  quit
+
+Command ('m' for menu):  1
+
+
+4) sedispol also does the same thing as sedismod, but parts of the policy it queries are somewhat different from sedismod.
+As given in this link --
+http://userspace.selinuxproject.org/trac/wiki/SelinuxTools
+sedispol would only be used by experienced developers to understand the ramifications of rules added to the source policy.
+---output---
+[root@testp62 checkpolicy] # sedispol policy.mod
+Reading policy...
+libsepol.policydb_index_others: security:  2 users, 2 roles, 1 types, 0 bools
+libsepol.policydb_index_others: security:  77 classes, 0 rules, 0 cond rules
+binary policy file loaded
+
+Select a command:
+1)  display unconditional AVTAB
+2)  display conditional AVTAB (entirely)
+3)  display conditional AVTAG (only ENABLED rules)
+4)  display conditional AVTAB (only DISABLED rules)
+5)  display conditional bools
+6)  display conditional expressions
+7)  change a boolean value
+
+c)  display policy capabilities
+p)  display the list of permissive types
+u)  display unknown handling setting
+f)  set output file
+m)  display menu
+q)  quit
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/checkpolicy
+./checkpolicy.sh

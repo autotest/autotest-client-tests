@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "perl_TimeDate" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-TimeDate package 
+    ''' 
+path = '' 
+job.run_test('perl_TimeDate',test_path=path) 

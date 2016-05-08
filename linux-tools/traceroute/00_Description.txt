@@ -1,0 +1,16 @@
+traceroute : A traceroute, is a way to see how information travels from one computer
+to another. Usually, information sent from one computer requires several computers to
+transmit the information. A traceroute identifies each computer on that list, and the 
+amount of time it takes to get from one computer to another. If there is an interruption
+in the transfer of data, the traceroute will show where in the chain the problem occurred.
+The information that travels along the traceroute is known as 'packets.' Generally, a
+traceroute will display three separate columns for the hop time, as each traceroute sends
+out three separate packets of information to each computer. Sometimes a traceroute will
+show one hop time, with the next two columns displaying asterisks. This usually indicates
+that although one packet was accepted by the computer, the other two packets were discarded.
+This is due to security concerns, many computers routinely reject multiple packages, or
+forward them to different sources. 
+
+How to run the test:
+--------------------
+./traceroute.sh

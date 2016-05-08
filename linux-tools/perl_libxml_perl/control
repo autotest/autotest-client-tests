@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##  " 
+NAME = "perl_libxml_perl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-libxml-perl package 
+    ''' 
+path = '' 
+job.run_test('perl_libxml_perl',test_path=path) 

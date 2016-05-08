@@ -1,0 +1,14 @@
+vsftpd
+	Test the functionality of vsftpd.
+	Covered file get/put and xferlog.
+
+	This also has two special requests that can be specified on the
+	command line:
+
+		START_SERVER
+		STOP_SERVER
+
+	These are used to start and stop the server without running any
+	tests. They are used by the mod_php5 ftp testcase. It is the
+	responsibility of the invoking script (e.g. mod_php5) to save and
+	restore the xinetd.conf and vsftpd.conf files.

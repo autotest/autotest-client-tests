@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>  " 
+NAME = "cifs_utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test cifs-utils package 
+    ''' 
+path = '' 
+job.run_test('cifs_utils',test_path=path) 

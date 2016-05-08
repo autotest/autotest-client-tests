@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>                                 ##  " 
+NAME = "checkpolicy" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test checkpolicy package 
+    ''' 
+path = '' 
+job.run_test('checkpolicy',test_path=path) 

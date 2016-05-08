@@ -1,0 +1,15 @@
+Carp::Clan - module reports errors from the perspective of the caller of a
+"clan" of modules, similar to "Carp.pm" itself. But instead of giving
+it a number of levels to skip on the calling stack, you give it a
+pattern to characterize the package names of the "clan" of modules
+which shall never be blamed for any error.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Carp-Clan/
+./perl-Carp-Clan.sh 
+
+Individual test execution
+------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Carp-Clan
+perl t/<test_name>.t 

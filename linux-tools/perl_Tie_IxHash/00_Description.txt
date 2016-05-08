@@ -1,0 +1,15 @@
+Tie::IxHash - ordered associative arrays for Perl
+This Perl module implements Perl hashes that preserve the order in which the hash elements were added.
+The order is not affected when values corresponding to existing keys in the IxHash are changed.
+The elements can also be set to any arbitrary supplied order.
+The familiar perl array operations can also be performed on the IxHash.
+
+Usage:
+To run all tests:
+
+cd /opt/fiv/ltp/testcases/fivextra/perl-Tie-IxHash
+./perl-Tie-IxHash.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Tie-IxHash
+perl t/<test.t>

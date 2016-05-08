@@ -1,0 +1,30 @@
+IO::Socket::SSL -- Nearly transparent SSL encapsulation for IO::Socket::INET.
+
+This module is a true drop-in replacement for IO::Socket::INET that uses SSL to encrypt data
+before it is transferred to a remote server or client.
+IO::Socket::SSL supports all the extra features that one needs to write a full-featured
+SSL client or server application: multiple SSL contexts, cipher selection, certificate verification, and SSL version selection.
+
+Some example syntax for using this module:
+
+1) IO::Socket::SSL->new( $saddr ) - Here "new" creates a new IO::Socket::SSL object.
+
+2) ( IO::Socket::SSL->start_SSL( $socket, SSL_server => 1, Timeout => 5 ))
+
+start_SSL -> start the SSL connection.
+This will convert a socket that you provide to an IO::Socket::SSL object
+
+SSL_server - tells the socket should be used as a server.
+
+Similarly there are other options to IO::Socket::SSL:
+SSL_cipher_list - use cipher list.
+SSL_use_cert - to use a certificate and key
+SSL_cert_file - to specify location of SSL certificate.
+
+Usage:
+To run all tests:
+perl-IO-Socket-SSL	./perl-IO-Socket-SSL.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-IO-Socket-SSL
+perl t/<test.t>

@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
+NAME = "tar" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test tar package 
+    ''' 
+path = '' 
+job.run_test('tar',test_path=path) 

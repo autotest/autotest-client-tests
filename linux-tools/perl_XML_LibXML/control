@@ -1,0 +1,11 @@
+AUTHOR = " Basheer Khadarsabgari <bkhadars@in.ibm.com>                               ##  " 
+NAME = "perl_XML_LibXML" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-XML-LibXML package 
+    ''' 
+path = '' 
+job.run_test('perl_XML_LibXML',test_path=path) 

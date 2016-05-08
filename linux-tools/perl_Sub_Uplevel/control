@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "perl_Sub_Uplevel" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Sub-Uplevel package 
+    ''' 
+path = '' 
+job.run_test('perl_Sub_Uplevel',test_path=path) 

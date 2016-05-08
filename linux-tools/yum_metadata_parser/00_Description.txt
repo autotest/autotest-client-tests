@@ -1,0 +1,16 @@
+The yum-metadata-parser packages provide a fast metadata parser for Yum implemented in C.
+This provides module sqlitecachec which is required for yum to work.
+
+rpm -ql yum-metadata-parser
+/usr/lib64/python2.6/site-packages/_sqlitecache.so
+/usr/lib64/python2.6/site-packages/sqlitecachec.py
+/usr/lib64/python2.6/site-packages/sqlitecachec.pyc
+/usr/lib64/python2.6/site-packages/sqlitecachec.pyo
+
+These modules are covered by yum. While running any yum commands, yum update or install etc,
+it uses these modules. 
+
+This testcase covers additional scenarios like:
+1) Corrupt the yum metadata by modifying the primary.xml and verify if yum detects the same
+2) Verify yum works in case of yum update for dependencies.
+3) Check whether yum works with "metadata_expire" set in /etc/yum.conf file.

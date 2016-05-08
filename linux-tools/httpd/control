@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "httpd" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test httpd package 
+    ''' 
+path = '' 
+job.run_test('httpd',test_path=path) 

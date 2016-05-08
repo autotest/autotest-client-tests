@@ -1,0 +1,11 @@
+AUTHOR = " Gowri Shankar <gowrishankar.m@in.ibm.com>  " 
+NAME = "pycairo" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pycairo package 
+    ''' 
+path = '' 
+job.run_test('pycairo',test_path=path) 

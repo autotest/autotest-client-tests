@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G, kumuda@linux.vnet.ibm.com		                           #  " 
+NAME = "python_ethtool" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-ethtool package 
+    ''' 
+path = '' 
+job.run_test('python_ethtool',test_path=path) 

@@ -1,0 +1,6 @@
+coreutils:
+	CSDL: xu zheng<zhengxu@cn.ibm.com>
+   Testing the functionality of the commands in the coreutils.rpm
+
+usage:
+	coreutils.sh

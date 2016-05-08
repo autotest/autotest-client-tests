@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@us.ibm.com  " 
+NAME = "dosfstools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dosfstools package 
+    ''' 
+path = '' 
+job.run_test('dosfstools',test_path=path) 

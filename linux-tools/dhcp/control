@@ -1,0 +1,11 @@
+AUTHOR = " Madhura P S, madhura.ps@in.ibm.com  " 
+NAME = "dhcp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dhcp package 
+    ''' 
+path = '' 
+job.run_test('dhcp',test_path=path) 

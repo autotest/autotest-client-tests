@@ -1,0 +1,33 @@
+===============================================================================
+#TestCase        : bzip2.sh						      ##	
+#									      ##	
+# Description:  Test basic functionality of bzip2/bunzip2 commands            ##
+#                                                                             ##
+# Test Method:  Use existing reference files to test bzip2 and bunzip2        ##
+#                                                                             ##
+# -Existing reference files:                                                  ##
+#(Note: All these files are copied from $LTPROOT/testcases/bin to $TMP in the ##
+#       command file - $LTPROOT/runtest/fivextra. )                           ##
+#                                                                             ##
+#  uncompresssed: sample1.ref, sample2.ref, sample3.ref                       ##
+#  compressed   : sample1.bz2, sample2.bz2, sample3.bz2                       ##
+#                                                                             ##
+# -In the testcases:                                                          ##
+#  Test#1: bzip2 sample1.ref------output--->sample1.rb2                       ##
+#          bunzip2 sample1.bz2 ---output--->sample1.tst                       ##
+#          compare sample1.ref sample1.tst                                    ##
+#          compare sample1.bz2 sample1.rb2                                    ##
+#          if both "compare" pass, test is successful                         ##
+#          Test#2 and Test#3 use similar method but with different files      ##
+#                                                                             ##
+# Author:       Yu-Pao Lee                                                    ##
+===============================================================================
+Howto:
+
+Run bzip2.sh will test this package.
+
+Test coverage:
+----------------------------------
+bzip2 
+bunzip2
+----------------------------------

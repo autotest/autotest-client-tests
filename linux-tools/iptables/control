@@ -1,0 +1,11 @@
+AUTHOR = " Helen Pang, hpang@us.ibm.com  " 
+NAME = "iptables" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test iptables package 
+    ''' 
+path = '' 
+job.run_test('iptables',test_path=path) 

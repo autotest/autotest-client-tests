@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "libcap" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libcap package 
+    ''' 
+path = '' 
+job.run_test('libcap',test_path=path) 

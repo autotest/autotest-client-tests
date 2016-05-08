@@ -1,0 +1,11 @@
+Ed is a line-oriented text editor. It is used to create, display, modify and
+manipulate text files.
+The ed text editor works by using a buffer, an in-memory storage area where
+the actual text resides until you explicitly store the text in a file. 
+
+
+HOW TO RUN THE TEST:
+====================
+cd /opt/ltp/fiv/testcases/fivextra/ed/
+./ed.sh
+

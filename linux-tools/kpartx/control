@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##  " 
+NAME = "kpartx" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test kpartx package 
+    ''' 
+path = '' 
+job.run_test('kpartx',test_path=path) 

@@ -1,0 +1,34 @@
+Net::LibIDN - GNU Libidn is a fully documented implementation of the Stringprep, Punycode and IDNA specifications.
+Libidn's purpose is to encode and decode internationalized domain names.
+ 
+The library contains a generic Stringprep implementation. Profiles for Nameprep, iSCSI, SASL, XMPP and Kerberos V5 are included.
+Punycode and ASCII Compatible Encoding via IDNA are supported.
+A mechanism to define Top-Level Domain (TLD) specific validation tables, and to compare strings against those tables, is included. Default tables for some TLDs are also included.
+
+The TLD API consists of one set of functions to extract the TLD name from a domain string, one set of functions to locate the proper
+TLD table to use based on the TLD name, and core functions to validate a string against a TLD table, and some utility wrappers to perform all the steps in one call.
+
+
+Functionality of the test:
+--------------------------
+ Tests most of the functions provided by the package:
+
+   Net::LibIDN::idn_to_ascii($clear_hostname, [$charset, [$flags]]) - Converts $clear_hostname which might contain characters outside the range allowed in DNS names, to IDNA ACE. If $charset                                                                                 is specified, treats string as being encoded in it, otherwise assumes it is ISO-8859-1 encoded
+
+   Net:::LibIDN::idn_to_unicode($idn_hostname, [$charset, [$flags]]) - Converts ASCII $idn_hostname, which might be IDNA ACE encoded, into the decoded form in $charset or ISO-8859-1
+
+   Net:::LibIDN::idn_to_punycode_encode($string, [$charset])  - Encodes $string into "punycode" . If $charset is present, treats $string as being in $charset, otherwise uses ISO-8859-1    
+
+   Net:::LibIDN::idn_prep_name($string, [$charset]) - Performs "stringprep" on $string according to the named profile. If $charset is present, converts from and to this charset before and after the                                                                                         operation respectively. Returns result string, or undef on error.
+
+  Net::LibIDN::tld_get_table($tld) - Retrieves a hash reference with the TLD restriction info of given TLD $tld, or undef if $tld is not found. The hash ref contains the following fields:
+
+    $h->{name} ... name of TLD
+    $h->{version} ... version string of this restriction table
+    $h->{nvalid} ... number of Unicode intervals
+    $h->{valid} ... [ {start => number, end => number}, ...] ... Unicode intervals
+
+  Net::LibIDN:tdl_check($string, $errpros, [$charset [$tld]])- Checks whether or not $string conforms to the restrictions on the sets of valid characters defined by TLD authorities around the World.
+How to run the test:
+--------------------
+./perl-Net-LibIDN.sh

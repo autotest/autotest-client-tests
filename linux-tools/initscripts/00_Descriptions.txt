@@ -1,0 +1,24 @@
+===============================================================================
+TestCase        : initscripts
+
+Description     : The test check activate and deactivate network 
+		  interfaces and also check start stop of some basic system scripts
+
+Author          : Kingsuk Deb <kingsdeb@in.ibm.com>
+
+===============================================================================
+
+* INTRODUCTION
+
+Initscripts package contains the basic system scripts used to boot
+your system, change runlevels, and shut the system down cleanly.
+Initscripts also contains the scripts that activate and
+deactivate most network interfaces.
+
+* RUN
+
+   $ ./initscripts-test.sh
+
+
+* TEST COVERAGE
+

@@ -1,0 +1,3 @@
+samba-winbind.sh:
+	Test suite to test samba-winbind
+	GONG Jie <gongjie@cn.ibm.com>

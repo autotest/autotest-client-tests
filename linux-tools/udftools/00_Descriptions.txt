@@ -1,0 +1,39 @@
+udftools.sh
+
+Description :
+UDF a newer CDROM filesystem standard that's required for
+DVD roms. It's meant to be a replacement for the ISO9660
+filesystem used on today's CDROMs, but the immediate impact
+for most will be DVD. DVD multimedia cdroms use the UDF
+filesystem to contain MPEG audio and video streams.
+To access DVD cdroms you would need a DVD cdrom drive, the
+kernel driver for the cdrom drive, some kind of MPEG video
+support, and a UDF filesystem driver (like this one).   See
+the Livid project for news and software for playing DVDs.
+UDF can also be used by CD-R and CD-RW recorders in what's
+known as "packet writing". By using "packet writing", CDs
+can be written to more efficiently, in both disk space used,
+and the time it takes to write the CD. Adaptec's DirectCD is
+a Win95/WinNT example of packet writing, using the UDF
+version 1.5 filesystem.
+
+This test covers: chkudf, mkudffs, pktsetup, cdrwtool
+
+TODO: real test with CDRW/DVD drive. H/W dependent.
+
+Notes:
+Due to lack of mrw drive in CSTL, cdmrw is not tested now. However
+the following are steps to test this command.
+1. Asssume /dev/sr1 is the device file for a mrw drive.
+2. Put a blank CD-RW disk into mrw drive.
+3. cdmrw -d /dev/sr1 -f ull
+   It is to format a mrw drive. Optionaly we can add -p to poll its
+   status of formating.
+4. mkudffs --media-type=cdrw /dev/sr1
+   create a udf file system on the CD-RW disk.
+5. mount /dev/sr1 /mnt/cdrom
+6. Assume test.iso is of size 600M.
+   cp test.iso /mnt/cdrom
+   cp /mnt/cdrom/test.iso ~
+	
+

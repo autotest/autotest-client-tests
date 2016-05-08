@@ -1,0 +1,25 @@
+#! /usr/bin/expect
+set timeout 5
+proc abort {} { exit 1 }
+spawn sedispol policy.mod
+expect {
+	timeout abort	
+	"Command ('m' for menu):"
+	{ send "c\r" }
+}
+expect {
+        timeout abort
+	"  c\r\npolicy capabilities:\r\n\r\nCommand ('m' for menu):  "
+	{ send "p\r" }
+}
+expect {
+	timeout abort
+	"p\r\npermissive sids:\r\n\r\nCommand ('m' for menu):  "
+	{ send "u\r" }
+}
+expect {
+	timeout abort
+	"u\r\nDeny unknown classes and permisions\r\n\r\nCommand ('m' for menu):  "
+	{ send "q\r" }
+}
+expect eof

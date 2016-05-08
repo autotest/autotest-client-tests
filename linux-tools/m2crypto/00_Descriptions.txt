@@ -1,0 +1,20 @@
+M2Crypto is a crypto and SSL toolkit for Python featuring the following:
+
+    RSA, DSA, DH, HMACs, message digests, symmetric ciphers (including AES).
+    SSL functionality to implement clients and servers.
+    HTTPS extensions to Python’s httplib, urllib and xmlrpclib.
+    Unforgeable HMAC'ing AuthCookies for web session management.
+    FTP/TLS client and server.
+    S/MIME
+    ZServerSSL: A HTTPS server for Zope.
+    ZSmime: An S/MIME messenger for Zope.
+
+To Run the tests:
+----------------------
+cd /opt/fiv/ltp/testcases/fivextra/m2crypto
+./m2crypto.sh
+
+To Run each test manually:
+--------------------------
+cd /opt/fiv/ltp/testcases/fivextra/m2crypto/tests
+python test_xxx.py

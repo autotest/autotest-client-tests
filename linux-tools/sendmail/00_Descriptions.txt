@@ -1,0 +1,18 @@
+sendmail:
+          The testcase for automated test for sendmail
+
+usage:
+       ./sendmail.sh
+
+Note:
+----------
+
+Sendmail is a Mail Transport Agent ( MTA) , which is the program that moves mail.
+Sendmail can spool mail to your users' directories and accepts new email via the command line.
+Various Sendmail configuration files are installed in /etc/mail .
+Mainly:
+
+/etc/mail/access
+/etc/mail/local-host-names
+/etc/mail/virtusertable
+/etc/mail/trusted-users

@@ -1,0 +1,26 @@
+telnet
+	Test the functionality of telnet and telnetd, on the same machine.
+
+This test will start in.telnetd directly, and call telnet client to connect telnetd via expect,
+with different server and client options.
+
+
+1. in.telnetd  <---> telnet:
+	login with temp user, and touch a temp file, exit, and then check if the file is created.
+
+2. in.telnetd  <---> telnet -l <username>
+	login with temp user, and touch a temp file, exit, and then check if the file is created.
+	Don't need to provide username at login prompt
+
+3. in.telnetd -h <---> telnet 
+	login with temp user, and touch a temp file, exit, and then check if the file is created.
+	check host-specific information is printed this time.
+
+
+Note: 
+	1. Ensure to call /usr/bin/telnet, since there may have other type of telnet client in PATH.
+	2. This test use a different port for telnetd, and start it directly, so no impact will be introduced to SUT.
+	3. There's another test for telnet from LTP: network/tcp_cmds/telnet
+		(setup passwordless rsh, telnet by expect).
+
+														-- rende@cn.ibm.com

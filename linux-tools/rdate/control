@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##  " 
+NAME = "rdate" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test rdate package 
+    ''' 
+path = '' 
+job.run_test('rdate',test_path=path) 

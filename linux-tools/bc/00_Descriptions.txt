@@ -1,0 +1,16 @@
+===============================================================================
+#TestCase        : bc_tests.sh
+#
+# Description: This program tests basic functionality of the bc program
+#
+# Author:      Paul Washington - wshp@us.ibm.com
+#
+===============================================================================
+Howto:
+
+Run bc_tests.sh will test this package.
+
+Test coverage:
+----------------------------------
+bc
+----------------------------------

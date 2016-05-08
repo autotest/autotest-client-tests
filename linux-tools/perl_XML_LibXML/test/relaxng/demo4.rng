@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <!--
+    
+    The master container.
+    
+  -->
+  <start>
+    <element name="root">
+      <ref name="attribute.name"/>
+      <optional>
+        <ref name="element.onedown"/>
+      </optional>
+    </element>
+  </start>
+  <define name="attribute.name">
+    <attribute name="name"/>
+  </define>
+  <define name="element.onedown">
+    <element name="onedown">
+      <optional>
+        <ref name="attribute.name"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="element.twodown"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="element.twodown">
+    <element name="twodown">
+      <ref name="attribute.name"/>
+    </element>
+  </define>
+</grammar>

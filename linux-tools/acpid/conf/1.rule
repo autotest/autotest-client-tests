@@ -1,0 +1,2 @@
+event=button/power.press
+action=/bin/echo %e >> $ACTION_LOG

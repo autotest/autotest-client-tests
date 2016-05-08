@@ -1,0 +1,24 @@
+--- tests/test_smime.py.orig	2012-10-19 13:23:22.000000000 -0400
++++ tests/test_smime.py	2012-10-19 13:23:31.000000000 -0400
+@@ -219,7 +219,7 @@ class WriteLoadTestCase(unittest.TestCas
+         buf = BIO.MemoryBuffer()
+         assert SMIME.load_pkcs7(self.filename).write_der(buf) == 1
+         s = buf.read()
+-        assert len(s) in (1188, 1204, 1243), len(s)
++        assert len(s) in (1188, 1204, 1243, 1678), len(s)
+         
+     def test_load_pkcs7(self):
+         assert SMIME.load_pkcs7(self.filename).type() == SMIME.PKCS7_SIGNED
+
+--- tests/test_x509.py.orig	2012-10-08 10:13:29.000000000 -0400
++++ tests/test_x509.py	2012-10-08 11:47:36.000000000 -0400
+@@ -412,7 +412,8 @@ class X509TestCase(unittest.TestCase):
+         x509 = X509.load_cert('tests/x509.pem')
+         f = open('tests/x509.pem', 'r')
+         lTmp = f.readlines()
+-        x509_pem = ''.join(lTmp[44:60]) # -----BEGIN CERTIFICATE----- : -----END CERTIFICATE-----
++        #x509_pem = ''.join(lTmp[44:60]) # -----BEGIN CERTIFICATE----- : -----END CERTIFICATE-----
++        x509_pem = ''.join(lTmp[lTmp.index('-----BEGIN CERTIFICATE-----\n'):(lTmp.index('-----END CERTIFICATE-----\n') + 1)])
+         f.close()
+         f = open('tests/x509.der', 'rb')
+         x509_der = f.read()

@@ -1,0 +1,20 @@
+===============================================================================
+TestCase	: sudo_test.sh
+
+Description	: This test will test sudo with important parameters.
+
+Author		: CSDL James He <hejianj@cn.ibm.com>
+		  CSDL Li Zhi Gang <lizhig@cn.ibm.com>
+
+===============================================================================
+Howto:
+
+Invoke ./sudo_test.sh to start the test.
+----------------------------------
+Test-case coverage:
+
+1. Sudo should configure the /etc/sudoers file.
+2. The test case will add two sudo users and set their priviliges to the /etc/sudoers.
+After that, the test case will execute sudo -c/ sudo -S with each sudo users that created
+before. 
+----------------------------------

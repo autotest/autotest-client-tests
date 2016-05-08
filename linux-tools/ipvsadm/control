@@ -1,0 +1,11 @@
+AUTHOR = " Manikandan .C , Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "ipvsadm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ipvsadm package 
+    ''' 
+path = '' 
+job.run_test('ipvsadm',test_path=path) 

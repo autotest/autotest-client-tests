@@ -1,0 +1,17 @@
+kpartx - Create device maps from partition tables
+
+To run the test
+---------------
+./kpartx.sh
+
+The test has following scenarios for kpartx
+-------------------------------------------
+-a
+    Add partition mappings
+-d
+    Delete partition mappings
+-l
+    List partition mappings that would be added -a
+-p
+    set device name-partition number delimiter
+

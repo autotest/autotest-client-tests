@@ -1,0 +1,10 @@
+*HOLIDAYS
+
+# FEDERAL HOLIDAYS
+##################
+
+1*1:0:1:0:0:0*DWD    = New Years Day
+
+1*12:0:25:0:0:0*NWD  = Christmas
+1*12:0:25:0:0:0*NWD  = Boxing
+

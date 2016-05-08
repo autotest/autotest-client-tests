@@ -1,0 +1,15 @@
+Net::Telnet allows you to make client connections to a TCP port and do network I/O, especially to a port using the TELNET protocol.
+Simple I/O methods such as print, get, and getline are provided. More sophisticated interactive features are provided because connecting
+ to a TELNET port ultimately means communicating with a program designed for human interaction. These interactive features include the
+ability to specify a time-out and to wait for patterns to appear in the input stream, such as the prompt from a shell.
+
+Other reasons to use this module than strictly with a TELNET port are:
+
+    You're not familiar with sockets and you want a simple way to make client connections to TCP services.
+    You want to be able to specify your own time-out while connecting, reading, or writing.
+    You're communicating with an interactive program at the other end of some socket or pipe and you want to wait for certain patterns to appear.
+
+
+How to run the test:
+--------------------
+./perl-Net-Telnet.sh

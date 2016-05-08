@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<gconf>
+    <entry name="vnc_password" mtime="1289267042" type="string">
+        <stringvalue>cXdlcnR5</stringvalue>
+    </entry>
+    <entry name="view_only" mtime="1289262982" type="bool" value="false"/>
+    <entry name="prompt_enabled" mtime="1254965869" type="bool" value="false"/>
+    <entry name="authentication_methods" mtime="1289267034" type="list" ltype="string">
+        <li type="string">
+            <stringvalue>vnc</stringvalue>
+        </li>
+    </entry>
+    <entry name="enabled" mtime="1289263574" type="bool" value="true"/>
+</gconf>

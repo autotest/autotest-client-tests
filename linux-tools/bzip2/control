@@ -1,0 +1,11 @@
+AUTHOR = " Yu-Pao Lee						      ##  " 
+NAME = "bzip2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test bzip2 package 
+    ''' 
+path = '' 
+job.run_test('bzip2',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "portreserve" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test portreserve package 
+    ''' 
+path = '' 
+job.run_test('portreserve',test_path=path) 

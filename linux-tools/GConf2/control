@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "GConf2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test GConf2 package 
+    ''' 
+path = '' 
+job.run_test('GConf2',test_path=path) 

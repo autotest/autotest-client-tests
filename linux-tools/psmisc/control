@@ -1,0 +1,11 @@
+AUTHOR = " rende@cn.ibm.com  " 
+NAME = "psmisc" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test psmisc package 
+    ''' 
+path = '' 
+job.run_test('psmisc',test_path=path) 

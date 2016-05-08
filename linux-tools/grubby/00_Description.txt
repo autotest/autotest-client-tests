@@ -1,0 +1,9 @@
+grubby  is  a command line tool for updating and displaying information about
+the configuration files for the grub, lilo, elilo (ia64),  yaboot (powerpc)
+and zipl (s390) boot loaders. It is primarily designed to be used from scripts
+which install new kernels and need to find information about the current boot
+environment.
+
+To run the tests:
+cd /opt/fiv/ltp/testcases/fivextra/grubby
+./grubby.sh

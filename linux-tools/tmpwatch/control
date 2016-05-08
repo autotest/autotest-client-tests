@@ -1,0 +1,11 @@
+AUTHOR = " Gowri Shankar <gowrishankar.m@in.ibm.com>  " 
+NAME = "tmpwatch" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test tmpwatch package 
+    ''' 
+path = '' 
+job.run_test('tmpwatch',test_path=path) 

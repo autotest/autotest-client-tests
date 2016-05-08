@@ -1,0 +1,11 @@
+The lockdev command can perform one of the following operations:
+
+-l - lock device with dev_lock() function
+
+-u - unlock device with dev_unlock() function
+
+no operation - test lock with dev_testlock() function 
+
+How to run:
+-------------
+./lockdev.sh

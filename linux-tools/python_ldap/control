@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev<atrajeev@in.ibm.com>  " 
+NAME = "python_ldap" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-ldap package 
+    ''' 
+path = '' 
+job.run_test('python_ldap',test_path=path) 

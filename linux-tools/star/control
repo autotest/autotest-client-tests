@@ -1,0 +1,11 @@
+AUTHOR = " Liu Deyan, liudeyan@cn.ibm.com  " 
+NAME = "star" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test star package 
+    ''' 
+path = '' 
+job.run_test('star',test_path=path) 

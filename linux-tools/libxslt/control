@@ -1,0 +1,11 @@
+AUTHOR = " Pravin S. Gaikar  " 
+NAME = "libxslt" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libxslt package 
+    ''' 
+path = '' 
+job.run_test('libxslt',test_path=path) 

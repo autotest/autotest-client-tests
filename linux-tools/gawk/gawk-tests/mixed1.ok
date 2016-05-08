@@ -1,0 +1,3 @@
+gawk: BEGIN {return junk}
+gawk:        ^ `return' used outside function context
+EXIT CODE: 1

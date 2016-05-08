@@ -1,0 +1,34 @@
+#!/usr/bin/expect --
+
+set file1 [lindex $argv 0]
+set file2 [lindex $argv 1]
+set pass [lindex $argv 2]
+set State [lindex $argv 3]
+set CN [lindex $argv 4]
+set email [lindex $argv 5]
+
+spawn openssl req -new -keyout $file1 -out $file2
+
+expect "*PEM pass phrase:"
+send -- "$pass\r"
+expect "*Enter PEM pass phrase:"
+send -- "$pass\r"
+expect "Country Name*:"
+send -- "\r"
+expect "State or Province Name*:"
+send -- "$State\r"
+expect "Locality Name*:"
+send -- "\r"
+expect "Organization Name*:"
+send -- "\r"
+expect "Organizational Unit Name*:"
+send -- "\r"
+expect "Common Name*:"
+send -- "$CN\r"
+expect "Email Address*:"
+send -- "$email\r";
+expect "A challenge password*:"
+send -- "\r"
+expect "An optional company name*:"
+send -- "\r"
+expect eof

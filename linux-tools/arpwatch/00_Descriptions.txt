@@ -1,0 +1,16 @@
+===============================================================================
+TestCase        : arpwatch_tests.sh
+
+Description     : Test command about arpwatch
+
+Authori         : Manoj Iyer  manjo@mail.utexas.edu
+
+===============================================================================
+Howto:
+
+Run arpwatch_tests.sh will test this package.
+
+Test coverage:
+----------------------------------
+arpwatch
+----------------------------------

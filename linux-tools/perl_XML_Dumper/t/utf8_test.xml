@@ -1,0 +1,9 @@
+<perldata>
+ <hashref memory_address="0x83173cc">
+  <item key="aa">ä</item>
+  <item key="euro">€</item>
+  <item key="iso_a">Ä</item>
+  <item key="iso_oo">Ö</item>
+  <item key="oo">ö</item>
+ </hashref>
+</perldata>

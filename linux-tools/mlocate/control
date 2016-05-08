@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "mlocate" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test mlocate package 
+    ''' 
+path = '' 
+job.run_test('mlocate',test_path=path) 

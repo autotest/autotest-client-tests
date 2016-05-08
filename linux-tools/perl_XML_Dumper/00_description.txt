@@ -1,0 +1,21 @@
+XML::Dumper - Perl module for dumping Perl objects from/to XML.
+
+XML::Dumper dumps Perl data to XML format.
+XML::Dumper can also read XML data that was previously dumped by the module
+and convert it back to Perl.
+You can use the module read the XML from a file and write the XML to a file
+
+• new() - XML::Dumper constructor.
+• pl2xml( $xml, [ $file ] ) - Converts Perl data to XML
+• xml2pl( $xml_or_filename, [ $callback ] ) - Converts XML to a Perl datatype.
+• xml_compare( $xml1, $xml2 ) - Compares xml for content
+• xml_identity( $xml1, $xml2 ) - Compares xml for identity 
+
+Usage:
+To run all tests:
+
+perl-XML-Dumper		perl-XML-Dumper.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-Dumper
+perl t/<test.t>

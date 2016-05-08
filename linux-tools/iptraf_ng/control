@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "iptraf_ng" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test iptraf-ng package 
+    ''' 
+path = '' 
+job.run_test('iptraf_ng',test_path=path) 

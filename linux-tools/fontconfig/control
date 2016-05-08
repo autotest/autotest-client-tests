@@ -1,0 +1,11 @@
+AUTHOR = " Hong Bo Peng <penghb@cn.ibm.com>  " 
+NAME = "fontconfig" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test fontconfig package 
+    ''' 
+path = '' 
+job.run_test('fontconfig',test_path=path) 

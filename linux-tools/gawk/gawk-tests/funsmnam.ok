@@ -1,0 +1,2 @@
+gawk: funsmnam.awk:1: error: function `foo': can't use function name as parameter name
+EXIT CODE: 1

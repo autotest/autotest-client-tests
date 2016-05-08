@@ -1,0 +1,7 @@
+A high-level cross-protocol url-grabber for python supporting HTTP, FTP
+and file locations.  Features include keepalive, byte ranges, throttling,
+authentication, proxies and more.
+
+How To run:
+cd /opt/fiv/ltp/testcases/fivextra/python-urlgrabber
+./python-urlgrabber.sh

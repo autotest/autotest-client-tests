@@ -1,0 +1,11 @@
+AUTHOR = " Mithu Ganesan miganesa@in.ibm.com  " 
+NAME = "numactl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test numactl package 
+    ''' 
+path = '' 
+job.run_test('numactl',test_path=path) 

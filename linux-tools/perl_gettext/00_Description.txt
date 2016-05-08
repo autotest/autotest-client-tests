@@ -1,0 +1,13 @@
+perl-gettext: The gettext module permits access from perl to the gettext() family of
+functions for retrieving message strings from databases constructed to
+internationalize software.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-gettext/
+./perl-gettext.sh 
+
+Individual test execution
+------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-gettext
+perl t/<test_name>.t 

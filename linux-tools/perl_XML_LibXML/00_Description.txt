@@ -1,0 +1,15 @@
+Description
+XML::LibXML - Perl Binding for libxml2
+
+This module is an interface to libxml2, providing XML and HTML parsers with
+DOM, SAX and XMLReader interfaces, a large subset of DOM Layer 3 interface and
+a XML::XPath-like interface to XPath API of libxml2
+
+Usage:
+To run all tests:
+
+./perl-XML-LibXML.sh	
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-LibXML
+perl t/<test.t>

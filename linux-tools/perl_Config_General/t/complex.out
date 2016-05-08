@@ -1,0 +1,69 @@
+<Directory />
+    mode = 755
+</Directory>
+<Files ~/*.pl>
+    Options = +Indexes
+</Files>
+<a b>
+    <m 9323>
+        g = 000
+        long = another long line
+    </m>
+    x = 9323
+    z = rewe
+</a>
+a [[weird]] heredoc = <<EOF
+has to
+  work
+  too!
+EOF
+auch ätzendes = muss gehen
+<block 0>
+    value = 0
+</block>
+cmd = mart@gw.intx.foo:22
+default = imported
+<hansa>
+    <Directory />
+        mode = 755
+    </Directory>
+    <Files ~/*.pl>
+        Options = +Indexes
+    </Files>
+    <block 0>
+        value = 0
+    </block>
+    nando = 11111
+    <x5>
+        klack = 11111
+    </x5>
+    <z1>
+        blak = 11111
+        nando = 9999
+    </z1>
+</hansa>
+host = gw.intx.foo
+ignore = \$set
+imported = got that from imported config
+line = along line
+nando = 11111
+offflag = 0
+onflag = 1
+quote = this should be 'kept: \$set' and not be '\$set!'
+set = blah
+<someflags>
+    LOCK = 1
+    RW = 2
+    TAINT = 3
+</someflags>
+this = that
+var1 = zero
+var2 = zeppelin
+var3 = blah
+<x5>
+    klack = 11111
+</x5>
+<z1>
+    blak = 11111
+    nando = 9999
+</z1>

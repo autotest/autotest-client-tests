@@ -1,0 +1,11 @@
+AUTHOR = " Hu Chenli, huchenli@cn.ibm.com  " 
+NAME = "mdadm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test mdadm package 
+    ''' 
+path = '' 
+job.run_test('mdadm',test_path=path) 

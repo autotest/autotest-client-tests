@@ -1,0 +1,2 @@
+Tests for numactl are covered in numa test under base ltp.
+/opt/fiv/ltp/testcases/bin/numa01.sh

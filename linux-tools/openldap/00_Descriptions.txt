@@ -1,0 +1,31 @@
+openldap2
+-----------------------------------------------------------------------------------------------
+Author          :       Hong Bo Peng, penghb@cn.ibm.com
+-----------------------------------------------------------------------------------------------
+Howto           :       openldap2.sh
+-----------------------------------------------------------------------------------------------
+Evaluation      :       This testcase starts local ldap server(s). And then do operations on
+			the server(s). Check the return value and results with expected.
+-----------------------------------------------------------------------------------------------
+Notes		:	bdb and ldbm are "primary" storage database backends. These backends
+			manage directory objects in an embedded database and are more fully
+			featured than other backends. We do full testing with slapd and various
+			client utilities.
+
+			back-ldap and back-meta are special purpose backends designed to 
+				forward (proxy) requests to other remote servers. 
+			back-monitor is a status monitoring backend that gives operating
+				statistics on slapd itself. 
+			back-perl is an interfaces to external scripts written in perl
+				languages. 
+
+			openldap2-client are implicit tested in the other tests.
+
+	./openldap2.sh			Test openldap2, openldap2-client and all the back-ends
+	./openldap2.sh bdb		Test openldap2 BDB
+	./openldap2.sh ldbm		Test openldap2 LDBM
+	./openldap2.sh back-perl	Test openldap2-back-perl
+	./openldap2.sh back-ldap	Test openldap2-back-ldap
+	./openldap2.sh back-meta	Test openldap2-back-meta
+	./openldap2.sh back-monitor	Test openldap2-back-monitor
+-----------------------------------------------------------------------------------------------

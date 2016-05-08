@@ -1,0 +1,11 @@
+AUTHOR = " Gong Jie <gongjie@cn.ibm.com>  " 
+NAME = "php" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test php package 
+    ''' 
+path = '' 
+job.run_test('php',test_path=path) 

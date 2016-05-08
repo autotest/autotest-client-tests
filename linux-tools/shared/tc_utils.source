@@ -1,0 +1,2471 @@
+# vi: ts=4 sw=4 autoindent expandtab :
+############################################################################################
+## Copyright 2003, 2016 IBM Corp                                                          ##
+##                                                                                        ##
+## Redistribution and use in source and binary forms, with or without modification,       ##
+## are permitted provided that the following conditions are met:                          ##
+##      1.Redistributions of source code must retain the above copyright notice,          ##
+##        this list of conditions and the following disclaimer.                           ##
+##      2.Redistributions in binary form must reproduce the above copyright notice, this  ##
+##        list of conditions and the following disclaimer in the documentation and/or     ##
+##        other materials provided with the distribution.                                 ##
+##                                                                                        ##
+## THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS AND ANY EXPRESS       ##
+## OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF        ##
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ##
+## THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,    ##
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF     ##
+## SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ##
+## HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  ##
+## OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  ##
+## SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                           ##
+############################################################################################
+#
+# File :    tc_utils.source
+#
+# Description:  Utility functions to be used by shell script testcases.
+#               Shell script testcases should source this file near the
+#               beginning of the file. This should be done as follows:
+#
+#                   LTPBIN=HOME_OF_AUTOTEST_CLIENT_INSTALL/autotest-client-tests/linux-tools/shared
+#                   source $LTPBIN/tc_utils.source
+#
+# Author:   Robert Paulsen, rpaulsen@us.ibm.com
+# Modified: Poornima Nayak mpnayak@linux.vnet.ibm.com
+#
+################################################################################
+# global variables
+################################################################################
+
+declare -i TST_TOTAL TST_COUNT
+export TST_TOTAL
+export TST_COUNT=0              # Current test's sequence number
+export TCID=${0##*/}            # Name of executable containing the testcases.
+[ "$TST_TOTAL" ] || TST_TOTAL=1 # Total number of testcases in file
+
+# used to pass info to/from testcases and these utility functions
+TCNAME=""           # set by tc_register. Used in output
+TC_TEMP_PASSWD=""   # set by tc_add_user when a temp user is created
+TC_TEMP_HOME=""     # set by tc_add_user when a temp user is created
+TC_TEMP_USER=""     # set by tc_add_user when a temp user is created
+TC_TEMP_GROUP=""    # set by tc_add_group when a temp group is created
+stdout=""           # testcases can put stdout in this file (set in setup)
+stderr=""           # testcases can put stderr in this file (set in setup)
+TCTMP=""            # subdir for use by the testcase (a subdir of TC_MYTMP)
+TC_PORT=""          # to return a found port number
+TC_LOOPDEV=""       # to return a free loop device
+TC_SLEEPER_PID=""   # to return pd of a newly created sleeper process
+
+# track temp users and groups
+declare -i tc_u_ndx=0           # count temp users
+declare -i tc_g_ndx=0           # count temp groups
+TC_TEMP_USERS=""                # holds all temp users
+TC_TEMP_GROUPS=""               # holds all temp groups
+
+# final exit codes. Set by various functions.
+declare -i tc_final_result=0    # will be count of failures
+declare -i tc_brok_result=0     # 0 and -1 are only allowed values.
+declare -i tc_warn_result=0     # 0 and 99 are only allowed values.
+declare -i tc_watchdog_result=0 # 0 and 88 are only allowed values.
+
+TC_RUNLOG="fivrunlog.txt"       # name of file to list tests as they run
+TC_ABAT_LOG_DIR=""              # where to put $TC_RUNLOG
+
+# things to kill at end of testcase
+TC_SLEEPER_PIDS=""  # list of PIDs for sleeper processes
+TC_MYTMP=""         # if setup creates the temp dir, remember it here
+
+TC_SAVE_NET="/etc/hosts /etc/resolv.conf"   # use fully qualified names
+
+TC_ARGS="$@"        # script args as they are when this file is sourced
+OS="Redhat"         # At the moment enabling support for Redhat OS
+
+################################################################################
+# internal utility functions
+#   NOTE: functions named tc_internal_* are intended for use ONLY by other
+#   functions in this file and should NOT be used directly by testcases.
+################################################################################
+
+#
+# tc_internal_dump  Helper function for FAIL or BROK situations
+#
+function tc_internal_dump()
+{
+    local -i rc=$1
+    shift;
+    tc_info "$@" "rc=$rc"
+    if [ -s $stdout ] ; then
+        tc_info "============= stdout follows ============="
+        cat $stdout
+        echo ""
+        tc_info "============== stdout above =============="
+        cat /dev/null > $stdout
+    fi
+    if [ -s $stderr ] ; then
+        [ $rc -eq 0 ] && rc=255     # show break/fail due to stderr
+        tc_info "============= stderr follows ============="
+        cat $stderr
+        echo ""
+        tc_info "============== stderr above =============="
+        cat /dev/null > $stderr
+    fi
+    return $rc
+}
+
+#
+# tc_internal_executes  helper function for tc_executes, tc_exec_or_break,
+#                       tc_exec_or_fail
+#
+#   Checks all passed words to be sure they represent executable cmds.
+#   Echos a string of those that are not executable.
+#
+function tc_internal_executes()
+{
+    local cmd fails
+    for cmd in "$@" ; do
+        type $cmd &>/dev/null || fails="$fails $cmd"
+    done
+    echo $fails
+}
+
+#
+# tc_internal_exists    helper function for tc_exists, tc_exist_or_break,
+#                       tc_exist_or_fail
+#
+#   Checks all passed words to be sure they represent executable cmds.
+#   Echos a string of those that are not executable.
+#
+function tc_internal_exists()
+{
+    local file fails
+    for file in "$@" ; do
+        [ -e "$file" ] || fails="$fails $file"
+    done
+    echo $fails
+}
+
+#
+# tc_internal_cleanup   testcase cleanup (reached via trap 0)
+#
+#   input:  None.
+#
+#   output: If passfail has registered any failure(s), exits with count of
+#           failures (which will be in $tc_final_result).  If no failure
+#           occured perhaps there was a BROK or WARN. If so exit with 
+#           appropriate result.  Otherwise exit with 0.
+#
+#   Trap for this is set in tc_setup after enoigh infrastructure available to support it.
+#
+function tc_internal_cleanup()
+{
+    # Be sure watchdog did not time out then kill it. Do this first thing so 
+    # any watchdog timeout is correctly attributed to the currently running test.
+    local tc_watchdog_pid=$(<$TC_SAVE/tc_watchdog_pid-$$)
+    [ -d /proc/$tc_watchdog_pid ] || {
+        tc_watchdog_result=88
+        tc_fail_if_bad $tc_watchdog_result "watchdog timed out!"
+        echo "$(date) WATCHDOG TIMEOUT: $TCID" >> $TMPBASE/WATCHDOG.log
+    }
+    kill $tc_watchdog_pid &>/dev/null ||
+    kill -9 $tc_watchdog_pid &>/dev/null
+    rm -f $TC_SAVE/tc_watchdog_script-$$.sh
+    rm -f $TC_SAVE/tc_watchdog_pid-$$
+
+    # call testcase's cleanup, if any
+    TCNAME="tc_local_cleanup"
+    :>$stdout
+    :>$stderr
+    tc_local_cleanup
+
+    # account for un-executed tests
+    [ "$TST_COUNT" -lt "$TST_TOTAL" ]  && {
+        let TST_COUNT+=1
+        echo "Remaining cases broken"
+        exit 1
+    }
+
+    # restore saved networking files and flush nscd cache, if possible
+    local f dir file
+    [ -d "$TC_SAVE" ] &&
+    for f in $TC_SAVE_NET ; do
+        if tc_is_busybox cp ; then
+            dir=${f%/*}
+            file=${f##*/}
+            cp $TC_SAVE/$dir/$file $dir/$file
+        else
+            cp -ax $TC_SAVE/$f $f
+        fi
+    done
+    type nscd &>/dev/null && nscd -i hosts
+
+    # get rid of any residual sleeper processes
+    local sleeper_pid
+    for sleeper_pid in $TC_SLEEPER_PIDS ; do
+        [ -d /proc/$sleeper_pid ] || continue
+        kill $sleeper_pid &>/dev/null ||
+        kill -9 $sleeper_pid &>/dev/null
+    done
+
+    # clean up some other outstanding things
+    tc_cap_log_stop
+    tc_del_user_or_break
+    tc_del_group_or_break
+    [ -d "$TC_MYTMP" ] && rm -rf $TC_MYTMP    # supplied by setup so delete it
+    TST_COUNT=0
+    rm -rf $TC_SAVE
+
+    # remove dir created in tc_check_or_create_dir 
+    rm -rf $REMOVE_DIRS
+
+    # record the fact that we ended a testcase
+    [ "$TC_ABAT_LOG_DIR" ] && echo "$(date) FINISHED: $TCID" >> $TC_ABAT_LOG_DIR/$TC_RUNLOG
+    tc_info "Finish at $(date)"
+    tc_logger "FINISHED"
+
+    # set proper exit code and be gone
+    [ $tc_watchdog_result -ne 0 ] && exit $tc_watchdog_result
+    [ $tc_final_result -ne 0 ] && exit $tc_final_result
+    [ $tc_brok_result -ne 0 ] && exit $tc_brok_result
+    [ $tc_warn_result -ne 0 ] && exit $tc_warn_result
+    exit 0
+}
+
+################################################################################
+# utility functions for use by testcases
+################################################################################
+
+#
+# tc_logger     Put data into syslog
+#               Simply passes arguments to logger command
+#               but first checks that logger command is available.
+#               
+#   returns 0 if logged OK, non-zero if problem.
+#
+#   Testcsae status is unaffected.
+#
+function tc_logger()
+{
+    tc_executes logger || return
+    local tag="TEST unknown"
+    local message="no message"
+    [ "$TCID" ] && tag="TEST $TCID"
+    [ "$*" ] && message="$*"
+    logger -t "$tag" "$message"
+}
+
+#
+# tc_cap_log_start  Start recording snapshot of syslog
+#
+#   $1 the name of a file to capture the snapshot. A required argument.
+#      The testcase will be BROK and aborted if the name of a writable file
+#      is not passed as first and only argument.
+#
+#   Only one instance of the capture process is allowed. If an instance is
+#   already running, it will be killed before a new instance is started.
+#   If the same filename is specified the file will be overwritten.
+#
+#   If the file is not under $TCTMP it is the caller's responsibility to
+#   eventually delete it.
+#
+#   Use tc_cap_log_stop to stop capturing the snapshot.
+#
+#   Breaks testcase and exits if there is an error.
+#   Returns true otherwise.
+#
+function tc_cap_log_start()
+{
+    [ $# -eq 1 ] && touch $1 && rm -f $1 && tc_wait_for_no_file $1
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: Must pass writable file." || exit
+
+    local snapshot=$1
+
+    tc_cap_log_stop
+
+    # "-n 0" is needed to ensure we don't include extraneous log data in snapshot.
+    # "sync" is needed but I'm not sure why.
+    tail -n 0 -f /var/log/messages > $snapshot &
+    local tc_cap_log_pid=$!
+    echo $tc_cap_log_pid > $TC_SAVE/tc_cap_log_pid
+    tc_wait_for_pid $tc_cap_log_pid && tc_wait_for_file $snapshot
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: could not tail /var/log/messages" || exit
+    sync
+
+    # if we have the ability, test out capture capability
+    tc_logger "$FUNCNAME" && {
+        tc_wait_for_file_text $snapshot "$FUNCNAME" 30
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: cannot log to $snapshot" || {
+            tc_info "============ $snapshot ============"
+            cat $snapshot
+            tc_info "==================================="
+            exit 1
+        }
+    }
+    return 0
+}
+
+#
+# tc_cap_log_stop   Stop recording snapshot of syslog
+#
+#   No arguments required. Always stops the one allowed snapshot, if any,
+#   as identified by $TC_SAVE/tc_cap_log_pid.
+#
+#   Exits on error.
+#
+function tc_cap_log_stop()
+{
+    [ -f $TC_SAVE/tc_cap_log_pid ] || return 0	# cap_log not running
+    local tc_cap_log_pid=$(<$TC_SAVE/tc_cap_log_pid)
+    [ "$tc_cap_log_pid" ] && {
+        kill $tc_cap_log_pid
+        tc_wait_for_no_pid $tc_cap_log_pid
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: Could not kill tc_cap_log_pid=$tc_cap_log_pid" || exit
+    }
+    rm -f $TC_SAVE/tc_cap_log_pid
+    return 0
+}
+
+#
+# tc_run_me_only_once. Allow testcase to execute only once per run
+#
+#   Simply invoke this function right after doing tc_setup and if
+#   the same testcase, with the same options, is in a scenario file
+#   more than once, it will only be run once, at the first instatnce.
+#
+#   Note that the directory $TMPBASE/tc_run_me_only_once is created by
+#   the runfiv script. If that directory doesn't exist, this function
+#   is a no-op.
+#
+function tc_run_me_only_once()
+{
+    [ -d $TMPBASE/tc_run_me_only_once ] || return 0
+    local tag=$(echo $0 $TC_ARGS)   # drops leading and trailing blanks
+    tag=${tag//*\//}                # drop leading path info
+    tag=${tag// /_}                 # no spaces
+    [ -f $TMPBASE/tc_run_me_only_once/$tag ] && {
+        tc_info "$tag has already run"
+        TST_COUNT=$TST_TOTAL
+        exit 0
+    }
+    touch $TMPBASE/tc_run_me_only_once/$tag
+    tc_info "$tag running for the first and only time"
+    return 0
+}
+
+#
+# Convert decimal to hex
+#
+#   $1 a decimal integer
+#   $2 number of digits in output (optional, "as needed") Will include leading zeros
+#   $3 X or x for upper or lower case (optional, default upper case)
+#
+#   Invalid argument will BROK and exit testcase.
+#
+#   Output is to stdout. Typical use:
+#
+#       my_hex_number=$(tc_dec2hex $my_decimal_number)
+#
+function tc_dec2hex()
+{
+    local digits=""     # cannot be declared -i as we manipulate it as a string
+    local case=X
+
+    # parse 1st arg (a decimal number)
+    local -i dec_num=$1
+    ((dec_num+=0)) &>/dev/null
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal testcase error: first arg must be decimal integer" || exit
+
+    # parse 2nd arg (number of output digits)
+    [ "$2" ] && {
+        digits=$2
+        ((0<digits)) &>/dev/null
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal testcase error: $digits not valid number of digits" || exit
+        digits="0$digits"   # force leading zeros
+    }
+
+    # parse 3rd arg (upper or lower case)
+    [ "$3" ] && case=$3
+    [ "$case" = "x" -o "$case" = "X" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal testcase error: $case must be x or X" || exit
+
+    # print the converted value
+    printf "%${digits}${case}" $dec_num
+}
+
+#
+# Convert hex to dec
+#
+#   $1 a hex integer
+#   $2 number of digits in output (optional, default "as needed") Will include leading zeros
+#
+#   Supply the hex number with or without the leading "0x".
+#
+#   Invalid argument will BROK and exit testcase.
+#
+#   Output is to stdout. Typical use:
+#
+#       my_decimal_number=$(tc_hex2dec $my_hex_number)
+#
+function tc_hex2dec()
+{
+    local hex_num=$1
+    local digits=""     # cannot be declared -i as we manipulate it as a string
+
+    # parse first arg (a hex number)
+    [ "${hex_num:0:2}" = "0x" -o "${hex_num:0:2}" = "0X" ] || hex_num=0x$1
+    ((hex_num+=0)) &>/dev/null
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal testcase error: first arg must be hex integer" || exit
+
+    # parse 2nd arg (number of output digits)
+    [ "$2" ] && {
+        digits=$2
+        ((0<digits)) &>/dev/null
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal testcase error: $digits not valid number of digits" || exit
+        digits="0$digits"   # force leading zeros
+    }
+
+    # print the converted value
+    printf "%${digits}d" $hex_num
+}
+
+#
+# tc_wait_for_file  Wait for file (or directory) meet criteria
+#
+#   $1 (required)   file or directory to wait for
+#   $2 (optional)   how long to wait, in seconds (defailt 10)
+#   $3 (optional)   one of directory, size, exist (default exist)
+#
+#   By default checks for existence of file/directory. Use of third
+#   argument can check that the file has non-zero size or must be a
+#   directory. Note that the arguments are positional so in order to
+#   provide a test type (exist, size, directory) you must also supply a
+#   wait time.
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit.
+#
+function tc_wait_for_file()
+{
+    [ "$1" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o file name." || exit
+
+    local -i max=10    # default
+    [ "$2" ] && {
+        max=$2
+        ((max>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    local -i n=$max
+    local cmd_arg=""
+    [ "$3" ] && {
+        [ "$3" = "size" ] && cmd_arg="-s"
+        [ "$3" = "directory" ] && cmd_arg="-d"
+        [ "$3" = "exist" ] && cmd_arg="-e"
+        [ "$cmd_arg" ]
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $3 is invalid argument." || exit
+    }
+    [ "$cmd_arg" ] || cmd_arg="-e"  # the default
+    
+    while [ $n -gt 0 ] ; do
+        [ $cmd_arg $1 ] && break  
+        ((--n)) || break
+        tc_info "Waiting for file \"$1\" to appear ($n)"
+        sleep 1
+    done
+    ((n>0))
+}
+
+#
+# tc_wait_for_no_file   Wait for file (or directory) to go away
+#
+#   $1 (required)   file or directory to wait for
+#   $2 (optional)   how long to wait, in seconds (defailt 10)
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_no_file()
+{
+    [ "$1" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o file name." || exit
+
+    local -i max=10    # default
+    [ "$2" ] && {
+        max=$2
+        ((max>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    local -i n=$max
+    while [ -e "$1" ] ; do
+        ((--n)) || break
+        tc_info "Waiting for file \"$1\" to go away ($n)"
+        sleep 1
+    done
+    ((n>0))
+}
+
+#
+# tc_wait_for_file_text     Wait for text to show up in a file
+#
+#   $1 (required)   file name
+#   $2 (required)   text to look for
+#   $3 (optional)   number of seconds to attempt (default 10)
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_file_text()
+{
+    set "$@"
+    [ $# -eq 2 -o $# -eq 3 ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: Needs 2 arguments." || exit
+
+    local -i max=10    # default
+    [ "$3" ] && {
+        max=$3
+        ((max>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $3 is not a positive integer." || exit
+    }
+
+    tc_wait_for_file $1 $max || return
+
+    # this deliberately avoids grep so as not to introduce a dependency
+    local -i n=$max
+    while ((--n)) ; do
+        while read line ; do
+            local mod=${line/$2/}
+            [ "$mod" = "$line" ] || break 2
+        done < $1
+        tc_info "Waiting for file \"$1\" to contain \"$2\" ($n)"
+        sync
+        sleep 1
+    done
+    ((n>0))
+}
+
+# tc_wait_for_service Wait for a service to be up
+#
+#   $1 (required)   name of service to be up
+#   $2 (optional)   how long to wait, in seconds (default 10)
+#
+#   Returns non-zero on failure.
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_service()
+{
+    local WAIT_SERVICE="$1"
+    [ "$WAIT_SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+
+    local -i n=10    # default
+    local -i rc=0
+    [ "$2" ] && {
+        n=$2
+        ((n>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    tc_info "checking if service $WAIT_SERVICE is up"
+    while (! service $WAIT_SERVICE status ) &>/dev/null; do
+        tc_info "waiting for service $WAIT_SERVICE to be up"
+        ((--n)) || break
+        sleep 1
+    done
+    ((n>0))
+}
+
+# tc_wait_for_no_service Wait for a service to be down
+#
+#   $1 (required)   name of service to be down
+#   $2 (optional)   how long to wait, in seconds (default 10)
+#
+#   Returns non-zero on failure.
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_no_service()
+{
+    local WAIT_SERVICE="$1"
+    [ "$WAIT_SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+
+    local -i n=10    # default
+    local -i rc=0
+    [ "$2" ] && {
+        n=$2
+        ((n>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    tc_info "checking if service $WAIT_SERVICE is down"
+    while ( systemctl status $WAIT_SERVICE ) &>/dev/null; do
+        tc_info "waiting for service $WAIT_SERVICE to be down"
+        ((--n)) || break
+        sleep 1
+    done
+    ((n>0))
+}
+
+# tc_service_start_and_wait Start and Wait for a service to be up
+#
+#   $1 (required)   name of service to be up
+#   $2 (optional)   how long to wait, in seconds (default 10)
+#
+#   Returns non-zero on failure.
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_service_start_and_wait()
+{
+    local SERVICE="$1"
+    local TIMEOUT="$2"
+    local -i rc=0
+    [ "$SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+
+    tc_info "starting the service $SERVICE"
+    systemctl start $SERVICE >$stdout 2>$stderr
+    tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to start" || exit
+    tc_wait_for_service $SERVICE $TIMEOUT
+}
+
+# tc_service_restart_and_wait restart and Wait for a service to be restarted
+# #
+# #   $1 (required)   name of service to be restarted
+# #   $2 (optional)   how long to wait, in seconds (default 10)
+# #
+# #   Returns non-zero on failure.
+# #   Invalid arguments will cause the entire testcase to be aborted via exit
+# #
+#
+function tc_service_restart_and_wait()
+{
+    local SERVICE="$1"
+    local TIMEOUT="$2"
+    local -i rc=0
+    [ "$SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+
+    tc_info "restarting the service $SERVICE"
+    systemctl restart $SERVICE >$stdout 2>$stderr  
+    tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to start" || exit
+    tc_wait_for_service $SERVICE $TIMEOUT
+}
+
+function tc_service_status()
+{
+    local SERVICE="$1"
+    local -i rc=0
+    [ "$SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+
+    tc_info "checking the status of the service $SERVICE"
+    systemctl status $SERVICE >$stdout 2>$stderr
+    rc=$?
+    if [ $rc -eq 0 ]
+    then
+        tc_info "$SERVICE is active (running)"
+    else
+        tc_info "$SERVICE is inactive (dead)"
+    fi
+    return $rc
+}
+
+
+# tc_service_stop_and_wait stop and Wait for a service to be stopped
+# #
+# #   $1 (required)   name of service to be stopped
+# #   $2 (optional)   how long to wait, in seconds (default 10)
+# #
+# #   Returns non-zero on failure.
+# #   Invalid arguments will cause the entire testcase to be aborted via exit
+# #
+#
+function tc_service_stop_and_wait()
+{
+    local SERVICE="$1"
+    local TIMEOUT="$2"
+    local -i rc=0
+    local -i n=10    # default
+    [ "$2" ] && {
+        n=$2
+        ((n>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    [ "$SERVICE" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
+    tc_info "stopping the service $SERVICE"
+    systemctl stop $SERVICE >$stdout 2>$stderr
+    tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to stop" || exit
+
+    tc_info "checking if service $SERVICE is stopped"
+    while ( systemctl status $SERVICE ) &>/dev/null; do
+        tc_info "waiting for service $SERVICE to be stopped"
+        ((--n)) || break
+        sleep 1
+    done
+    ((n>0))
+
+} 
+
+#
+# tc_wait_for_pid   Wait for a pid (or list of pids) to appear
+#
+#   $1 (required)   pid to wait for. put multiple pids in quotes.
+#   $2 (optional)   how long to wait, in seconds (defailt 10)
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_pid()
+{
+    local WAIT_PIDS="$1"
+    [ "$WAIT_PIDS" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o pid." || exit
+
+    local -i max=10    # default
+    [ "$2" ] && {
+        max=$2
+        ((max>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+
+    local WAIT_PID
+    for WAIT_PID in $WAIT_PIDS ; do
+        local -i n=$max
+        #    /proc/pid/maps will be  :
+        #  - non-empty for an active process.
+        #  - Doesn't exist for a dead process
+        #  - Empty for a zombie process
+        #    However [ -s ] doesn't work for verifying if the file
+        #    is empty. 
+        while ( ! grep . /proc/$WAIT_PID/maps ) >/dev/null 2>&1 ; do
+            tc_info "waiting for pid $WAIT_PID to show ($n)"
+            sleep 1
+            ((--n)) || break
+        done
+        ((n>0)) || return
+    done
+    return 0
+}
+
+#
+# tc_wait_for_no_pid    Wait for a pid (or list of pids) to DISappear
+#
+#   $1 (required)   pid to wait for. put multiple pids in quotes.
+#   $2 (optional)   how long to wait, in seconds (defailt 10)
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_wait_for_no_pid()
+{
+    local WAIT_PIDS="$1"
+    [ "$WAIT_PIDS" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o pid." || exit
+
+    local -i max=10    # default
+    [ "$2" ] && {
+        max=$2
+        ((max>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+    local WAIT_PID
+    for WAIT_PID in $WAIT_PIDS ; do
+        local -i n=$max
+        while ls /proc/$WAIT_PID >/dev/null 2>&1 ; do
+            tc_info "waiting for pid $WAIT_PID to disappear ($n)"
+            sleep 1
+            ((--n)) || break
+        done
+        ((n>0)) || return
+    done
+    return 0
+}
+
+#
+# tc_ignore_warnings     Ignore expected stderr warnings 
+#
+# $@ - string to ignore in stderr
+#
+#
+function tc_ignore_warnings()
+{
+    save_stderr="$TCTMP/save_stderr"
+    diff_stderr="$TCTMP/diff_stderr"
+    search_string=$@
+    cp $stderr $save_stderr
+    cat /dev/null >$stderr
+    `sed "/$search_string/d" $save_stderr >$stderr`
+
+    `diff -B $stderr $save_stderr | grep "^>" |awk -F ">" '{print $2}'>$diff_stderr`
+    if [ -s $diff_stderr ]; then
+        echo "### $TCNAME ###"
+        echo "There are some warnings in stderr which are ignored"
+        cat $diff_stderr
+    fi
+}
+
+
+#############################################################################
+# array operations
+#############################################################################
+#   
+# There are nine functions defined.
+#
+#   Array operations:
+#       tc_array_is_empty   return true if array is empty
+#       tc_array_size       Show (echo) size of the array
+#       tc_array_dump       Show (echo) all elements of an array, one per line
+#
+#   Stack operations (array is manipulated like a stack):
+#       tc_array_push       Push element to top of stack.
+#       tc_array_top        Show (echo) element on top of stack.
+#       tc_array_pop        Remove element from top of stack.
+#
+#   Queue operations (array is manipulated like a queue):
+#       tc_array_enqueue    Enqueue element to FIFO queue (same as tc_array_push).
+#       tc_array_next       Show (echo) oldest element on FIFO queue.
+#       tc_array_dequeue    Remove oldest element on FIFO queue.
+#
+#   These assume all elements are contiguous in the array. No empty slots.
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+
+function tc_array_is_empty()
+{
+    local tc_array_name=$1
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    ! (( $(tc_array_size $tc_array_name) ))
+}
+
+function tc_array_size()
+{
+    local tc_array_name=$1
+    local -i tc_size
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    echo $tc_size
+}
+
+function tc_array_dump()
+{
+    local tc_array_name=$1
+    local -i tc_size
+    local -i tc_index=0
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    while ((tc_index<tc_size)) ; do
+        eval echo "\${$tc_array_name[tc_index++]}"
+    done
+    echo
+}
+
+#
+# Push a value on to an array acting as a stack.
+# This can also be used as enqueue to FIFO queue.
+#
+function tc_array_push()
+{
+    local tc_array_name=$1
+    local tc_value=$2
+    local -i tc_size
+
+    [ "$tc_array_name" -a "$tc_value" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name and value to push." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    eval $tc_array_name[tc_size]=\"$tc_value\"
+
+    #    eval $tc_array_name=\("\${$tc_array_name[@]}" $tc_value\) # alternate method -- probably slower for large arrays
+}
+
+#
+# Show top of stack
+#
+function tc_array_top()
+{
+    local tc_array_name=$1
+    local -i tc_size
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    ((tc_size)) &&
+    eval echo \${$tc_array_name[tc_size-1]}
+}
+
+#
+# Pop a value off of stack.
+#
+function tc_array_pop()
+{
+    local tc_array_name=$1
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval unset $tc_array_name[\${#$tc_array_name[@]}-1]
+}
+
+#
+# Enqueue a value to a FIFO queue. This is really the same as tc_array_push.
+#
+function tc_array_enqueue() { tc_array_push "$@" ; }
+
+#
+# Show oldest value on FIFO queue, i.e. next to be processed.
+#
+function tc_array_next()
+{
+    local tc_array_name=$1
+    local -i tc_size
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    ((tc_size)) &&
+    eval echo \${$tc_array_name[0]}
+}
+
+#
+# Dequeue oldest entry on FIFO queue, i.e. most recently processed.
+#
+function tc_array_dequeue()
+{
+    local tc_array_name=$1
+    local -i tc_size
+
+    [ "$tc_array_name" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error. Need array name." || exit
+
+    eval tc_size=\${#$tc_array_name[*]}
+    ((tc_size)) &&
+    eval $tc_array_name=\(\${$tc_array_name[@]:1}\)
+}
+
+#
+# tc_parse_ipv4_addr
+#
+#   Call like this: my_parsed_addr=$(tc_parse_ipv4_addr $my_raw_address)
+#
+#   Sample input and output
+#
+#       input:  09981401
+#       output: 9.152.20.1
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_parse_ipv4_addr()
+{
+    local addr="$1" p1 p2 p3 p4
+    [ "$addr" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o IPV4 addr to parse." || exit
+    p1=$(tc_hex2dec ${addr:0:2})
+    p2=$(tc_hex2dec ${addr:2:2})
+    p3=$(tc_hex2dec ${addr:4:2})
+    p4=$(tc_hex2dec ${addr:6:2})
+    echo "$p1.$p2.$p3.$p4"
+}
+
+#
+# tc_parse_ipv6_addr
+#
+#   A helper function for tc_ipv6_info
+#
+#   Call like this: my_parsed_addr=$(tc_parse_ipv6_addr $my_raw_address)
+#
+#   Sample input and output
+#
+#       input:  20020903e8569021020d60fffed4c8d4
+#       output: 2002:0903:e856:9021:020d:60ff:fed4:c8d4
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_parse_ipv6_addr()
+{
+    local addr="$1" parsed
+    [ "$addr" ]
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o IPV6 addr to parse." || exit
+    parsed=${addr:0:4}
+    parsed=$parsed:${addr:4:4}
+    parsed=$parsed:${addr:8:4}
+    parsed=$parsed:${addr:12:4}
+    parsed=$parsed:${addr:16:4}
+    parsed=$parsed:${addr:20:4}
+    parsed=$parsed:${addr:24:4}
+    parsed=$parsed:${addr:28:4}
+    echo $parsed
+}
+
+#
+# tc_ipv6_normalize
+#
+#   Normalize IPv6 addresses by dropping leading zeros and
+#   compressing consecutive "::".
+#
+function tc_ipv6_normalize()
+{
+    local normal=$1
+    local temp_normal=""
+
+    # normalize part 1: drop leading zeros
+    while [ "$temp_normal" != "$normal" ] ; do
+        temp_normal=$normal
+        normal=${temp_normal//:0/:}
+        [ "${normal:0:1}" = "0" ] && normal=${normal:1}
+    done
+
+    # normalize part 2: compress consecutive "::" but do so for only one set of them
+    while true ; do     # will only loop once
+        temp_normal=$normal
+        normal=${temp_normal/:::::::/::};   [ "$normal" != "$temp_normal" ] && break
+        normal=${temp_normal/::::::/::};    [ "$normal" != "$temp_normal" ] && break
+        normal=${temp_normal/:::::/::};     [ "$normal" != "$temp_normal" ] && break
+        normal=${temp_normal/::::/::};      [ "$normal" != "$temp_normal" ] && break
+        normal=${temp_normal/:::/::};       [ "$normal" != "$temp_normal" ] && break
+        break
+    done
+
+    echo $normal
+}
+
+#
+# tc_ipv6_info  Get the IPV6 configuration info
+#
+#   Puts values in the following arrays for IPV6-configured systems:
+#
+#   TC_IPV6_ADDRS   contains all IPv6 addresses for this machine
+#   TC_IPV6_MASKS   contains the respective masks for the addresses
+#   TC_IPV6_IFACES  contains the respective interfaces for the addresses
+#   TC_IPV6_SCOPES  contains the respective scopes for the addresses
+#
+#   TC_IPV6_host_ADDRS      These contain info for all host scope addrs ...
+#   TC_IPV6_host_MASKS      masks ...
+#   TC_IPV6_host_IFACES     interfaces.
+#
+#   TC_IPV6_link_ADDRS      These contain all info for link scope addrs ...
+#   TC_IPV6_link_MASKS      masks ...
+#   TC_IPV6_link_IFACES     interfaces.
+#
+#   TC_IPV6_site_ADDRS      These contain all info for site scope addrs ...
+#   TC_IPV6_site_MASKS      masks ...
+#   TC_IPV6_site_IFACES     interfaces.
+#
+#   TC_IPV6_global_ADDRS    These contain all info for global scope addrs ...
+#   TC_IPV6_global_MASKS    masks ...
+#   TC_IPV6_global_IFACES   interfaces.
+#
+#   TC_IPV6_compat_ADDRS    These contain all info for compat scope addrs ...
+#   TC_IPV6_compat_MASKS    masks ...
+#   TC_IPV6_compat_IFACES   interfaces.
+#
+# The above info is collected from /proc/net/if_inet6. Here is an example:
+#
+#   00000000000000000000000000000001 01 80 10 80       lo
+#   20020903e8569021020d60fffed4c8d4 02 40 00 00     eth0
+#   fe80000000000000020d60fffed4c8d4 02 40 20 80     eth0
+#
+# The fields are IPV6_ADDR, index, IPV6_MASK, FLAGS junk, IFACE.
+# The high-order nibble of the FLAGS field is
+#   0 for global address
+#   1 for loopback address
+#   2 for link address
+#   4 for site address
+#   8 for ipv4 compatability address
+#
+# The MASK is hexidecimal but is stored as decimal in the TC_*_MASKS array entries.
+#
+# Returns non-zero on failure.
+#
+function tc_ipv6_info()
+{
+    unset TC_IPV6_ADDRS TC_IPV6_MASKS TC_IPV6_IFACES TC_IPV6_SCOPES
+    unset TC_IPV6_host_ADDRS TC_IPV6_link_ADDRS TC_IPV6_site_ADDRS TC_IPV6_global_ADDRS TC_IPV6_compat_ADDRS
+    unset TC_IPV6_host_MASKS TC_IPV6_link_MASKS TC_IPV6_site_MASKS TC_IPV6_global_MASKS TC_IPV6_compat_MASKS
+    unset TC_IPV6_host_IFACES TC_IPV6_link_IFACES TC_IPV6_site_IFACES TC_IPV6_global_IFACES TC_IPV6_compat_IFACES
+
+    # if no /proc/net/if_inet6 then no ipv6 info
+    [ -f /proc/net/if_inet6 ] || return
+
+    local addr junk1 mask flags junk2 iface
+
+    # The scopes are named as in /etc/iproute2/rt_scopes
+    # FIXME: ipv4 compatability ("8") is not listed there so this may need fixing.
+    while read addr junk1 mask flags junk2 iface ; do
+        addr=$(tc_parse_ipv6_addr $addr)
+        mask=$(tc_hex2dec $mask)
+        scope=${flags:0:1}
+        case $scope in
+        0) scope=global ; ;;
+        1) scope=host   ; ;;
+        2) scope=link   ; ;;
+        4) scope=site   ; ;;
+        8) scope=compat ; ;;
+        *)  tc_info "Unknown scope $scope in \"$addr $junk1 $mask $flags $junk2 $iface\""
+            return 1
+            ;;
+        esac
+
+        tc_array_push TC_IPV6_ADDRS $addr
+        tc_array_push TC_IPV6_MASKS $mask
+        tc_array_push TC_IPV6_IFACES $iface
+        tc_array_push TC_IPV6_SCOPES $scope
+
+        eval tc_array_push TC_IPV6_${scope}_ADDRS $addr
+        eval tc_array_push TC_IPV6_${scope}_MASKS $mask
+        eval tc_array_push TC_IPV6_${scope}_IFACES $iface
+
+    done < /proc/net/if_inet6
+    [ "$TC_IPV6_ADDRS" ]
+}
+
+#
+# tc_get_loopdev      find an available loopback device
+#
+#   No arguments required.
+#
+#   Returns 0 and sets global variable TC_LOOPDEV if found.
+#   Returns 1 if no available loopbak device found.
+#   Returns 2 if losetup command not available.
+#
+#
+function tc_get_loopdev()
+{
+    unset TC_LOOPDEV
+    tc_executes losetup || return 2
+    TC_LOOPDEV=$(losetup -f) || return 1
+}
+
+#
+# tc_find_port      find open port
+#
+#   This is a little bogus since the port we find can theoretically
+#   come into use between the time we find it and the time the requestor
+#   attempts to bind to it but there really shouldn't be anything
+#   else going on at the time so we should be OK.
+#
+#   Takes three optional arguments.
+#
+#   $1 (optional)   The starting port number to be used in the search. It
+#           defaults to 23456. The port number is given in decimal.
+#
+#   $2 (optional)   The the number of ports to scan. It defaults to 100.
+#
+#   $3 (optional)   "ipv4" or "ipv6" (default). Note that "ipv4" implies
+#           "ipv4 only and not ipv6" where "ipv6" implies "ipv6
+#           and/or ipv4"
+#
+#   Returns 0 and sets TC_PORT if an open port is found.
+#   Returns non-zero and unsets TC_PORT if it fails
+#   Exits if invalid argument is passed.
+#
+#   Invalid arguments will cause the entire testcase to be aborted via exit
+#
+function tc_find_port()
+{
+    tc_exec_or_break grep || return
+
+    unset TC_PORT
+
+    local -i start_port=23456 range=100 end_port # default
+    [ "$1" ] && start_port=$1
+    ((start_port>0)) &>/dev/null
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error: $1 is invalid port number." || exit
+
+    [ "$2" ] && range=$2
+    ((range>0)) &>/dev/null
+    tc_break_if_bad_rc $? "$FUNCNAME: internal script error: $range is an invalid range." || exit
+    ((end_port=start_port+range-1))
+
+    local listen="/proc/net/tcp /proc/net/udp "
+    [ -f /proc/net/if_inet6 ] && local listen="/proc/net/tcp /proc/net/tcp6 /proc/net/udp /proc/net/udp6"
+    [ "$3" ] && {
+        case $3 in
+            ipv4)   listen="/proc/net/tcp /proc/net/udp" ; ;;
+            ipv6)   listen="/proc/net/tcp6 /proc/net/udp6" ; ;;
+            *)  tc_break_if_bad_rc 1 "$3 is an invalid argument to $FUNCNAME"; exit 1 ; ;;
+        esac
+    }
+
+    TC_PORT=$start_port
+    while ((TC_PORT<=end_port)) ; do
+        local hex_port=$(tc_dec2hex $TC_PORT 4)
+        grep -q "^ *[0-9][0-9]*: [0-9A-F][0-9A-F]*:$hex_port [0-9A-F]\+:[0-9A-F]\+ 0[A7]" $listen || break
+        ((++TC_PORT))
+    done
+    ((TC_PORT<=end_port)) && return
+    unset TC_PORT
+    return 1
+}
+
+#
+# tc_wait_for_active_port   Wait for a port to be listened to
+#
+#   $1  is the port number to wait for.
+#   $2  (optional) How many seconds to wait. Default 10.
+#   $3  (optional) ipv4 or ipv6. See tc_find_port.
+#
+#   Invalid or missing arguments will abort the testcase via exit.
+#
+function tc_wait_for_active_port()
+{
+    [ "$1" ] && local -i port=$1 && ((port>0))
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $1 is an invalid port number" || exit
+    local -i n=10  # default wait time
+    [ "$2" ] && {
+        n=$2
+        ((n>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+    local save_TC_PORT=$TC_PORT
+    while tc_find_port $port 1 $3 ; do
+        ((--n)) || break
+        tc_info "Waiting for port $port to be listened to ($n)"
+        sleep 1
+    done
+    TC_PORT=$save_TC_PORT   # restore since clobbered by tc_find_port
+    ((n>0))
+}
+
+#
+# tc_wait_for_inactive_port Wait for a port to be free
+#
+#   $1  is the port number to wait for.
+#   $2  (optional) How many seconds to wait. Default 10.
+#   $3  (optional) ipv4 or ipv6. See tc_find_port.
+#
+#   Invalid or missing arguments will abort the testcase via exit.
+#
+function tc_wait_for_inactive_port()
+{
+    [ "$1" ] && local -i port=$1 && ((port>0))
+    tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $1 is an invalid port number" || exit
+    local -i n=10  # default
+    [ "$2" ] && {
+        n=$2
+        ((n>0))
+        tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: $2 is not a positive integer." || exit
+    }
+    local save_TC_PORT=$TC_PORT
+    while ! tc_find_port $port 1 $3 ; do
+        ((--n)) || break
+        tc_info "Waiting for port $port to be become free ($n)"
+        sleep 1
+    done
+    TC_PORT=$save_TC_PORT   # restore since clobbered by tc_find_port
+    ((n>0))
+}
+
+#
+# tc_info   Put out informational message(s)
+#
+#       Each command line argument is printed as a message.
+#
+function tc_info()
+{
+    local m
+    for m in "$@" ; do
+        m=${m//\%/%%%%}
+        echo " INFO $TST_COUNT: $m"
+    done
+}
+
+#
+# tc_warn   Put out warning message(s)
+#
+#   Each command line argument is printed as a message.
+#
+function tc_warn()
+{
+    local m
+    for m in "$@" ; do
+        m=${m//\%/%%%%}
+        echo " WARN $TST_COUNT: $m"
+    done
+    tc_warn_result=99
+}
+
+#
+# tc_executes   Check for executable(s)
+#
+#   returns 0 if true
+#   returns non-zero if not
+#
+function tc_executes()
+{
+    local fails=$(tc_internal_executes "$@")
+    [ "$fails" ] && {
+        tc_info "missing command(s): \"$fails\""
+        return 1
+    }
+    return 0
+}
+
+#
+# tc_exec_or_break  Check for required executables.
+#
+#   Breaks testcase if commands listed on command line do not exist.
+#
+#   If this returns non-zero, the invoker MUST abort the testcase.
+#
+#   returns 0 if true
+#   returns non-zero if not (and breaks the testcase)
+#
+function tc_exec_or_break()
+{
+    local fails=$(tc_internal_executes "$@")
+    ! [ "$fails" ]
+    tc_break_if_bad_rc $? "required command(s) not found: \"$fails\"" || return
+    return 0
+}
+
+#
+# tc_exec_or_fail   Check for required executables.
+#
+#   FAILs testcase if commands listed on command line do not exist.
+#
+#   If this returns non-zero, the invoker MUST abort the testcase.
+#
+#   returns 0 if true
+#   returns non-zero if not (and FAILs the testcase)
+#
+function tc_exec_or_fail()
+{
+    local fails=$(tc_internal_executes "$@")
+    ! [ "$fails" ]
+    tc_fail_if_bad_rc $? "required command(s) not found: \"$fails\"" || return
+    return 0
+}
+
+#
+# tc_exists
+#
+#   returns 0 if all files/directories exist
+#   returns non-zero if not (does NOT break testcase)
+#   
+function tc_exists()
+{
+    local fails=$(tc_internal_exists "$@")
+    [ "$fails" ] && {
+        tc_info "missing file(s): \"$fails\""
+        return 1
+    }
+    return 0
+}
+
+#
+# tc_exist_or_break
+#
+#   Breaks testcase if files or directories listed on command line
+#   do not exist.
+#
+#   If this returns non-zero, the invoker MUST abort the testcase.
+#
+#   returns 0 if all files/directories exist
+#   returns non-zero if not (and breaks testcase)
+#   
+function tc_exist_or_break()
+{
+    local fails=$(tc_internal_exists "$@")
+    ! [ "$fails" ]
+    tc_break_if_bad_rc $? "required files(s) not found: \"$fails\"" || return
+    return 0
+}
+
+#
+# tc_exist_or_fail
+#
+#   FAILs testcase if files or directories listed on command line
+#   do not exist.
+#
+#   If this returns non-zero, the invoker MUST abort the testcase.
+#
+#   returns 0 if all files/directories exist
+#   returns non-zero if not (and FAILs testcase)
+#   
+function tc_exist_or_fail()
+{
+    local fails=$(tc_internal_exists "$@")
+    ! [ "$fails" ]
+    tc_fail_if_bad_rc $? "required files(s) not found: \"$fails\"" || return
+    return 0
+}
+
+#
+# tc_root_or_break
+#
+#   Breaks the testcase if not running as root.
+#
+#   If this returns non-zero, the invoker MUST abort the testcase.
+#
+#   returns 0 if running as root
+#   returns non-zero if not (and breaks testcase)
+#
+function tc_root_or_break()
+{
+    [ $UID -eq 0 ]
+    tc_break_if_bad_rc $? "Must be run by UID=0. Actual UID=$UID"
+}
+
+#
+# tc_is_busybox     Are we using a busybox version of some command?
+#
+#   $1  Command to check to see if it is a busybox version
+#
+#   returns 0 if true
+#   returns non-zero if not, including case where command doesn't exist
+#   (does NOT break testcase)
+#
+function tc_is_busybox()
+{
+    type $1 &>/dev/null || return           # no such cmd thus not busybox
+    local bbcmd=$('ls' -l $(type -P $1))    # quoted ls in case of alias
+    [ "${bbcmd/busybox}" != "$bbcmd" ]
+}
+
+#
+# tc_is_fstype  Check to see if a given path is mounted on a given
+#       filesystem type
+#
+#   $1  fully-qualified path
+#   $2  the filesystem type
+#
+#   returns 0 if true
+#   returns non-zero if not (does NOT break testcase)
+#
+#   Example:    tc_is_fstype $TCTMP nfs
+#
+#           This example returns true if $TCTMP is on an NFS-mounted
+#           filesystem
+#
+function tc_is_fstype()
+{
+    local path=$1
+    local fstype=$2
+    while [ $path ] ; do
+        local line
+        while read line ; do
+            #set $line
+            set `echo $line | sed 's/^-/_/' `
+            local procpath=$2
+            local proctype=$3
+            [ "$proctype" = "$fstype" ] || continue
+            [ "$path" = "$procpath" ] && return
+        done < /proc/mounts
+        [ "$path" = "/" ] && break
+        path=${path%/*}
+        [ "$path" ] || path="/"
+    done
+    return 1
+}
+
+
+#
+# tc_add_user_or_break  Create a temporary user.
+#
+#   This function will generate a unique name for the temp user
+#   unless the username is passed as $1. In either case, the
+#   username, password and home directory are placed in the
+#   following global variables:
+#
+#       TC_TEMP_USER
+#       TC_TEMP_USERS   -       List of all users
+#       TC_TEMP_PASSWD
+#       TC_TEMP_HOME
+#
+#   Accepts a second arg which will be passed to useradd or adduser
+#   as apropriate. NOTE: If you want to add this second arg w/o the
+#   first, just use "auto" as the firat arg.0
+#
+#   Careful! If you call this more than once the above global
+#   variables will be overwritten. You may need to save copies.
+#
+#   del_tempuser w/o arguments will delete all of them.
+#
+#   returns 0 if successful
+#   returns non-zero if not (also breaks testcase)
+#
+function tc_add_user_or_break()
+{
+    tc_exist_or_break /etc/passwd || return
+    tc_executes useradd || tc_executes adduser &>/dev/null
+    tc_break_if_bad $? "no support for creating users" || return
+
+    local u=$1
+    [ "$u" ] || u=auto
+    local args="$2"
+
+    unset TC_TEMP_USER TC_TEMP_PASSWD TC_TEMP_HOME
+
+    if [ "$u" = "auto" ] ; then
+        let tc_u_ndx+=1     # count uniquely created usernames
+        [ $tc_u_ndx -le 99 ]
+        tc_break_if_bad_rc $? "too many temp users: $tc_u_ndx" || return
+        local nn="00$tc_u_ndx"
+        local -i off=-2     # negative offsets must be in variable (why?)
+        local nn=${nn:off:2}    # two digits, 00 -> 99
+        u="u$$00000"        # at least 6 digits
+        u=${u:0:6}$nn       # 8-char name from pid and temp user count
+    fi
+    if type useradd &>/dev/null ; then 
+        useradd $args -p .RkDISPQTFoMA -m $u >>$stdout
+        tc_break_if_bad_rc $? "failed to add temp user $u with useradd" || return
+    elif type adduser &>/dev/null ; then
+        adduser $args -D $u >>$stdout
+        tc_break_if_bad_rc $? "failed to add temp user $u with adduser" || return
+        echo $u:password | chpasswd >>$stdout
+	tc_break_if_bad $? "failed to set password"
+    else
+        tc_break_if_bad_rc $? "no mechanism available to add users. Tried useradd and adduser" || continue
+    fi
+    TC_TEMP_USERS="$TC_TEMP_USERS $u"   # remember all created temp users
+    tc_info "created temp user $u."
+    TC_TEMP_USER=$u                     # global var for passing back to testcase
+    TC_TEMP_PASSWD="password"
+    local saved_IFS=$IFS ; IFS=:        # /etc/passwd field separator
+    while read line ; do
+        [ "$line" ] || continue
+        set $line
+        [ "$1" = "$TC_TEMP_USER" ] && TC_TEMP_HOME=$6 && break
+    done < /etc/passwd  
+    IFS=$saved_IFS
+    tc_wait_for_file $TC_TEMP_HOME
+    tc_break_if_bad_rc $? "$TC_TEMP_HOME not created"
+}
+
+#
+# tc_del_user_or_break  Remove temporary user(s).
+#
+#   $1  The user to delete. If $1 not supplied, all temp users are
+#       deleted.  If $1 was not created by add_tempuser it will not
+#       be deleted.
+#
+#   return  0 if OK
+#       non-zero if failure
+#
+function tc_del_user_or_break()
+{
+    local remaining=""
+    local u
+    for u in $TC_TEMP_USERS ; do
+        if [ "$1" ] && [ "$1" != "$u" ] ; then
+            # $1 specified so don't delete others
+            local remaining="$remaining $u"
+            continue
+        fi
+
+        if type userdel &>/dev/null; then
+            userdel -r $u &>$stdout
+            tc_break_if_bad_rc $? "failed to remove temp user $u with userdel" || continue
+        elif type deluser &>/dev/null; then
+            deluser $u &>$stdout
+            tc_break_if_bad_rc $? "failed to remove temp user $u with deluser" || continue
+            rm -rf /home/$u &>$stdout
+        else
+            tc_break_if_bad_rc $? "no mechanism available to delete users. Tried userdel and deluser" || continue
+        fi
+        tc_info "removed temp user $u."
+    done
+    TC_TEMP_USERS="$remaining"
+}
+
+#
+# tc_add_group_or_break Create a temporary group.
+#
+#   The group name is put into the global variable $TC_TEMP_GROUP.
+#   Careful! If you call this more than once $TC_TEMP_GROUP will
+#   be reused. You may need to save a copy.
+#
+#   tc_del_group_or_break w/o arguments will delete all of them.
+#
+#   returns 0 if successful
+#   returns non-zero if not (and breaks testcase)
+#
+function tc_add_group_or_break()
+{
+    unset TC_TEMP_GROUP
+    local GRPADD=""
+    type groupadd &>/dev/null && GRPADD=groupadd
+    [ "$GRPADD" ] || { type addgroup &>/dev/null && GRPADD=addgroup ; }
+    [ "$GRPADD" ]
+    tc_break_if_bad_rc $? "No mechanism to add group. Tried groupadd and addgroup." || return
+
+    local g
+    if [ "$1" ] ; then      # attempt to use supplied groupname
+        g=$1
+    else                    # create unique username
+        let tc_g_ndx+=1     # count temp users
+        [ $tc_g_ndx -le 99 ]
+        tc_break_if_bad_rc $? "too many temp groups: $tc_g_ndx" || return
+        local nn="00$tc_g_ndx"
+        local -i off=-2     # negative offsets must be in variable (?)
+        nn=${nn:off:2}      # two digits, 00 -> 99
+        local g="g$$00000"  # at least 6 digits
+        g=${g:0:6}$nn       # 8-char name from pid and temp group count
+    fi
+    $GRPADD $g
+    tc_break_if_bad_rc $? "failed to add temp group $g" || return
+    TC_TEMP_GROUPS="$TC_TEMP_GROUPS $g" # remember all created temp groups
+    tc_info "created temp group $g."
+    TC_TEMP_GROUP=$g        # global variable for passing back to testcase
+    return 0
+}
+
+#
+# tc_del_group_or_break     Remove temporary group(s).
+#
+#   $1  The group to delete. If $1 not supplied, all temp groups are
+#       deleted.  If $1 was not created by add_tempgroup it will not
+#       be deleted.
+#
+#   return  0 if OK
+#       non-zero if failure
+#
+function tc_del_group_or_break()
+{
+    local GRPDEL=""
+    type groupdel &>/dev/null && GRPDEL=groupdel
+    [ "$GRPDEL" ] || { type delgroup &>/dev/null && GRPDEL=delgroup ; }
+    [ "$GRPDEL" ]
+    tc_break_if_bad_rc $? "No mechanism to delete group. Tried groupdel and delgroup." || return
+
+    local remaining=""
+    local g
+    for g in $TC_TEMP_GROUPS ; do 
+        if [ "$1" ] && [ "$1" != "$g" ] ; then
+            # $1 specified so don't delete others
+            remaining="$remaining $g"
+            continue
+        fi
+        $GRPDEL $g
+        tc_break_if_bad_rc $? "failed to remove temp group $g" || return
+        tc_info "removed temp group $g."
+    done
+    TC_TEMP_GROUPS="$remaining"
+}
+
+#
+# tc_conf
+#
+#   End test with TCONF indication
+#
+#   $@ message(s) to include with TCONF message
+#
+#   returns 0
+#
+function tc_conf()
+{
+    local rc=$?
+    tc_info "BEGIN TCONF INFO STAGE $TST_COUNT"
+    echo " CONF $TST_COUNT: $TCNAME: $1 at $(date)"
+    shift
+    tc_internal_dump $rc "$@"
+    tc_info "END TCONF INFO STAGE $TST_COUNT"
+    return 0
+}
+
+#
+# tc_conf_if_bad TCONF testcase if $1 has bad RC or if $stderr is not empty.
+#
+#   Incoming $1 is returned unless it is 0 and $stderr is not null
+#   -- in which case 255 is returned to indiacate that it was
+#   stderr that caused the situation.
+#
+#   If there is a failure ...
+#   - Failure info (the remaining cmd-line args) is printed.
+#   - $stdout is printed if not null.
+#   - $stderr is printed if not null.
+#
+#   $1  0 (pass) or non-zero (fail)
+#   $2+ Remaining arguments printed only if the testcase goes TCONF.
+#
+function tc_conf_if_bad()
+{
+    local -i rc=$1
+
+    # ignore if no problems
+    [ "$rc" -eq 0 ] && [ ! -s $stderr ] && return 0
+
+    shift
+    (exit $rc)
+    tc_conf "$@"
+    return $rc
+}
+
+#
+# tc_conf_if_bad_rc    Same as tc_conf_if_bad except stderr is ignored.
+#
+function tc_conf_if_bad_rc()
+{
+    local save_stderr=$stderr
+    stderr="/dev/null"
+    tc_conf_if_bad "$@"
+    local -i rc=$?
+    stderr=$save_stderr
+    return $rc
+}
+
+#
+# tc_break_if_bad   Break testcase if $1 has bad RC or if $stderr is not empty.
+#
+#   Incoming $1 is returned unless it is 0 and $stderr is not null
+#   -- in which case 255 is returned to indiacate that it was
+#   stderr that caused the failure.
+#
+#   If there is a failure ...
+#   - Failure info (the remaining cmd-line args) is printed.
+#   - $stdout is printed if not null.
+#   - $stderr is printed if not null.
+#
+#   $1  0 (pass) or non-zero (fail)
+#   $2+ Remaining arguments printed only if the testcase fails
+#
+function tc_break_if_bad()
+{
+    local -i rc=$1
+
+    # ignore if no problems
+    [ "$rc" -eq 0 ] && [ ! -s $stderr ] && return 0
+
+    # BROK
+    TC_BROKS="$TC_BROKS $TCNAME"
+    tc_brok_result=-1
+    tc_info "BEGIN FAILURE INFO STAGE $TST_COUNT"
+    echo "BROK $TST_COUNT: $TCNAME: $2 at $(date)"
+
+    shift ; shift               # get to args $3+
+    tc_internal_dump $rc "$@"   # returns rc as modified by tc_internal_dump
+    rc=$?
+    tc_info "END FAILURE INFO STAGE $TST_COUNT"
+    return $rc
+}
+
+#
+# tc_break_if_bad_rc    Same as tc_break_if_bad except stderr is ignored.
+#
+function tc_break_if_bad_rc()
+{
+    local save_stderr=$stderr
+    stderr="/dev/null"
+    tc_break_if_bad "$@"
+    local -i rc=$?
+    stderr=$save_stderr
+    return $rc
+}
+
+#
+# tc_break  Force a BROK
+#
+function tc_break()
+{
+    local -i rc=$?
+    [ $rc -ne 0 ] || rc=-1
+    tc_break_if_bad $rc "$@"
+}
+
+#
+# tc_fail_if_bad_rc    Same as tc_fail_if_bad except stderr is ignored.
+#
+function tc_fail_if_bad_rc()
+{
+    local save_stderr=$stderr
+    stderr="/dev/null"
+    tc_fail_if_bad "$@"
+    local -i rc=$?
+    stderr=$save_stderr
+    return $rc
+}
+
+
+#
+# tc_pass_or_fail   Pass or fail based on true/false input in $1.
+#
+#   Incoming $1 is returned unless it is 0 and $stderr is not null
+#   -- in which case 255 is returned to indiacate that it was
+#   stderr that caused the failure.
+#
+#   If there is a failure ...
+#   - Failure info (the remaining cmd-line args) is printed.
+#   - $stdout is printed if not empty.
+#   - $stderr is printed if not empty.
+#
+#   $1  0 (pass) or non-zero (fail)
+#   $2  Printed only if the testcase fails
+#   $3+ Others also printed on failure
+#
+function tc_pass_or_fail()
+{
+    local -i rc=$1
+
+    # PASS if no problems
+    if [ "$rc" -eq 0 ] && [ ! -s $stderr ] ; then
+        echo " PASS $TST_COUNT: $TCNAME"
+        return 0
+    fi
+
+    # FAIL
+    TC_FAILS="$TC_FAILS $TCNAME"
+    let tc_final_result+=1         # count failures for summary output
+    tc_info "BEGIN FAILURE INFO STAGE $TST_COUNT"
+    echo "FAIL $TST_COUNT: $TCNAME: $2 at $(date)"
+
+    shift ; shift               # get to args $3+
+    tc_internal_dump $rc "$@"   # returns rc as modified by tc_internal_dump
+    rc=$?
+    tc_info "END FAILURE INFO STAGE $TST_COUNT"
+    return $rc
+}
+
+#
+# tc_fail_if_bad    Fail If $1 is non-zero or if $stderr file is not empty.
+#                   Otherwise simply return (with rc=0).
+#
+#   $@  Command line args are as described for tc_pass_or_fail
+#
+function tc_fail_if_bad()
+{
+    if [ "$1" -ne 0 ] || [ -s $stderr ] ; then
+        tc_pass_or_fail "$@"
+        return      # Pass along rc from passfail.
+    fi
+    return 0        # pass along original rc of 0
+}
+
+#
+# tc_break_if_bad_rc    Same as tc_break_if_bad except stderr is ignored.
+#
+function tc_break_if_bad_rc()
+{
+    local save_stderr=$stderr
+    stderr="/dev/null"
+    tc_fail_if_bad "$@"
+    local -i rc=$?
+    stderr=$save_stderr
+    return $rc
+}
+
+#
+# tc_fail   Force a FAIL
+#
+function tc_fail()
+{
+    local -i rc=$?
+    [ $rc -ne 0 ] || rc=199
+    tc_pass_or_fail $rc "$@"
+}
+
+#
+# tc_pass   Force a PASS
+#
+function tc_pass()
+{
+    tc_pass_or_fail 0
+}
+
+#
+# tc_register   Register a testcase.
+#
+#       Each testcase should start with this.
+#
+#   $1  TCNAME
+#
+#   No specific return code.
+#
+function tc_register()
+{
+    TCNAME="$1"
+    TCNAME=${TCNAME//\%/%%%%}
+    let TST_COUNT+=1
+    [ "$TC_ABAT_LOG_DIR" ] && echo "$(date)    $TST_COUNT: $TCNAME" >> $TC_ABAT_LOG_DIR/$TC_RUNLOG
+    :>$stdout
+    :>$stderr
+}
+
+#
+# tc_setup      testcase setup
+#
+#   input: $1 is optional arg to say how long watchdog timer should wait.
+#           default is 3600 seconds = one hour.
+#
+#   output: returns 0 on success.
+#       exits (not returns) with 1 on failure
+#
+function tc_setup()
+{
+    TCNAME=tc_setup
+
+    # $1 might be watchdog timer's time limit
+    local watchdog_timespan=3600
+    [ "$1" ] && watchdog_timespan=$1
+    (($watchdog_timespan>0))
+    tc_break_if_bad_rc $? "tc_watchdog: $watchdog_timespan must be positive integer of seconds for watchdog timer" || exit
+
+    # Trap exit for tc_internal_cleanup function.
+    trap "tc_internal_cleanup" 0
+
+    # Ensure required utilities are present
+    tc_executes cat mkdir umask || exit 1
+
+    # PAN harness messes this up - fix it
+    umask 022
+
+    # Establish temp directory if not supplied by harness
+    [ -d "$TMPBASE" ] || TMPBASE=/tmp
+    TC_SAVE=$TMPBASE/tc_save$$          # where to save things that the TC won't find
+    mkdir -p $TC_SAVE
+    if ! [ -d "$TMP" ] ; then
+        TC_MYTMP=$TMPBASE/tmp$$
+        mkdir -p $TC_MYTMP     # create it
+        TMP=$TC_MYTMP
+    fi
+
+    # tmp subdirectory just for this executable
+    TCTMP=$TMP/$TCID$$
+    rm -rf $TCTMP           # ensure empty in case of multiple invocations
+    mkdir -p $TCTMP
+
+    # save networking files
+    local f dir file
+    for f in $TC_SAVE_NET ; do
+        if tc_is_busybox cp ; then
+            dir=${f%/*}
+            file=${f##*/}
+            mkdir -p $TC_SAVE/$dir
+            cp $dir/$file $TC_SAVE/$dir/$file
+        else
+            cp -ax --parents $f $TC_SAVE/
+        fi
+    done
+
+    # get ABAT log directory, if available
+    unset TC_ABAT_LOG_DIR
+    [ -f /etc/autobench.conf ] && {
+        unset TC_ABAT_LOG_DIR
+        local autobench_line 
+        while read autobench_line ; do
+            [ "$autobench_line" ] || continue
+            local autodir=($( IFS='= ' ; set $autobench_line ; echo $1 $2 ))
+            [ "${autodir[0]}" = "AUTODIR" ] && TC_ABAT_LOG_DIR=${autodir[1]}/logs
+        done < /etc/autobench.conf
+        [ -d "$TC_ABAT_LOG_DIR" ] || unset TC_ABAT_LOG_DIR
+    }
+    # if no ABAT log directory, use a different place
+    [ "$TC_ABAT_LOG_DIR" ] || TC_ABAT_LOG_DIR=$TMPBASE
+
+    # record the fact that we started a testcase
+    [ "$TC_ABAT_LOG_DIR" ] && echo "$(date) STARTED: $TCID" >> $TC_ABAT_LOG_DIR/$TC_RUNLOG
+    tc_logger "STARTED"
+    tc_info "Start at $(date)"
+
+    # Where stdout and stderr can be redirected
+    stdout="$TC_SAVE/stdout"
+    stderr="$TC_SAVE/stderr"
+    :>$stdout
+    :>$stderr
+
+    # set watchdog
+    tc_watchdog $watchdog_timespan
+
+    unset TC_BROKS TC_FAILS
+
+    tc_info "$TCNAME: complete"
+
+    TCNAME=tc_local_setup
+    tc_local_setup              # call testcase's setup, if any
+    local RC=$?
+    ((tc_final_result==0)) && ((tc_brok_result==0)) && ((tc_warn_result==0)) &&
+    tc_break_if_bad_rc $RC || exit
+}
+
+#
+# tc_local_setup        For individual testcases to override
+#
+function tc_local_setup()
+{
+    return 0
+}
+
+#
+# tc_local_cleanup      For individual testcases to override
+#
+function tc_local_cleanup()
+{
+    return 0
+}
+
+#############################################################################
+# Mail functions
+#############################################################################
+
+#
+# wait for mail to arrive
+#   check mail for user in $1
+#   optional $2 is how many seconds to wait, default 120
+#
+function tc_wait_for_mail()
+{
+    [ $# -eq 1 ] || [ $# -eq 2 ]
+    tc_break_if_bad_rc $? "Internal testcase error wrong nbr args to $FUNCNAME" || exit
+    local userid=$1
+    local n=120
+    [ "$2" ] && n=$2
+    ((n+=0))
+    tc_break_if_bad_rc $? "Internal testcase error: $2 is not valid integer in $FUNCNAME" || exit
+
+    while ! mail -e -u $userid &>/dev/null ; do
+        ((--n)) || break
+        sleep 1
+    done
+    ((n>0))
+}
+
+#
+# wait for mail to empty
+#   check mail for user in $1
+#   optional $2 is how many seconds to wait, default 120
+#
+function tc_wait_for_no_mail()
+{
+    [ $# -eq 1 ] || [ $# -eq 2 ]
+    tc_break_if_bad_rc $? "Internal testcase error wrong nbr args to $FUNCNAME" || exit
+    local userid=$1
+    local n=60
+    [ "$2" ] && n=$2
+    ((n+=0))
+    tc_break_if_bad_rc $? "Internal testcase error: $2 is not valid integer in $FUNCNAME" || exit
+
+    while mail -e -u $userid &>/dev/null ; do
+        ((--n)) || break
+        echo 'd*' | mail -u $1 &>/dev/null
+        sleep 1
+    done
+    ((n>0))
+}
+
+#
+# read mail and check/verify content
+#   user is in $1 
+#   content is in $2
+#
+function tc_wait_for_mail_text()
+{
+    [ "$#" -eq 2 ]
+    tc_break_if_bad_rc $? "Internal testcase error wrong nbr args to $FUNCNAME" || exit
+    echo 'p*' | mail -u $1 >>$stdout 2>/dev/null
+    grep -iqE "$2" $stdout
+}
+function tc_look_for_mail_text()
+{
+    tc_wait_for_mail_text "$@"
+}
+
+#
+# Start an asynchronous sleep forever process
+#   $1  name to give the process (required)
+#
+# The pid of the newly created sleeper process is placed in TC_SLEEPER_PID.
+# 
+#   The PIDs created are also remembered in TC_SLEEPER_PIDS and will
+#   be killed (or at least attempted to be killed) when the
+#   testcase ends.
+#
+function tc_sleeper()
+{
+    unset TC_SLEEPER_PID
+    local sleeper_process_name="$1"
+    [ "$sleeper_process_name" ]
+    tc_break_if_bad $? "Must provide name for sleeper process to $FUNCNAME" || exit
+
+    (
+    cd $TC_SAVE
+    rm -f ${sleeper_process_name}_pid-$$ &>/dev/null
+cat <<EOF >${sleeper_process_name}
+#!/bin/bash
+
+# This cleanup function makes sure the sleep child
+# process dies along with the sleeper script.
+function cleanup()
+{
+    [ "\$sleep_pid" ] && kill \$sleep_pid &>/dev/null
+}
+trap cleanup 0
+
+echo \$$ > ${sleeper_process_name}_pid-$$ # Report our PID.
+
+# The sleep. Done in a way to capture sleep's pid.
+while true ; do         # waiting "forever"
+    sleep 61 &          # asynchronous ...
+    sleep_pid=\$!       # ... but ...
+    wait \$sleep_pid    # ... wait for it.
+done
+# should never get here!
+EOF
+    chmod +x ${sleeper_process_name}
+    ./${sleeper_process_name} &
+    )
+
+    tc_wait_for_file $TC_SAVE/${sleeper_process_name}_pid-$$ 5 size >>$stdout 2>>$stderr
+    tc_break_if_bad $? "$FUNCNAME: ${sleeper_process_name} did not report its pid" || exit
+
+    TC_SLEEPER_PID=$(<$TC_SAVE/${sleeper_process_name}_pid-$$)
+    TC_SLEEPER_PIDS="$FUNCNAME: $TC_SLEEPER_PID $TC_SLEEPER_PIDS"
+
+    tc_wait_for_pid $TC_SLEEPER_PID >>$stdout 2>>$stderr
+    tc_break_if_bad $? "$FUNCNAME: pid $TC_SLEEPER_PID for sleeper process did not show" || exit
+}
+
+
+#
+# tc_lock   Attempt to set a lock with this process id, or check to see if the
+#           lock is already held.
+#
+#   USAGE:      tc_lock lockfile -t -n N
+#   lockfile    Name of file to represent the lock.
+#   -n N        Make "N" attempts to get lock on lockfile with a one second
+#               delay between attempts. Default = 10 attempts.
+#   -t          Just check (once, ignoring -n) to see if we already hold the lock.
+#
+#   Returns 0 if lockfile obtained or already held by this process.
+#   Returns non-zero if lockfile can't be obtained. Presumably it is held by some
+#   other process.
+#
+#   To release the lock simply delete the lockfile. If you always create your
+#   lockfiles under $TCTMP this will insure the files get deleted if the testcase
+#   ends prematurely.
+#
+#   TECH NOTE:  Locks are held by a given process where a process is identified
+#               by its process ID (PID, or $$). The lock is obtained by writing
+#               the PID to the lock file while bash's "noclobber" option is in
+#               effect. Bash's "noclobber" option will prevent the write if the
+#               file pre-exists. We can then tell if we successfully obtained
+#               the lock be seeing if its content matches our PID.
+#
+function tc_lock()
+{
+    # parsed args
+    local opt
+    local lockfile
+    local testonly=0
+    local ctr=10    # the default
+
+    # parse the command line
+    unset OPTIND
+    while [ "$*" ] ; do
+        getopts :tn: opt || {
+            shift $((--OPTIND))
+            [ "$1" ] && lockfile=$1
+            shift
+            unset OPTIND
+            continue
+        }
+        case "$opt" in
+            t)  testonly=1 ;;
+            n)  ctr=$OPTARG ;;
+            *)  1>&2 echo "$FUNCNAME: Unknown option $1" ; return 99 ;;
+        esac
+    done
+
+    [ "$lockfile" ]
+    tc_break_if_bad $? "$FUNCNAME: Must specify a lockfile" || exit
+
+    ((ctr>0))
+    tc_break_if_bad $? "$FUNCNAME: invalid number of attempts: $ctr" || exit
+
+    # If This pid already holds this lock return success.
+    ( [ "$$" = "$(<$lockfile)" ] ) &>/dev/null && return
+
+    ((testonly)) && return 2        # we don't hold the lock
+
+    while ((--ctr>=0)) ; do
+        (                           # parends create new process making noclobber temporary
+            set -o noclobber
+            echo $$ > $lockfile
+        ) 2> /dev/null && return    # got lock so return with good rc
+        sleep 1
+    done
+    return 1                        # couldn't get lock so return will be with bad rc
+}
+
+#
+# get OS vesion
+#
+function tc_get_os_ver()
+{
+    unset TC_OS_VER
+    if [ -e /etc/os-release ]
+    then
+        source /etc/os-release
+        local VER=$( IFS=\" ; set $VERSION_ID ; echo $1 )
+        TC_OS_VER=`echo $VER | grep -o [0-9]`
+        TC_OS_VER=`echo $TC_OS_VER | tr -d [:blank:]`
+        TC_OS_VER=${TC_OS_VER%0} ; TC_OS_VER=${TC_OS_VER%0}
+    else
+        source /etc/OS.manifest || return
+        local VER=$( IFS=\" ; set $_OS_VER ; echo $1 )
+        TC_OS_VER=`echo $VER | grep -o [0-9]`
+        TC_OS_VER=`echo $TC_OS_VER | tr -d [:blank:]`
+        TC_OS_VER=${TC_OS_VER%0} ; TC_OS_VER=${TC_OS_VER%0} #remove trailing zero(s)
+    fi
+    return
+}
+
+#
+# get architecture
+# 
+#   sets global variable
+#       TC_OS_ARCH         (e.g. "x86_64")
+#
+#   returns non-zero on failure
+#
+function  tc_get_os_arch()
+{
+    unset TC_OS_ARCH
+    if [ -e /etc/os-release ]
+    then
+        ARCH=`uname -m`
+    else
+        source /etc/OS.manifest || return
+        ARCH=$( IFS=\" ; set $_MCP_ARCH ; echo $1 )
+    fi
+    TC_OS_ARCH=`echo $ARCH` 
+}
+
+#
+# get first valid network interface and router
+#
+#   sets global variables TC_IFACE and TC_ROUTER
+#
+function tc_get_iface()
+{
+    unset TC_IFACE TC_ROUTER
+    local destination the_rest
+    while read TC_IFACE destination TC_ROUTER the_rest ; do
+        [ "$TC_IFACE" = "Iface" ] && continue    # skip header
+        [ "$TC_ROUTER" != "00000000" ] && break # found interface
+        unset TC_IFACE TC_ROUTER
+    done </proc/net/route
+    [ "$TC_ROUTER" ] && TC_ROUTER=$(tc_parse_ipv4_addr "$TC_ROUTER")
+}
+
+#
+# tc_watchdog
+#
+# This function starts a seperate process that will sleep for N seconds
+# (default 3600 = one hour). After it wakes up from the sleep it will kill
+# the invoking procss ($$) or a process who's PID was supplied as $2.
+#
+# If all goes well this script will be killed (by tc_internal_cleanup) before
+# it gets a chance to wake up and take drastic action.
+#
+#   $1 can override $N
+#   $2 can override $PID
+#
+# If the variable TC_WD_CALLBACK is set to name an executable the watchdog
+# process will invoke that executable upon a timeout, before killing the
+# watched process. The idea is that one can add customized data collection
+# at this point. The PID of the watched process will be passed to the
+# callback to help in its data collection.
+#
+function tc_watchdog()
+{
+    local N=3600 ; [ "$1" ] && N=$1
+    local PID=$$ ; [ "$2" ] && PID=$2
+
+    ((N>0))
+    tc_break_if_bad $? "$FUNCNAME: $N must be positive integer nbr of seconds to sleep" || exit
+    ((PID>0))
+    tc_break_if_bad $? "$FUNCNAME: $PID must be process id to kill upon timeout" || exit
+
+    # create and run the watchdog script
+    (
+
+    # establish busybox or not
+    local busybox=no
+    { tc_is_busybox ps || tc_is_busybox grep ; } && busybox=yes
+
+    cd $TC_SAVE
+    rm -f tc_watchdog_pid-$$ &>/dev/null
+cat <<-EOF > tc_watchdog_script-$$.sh
+#!/bin/bash
+#
+# The watchdog script
+#
+
+# This cleanup function makes sure the sleep child
+# process dies along with the watchdog script.
+function cleanup()
+{
+    [ "\$sleep_pid" ] && kill \$sleep_pid &>/dev/null
+}
+trap cleanup 0
+
+# Remember our PID so tc_internal_cleanup can kill us.
+echo \$$ > tc_watchdog_pid-$$
+
+# The timeout. Done in a way to capture sleep's pid.
+sleep $N &                  # asynchronous ...
+sleep_pid=\$!               # ... but ...
+wait \$sleep_pid            # ... wait for it.
+
+# Sleep ran out! kill the watched process!
+[ -x "$TC_WD_CALLBACK" ] && # If there is a call-back program, ...
+$TC_WD_CALLBACK $PID        # invoke it before disturbing anything.
+(
+exec >>$stderr 2>&1
+echo ls -la /proc/$PID
+ls -la /proc/$PID
+echo ls -la /proc/$PID/fd
+ls -la /proc/$PID/fd
+netstat -lpen
+ps -ef
+[ "$busybox" = "no" ] &&    # the following doesn't work with busybox
+while read pid ppid ; do
+    [ "\$ppid" = $PID ] && {
+        kill \$pid || kill -9 \$pid
+        echo "watchdog killed child process \$pid"
+    }
+#done < <(ps -eo pid,ppid | grep -w $PID)
+
+#### Bug 64261 Fix #####
+done < <(ps -eo pid,ppid | grep  "\([^0-9]$PID[^0-9]\)")
+##### Fix End ##########
+
+kill $PID || kill -9 $PID
+echo "watchdog killed testcase process $PID"
+)
+EOF
+    chmod +x tc_watchdog_script-$$.sh
+    ./tc_watchdog_script-$$.sh &   # Watchdog process runs asynchronously.
+    )
+
+    # Be sure watchdog script started OK.
+    tc_wait_for_file $TC_SAVE/tc_watchdog_pid-$$ 5 size &>/dev/null
+    tc_break_if_bad $? "$FUNCNAME: tc_watchdog_script-$$.sh did not report its pid" || exit
+
+    # A little redundant, but let's make sure.
+    local tc_watchdog_pid=$(<$TC_SAVE/tc_watchdog_pid-$$)
+    tc_wait_for_pid $tc_watchdog_pid &>/dev/null
+    tc_break_if_bad $? "$FUNCNAME: pid $tc_watchdog_pid for tc_watchdog process did not show" || exit
+}
+
+#
+# Establish LTPROOT, LTPBIN, PATH.
+#
+#   LTPROOT and LTPBIN are probably already set but we make sure they are correct here.
+#   Assumes executable is under the LTP's "testcases" directory.
+#
+#   As a function so variable "me" can be local.
+#
+function tc_set_path()
+{
+    local me=$(readlink -f -- $0)
+    export PATH=$LTPBIN:$PATH
+}
+tc_set_path
+
+# tc_is_ucp
+# 
+# This is a simple function which is used to identify whether an build is ucp based or not.
+# returns 1 if the OS build is not ucp based
+#
+function tc_is_ucp()
+{ 
+        return 1
+}
+
+# tc_check_or_create_dir
+#
+# Check if the directory exists
+# if no create the directory as well as its parent directory too
+#
+function tc_check_or_create_dir()
+{
+   local dir=$1
+   [ -d $dir ] && return
+   local remove_dir=`mkdir -pv $dir | awk '{print substr($4,2,length($4)-2)}' | head -n 1`
+   REMOVE_DIRS="$REMOVE_DIRS $remove_dir"
+}
+
+# tc_check_kconfig
+#
+# Check for the CONFGI parameter passed in $1
+# return 0 if its enabled
+# return 1 if it exists and is module
+# return 2 if it is not present or not enabled.
+
+function tc_check_kconfig()
+{
+   local param=$1
+   local kversion=`uname -r`
+   case `grep "$param=" /boot/config-$kversion | awk -F = '{print $2}'` in
+   'y')
+        return 0
+        ;;
+   'm')
+        return 1
+        ;;
+   *)
+        return 2
+        ;;
+   esac
+}
+#
+#function tc_install_package  will install the package from mash of respective release
+#   $1 (required) Name of the package to be installed
+#   Returns  non-zero on failure
+#
+function tc_install_package()
+{
+    local OS_MANIFEST="/etc/redhat-release"
+    local REPO_SERVER="http://mirror.centos.org/centos"
+    local OS_VER=`cat $OS_MANIFEST | awk '{ print $7 }' | cut -d "." -f1`
+    local package=$1
+    rpm -q --quiet $package
+    rc=$?
+    if [ $rc -ne 0 ]; then
+        repo_created=1
+    tc_get_os_arch
+    wget -L $REPO_SERVER >/dev/null 2>&1
+    link_detls=`./parse_index.pl | grep "$OS_VER`
+    rm -f centos
+    if [ $TC_OS_ARCH == "x86_64" ]
+    then
+        repo_link="$link_detls/os/$TC_OS_ARCH"
+    else
+        repo_link="altarch/$link_detls/os/$TC_OS_ARCH"
+    fi    
+    if [ $OS == "Redhat" ] 
+    then 
+        cat >> /etc/yum.repos.d/$REPO.base.repo <<-EOF
+[$REPO-base]
+name=Redhat $OS_VER - $TC_OS_ARCH
+baseurl="$REPO_SERVER/$repo_link"
+enabled=1
+gpgcheck=0
+EOF
+    else
+        cat >> /etc/yum.repos.d/$REPO.base.repo <<-EOF
+[$REPO-base]
+name=$OS $OS_VER - $TC_OS_ARCH
+baseurl="$REPO_SERVER/mash/$REPO-base/$TC_OS_ARCH/os/"
+enabled=1
+gpgcheck=0
+EOF
+    fi
+    yum install $package -y
+    sleep 5
+    tc_break_if_bad $? "$package not installed"
+    fi
+
+    if [ "$repo_created" == "1" ]; then
+        rm -f /etc/yum.repos.d/$REPO.base.repo
+    fi
+}

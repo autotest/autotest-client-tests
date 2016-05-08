@@ -1,0 +1,11 @@
+AUTHOR = " snehal@linux.vnet.ibm.com  " 
+NAME = "iprutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test iprutils package 
+    ''' 
+path = '' 
+job.run_test('iprutils',test_path=path) 

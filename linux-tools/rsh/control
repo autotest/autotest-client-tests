@@ -1,0 +1,11 @@
+AUTHOR = " Helen Pang, hpang@us.ibm.com  " 
+NAME = "rsh" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test rsh package 
+    ''' 
+path = '' 
+job.run_test('rsh',test_path=path) 

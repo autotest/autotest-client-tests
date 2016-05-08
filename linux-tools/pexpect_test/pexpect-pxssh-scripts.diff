@@ -1,0 +1,90 @@
+--- sshls.py.org	2007-11-28 17:40:34.000000000 -0600
++++ sshls.py	2013-09-14 22:49:07.497447898 -0500
+@@ -3,11 +3,14 @@
+ """This runs 'ls -l' on a remote host using SSH. At the prompts enter hostname,
+ user, and password.
+ 
++Example:
++	.sshls.py -s www.example.com -u mylogin -p mypassword
++
+ $Id: sshls.py 489 2007-11-28 23:40:34Z noah $
+ """
+-
++import traceback
+ import pexpect
+-import getpass, os
++import getopt, os, sys
+ 
+ def ssh_command (user, host, password, command):
+ 
+@@ -27,7 +30,6 @@ fingerprint and continue connecting. """
+         return None
+     if i == 1: # SSH does not have the public key. Just accept it.
+         child.sendline ('yes')
+-        child.expect ('password: ')
+         i = child.expect([pexpect.TIMEOUT, 'password: '])
+         if i == 0: # Timeout
+             print 'ERROR!'
+@@ -37,13 +39,40 @@ fingerprint and continue connecting. """
+     child.sendline(password)
+     return child
+ 
++def exit_with_usage():
++
++    print globals()['__doc__']
++    os._exit(1)
++
+ def main ():
+ 
+-    host = raw_input('Hostname: ')
+-    user = raw_input('User: ')
+-    password = getpass.getpass('Password: ')
+-    child = ssh_command (user, host, password, '/bin/ls -l')
++    ######################################################################
++    ## Parse the options, arguments, get ready, etc.
++    ######################################################################
++    try:
++        optlist, args = getopt.getopt(sys.argv[1:], 'h?s:u:p:', ['help','h','?'])
++    except Exception, e:
++        print str(e)
++        exit_with_usage()
++    options = dict(optlist)
++    if len(args) > 1:
++        exit_with_usage()
++
++    if [elem for elem in options if elem in ['-h','--h','-?','--?','--help']]:
++        print "Help:"
++        exit_with_usage()
++
++    if '-s' in options:
++        hostname = options['-s']
++    if '-u' in options:
++        username = options['-u']
++    if '-p' in options:
++        password = options['-p']
++
++    child = ssh_command (username, hostname, password, '/bin/ls -l')
+     child.expect(pexpect.EOF)
++    child.sendline('logout')
++    child.close()
+     print child.before
+ 
+ if __name__ == '__main__':
+
+--- astat.py.org	2013-01-14 06:40:24.000000000 -0500
++++ astat.py	2013-01-14 06:43:17.000000000 -0500
+@@ -58,11 +58,9 @@ def main():
+     #
+     p = pxssh.pxssh()
+     p.login(hostname, username, password)
+-    p.sendline('apachectl status')
+-    p.expect('([0-9]+\.[0-9]+)\s*requests/sec')
+-    requests_per_second = p.match.groups()[0]
++    p.sendline('ls -l')
+     p.logout()
+-    print requests_per_second
++    print p.before
+ 
+ if __name__ == "__main__":
+     try:
+

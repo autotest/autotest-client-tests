@@ -1,0 +1,22 @@
+dirsplit - splits directory into multiple with equal size
+
+displit is designed to for a simple purpose: convert a directory with many multiple files (which are all smaller than a certain medium, eg. DVD) and "splits" it into "volumes", looking for the optimal order to get the best space/medium-number efficiency.
+
+Options include:
+
+-s|--size     NUMBER - Size of the medium (default: 4488M)
+-m|--move     Move files to target dirs (default: create mkisofs catalogs)
+ -l|--symlink  similar to -m but just creates symlinks in the target dirs
+-e|--expmode  NUMBER, special exploration modes, used with directory argument
+-p|--prefix   STRING - first part of catalog/directory name (default: vol_)
+ -f|--filter   EXPR - Filter expression, 
+
+The testcase tests these options.
+Also usecase of dirsplit is that the .list files created by dirsplit can be utilized by 
+mkisofs to generate .iso files, one for each .list file.
+The command mkisofs has an option, path-list which takes the .list file as an argument.
+The testcase covers this as well.
+
+To run the test:
+cd /opt/fiv/ltp/testcases/fivextra/dirsplit
+./dirsplit.sh

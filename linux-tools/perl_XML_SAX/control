@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS <ramyabs1@in.ibm.com>                                            ##  " 
+NAME = "perl_XML_SAX" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-XML-SAX package 
+    ''' 
+path = '' 
+job.run_test('perl_XML_SAX',test_path=path) 

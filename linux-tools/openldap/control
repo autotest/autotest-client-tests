@@ -1,0 +1,11 @@
+AUTHOR = " Hong Bo Peng <penghb@cn.ibm.com>  " 
+NAME = "openldap" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test openldap package 
+    ''' 
+path = '' 
+job.run_test('openldap',test_path=path) 

@@ -1,0 +1,5 @@
+The purpose of irqbalance is distribute hardware interrupts across processors on a multiprocessor system in order to increase performance.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/irqbalance
+./irqbalance.sh

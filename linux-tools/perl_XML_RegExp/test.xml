@@ -1,0 +1,17 @@
+
+<booklist>
+   <book type="technical">
+      <author>test user</author>
+      <quality>A</quality>
+      <subject>TELECOM</subject>
+      <title>Wireless communication </title>
+      <isbn>6789</isbn>
+     
+   </book>
+   <book type="comic">
+      <author>test user2</author>
+      <quality>B</quality>
+      <title>jokes</title>
+      <isbn>9679</isbn>
+   </book>
+</booklist>

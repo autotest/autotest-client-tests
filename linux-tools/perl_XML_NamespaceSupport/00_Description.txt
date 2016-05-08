@@ -1,0 +1,22 @@
+XML::NamespaceSupport - a simple generic namespace support class
+
+XML::NamespaceSupport module offers a simple to process namespaced XML names 
+(unames) from within any application that may need them. It also helps
+maintain a prefix to namespace URI map, and provides a number of basic checks.
+
+XML::NamespaceSupport methods:
+==============================
+$nsup = XML::NamespaceSupport->new    : A simple constructor.
+$nsup->push_context 		      : Adds a new empty context to the stack.
+             You can then populate it with new prefixes defined at this level. 
+$nsup->pop_context 		      : Removes the topmost context in the
+                                   stack and reverts to the previous one.
+
+Usage:
+To run all tests:
+
+./perl-XML-NamespaceSupport.sh	
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-NamespaceSupport
+perl t/<test.t>

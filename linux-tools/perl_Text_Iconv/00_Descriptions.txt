@@ -1,0 +1,19 @@
+The Text::Iconv module provides a Perl interface to the iconv() function as defined by the Single UNIX Specification. The convert()
+method converts the encoding of characters in the input string from the fromcode codeset to the tocode codeset and returns the result.
+Settings of fromcode and tocode and their permitted combinations are implementation-dependent. Valid values are specified in the system
+documentation.
+
+It can be used to create a converter object which maps from one encoding to another and then pass the object a string to convert
+example :
+
+$converter = Text::Iconv->new('UTF-8', 'ISO8859-1');
+print $converter->convert($string);
+
+
+Functionality of the test : The test in the source  expects two array references, each listing all the alternative names to try for the source and target codesets.  If the
+codeset is not supported (at least not under any of the names that  were given), it returns 0.  If the call to iconv_open() fails due to
+other reasons, it returns undef.  Otherwise a Text::Iconv object for  the requested conversion is returned.
+
+How to run the test:
+--------------------
+./perl-Text-Iconv.sh

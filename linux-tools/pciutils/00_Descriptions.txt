@@ -1,0 +1,13 @@
+pciutils
+	Test the functionality of pciutils.
+
+how to run
+	pciutils.sh
+
+notes
+	In 2.6 kernel setpci -d vendor_id:device_id latency_timer only
+	work for those device really have latency timer.
+        *******************************************
+	So if the machine did not have such device
+	This case will FAIL.
+        *******************************************

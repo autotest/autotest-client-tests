@@ -1,0 +1,18 @@
+#!/usr/bin/expect --
+set user [lindex $argv 0]
+
+spawn telnet localhost 25
+expect "220 localhost.localdomain ESMTP Postfix"
+send -- "ehlo localhost\r"
+expect "250 DSN"
+send -- "mail from: root@localhost\r"
+expect "250 2.1.0 Ok"
+send -- "rcpt to: $user\r"
+expect "250 2.1.5 Ok"
+send -- "data\r"
+expect "354 End data with <CR><LF>.<CR><LF>"
+send -- "This is a Test Mail\r"
+send -- ".\r"
+expect "250 2.0.0 Ok: queued as*"
+send -- "quit\r"
+expect eof

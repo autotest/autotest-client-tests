@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  manjo@mail.utexas.edu  " 
+NAME = "udftools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test udftools package 
+    ''' 
+path = '' 
+job.run_test('udftools',test_path=path) 

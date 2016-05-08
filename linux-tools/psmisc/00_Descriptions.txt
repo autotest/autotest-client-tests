@@ -1,0 +1,2 @@
+This test covers basic functions of three utilities in psmisc package:
+	pstree, killall and fuser

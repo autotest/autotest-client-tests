@@ -1,0 +1,21 @@
+Description:
+
+XML::XQL - This is a perl module that allows you to perform XQL queries on XML
+object trees.
+
+XQL is designed specifically for XML documents. It is a general purpose query
+language, providing a single syntax that can be used for queries, addressing,
+and patterns. XQL is concise, simple, and powerful.XQL language provides a
+natural extension to the XSL pattern language. It builds upon the capabilities
+XSL provides for identifying classes of nodes, by adding Boolean logic,
+filters, indexing into collections of nodes, and more.
+Currently only the XML::DOM module is supported, but other implementations,
+like XML::Grove, may soon follow.
+
+For more details,please refer to below url
+http://www.w3.org/TandS/QL/QL98/pp/xql.html
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/perl-XML-XQL
+./perl-XML-XQL.sh
+

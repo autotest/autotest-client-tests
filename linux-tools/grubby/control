@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G, kumuda@linux.vnet.ibm.com 			      	      ##  " 
+NAME = "grubby" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test grubby package 
+    ''' 
+path = '' 
+job.run_test('grubby',test_path=path) 

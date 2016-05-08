@@ -1,0 +1,11 @@
+AUTHOR = " dch,dingchao@cn.ibm.com  " 
+NAME = "ksh" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ksh package 
+    ''' 
+path = '' 
+job.run_test('ksh',test_path=path) 

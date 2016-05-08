@@ -1,0 +1,8 @@
+The primary use of pkg-config is to provide the necessary details for
+compiling and linking a program to a library. This metadata is stored in
+pkg-config files. These files have the suffix .pc and reside in specific
+locations known to the pkg-config tool
+
+How to run the test:
+-----------------------
+./pkg-config.sh 

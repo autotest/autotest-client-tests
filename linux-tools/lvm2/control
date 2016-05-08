@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "lvm2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lvm2 package 
+    ''' 
+path = '' 
+job.run_test('lvm2',test_path=path) 

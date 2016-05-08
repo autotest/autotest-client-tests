@@ -4,9 +4,8 @@ import logging
 import socket
 import ssl
 import threading
-import shutil
 from backports.ssl_match_hostname import match_hostname, CertificateError
-from autotest.client import test, utils
+from autotest.client import test
 from autotest.client.shared import error
 
 

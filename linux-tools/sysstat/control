@@ -1,0 +1,11 @@
+AUTHOR = " CSDL ldy (liudeyan@cn.ibm.com)  " 
+NAME = "sysstat" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sysstat package 
+    ''' 
+path = '' 
+job.run_test('sysstat',test_path=path) 

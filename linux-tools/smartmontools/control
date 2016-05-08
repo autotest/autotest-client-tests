@@ -1,0 +1,11 @@
+AUTHOR = " Gong Jie <gongjie@cn.ibm.com>  " 
+NAME = "smartmontools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test smartmontools package 
+    ''' 
+path = '' 
+job.run_test('smartmontools',test_path=path) 

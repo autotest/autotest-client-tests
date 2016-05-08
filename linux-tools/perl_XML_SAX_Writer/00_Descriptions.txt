@@ -1,0 +1,27 @@
+perl-XML-SAX-Writer is a new XML Writer to match the SAX2 effort.
+XML::SAX is a SAX parser access API for Perl. It includes classes and APIs required for implementing SAX drivers,
+along with a factory class for returning any SAX parser installed on the user's system. It is designed around the
+need to be able to "plug in" different SAX parsers to an application without requiring programmer intervention.
+This module is generally used to write XML but just like the rest of SAX it can be used as a generic framework to output data.
+
+What is a SAX Filter?
+--------------------------
+A SAX filter is simply a class that is passed as the event handler to another class that generates SAX events,
+then forwards all or some of those events on the next handler (or filter) in the processing chain. A filter may
+prune the document tree by not forwarding events for elements with a given name (or that meet some other condition),
+while in other cases, a filter might generate its own new events to add parent or child elements to certain elements
+the existing document stream. Also, element attributes can be added or removed or the character data altered in some way.
+Really any class that is able to receive SAX events, then call event methods on another SAX handler in a way that alters
+the document stream can be seen as a SAX filter. In practice, SAX filters are like conceptual cousins of many of the
+standard UNIX tools. By themselves, these tools often perform only a single, simple task, but when piped together
+they are capable of astonishing feats. In the same way, the real power of SAX filters is derived from the fact that simpler,
+easy-to-maintain filters may be chained together to produce complex XML data transformations.
+
+Functionality of the test:  Default options of XML::SAX::Writer are set and tested.
+Setting a Consumer is done by setting the Output option to the object like string, file,
+array etc, by mapping the consumer classes like XML::SAX::Writer::FileConsumer, XML::SAX::Writer::StringConsumer,
+XML::SAX::Writer::ArrayConsumer, XML::SAX::Writer::HandleConsumer.
+
+How to run the test:
+--------------------
+./perl-XML-SAX-Writer.sh

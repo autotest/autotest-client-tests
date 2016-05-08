@@ -1,0 +1,16 @@
+===============================================================================
+# TestCase:        bridge-utils_tests.sh
+#
+# Description: This program tests basic functionality of bridge utils commands.
+#
+# Author:      Manoj Iyer  manjo@mail.utexas.edu
+#
+===============================================================================
+Howto:
+
+Run bridge-utils_tests.sh will test this package.
+
+Test coverage:
+----------------------------------
+brctl
+----------------------------------

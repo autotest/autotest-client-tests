@@ -1,0 +1,11 @@
+#########################################################################################
+perl-Pod-Usage is package supporting to print usage message from embedded pod documentation
+
+Source:http://perldoc.perl.org/Pod/Usage.html
+#########################################################################################
+How to run tests ??
+Ans: cd /opt/fiv/ltp/testcases/fivextra/perl-Pod-Usage
+	run the perl-Pod-Usage.sh script
+
+How to interpret test results ??
+Ans: testharness  will return non zero if any test fails.

@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P  " 
+NAME = "elfutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test elfutils package 
+    ''' 
+path = '' 
+job.run_test('elfutils',test_path=path) 

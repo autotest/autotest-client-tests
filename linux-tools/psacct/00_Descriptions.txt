@@ -1,0 +1,15 @@
+psacct:
+          The testcase for automated test for psacct
+
+usage:
+       ./psacct.sh
+
+Note:
+----------
+
+The psacct package contains several utilities for monitoring process
+activities, including ac, lastcomm, accton, and sa. The ac command displays
+statistics about how long users have been logged on. The lastcomm command
+displays information about previously executed commands. The accton command
+turns process accounting on or off. The sa command summarizes information
+about previously executed commands.

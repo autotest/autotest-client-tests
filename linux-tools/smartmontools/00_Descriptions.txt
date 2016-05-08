@@ -1,0 +1,18 @@
+===============================================================================
+TestCase	: smartmontools.sh
+
+Description	: This testcase whill check the smartmontools functions
+
+Author		: GONG Jie <gongjie@cn.ibm.com>
+
+===============================================================================
+Howto:
+
+Invoke ./smartmontools.sh to start the test.
+
+----------------------------------
+Test-case coverage:
+
+1. These testcase will check basic S.M.A.R.T interface to hard disk drive.
+2. These testcase will run a shrot self test on hard disk drive.
+----------------------------------

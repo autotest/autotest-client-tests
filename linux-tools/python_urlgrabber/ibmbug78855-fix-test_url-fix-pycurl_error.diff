@@ -1,0 +1,55 @@
+--- test/base_test_code.py.orig	2012-05-31 01:28:29.454390492 -0400
++++ test/base_test_code.py	2012-05-31 01:54:18.234369668 -0400
+@@ -1,6 +1,6 @@
+ from munittest import *
+ 
+-base_http = 'http://urlgrabber.baseurl.org/test/'
++base_http = 'http://kjdev1.au.example.com/test/urlgrabber-test/' 
+ base_ftp  = 'ftp://localhost/test/'
+ 
+ # set to a proftp server only. we're working around a couple of
+
+
+--- test/test_mirror.py.orig	2012-05-31 01:28:52.193390421 -0400
++++ test/test_mirror.py	2012-05-31 02:51:42.048307001 -0400
+@@ -116,8 +116,11 @@ class CallbackTests(TestCase):
+         self.mg.failure_callback = failure_callback, (tricky_list, ), {}
+         data = self.mg.urlread('reference')
+         self.assert_(data == reference_data)
+-        self.assertEquals(tricky_list[0][:25],
+-                          '[Errno 14] HTTP Error 403')
++        #This is to fix exp out for pycurl error in lab systems
++        #self.assertEquals(tricky_list[0][:25],
++        #                  '[Errno 14] HTTP Error 403')
++        self.assertEquals(tricky_list[0][:],
++             '[Errno 14] PYCURL ERROR 22 - "The requested URL returned error: 403"')
+ 
+     def test_callback_reraise(self):
+         "test that the callback can correctly re-raise the exception"
+
+
+--- test/test_grabber.py.orig	2012-08-08 06:54:19.249429305 -0400
++++ test/test_grabber.py	2012-08-08 06:55:08.115489909 -0400
+@@ -115,19 +115,19 @@ class URLGrabberModuleTestCase(TestCase)
+     
+     def test_urlopen(self):
+         "module-level urlopen() function"
+-        fo = urlgrabber.urlopen('http://www.python.org')
++        fo = urlgrabber.urlopen('http://abat.au.example.com')
+         fo.close()
+     
+     def test_urlgrab(self):
+         "module-level urlgrab() function"
+         outfile = tempfile.mktemp()
+-        filename = urlgrabber.urlgrab('http://www.python.org', 
++        filename = urlgrabber.urlgrab('http://abat.au.example.com', 
+                                     filename=outfile)
+         os.unlink(outfile)
+     
+     def test_urlread(self):
+         "module-level urlread() function"
+-        s = urlgrabber.urlread('http://www.python.org')
++        s = urlgrabber.urlread('http://abat.au.example.com')
+ 
+        
+ class URLGrabberTestCase(TestCase):
