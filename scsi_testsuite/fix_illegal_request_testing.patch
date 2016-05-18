@@ -1,0 +1,56 @@
+diff --git a/005 b/005
+index 7cf618f..6d499f4 100755
+--- a/005
++++ b/005
+@@ -18,7 +18,7 @@ status=1	# failure is the default!
+
+ _require_command sg_raw
+
+-execute_cdb -r 54 0x12 0 1 0 36 0
++execute_cdb -o /dev/null -r 54 0x12 0 1 0 36 0
+
+ # success, all done
+ echo "*** done"
+diff --git a/005.out b/005.out
+index 05d62ab..73e372a 100644
+--- a/005.out
++++ b/005.out
+@@ -9,9 +9,5 @@ Sense Information:
+         70 00 05 00 00 00 00 0a  00 00 00 00 24 00 00 00
+         00 00
+
+-Received 54 bytes of data:
+- 00     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 10     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 20     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 30     00 00 00 00 00 00                                   ......
++Writing 54 bytes of data to /dev/null
+ *** done
+diff --git a/006 b/006
+index ffe5cba..67a2c60 100755
+--- a/006
++++ b/006
+@@ -18,7 +18,7 @@ status=1	# failure is the default!
+
+ _require_command sg_raw
+
+-execute_cdb -r 54 0x12 1 0xbf 0 36 0
++execute_cdb -o /dev/null -r 54 0x12 1 0xbf 0 36 0
+
+ # success, all done
+ echo "*** done"
+diff --git a/006.out b/006.out
+index eee97cf..648f3fa 100644
+--- a/006.out
++++ b/006.out
+@@ -9,9 +9,5 @@ Sense Information:
+         70 00 05 00 00 00 00 0a  00 00 00 00 24 00 00 00
+         00 00
+
+-Received 54 bytes of data:
+- 00     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 10     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 20     00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00    ................
+- 30     00 00 00 00 00 00                                   ......
++Writing 54 bytes of data to /dev/null
+ *** done
