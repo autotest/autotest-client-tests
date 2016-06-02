@@ -1,0 +1,12 @@
+AUTHOR = "Ramya BS@linux.vnet.ibm.com>"
+NAME = "libndp"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "Linux Tools"
+TEST_TYPE = "client"
+TIME = 'SHORT'
+DOC = '''
+Test libndp package
+'''
+
+job.run_test('linux-tools/libndp')
+
