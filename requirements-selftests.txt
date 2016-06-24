@@ -1,5 +1,3 @@
-autotest
-sphinx
 simplejson
 MySQL-python
 inspektor==0.2

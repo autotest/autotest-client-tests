@@ -14,6 +14,11 @@ git:
 
 install:
     - pip install sphinx
+    - wget https://github.com/autotest/autotest/archive/0.16.3.tar.gz
+    - tar xzvf 0.16.3.tar.gz
+    - cd autotest-0.16.3/
+    - AUTOTEST_TOP_PATH="." python setup.py install
+    - cd ..
     - pip install -r requirements-selftests.txt
 
 script:
