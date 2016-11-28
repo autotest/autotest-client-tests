@@ -1,0 +1,51 @@
+dmsetup - Testcase for device-mapper utility.
+
+Device mapper is a user space configuration utility to manage the dm devices in the kernel.
+
+Test Case 	:	dmsetup.sh
+	 
+Author: Suzuki K P <suzuki@in.ibm.com>
+
+
+
+TESTS
+===========
+
+1) Create a dm device by specifiying a table
+2) Removing a device
+3) Create a device with --notable
+4) Loading a table for a device
+5) Suspending a device
+6) Resuming a device
+7) Remove All
+
+And most important :
+
+8) Snapshot facility.
+
+
+Here is the testcase for snapshot:
+
+1.    Create a filesystem on disk0 and create a test file.
+2.    Now create a snapshot for disk0 with disk1 as a COW device
+3.    Mount the new dm device and Update the above test file
+4.    Unmount the filesystem and verify that the test file is unchanged on the disk0
+
+
+Implicitly tested options :
+
+1) dmsetup info
+2) dmsetup table
+
+
+Untested : commands
+
+* status (same as info)
+* ls ( similar to info )
+* reload table
+* clear table
+* targets - ( Lists the targets supported. Like, snapshot, linear, striped etc)
+* deps - ( shows the dependency of the device. this info comes in "table"
+command)
+
+

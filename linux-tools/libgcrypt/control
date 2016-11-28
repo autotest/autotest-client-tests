@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>  " 
+NAME = "libgcrypt" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libgcrypt package 
+    ''' 
+path = '' 
+job.run_test('libgcrypt',test_path=path) 

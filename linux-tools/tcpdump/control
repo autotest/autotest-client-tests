@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@austin.ibm.com  " 
+NAME = "tcpdump" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test tcpdump package 
+    ''' 
+path = '' 
+job.run_test('tcpdump',test_path=path) 

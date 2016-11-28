@@ -1,0 +1,23 @@
+prelink:
+          The testcase for automated test for prelink
+
+usage:
+       ./prelink.sh
+
+Note:
+About prelink:
+-------------
+
+prelink is a program that modifies ELF shared libraries and
+ELF dynamically linked binaries in such a way that the time
+needed for the dynamic linker to perform relocations at
+startup significantly decreases. Due to fewer relocations,
+the run-time memory consumption decreases as well.
+The prelinking information is only used at startup time
+if none of the dependent libraries have changed since prelinking;
+otherwise programs are relocated normally.
+
+prelink first collects ELF binaries to be prelinked and
+all the ELF shared libraries they depend on.
+Then it assigns a unique virtual address space slot
+to each library and relinks the shared library to that base address. 

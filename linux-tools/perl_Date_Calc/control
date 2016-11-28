@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_Date_Calc" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Date-Calc package 
+    ''' 
+path = '' 
+job.run_test('perl_Date_Calc',test_path=path) 

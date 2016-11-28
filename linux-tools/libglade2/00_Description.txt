@@ -1,0 +1,10 @@
+This package contains libglade libraries. These are useful for loading Glade interface files in a program at runtime.
+some of the functions include:
+glade_xml_new - XML file is loaded using libxml
+glade_xml_get_widget - called for all the toplevel widgets in
+the interface.
+etc
+
+How-to :
+cd /opt/fiv/ltp/testcases/fivextra/libglade2
+./libglade2.sh

@@ -1,0 +1,13 @@
+Hunspell is a spell checker and morphological analyzer library and program
+designed for languages with rich morphology and complex word compounding or
+character encoding.
+
+How to run:
+-------------------
+cd /opt/fiv/ltp/testcases/fivextra/hunspell
+./hunspell.sh
+
+Run each test individually:
+----------------------------------
+In tests directory , for test "xxx.test"
+./xxx.test 

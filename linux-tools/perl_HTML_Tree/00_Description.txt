@@ -1,0 +1,23 @@
+Description : This distribution contains a suite of modules for representing, creating, and extracting information from HTML syntax trees
+
+HTML-Tree is a suite of Perl modules for making parse trees out of HTML source. It consists of mainly two modules, whose documentation you should refer to: HTML::TreeBuilder and HTML::Element.
+
+HTML::TreeBuilder is the module that builds the parse trees. (It uses HTML::Parser to do the work of breaking the HTML up into tokens.)
+
+The tree that TreeBuilder builds for you is made up of objects of the class HTML::Element.
+
+
+Reference link : http://search.cpan.org/~cjm/HTML-Tree-5.03/
+                 http://search.cpan.org/~cjm/HTML-Tree-5.03/lib/HTML/Tree.pm
+
+How to run test ?
+
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTML-Tree
+run the script
+./perl-HTML-Tree.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTML-Tree
+perl -T t/<test.t>
+

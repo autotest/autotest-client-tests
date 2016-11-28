@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS , ramya@linux.vnet.ibm.com                                ##  " 
+NAME = "perl_LWP_MediaTypes" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-LWP-MediaTypes package 
+    ''' 
+path = '' 
+job.run_test('perl_LWP_MediaTypes',test_path=path) 

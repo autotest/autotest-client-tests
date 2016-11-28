@@ -1,0 +1,11 @@
+AUTHOR = " Ramya<ramyabs1@in.ibm.com>  " 
+NAME = "python_six" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-six package 
+    ''' 
+path = '' 
+job.run_test('python_six',test_path=path) 

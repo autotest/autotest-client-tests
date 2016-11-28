@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana <maappana@in.ibm.com>                          ##  " 
+NAME = "libart_lgpl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libart_lgpl package 
+    ''' 
+path = '' 
+job.run_test('libart_lgpl',test_path=path) 

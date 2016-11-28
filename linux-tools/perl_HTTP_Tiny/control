@@ -1,0 +1,11 @@
+AUTHOR = " UmerQayam<umeqayam@in.ibm.com>                                ##  " 
+NAME = "perl_HTTP_Tiny" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTTP-Tiny package 
+    ''' 
+path = '' 
+job.run_test('perl_HTTP_Tiny',test_path=path) 

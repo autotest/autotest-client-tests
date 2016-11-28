@@ -1,0 +1,12 @@
+JSON or JavaScript Object Notation is a lightweight is a text-based
+open standard designed for human-readable data interchange. Perl-JSON
+has modules that converts between JSON (JavaScript Object Notation)
+and Perl data structure into each other.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/perl-JSON
+./perl-JSON.sh
+
+To execute individual tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-JSON
+perl t/xxx.t

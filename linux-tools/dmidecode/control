@@ -1,0 +1,11 @@
+AUTHOR = " Xie Jue <xiejue@cn.ibm.com>  " 
+NAME = "dmidecode" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dmidecode package 
+    ''' 
+path = '' 
+job.run_test('dmidecode',test_path=path) 

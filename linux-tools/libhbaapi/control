@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana <maappana@in.ibm.com>                          ##  " 
+NAME = "libhbaapi" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libhbaapi package 
+    ''' 
+path = '' 
+job.run_test('libhbaapi',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Basheer KhadarsabGari <bkhadars@in.ibm.com>                    	  ##  " 
+NAME = "perl_LWP_Protocol_https" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-LWP-Protocol-https package 
+    ''' 
+path = '' 
+job.run_test('perl_LWP_Protocol_https',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T.S. <harihare@in.ibm.com>                                  ##  " 
+NAME = "perl_Encode_Locale" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Encode-Locale package 
+    ''' 
+path = '' 
+job.run_test('perl_Encode_Locale',test_path=path) 

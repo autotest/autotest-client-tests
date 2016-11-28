@@ -1,0 +1,10 @@
+department
+  employee id='J.D'
+    name
+    email
+  employee id='B.S'
+    name
+    email
+  employee id='A.M'
+    name
+    url href='http://www.foo.com/~amiller/'

@@ -1,0 +1,38 @@
+<!-- Test configuration for 'gtk2' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>gtk2</PACKAGE>
+    <COMMAND>gtk2.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the gtk2 program.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>gtk2</PACKAGE>
+    <COMMAND>gtk2.txt</COMMAND>
+    <DESCRIPTION>Test basic functionality of the gtk2 program.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libXrandr</PACKAGE>
+    <DESCRIPTION>libXrandr is X Resize and Rotate library,the test provided in gtk2 is giving coverage to libXrandr package </DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libXrender</PACKAGE>
+    <DESCRIPTION>The tests provided in gtk2 is giving coverage to libXrender package </DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libXdamage</PACKAGE>
+    <DESCRIPTION>This is X11 libXdamage runtime library used in gtk2</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libXdmcp</PACKAGE>
+    <DESCRIPTION>This is X Display Manager Control Protocol library used in gtk2</DESCRIPTION>
+</TEST>

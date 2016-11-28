@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  manjo@mail.utexas.edu  " 
+NAME = "fbset" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test fbset package 
+    ''' 
+path = '' 
+job.run_test('fbset',test_path=path) 

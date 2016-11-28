@@ -1,0 +1,12 @@
+The tests are built as a sub-package from GeoIP source package 
+Most of the testcases binaries are in tests. 
+
+How to Execute
+----------------
+./Geoip.sh
+
+Testcase has been implemented for only geoiplookup binary because rest of the
+binaries and testcases in the source needs .dat file which is not available
+for free.
+Run this test on  a system that has been configured with IP that is recognized 
+within IBM network

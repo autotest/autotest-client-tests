@@ -1,0 +1,14 @@
+<!-- Test configuration for 'dump' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>dump</PACKAGE>
+    <COMMAND>dumprestore.sh</COMMAND>
+    <DESCRIPTION>Test dump and restore backup utilities.</DESCRIPTION>
+</TEST>
+
+<!-- Implicit tests -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libcom_err</PACKAGE>
+    <DESCRIPTION>Dump uses error_message() provided by libcom_err</DESCRIPTION>
+</TEST>

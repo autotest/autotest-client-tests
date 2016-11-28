@@ -1,0 +1,11 @@
+AUTHOR = " UmerQayam<umeqayam@in.ibm.com>                                ##  " 
+NAME = "perl_Getopt_Long" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Getopt-Long package 
+    ''' 
+path = '' 
+job.run_test('perl_Getopt_Long',test_path=path) 

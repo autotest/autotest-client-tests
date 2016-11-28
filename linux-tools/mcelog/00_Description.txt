@@ -1,0 +1,23 @@
+Package Name : mcelog 
+
+Description:
+
+mcelog is the user space backend for logging machine check errors
+reported by the hardware to the kernel. The kernel does the immediate
+actions (like killing processes etc.) and mcelog decodes the errors
+and manages various other advanced error responses like
+offlining memory, CPUs or triggering events. In addition
+mcelog also handles corrected errors, by logging and accounting them.
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/mcelog
+run the script 
+./mcelog.sh
+
+To run test individually?
+cd /opt/fiv/ltp/testcases/fivextra/mcelog
+Based on Architecture of system ,copy the respective page-types tool from 
+cp /opt/fiv/ltp/testcases/fivextra/mcelog/page/pagetypes.x86_64/page-types /usr/sbin
+cp /opt/fiv/ltp/testcases/fivextra/mcelog/page/path_ia32.patch/page-types /usr/sbin
+cd /opt/fiv/ltp/testcases/fivextra/mcelog/tests
+./test $testname

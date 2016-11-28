@@ -1,0 +1,11 @@
+AUTHOR = " Helen Pang, hpang@us.ibm.com  " 
+NAME = "expat" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test expat package 
+    ''' 
+path = '' 
+job.run_test('expat',test_path=path) 

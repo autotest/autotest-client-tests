@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>  " 
+NAME = "fuse" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test fuse package 
+    ''' 
+path = '' 
+job.run_test('fuse',test_path=path) 

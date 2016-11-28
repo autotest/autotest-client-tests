@@ -1,0 +1,7 @@
+<!-- Test configuration for 'device-mapper-persistent-data' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>device-mapper-persistent-data</PACKAGE>
+    <COMMAND>device-mapper-persistent-data.sh</COMMAND>
+    <DESCRIPTION>Testcase to test device-mapper-persistent-data package</DESCRIPTION>
+</TEST>

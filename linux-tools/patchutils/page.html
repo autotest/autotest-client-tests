@@ -1,0 +1,247 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: [LTP] fatal signal handling -->
+<!--X-From-R13: Oneba Znssva <nynssvaNftv.pbz> -->
+<!--X-Date: Tue, 5 Sep 2000 20:07:47 &#45;0700 -->
+<!--X-Message-Id: 39B5B415.3EBABA1D@sgi.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 155229565277.20000904140142@logos&#45;m.ru -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>Re: [LTP] fatal signal handling</title>
+<link rev="made" href="mailto:alaffin@sgi.com">
+</head>
+<body>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<hr>
+[<a href="msg00049.html">Date Prev</a>][<a href="msg00051.html">Date Next</a>][<a href="msg00049.html">Thread Prev</a>][<a href="msg00052.html">Thread Next</a>][<a href="maillist.html#00050">Date Index</a>][<a href="threads.html#00050">Thread Index</a>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: [LTP] fatal signal handling</h1>
+<hr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Egor Duda &lt;<A HREF="mailto:deo@logos-m.ru">deo@logos-m.ru</A>&gt;</li>
+<li><em>Subject</em>: Re: [LTP] fatal signal handling</li>
+<li><em>From</em>: Aaron Laffin &lt;<A HREF="mailto:alaffin@sgi.com">alaffin@sgi.com</A>&gt;</li>
+<li><em>Date</em>: Tue, 05 Sep 2000 22:03:49 -0500</li>
+<li><em>CC</em>: <A HREF="mailto:ltp@oss.sgi.com">ltp@oss.sgi.com</A></li>
+<li><em>Organization</em>: Silicon Graphics, Inc.</li>
+<li><em>References</em>: &lt;<a href="msg00046.html">155229565277.20000904140142@logos-m.ru</a>&gt;</li>
+<li><em>Sender</em>: <A HREF="mailto:owner-ltp@oss.sgi.com">owner-ltp@oss.sgi.com</A></li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Ok, more analysis of the signal handling issue has induced me to eat my
+words.  The top of tst_sig.c has the following:
+
+#ifndef CRAY
+#define _BSD_SIGNALS	1	/* Specify that we are using BSD signal interface
+*/
+#endif
+
+So, on Irix we do get the BSD symantics.  This means there is a
+recursion problem.
+
+But, looking at it again, there isn't a problem.  By default for
+sigaction() (and signal() also by consequence), the signal being handled
+is blocked from being received while in its handler.  A signal raised
+while in its own handler isn't received until it exits its own handler. 
+Given that our cleanup function eventually leads to an exit(), there is
+no recursion.  The fatal flaw in that snippit I sent yesterday is that
+there should be an exit() at the end of the handler (in order to mimick
+our situation).
+
+It is the case that signals other that the one being handled can cause
+another handler instance.  That new handler instance will then most
+likely exit.  It will presumably raise its own signal, which will be
+blocked until the handler exits.  We know that exit() is called before
+it gets a chance to return.
+
+Even though the case of using the default handler and cleanup function
+does not require any differentiation between BSD and SYSV semantics,
+there is still the case of the alternative handler.  Because the handler
+is specified by the test programmer, some expectation of whether BSD or
+SYSV semantics are in use is necessary.  For this reason, I've created
+my own knock-off of signal()-like function called setup_signal() to be
+used by tst_sig().  It uses sigaction() and should be usable on Linux,
+Irix, and even FreeBSD without any funny '_BSD_SIGNALS' or
+'_XOPEN_SOURCE' definitions.
+
+I also found that def_handler() automatically sets itself to the default
+handler (as if using SYSV semantics) with signal().  This must be a
+relic of the early days of the Unicos-&gt;Irix port.  Yes, there is much
+history in this code and that &quot;DATE STARTED&quot; in the header is true.  I
+removed this unnecessary code.
+
+Here's the patch:
+
+--- tst_sig.c	2000/08/30 18:43:38	1.2
++++ tst_sig.c	2000/09/06 02:55:30
+@@ -67,10 +67,6 @@
+ 
+
+***************************************************************************/
+ 
+-#ifndef CRAY
+-#define _BSD_SIGNALS	1	/* Specify that we are using BSD signal
+interface */
+-#endif
+-
+ #include &lt;errno.h&gt;
+ #include &lt;string.h&gt;
+ #include &lt;signal.h&gt;
+@@ -82,6 +78,7 @@
+ 
+ extern int errno;
+ static void def_handler();		/* default signal handler */
++static void (*setup_signal( int, void (*)(int)))(int);
+ 
+
+/****************************************************************************
+  * tst_sig() : set-up to catch unexpected signals.  fork_flag is set to
+NOFORK
+@@ -158,7 +155,7 @@
+ 		        continue;
+ 
+ 	        default:
+-		    if (signal(sig, handler) == SIG_ERR) {
++		    if (setup_signal(sig, handler) == SIG_ERR) {
+ 		        (void) sprintf(mesg,
+ 			    &quot;signal() failed for signal %d. error:%d %s.&quot;,
+ 			    sig, errno, strerror(errno));
+@@ -185,24 +182,11 @@
+ static void
+ def_handler(int sig)
+ {
+-	char mesg[MAXMESG];		/* holds tst_res message */
+-
+-	/* first reset trap for this signal (except SIGCLD - its weird) */
+-	if ((sig != SIGCLD) &amp;&amp; (sig != SIGSTOP) &amp;&amp; (sig != SIGCONT)) {
+-		if (signal(sig, def_handler) == SIG_ERR) {
+-			(void) sprintf(mesg,
+-				&quot;def_handler: signal() failed for signal %d. error:%d %s.&quot;,
+-				sig, errno, strerror(errno));
+-			tst_resm(TWARN, mesg);
+-		}
+-	}
+ 
+-	(void) sprintf(mesg, &quot;Unexpected signal %d received.&quot;, sig);
+-
+ 	/*
+          * Break remaining test cases, do any cleanup, then exit
+ 	 */
+-	tst_brkm(TBROK, 0, mesg);
++	tst_brkm(TBROK, 0, &quot;Unexpected signal %d received.&quot;, sig);
+ 
+ 	/* now cleanup and exit */
+ 	if (T_cleanup) {
+@@ -211,3 +195,25 @@
+ 
+ 	tst_exit();
+ }
++
++/*
++ * setup_signal - A function like signal(), but we have
++ *                control over its personality.
++ */
++static void (*setup_signal( int sig, void (*handler)(int)))(int)
++{ 
++  struct sigaction my_act,old_act;
++  int ret;
++
++  my_act.sa_handler = handler;
++  my_act.sa_flags = SA_RESTART;
++  sigemptyset(&amp;my_act.sa_mask);
++
++  ret = sigaction(sig, &amp;my_act, &amp;old_act);
++
++  if ( ret == 0 )
++    return( old_act.sa_handler );
++  else
++    return( SIG_ERR );
++}
++
+
+Thoughts?
+--aaron
+
+Egor Duda wrote:
+&gt; 
+&gt; Hi!
+&gt; 
+&gt;   currently,  tests  in  ltp  can possibly catch fatal signals such as
+&gt; SIGSEGV  recursively.  imagine  rmdir()  is faulty and causes SIGSEGV.
+&gt; tst_sig  sets  cleanup()  as  handler  for  SIGSEGV, but cleanup calls
+&gt; rmdir() itself. possible solutions are
+&gt; 
+&gt; 1. using sigaction() instead of signal()
+&gt; 2. checking &quot;reentering&quot; in handler
+&gt; 
+&gt; which way is preferable?
+&gt; 
+&gt; Egor.            <A  HREF="mailto:deo@logos-m.ru">mailto:deo@logos-m.ru</A> ICQ 5165414 FidoNet 2:5020/496.19
+
+-- 
+Aaron Laffin
+Silicon Graphics, Inc. OS Test Development
+Email: alaffin@sgi.com Voice: 651-683-5756
+USA/MN/CRP/F5233/SSBU
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00052" href="msg00052.html">Re: [LTP] fatal signal handling</a></strong>
+<ul><li><em>From:</em> Egor Duda &lt;deo@logos-m.ru&gt;</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00046" href="msg00046.html">[LTP] fatal signal handling</a></strong>
+<ul><li><em>From:</em> Egor Duda &lt;deo@logos-m.ru&gt;</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<ul>
+<li>Prev by Date:
+<strong><a href="msg00049.html">Re: [LTP] fatal signal handling</a></strong>
+</li>
+<li>Next by Date:
+<strong><a href="msg00051.html">[LTP] heap corruption in parse_opts.c</a></strong>
+</li>
+<li>Prev by thread:
+<strong><a href="msg00049.html">Re: [LTP] fatal signal handling</a></strong>
+</li>
+<li>Next by thread:
+<strong><a href="msg00052.html">Re: [LTP] fatal signal handling</a></strong>
+</li>
+<li>Index(es):
+<ul>
+<li><a href="maillist.html#00050"><strong>Date</strong></a></li>
+<li><a href="threads.html#00050"><strong>Thread</strong></a></li>
+</ul>
+</li>
+</ul>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

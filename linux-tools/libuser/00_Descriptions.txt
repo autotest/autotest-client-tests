@@ -1,0 +1,22 @@
+libuser:
+          The testcase for automated test for libuser
+
+usage:
+       ./libuser.sh
+
+Note:
+About libuser:
+-------------
+libuser is a collection of libraries and toolsto manage users and groups.
+libuser.conf is the configuration file for libuser and libuser utilities. 
+
+libuser has several modules allowing to manage users and groups
+through different backends, like local (password and shadow) and LDAP
+
+libuser supports user-management using ldap
+by specifying the passsword, ldap server etc in libuser.conf file
+
+Also algorithm to be used for password encryption when creating new
+passwords can be specified in libuser.conf using variables.
+It supports password hashing. For alogirthms ( like sha256, sha512 )
+number of hash rounds can be specified in the libuser.conf file

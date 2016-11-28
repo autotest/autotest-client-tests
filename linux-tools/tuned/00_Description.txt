@@ -1,0 +1,9 @@
+Description:
+A tool that performs monitoring and adaptive configuration of the system according to selected profile.
+
+URL: https://fedorahosted.org/tuned/
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/tuned
+./tuned.sh

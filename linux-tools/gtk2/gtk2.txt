@@ -1,0 +1,89 @@
+#######################################################
+Manual Test cases for augeas fadot binary.
+
+Author: Mithu Ganesan <miganesa@in.ibm.com>
+Author: Athira Rajeev<atrajeev@in.ibm.com>
+
+History: Created on July 17 2013
+########################################################
+
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off tools to complete application suites.
+
+Steps for verifying the manual tests: 
+ ---------------------------------------
+
+1) Start vncserver on the test machine and run vncviewer from your machine by specifying the test machine IP and port number.
+        on test machine :  
+    vncserver
+    New 'plm62:4 (root)' desktop is plm62:4
+    plm62 machine ip : 9.182.176.62
+
+    on local machine :
+    vncviewer 9.182.176.62:4    
+ 
+2) Open xterm on the X-window
+    Right click -> xterm
+     
+3) cd /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests/
+
+4) Execute the test binaries one by one. Each test on execution, opens a widget, on which certain operations has to be done and closed.
+
+    $ ls /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests
+    simple  stresstest-toolbar  testframe  testorientable  testspinbutton  testtext
+a) Execute simple test 
+    $ ./simple 
+A widget containing a button named "hello world" appears on the screen.
+Click the helloworld button and check if the helloworld text appears in the console for every click. 
+Close the widget.
+
+b) Execute stresstest-toolbar test
+    $ ./stresstest-toolbar 
+A widget flickers when the test is executed.
+Widget gets closed automatically.
+
+c) Execute testframe test
+    $ ./testframe
+A widget containing a frame named "Hello!" in the middle and four spinner boxes(x thickness, y thickness, x align, y align) appears on the screen. 
+Using the 4 spinners, modify the thickness and aligment in x and y axis and check if the "Hello!" frame size is modified accordingly.
+Close the widget.
+
+d) Execute testorientable test
+    $ ./testorientable
+A widget containing a button named "Horizontal" at the top and 6 other buttons named "GtkBox" appears on the screen.
+Click the "Horizontal" button and check if the 6 "GtkBox" buttons are arranged horizontally.
+Now a button name "Vertical" will appear at the top.
+Click the "Vertical" button and check if the 6 "GtkBox" buttons are arranged vertically.
+Close the widget.
+
+e) Execute testspinbutton test
+    $ ./testspinbutton
+A widget containing few spinner boxes appears on the screen.
+Modify the value in the box by clicking the up and down spin buttons.
+Close the widget.
+
+f) Execute testtext test
+    $ ./testtext
+A text editor widget will appear on the screen.
+Type some text on the text area and check if the text appears.
+Check if the line numbers change whenever text goes to next line.
+Click on the "File" menu at the top and try saving the document, opening a new document, exiting from the text editor.
+Click on the "Edit" menu and try finding some keywords.
+Click on the "Attributes" and try changing the attributes of the text like font, indentation, font size etc.
+Close the widget.
+
+Testing for gtk2 modules like libgail.
+========================================
+
+1) cd /opt/fiv/ltp/testcases/fivextra/gtk2/gail-tests
+
+2) Export GTK_MODULES to module libgail.
+   Set the environment variable GTK_MODULES to
+   "libgail:lib<testname>"
+
+   For example, for testactions, it would be "libgail:libtestactions"
+
+3) Run the GTK+ test program specified.
+	Example, 
+   cd /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests
+   ./testactions

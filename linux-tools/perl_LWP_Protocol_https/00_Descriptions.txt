@@ -1,0 +1,12 @@
+Description:
+===========
+LWP::Protocol::https - Provide https support for LWP::UserAgent
+
+The LWP::Protocol::https module provides support for using https schemed URLs with LWP. This module is a plug-in to the LWP protocol handling, so we don't use it directly. Once the module is installed LWP is able to access sites using HTTP over SSL/TLS.
+
+If hostname verification is requested by LWP::UserAgent's ssl_opts, and neither SSL_ca_file nor SSL_ca_path is set, then SSL_ca_file is implied to be the one provided by Mozilla::CA. If the Mozilla::CA module isn't available SSL requests will fail. Either install this module, set up an alternative SSL_ca_file or disable hostname verification
+
+Execution:
+=========
+cd /opt/fiv/ltp/testcases/fivextra/perl-LWP-Protocol-https
+./perl-LWP-Protocol-https.sh

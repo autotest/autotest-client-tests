@@ -1,0 +1,24 @@
+Description:
+------------
+os-prober — Discover bootable partitions on the local system. this utility
+will scan all disks available on the system for other operating systems.
+For Linux systems that are discovered, a call to linux-boot-prober may be
+required in order to fully discover the necessary  information  to boot the
+system.
+ For each discovered OS, it will output a line of the form.
+<partition>:<descriptive name>:<short name>:<kind of loader>
+
+
+linux-boot-prober — Determine boot characteristics of a specified device.
+linux-boot-prober  utility  will  try to work out how to boot the linux root
+partition specified by <partition>.  If successful, it will outoput one or
+more lines of the form:
+<root partition>:<boot partition>:<label>:<kernel path>:<initrd path>:<kernel
+parameters>
+
+How to run?
+-----------
+
+cd /opt/fiv/ltp/testcases/fivextra/os-prober
+
+./os-prober.sh

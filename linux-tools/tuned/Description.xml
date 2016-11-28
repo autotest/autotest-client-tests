@@ -1,0 +1,7 @@
+<!-- Test configuration for 'tuned' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+    <PACKAGE>tuned</PACKAGE>
+    <COMMAND>tuned.sh</COMMAND>
+    <DESCRIPTION>Test tuned</DESCRIPTION>
+</TEST>

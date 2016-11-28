@@ -1,0 +1,22 @@
+PyGTK is a set of bindings to the GTK+ user interface toolkit for the Python
+language.
+
+Python is an interpreted language with a very clean syntax, high-level data
+structures, dynamic typing, object oriented characteristics and generally
+acceptable performance. 
+
+GTK+ is a graphical user interface toolkit, which includes user interface
+components and a framework for handling events that are produced upon these
+components.
+
+A binding is code (usually a library) that allows  to access functions that
+were coded in another language. In our case, GTK+ was written in C, and
+applications written in C can use native GTK+. For a Python program to be able
+to create applications using the GTK+ framework, a special library has to be
+used. This library is PyGTK. 
+
+
+usage:
+------
+cd /opt/fiv/ltp/testcases/fivextra/pygtk2
+./pygtk2.sh 

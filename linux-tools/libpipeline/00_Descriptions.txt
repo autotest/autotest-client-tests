@@ -1,0 +1,10 @@
+#########################################################################################
+What is libpipeline ??
+
+Ans: A C library for manipulating pipelines of subprocesses in a 
+flexible and convenient way
+
+#########################################################################################
+How to run tests ??
+Ans: cd /opt/fiv/ltp/testcases/fivextra/libpipeline
+    run the libpipeline.sh script   ==>  ./libpipeline.sh

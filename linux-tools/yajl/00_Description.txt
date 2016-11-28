@@ -1,0 +1,10 @@
+Yet Another JSON Library. YAJL is a small event-driven
+(SAX-style) JSON parser written in ANSI C, and a small
+validating JSON generator.
+
+JSON: JSON (JavaScript Object Notation) is a lightweight data-interchange format
+JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family
+
+How to run the test
+-------------------
+./yajl.sh 

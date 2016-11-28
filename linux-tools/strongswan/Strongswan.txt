@@ -1,0 +1,192 @@
+StrongSwan is an OpenSource IPsec implementation for the Linux operating system. 
+The focus is on: - simplicity of configuration - strong encryption and authentication methods - powerful IPsec policies supporting large and complex VPN networks
+
+In this test we will try to setup a strongswan(ipsec) connection between the two machines.
+Authentication will be based on a shared secret.
+strongswan also accepts certificate based authentication, this test can be expanded to cover that
+Notes:IP mentioned here will vary based on the test machine ip conigurations etc.
+
+	Step 1. The test requires two machines(running supported distro) connected to the internet. 
+        Step 2. Configure strongswan-ipsec on both machines as below
+	            a.	copy ipsec.conf to /etc/strongswan on both machines,
+			please go through the conf file
+			the IPs listed there should be of the machines you are using
+			you may consider any of the machines used as either left or right
+
+                          #cat /etc/strongswan/ipsec.conf
+
+                         config setup
+                             crlcheckinterval=600
+                             strictcrlpolicy=no
+                             plutostart=yes
+                             charondebug=all
+                             cachecrls=yes
+                             nat_traversal=yes
+
+                         conn charontest
+                             left=10.3.190.74
+                             right=10.3.190.73
+                             type=transport
+                             keyexchange=ikev2
+                             mobike=no
+                             auto=add
+                             authby=secret
+                             ike=aes128-aes256-sha1-modp1536-modp2048,3des-sha1-md5-modp1024
+
+	            b. 	copy ipsec.secrets to /etc/strongswan on both machines.
+
+                        # cat /etc/strongswan/ipsec.secrets
+                        # /etc/strongswan/ipsec.secrets - strongSwan IPsec secrets file
+
+                        10.3.190.73 10.3.190.74 : PSK "abcdefg12345"
+
+
+                    c. copy strongswan.conf to /etc/strongswan on both
+                        machines
+                        # cat /etc/strongswan/strongswan.conf
+                        # strongswan.conf - strongSwan configuration file
+ 
+                        charon {
+ 
+                            # number of worker threads in charon
+                            threads = 16
+ 
+                            # send strongswan vendor ID?
+                            # send_vendor_id = yes
+ 
+                            plugins {
+ 
+                                sql {
+                                        # loglevel to log into sql database
+                                        loglevel = -1
+ 
+                                        # URI to the database
+                                        # database = sqlite:///path/to/file.db
+                                        # database = mysql://user:password@localhost/database
+                                }
+                            }
+ 
+                            # ...
+                filelog {
+                        /var/log/charon.log {
+                            # add a timestamp prefix
+                            time_format = %b %e %T
+                            # loggers to files also accept the append option to open files in
+                            # append mode at startup (default is yes)
+                            append = no
+                            # the default loglevel for all daemon subsystems (defaults to 1).
+                            default = 4
+                            # flush each line to disk
+                            flush_line = yes
+                        }
+                        stderr {
+                            # more detailed loglevel for a specific subsystem, overriding the
+                            # default loglevel.
+                            ike = 2
+                            knl = 3
+                            # prepend connection name, simplifies grepping
+                            ike_name = yes
+                        }
+                }
+                }
+ 
+                pluto {
+ 
+                }
+ 
+                libstrongswan {
+ 
+                            #  set to no, the DH exponent size is optimized
+                            #  dh_exponent_ansi_x9_42 = no
+                }
+ 
+ 
+        Step 3. Restart strongswan
+                You may do this  by 'strongswan restart' (on both machines)
+		watch /var/log/messages for errors or  /var/log/security file.
+		To increase the loglevel, adjust the value of " ike " in /etc/strongswan/strongswan.conf
+		details can be found here -http://wiki.strongswan.org/projects/strongswan/wiki/LoggerConfiguration
+
+	Step 4 	Establish strongswan (ipsec) connection
+		'strongswan up charontest'(on any 1 of the machine)
+		this should dump messages like below
+
+		#strongswan up charontest
+		initiating IKE_SA charontest[3] to 10.3.190.73
+		generating IKE_SA_INIT request 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) ]
+		sending packet: from 10.3.190.74[500] to 10.3.190.73[500]
+		received packet: from 10.3.190.73[500] to 10.3.190.74[500]
+		parsed IKE_SA_INIT response 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) N(MULT_AUTH) ]
+		authentication of '10.3.190.74' (myself) with pre-shared key
+		establishing CHILD_SA charontest
+		generating IKE_AUTH request 1 [ IDi N(INIT_CONTACT) IDr AUTH N(USE_TRANSP) SA TSi TSr N(MULT_AUTH) N(EAP_ONLY) ]
+		sending packet: from 10.3.190.74[500] to 10.3.190.73[500]
+		received packet: from 10.3.190.73[500] to 10.3.190.74[500]
+		parsed IKE_AUTH response 1 [ IDr AUTH N(USE_TRANSP) SA TSi TSr N(AUTH_LFT) ]
+		authentication of '10.3.190.73' with pre-shared key successful
+		IKE_SA charontest[3] established between 10.3.190.74[10.3.190.74]...10.3.190.73[10.3.190.73]
+		scheduling reauthentication in 10090s
+		maximum IKE_SA lifetime 10630s
+
+               What to look for in the output: authentication of '<IP>' with pre-shared key successful
+
+	step 5	Check status
+		'strongswan statusall'
+
+		  Status of IKEv2 charon daemon (strongSwan 4.5.2):
+                    uptime: 4 minutes, since Sep 09 07:04:13 2021
+  	            malloc: sbrk 196608, mmap 0, used 100432, free 96176
+                    worker threads: 9 idle of 16, job queue load: 0, scheduled events: 9
+ 	            loaded plugins: curl aes des sha1 sha2 md5 random x509 revocation constraints pubkey pkcs1 pgp pem fips-prf gmp xcbc hmac attr
+                    kernel-netlink resolve socket-default stroke updown eap-identity eap-tls eap-ttls eap-tnc tnccs-20 tnccs-11 
+	          Listening IP addresses:
+  		    10.3.190.74
+  		    192.168.122.1
+		  Connections:
+ 		     charontest:  10.3.190.74...10.3.190.73
+ 		     charontest:   local:  [10.3.190.74] uses pre-shared key authentication
+  		     charontest:   remote: [10.3.190.73] uses any authentication
+  		     charontest:   child:  dynamic === dynamic 
+		  Security Associations:
+ 		     charontest[3]: ESTABLISHED 22 seconds ago, 10.3.190.74[10.3.190.74]...10.3.190.73[10.3.190.73]
+ 		     charontest[3]: IKE SPIs: 093adee417196991_i* fd23835559dcf5db_r, pre-shared key reauthentication in 2 hours
+  		     charontest[3]: IKE proposal: AES_CBC_128/HMAC_SHA1_96/PRF_HMAC_SHA1/MODP_1536
+ 		     charontest{3}:  INSTALLED, TRANSPORT, ESP SPIs: c2b0e298_i cd7b3b09_o
+  		     charontest{3}:  AES_CBC_128/HMAC_SHA1_96, 0 bytes_i, 0 bytes_o, rekeying in 42 minutes
+  		     charontest{3}:   10.3.190.74/32 === 10.3.190.73/32 
+                   
+                    What to look for in output: charontest[3]: ESTABLISHED 22 seconds ago, 
+                                                10.3.190.74[10.3.190.74]...10.3.190.73[10.3.190.73] 
+
+                    Also look for: charontest[3]: IKE proposal: AES_CBC_128/HMAC_SHA1_96/PRF_HMAC_SHA1/MODP_1536
+                                  It should reflect what you set in ipsec.conf for ike var.
+                                  The order of setting is something like "Encyption/Integrity/PRF/DH_Group"
+                                  http://wiki.strongswan.org/projects/strongswan/wiki/IKEv2CipherSuites has a good reference to understand the ike value to be set.
+                                  
+	step 6	Check Algorithms
+
+		'strongswan listalgs'
+				
+		 # strongswan listalgs
+	          List of registered IKEv2 Algorithms:
+
+                    encryption: AES_CBC[aes] 3DES_CBC[des] DES_CBC[des] DES_ECB[des]
+                    integrity:  AES_XCBC_96[xcbc] HMAC_SHA1_96[hmac] HMAC_SHA1_128[hmac] HMAC_SHA1_160[hmac] HMAC_SHA2_256_128[hmac]
+                                HMAC_SHA2_256_256[hmac] HMAC_MD5_96[hmac] HMAC_MD5_128[hmac] HMAC_SHA2_384_192[hmac]
+                                HMAC_SHA2_384_384[hmac] HMAC_SHA2_512_256[hmac]
+                    aead:      
+                    hasher:     HASH_SHA224[sha1] HASH_SHA256[sha2] HASH_SHA384[sha2] HASH_SHA512[sha2]
+
+
+Note: List commands can also be tested:
+strongswan listall, strongswan listcerts, strongswan listcacerts, strongswan listaacerts, strongswan listocspcerts, strongswan listocspcerts, strongswan listcainfos, strongswan listcrls, strongswan listocsp, strongswan listcards, strongswan listgroups
+
+
+
+
+
+
+
+
+
+

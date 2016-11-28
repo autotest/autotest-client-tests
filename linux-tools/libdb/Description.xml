@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libdb' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+<PACKAGE>libdb</PACKAGE>
+<COMMAND>libdb.sh</COMMAND>
+<DESCRIPTION>Test libdb</DESCRIPTION>
+</TEST>

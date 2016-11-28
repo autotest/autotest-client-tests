@@ -1,0 +1,25 @@
+Apache Portable Runtime Library (APR) is supporting library used by the applications to achieve platform independence.
+APR provides a predictable and consistent interface to underlying platform-specific implementations with a set of APIs which map to the underlying OS.
+When the OS doesn't support a particular function, apr will provide an emulation for that function.
+
+The primary core subsystems of apr include:
+
+Atomic operations
+Dynamic Shared Object loading
+File I/O
+Locks (mutexes, condition variables, etc)
+Memory management (high performance allocators)
+Memory-mapped files
+Multicast Sockets
+Network I/O
+Shared memory
+Thread and Process management
+Various data structures (tables, hashes, priority queues, etc)
+
+APR package provides the library:
+/usr/lib64/libapr-1.so.0
+
+
+HOW TO RUN THE TEST: 
+===================
+/opt/fiv/ltp/testcases/fivextra/apr/apr.sh

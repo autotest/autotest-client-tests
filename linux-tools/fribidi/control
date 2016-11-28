@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>                             		  ##  " 
+NAME = "fribidi" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test fribidi package 
+    ''' 
+path = '' 
+job.run_test('fribidi',test_path=path) 

@@ -1,0 +1,11 @@
+IBus is an Intelligent Input Bus. It is a new input framework for Linux OS.
+It provides full featured and user friendly input method user interface.
+It also may help developers to develop input method easily.
+
+if you find any issues while testing, try to find any open bugs in
+http://code.google.com/p/ibus/issues/list and then report a bug.
+
+usage:
+------
+cd /opt/fiv/ltp/testcases/fivextra/ibus
+./ibus.sh 

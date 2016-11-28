@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Sharma < abhisshm@in.ibm.com >                                   ##  " 
+NAME = "perl_Text_Soundex" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Text-Soundex package 
+    ''' 
+path = '' 
+job.run_test('perl_Text_Soundex',test_path=path) 

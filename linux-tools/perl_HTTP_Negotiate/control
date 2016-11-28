@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_HTTP_Negotiate" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTTP-Negotiate package 
+    ''' 
+path = '' 
+job.run_test('perl_HTTP_Negotiate',test_path=path) 

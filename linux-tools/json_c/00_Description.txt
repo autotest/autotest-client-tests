@@ -1,0 +1,15 @@
+*Description :*
+JSON-C implements a reference counting object model that allows you to easily construct JSON objects in C, output them as
+JSON formatted strings and parse JSON formatted strings back into the C representation of JSON objects.
+
+*What is JSON :*
+JSON is short form for *'JavaScript Object Notation*', and is a way to store information in an organized, easy-to-access manner.
+In  a nutshell, it gives us a human-readable collection of data that we can access in a really logical manner.
+
+*Contents :*
+Installed Programs : None
+Installed Libraries: libjson-c.so.2, libjson-c.so.2.0.1, libjson.so.0 and libjson.so.0.1.0 
+
+*How to run the test :*
+cd /opt/fiv/ltp/testcases/fivextra/json-c
+./json-c.sh

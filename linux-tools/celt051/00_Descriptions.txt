@@ -1,0 +1,14 @@
+CELT:
+CELT is a very low delay audio codec designed for high-quality
+communications.  Its potential uses include video-conferencing and
+network music performance.
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/celt051
+./celt.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

@@ -1,0 +1,5 @@
+openssl.sh
+	testcase for the openssl package.
+how to run
+	openssl.sh
+

@@ -1,0 +1,21 @@
+===============================================================================
+#TestCase        : bind9.sh
+#
+# Description:  Test bind9 package
+#
+===============================================================================
+Howto:
+
+Run bind9.sh will test this package.
+
+Test coverage:
+----------------------------------
+named
+dig
+rndc
+nsupdate
+dnssec-keygen
+dnssec-signzone
+dnssec-signkey
+dnssec-makekeyset
+----------------------------------

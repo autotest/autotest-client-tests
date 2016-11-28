@@ -1,0 +1,13 @@
+<!-- Test configuration for 'cups' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cups</PACKAGE>
+    <COMMAND>cupstest.sh</COMMAND>
+    <DESCRIPTION>The package cups supports printing in Linux.</DESCRIPTION>
+</TEST>
+<!-- IMPLICIT Tests -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>cups-libs</PACKAGE>
+    <DESCRIPTION>Package cups-lib supports comman libraries for CUPS.</DESCRIPTION>
+</TEST>

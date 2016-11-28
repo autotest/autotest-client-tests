@@ -1,0 +1,3 @@
+#! /bin/bash
+# This file is just to test the alternatives command
+echo "Alternatives"

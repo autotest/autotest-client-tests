@@ -1,0 +1,22 @@
+Package  Name: perl-LWP-MediaTypes
+
+Description :
+
+LWP::MediaTypes - guess media type for a file or a URL
+
+This module provides functions for handling media (also known as MIME) types and encodings. The mapping from file extensions to media types is defined by the media.types file. If the ~/.media.types file exists it is used instead. For backwards compatibility we will also look for ~/.mime.types. 
+
+
+Source : http://search.cpan.org/dist/LWP-MediaTypes/lib/LWP/MediaTypes.pm
+
+How to run test ?
+
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-LWP-MediaTypes
+run the script
+./perl-LWP-MediaTypes.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-LWP-MediaTypes.sh/t
+touch README
+perl mediatypes.t

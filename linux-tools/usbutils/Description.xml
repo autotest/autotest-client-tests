@@ -1,0 +1,12 @@
+<!-- Test configuration for 'usbutils' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>usbutils</PACKAGE>
+    <COMMAND>usbutils.sh</COMMAND>
+    <ALLOW>
+        <ATTR>USB</ATTR>
+        <COMMENT>Requires usb device on the test machine.</COMMENT>
+    </ALLOW>
+    <DESCRIPTION>Test lsusb and usbmodules with different parms.</DESCRIPTION>
+</TEST>
+

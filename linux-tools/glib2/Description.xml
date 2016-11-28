@@ -1,0 +1,20 @@
+<!-- Test configuration for 'glib2' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>glib2</PACKAGE>
+    <COMMAND>glib2.sh</COMMAND>
+    <DESCRIPTION>Testcase for the glib2 package.</DESCRIPTION>
+</TEST>
+
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>glib2-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>DOC</TYPE>
+    <PACKAGE>glib2-doc</PACKAGE>
+    <DESCRIPTION>Doc packages.</DESCRIPTION>
+</TEST>

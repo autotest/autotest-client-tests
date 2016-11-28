@@ -1,0 +1,13 @@
+The GNOME Structured File Library  is a simple i/o library that can read and write common file types
+                  and handle structured formats that provide file-system-in-a-file semantics. libgsf aims to provide an efficient extensible I/O abstraction
+                  for dealing with different structured file formats.
+
+The package provides:
+
+/usr/bin/gsf-office-thumbnailer
+/usr/lib64/libgsf-1.so.114
+/usr/lib64/libgsf-1.so.114.0.26 
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/libgsf/
+./libgsf.sh

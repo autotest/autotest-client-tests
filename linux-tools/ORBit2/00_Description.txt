@@ -1,0 +1,15 @@
+The tests are built as a sub-package from ORBit2 source package 
+All the testcases binaries are in tests/.lib
+
+How to Execute
+----------------
+./ORBit2.sh
+
+To run them individually
+------------------------
+goto test/.libs.
+Most of the test has server and client programs.
+> execute ./test-server.
+Output of all server programs is IOR:xxxxxx.
+In another shell execute
+> execute ./test-client IOR:xxxxxx

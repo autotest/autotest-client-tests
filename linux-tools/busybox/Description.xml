@@ -1,0 +1,20 @@
+<!-- Test configuration for 'busybox' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>busybox</PACKAGE>
+    <COMMAND>TERM=xterm busybox.sh</COMMAND>
+    <DESCRIPTION>Test the functions provided by busybox.</DESCRIPTION>
+</TEST>
+
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DOC</TYPE>
+    <PACKAGE>busybox-doc</PACKAGE>
+    <DESCRIPTION>Doc packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>busybox-links</PACKAGE>
+    <DESCRIPTION>Used in the busybox test itself.</DESCRIPTION>
+</TEST>

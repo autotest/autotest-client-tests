@@ -1,0 +1,38 @@
+Testcase for pyliblzma
+
+PylibLZMA provides a python interface for the liblzma library to
+read and write data that has been compressed or can be decompressed by Lasse Collin's XZ Utils.
+
+This provides lzma module.
+
+-> Example to read compressed data: ( a.xz with content "hai"):
+
+python
+Python 2.7.5 (default, Oct 22 2013, 12:35:59)
+[GCC 4.8.1 20130603 (Base 4.8.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import lzma
+>>> lzmaf = lzma.LZMAFile("a.xz")
+>>> lzmaf.read()
+'hai\n'
+>>>
+
+-> Example to write compressed data and decompress:
+
+ python
+Python 2.7.5 (default, Oct 22 2013, 12:35:59)
+[GCC 4.8.1 20130603 (Base 4.8.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import lzma
+>>> lzmaf = lzma.LZMAFile("test.xz","w")
+>>> lzmaf.write("Testing liblzma")
+>>> lzmaf.close()
+>>> f = open("test.xz", 'rb')
+>>> lzma.decompress(f.read())
+'Testing liblzma'
+>>> 
+
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/pyliblzma
+Execute ./pyliblzma.sh

@@ -1,0 +1,278 @@
+Index: test/test.c
+===================================================================
+--- test.orig/test.c	2006-08-07 10:38:02.000000000 +0530
++++ test/test.c	2010-03-15 20:18:54.000000000 +0530
+@@ -138,24 +138,24 @@
+ 	test_sysfs_get_module_section,
+ };
+ 
+-char *dir_paths[] = {
+-	val_dir_path,
+-	val_root_dev_path,
+-	val_class_dev_path,
+-	val_block_class_dev_path,
+-	val_drv_path,
+-	val_drv1_path,
++char ** dir_paths[] = {
++	&val_dir_path,
++	&val_root_dev_path,
++	&val_class_dev_path,
++	&val_block_class_dev_path,
++	&val_drv_path,
++	&val_drv1_path,
+ 	NULL
+ };
+ 
+-char *file_paths[] = {
+-	val_file_path,
+-	val_write_attr_path,
++char **file_paths[] = {
++	&val_file_path,
++	&val_write_attr_path,
+ 	NULL
+ };
+ 
+-char *link_paths[] = {
+-	val_link_path,
++char **link_paths[] = {
++	&val_link_path,
+ 	NULL
+ };
+ 
+@@ -214,19 +214,19 @@
+ 	int i = 0;
+ 
+ 	for (i = 0; dir_paths[i] != NULL; i++) {
+-		var_path = dir_paths[i];
++		var_path = *(dir_paths[i]);
+ 		if (path_is_dir(var_path) != 0)
+ 			return 1;
+ 	}
+ 
+ 	for (i = 0; file_paths[i] != NULL; i++) {
+-		var_path = file_paths[i];
++		var_path = *(file_paths[i]);
+ 		if (path_is_file(var_path) != 0)
+ 			return 1;
+ 	}
+ 
+ 	for (i = 0; link_paths[i] != NULL; i++) {
+-		var_path = link_paths[i];
++		var_path = *(link_paths[i]);
+ 		if (path_is_link(var_path) != 0)
+ 			return 1;
+ 	}
+@@ -301,9 +301,11 @@
+ 	} else
+ 		num = strtol(argv[1], NULL, 0);
+ 
+-	if (check_header() != 0)
+-		return 1;
++	init_env_val();
+ 
++/*	if (check_header() != 0)
++		return 1;
++*/
+ 	dbg_print("\nTest running %d times\n", num);
+ 
+ 	for (k = 0; k < num ; k++) {
+Index: test/test_utils.c
+===================================================================
+--- test.orig/test_utils.c	2006-08-07 10:38:02.000000000 +0530
++++ test/test_utils.c	2010-03-15 20:20:59.000000000 +0530
+@@ -40,6 +40,96 @@
+ 
+ #include "test-defs.h"
+ #include <errno.h>
++#include <stdlib.h>
++
++/* List of values to be read from environment */
++char *val_dir_path;
++char *val_link_path;
++char *val_file_path;
++char *val_subdir_link_name;
++char *val_subdir_name;
++char *val_subsys;
++char *val_bus_name;
++char *val_root_name;
++char *val_root_dev_path;
++char *val_bus_id;
++char *val_dev_path;
++char *val_class;
++char *val_class_dev;
++char *val_class_dev_path;
++char *val_class_dev_attr;
++char *val_block_class_dev_path;
++char *val_drv_name;
++char *val_drv_path;
++char *val_drv_bus_name;
++char *val_drv_dev_name;
++char *val_drv_attr_name;
++char *val_drv1_name;
++char *val_drv1_path;
++char *val_drv1_bus_name;
++char *val_write_attr_path;
++char *val_mod_path;
++char *val_mod_name;
++char *val_mod_attr_name;
++char *val_mod_param;
++char *val_mod_section;
++
++struct env_list {
++	char **var;
++	char *env_name;
++} env_list [] = {
++	{ &val_dir_path, "VALID_DIR_PATH" },
++	{ &val_link_path, "VALID_LINK_PATH" },
++	{ &val_file_path, "VALID_FILE_PATH" },
++	{ &val_subdir_link_name, "VALID_SUBDIR_LINK_NAME" },
++	{ &val_subdir_name, "VALID_SUBDIR_NAME" },
++	{ &val_subsys, "VALID_SUBSYSTEM" },
++	{ &val_bus_name, "VALID_BUS_NAME" },
++	{ &val_root_name, "VALID_ROOT_NAME" },
++	{ &val_root_dev_path, "VALID_ROOT_PATH" },
++	{ &val_bus_id, "VALID_BUS_ID" },
++	{ &val_dev_path, "VALID_DEVICE_PATH" },
++	{ &val_class, "VALID_CLASS" },
++	{ &val_class_dev, "VALID_CLASS_DEVICE" },
++	{ &val_class_dev_path, "VALID_CLASS_DEVICE_PATH" },
++	{ &val_class_dev_attr, "VALID_CLASS_DEV_ATTR" },
++	{ &val_block_class_dev_path, "VALID_BLOCK_DEV_PATH" },
++	{ &val_drv_name, "VALID_DRIVER" },
++	{ &val_drv_path, "VALID_DRIVER_PATH" },
++	{ &val_drv_bus_name, "VALID_DRIVER_BUS" },
++	{ &val_drv_dev_name, "VALID_DRIVER_DEVICE" },
++	{ &val_drv_attr_name, "VALID_DRIVER_ATTR" },
++	{ &val_drv1_name, "VALID_DRIVER1" },
++	{ &val_drv1_path, "VALID_DRIVER1_PATH" },
++	{ &val_drv1_bus_name, "VALID_DRIVER1_BUS" },
++	{ &val_write_attr_path, "VALID_WRITE_ATTR_PATH" },
++	{ &val_mod_path, "VALID_MODULE_PATH" },
++	{ &val_mod_name, "VALID_MODULE" },
++	{ &val_mod_attr_name, "VALID_MODULE_ATTRIBUTE" },
++	{ &val_mod_param, "VALID_MODULE_PARAM" },
++	{ &val_mod_section, "VALID_MODULE_SECTION" },
++	{ NULL, NULL },
++};
++
++/**
++ * Initialize the variables from the environment set by the fiv
++ */
++void init_env_val(void)
++{
++	int i = 0; int res = 0;
++	while ( env_list[i].env_name != NULL) {
++		*(env_list[i].var) = getenv(env_list[i].env_name);
++		if ( *(env_list[i].var) == NULL ) {
++			fprintf (stderr, "Environment variable %s should be set for running the tests\n", env_list[i].env_name);
++			res |= 1;
++		}
++		i ++;
++	}
++	if (res) {
++		printf ("some variable are not set !");
++		exit (1);
++	}
++}
+ 
+ /**
+  * extern int sysfs_get_mnt_path(char *mnt_path, size_t len);
+Index: test/test.h
+===================================================================
+--- test.orig/test.h	2010-03-13 23:44:55.000000000 +0530
++++ test/test.h	2010-03-15 14:04:40.000000000 +0530
+@@ -1,32 +1,64 @@
+-#define val_dir_path		"/sys/bus/pci"
+-#define val_link_path		"/sys/block/sda/device"
+-#define val_file_path		"/sys/block/sda/dev"
+-#define val_subdir_link_name	"0000:00:00.0"
+-#define val_subdir_name		"0000:00:00.0"
+-#define val_subsys		"bus"
+-#define val_bus_name		"pci"
++// #define val_dir_path		"/sys/bus/pci"
++extern char *val_dir_path;
++// #define val_link_path		"/sys/block/sda/device"
++extern char *val_link_path;
++// #define val_file_path		"/sys/block/sda/dev"
++extern char *val_file_path;
++// #define val_subdir_link_name	"0000:00:00.0"
++extern char *val_subdir_link_name;
++// #define val_subdir_name		"0000:00:00.0"
++extern char *val_subdir_name;
++// #define val_subsys		"bus"
++extern char *val_subsys;
++// #define val_bus_name		"pci"
++extern char *val_bus_name;
+ #define val_bus_attr		"online"
+-#define val_root_name		"pci0000:00"
+-#define val_root_dev_path		"/sys/devices/pci0000:00"
+-#define val_bus_id		"0000:00:00.0"
+-#define val_dev_path		"/sys/devices/pci0000:00/0000:00:00.0"
++// #define val_root_name		"pci0000:00"
++extern char *val_root_name;
++// #define val_root_dev_path		"/sys/devices/pci0000:00"
++extern char *val_root_dev_path;
++// #define val_bus_id		"0000:00:00.0"
++extern char *val_bus_id;
++// #define val_dev_path		"/sys/devices/pci0000:00/0000:00:00.0"
++extern char *val_dev_path;
+ #define val_dev_attr		"vendor"
+-#define val_class			"net"
+-#define val_class_dev		"eth0"
+-#define val_class_dev_path	"/sys/class/net/eth0"
+-#define val_class_dev_attr	"type"
+-#define val_block_class_dev_path	"/sys/block/hda/hda1"
+-#define val_drv_name		"e100"
+-#define val_drv_path		"/sys/bus/pci/drivers/e100"
+-#define val_drv_bus_name		"pci"
+-#define val_drv_dev_name		"0000:02:08.0"
+-#define val_drv_attr_name         "new_id"
+-#define val_drv1_name		"usbfs"
+-#define val_drv1_path		"/sys/bus/usb/drivers/usbfs"
+-#define val_drv1_bus_name		"usb"
+-#define val_write_attr_path	"/sys/class/net/eth0/tx_queue_len"
+-#define val_mod_path		"/sys/module/usbcore"
+-#define val_mod_name		"usbcore"
+-#define val_mod_attr_name 	"refcnt"
+-#define val_mod_param		"blinkenlights"
+-#define val_mod_section		"__versions"
++// #define val_class			"net"
++extern char *val_class;
++// #define val_class_dev		"eth0"
++extern char *val_class_dev;
++// #define val_class_dev_path	"/sys/class/net/eth0"
++extern char *val_class_dev_path;
++// #define val_class_dev_attr	"type"
++extern char *val_class_dev_attr;
++// #define val_block_class_dev_path	"/sys/block/hda/hda1"
++extern char *val_block_class_dev_path;
++// #define val_drv_name		"e100"
++extern char *val_drv_name;
++// #define val_drv_path		"/sys/bus/pci/drivers/e100"
++extern char *val_drv_path;
++// #define val_drv_bus_name		"pci"
++extern char *val_drv_bus_name;
++// #define val_drv_dev_name		"0000:02:08.0"
++extern char *val_drv_dev_name;
++// #define val_drv_attr_name         "new_id"
++extern char *val_drv_attr_name;
++// #define val_drv1_name		"usbfs"
++extern char *val_drv1_name;
++// #define val_drv1_path		"/sys/bus/usb/drivers/usbfs"
++extern char *val_drv1_path;
++// #define val_drv1_bus_name		"usb"
++extern char *val_drv1_bus_name;
++// #define val_write_attr_path	"/sys/class/net/eth0/tx_queue_len"
++extern char *val_write_attr_path;
++// #define val_mod_path		"/sys/module/usbcore"
++extern char *val_mod_path;
++// #define val_mod_name		"usbcore"
++extern char *val_mod_name;
++// #define val_mod_attr_name 	"refcnt"
++extern char *val_mod_attr_name;
++// #define val_mod_param		"blinkenlights"
++extern char *val_mod_param;
++// #define val_mod_section		"__versions"
++extern char *val_mod_section;
++
++extern void init_env_val(void);

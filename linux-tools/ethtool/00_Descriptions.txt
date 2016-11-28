@@ -1,0 +1,23 @@
+===============================================================================
+TestCase	: ethtool.sh
+
+Description	: This test will test ethtool with some important parameters.
+
+Author		: Andrew Pham, apham@austin.ibm.com
+
+===============================================================================
+Howto:
+
+Invoke ./ethtool.sh to start the test.
+----------------------------------
+Test-case coverage:
+
+1. Ethtool is a useful tool to show or chang the configuration of ethernet card
+2. This test case will cove the following parameters of ethtool:
+ ethtool -i
+ ethtool -e
+ ethtool -d
+ ethtool -s
+ ethtool -a
+ ethtool -t
+----------------------------------

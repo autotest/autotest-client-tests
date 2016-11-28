@@ -1,0 +1,11 @@
+AUTHOR = " Kowshik Jois B S<kowsjois@in.ibm.com>                                     ##  " 
+NAME = "perl_Parse_Yapp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Parse-Yapp package 
+    ''' 
+path = '' 
+job.run_test('perl_Parse_Yapp',test_path=path) 

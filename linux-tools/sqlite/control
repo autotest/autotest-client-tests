@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "sqlite" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sqlite package 
+    ''' 
+path = '' 
+job.run_test('sqlite',test_path=path) 

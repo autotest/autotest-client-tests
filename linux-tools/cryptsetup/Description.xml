@@ -1,0 +1,10 @@
+<!-- Test configuration for 'cryptsetup' and 'cryptsetup-libs' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cryptsetup</PACKAGE>
+    <PACKAGE>cryptsetup-libs</PACKAGE>
+    <PACKAGE>veritysetup</PACKAGE>
+    <PACKAGE>cryptsetup-reencrypt</PACKAGE> 
+    <COMMAND>cryptsetup-luks.sh</COMMAND>
+    <DESCRIPTION>Test for cryptsetup and cryptsetup-libs.</DESCRIPTION>
+</TEST>

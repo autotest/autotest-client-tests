@@ -1,0 +1,13 @@
+Sqlite3
+
+Description :
+SQLite library includes a command-line utility named 
+sqlite3 that allows the user to manually enter 
+and execute SQL commands against an SQLite database.
+
+This test simply checks that the sqlite3 starts and executes basic  database commands such as creating a sample db,
+ inserting data into table and dropping the table. 
+We assume other functions are well tested by community. 
+
+Execution:
+Execute sqlite.sh to run the test.													

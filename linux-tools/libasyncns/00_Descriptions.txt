@@ -1,0 +1,11 @@
+libasyncns -- is a C library for Linux/Unix 
+for executing name service queries asynchronously
+
+How to run the test:
+------------------------
+./libasyncns.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

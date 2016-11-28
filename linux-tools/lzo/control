@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "lzo" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lzo package 
+    ''' 
+path = '' 
+job.run_test('lzo',test_path=path) 

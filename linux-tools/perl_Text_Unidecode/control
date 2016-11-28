@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_Text_Unidecode" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Text-Unidecode package 
+    ''' 
+path = '' 
+job.run_test('perl_Text_Unidecode',test_path=path) 

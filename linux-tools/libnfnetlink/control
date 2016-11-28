@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Sharma < abhisshm@in.ibm.com >                                   ##  " 
+NAME = "libnfnetlink" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libnfnetlink package 
+    ''' 
+path = '' 
+job.run_test('libnfnetlink',test_path=path) 

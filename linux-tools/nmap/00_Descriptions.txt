@@ -1,0 +1,39 @@
+nmap is a popular port scanning tool and security auditing tool in
+Linux networking. In general, any port scanner tries to connect each
+port upon a host,and then reports the results. For eg. a scanner can
+connect to:
+  port 1  - to check if tcpmux is running
+  port 7  - to check if echo is running
+  port 22 - to check if sshd is running
+  etc
+
+/etc/services is a good reference to know the complete mapping of ports
+and the userspace programs. Depending upon the received response, the
+ports are classified (open/close/blocked) and reported.
+
+nmap can also additionally report:
+  1. version of service if identifiable.
+  2. version of operating system (through the variations in the way
+     different network packets are handled).
+
+nmap has been for debugging the system network for a long time and its
+so many options assist us to select the way we like to scan the network.
+But, from intgertaion testing point of view, it is suffcient to test
+its interfaces such as,
+  - port scanning (TCP connect/syn scan with OS version detection
+    and a UDP port scan). Use -O -v for version detection. Check network
+    distance ( 0 hops for localhost).
+  - check ICMP ping scan.
+  - check protocol scan and verify if the enabled protocols are matching
+    the expected protocols.
+  - check DNS resolution using list scan option. check if resolved ip is
+    correct.
+  - enable a installed service and verify if nmap can report it.
+  - add a custom service (and block a tcp/udp port). verify if nmap can
+    report it.
+  - block a TCP port of an installed service in IP firewaall and verify
+    if nmap reports accordingly.
+
+Plenty of documentations at
+http://nmap.org/book/toc.html
+

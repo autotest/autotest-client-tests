@@ -1,0 +1,19 @@
+<!-- Test configuration for 'tog-pegasus' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>tog-pegasus</PACKAGE>
+    <COMMAND>pegasus_test.sh</COMMAND>
+    <DESCRIPTION>This testcase covers most of the common functions of pegasus, cimserver, cimconfig, cimuser, cimprovider and cimsecurity.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>tog-pegasus-libs</PACKAGE>
+    <DESCRIPTION>Covered by pegasus_test.sh</DESCRIPTION>
+</TEST>
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>tog-pegasus-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>

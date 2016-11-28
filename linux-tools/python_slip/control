@@ -1,0 +1,11 @@
+AUTHOR = " Basheer Khadarsabgari, basheer@linux.vnet.ibm.com                        ##  " 
+NAME = "python_slip" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-slip package 
+    ''' 
+path = '' 
+job.run_test('python_slip',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G, kumuda@linux.vnet.ibm.com  " 
+NAME = "perl_JSON" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-JSON package 
+    ''' 
+path = '' 
+job.run_test('perl_JSON',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb<kingsdeb@linux.vnet.ibm.com>                      ##  " 
+NAME = "rpcbind" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test rpcbind package 
+    ''' 
+path = '' 
+job.run_test('rpcbind',test_path=path) 

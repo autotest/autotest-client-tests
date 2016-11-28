@@ -1,0 +1,9 @@
+Description:Libcanberra is a simple abstract interface for playing event
+sounds. It implements the XDG Sound Theme and Naming Specifications for
+generating event sounds on free desktops, such as GNOME
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libcanberra
+./libcanberra.sh
+

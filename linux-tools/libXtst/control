@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "libXtst" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libXtst package 
+    ''' 
+path = '' 
+job.run_test('libXtst',test_path=path) 

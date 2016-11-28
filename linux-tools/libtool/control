@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  " 
+NAME = "libtool" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libtool package 
+    ''' 
+path = '' 
+job.run_test('libtool',test_path=path) 

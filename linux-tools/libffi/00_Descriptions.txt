@@ -1,0 +1,44 @@
+FFI stands for Foreign Function Interface. A foreign function interface
+is the popular name for the interface that allows code written in one
+language to call code written in another language. The libffi library
+really only provides the lowest, machine dependent layer of a fully
+featured foreign function interface. A layer must exist above libffi
+that handles type conversions for values passed between the two languages.
+
+CPython is one such example project which let us to import C compatible
+data types/calling conventions in a python program.
+
+The testsuite available in source is good enough to support the usecases
+of this library. As the usecases are suppose to be consumed by programming
+languages to bridge each other, esp on calling conventions, we can test
+the package with available testsuite itself.
+
+To note, testsuite uses dejagnu frond-end testing framework (like systemtap)
+which should also be added in dependency list while building package.
+
+Ref: http://sourceware.org/libffi
+
+Step to run test through script:
+  ./libffi.sh
+    - test suite to trigger libffi tests
+
+Step to run test manually:
+  export srcdir=/opt/fiv/ltp/testcases/fivextra/libffi/testsuite
+
+  to run all tests in libffi.call:
+    runtest --tool libffi --srcdir $srcdir call.exp
+
+  to run all tests in libffi.special (with c++ toolchain and library installed)
+    runtest --tool libffi --srcdir $srcdir special.exp
+
+runtest generates .log and .sum files using tool name (eg, libffi.log).
+check for unexpected failures in summary and the details of the failure
+can be found in .log file
+
+Note: This test needs gcc and gcc-c++ installed in the machine under test.
+As we dont include such development packages in our testroot, this test
+needs manual installation of the above mentioned packages.
+
+Run "yum install gcc gcc-c++" to install them and Run ./libffi.sh to run the
+tests.
+

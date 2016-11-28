@@ -1,0 +1,11 @@
+Description:Python decorators are an interesting example of why syntactic
+sugar matters. In principle, their introduction in Python 2.4 changed nothing,
+since they do not provide any new functionality which was not already present
+in the language. In practice, their introduction has significantly changed the
+way we structure our programs in Python.
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/python-decorator
+./python-decorator.sh
+

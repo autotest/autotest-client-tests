@@ -1,0 +1,39 @@
+About:
+This package contains libglade libraries. These are useful for loading Glade
+interface files in a program at runtime.
+some of the functions include:
+glade_xml_new - XML file is loaded using libxml
+glade_xml_get_widget - called for all the toplevel widgets in
+the interface.
+
+Instructions
+============
+A:
+
+1) Start vncserver:
+    #vncserver -kill :4
+    #vncserver :4 -SecurityTypes None
+
+2) Export display:
+    #export DISPLAY=:4
+
+3) cd /opt/fiv/ltp/testcases/fivextra/libglade2/tests/
+    and execute :
+    #./test-libglade  simple.glade
+
+4) Connect to vnc using:
+    #vncviewer <ip>:4
+
+5) Interface will be displayed in the vncsession.
+  Refer libglade2-test.png for sample results under
+/opt/fiv/ltp/testcases/fivextra/libglade2 directory.
+
+B: Testing libglade-convert
+===========================
+
+6) Install libglade2-devel to get libglade-convert binary
+
+7) cd /opt/fiv/ltp/testcases/fivextra/libglade2/tests
+  sed -i "s:../libglade-convert:`which libglade-convert`:g" test-convert
+
+8) Execute ./test-convert and check the results succeeds without any error

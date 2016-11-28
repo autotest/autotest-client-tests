@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libdaemon' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>libdaemon</PACKAGE>
+ <COMMAND>libdaemon.sh</COMMAND>
+ <DESCRIPTION>Test libdaemon package</DESCRIPTION>
+</TEST>

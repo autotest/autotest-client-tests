@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>                             		  ##  " 
+NAME = "perl_Storable" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Storable package 
+    ''' 
+path = '' 
+job.run_test('perl_Storable',test_path=path) 

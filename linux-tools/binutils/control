@@ -1,0 +1,11 @@
+AUTHOR = " Xu Zheng zhengxu@cn.ibm.com  " 
+NAME = "binutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test binutils package 
+    ''' 
+path = '' 
+job.run_test('binutils',test_path=path) 

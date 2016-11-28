@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T.S. <harihare@in.ibm.com>                             	   ##  " 
+NAME = "libogg" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libogg package 
+    ''' 
+path = '' 
+job.run_test('libogg',test_path=path) 

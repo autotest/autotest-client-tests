@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  " 
+NAME = "bind_utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test bind-utils package 
+    ''' 
+path = '' 
+job.run_test('bind_utils',test_path=path) 

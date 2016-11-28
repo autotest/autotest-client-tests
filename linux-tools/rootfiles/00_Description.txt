@@ -1,0 +1,10 @@
+rootfiles:
+
+The rootfiles package contains basic required files that are placed
+in the root user's account.  These files are basically the same
+as those in /etc/skel, which are placed in regular
+users' home directories.
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/rootfiles
+./rootfiles.sh

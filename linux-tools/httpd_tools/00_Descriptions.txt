@@ -1,0 +1,11 @@
+httpd-tools provides tools useful for a webserver.
+Tools include:
+
+- ab (Apache benchmark tool)
+- logresolve (Resolve IP addresses to hostname in logfiles)
+- htpasswd (Manipulate basic authentication files)
+- htdigest (Manipulate digest authentication files)
+- htdbm ( Manipulate DBM password databases )
+
+Usage:
+httpd-tools.sh	./httpd-tools.sh

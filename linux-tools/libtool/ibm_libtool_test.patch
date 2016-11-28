@@ -1,0 +1,65 @@
+--- libltdl/libltdlc.la.org	2016-06-14 10:51:19.000000000 +0000
++++ libltdl/libltdlc.la 	2016-06-14 11:07:27.860929622 +0000
+@@ -35,7 +35,7 @@ shouldnotlink=no
+ 
+ # Files to dlopen/dlpreopen
+ dlopen=''
+-dlpreopen=' /builddir/build/BUILD/libtool-2.4.2/libltdl/./.libs/dlopen.a'
++dlpreopen=' /opt/fiv/ltp/testcases/fivextra/libtool/libltdl/./.libs/dlopen.a'
+ 
+ # Directory that this library needs to be installed in:
+ libdir=''
+--- libltdl/libltdl.la.org	2016-06-14 10:51:19.000000000 +0000
++++ libltdl/libltdl.la  	2016-06-14 11:08:06.520929580 +0000
+@@ -35,7 +35,7 @@ shouldnotlink=no
+ 
+ # Files to dlopen/dlpreopen
+ dlopen=''
+-dlpreopen=' /builddir/build/BUILD/libtool-2.4.2/libltdl/.libs/dlopen.a'
++dlpreopen=' /opt/fiv/ltp/testcases/fivextra/libtool/libltdl/.libs/dlopen.a'
+ 
+ # Directory that this library needs to be installed in:
+ libdir='/usr/lib64'
+--- libltdl/.libs/libltdl.la.org	2016-06-14 10:51:19.000000000 +0000
++++ libltdl/.libs/libltdl.la	2016-06-14 11:08:06.520929580 +0000
+@@ -35,7 +35,7 @@ shouldnotlink=no
+ 
+ # Files to dlopen/dlpreopen
+ dlopen=''
+-dlpreopen=' /builddir/build/BUILD/libtool-2.4.2/libltdl/.libs/dlopen.a'
++dlpreopen=' /opt/fiv/ltp/testcases/fivextra/libtool/libltdl/.libs/dlopen.a'
+ 
+ # Directory that this library needs to be installed in:
+ libdir='/usr/lib64'
+--- libltdl/.libs/libltdlc.la.org	2016-06-14 10:51:19.000000000 +0000
++++ libltdl/.libs/libltdlc.la	2016-06-14 11:07:27.860929622 +0000
+@@ -35,7 +35,7 @@ shouldnotlink=no
+ 
+ # Files to dlopen/dlpreopen
+ dlopen=''
+-dlpreopen=' /builddir/build/BUILD/libtool-2.4.2/libltdl/./.libs/dlopen.a'
++dlpreopen=' /opt/fiv/ltp/testcases/fivextra/libtool/libltdl/./.libs/dlopen.a'
+ 
+ # Directory that this library needs to be installed in:
+ libdir=''
+--- tests/atconfig.org	2016-06-14 10:51:19.000000000 +0000
++++ tests/atconfig	2016-06-14 11:06:41.604929671 +0000
+@@ -4,13 +4,14 @@
+ 
+ # The test suite will define top_srcdir=/../.. etc.
+ at_testdir='tests'
+-abs_builddir='/builddir/build/BUILD/libtool-2.4.2/tests'
++abs_builddir='/opt/fiv/ltp/testcases/fivextra/libtool/tests'
+ at_srcdir='.'
+-abs_srcdir='/builddir/build/BUILD/libtool-2.4.2/tests'
++abs_srcdir='/opt/fiv/ltp/testcases/fivextra/libtool/tests'
+ at_top_srcdir='..'
+-abs_top_srcdir='/builddir/build/BUILD/libtool-2.4.2'
++abs_top_srcdir='/opt/fiv/ltp/testcases/fivextra/libtool/'
+ at_top_build_prefix='../'
+-abs_top_builddir='/builddir/build/BUILD/libtool-2.4.2'
++abs_top_builddir='/opt/fiv/ltp/testcases/fivextra/libtool/'
++
+ 
+ # Backward compatibility with Autotest <= 2.59b:
+ at_top_builddir=$at_top_build_prefix

@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@austin.ibm.com  " 
+NAME = "dos2unix" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dos2unix package 
+    ''' 
+path = '' 
+job.run_test('dos2unix',test_path=path) 

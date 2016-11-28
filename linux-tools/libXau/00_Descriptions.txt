@@ -1,0 +1,39 @@
+Description: The libXau package contains a library implementing the X11
+Authorization Protocol. It uses existing core protocol and library hooks 
+for specifying authorization data in the connection setup block to restrict
+use of the display to only those clients that show that they know a 
+server-specific key called a "magic cookie".
+
+The working scheme involved in a X11 session involves the following parts --
+
+    o  xdm
+        -  generate random magic cookie and store in protected file
+        -  pass name of magic cookie file to server
+        -  when user logs in, add magic cookie to user's auth file
+        -  when user logs out, generate a new cookie for server
+
+    o  server
+        -  check client authorization data against magic cookie
+        -  read in cookie whenever the server resets
+        -  do not add local machine to host list if magic cookie given
+
+    o  Xlib
+        -  read in authorization data from file
+        -  find data for appropriate server
+        -  send authorization data if found
+
+    o  xauth
+        -  add entries to user's auth file
+        -  remove entries from user's auth file
+
+From the above parts, this package does the xauth part . 
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libXau
+./libXau.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

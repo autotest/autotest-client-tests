@@ -1,0 +1,18 @@
+PolicyKit provides an authorization API intended to be used by
+privileged programs ("MECHANISMS") offering service to unprivileged
+programs ("CLIENTS") through some form of IPC mechanism such as D-Bus
+or Unix pipes. In this scenario, the mechanism typically treats the
+client as untrusted. For every request from a client, the mechanism
+needs to determine if the request is authorized or if it should refuse
+to service the client. Using the PolicyKit API, a mechanism can offload
+this decision to a trusted party: The PolicyKit Authority.
+
+In addition to acting as an authority, PolicyKit allows users to obtain
+temporary authorization through authenticating either an administrative
+user or the owner of the session the client belongs to.
+
+More info here: http://man.he.net/man8/polkit
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/polkit
+./polkit.sh

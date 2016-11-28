@@ -1,0 +1,8 @@
+Snappy is a compression/decompression library. It does not aim for maximum
+compression, or compatibility with any other compression library; instead,
+it aims for very high speeds and reasonable compression. For instance,
+compared to the fastest mode of zlib, Snappy is an order of magnitude faster
+for most inputs
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/snappy
+Execute ./snappy.sh

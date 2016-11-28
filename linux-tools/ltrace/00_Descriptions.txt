@@ -1,0 +1,5 @@
+ltrace 
+
+How to test ltrace package.
+        1. enter ltrace directory and run "./ltrace.sh"
+

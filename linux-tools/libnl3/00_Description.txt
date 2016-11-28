@@ -1,0 +1,6 @@
+This package contains a convenience library to simplify
+using the Linux kernel's netlink sockets interface for
+network manipulation.
+How to execute:
+cd /opt/fiv/ltp/testcases/fivextra/libnl3
+./libnl3.sh

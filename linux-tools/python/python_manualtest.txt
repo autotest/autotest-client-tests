@@ -1,0 +1,81 @@
+Author:
+	rende@cn.ibm.com
+
+
+Assumptions:
+	1. You have all python-*.rpm installed in your SUT
+
+	2.  This manual test takes advantage of some python programs from
+            python-tools. If python-tools is not installed it can be downloaded
+            from the package repository and installed with yum, rpm,
+            rpm2cpio, etc.
+
+	3. Configure your X server correctly, as python-tk should be run under
+           X.
+
+Instructions:
+	This manual test verifies python-tk/python-curses/python-idle, since
+        they cannot be covered by FIV-automation.
+
+	A>. python-tk
+	  1. From /usr/lib[64]/python2.6/lib-tk: run Dialog.py, FileDialog.py,
+             Tkdnd.py, Tkinter.py etc
+             e.g. "python Tkinter.py" will give you a sample demo of tk program.
+
+          2. Install python-tools. Change directory to
+             /usr/lib[64]/python2.6/Demo/tkinter/ and run some of the sample
+             tests:
+             e.g. "python guido/solitaire.py" will show you the traditional
+             solitaire card game, //enjoy. Also run: AttrDialog.py,
+             ShellWindow.py, newmenubardemo.py
+		( Note: brownian.py and other tests that use tcl threads will
+                  fail. Refer Bug #64566. OS has disabled threads in the tcl
+                  package, due to its incompatibility with using fork() in tcl
+                  scripts.)
+	     The matt directory /usr/lib*/python2.6/Demo/tkinter/matt, provided
+             by python-tools, will show you some more tk widgets that are
+             invoked by python; try several of these.
+
+	B>. python-curses
+          1. Invoke test_curses from LTP FIV extra automated testcase directory,
+          e.g.  cd /usr/lib64/python2.6/test
+                ./regrtest.py -u curses test_curses
+
+		This test should be run from shell prompt, as it's tty
+		related, run from pythontest.sh will fail.  After the
+		test, the console would become abnormal and needs to
+		be reset manually (input "reset", then press Ctrl-J),
+		this is normal.
+
+		2. There are some other tests in python-tools for curses:
+			cd /usr/lib*/python2.6/Demo/curses/
+			run life.py, rain.py, tclock.py, xmas.py etc	
+
+	C>. idle provided by python-tools.  This test requires that the tkinter
+            rpm is installed. Use the "test.py" provided in test case directory.
+          1. startx
+
+          2. change directory to where test files test.py/module.py reside,
+
+          3. start python-idle and open testfile
+		   idle test.py
+
+          4. Once 'idle test.py' is run a window titled "Python Shell"
+             should open. From the "Debug" menu select "Debugger". A window
+             titled "Debug Control" should open.
+
+          5. Next from the "Python Shell" window, click on the "Windows" menu
+             and select "test.py"; a window titled "test.py" should open.
+
+          6. In the "test.py" window, click on the "Run" menu and select
+             "Run Module"; the "Debug Control" windows show come forward and
+             have focus.
+
+          7. Click the "Go" button, in the "Debug Control" window. The
+             output from the test.py script should display in the "Python Shell"
+             window. The last line of output should be:
+    {'Y': [1, 2, (2, 99)], 'X': [1, 2, (2, 99), 1, 2, (2, 99)], 'Z': (2, 99)}
+
+Notes:
+	"python-tools" is not a functional package of OS, we treat it as an "implict test".
+

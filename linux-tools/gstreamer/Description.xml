@@ -1,0 +1,7 @@
+<!-- Test configuration for 'gstreamer' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>gstreamer</PACKAGE>
+ <COMMAND>gstreamer.sh</COMMAND>
+ <DESCRIPTION>Test gstreamer</DESCRIPTION>
+</TEST> 

@@ -1,0 +1,22 @@
+Package Name : python-six
+
+Description :
+python-six provides simple utilities for wrapping over differences between Python 2 and Python 3.
+This package  provides one library six.py :
+Six is a Python 2 and 3 compatibility library. It provides utility functions for smoothing over the differences between the Python versions with the goal of writing
+Python code that is compatible on both Python versions.
+
+
+How to run the test:
+--------------------
+cd /opt/fiv/ltp/testcases/fivextra/python-six
+run the python-six.sh script
+./python-six.sh
+
+To run test individually: 
+--------------------------
+cd /opt/fiv/ltp/testcases/fivextra/python-six
+py.test test_six.py
+
+
+

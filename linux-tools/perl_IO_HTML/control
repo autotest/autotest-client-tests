@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>                             		  ##  " 
+NAME = "perl_IO_HTML" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-IO-HTML package 
+    ''' 
+path = '' 
+job.run_test('perl_IO_HTML',test_path=path) 

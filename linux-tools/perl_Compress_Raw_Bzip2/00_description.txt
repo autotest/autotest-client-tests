@@ -1,0 +1,39 @@
+Description:
+=========
+Package : perl-Compress-Raw-Bzip2
+
+Compress::Raw::Bzip2 - Low-Level Interface to bzip2 compression library
+
+Synopsis:
+---------
+    use Compress::Raw::Bzip2 ;
+
+    my ($bz, $status) = new Compress::Raw::Bzip2 [OPTS]
+        or die "Cannot create bzip2 object: $bzerno\n";
+    
+    $status = $bz->bzdeflate($input, $output);
+    $status = $bz->bzflush($output);
+    $status = $bz->bzclose($output);
+
+    my ($bz, $status) = new Compress::Raw::Bunzip2 [OPTS]
+        or die "Cannot create bunzip2 object: $bzerno\n";
+    
+    $status = $bz->bzinflate($input, $output);
+
+    my $version = Compress::Raw::Bzip2::bzlibversion();
+
+Description:
+-----------
+Compress::Raw::Bzip2 provides an interface to the in-memory compression/uncompression functions from the bzip2 compression library.
+
+Although the primary purpose for the existence of Compress::Raw::Bzip2 is for use by the IO::Compress::Bzip2 and IO::Compress::Bunzip2 modules, it can be used on its own for simple compression/uncompression tasks.
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Compress-Raw-Bzip2
+./perl-Compress-Raw-Bzip2.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Compress-Raw-Bzip2
+perl t/<test>.t
+

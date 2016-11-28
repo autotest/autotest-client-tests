@@ -1,0 +1,11 @@
+AUTHOR = " Loganathan G <loganag2@in.ibm.com>  " 
+NAME = "man_db" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test man-db package 
+    ''' 
+path = '' 
+job.run_test('man_db',test_path=path) 

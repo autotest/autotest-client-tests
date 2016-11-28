@@ -1,0 +1,6 @@
+Libsndfile is a library designed to allow the reading and writing of many different sampled sound file formats (such as MS Windows WAV and the Apple/SGI AIFF format) through one standard library interface.
+During read and write operations, formats are seamlessly converted between the format the application program has requested or supplied and the file's data format. 
+
+How to run the test
+-------------------
+./libsndfile.sh

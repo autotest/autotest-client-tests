@@ -1,0 +1,11 @@
+AUTHOR = " Helen Pang, hpang@us.ibm.com  " 
+NAME = "dump" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test dump package 
+    ''' 
+path = '' 
+job.run_test('dump',test_path=path) 

@@ -1,0 +1,6 @@
+Gamin: Gamin is a monitoring system for files and directories that independently implements a subset of FAM, the File Alteration Monitor.
+Running as a service, it allows for the detection of modifications to a file or directory. gam_server functions as a daemon for Gamin.
+
+How to run test
+---------------
+./gamin.sh 

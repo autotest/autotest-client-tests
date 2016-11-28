@@ -1,0 +1,13 @@
+#########################################################################################
+perldoc looks up a piece of documentation in .pod format that is embedded
+in the perl installation tree or in a perl script, and displays it via
+"groff -man | $PAGER". This is primarily used for the documentation for
+the perl library modules.
+
+
+Source:
+Url: http://search.cpan.org/dist/Pod-Perldoc/
+#########################################################################################
+How to run tests ??
+Ans: cd /opt/fiv/ltp/testcases/fivextra/perl-Pod-Perldoc
+    run the test_perldoc.sh script

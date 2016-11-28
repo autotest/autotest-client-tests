@@ -1,0 +1,22 @@
+Pango is a library for laying out and rendering of text, with an emphasis on internationalization.
+Pango can be used anywhere that text layout is needed, though most of the work on Pango so far has
+been done in the context of the GTK+ widget toolkit. Pango forms the core of text and font handling
+for GTK+-2.x
+
+Pango is designed to be modular; the core Pango layout can be used
+with different font backends.
+
+For more information about Pango, see: http://www.pango.org/
+
+Tests:
+=======
+--cxx-test: This test makes sure that all Pango headers can be included and compiled in a C++ program.
+--testboundaries: Test text boundary algorithms
+--test-color: Test program for pango_color_parse()
+--dump-boundaries: Dump text boundaries for a file
+--testscript: Test cases for PangoScriptIter.
+
+How to run:
+==========
+./pango.sh
+

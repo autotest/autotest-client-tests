@@ -1,0 +1,11 @@
+AUTHOR = " CSDL,  James He <hejianj@cn.ibm.com>  " 
+NAME = "ltrace" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ltrace package 
+    ''' 
+path = '' 
+job.run_test('ltrace',test_path=path) 

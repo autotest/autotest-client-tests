@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  manjo@mail.utexas.edu  " 
+NAME = "pam" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pam package 
+    ''' 
+path = '' 
+job.run_test('pam',test_path=path) 

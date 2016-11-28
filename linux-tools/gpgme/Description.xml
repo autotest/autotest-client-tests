@@ -1,0 +1,7 @@
+<!-- Test configuration for 'gpgme' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>gpgme</PACKAGE>
+ <COMMAND>gpgme.sh</COMMAND>
+ <DESCRIPTION>Test GPGME</DESCRIPTION>
+</TEST> 

@@ -1,0 +1,11 @@
+libtdb is a simple database API. It was inspired by the realisation that in
+Samba we have several ad-hoc bits of code that essentially implement small
+databases for sharing structures between parts of Samba.
+
+The interface is based on gdbm. tdbtest performs operations on most of tdb
+api and compare with gdbm part. tdbtool is provided for simple database
+manipulation on commandline (not installed by actual libtdb package).
+
+libtdb.sh:
+  - testsuite to trigger libtdb tests
+

@@ -1,0 +1,189 @@
+--- TEMP/tftp_test.sh	2015-08-18 06:59:09.473267215 -0500
++++ tftp_test.sh	2015-08-18 06:59:07.542249252 -0500
+@@ -42,6 +42,7 @@ _OrigINetd=""
+ _OrigXINetd=""
+ _FTPSRV=""
+ localtest=1
++ipv6test=0
+ 
+ usage()
+ {
+@@ -127,6 +128,16 @@ tc_local_setup()
+ 	else
+ 		TST_TOTAL=2 
+ 	fi
++	
++	# Test the ipv6 support for tftp
++
++	expect tftp_test.exp $_FTPSRV quit dummy dummy -6  &> /dev/null
++	if [ $? == 0 ]; then
++		ipv6test=1
++		tc_info "IPv6 Support detected"
++		TST_TOTAL=$((TST_TOTAL*2))
++	fi
++
+ 	touch $TCTMP/error.txt
+ }
+ 
+@@ -153,51 +164,66 @@ tc_local_cleanup()
+ 
+ test_get_text()
+ {
+-	tc_register	"tftp ascii get"
+-	expect tftp_test.exp $_FTPSRV test.txt get ascii &>/dev/null
+-	tc_pass_or_fail $?  "`cat $TCTMP/error.txt`"	
++	tc_register	"tftp$PROTO ascii get"
++	expect tftp_test.exp $_FTPSRV get test.txt ascii "$PROTO"  &> /dev/null
++	tc_pass_or_fail $?  "`cat $TCTMP/error.txt`"
+ }
+ 
+ test_get_binary()
+ {
+-	tc_register	"tftp binary get"
+-	expect tftp_test.exp $_FTPSRV test.bin get binary &> /dev/null 
++	tc_register	"tftp$PROTO binary get"
++	expect tftp_test.exp $_FTPSRV get test.bin binary "$PROTO" &> /dev/null 
+ 	tc_pass_or_fail $?  "`cat $TCTMP/error.txt`"	
+ }
+ 
+ test_put_text()
+ {
+ 	cp -f $TCTMP/tftp-data/test.txt $TCTMP/test1.txt
+-	tc_register	"tftp ascii put"
+-	expect tftp_test.exp $_FTPSRV test1.txt put ascii &>/dev/null
++	tc_register	"tftp$PROTO ascii put"
++	expect tftp_test.exp $_FTPSRV  put test1.txt ascii "$PROTO" &>/dev/null
+ 	tc_pass_or_fail $?  "`cat $TCTMP/error.txt`"	
+ }
+ 
+ test_put_binary()
+ {
+ 	cp -f $TCTMP/tftp-data/test.bin $TCTMP/test1.bin
+-	tc_register	"tftp binary put"
+-	expect tftp_test.exp $_FTPSRV test1.bin put binary &> /dev/null 
++	tc_register	"tftp$PROTO binary put"
++	expect tftp_test.exp $_FTPSRV put test1.bin binary "$PROTO" &> /dev/null 
+ 	tc_pass_or_fail $?  "`cat $TCTMP/error.txt`"	
+ }
+ 
+ 
+ 
++run_tests()
++{
++	test_get_text
++	test_get_binary	
++
++	if [ $localtest -eq 1 ] ; then
++		test_put_text
++		test_put_binary
++	fi
++}
++	
+ ################################################################################
+ #  main
+ ################################################################################
+ 
+ parse_args $*
+ 
++export TCTMP
+ tc_setup
++
+ tc_root_or_break || exit
+ tc_exec_or_break  awk expect ps grep || exit
+-export TCTMP
+ 
+-test_get_text
+-test_get_binary	
+ 
+-if [ $localtest -eq 1 ] ; then
+-	test_put_text
+-	test_put_binary
++# Run the IPv6 tests if the support is enabled
++if [ $ipv6test != 0 ]; then
++	PROTO="-6"
++	run_tests
++	PROTO="-4"
+ fi
++
++# Run the IPv4 Tests
++run_tests
+--- TEMP/tftp_test.exp	2015-08-18 06:57:39.816433205 -0500
++++ tftp_test.exp	2015-08-18 06:56:23.304721566 -0500
+@@ -24,20 +24,26 @@
+ # name of file  : tftp_test.exp                                           #
+ # description   : expect file help to do tftp test                        #
+ ###########################################################################
+-
+-#expect test.exp --- tftpserver  afile  action  tmode 
++#
++#expect test.exp --- tftpserver  action  afile  tmode 	proto
++# Allowed inputs are
++#                                get/put file ascii/bin [-4/-6]
++#				 quit    dont   worry   -4/-6
++# For quit we dont worry about the afile and tmode. But we need a proto arg.
++# For all other commands, the proto is optional
+ 
+ set ETCTMP $env(TCTMP)
+ set tftpserver [lindex $argv 0] 
++set action [lindex $argv 1] 
++set afile [lindex $argv 2] 
+ set tmode [lindex $argv 3] 
+-set action [lindex $argv 2] 
+-set afile [lindex $argv 1] 
++set proto [lindex $argv 4]
+ 
+ #send_user "tftpserver=$tftpserver  afile=$afile  action=$action tmode=$tmode \n"
+ eval "cd $ETCTMP"
+ 
+ #spawn tftp "$tftpserver"
+-spawn tftp
++spawn tftp $proto
+ send "\r"
+ expect -re "(.*)tftp> $"  {
+ } timeout {
+@@ -45,6 +51,14 @@ expect -re "(.*)tftp> $"  {
+ 	exit 1
+ }
+ 
++# If the action is quit, quit right away. This will be used for
++# verifying the ipv6 support for tftp.
++
++if {"$action"=="quit"} {
++	close
++	exit 0
++}
++
+ send "verbose\r"
+ expect -re "Verbose mode on(.*)tftp> $" {}
+ 
+@@ -65,9 +79,9 @@ expect -re "mode set to(.*)tftp> $" {
+ if {"$action"=="get"} {
+ 	send "$action $afile\r"
+ 	expect -re "getting from(.*)Received(.*)tftp> $" {
+-#		send_user "=======\n $expect_out(0,string)\n ======= "
+ 	} -re "(.*)File not found(.*)tftp> $" {
+ 		exec echo "tftp $action $afile, file not found" > $ETCTMP/error.txt
++		exec echo "tftp $action $afilE failed" >> /tmp/Log-error.txt
+ 		exit 3
+ 	} -re "(.*)Error code 2: Access violation(.*)tftp> $" {
+ 		exec echo "tftp $action $afile, Access violation" > $ETCTMP/error.txt
+@@ -76,15 +90,16 @@ if {"$action"=="get"} {
+ 		exec echo "tftp $action timeout" > $ETCTMP/error.txt
+ 		exit 3
+ 	}	
+-} else {
++} elseif {"$action"=="put"} {
+ 	send "$action $afile\r"
+ 	expect -re "putting (.*)Sent(.*)tftp> $" {
+ 
+ 	} timeout { 
+-		exec echo "tftp $action timeout" > $ETCTMP/error.txt
++		exec echo "tftp star timeout" >> $ETCTMP/error.txt
+ 		exit 3
+ 	}		
+-}
++} 
++
+ 
+ close
+ exit 0

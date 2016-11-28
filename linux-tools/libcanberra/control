@@ -1,0 +1,11 @@
+AUTHOR = " Snehal Phule <snehal.phule@in.ibm.com>                             ##  " 
+NAME = "libcanberra" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libcanberra package 
+    ''' 
+path = '' 
+job.run_test('libcanberra',test_path=path) 

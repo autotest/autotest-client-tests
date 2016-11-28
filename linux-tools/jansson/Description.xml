@@ -1,0 +1,9 @@
+<!-- Test configuration for 'jansson' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>jansson</PACKAGE>
+ <COMMAND>jansson.sh</COMMAND>
+ <DESCRIPTION>Test jansson package</DESCRIPTION>
+</TEST>
+
+

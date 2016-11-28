@@ -1,0 +1,66 @@
+--- regrtest.py.org	2016-01-08 12:24:37.994672046 +0000
++++ regrtest.py	2016-01-08 12:26:43.676665640 +0000
+@@ -887,8 +887,12 @@ def runtest_inner(test, verbose, quiet,
+                 abstest = 'test.' + test
+             with saved_test_environment(test, verbose, quiet) as environment:
+                 start_time = time.time()
+-                the_package = __import__(abstest, globals(), locals(), [])
+-                the_module = getattr(the_package, test)
++                #the_package = __import__(abstest, globals(), locals(), [])
++                #the_module = getattr(the_package, test)
++		the_module = __import__(abstest, globals(), locals(), [])
++		tests = test.split(".")
++		for test in tests:
++		    the_module = getattr(the_module, test)
+                 # Old tests run to completion simply as a side-effect of
+                 # being imported.  For tests based on unittest or doctest,
+                 # explicitly invoke their test_main() function (if it exists).
+--- gdb_sample.py.org	2016-01-08 12:31:26.106651242 +0000
++++ gdb_sample.py	2016-01-08 12:32:03.836649319 +0000
+@@ -7,6 +7,7 @@ def bar(a, b, c):
+     baz(a, b, c)
+ 
+ def baz(*args):
+-    print(42)
++#    print(42)
++    id(42)
+ 
+ foo(1, 2, 3)
+--- mp_fork_bomb.py.org	2016-01-08 12:33:57.178643541 +0000
++++ mp_fork_bomb.py	2016-01-08 12:34:32.768641727 +0000
+@@ -11,6 +11,7 @@ r, w = multiprocessing.Pipe(False)
+ p = multiprocessing.Process(target=foo, args=(w,))
+ p.start()
+ w.close()
+-print(r.recv())
++#print(r.recv())
++id(r.recv())
+ r.close()
+ p.join()
+
+
+--- /dev/null   2014-02-28 07:10:10.250006454 +0530
++++ subprocessdata/__init__.py  2014-03-28 21:02:33.954919195 +0530
+@@ -0,0 +1 @@
++#dummy file to make this directory a package
+--- test_site.py.org	2016-01-12 08:53:21.991922337 +0000
++++ test_site.py	2016-01-12 08:57:39.737909198 +0000
+@@ -23,6 +23,7 @@ if "site" in sys.modules:
+     import site
+ else:
+     raise unittest.SkipTest("importation of site.py suppressed")
++orig_sys_path = sys.path[:]
+ 
+ if site.ENABLE_USER_SITE and not os.path.isdir(site.USER_SITE):
+     # need to add user site directory for tests
+@@ -317,7 +318,7 @@ class ImportSideEffectTests(unittest.Tes
+ 
+     def setUp(self):
+         """Make a copy of sys.path"""
+-        self.sys_path = sys.path[:]
++        self.sys_path = orig_sys_path
+ 
+     def tearDown(self):
+         """Restore sys.path"""
+
+

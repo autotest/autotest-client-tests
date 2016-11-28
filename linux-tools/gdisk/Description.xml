@@ -1,0 +1,7 @@
+<!-- Test configuration for ' gdisk' -->
+<TEST>
+	<TYPE>AUTO</TYPE>
+	<PACKAGE>gdisk</PACKAGE>
+	<COMMAND>gdisk.sh</COMMAND>
+	<DESCRIPTION>Testcase for gdisk</DESCRIPTION>
+</TEST>

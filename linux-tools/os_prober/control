@@ -1,0 +1,11 @@
+AUTHOR = " UmerQayam<umeqayam@in.ibm.com>                                ##  " 
+NAME = "os_prober" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test os-prober package 
+    ''' 
+path = '' 
+job.run_test('os_prober',test_path=path) 

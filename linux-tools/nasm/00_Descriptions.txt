@@ -1,0 +1,11 @@
+NASM is the Netwide Assembler, a free portable assembler for the Intel
+80x86 microprocessor series, using primarily the traditional Intel
+instruction mnemonics and syntax.
+
+ndisasm - The Netwide Disassembler is a small companion program to the Netwide
+Assembler, NASM. The Netwide Disassembler does nothing except to produce
+disassemblies of binary source files.
+
+How to run test
+---------------
+./nasm.sh

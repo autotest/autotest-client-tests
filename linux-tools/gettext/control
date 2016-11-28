@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham (apham@us.ibm.com)  " 
+NAME = "gettext_test" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gettext package 
+    ''' 
+path = '' 
+job.run_test('gettext_test',test_path=path) 

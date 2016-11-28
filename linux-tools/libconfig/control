@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>                           ##  " 
+NAME = "libconfig" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libconfig package 
+    ''' 
+path = '' 
+job.run_test('libconfig',test_path=path) 

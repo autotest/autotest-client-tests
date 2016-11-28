@@ -1,0 +1,3 @@
+#! /bin/bash
+# This file is just to test whether setting the alternatives to link_test works
+echo "link_test"

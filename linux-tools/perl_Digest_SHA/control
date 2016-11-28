@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>                             		  ##  " 
+NAME = "perl_Digest_SHA" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Digest-SHA package 
+    ''' 
+path = '' 
+job.run_test('perl_Digest_SHA',test_path=path) 

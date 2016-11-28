@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  manjo@mail.utexas.edu  " 
+NAME = "cracklib" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test cracklib package 
+    ''' 
+path = '' 
+job.run_test('cracklib',test_path=path) 

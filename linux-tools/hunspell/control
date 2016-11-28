@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##  " 
+NAME = "hunspell" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test hunspell package 
+    ''' 
+path = '' 
+job.run_test('hunspell',test_path=path) 

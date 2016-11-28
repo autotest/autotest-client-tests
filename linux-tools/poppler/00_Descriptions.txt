@@ -1,0 +1,7 @@
+The Poppler package contains a PDF rendering library and command line tools used to manipulate PDF files.
+This is useful for providing PDF rendering functionality as a shared library.
+
+How to run the test:
+-------------------
+./poppler.sh 
+

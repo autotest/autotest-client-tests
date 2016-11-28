@@ -1,0 +1,22 @@
+Augeas is a library and command line tool used for handling Linux configurations management programmatically.
+Augeas uses programs called lenses to map the filesystem to an XML tree which can then be parsed using an XPath syntax, using a bidirectional transformation.
+
+How it works:
+------------------
+1. Augeas parses configuration files in their native formats and transforms them into a tree.
+2. Configuration changes are made by manipulating this tree and saving it back into native config files.
+
+Augeas package provides 3 binaries:
+/usr/bin/augparse
+/usr/bin/augtool
+/usr/bin/fadot
+
+HOW TO RUN THE TESTS:
+=====================
+Automated Tests:
+cd /opt/fiv/ltp/testcases/fivextra/augeas
+./augeas.sh
+
+Manual Test:
+cd /opt/fiv/ltp/testcases/fivextra/augeas
+Follow the instructions in augeas.txt 

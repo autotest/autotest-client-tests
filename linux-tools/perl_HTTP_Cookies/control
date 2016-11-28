@@ -1,0 +1,11 @@
+AUTHOR = " Spoorthy < spoorts2@in.ibm.com >                                          ##  " 
+NAME = "perl_HTTP_Cookies" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTTP-Cookies package 
+    ''' 
+path = '' 
+job.run_test('perl_HTTP_Cookies',test_path=path) 

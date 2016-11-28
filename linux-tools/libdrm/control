@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>                                 ##  " 
+NAME = "libdrm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libdrm package 
+    ''' 
+path = '' 
+job.run_test('libdrm',test_path=path) 

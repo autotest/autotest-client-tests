@@ -1,0 +1,118 @@
+diff -upNr tests.bak/queries/enumerateclasses.FIRSTTIME.OK tests/queries/enumerateclasses.FIRSTTIME.OK
+--- tests.bak/queries/enumerateclasses.FIRSTTIME.OK	2007-07-12 17:19:33.000000000 +0000
++++ tests/queries/enumerateclasses.FIRSTTIME.OK	2007-07-12 23:03:30.000000000 +0000
+@@ -4,6 +4,10 @@
+ <SIMPLERSP>
+ <IMETHODRESPONSE NAME="EnumerateClasses">
+ <IRETURNVALUE>
++<CLASS NAME="__Namespace">
++<PROPERTY NAME="Name" TYPE="string">
++</PROPERTY>
++</CLASS>
+ <CLASS NAME="CIM_IndicationSubscription">
+ <PROPERTY.REFERENCE NAME="Filter"></PROPERTY.REFERENCE>
+ <PROPERTY.REFERENCE NAME="Handler"></PROPERTY.REFERENCE>
+@@ -52,8 +56,12 @@
+ <PROPERTY NAME="IndicationTime" TYPE="datetime">
+ </PROPERTY>
+ </CLASS>
++<CLASS NAME="CIM_Dependency">
++<PROPERTY.REFERENCE NAME="Antecedent"></PROPERTY.REFERENCE>
++<PROPERTY.REFERENCE NAME="Dependent"></PROPERTY.REFERENCE>
++</CLASS>
+ </IRETURNVALUE>
+ </IMETHODRESPONSE>
+ </SIMPLERSP>
+ </MESSAGE>
+-</CIM>
++</CIM>
+\ No newline at end of file
+diff -upNr tests.bak/queries/enumerateinstancenames.CIM_IndicationSubscription.OK tests/queries/enumerateinstancenames.CIM_IndicationSubscription.OK
+--- tests.bak/queries/enumerateinstancenames.CIM_IndicationSubscription.OK	2007-07-12 17:19:33.000000000 +0000
++++ tests/queries/enumerateinstancenames.CIM_IndicationSubscription.OK	2007-07-12 23:01:25.000000000 +0000
+@@ -8,4 +8,4 @@
+ </IMETHODRESPONSE>
+ </SIMPLERSP>
+ </MESSAGE>
+-</CIM>
++</CIM>
+\ No newline at end of file
+diff -upNr tests.bak/queries/enumerateinstances.CIM_IndicationSubscription.OK tests/queries/enumerateinstances.CIM_IndicationSubscription.OK
+--- tests.bak/queries/enumerateinstances.CIM_IndicationSubscription.OK	2007-07-12 17:19:33.000000000 +0000
++++ tests/queries/enumerateinstances.CIM_IndicationSubscription.OK	2007-07-12 23:00:49.000000000 +0000
+@@ -8,4 +8,4 @@
+ </IMETHODRESPONSE>
+ </SIMPLERSP>
+ </MESSAGE>
+-</CIM>
++</CIM>
+\ No newline at end of file
+diff -upNr tests.bak/queries/getclass.CIM_IndicationSubscription.OK tests/queries/getclass.CIM_IndicationSubscription.OK
+--- tests.bak/queries/getclass.CIM_IndicationSubscription.OK	2007-07-12 17:19:33.000000000 +0000
++++ tests/queries/getclass.CIM_IndicationSubscription.OK	2007-07-12 23:00:34.000000000 +0000
+@@ -8,20 +8,17 @@
+ <QUALIFIER NAME="Association" TYPE="boolean">
+ <VALUE>TRUE</VALUE>
+ </QUALIFIER>
+-<QUALIFIER NAME="Association" TYPE="boolean">
+-<VALUE>TRUE</VALUE>
+-</QUALIFIER>
+ <QUALIFIER NAME="Version" TYPE="string">
+ <VALUE>2.7.0</VALUE>
+ </QUALIFIER>
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>CIM_IndicationSubscription describes a flow of Indications. The flow is specified by the referenced Filter, and directed to the referenced destination or process in the Handler. Property values of the referenced CIM_IndicationFilter instance and CIM_ListenerDestination instance MAY significantly effect the definition of the subscription. E.g., a subscription associated with a \&quot;Transient\&quot; destination MAY be deleted when the destination terminates or is no longer available.</VALUE>
++<VALUE>CIM_IndicationSubscription describes a flow of Indications. The flow is specified by the referenced Filter, and directed to the referenced destination or process in the Handler. Property values of the referenced CIM_IndicationFilter instance and CIM_ListenerDestination instance MAY significantly effect the definition of the subscription. E.g., a subscription associated with a &quot;Transient&quot; destination MAY be deleted when the destination terminates or is no longer available.</VALUE>
+ </QUALIFIER>
+ <PROPERTY.REFERENCE NAME="Filter"></PROPERTY.REFERENCE>
+ <PROPERTY.REFERENCE NAME="Handler"></PROPERTY.REFERENCE>
+ <PROPERTY NAME="OnFatalErrorPolicy" TYPE="uint16">
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>Defines the desired behavior for a subscription when a fatal error occurs in one of the Indication processing subcomponents (e.g., Indication processor, Indication or instance provider, or Indication handler) and the Indication cannot be successfully sent. Specifically, a failure implies that some aspect of Indication generation, processing or dispatch is no longer functioning and Indications may be lost. If the value of OnFatalErrorPolicy is 2 (\&quot;Ignore\&quot;) or not set (NULL), the subscription MUST continue to be processed in a &apos;best effort&apos; mode. This mode of operation can lead to unpredictable, and potentially misleading results, because Indications may be lost. If the value is 3 (\&quot;Disable\&quot;), the subscription MUST be disabled. With this policy, no new Indications will be generated or dispatched until the subscription is explicitly enabled. This is accomplished via the property, SubscriptionState. If the value is 4 (\&quot;Remove\&quot;), the subscription MUST be deleted. Selecting this policy has the same effect as issuing a DeleteInstance operation on this subscription instance.</VALUE>
++<VALUE>Defines the desired behavior for a subscription when a fatal error occurs in one of the Indication processing subcomponents (e.g., Indication processor, Indication or instance provider, or Indication handler) and the Indication cannot be successfully sent. Specifically, a failure implies that some aspect of Indication generation, processing or dispatch is no longer functioning and Indications may be lost. If the value of OnFatalErrorPolicy is 2 (&quot;Ignore&quot;) or not set (NULL), the subscription MUST continue to be processed in a &apos;best effort&apos; mode. This mode of operation can lead to unpredictable, and potentially misleading results, because Indications may be lost. If the value is 3 (&quot;Disable&quot;), the subscription MUST be disabled. With this policy, no new Indications will be generated or dispatched until the subscription is explicitly enabled. This is accomplished via the property, SubscriptionState. If the value is 4 (&quot;Remove&quot;), the subscription MUST be deleted. Selecting this policy has the same effect as issuing a DeleteInstance operation on this subscription instance.</VALUE>
+ </QUALIFIER>
+ <QUALIFIER NAME="ValueMap" TYPE="string">
+ <VALUE.ARRAY>
+@@ -42,7 +39,7 @@
+ </PROPERTY>
+ <PROPERTY NAME="OtherOnFatalErrorPolicy" TYPE="string">
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>A string defining \&quot;Other\&quot; values for OnFatalErrorPolicy. This value MUST be set to a non NULL value when OnFatalErrorPolicy is set to a value of 1 (\&quot;Other\&quot;). For all other values, the OtherOnFatalErrorPolicy MUST be NULL.</VALUE>
++<VALUE>A string defining &quot;Other&quot; values for OnFatalErrorPolicy. This value MUST be set to a non NULL value when OnFatalErrorPolicy is set to a value of 1 (&quot;Other&quot;). For all other values, the OtherOnFatalErrorPolicy MUST be NULL.</VALUE>
+ </QUALIFIER>
+ </PROPERTY>
+ <PROPERTY NAME="FailureTriggerTimeInterval" TYPE="uint64">
+@@ -81,7 +78,7 @@
+ </PROPERTY>
+ <PROPERTY NAME="OtherSubscriptionState" TYPE="string">
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>A string defining \&quot;Other\&quot; values for SubscriptionState. This value MUST be set to a non NULL value when SubscriptionState is set to a value of 1 (\&quot;Other\&quot;). For all other values, the OtherSubscriptionState MUST be NULL.</VALUE>
++<VALUE>A string defining &quot;Other&quot; values for SubscriptionState. This value MUST be set to a non NULL value when SubscriptionState is set to a value of 1 (&quot;Other&quot;). For all other values, the OtherSubscriptionState MUST be NULL.</VALUE>
+ </QUALIFIER>
+ </PROPERTY>
+ <PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+@@ -115,7 +112,7 @@
+ </PROPERTY>
+ <PROPERTY NAME="RepeatNotificationPolicy" TYPE="uint16">
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>The RepeatNotificationPolicy property defines the desired behavior for handling Indications that report the occurrence of the same underlying event (e.g., the disk is still generating I/O errors and has not yet been repaired). The defined semantics for the RepeatNotificationCount, RepeatNotificationInterval, and RepeatNotificationGap properties depend on the value of RepeatNotificationPolicy, but values for these properties MUST be set if the property is defined for the selected policy. If the value of RepeatNotificationPolicy is 0 (\&quot;Unknown\&quot;) or not set, no special processing for repeat Indications is defined by the subscription. The semantics associated with the handling of repeat Indications MAY be defined by the Indication processing subcomponents. If the value of RepeatNotificationPolicy is 2 (\&quot;None\&quot;), special processing of repeat Indications MUST NOT be performed. If the value is 3 (\&quot;Suppress\&quot;) the first RepeatNotificationCount Indications, describing the same event, MUST be sent and all subsequent Indications for this event suppressed for the remainder of the time interval RepeatNotificationInterval. A new interval starts when the next Indication for this event is received. If the value of RepeatNotificationPolicy is 4 (\&quot;Delay\&quot;) and an Indication is received, this Indication MUST be suppressed if, including this Indication, RepeatNoticationCount or fewer Indications for this event have been received during the prior time interval defined by RepeatNotificationInterval. If this Indication is the RepeatNotificationCount + 1 Indication, this Indication MUST be sent and all subsequent Indications for this event ignored until the RepeatNotificationGap has elapsed. A RepeatNotificationInterval MAY NOT overlap a RepeatNotificationGap time interval.</VALUE>
++<VALUE>The RepeatNotificationPolicy property defines the desired behavior for handling Indications that report the occurrence of the same underlying event (e.g., the disk is still generating I/O errors and has not yet been repaired). The defined semantics for the RepeatNotificationCount, RepeatNotificationInterval, and RepeatNotificationGap properties depend on the value of RepeatNotificationPolicy, but values for these properties MUST be set if the property is defined for the selected policy. If the value of RepeatNotificationPolicy is 0 (&quot;Unknown&quot;) or not set, no special processing for repeat Indications is defined by the subscription. The semantics associated with the handling of repeat Indications MAY be defined by the Indication processing subcomponents. If the value of RepeatNotificationPolicy is 2 (&quot;None&quot;), special processing of repeat Indications MUST NOT be performed. If the value is 3 (&quot;Suppress&quot;) the first RepeatNotificationCount Indications, describing the same event, MUST be sent and all subsequent Indications for this event suppressed for the remainder of the time interval RepeatNotificationInterval. A new interval starts when the next Indication for this event is received. If the value of RepeatNotificationPolicy is 4 (&quot;Delay&quot;) and an Indication is received, this Indication MUST be suppressed if, including this Indication, RepeatNoticationCount or fewer Indications for this event have been received during the prior time interval defined by RepeatNotificationInterval. If this Indication is the RepeatNotificationCount + 1 Indication, this Indication MUST be sent and all subsequent Indications for this event ignored until the RepeatNotificationGap has elapsed. A RepeatNotificationInterval MAY NOT overlap a RepeatNotificationGap time interval.</VALUE>
+ </QUALIFIER>
+ <QUALIFIER NAME="ValueMap" TYPE="string">
+ <VALUE.ARRAY>
+@@ -138,7 +135,7 @@
+ </PROPERTY>
+ <PROPERTY NAME="OtherRepeatNotificationPolicy" TYPE="string">
+ <QUALIFIER NAME="Description" TYPE="string">
+-<VALUE>A string defining \&quot;Other\&quot; values for RepeatNotificationPolicy. This value MUST be set to a non NULL value when RepeatNotificationPolicy is set to a value of 1 (\&quot;Other\&quot;). For all other values, the OtherRepeatNotificationPolicy MUST be NULL.</VALUE>
++<VALUE>A string defining &quot;Other&quot; values for RepeatNotificationPolicy. This value MUST be set to a non NULL value when RepeatNotificationPolicy is set to a value of 1 (&quot;Other&quot;). For all other values, the OtherRepeatNotificationPolicy MUST be NULL.</VALUE>
+ </QUALIFIER>
+ </PROPERTY>
+ <PROPERTY NAME="RepeatNotificationInterval" TYPE="uint64">
+@@ -167,4 +164,4 @@
+ </IMETHODRESPONSE>
+ </SIMPLERSP>
+ </MESSAGE>
+-</CIM>
++</CIM>
+\ No newline at end of file

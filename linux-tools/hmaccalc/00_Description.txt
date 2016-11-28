@@ -1,0 +1,38 @@
+The hmaccalc package contains tools to calculate HMAC (Hash-based Message
+Authentication Code) values for files.
+The names and interfaces were designed to mimic those of the sha1sum,
+sha256sum, sha384sum and sha512sum tools
+ provided by the coreutils package.
+
+binaries provided by this package includes:
+/usr/bin/sha1hmac
+/usr/bin/sha256hmac
+/usr/bin/sha384hmac
+/usr/bin/sha512hmac
+
+Functionality of these binaries to compute and/or verify HMAC and unkeyed
+checksum values for the contents of files.
+Reference: http://linux.die.net/man/8/sha256hmac
+
+Example: Compute HMAC and verify:
+================
+
+Compute HMAC with key
+
+#sha384hmac -K abcd  /etc/hosts
+1af9e2384358225d9a0ad72e929c990d381eaba1ff587757a49edc23255b492be4dcc20807f098ab0b039aaccf9dbce1
+/etc/hosts
+
+Put this format output in a file :
+#cat out
+1af9e2384358225d9a0ad72e929c990d381eaba1ff587757a49edc23255b492be4dcc20807f098ab0b039aaccf9dbce1
+/etc/hosts
+
+Now verify the HMAC,
+
+#sha384hmac -K abcd -c out
+/etc/hosts: OK 
+
+How to execute the test:
+cd /opt/fiv/ltp/testcases/fivextra/hmaccalc/test
+Execute ./hmaccalc.sh

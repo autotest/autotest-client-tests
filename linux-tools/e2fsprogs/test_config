@@ -1,0 +1,38 @@
+#
+# Test configuration
+#
+
+unset LANG LANGUAGE LC_ADDRESS LC_ALL LC_COLLATE LC_CTYPE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_TIME PAGER
+FSCK=/sbin/e2fsck
+MKE2FS=/sbin/mke2fs
+DUMPE2FS=/sbin/dumpe2fs
+TUNE2FS=/sbin/tune2fs
+CHATTR=/usr/bin/chattr
+LSATTR=/usr/bin/lsattr
+E2IMAGE=/usr/sbin/e2image
+E2IMAGE_EXE=/usr/sbin/e2image
+DEBUGFS=/sbin/debugfs
+DEBUGFS_EXE=/sbin/debugfs
+TEST_BITS=/sbin/debugfs
+RESIZE2FS_EXE=/usr/sbin/resize2fs
+RESIZE2FS=/usr/sbin/resize2fs
+E2UNDO_EXE=/usr/sbin/e2undo
+TEST_REL=progs/test_rel
+TEST_ICOUNT=progs/test_icount
+CRCSUM=progs/crcsum
+#LD_LIBRARY_PATH=/lib:/lib/ext2fs:/lib/e2p:/lib/et:/lib/ss
+LD_LIBRARY_PATH=/lib:/usr/lib
+TMPFILE=./test.img
+export LD_LIBRARY_PATH
+TZ=GMT
+export TZ
+LANG=C
+export LANG
+LC_ALL=C
+export LC_ALL
+E2FSCK_CONFIG=/dev/null
+export E2FSCK_CONFIG
+MKE2FS_CONFIG=./mke2fs.conf
+export MKE2FS_CONFIG
+E2FSPROGS_SKIP_PROGRESS=yes
+export E2FSPROGS_SKIP_PROGRESS

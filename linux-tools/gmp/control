@@ -1,0 +1,11 @@
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
+NAME = "gmp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gmp package 
+    ''' 
+path = '' 
+job.run_test('gmp',test_path=path) 

@@ -1,0 +1,84 @@
+<!-- Test configuration for 'cyrus-sasl' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cyrus-sasl</PACKAGE>
+    <COMMAND>cyrus-sasl.sh</COMMAND>
+    <ENV>
+        <VAR>SASL_SERVER</VAR>
+        <DESCRIPTION>The remote ip address of sasl server enabled to authenticate with a Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_USER</VAR>
+        <DESCRIPTION>The user name for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_PASS</VAR>
+        <DESCRIPTION>Password of the user for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <DESCRIPTION>Check that cyrus-sasl can manage users, domains, passwords and saslauthd. Also test plug-ins ANONYMOUS and LOGIN.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cyrus-sasl-md5</PACKAGE>
+    <COMMAND>cyrus-sasl.sh CRAM-MD5</COMMAND>
+    <ENV>
+        <VAR>SASL_SERVER</VAR>
+        <DESCRIPTION>The remote ip address of sasl server enabled to authenticate with a Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_USER</VAR>
+        <DESCRIPTION>The user name for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_PASS</VAR>
+        <DESCRIPTION>Password of the user for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <DESCRIPTION>Test Cyrus SASL plugin CRAM-MD5.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cyrus-sasl-plain</PACKAGE>
+    <COMMAND>cyrus-sasl.sh PLAIN</COMMAND>
+    <ENV>
+        <VAR>SASL_SERVER</VAR>
+        <DESCRIPTION>The remote ip address of sasl server enabled to authenticate with a Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_USER</VAR>
+        <DESCRIPTION>The user name for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_PASS</VAR>
+        <DESCRIPTION>Password of the user for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <DESCRIPTION>Test Cyrus SASL plugin PLAIN.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cyrus-sasl-gssapi</PACKAGE>
+    <COMMAND>cyrus-sasl.sh GSSAPI</COMMAND>
+    <ENV>
+        <VAR>SASL_SERVER</VAR>
+        <DESCRIPTION>The remote ip address of sasl server enabled to authenticate with a Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_USER</VAR>
+        <DESCRIPTION>The user name for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <ENV>
+        <VAR>SASL_PASS</VAR>
+        <DESCRIPTION>Password of the user for test on the Kerberos server.</DESCRIPTION>
+    </ENV>
+    <DESCRIPTION>Test Cyrus SASL plugin GSSAPI</DESCRIPTION>
+</TEST>
+
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>cyrus-sasl-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>

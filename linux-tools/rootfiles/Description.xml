@@ -1,0 +1,7 @@
+<!-- Test configuration for 'rootfiles' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>rootfiles</PACKAGE>
+    <COMMAND>rootfiles.sh</COMMAND>
+    <DESCRIPTION>Test the rootfiles package.</DESCRIPTION>
+</TEST>

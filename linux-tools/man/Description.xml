@@ -1,0 +1,19 @@
+<!-- Test configuration for 'man' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>man</PACKAGE>
+    <COMMAND>man.sh</COMMAND>
+    <DESCRIPTION>Add a man page file and create a new man database. Then do operations with the man page (or man database).</DESCRIPTION>
+</TEST>
+
+<!-- implicit tests -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>groff</PACKAGE>
+    <DESCRIPTION>Text processing system used in man.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libstdc++</PACKAGE>
+    <DESCRIPTION>groff needs libstdc++.so</DESCRIPTION>
+</TEST>

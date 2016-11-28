@@ -1,0 +1,9 @@
+<!-- Test configuration for 'device-mapper-multipath' -->
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>device-mapper-multipath</PACKAGE>
+    <COMMAND>dmsetup.sh</COMMAND>
+    <DESCRIPTION>Test the dmsetup utility</DESCRIPTION>
+</TEST>
+

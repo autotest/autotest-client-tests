@@ -1,0 +1,9 @@
+Description:
+
+NFSv4 User and Group ID Mapping Library.
+Library that handles mapping between names and ids for NFSv4
+
+Usage:
+To run test:
+cd /opt/fiv/ltp/testcases/fivextra/libnfsidmap
+./libnfsidmap.sh

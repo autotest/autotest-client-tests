@@ -1,0 +1,24 @@
+TEST:		perl-Env.sh
+
+AUTHOR:		Abhishek Sharma < abhisshm@in.ibm.com >
+
+SOURCE:		Testcases taken from perl-Env
+		See run-tests in perl-Env under t/ for the tests.
+
+
+Description : Perl maintains environment variables in a special hash named %ENV. For when this access method is inconvenient, 
+              the Perl module Env allows environment variables to be treated as scalar or array variables.
+
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Env
+
+./perl-Env.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Env/t
+perl <test.t>
+
+

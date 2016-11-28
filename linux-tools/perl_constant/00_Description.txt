@@ -1,0 +1,14 @@
+constant - Perl pragma to declare constants
+
+
+This pragma allows you to declare constants at compile-time.
+
+When a constant is used in an expression, Perl replaces it with its
+value at compile time, and may then optimize the expression further.
+
+
+How to run
+----------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-constant
+
+./perl-constant.sh

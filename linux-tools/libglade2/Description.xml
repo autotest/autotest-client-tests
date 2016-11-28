@@ -1,0 +1,15 @@
+<!-- Test configuration for 'libglade2' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libglade2</PACKAGE>
+    <COMMAND>libglade2.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the libglade2 program.</DESCRIPTION>
+</TEST>
+
+<!-- Test configuration for 'libglade2' -->
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>libglade2</PACKAGE>
+    <COMMAND>libglade2.txt</COMMAND>
+    <DESCRIPTION>Test that the libglade2 functions correctly.</DESCRIPTION>
+</TEST>

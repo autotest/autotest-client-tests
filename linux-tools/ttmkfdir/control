@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev>  " 
+NAME = "ttmkfdir" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ttmkfdir package 
+    ''' 
+path = '' 
+job.run_test('ttmkfdir',test_path=path) 

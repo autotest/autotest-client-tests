@@ -1,0 +1,23 @@
+===============================================================================
+#TestCase :       cron.sh
+#
+# Description:    This testcase tests if crontab <filename> installs the cronjob
+# and cron schedules the job correctly. The job is set such that it will run
+# forever every minute of the day.
+# The cronjob runs a program that will print a string followed by the current
+# date and time. Five samples are taken inorder to verify if cron job is run
+# every minute. It is not practical to check if it works for the remaining
+# fields of the crontab file also.
+#
+# Author:        Manoj Iyer manjo@mail.utexas.edu
+#
+===============================================================================
+Howto:
+
+Run cron.sh will test this package.
+
+Test coverage:
+----------------------------------
+crontab
+/etc/init.d/crond
+----------------------------------

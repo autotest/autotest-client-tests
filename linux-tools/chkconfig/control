@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>  " 
+NAME = "chkconfig" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test chkconfig package 
+    ''' 
+path = '' 
+job.run_test('chkconfig',test_path=path) 

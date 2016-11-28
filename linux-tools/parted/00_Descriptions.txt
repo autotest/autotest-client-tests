@@ -1,0 +1,10 @@
+GNU Parted manipulates partition tables.
+This is useful for creating space for new operating systems,
+reorganizing disk usage, copying data on hard disks and disk
+imaging. The package contains a library, libparted, as well
+as well as a command-line frontend, parted, which can also be
+used in scripts.
+
+Run the test
+---------------
+./parted.sh 

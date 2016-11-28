@@ -1,0 +1,17 @@
+; SOA and NS records.
+@	IN	SOA	ns.your.domain	root.your.domain (
+	40000           ; serial - database version number
+	1800            ; refresh - sec servers
+	300             ; retry - for refresh
+	3600000         ; expire - unrefreshed data
+	7200 )          ; min
+	NS      ns.your.domain
+ns.your.domain	IN	A 	127.0.0.1
+	
+; users
+root.passwd  IN   TXT    "root:x:0:0:root:/root:/bin/bash"
+0.uid        IN   CNAME   root.passwd           
+
+; groups
+root.group   IN   TXT    "sfcb:x:995"
+995.gid      IN   CNAME   sfcb.group

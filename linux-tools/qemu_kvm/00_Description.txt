@@ -1,0 +1,25 @@
+FIV for KVM /  qemu-kvm
+=======================
+
+               Test covers 4 cases
+
+               1) Kernel configuration required for KVM
+               2) KVM Modules(if built as modules)
+               3) KVM Runtime tests. ( /dev/kvm attributes)
+               4) Qemu KVM files
+
+               Note: The kvm-modules package is built separately out of the
+               kernel-source. Hence, the kvm, kvm-intel, kvm-amd
+               configs may not appear in the kernel config file installed.
+               So, we first check if the modules are installed.
+
+The test is a bit tricky since, the kvm-modules may ship the modules out of the kernel tree.
+In that case, the kernel config may not have any info about the KVM modules.
+So we first check to find if there are kvm modules on the system. (This is not a test, but a subtest).
+
+If we find the modules, we do not bother about the config options for these features. But other config options are verified.
+
+	Following files are for KVM Featurte Test
+		CimSetup.pdf
+		CimTestSetup.pdf (Modified to OS specific)
+		cimtest-snapshot.tar.gz

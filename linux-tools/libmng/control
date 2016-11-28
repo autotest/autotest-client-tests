@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  " 
+NAME = "libmng" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libmng package 
+    ''' 
+path = '' 
+job.run_test('libmng',test_path=path) 

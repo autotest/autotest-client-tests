@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  James He <hejianj@cn.ibm.com>  " 
+NAME = "tog_pegasus" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test tog-pegasus package 
+    ''' 
+path = '' 
+job.run_test('tog_pegasus',test_path=path) 

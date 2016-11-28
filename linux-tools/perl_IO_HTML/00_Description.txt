@@ -1,0 +1,14 @@
+Description:
+IO::HTML  provides an easy way to open a file containing HTML while
+automatically determining its encoding.
+This module opens a file and performs automatic charset detection based on the
+HTML5 encoding sniffing algorithm.  
+You can then pass the filehandle to HTML::Parser or a related module (or just
+read it yourself).
+
+Reference link : http://search.cpan.org/~cjm/IO-HTML-1.001/lib/IO/HTML.pm
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/perl-IO-HTML
+./perl-IO-HTML.sh
+

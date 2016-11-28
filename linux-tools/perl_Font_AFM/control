@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G basava@linux.vnet.ibm.com                            ##  " 
+NAME = "perl_Font_AFM" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Font-AFM package 
+    ''' 
+path = '' 
+job.run_test('perl_Font_AFM',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer  manjo@mail.utexas.edu  " 
+NAME = "ntp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ntp package 
+    ''' 
+path = '' 
+job.run_test('ntp',test_path=path) 

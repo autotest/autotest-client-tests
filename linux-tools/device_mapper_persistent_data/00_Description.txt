@@ -1,0 +1,26 @@
+Package Name : device-mapper-persistent-data
+Description :
+thin-provisioning-tools contains check,dump,restore,repair,rmap
+and metadata_size tools to manage device-mapper thin provisioning
+target metadata devices; cache check,dump,metadata_size,restore
+and repair tools to manage device-mapper cache metadata devices
+are included and era check, dump, restore and invalidate to manage
+snapshot eras
+
+A suite of tools for manipulating the metadata of the dm-thin
+device-mapper target.
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/device-mapper-persistent-data
+run the script
+./device-mapper-persistent-data.sh
+
+To run individual tests 
+cd /opt/fiv/ltp/testcases/fivextra/device-mapper-persistent-data/unit-tests
+execute the below command, it will list the test names to be given as input.
+unit-tests/unit_tests --gtest_list_tests
+then we can run individula test as shown below 
+ex:
+unit-tests/unit_tests --gtest_filter=ArrayBlockTests.*
+unit-tests/unit_tests --gtest_filter=BtreeTests.*
+

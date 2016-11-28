@@ -1,0 +1,51 @@
+===============================================================================
+# TestCase:     busybox.sh
+#
+# Description:  Test the functions provided by busybox.
+#
+# Dependency:   This requires the busybox.links file created by busybox's
+#               Makefile. Copy it to this directory.
+#
+# Hint:         Search for "main" to see where execution starts
+#
+# Author:       Robert Paulsen, rpaulsen@us.ibm.com
+
+===============================================================================
+Howto:
+
+Run busybox.sh will test this package.
+
+Test coverage:
+----------------------------------
+busybox cat
+busybox chmod
+busybox cp
+busybox cut
+busybox date
+busybox depmod
+busybox dmesg
+busybox diff
+busybox echo
+busybox grep
+busybox group
+busybox gunzip
+busybox head
+busybox insmod
+busybox ldd
+busybox ln
+busybox ls
+busybox lsmod
+busybox mkdir
+busybox mount
+busybox modprobe
+busybox rm
+busybox rmmod
+busybox ps
+busybox sed
+busybox sleep
+busybox sort
+busybox su
+busybox touch
+busybox useradd
+busybox userdel
+----------------------------------

@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev>  " 
+NAME = "libnl3" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libnl3 package 
+    ''' 
+path = '' 
+job.run_test('libnl3',test_path=path) 

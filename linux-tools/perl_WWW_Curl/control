@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G <basavarg@in.ibm.com>  " 
+NAME = "perl_WWW_Curl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-WWW-Curl package 
+    ''' 
+path = '' 
+job.run_test('perl_WWW_Curl',test_path=path) 

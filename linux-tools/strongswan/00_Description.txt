@@ -1,0 +1,16 @@
+Strongswan
+-----------------------------------------------------------------------------------------------
+Author:       	:	Anitha MallojiRao<amalloji@in.ibm.com>
+-----------------------------------------------------------------------------------------------
+Howto           :      	strongswan.txt 
+-----------------------------------------------------------------------------------------------
+Notes		:	Note that ipsec has ike1 and ike2 daemons
+			pluto is ike1 daemon
+			charon is ike2 daemon
+			ike1 is obsolete and we do not test it. 
+			ike1 and ike2 are not compatiable so ensure that pluto is not running on 
+                        any of the two machines.
+------------------------------------------------------------------------------------------------
+
+
+			

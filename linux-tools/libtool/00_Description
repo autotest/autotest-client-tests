@@ -1,0 +1,46 @@
+===============================================================================
+TestCase	: libtool.sh
+
+Description	: This test will test the libtool functions.
+
+Author		: CSDL
+		  James He <hejianj@cn.ibm.com>
+
+ChangeLog	: 2004-6-30  CREATE       CSDL
+                  2004-7-1   ENHANCED CSDL  enhance test07, add test08, test09 test10
+		  Jan 06 2005 Migrate to MCP4
+	
+===============================================================================
+Note:
+
+cpp-4.1     -- Probably not installed because of a conflict with decus-cpp. Will
+               need to uninstall decus-cpp then install cpp. It is included with
+               the LTP set of rpms.
+
+glibc-devel -- Will need to be installed manually. This one is not included in
+               the set of LTP rpms so will need to get it elsewhere.
+
+---------------------------------------------------------------------------------
+
+Howto:
+
+Invoke ./libtool.sh to start the test.
+----------------------------------
+Test-case coverage:
+LIBTOOL --mode=compile
+LIBTOOL --mode=link
+LIBTOOL --mode=install
+LIBTOOL --mode=finish
+LIBTOOL --mode=uninstall
+LIBTOOL --mode=clean
+----------------------------------
+
+======================================================================================
+TestCase        : libtool-ltdl.sh
+
+Description     : This test will test the libtool-ltdl functions.
+
+Usage           : To run all the tests
+		  cd /opt/fiv/ltp/testcases/fivextra/libtool
+		  ./libtool-ltdl.sh
+======================================================================================

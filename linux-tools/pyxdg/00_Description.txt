@@ -1,0 +1,11 @@
+PyXDG is a python library to access freedesktop.org standards.
+This has current support for:
+Desktop Entry Specification -  to parse and validate Desktop Entries
+Desktop Menu specification
+Icon theme specification - the path to a specified icon and validate themes
+Recent File Spec etc
+
+http://freedesktop.org/wiki/Software/pyxdg/
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/pyxdg
+./pyxdg.sh
