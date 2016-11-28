@@ -1,0 +1,5 @@
+libusb:
+	CSDL: xu zheng<zhengxu@cn.ibm.com>
+	test libusb
+usage:
+	libusb.sh

@@ -1,0 +1,25 @@
+Description:
+=========
+HTTP::Message - HTTP style message (base class)
+
+An HTTP::Message object contains some headers and a content body. The following methods are available:
+
+1.$mess = HTTP::Message->new( $headers, $content )
+	This constructs a new message object.
+2.$mess = HTTP::Message->parse( $str )
+	This constructs a new message object by parsing the given string.
+3.$mess->headers
+	Returns the embedded HTTP::Headers object.
+4.$mess->content( $bytes )
+	The content() method sets the raw content if an argument is given. If no argument is given the content is not touched. In either case the original raw content is returned.
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Message
+./perl-HTTP-Message.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Message
+perl t/<test.t>
+

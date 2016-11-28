@@ -1,0 +1,27 @@
+FLAC stands for Free Lossless Audio Codec. Grossly oversimplified, FLAC
+is similar to Ogg Vorbis, but lossless.
+
+FLAC is comprised of
+  * `libFLAC', a library which implements reference encoders and
+    decoders for native FLAC and Ogg FLAC, and a metadata interface
+  * `libFLAC++', a C++ object wrapper library around libFLAC
+  * `flac', a command-line program for encoding and decoding files
+  * `metaflac', a command-line program for viewing and editing FLAC
+    metadata
+
+
+The source has the following tests:
+
+test_flac: A basic sanity testing of flac command by encoding/decoding for different formats
+test_bin: A full regression of flac commands for each and every option with various formats  ( not including in my test)
+test_grabbag:  tests to check grabbag_ APIs which is for getting and storing cuesheet and picture information in a track
+test_libFLAC:  tests for FLAC C apis
+test_libFLAC++:  tests for FLAC C++ apis
+test_metaflac: tests metadata created for flac encoded files using metaflac command
+test_seeking : test APIs  for track seeking , each and every point seeking in track is checked ( takes also around 2-3 hours) ( not including in my  test script
+test_streams : test APIs for tracks streams , this test also takes around 2-3 hours ( not including in my test script)
+
+How to run:
+------------------------
+./flac.sh
+

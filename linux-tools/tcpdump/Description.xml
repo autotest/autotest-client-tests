@@ -1,0 +1,8 @@
+<!-- Test configuration for 'tcpdump' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>tcpdump</PACKAGE>
+    <COMMAND>tcpdump.sh</COMMAND>
+    <DESCRIPTION>Test the functionality of tcpdump and libpcap.</DESCRIPTION>
+</TEST>
+

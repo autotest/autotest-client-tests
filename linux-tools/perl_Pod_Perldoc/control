@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G <basavarg@in.ibm.com>  " 
+NAME = "perl_Pod_Perldoc" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Pod-Perldoc package 
+    ''' 
+path = '' 
+job.run_test('perl_Pod_Perldoc',test_path=path) 

@@ -1,0 +1,11 @@
+sblim-sfcb:
+	A Small Footprint CIM Broker.
+
+usage:
+	./sblim-sfcb-test.sh
+
+Coverage:
+	installation check
+	repository creation
+	service startup
+	some basic xml based queries

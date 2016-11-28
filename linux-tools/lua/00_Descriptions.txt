@@ -1,0 +1,17 @@
+Lua is a powerful light-weight programming language designed for
+extending applications. Lua is also frequently used as a
+general-purpose, stand-alone language. Lua is free software.
+Lua combines simple procedural syntax with powerful data description
+constructs based on associative arrays and extensible semantics. Lua
+is dynamically typed, interpreted from bytecodes, and has automatic
+memory management with garbage collection, making it ideal for
+configuration, scripting, and rapid prototyping.
+
+How To Run:
+--------------
+cd /opt/fiv/ltp/testcases/fivextra/lua
+./lua.sh
+
+Run each test Individually:
+---------------------------
+In test dir: lua "xxx.lua"

@@ -1,0 +1,8 @@
+<!-- Test configuration for 'pixman' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>pixman</PACKAGE>
+    <COMMAND>pixman.sh</COMMAND>
+    <DESCRIPTION>Test the low level functionality of pixman.</DESCRIPTION>
+</TEST>
+

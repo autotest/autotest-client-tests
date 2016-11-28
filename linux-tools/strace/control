@@ -1,0 +1,11 @@
+AUTHOR = " Manoj Iyer <manjo@mail.utexas.edu>  " 
+NAME = "strace" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test strace package 
+    ''' 
+path = '' 
+job.run_test('strace',test_path=path) 

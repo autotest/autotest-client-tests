@@ -1,0 +1,19 @@
+
+Description : perl-Font-AFM is interface to Adobe Font Metrics files
+
+This module implements the Font::AFM class. Objects of this class are initialized from an AFM (Adobe Font Metrics) file and allow you to obtain information about the font and the metrics of the various glyphs in the font.
+
+ use Font::AFM;
+ $h = new Font::AFM "Helvetica";
+ $copyright = $h->Notice;
+ $w = $h->Wx->{"aring"};
+ $w = $h->stringwidth("Gisle", 10);
+ $h->dump;  # for debugging
+
+Source : http://search.cpan.org/~gaas/Font-AFM-1.20/AFM.pm
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/perl-Font-AFM
+run the script
+./perl-Font-AFM.sh
+

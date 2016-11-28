@@ -1,0 +1,7 @@
+<!-- Test configuration for 'harfbuzz' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+<PACKAGE>harfbuzz</PACKAGE>
+<COMMAND>harfbuzz.sh</COMMAND>
+<DESCRIPTION>Test harfbuzz package</DESCRIPTION>
+</TEST>

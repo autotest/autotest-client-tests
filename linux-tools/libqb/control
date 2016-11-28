@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Sharma < abhisshm@in.ibm.com >                                   ##  " 
+NAME = "libqb" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libqb package 
+    ''' 
+path = '' 
+job.run_test('libqb',test_path=path) 

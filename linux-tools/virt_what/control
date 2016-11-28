@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "virt_what" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test virt-what package 
+    ''' 
+path = '' 
+job.run_test('virt_what',test_path=path) 

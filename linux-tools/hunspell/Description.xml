@@ -1,0 +1,8 @@
+<!-- Test configuration for 'hunspell' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>hunspell</PACKAGE>
+    <COMMAND>hunspell.sh</COMMAND>
+    <DESCRIPTION>Test hunspell.</DESCRIPTION>
+</TEST>
+

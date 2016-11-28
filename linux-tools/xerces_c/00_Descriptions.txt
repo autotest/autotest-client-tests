@@ -1,0 +1,13 @@
+xerces-c
+-----------------------------------------------------------------------------------------------
+Author          :       Pravin S. Gaikar, prgaikar@in.ibm.com
+-----------------------------------------------------------------------------------------------
+Howto           :       xerces-c.sh
+-----------------------------------------------------------------------------------------------
+Evaluation      :       Run as a bash script.
+-----------------------------------------------------------------------------------------------
+Description	:	Xerces-C give your application the ability to read and write XML data.
+			Incorporates samples from,
+			http://xerces.apache.org/xerces-c/samples.html
+-----------------------------------------------------------------------------------------------
+Note:		:	Depends on executables in xerces-c-tests-xxxxxxxxxxx.xx.x86_64.rpm

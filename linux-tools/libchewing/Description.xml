@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libchewing' -->
+<TEST>
+    <TYPE>AUTO</TYPE> 
+    <PACKAGE>libchewing</PACKAGE>
+    <COMMAND>libchewing.sh</COMMAND>
+    <DESCRIPTION>Testcase for libchewing</DESCRIPTION>
+</TEST>

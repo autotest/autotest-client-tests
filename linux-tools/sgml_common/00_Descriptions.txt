@@ -1,0 +1,16 @@
+sgml-common:
+          The testcase for automated test for sgml-common
+
+usage:
+       ./sgml-common.sh
+
+Note:
+----------
+
+The SGML Common package contains install-catalog.
+This is useful for creating and maintaining centralized SGML catalogs,
+referencing other "ordinary" SGML or XML Open Catalogs.
+There are scattered throughout the /usr/share/sgml directory tree.
+
+Installed Programs: install-catalog and sgmlwhich
+Installed Directories: /etc/sgml, /usr/share/sgml 

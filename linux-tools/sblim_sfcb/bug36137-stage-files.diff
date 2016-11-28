@@ -1,0 +1,137 @@
+diff -upNr tests/stage.bak/default.reg tests/stage/default.reg
+--- tests/stage.bak/default.reg	2007-07-10 19:44:29.000000000 +0000
++++ tests/stage/default.reg	2007-07-12 21:51:34.000000000 +0000
+@@ -1,20 +1,30 @@
+ [$ClassProvider$]
+    provider: ClassProvider
+-   location: sfcClassProvider
++   location: sfcClassProviderGz
+    type: class method
+    unload: never
++   namespace: *
+ #
+ [$DefaultProvider$]
+    provider: InternalProvider
+    location: sfcInternalProvider
+    type: instance association method
+    unload: never
++   namespace: *
+ #
+ [$InterOpProvider$]
+    provider: InteropProvider
+    location: sfcInteropProvider
+    type: instance association method
+    unload: never
++   namespace: root/interop
++#
++[$QualifierProvider$]
++   provider: QualifierProvider
++   location: sfcQualifierProvider
++   type: qualifier
++   unload: never
++   namespace: *
+ #
+ [CIM_IndicationHandlerCIMXML]
+    provider: IndCIMXMLHandler
+@@ -28,6 +38,18 @@
+    type: instance method
+    namespace: root/interop
+ #
++[CIM_IndicationSubscription]
++   provider: InteropProvider
++   location: sfcInteropProvider
++   type: instance association method
++   namespace: root/interop
++#
++[CIM_IndicationFilter]
++   provider: InteropProvider
++   location: sfcInteropProvider
++   type: instance association method
++   namespace: root/interop
++#
+ [CIM_Namespace]
+    provider: ServerProvider
+    location: sfcInteropServerProvider
+@@ -52,3 +74,4 @@
+    type: instance
+    namespace: root/interop
+ #
++
+diff -upNr tests/stage.bak/mofs/indication.mof tests/stage/mofs/indication.mof
+--- tests/stage.bak/mofs/indication.mof	1970-01-01 00:00:00.000000000 +0000
++++ tests/stage/mofs/indication.mof	2007-07-12 21:51:34.000000000 +0000
+@@ -0,0 +1,21 @@
++//
++// indication classes for mofc
++//
++//
++
++// ===================================================================
++// 	dummy classes to get event classes loaded by mofc
++// ===================================================================
++
++class DMY_ProcessIndication : CIM_ProcessIndication
++{
++};
++
++class DMY_InstCreation : CIM_InstCreation
++{
++};
++
++class DMY_InstModification : CIM_InstModification
++{
++};
++
+diff -upNr tests/stage.bak/mofs/root/interop/interop.mof tests/stage/mofs/root/interop/interop.mof
+--- tests/stage.bak/mofs/root/interop/interop.mof	2007-07-10 19:44:29.000000000 +0000
++++ tests/stage/mofs/root/interop/interop.mof	2007-07-12 21:51:34.000000000 +0000
+@@ -7,22 +7,32 @@
+ // 	dummy classes to get event classes loaded by mofc
+ // ===================================================================
+ 
+-class DMY_IndicationSubscription : CIM_IndicationSubscription
++class DMY_ObjectManager : CIM_ObjectManager
+ {
+ };
+ 
+-class DMY_IndicationFilter : CIM_IndicationFilter
++class DMY_ObjectManagerCommunicationMechanism : CIM_ObjectManagerCommunicationMechanism
++{
++};
++
++class DMY_RegisteredSubProfile : CIM_RegisteredSubProfile
+ {
+ };
+ 
+-class DMY_ProcessIndication : CIM_ProcessIndication
++class DMY_Namespace : CIM_Namespace
+ {
+ };
+ 
+-class DMY_InstCreation : CIM_InstCreation
++class DMY_SubProfileRequiresProfile : CIM_SubProfileRequiresProfile
+ {
+ };
+ 
++class __Namespace
++{
++  [key]
++  string Name;
++};
++
+ class DMY_ListenerDestinationCIMXML : CIM_ListenerDestinationCIMXML
+ {
+ };
+@@ -30,3 +40,12 @@ class DMY_ListenerDestinationCIMXML : CI
+ class DMY_IndicationHandlerCIMXML : CIM_IndicationHandlerCIMXML
+ {
+ };
++
++class DMY_IndicationFilter : CIM_IndicationFilter
++{
++};
++
++class DMY_IndicationSubscription : CIM_IndicationSubscription
++{
++};
++

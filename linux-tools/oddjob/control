@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##  " 
+NAME = "oddjob" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test oddjob package 
+    ''' 
+path = '' 
+job.run_test('oddjob',test_path=path) 

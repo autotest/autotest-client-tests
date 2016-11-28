@@ -1,0 +1,11 @@
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
+NAME = "gnupg2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gnupg2 package 
+    ''' 
+path = '' 
+job.run_test('gnupg2',test_path=path) 

@@ -1,0 +1,14 @@
+authconfig, authconfig-tui is an interface for configuring system authentication resources
+authconfig provides a simple interface to configure various resources.It provides lots of 
+options like enable/disable resources , update , save/restore backup etc.
+authconfig-tui supports all options of authconfig but it implies --update as the default action.
+authconfig-tui provides a text user interface to handle this.
+
+How To Run:
+------------
+In our tests, we have one automated test and one manual test.
+For auto test to run :
+./authconfig-test.sh
+
+For manual test to run :
+Check authconfig-test.txt

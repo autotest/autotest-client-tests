@@ -1,0 +1,9 @@
+Network Security Services (nss) package is a set of libraries and
+utilities to enable cross platform secure server/client communication.
+Tests available in source exercise nss-tools binaries, which implicitly
+tests nspr (netscape portable runtime libraries) and sqlite database
+as its certificate db. Hence, we can have them running as FIV.
+
+To run FIV tests:
+   ./nss.sh
+   ./nss-sysinit.sh

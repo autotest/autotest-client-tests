@@ -1,0 +1,30 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : perl-Business-ISBN.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from perl-Business-ISBN
+#		See run-tests in perl-Business-ISBN.sh under t/ for the tests.
+#
+#
+#  Description : This modules handles International Standard Book Numbers,
+#  including ISBN-10 and ISBN-13.
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Business-ISBN
+./perl-Business-ISBN.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Business-ISBN
+perl t/<test.t>
+
+

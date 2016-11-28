@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G <basavarg@in.ibm.com>  " 
+NAME = "python_configobj" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-configobj package 
+    ''' 
+path = '' 
+job.run_test('python_configobj',test_path=path) 

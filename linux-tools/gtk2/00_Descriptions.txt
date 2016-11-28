@@ -1,0 +1,29 @@
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects ranging from
+small one-off tools to complete application suites.
+
+This package provides 3 binaries and few libraries like :
+
+rpm -ql gtk2 |grep bin
+/usr/bin/gtk-query-immodules-2.0-64
+/usr/bin/gtk-update-icon-cache
+/usr/bin/update-gtk-immodules
+
+/usr/lib64/gtk-2.0/modules/libferret.so
+/usr/lib64/gtk-2.0/modules/libgail.so
+/usr/lib64/libgailutil.so.18
+/usr/lib64/libgailutil.so.18.0.1
+/usr/lib64/libgdk-x11-2.0.so.0
+/usr/lib64/libgdk-x11-2.0.so.0.2400.22
+/usr/lib64/libgtk-x11-2.0.so.0
+/usr/lib64/libgtk-x11-2.0.so.0.2400.22
+
+HOW TO RUN THE TESTS:
+=====================
+Automated Tests:
+cd /opt/fiv/ltp/testcases/fivextra/gtk2
+./gtk2.sh
+
+Manual Test:
+cd /opt/fiv/ltp/testcases/fivextra/gtk2
+Follow the instructions in gtk2.txt

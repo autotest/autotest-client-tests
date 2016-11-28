@@ -1,0 +1,34 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : perl-Bit-Vector.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from perl-Bit-Vector
+#		See run-tests in perl-Bit-Vector.sh under t/ for the tests.
+#
+#
+#  Description : $version = Bit::Vector->Version();
+#
+#  		Returns the current version number of this module.
+#  		$bits = Bit::Vector->Word_Bits();
+#  		Returns the number of bits of an "unsigned int" (C type) on your machine.
+#  		(An "unsigned int" is also called a "machine word", hence the name of this
+#  		method.)
+#
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Bit-Vector
+./perl-Bit-Vector.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Bit-Vector
+perl t/<test.t>

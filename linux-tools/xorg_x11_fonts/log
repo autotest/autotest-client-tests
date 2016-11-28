@@ -1,0 +1,147 @@
+22441 execve("/usr/bin/xlsfonts", ["xlsfonts", "-lllo", "-fn", "-adobe-times-medium-r-normal--34"...], ["XDG_SESSION_ID=3845", "HOSTNAME=mcptest27.austin.ibm.co"..., "SELINUX_ROLE_REQUESTED=", "SHELL=/bin/bash", "TERM=xterm", "HISTSIZE=1000", "SSH_CLIENT=9.124.213.17 36140 22", "SELINUX_USE_CURRENT_RANGE=", "OLDPWD=/opt/fiv/ltp/testcases/fi"..., "SSH_TTY=/dev/pts/0", "USER=root", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "TST_TOTAL=3", "PATH=/opt/fiv/ltp/testcases/bin:"..., "MAIL=/var/spool/mail/root", "PWD=/opt/fiv/ltp/testcases/fivex"..., "LANG=POSIX", "TCID=fontcheck.sh", "SELINUX_LEVEL_REQUESTED=", "HISTCONTROL=ignoredups", "HOME=/root", "SHLVL=2", "TST_COUNT=2", "LOGNAME=root", "SSH_CONNECTION=9.124.213.17 3614"..., "LESSOPEN=||/usr/bin/lesspipe.sh "..., "DISPLAY=:100.0", "XDG_RUNTIME_DIR=/run/user/0", "_=/usr/bin/strace"]) = 0
+22441 brk(0)                            = 0x10a0000
+22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291d09000
+22441 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+22441 open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=302129, st_mode=S_IFREG|0644, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=160, st_size=74958, st_atime=2016/09/24-03:48:37, st_mtime=2016/09/15-10:41:55, st_ctime=2016/09/15-10:41:55}) = 0
+22441 mmap(NULL, 74958, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fc291cf6000
+22441 close(3)                          = 0
+22441 open("/lib64/libX11.so.6", O_RDONLY|O_CLOEXEC) = 3
+22441 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\200\337\1\0\0\0\0\0"..., 832) = 832
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=36572, st_mode=S_IFREG|0755, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=2584, st_size=1318840, st_atime=2016/09/24-03:48:37, st_mtime=2015/12/03-18:33:09, st_ctime=2016/09/12-03:34:05}) = 0
+22441 mmap(NULL, 3399136, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc2917ab000
+22441 mprotect(0x7fc2918e3000, 2097152, PROT_NONE) = 0
+22441 mmap(0x7fc291ae3000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x138000) = 0x7fc291ae3000
+22441 close(3)                          = 0
+22441 open("/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+22441 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 \34\2\0\0\0\0\0"..., 832) = 832
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=37660, st_mode=S_IFREG|0755, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=4136, st_size=2112384, st_atime=2016/09/24-03:48:37, st_mtime=2016/08/02-22:10:04, st_ctime=2016/09/12-03:34:04}) = 0
+22441 mmap(NULL, 3936832, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc2913e9000
+22441 mprotect(0x7fc2915a0000, 2097152, PROT_NONE) = 0
+22441 mmap(0x7fc2917a0000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b7000) = 0x7fc2917a0000
+22441 mmap(0x7fc2917a6000, 16960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fc2917a6000
+22441 close(3)                          = 0
+22441 open("/lib64/libxcb.so.1", O_RDONLY|O_CLOEXEC) = 3
+22441 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\234\0\0\0\0\0\0"..., 832) = 832
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=37651, st_mode=S_IFREG|0755, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=288, st_size=141080, st_atime=2016/09/24-03:48:37, st_mtime=2015/12/03-17:53:51, st_ctime=2016/09/12-03:34:05}) = 0
+22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291cf5000
+22441 mmap(NULL, 2233224, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc2911c7000
+22441 mprotect(0x7fc2911e8000, 2093056, PROT_NONE) = 0
+22441 mmap(0x7fc2913e7000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x20000) = 0x7fc2913e7000
+22441 close(3)                          = 0
+22441 open("/lib64/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+22441 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\320\16\0\0\0\0\0\0"..., 832) = 832
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=36356, st_mode=S_IFREG|0755, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=40, st_size=19520, st_atime=2016/09/24-03:48:37, st_mtime=2016/08/02-22:10:07, st_ctime=2016/09/12-03:34:05}) = 0
+22441 mmap(NULL, 2109744, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc290fc3000
+22441 mprotect(0x7fc290fc6000, 2093056, PROT_NONE) = 0
+22441 mmap(0x7fc2911c5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7fc2911c5000
+22441 close(3)                          = 0
+22441 open("/lib64/libXau.so.6", O_RDONLY|O_CLOEXEC) = 3
+22441 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\16\0\0\0\0\0\0"..., 832) = 832
+22441 fstat(3, {st_dev=makedev(8, 5), st_ino=36401, st_mode=S_IFREG|0755, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=32, st_size=15512, st_atime=2016/09/24-03:48:37, st_mtime=2015/08/26-08:27:09, st_ctime=2016/09/12-03:34:05}) = 0
+22441 mmap(NULL, 2109736, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc290dbf000
+22441 mprotect(0x7fc290dc1000, 2097152, PROT_NONE) = 0
+22441 mmap(0x7fc290fc1000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7fc290fc1000
+22441 close(3)                          = 0
+22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291cf4000
+22441 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291cf2000
+22441 arch_prctl(ARCH_SET_FS, 0x7fc291cf2740) = 0
+22441 mprotect(0x7fc2917a0000, 16384, PROT_READ) = 0
+22441 mprotect(0x7fc290fc1000, 4096, PROT_READ) = 0
+22441 mprotect(0x7fc2911c5000, 4096, PROT_READ) = 0
+22441 mprotect(0x7fc2913e7000, 4096, PROT_READ) = 0
+22441 mprotect(0x7fc291ae3000, 4096, PROT_READ) = 0
+22441 mprotect(0x603000, 4096, PROT_READ) = 0
+22441 mprotect(0x7fc291d0a000, 4096, PROT_READ) = 0
+22441 munmap(0x7fc291cf6000, 74958)     = 0
+22441 brk(0)                            = 0x10a0000
+22441 brk(0x10c2000)                    = 0x10c2000
+22441 brk(0)                            = 0x10c2000
+22441 socket(PF_LOCAL, SOCK_STREAM|SOCK_CLOEXEC, 0) = 3
+22441 connect(3, {sa_family=AF_LOCAL, sun_path=@"/tmp/.X11-unix/X100"}, 22) = 0
+22441 getpeername(3, {sa_family=AF_LOCAL, sun_path=@"/tmp/.X11-unix/X100"}, [22]) = 0
+22441 uname({sysname="Linux", nodename="mcptest27.austin.ibm.com", release="3.10.0-327.28.3.el7_2.ibm.1.x86_64", version="#1 SMP Thu Aug 18 16:34:40 CDT 2016", machine="x86_64", domainname="(none)"}) = 0
+22441 access("/root/.Xauthority", R_OK) = 0
+22441 open("/root/.Xauthority", O_RDONLY) = 4
+22441 fstat(4, {st_dev=makedev(8, 5), st_ino=139525, st_mode=S_IFREG|0600, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=8, st_size=118, st_atime=2016/09/24-03:48:37, st_mtime=2016/09/12-13:27:45, st_ctime=2016/09/12-13:27:45}) = 0
+22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291d08000
+22441 read(4, "\0\0\0\4\t(\302`\0\0014\0\22MIT-MAGIC-COOKIE-1\0"..., 4096) = 118
+22441 read(4, "", 4096)                 = 0
+22441 close(4)                          = 0
+22441 munmap(0x7fc291d08000, 4096)      = 0
+22441 fcntl(3, F_GETFL)                 = 0x2 (flags O_RDWR)
+22441 fcntl(3, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+22441 fcntl(3, F_SETFD, FD_CLOEXEC)     = 0
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"l\0\v\0\0\0\0\0\0\0\0\0", 12}, {"", 0}], 2) = 12
+22441 recvfrom(3, 0x10a1330, 8, 0, 0, 0) = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvfrom(3, "\1\0\v\0\0\0\373\2", 8, 0, NULL, NULL) = 8
+22441 recvfrom(3, "\360\216\262\0\0\0@\0\377\377\37\0\0\1\0\0\3\0\377\377\1\6\0\0  \10\377\0\0\0\0"..., 3052, 0, NULL, NULL) = 3052
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"b\0\5\0\f\0\0\0BIG-REQUESTS", 20}], 1) = 20
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\1\0\0\0\0\0\1\205\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"\205\0\1\0", 4}], 1) = 4
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\2\0\0\0\0\0\377\377?\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff84022520, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"7\0\5\0\0\0@\0i\1\0\0\10\0\0\0\377\377\377\0\24\0\6\0i\1\0\0\27\0\0\0"..., 44}, {NULL, 0}, {"", 0}], 3) = 44
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff84022570, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"b\0\5\0\t\0@\0", 8}, {"XKEYBOARD", 9}, {"\0\0\0", 3}], 3) = 20
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\5\0\0\0\0\0\1\207U\211\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff84022440, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff84022440, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"\207\0\2\0\1\0\0\0", 8}, {NULL, 0}, {"", 0}], 3) = 8
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\1\6\0\0\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff840224f0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff840224f0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"b\0\6\0\17\0\0\0", 8}, {"XFree86-Bigfont", 15}, {"\0", 1}], 3) = 24
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\7\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff840224c0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff840224c0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"-\0\23\0\1\0@\0=\0\0\0-adobe-times-medium-"..., 84}, {NULL, 0}, {"", 0}], 3) = 84
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\t\0=u\0\0\373\377\1\0\0\0\375\377\356\377\0\0\0\0\0\0\n\0!\0\"\0%\0"..., 4096}], msg_controllen=0, msg_flags=0}, 0) = 4096
+22441 brk(0)                            = 0x10c2000
+22441 brk(0x10eb000)                    = 0x10eb000
+22441 recvfrom(3, "\24\0\27\0\0\0\0\0\1\0\31\0\33\0\27\0\0\0\0\0\1\0\17\0\21\0\27\0\0\0\0\0"..., 115988, 0, NULL, NULL) = 115988
+22441 recvmsg(3, 0x7fff84022500, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff84022500, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff84022500, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{".\0\2\0\1\0@\0-\0\23\0\2\0@\0=\0-t-adobe-times"..., 92}, {NULL, 0}, {"", 0}], 3) = 92
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\f\0=u\0\0\373\377\1\0\0\0\375\377\356\377\0\0\0\0\0\0\n\0!\0\"\0%\0"..., 4096}], msg_controllen=0, msg_flags=0}, 0) = 4096
+22441 recvfrom(3, "\24\0\27\0\0\0\0\0\1\0\31\0\33\0\27\0\0\0\0\0\1\0\17\0\21\0\27\0\0\0\0\0"..., 115988, 0, NULL, NULL) = 115988
+22441 recvmsg(3, 0x7fff8401e4a0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff8401e4a0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff8401e4a0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff8401e4a0, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 brk(0)                            = 0x10eb000
+22441 brk(0x1126000)                    = 0x1126000
+22441 fstat(1, {st_dev=makedev(0, 8), st_ino=6161866, st_mode=S_IFIFO|0600, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=0, st_size=0, st_atime=2016/09/24-03:48:37, st_mtime=2016/09/24-03:48:37, st_ctime=2016/09/24-03:48:37}) = 0
+22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291d08000
+22441 poll([{fd=3, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=3, revents=POLLOUT}])
+22441 writev(3, [{"\20\0\6\0\r\0@\0AVERAGE_WIDTHado", 24}, {NULL, 0}, {"", 0}], 3) = 24
+22441 poll([{fd=3, events=POLLIN}], 1, 4294967295) = 1 ([{fd=3, revents=POLLIN}])
+22441 recvmsg(3, {msg_name(0)=NULL, msg_iov(1)=[{"\1\0\r\0\0\0\0\0f\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 4096}], msg_controllen=0, msg_flags=0}, 0) = 32
+22441 recvmsg(3, 0x7fff8401e580, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 recvmsg(3, 0x7fff8401e580, 0)     = -1 EAGAIN (Resource temporarily unavailable)
+22441 open("/usr/share/X11/XKeysymDB", O_RDONLY) = -1 ENOENT (No such file or directory)
+22441 write(1, "name:  -adobe-times-medium-r-nor"..., 4096) = 4096
+22441 write(1, "  0  0x0000  A\n\t0x0042 (66)\t  22"..., 4096) = 4096
+22441 write(1, "  0  0x0000  .\n\t0x008d (141)\t   "..., 4096) = -1 EPIPE (Broken pipe)
+22441 --- SIGPIPE {si_signo=SIGPIPE, si_code=SI_USER, si_pid=22441, si_uid=0} ---
+22441 +++ killed by SIGPIPE +++

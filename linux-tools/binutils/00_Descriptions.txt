@@ -1,0 +1,18 @@
+gprof
+--------------------------------------------------------------------------------
+Author          :	Xu Zheng 
+--------------------------------------------------------------------------------
+Howto           :	run gprof.sh
+--------------------------------------------------------------------------------
+Evaluation      :	
+			1.Output Options
+			2.Analysis Options    
+			3.Miscellaneous Options   
+--------------------------------------------------------------------------------
+Notes           :
+	Option -C will cause basic-block execution counts to be tallied and displayed.
+	Becasue gcc's -a option has removed, the profile data file does not contains
+	basic-block count records. So jump over this option.
+     
+--------------------------------------------------------------------------------
+

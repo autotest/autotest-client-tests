@@ -1,0 +1,14 @@
+<!-- Test configuration for 'strongswan' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>strongswan</PACKAGE>
+    <COMMAND>strongswan.sh</COMMAND>
+    <DESCRIPTION>Basic tests to verify Strongswan package</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>strongswan</PACKAGE>
+    <COMMAND>Strongswan.txt</COMMAND>
+    <DESCRIPTION>Test Strongswan package</DESCRIPTION>
+</TEST>
+

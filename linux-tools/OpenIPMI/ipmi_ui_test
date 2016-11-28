@@ -1,0 +1,317 @@
+
+Test Case
+
+1.	ipmi_ui is a screen based program that allows access to IPMI entities and sensors and OpenIPMI controls.
+
+	Start ipmi_ui
+		ipmi_ui smi 0
+
+		this should split screen in two 
+		right half of screen will dump log messages 
+		left half will show o/p of your commands [display windiow]
+		bottom left side there will be a prompt where you can give commands
+
+		expected o/p
+
+──────────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────
+Welcome to the IPMI UI version 2.0.13                                                 │1229014573.652368: Due to event 0x007f
+  display_win - Sets the display window (left window) for scrolling                   │1229014573.652819: Unknown event from mc (0 20)
+  log_win - Sets the log window (right window) for scrolling                          │007f:02 1229014184000000000:  a8 44 41 49 20 00 04 0d 60 6f 00 ff ff
+  entities - list all the entities the UI knows about                                 │1229014573.659039: Sensor 4.3.Drive 3 Status0: 0 assertion
+  entity <entity name> - list all the info about an entity                            │1229014573.659485:   severity is 0
+  hs_get_act_time <entity name> - Get the host-swap auto-activate time                │1229014573.659928:   prev severity is 0
+  hs_set_act_time <entity name> <time in nanoseconds> - Set the host-swap auto-activat│1229014573.660375: Due to event 0x0080
+e time                                                                                │1229014573.660826: Unknown event from mc (0 20)
+  hs_get_deact_time <entity name> - Get the host-swap auto-deactivate time            │0080:02 1229014184000000000:  a8 44 41 49 20 00 04 0d 62 6f 00 ff ff
+  hs_set_deact_time <entity name> <time in nanoseconds> - Set the host-swap auto-deact│1229014573.667328: Sensor 20.2.VRM Status0: 0 assertion
+ivate time                                                                            │1229014573.667775:   severity is 0
+  hs_activation_request <entity name> - Act like a user requested an activation of the│1229014573.668214:   prev severity is 0
+ entity.  This is generally equivalent to closing the handle latch or something like t│1229014573.668662: Due to event 0x0081
+hat.                                                                                  │1229014573.669113: Unknown event from mc (0 20)
+  hs_activate <entity name> - activate the given entity                               │0081:02 1229014184000000000:  a8 44 41 49 20 00 04 08 25 6f 00 ff ff
+  hs_deactivate <entity name> - deactivate the given entity                           │1229014573.674944: Sensor 4.1.Drive 1 Status0: 0 assertion
+  hs_state <entity name> - Return the current hot-swap state                          │1229014573.675390:   severity is 0
+  hs_check - Check all the entities hot-swap states                                   │1229014573.675831:   prev severity is 0
+  sensors <entity name> - list all the sensors that monitor the entity                │1229014573.676279: Due to event 0x0082
+  sensor <sensor name> - Pull up all the information on the sensor and start monitorin│1229014573.676730: Unknown event from mc (0 20)
+g it                                                                                  │0082:02 1229014553000000000:  19 46 41 49 20 00 04 0d 60 6f 00 ff ff
+  fru <entity name> - dump fru information                                            │1229014573.683036: Sensor 4.3.Drive 3 Status0: 0 assertion
+  dump_fru <is_logical> <device_address> <device_id> <lun> <private_bus>  <channel> - │1229014573.683482:   severity is 0
+dump a fru given all it's insundry information                                        │1229014573.683923:   prev severity is 0
+  rearm - rearm the current sensor                                                    │1229014573.684370: Due to event 0x0083
+  set_hysteresis <val> - Sets the hysteresis for the current sensor                   │1229014573.684820: Unknown event from mc (0 20)
+  get_hysteresis - Gets the hysteresis for the current sensor                         │0083:02 1229014559000000000:  1f 46 41 49 20 00 04 0d 62 6f 00 ff ff
+  controls <entity name> - list all the controls attached to the entity               │1229014573.692057: Sensor 20.2.VRM Status0: 0 assertion
+  control <control name> - Pull up all the information on the control and start monito│1229014573.692503:   severity is 0
+ring it                                                                               │1229014573.692943:   prev severity is 0
+  readlanparm <channel> <mc num> <channel> - read lanparm information from an MC      │0087:02 1229014566000000000:  26 46 41 49 20 00 04 08 70 6f 00 ff ff
+  viewlanparm - show current lanparm information                                      │
+──────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────
+> 
+
+	Wait for one minute for utilitu to dump all log messages. 
+	Note that some comands will be accompanied with log messages, this document does not list log mesages 
+
+2.	View entities
+
+	 >entities
+
+	expected o/p
+
+Entities:                                                                
+  10.1 (Power Supply 1) fru  present                                     
+  10.2 (Power Supply 2) fru  not present                                 
+  14.1 (Power Backplane) fru  not present                                
+  15.1 (DASD) fru  not present                                           
+  46.1 (Basebrd Mgt Ctlr) mc  present                                    
+  12.1 (front_panel_board) unknown  present                              
+  21.1 (power_management_board) unknown  present                         
+  29.1 (fan_cooling) unknown  not present                                
+  29.2 (fan_cooling) unknown  not present                                
+  29.3 (fan_cooling) unknown  present                                    
+  29.4 (fan_cooling) unknown  present                                    
+  29.5 (fan_cooling) unknown  not present                                
+  29.6 (fan_cooling) unknown  not present                                
+  29.7 (fan_cooling) unknown  not present                                
+  29.8 (fan_cooling) unknown  present                                    
+  29.9 (fan_cooling) unknown  present                                    
+  29.10 (fan_cooling) unknown  present                                   
+  3.1 (processor) unknown  present                                       
+  3.2 (processor) unknown  present                                       
+  7.1 (system_board) unknown  present                                    
+  11.1 (add_in_card) unknown  present                                    
+  31.1 (cable_interconnect) unknown  present                             
+  34.1 (bios) unknown  present                                           
+  23.1 (system_chassis) unknown  present                                 
+  4.1 (disk) unknown  present                                            
+  4.2 (disk) unknown  not present                                        
+  4.3 (disk) unknown  present                                            
+  4.4 (disk) unknown  not present                                        
+  4.5 (disk) unknown  not present                                        
+  4.6 (disk) unknown  not present                                        
+  4.7 (disk) unknown  not present                                        
+  4.8 (disk) unknown  not present                                        
+  4.9 (disk) unknown  present                                            
+  20.2 (power_module) unknown  present                                   
+  0.1 (unspecified) unknown  present                                     
+
+
+3.	View entity detail
+
+	Use entity no.s as apearing above
+
+	>entity 10.1
+
+	expected o/p
+
+Entity 10.1 (Power Supply 1)  present    
+  name = first(10.1)                     
+  type = fru                             
+  entity id string = power_supply        
+  is fru                                 
+  present sensor not always there        
+  channel = 0x0                          
+  lun = 0x0                              
+  oem = 0x0                              
+  access_address = 0x20                  
+  private_bus_id = 0x0                   
+  device_type = 0x10                     
+  device_modifier = 0xff                 
+  is_logical_fru = 0x1                   
+  fru_device_id = 0x2                    
+                                         
+4.	View fru info
+
+	>fru 46.1
+
+	expected o/p
+
+FRU for entity 46.1                                  
+  chassis info version: 0x01                         
+  chassis info type: 0x11                            
+  chassis info part number: 7979A2A                  
+  chassis info serial number: 99P2829                
+  board info version: 0x01                           
+  board info lang code: 0x19                         
+  board info mfg time: 1187365020                    
+  board info board manufacturer: FOXC                
+  board info board product name: IBM Planar          
+  board info board serial number: 79X456 K1090       
+  board info board part number: 43W8367              
+  board info fru file id is in binary                
+  board info custom 0 is in binary                   
+  product info version: 0x01                         
+  product info lang code: 0x19                       
+  product info manufacturer name: IBM                
+  product info product name: IBM Product             
+  product info product part model number: 7979A2A    
+  product info product version: N/A                  
+  product info product serial number: 99P2829        
+  product info asset tag is in binary                
+  product info fru file id is in binary              
+  product info custom 0 is in binary                 
+  product info custom 1 is in binary                 
+                                                     
+                                                     
+5.	Sensors
+
+	> sensors 10.1
+
+Sensors for entity 10.1:                               
+  10.1.PS~1~Status0 - PS 1 Status0                     
+  10.1.PS~1~Fan~Fault0 - PS 1 Fan Fault0               
+                                                       
+        
+6.	Sensor Status
+                                               
+	> sensor 10.1.PS~1~Status0 
+
+Sensor 10.1.PS~1~Status0:                              
+  still there if entity not present                    
+  name = first(10.1).PS 1 Status0                      
+  value = 100000000000000                              
+  Events = enabled                                     
+  Scanning = enabled                                   
+  Hysteresis = none                                    
+  sensor type = power_supply (0x08)                    
+  event/reading type = sensor specific (0x6f)          
+                                                       
+  Assertion:                                           
+    available: 110100000000000                         
+      enabled: 110100000000000                         
+  Deasertion:                                          
+    available: 110100000000000                         
+      enabled: 110100000000000                         
+                                                       
+
+7. List Management Controlers
+
+
+       	In OpenIPMI, you normally don't deal with management controllers.  They are considered internal to the system.  
+	However, for debugging, information about  them  is provided.
+      	
+	mcs    List all the MCs in the system and whether they are active.  MCs are displayed in the format "(channel address)".
+
+	> mcs
+
+	expected o/p 
+
+MCs:                        
+  (0 20) - active           
+                            
+
+	here we have only 1 MC and 0 is channel and 20 is address
+
+
+8. Display Management Controler information
+
+	> mc 0 20
+	expected o/p
+
+MC (0 20) - active                                       
+    provides_device_sdrs: n                              
+        device_available: n                              
+         chassis_support: y                              
+          bridge_support: n                              
+    ipmb_event_generator: y                              
+     ipmb_event_receiver: y                              
+   fru_inventory_support: y                              
+      sel_device_support: y                              
+  sdr_repository_support: y                              
+   sensor_device_support: y                              
+               device_id: 20                             
+         device_revision: 0                              
+             fw_revision: 1.33                           
+                 version: 2.0                            
+         manufacturer_id: 000002                         
+              product_id: 0011                           
+         aux_fw_revision: 47 47 42 54                    
+               SEL count: 142 entries, 142 slots used    
+                                                         
+
+9	Platform Event Filter (PEF)
+	first unlock pef
+	clearpeflock [channel mc-num]
+	>clearpeflock 0 20
+	
+	Now attempt to read
+	>readpef 0 20
+
+	expected o/p 
+
+PEF                                                        
+ Version: 1.5 Supports: power_cycle reset power_down alert 
+  Num event filter table entries: 16                       
+  alert_startup_delay_enabled: 0                           
+  startup_delay_enabled: 0                                 
+  event_messages_enabled: 0                                
+  pef_enabled: 1                                           
+    data3_mask: 0                                          
+    data3_compare1: 0                                      
+    data3_compare2: 0                                      
+  event filter 2:                                          
+    enable_filter: 1                                       
+    filter_type: 0                                         
+    diagnostic_interrupt: 0                                
+    oem_action: 0                                          
+    power_cycle: 0                                         
+    reset: 0                                               
+    power_down: 1                                          
+
+10	LAN Parameter Configuration
+
+	You may need to unlock lanparm
+
+	> clearlanparmlock 0 20 1
+	
+	read lanparm
+
+	> readlanparm 0 20 1
+
+	expected o/p
+
+LAN parameters:  auth supported: straight md5 md2 none                        
+  ip_addr_source: 3                                                           
+  ipv4_ttl: 64                                                                
+  ipv4_fla100000000000000                                                     
+  ipv4_precenabled 0                                                          
+  ipv4_tos: 8enabled                                                          
+  auth enabled (0):                                                           
+  auth enabled (1): straight md5 md2                                          
+  auth enabled (2): straight md5 md2                                          
+  auth enabled (3): straight md5 md2                                          
+  auth enabled (4):                                                           
+  ip_addr: 09b6b041                                                           
+  mac_addr: 001110100000000000                                                
+  subnet_mask: ffffff00                                                       
+  primary_rmcp_port: 6f02                                                     
+  secondary_rmc110100000000000                                                
+  bmc_generated_arps: 1                                                       
+  bmc_generated_garps: 0                                                      
+  garp_interval: 3                                                            
+  default_gateway_ip_addr: 09b6b001                                           
+  default_gateway_mac_addr: 000000000000                                      
+  backup_gateway_ip_addr: 00000000                                            
+  backup_gateway_mac_addr: 000000000000                                       
+  community_string: public                                                    
+  num_alert_destinations: 5                                                   
+  destination 0:                                                              
+    alert_ack: 0                                                              
+    dest_type: 0                                                              
+    alert_retry_interval: 0                                                   
+    max_alert_retries: 0                                                      
+    dest_format: 0                                                            
+    gw_to_use: 0                                                              
+    dest_ip_addr: 00000000                                                    
+    dest_mac_addr: 000000000000                                               
+  destination 1:                                                              
+    alert_ack: 0                                                              
+    dest_type: 0                                                              
+    alert_retry_interval: 0                                                   
+    max_alert_retries: 0                                                      
+    dest_format: 0                                                            
+    gw_to_use: 0                                                              
+    dest_ip_addr: ffffffff                                                    
+    dest_mac_addr: ffffffffffff                         
+
+

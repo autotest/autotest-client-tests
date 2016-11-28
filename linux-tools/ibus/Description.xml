@@ -1,0 +1,7 @@
+<!-- Test configuration for 'ibus' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+<PACKAGE>ibus</PACKAGE>
+<COMMAND>ibus.sh</COMMAND>
+<DESCRIPTION>Test ibus package</DESCRIPTION>
+</TEST>

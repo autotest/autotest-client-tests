@@ -1,0 +1,19 @@
+Description:
+===========
+HTTP::Negotiate - choose a variant to serve
+
+This module provides a complete implementation of the HTTP content negotiation
+algorithm. Content negotiation allows for the selection of a preferred content
+representation based upon attributes of the negotiable variants and the value
+of the various Accept* header fields in the request.
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Negotiate
+./perl-HTTP-Negotiate.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Negotiate
+perl t/<test.t>
+

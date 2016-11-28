@@ -1,0 +1,32 @@
+Testcase for texinfo.
+
+Texinfo is a software documentation system primarily designed for writing
+software manuals
+Texinfo is a documentation system that uses a single source file
+to produce both online information and printed output.
+
+Sample texinfo file -
+http://www.xemacs.org/Documentation/21.5/html/texinfo_25.html
+
+The command provided by this package is:
+
+/usr/bin/makeinfo
+
+make info is to translate Texinfo source documentation to various other
+formats like html, Docbook XML, plain text etc. By default it will translate into Info
+files suitable for reading online with Emacs or standalone GNU Info.
+
+About install-info:
+=============
+
+install-info [option]... [info-file [dir-file]]
+
+Install or delete dir entries from INFO-FILE in the Info directory file
+DIR-FILE.
+
+Tests are under makeinfo and install-info directories respectively in
+/opt/fiv/ltp/testcases/fivextra/texinfo.
+
+Usage:
+cd /opt/fiv/ltp/testcases/fivextra/texinfo
+./texinfo.sh

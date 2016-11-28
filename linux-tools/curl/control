@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
+NAME = "curl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test curl package 
+    ''' 
+path = '' 
+job.run_test('curl',test_path=path) 

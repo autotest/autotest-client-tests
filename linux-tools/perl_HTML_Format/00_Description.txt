@@ -1,0 +1,11 @@
+Description : perl-HTML-Format is a collection of modules that formats HTML as plain text, PostScript or RTF.
+
+HTML::Formatter is a base class for classes that take HTML and format it to some output format. When you take an object of such a base class and call $formatter-format( $tree )> with an HTML::TreeBuilder (or HTML::Element) object, they return the appropriately formatted string for the input HTML.
+
+Reference link : http://search.cpan.org/dist/HTML-Format/lib/HTML/Formatter.pm
+                 http://search.cpan.org/dist/HTML-Format/
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTML-Format
+run the script 
+./perl-HTML-Format.sh

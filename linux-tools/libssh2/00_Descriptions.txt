@@ -1,0 +1,12 @@
+libssh2 - SSH2 library
+======================
+libssh2 is a library implementing the SSH2 protocol, available under
+the revised BSD license.
+
+====Tests====
+(1)simple:Verifies libssh2_base64_decode API
+(2)ssh2.sh:Verifies Authentication by public key
+
+====running tests====
+./libssh2.sh
+

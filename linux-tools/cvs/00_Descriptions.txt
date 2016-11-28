@@ -1,0 +1,8 @@
+cvs:
+	The testcase for cvs.
+
+usage:
+	./cvs.sh
+
+Coverage:
+	CVS repository creation, import, checkout, commit, and update.

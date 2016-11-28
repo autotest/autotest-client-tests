@@ -1,0 +1,69 @@
+-- *******************************************************************
+--  examLog: Script for creating log table and related triggers
+--   Usage:
+--       $ sqlite3 examdatabase < examLOG
+--
+--   
+-- *******************************************************************
+-- *******************************************************************
+CREATE TABLE examlog (lkey INTEGER PRIMARY KEY, 
+                  ekey INTEGER,
+                  ekeyOLD INTEGER,
+                  fnNEW   VARCHAR(15),
+                  fnOLD   VARCHAR(15),
+                  lnNEW   VARCHAR(30),
+                  lnOLD   VARCHAR(30),
+                  examNEW INTEGER,
+                  examOLD INTEGER,
+                  scoreNEW DOUBLE,
+                  scoreOLD DOUBLE,
+                  sqlAction VARCHAR(15),
+                  examtimeEnter    DATE,
+                  examtimeUpdate   DATE,
+                  timeEnter        DATE);
+
+--  Create an update trigger
+CREATE TRIGGER update_examlog AFTER UPDATE  ON exam
+BEGIN     
+
+  INSERT INTO examlog  (ekey,ekeyOLD,fnOLD,fnNEW,lnOLD,
+                        lnNEW,examOLD,examNEW,scoreOLD,
+                        scoreNEW,sqlAction,examtimeEnter,
+                        examtimeUpdate,timeEnter) 
+
+          values (new.ekey,old.ekey,old.fn,new.fn,old.ln,
+                  new.ln,old.exam, new.exam,old.score,
+                  new.score, 'UPDATE',old.timeEnter,
+                  DATETIME('NOW'),DATETIME('NOW') );     
+
+END;
+-- 
+--  Also create an insert trigger
+--    NOTE  AFTER keyword ------v
+CREATE TRIGGER insert_examlog AFTER INSERT ON exam  
+BEGIN     
+INSERT INTO examlog  (ekey,fnNEW,lnNEW,examNEW,scoreNEW,
+                      sqlAction,examtimeEnter,timeEnter) 
+
+          values (new.ekey,new.fn,new.ln,new.exam,new.score,
+                  'INSERT',new.timeEnter,DATETIME('NOW') );     
+
+END;
+
+--  Also create a DELETE trigger
+CREATE TRIGGER delete_examlog DELETE ON exam
+BEGIN     
+
+INSERT INTO examlog  (ekey,fnOLD,lnNEW,examOLD,scoreOLD,
+                      sqlAction,timeEnter) 
+
+          values (old.ekey,old.fn,old.ln,old.exam,old.score,
+                  'DELETE',DATETIME('NOW') );     
+
+END;
+-- *******************************************************************
+-- *******************************************************************
+
+
+
+

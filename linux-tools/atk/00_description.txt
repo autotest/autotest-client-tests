@@ -1,0 +1,23 @@
+Package : atk
+-------
+
+Description :
+----------- 
+The ATK library provides a set of interfaces for adding accessibility support
+to applications and graphical user interface toolkits. By supporting the ATK
+interfaces, an application or toolkit can be used with tools such as screen
+readers, magnifiers, and alternative input devices.
+
+libatk-1.0.so, contains functions that are used by assistive technologies to
+interact with the desktop applications. 
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/atk
+./atk.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/atk/tests/.libs
+touch t/LIVE_TESTS
+./<test>

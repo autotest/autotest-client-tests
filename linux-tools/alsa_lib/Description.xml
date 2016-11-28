@@ -1,0 +1,7 @@
+<!-- Test configuration for 'alsa-lib' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+<PACKAGE>alsa-lib</PACKAGE>
+<COMMAND>alsa-lib.sh</COMMAND>
+<DESCRIPTION>Test alsa-lib library</DESCRIPTION>
+</TEST>

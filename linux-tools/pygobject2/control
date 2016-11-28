@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>  " 
+NAME = "pygobject2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pygobject2 package 
+    ''' 
+path = '' 
+job.run_test('pygobject2',test_path=path) 

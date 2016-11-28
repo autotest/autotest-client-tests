@@ -1,0 +1,38 @@
+PRAGMA synchronous=OFF;
+-- ******************************************************************************
+-- Script0                                                                  
+--  Usage:                                                  
+--      $./sqlite3 test3.db < script0                                       
+--
+-- Download:                                                                
+--   http://prdownloads.sourceforge.net/cpearls/sqlite_examples.tar.gz?download 
+--
+-- ******************************************************************************
+create table test (a integer PRIMARY KEY, b INT, c FLOAT, d TEXT, created DATE);
+
+CREATE TRIGGER insert_test_date AFTER INSERT ON test
+BEGIN
+UPDATE test SET created = DATETIME('NOW')  WHERE rowid = new.rowid;
+END;
+
+
+
+
+create table log (pkey integer PRIMARY KEY, msg TEXT, nfldint int, nfldfloat float, ofldint int, ofldfloat float, created DATE, modified DATE);
+insert into test (b,c,d) values (1,1.0,'Sample text first');
+insert into test (b,c,d) values (last_insert_rowid()+5,2.0,'Sample text second');
+insert into test (b,c,d) values (last_insert_rowid()+5 ,3.0,'Sample text third');
+select last_insert_rowid();
+insert into test (b,c,d) values (4,4.0,'Sample text forth');
+select case a when 1 then 'one' when  2 then 'two' else 'other' end  from test;
+select case a when 1 then (select max(c) from test) when  2 then (select min(c) from test) else (select avg(c) from test) end  from test;
+CREATE TRIGGER update_test_c_data UPDATE OF c ON test  BEGIN     insert into log  (nfldfloat,ofldfloat,msg,modified) values (new.c, old.c,'UPDATE',DATETIME('NOW'));     END;
+CREATE TRIGGER insert_test_data INSERT  ON test  BEGIN   insert into log  (nfldint,nfldfloat,msg) values (new.b,new.c,'INSERT');     END;
+update test set c = 100 where c > 2;
+insert into test (b,c,d) values (last_insert_rowid()+5 ,3.0,'forth');
+insert into test (b,c,d) values (last_insert_rowid()+5 ,3.0,'fifth');
+insert into test (b,c,d) values (last_insert_rowid()+5 ,3.0,'sixth');
+select * from log;
+select * from sqlite_master;
+.tables
+.q

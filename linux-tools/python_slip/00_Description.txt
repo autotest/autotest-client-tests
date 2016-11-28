@@ -1,0 +1,8 @@
+Description:
+-----------
+The Simple Library for Python packages contain miscellaneous code for convenience, extension and workaround purposes.
+
+Execution:
+----------
+cd /opt/fiv/ltp/testcases/fivextra/python-slip/
+./python-slip.sh 

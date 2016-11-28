@@ -1,0 +1,8 @@
+oddjob is a D-BUS service which performs particular tasks for clients which connect to it and issue requests using the system-wide message bus.
+The oddjobd daemon provides the com.redhat.oddjob service on the system-wide message bus. The /etc/oddjobd.conf specifies which services the oddjobd server provides over the D-Bus,
+and authorization rules which are enforced in addition to those enforced by the system message bus.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/oddjob
+./oddjob.sh

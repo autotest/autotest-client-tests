@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libart_lgpl' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libart_lgpl</PACKAGE>
+    <COMMAND>libart_lgpl.sh</COMMAND>
+    <DESCRIPTION>Test case to test libart_lgpl 2D drawing library used by the GnomeCanvas</DESCRIPTION>
+</TEST>

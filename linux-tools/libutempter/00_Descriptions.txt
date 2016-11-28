@@ -1,0 +1,11 @@
+utempter.sh
+
+Description :
+Utempter is a utility that allows non-privileged applications such as
+terminal emulators to modify the utmp database without having to be
+setuid root.
+
+Run as a non-root user and see if it can operate utmp, output by "who"
+
+
+							- rende

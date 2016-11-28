@@ -1,0 +1,17 @@
+===============================================================================
+TestCase	: libpng.sh
+
+Description	: This test will test the basic chunk handling, filtering, 
+		and (de)compression of libpng is working properly.
+
+Author		: Robb Romans <robb@austin.ibm.com>
+
+===============================================================================
+Howto:
+
+Invoke ./libpng.sh to start the test.
+----------------------------------
+Test-case coverage:
+Test the basic chunk handling, filtering, and (de)compression of libpng is working
+properly.
+----------------------------------

@@ -1,0 +1,14 @@
+man-db is an implementation of the standard Unix documentation system accessed using the man command. 
+It uses a Berkeley DB database in place of the traditional flat-text whatis databases. 
+
+Below are man-db tools,
+catman - creates the preformatted versions of the online manual from the nroff command input files 
+lexgrog - reads the list of files on its command line as  either  man page  source files or preformatted “cat” pages, and displays their name and  description  as  used  by  apropos  and  whatis,   the   list   of preprocessing  filters  required by the man page before it is passed to nroff or troff, or both.
+man - format and display the on-line manual pages
+manpath - determine user's search path for man pages 
+manconv - converts a manual page from one encoding to another
+whatis - provides very brief descriptions of command line programs
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/man-db
+Execute ./man-db.sh

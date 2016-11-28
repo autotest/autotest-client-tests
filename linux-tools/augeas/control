@@ -1,0 +1,11 @@
+AUTHOR = " Mithu Ganesan<miganesa@in.ibm.com> 			      #  " 
+NAME = "augeas" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test augeas package 
+    ''' 
+path = '' 
+job.run_test('augeas',test_path=path) 

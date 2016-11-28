@@ -1,0 +1,11 @@
+libdaemon -- It is a lightweight C library that eases the 
+writing of UNIX daemons
+
+How to run the test:
+------------------------
+./libdaemon.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

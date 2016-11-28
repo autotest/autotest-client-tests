@@ -1,0 +1,102 @@
+Package Name: libogg
+
+Summary     : Libogg contains necessary functionality to create, decode, and
+work with Ogg bitstreams. 
+
+
+Description :
+
+ The libogg package contains the Ogg file structure. This is useful for
+creating (encoding) or playing (decoding) a single physical bit stream. 
+
+ More details can be found here :
+https://xiph.org/ogg/doc/libogg/overview.html
+
+
+Applying branches : mcp8-head(mcp8.2) mcp8-0-service-br and mcp8-1-service-br
+
+
+
+Signed-off-by : Hariharan T S <harihare@in.ibm.com>
+Tested-by     : Hariharan T S <harihare@in.ibm.com>
+
+
+Package Information :
+-bash-4.2# rpm -ql libogg
+/usr/lib64/libogg.so.0
+/usr/lib64/libogg.so.0.8.0
+/usr/share/doc/libogg-1.3.0
+/usr/share/doc/libogg-1.3.0/AUTHORS
+/usr/share/doc/libogg-1.3.0/CHANGES
+/usr/share/doc/libogg-1.3.0/COPYING
+/usr/share/doc/libogg-1.3.0/README
+
+
+
+
+Test Approach :
+Test Available in source, Test binaries will be copied to fivextra and write
+wrapper script to integrate to fivextra.
+
+
+
+-bash-4.2# pwd
+/usr/share/mcpsource/libogg-1.3.0-7.el7_1.ibm.1-source
+
+-bash-4.2# make check
+Making check in src
+make[1]: Entering directory
+`/usr/share/mcpsource/libogg-1.3.0-7.el7_1.ibm.1-source/src'
+./test_bitwise
+
+Small preclipped packing (LSb): ok.
+Null bit call (LSb): ok.
+Large preclipped packing (LSb): ok.
+32 bit preclipped packing (LSb): ok.
+Small unclipped packing (LSb): ok.
+Large unclipped packing (LSb): ok.
+Single bit unclipped packing (LSb): ok.
+Testing read past end (LSb): ok.
+
+Small preclipped packing (MSb): ok.
+Null bit call (MSb): ok.
+Large preclipped packing (MSb): ok.
+32 bit preclipped packing (MSb): ok.
+Small unclipped packing (MSb): ok.
+Large unclipped packing (MSb): ok.	
+Single bit unclipped packing (MSb): ok.
+Testing read past end (MSb): ok.
+
+./test_framing
+testing single page encoding... 0, (0),  granule:0 ok.
+testing basic page encoding... 0, (0),  granule:0 1, (1),  granule:6151 ok.
+testing basic nil packets... 0, (0),  granule:0 1, (1),  granule:10247 ok.
+testing initial-packet lacing > 4k... 0, (0),  granule:0 1, (1),  granule:2055
+ok.
+testing single packet page span... 0, (0),  granule:0 1, (1), 2, (2),
+granule:3079 ok.
+testing page spill expansion... 0, (0),  granule:0 1, (1),  granule:4103 2,
+(2),  granule:5127 ok.
+testing max packet segments... 0, (0),  granule:0 1, (1),  granule:261127 2,
+(2),  granule:262151 ok.
+testing very large packets... 0, (0),  granule:0 1, (1),  granule:1031 2, (2),
+3, (3),  granule:4103 ok.
+testing continuation resync in very large packets... 0, 1, 2, (2), 3, (3),
+granule:4103 ok.
+testing zero data page (1 nil packet)... 0, (0),  granule:0 1, (1),
+granule:1031 2, (2),  granule:2055 ok.
+Testing loss of pages... ok.
+Testing loss of pages (rollback required)... ok.
+Testing sync on partial inputs... ok.
+Testing sync on 1+partial inputs... ok.
+Testing search for capture... ok.
+Testing recapture... ok.
+
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/libogg.sh
+run the script
+./libogg.sh
+
+To run test individually:
+./test_bitwise
+./test_framing

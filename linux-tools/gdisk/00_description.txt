@@ -1,0 +1,55 @@
+Description:
+------------
+Package: gdisk
+
+Description:
+------------
+An fdisk-like partitioning tool for GPT disks. GPT fdisk features a
+command-line interface, fairly direct manipulation of partition table
+structures, recovery tools to help you deal with corrupt partition
+tables, and the ability to convert MBR disks to GPT format.
+
+- gdisk -- This program is modeled after Linux fdisk, but it operates on GUID
+  Partition Table (GPT) disks rather than the Master Boot Record (MBR) disks
+that fdisk
+  modifies. As such, gdisk is an interactive text-mode tool for manipulating
+partitions, but it does nothing to the contents of those partitions (usually
+filesystems, but
+  sometimes swap space or other  data).
+
+- cgdisk -- This program is modeled after Linux cfdisk, but it operates on GPT
+  disks rather than the MBR disks that cfdisk modifies. As such, cgdisk is a
+curses-based 
+  text-mode tool for manipulating partitions, which is to say that it uses an
+interface that relies on arrow keys and a dynamic display rather than the
+command letters and a
+  scrolling display like gdisk uses.
+
+- sgdisk -- This program is conceptually similar to the Linux sfdisk and
+  FreeBSD gpt programs, but its operational details differ. It enables
+manipulation of GPT disks using
+  command-line options, so it's suitable for use in scripts or by experts to
+perform specific tasks that might take several commands in gdisk to
+accomplish.
+
+- fixparts -- This program, unlike the preceding three, operates on MBR disks.
+  It's intended to fix certain problems that can be created by various
+utilities. Specifically,
+  it can fix mis-sized extended partitions and primary partitions located in
+the middle of extended partitions. It also enables changing primary vs.
+logical partition status
+  (within limits  of what's legal in the MBR scheme) and making a few other
+minor changes.It does NOT support creating new partitions; for that, you
+should use
+  fdisk, parted, or some other tool.
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/gdisk
+./gdisk.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/gdisk
+s:\./gdisk:/usr/sbin/gdisk:
+s:\./sgdisk:/usr/sbin/sgdisk:
+./gdisk_test.sh

@@ -1,0 +1,11 @@
+AUTHOR = " Pritam S Gundecha, pritam.gundecha@in.ibm.com  " 
+NAME = "arptables" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test arptables package 
+    ''' 
+path = '' 
+job.run_test('arptables',test_path=path) 

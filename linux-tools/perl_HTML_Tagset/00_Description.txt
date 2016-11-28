@@ -1,0 +1,26 @@
+TEST:		perl-HTML-Tagset.sh
+
+AUTHOR:		Abhishek Sharma < abhisshm@in.ibm.com >
+
+SOURCE:		Testcases taken from perl-HTML-Tagset
+		See run-tests in perl-HTML-Tagset under t/ for the tests.
+
+
+Description : HTML::Tagset
+
+This module contains data tables useful in dealing with HTML.
+
+It provides no functions or methods.
+
+
+
+Usage:
+To run all tests:
+
+./perl-HTML-Tagset.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTML-Tagset
+perl t/<test.t>
+
+

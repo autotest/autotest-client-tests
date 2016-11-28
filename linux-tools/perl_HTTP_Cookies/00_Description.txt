@@ -1,0 +1,21 @@
+TEST:           perl-HTTP-Cookies.sh
+
+AUTHOR:         Spoorthy <spoorts2@in.ibm.com>
+
+SOURCE:         Testcases taken from perl-HTTP-Cookies
+                See run-tests in perl-HTTP-Cookies under t/ for the tests.
+
+
+Description : HTTP::Cookies
+
+This class is for objects that represent a "cookie jar" -- that is, a database of all the HTTP cookies that a given LWP::UserAgent knows about
+
+
+Usage:
+To run all tests:
+
+./perl-HTTP-Cookies.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Cookies
+perl t/<cookies.t>

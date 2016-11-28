@@ -1,0 +1,11 @@
+AUTHOR = " Snehal Phule <snehal.phule@in.ibm.com>                             ##  " 
+NAME = "python_decorator" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-decorator package 
+    ''' 
+path = '' 
+job.run_test('python_decorator',test_path=path) 

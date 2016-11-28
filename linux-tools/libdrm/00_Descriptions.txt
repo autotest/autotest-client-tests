@@ -1,0 +1,13 @@
+Description:LIBDRM is the cross-driver middleware which allows user-space applications (such as Mesa and 2D drivers)
+to communicate with the Kernel by the means of the DRI protocol. drm is a video related package.
+The Direct Rendering Manager (DRM) is a component of the Direct Rendering Infrastructure,
+a system to provide efficient video acceleration (especially 3D rendering) on Unix-like operating systems 
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libdrm
+./libdrm.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx; 

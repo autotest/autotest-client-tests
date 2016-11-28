@@ -1,0 +1,95 @@
+<!-- Test configuration for 'perl-modules' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-Compress-Zlib</PACKAGE>
+    <COMMAND>perl-modules.sh perl-Compress-Zlib</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-HTML-Parser</PACKAGE>
+    <COMMAND>perl-modules.sh perl-HTML-Parser</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-HTML-Tagset</PACKAGE>
+    <COMMAND>perl-modules.sh perl-HTML-Tagset</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-Parse-Yapp</PACKAGE>
+    <COMMAND>perl-modules.sh perl-Parse-Yapp</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-DOM</PACKAGE>
+    <COMMAND>perl-modules.sh  perl-XML-DOM</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-Parser</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-Parser</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-RegExp</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-RegExp</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-Simple</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-Simple</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-XQL</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-XQL</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-libwww-perl</PACKAGE>
+    <COMMAND>perl-modules.sh perl-libwww-perl</COMMAND>
+    <DENY>
+        <ATTR>BVT</ATTR>
+        <COMMENT>Firewall will block internet access for test machines in the lab.</COMMENT>
+    </DENY>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-LibXML</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-LibXML</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-NamespaceSupport</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-NamespaceSupport</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-SAX</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-SAX</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-Tie-IxHash</PACKAGE>
+    <COMMAND>perl-modules.sh perl-Tie-IxHash</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-XML-Writer</PACKAGE>
+    <COMMAND>perl-modules.sh perl-XML-Writer</COMMAND>
+    <DESCRIPTION>This testcases is designed to test various perl modules.</DESCRIPTION>
+</TEST>

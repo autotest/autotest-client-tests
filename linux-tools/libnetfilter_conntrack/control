@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS  < ramyabs1@in.ibm.com >                                         ##  " 
+NAME = "libnetfilter_conntrack" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libnetfilter_conntrack package 
+    ''' 
+path = '' 
+job.run_test('libnetfilter_conntrack',test_path=path) 

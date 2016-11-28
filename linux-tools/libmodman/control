@@ -1,0 +1,11 @@
+AUTHOR = " Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##  " 
+NAME = "libmodman" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libmodman package 
+    ''' 
+path = '' 
+job.run_test('libmodman',test_path=path) 

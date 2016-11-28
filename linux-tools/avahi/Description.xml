@@ -1,0 +1,7 @@
+<!-- Test configuration for 'avahi' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>avahi</PACKAGE>
+ <COMMAND>avahi.sh</COMMAND>
+ <DESCRIPTION>Test avahi package</DESCRIPTION>
+</TEST>

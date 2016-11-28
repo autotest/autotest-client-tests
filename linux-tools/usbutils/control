@@ -1,0 +1,11 @@
+AUTHOR = " liudeyan@cn.ibm.com  " 
+NAME = "usbutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test usbutils package 
+    ''' 
+path = '' 
+job.run_test('usbutils',test_path=path) 

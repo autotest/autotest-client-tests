@@ -1,0 +1,19 @@
+Package: Ghostscript
+
+gs - Ghostscript (PostScript and PDF language interpreter and previewer)
+
+Description:
+-----------
+       The gs (gswin32c, gswin32, gsos2) command invokes Ghostscript, an interpreter of Adobe Systems' PostScript(tm) and Portable Document Format (PDF) languages.  gs reads "files" in sequence and executes them as Ghostscript programs. After doing this, it reads further input from the standard input stream (normally the keyboard), interpreting each line separately  and output   to  an  output device (may be a file or an X11 window preview). The interpreter exits gracefully when it encounters the "quit" command (either in a file or from the keyboard),   at end-of-file, or at an interrupt signal (such as Control-C at the keyboard).
+
+Ghostscript may be built to use many different output devices.unless you specify a particular device, Ghostscript normally opens the first one of those and directs output to it.
+
+Execution of testcases:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/ghostscript/examples
+Follow the steps provided in the ghostscript.txt
+
+Automated Testcase Execution:
+
+cd /opt/fiv/ltp/testcases/fivextra/ghostscript/
+./ghostscript.sh

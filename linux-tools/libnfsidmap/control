@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS <ramyabs1@in.ibm.com>  " 
+NAME = "libnfsidmap" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libnfsidmap package 
+    ''' 
+path = '' 
+job.run_test('libnfsidmap',test_path=path) 

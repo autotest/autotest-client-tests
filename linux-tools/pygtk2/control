@@ -1,0 +1,11 @@
+AUTHOR = " Anup Kumar, anupkumk@linux.vnet.ibm.com                       ##  " 
+NAME = "pygtk2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pygtk2 package 
+    ''' 
+path = '' 
+job.run_test('pygtk2',test_path=path) 

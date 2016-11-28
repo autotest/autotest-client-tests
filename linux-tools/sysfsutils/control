@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzuki@in.ibm.com>                                      #  " 
+NAME = "sysfsutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sysfsutils package 
+    ''' 
+path = '' 
+job.run_test('sysfsutils',test_path=path) 

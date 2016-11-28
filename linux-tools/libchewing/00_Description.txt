@@ -1,0 +1,29 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : libchewing.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from libchewing
+#		See run-tests in libchewing.sh under tests/ for the tests.
+#
+#
+#  Description : libchewing package is core part of Chewing (Input Method)
+#                The Chewing (酷音) input method is an intelligent Zhuyin input method.
+#                It is one of the most popular input methods among Traditional
+#                Chinese Unix users.
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/libchewing
+./libchewing.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/libchewing/tests
+./<test_binary>

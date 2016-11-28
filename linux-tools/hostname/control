@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G <basavarg@in.ibm.com>  " 
+NAME = "hostname" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test hostname package 
+    ''' 
+path = '' 
+job.run_test('hostname',test_path=path) 

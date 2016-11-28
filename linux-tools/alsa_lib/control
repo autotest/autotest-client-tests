@@ -1,0 +1,11 @@
+AUTHOR = " Ramesh YR, rameshyr@linux.vnet.ibm.com                       ##  " 
+NAME = "alsa_lib" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test alsa-lib package 
+    ''' 
+path = '' 
+job.run_test('alsa_lib',test_path=path) 

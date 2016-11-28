@@ -1,0 +1,35 @@
+Description:
+=========
+Package:perl-Text-Unicode
+
+Text::Unidecode ==> plain ASCII transliterations of Unicode text
+
+Description:
+Text::Unidecode provides a function, unidecode(...) that takes Unicode data
+and tries to represent it in US-ASCII characters (i.e., the universally
+displayable characters between 0x00 and 0x7F). The representation is almost
+always an attempt at transliteration-- i.e., conveying, in Roman letters, the
+pronunciation expressed by the text in some other writing system
+
+Synopsis:
+  use utf8;
+  use Text::Unidecode;
+  print unidecode(
+    "北亰\n"
+    # Chinese characters for Beijing (U+5317 U+4EB0)
+  );
+ 
+  # That prints: Bei Jing 
+
+Source: http://search.cpan.org/~sburke/Text-Unidecode-1.27/lib/Text/Unidecode.pm
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Text-Unidecode
+./perl-Text-Unidecode.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Text-Unidecode
+perl test.pl
+

@@ -1,0 +1,11 @@
+AUTHOR = " Gowri Shankar <gowrishankar.m@in.ibm.com>  " 
+NAME = "udisks2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test udisks2 package 
+    ''' 
+path = '' 
+job.run_test('udisks2',test_path=path) 

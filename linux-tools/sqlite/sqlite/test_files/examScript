@@ -1,0 +1,25 @@
+-- *******************************************************************
+--  examScript: Script for creating exam table 
+--   Usage:
+--       $ sqlite3 examdatabase < examScript
+--
+--   Note: The trigger insert_exam_timeEnter 
+--          updates timeEnter in exam
+-- *******************************************************************
+-- *******************************************************************
+CREATE TABLE exam (ekey      INTEGER PRIMARY KEY,
+	           fn        VARCHAR(15),
+                   ln        VARCHAR(30),
+                   exam      INTEGER,
+                   score     DOUBLE,
+                   timeEnter DATE);
+
+CREATE TRIGGER insert_exam_timeEnter AFTER  INSERT ON exam
+BEGIN
+
+UPDATE exam SET timeEnter = DATETIME('NOW')  
+         WHERE rowid = new.rowid;
+END;
+-- *******************************************************************
+-- *******************************************************************
+

@@ -1,0 +1,8 @@
+<!-- Test configuration for 'dmidecode' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>dmidecode</PACKAGE>
+    <COMMAND>dmidecode_test.sh</COMMAND>
+    <DESCRIPTION>test dmidecode. </DESCRIPTION>
+</TEST>
+

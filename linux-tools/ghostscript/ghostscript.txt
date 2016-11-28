@@ -1,0 +1,108 @@
+*********************************************************
+Manual tests for ghostscript package
+*********************************************************
+Ghostscript is capable of interpreting PostScript, encapsulated PostScript
+(EPS), DOS EPS (EPSF), and Adobe Portable Document Format (PDF).
+The interpreter reads and executes the files in sequence, using the method
+described under "File searching" to find them. 
+
+The interpreter runs in interactive mode by default. After processing the
+files given on the command line (if any) ,
+it reads further lines of PostScript language commands from the primary input
+stream, normally the keyboard, interpreting each line separately.
+To quit the interpreter, type "quit".
+
+There are also a number of utility scripts for common to convert a PostScript
+document to PDF such as,
+
+ps2pdf, pdf2ps, ps2epsi, pdf2dsc, ps2ascii, ps2ps and ps2ps2.
+
+Tests comes with the files needed by the ghostscript package,which can be
+verified Manually.
+cd /opt/fiv/ltp/testcases/fivextra/ghostscript/examples
+
+Steps To test:
+-------------
+1.verify the ghostscript package is installed on the test machine,
+	# rpm -q ghostscript
+	ghostscript-9.07-18.el7_1.ibm.1.x86_64
+If incase ghostscript package is not available on the test machine ,install it
+using rpm or yum.
+
+2. Ensure VNC Server is running on the host machine.
+	# vncserver 
+
+3.Start VNC Viewer on the client Machine:
+	# vncviewer <HostName>
+
+2.To view a file:
+
+    gs -dSAFER -dBATCH chess.ps
+You'll be prompted to press enter between pages.
+
+3.Verifying -q switch,-q switch to prevent Ghostscript from writing messages
+to standard output which become mixed with the intended output stream.
+     gs -q -dSAFER -dBATCH chess.ps
+
+verify that gs messages are not redirected to standard output
+
+4.To convert a figure to an image file:
+
+    gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dGraphicsAlphaBits=4 \
+        -sOutputFile=tiger.png tiger.eps
+
+It will create output file "tiger.png",it can be opened using display command
+	Ex: display tiger.png
+   
+
+5.To render the same image at 300 dpi using -r switch:
+
+    gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=tiger_300.png tiger.eps
+
+It will create output file "tiger_300.png",it can be opened using display command
+	Ex: display tiger_300.png
+
+6.To render a figure in grayscale: 
+
+	 gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pnggray -sOutputFile=tiger.png tiger.eps
+
+It will produce grayscale image of the tiger.eps,can be verified using
+"display tiger_30.png"
+
+7.In order to create two PDF files from a single invocation of ghostscript the
+following can be used
+
+	gs -sDEVICE=pdfwrite -o tiger.pdf tiger.eps -c "<< /OutputFile (colorcir.pdf) >> setpagedevice" -f colorcir.ps
+
+verify if two two output files tiger.pdf and colorcir.pdf are created or not.
+
+
+8.Working with pdf files:
+     1.To view a pdf file
+	i) gs -dSAFER -dBATCH annots.pdf
+	  using above command annots.pdf can be viewed / it will open
+annots.pdf file
+
+     2.Understanding the different switches.
+	i) gs -dSAFER -dBATCH -dLastPage=3 annots.pdf
+       It will print till 3rd page
+    
+	ii) gs -dSAFER -dBATCH -dFirstPage=3 annots.pdf     
+        It will start print from 3rd page till the end
+
+Follow the above suitable steps for the files in examples folder,for .eps and .ps files follow steps from 2 to 7,for pdf files steps mentioned in the step 8
+can be verified.
+
+Additionally, any of the URW fonts can be verified using waterfal.ps. 
+Do changes as below to provide urw-fonts Fontname.
+--- waterfal.ps.orig   	2016-08-23 08:57:28.441832097 +0000
++++ waterfal.ps	2016-08-23 08:57:52.171832488 +0000
+@@ -20,7 +20,7 @@
+
+
+ % Specify any desired set of up to 3 fonts here.
+-/Fonts [/Courier /Helvetica] def
++/Fonts [/Courier /Helvetica /Chancery] def
+
+ % Specify any desired set of point sizes here.
+ % The sum of the sizes should not exceed (roughly) 100.

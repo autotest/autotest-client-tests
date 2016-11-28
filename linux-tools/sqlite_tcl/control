@@ -1,0 +1,11 @@
+AUTHOR = " Shruti Bhat , shruti.bhat@in.ibm.com  " 
+NAME = "sqlite_tcl" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sqlite-tcl package 
+    ''' 
+path = '' 
+job.run_test('sqlite_tcl',test_path=path) 

@@ -1,0 +1,5 @@
+gdbm.sh:
+	Test suite to test the gdbm package.
+	Requires expect.
+	Robb Romans <robb@austin.ibm.com>
+

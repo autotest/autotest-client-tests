@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen. Based on ideas by Manoj Iyer  " 
+NAME = "file" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test file package 
+    ''' 
+path = '' 
+job.run_test('file',test_path=path) 

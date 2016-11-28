@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS  <ramyabs1@in.ibm.com>  " 
+NAME = "lshw" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lshw package 
+    ''' 
+path = '' 
+job.run_test('lshw',test_path=path) 

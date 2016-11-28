@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzuki@in.ibm.com>  " 
+NAME = "libidn" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libidn package 
+    ''' 
+path = '' 
+job.run_test('libidn',test_path=path) 

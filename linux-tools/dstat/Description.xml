@@ -1,0 +1,7 @@
+<!-- Test configuration for 'dstat' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>dstat</PACKAGE>
+ <COMMAND>dstat.sh</COMMAND>
+ <DESCRIPTION>Dstat is handy for monitoring systems during performance tuning tests, benchmarks or troubleshooting</DESCRIPTION>
+</TEST> 

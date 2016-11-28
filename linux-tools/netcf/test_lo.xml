@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<interface type="ethernet" name="lo">
+  <start mode="onboot"/>
+  <protocol family="ipv4">
+    <ip address="127.0.0.1" prefix="8"/>
+  </protocol>
+</interface>
+

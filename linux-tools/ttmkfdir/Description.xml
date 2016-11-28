@@ -1,0 +1,7 @@
+<!-- Test configuration for 'ttmkfdir' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>ttmkfdir</PACKAGE>
+ <COMMAND>ttmkfdir.sh</COMMAND>
+ <DESCRIPTION>Test ttmkfdir package</DESCRIPTION>
+</TEST>

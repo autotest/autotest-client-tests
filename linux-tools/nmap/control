@@ -1,0 +1,11 @@
+AUTHOR = " Gowri Shankar <gowrishankar.m@in.ibm.com>  " 
+NAME = "nmap" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test nmap package 
+    ''' 
+path = '' 
+job.run_test('nmap',test_path=path) 

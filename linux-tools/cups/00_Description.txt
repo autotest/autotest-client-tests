@@ -1,0 +1,58 @@
+The tests are built as a sub-package : cups-tests with the cups package.
+The rpm installs the following files :
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/4.1-requests.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/4.2-cups-printer-ops.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/4.3-job-ops.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/4.4-subscription-ops.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.1-lpadmin.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.2-lpc.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.3-lpq.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.4-lpstat.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.5-lp.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.6-lpr.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.7-lprm.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.8-cancel.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/5.9-lpinfo.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/create-job-format.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/create-job-sheets.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/create-job-timeout.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/create-job.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/create-printer-subscription.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-devices.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-job-attributes.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-job-attributes2.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-jobs.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppd-printer.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppd.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-drv-only.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-language.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-make-and-model.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-make.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-product.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds-psversion.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-ppds.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-printer-attributes-2.0.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-printer-attributes.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-printers.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/get-subscriptions.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/ipp-backend.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/ipptest
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/print-job-hold.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/print-job.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/run-stp-tests.sh
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/set-attrs-hold.test
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/str-header.html
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/str-trailer.html
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testfile.jpg
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testfile.pdf
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testfile.ps
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testfile.txt
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testhp.ppd
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/testps.ppd
+/opt/fiv/ltp/testcases/fivextra/cups/cups-tests/waitjobs.sh
+
+This test wrapper executes Basic conformance test with no load testing.
+Test wrapper can be enhanced in future to support
+- Testing with SSL/TLS.
+- Basic conformance test with some load testing

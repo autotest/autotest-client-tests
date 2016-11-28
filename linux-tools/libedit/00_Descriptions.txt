@@ -1,0 +1,31 @@
+How to
+==========
+./libedit_test.sh
+
+
+	test basic functionality of libedit package.	
+
+    libedit is a library which works like GNU Readline, and is        
+    mostly API compatible. Many libreadline-using applications can        
+    be ported by simply changing the inclusion of readline.h to        
+    editline.h.        
+
+
+http://www.s11n.net/download/#editline        
+
+
+
+Instruction for complementary manual test
+=========================================
+
+1. invoke ./test
+2. input a line, press <ESC> to enter vi mode, try vi edit command e.g.
+  'i' for insert, 'x' for delete, 'h' cursor left, 'l' cursor right
+  ctrl_w remove a word.
+3. user defined function for filename completion:
+   input "cat 00", and then <Tab>, 00_Description.txt will be completed, press <Enter>
+   you'll see the file content is print out.
+
+That's all.
+
+- rende

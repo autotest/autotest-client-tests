@@ -1,0 +1,10 @@
+libcap-ng: An alternate posix capabilities library.
+
+Below are the tests:
+------------------------
+lib_test: Bit test
+thread_test: Test thread separation of capabilities
+
+To run:
+-----------------------
+./libcap-ng.sh

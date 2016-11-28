@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T.S. <harihare@in.ibm.com>                                  ##  " 
+NAME = "perl_WWW_RobotRules" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-WWW-RobotRules package 
+    ''' 
+path = '' 
+job.run_test('perl_WWW_RobotRules',test_path=path) 

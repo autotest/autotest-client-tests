@@ -1,0 +1,11 @@
+AUTHOR = " Ramesh YR, rameshyr@linux.vnet.ibm.com                        ##  " 
+NAME = "gnome_vfs2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gnome-vfs2 package 
+    ''' 
+path = '' 
+job.run_test('gnome_vfs2',test_path=path) 

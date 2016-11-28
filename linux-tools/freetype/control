@@ -1,0 +1,11 @@
+AUTHOR = " Hong Bo Peng <penghb@cn.ibm.com>  " 
+NAME = "freetype" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test freetype package 
+    ''' 
+path = '' 
+job.run_test('freetype',test_path=path) 

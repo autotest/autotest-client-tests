@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G  " 
+NAME = "rootfiles" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test rootfiles package 
+    ''' 
+path = '' 
+job.run_test('rootfiles',test_path=path) 

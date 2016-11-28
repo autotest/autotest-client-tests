@@ -1,0 +1,11 @@
+AUTHOR = " Anitha M, amalloji@linux.vnet.ibm.com                        ##  " 
+NAME = "nasm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test nasm package 
+    ''' 
+path = '' 
+job.run_test('nasm',test_path=path) 

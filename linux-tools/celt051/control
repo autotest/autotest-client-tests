@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>                                 ##  " 
+NAME = "celt051" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test celt051 package 
+    ''' 
+path = '' 
+job.run_test('celt051',test_path=path) 

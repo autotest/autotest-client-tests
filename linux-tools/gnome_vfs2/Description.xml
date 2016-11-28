@@ -1,0 +1,7 @@
+<!-- Test configuration for 'gnome-vfs2' -->
+<TEST>
+<TYPE>AUTO</TYPE>
+<PACKAGE>gnome-vfs2</PACKAGE>
+<COMMAND>gnome-vfs2.sh</COMMAND>
+<DESCRIPTION>Test gnome-vfs2 package</DESCRIPTION>
+</TEST> 

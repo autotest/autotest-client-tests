@@ -1,0 +1,7 @@
+<!-- Test configuration for 'mcelog' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>mcelog</PACKAGE>
+    <COMMAND>mcelog.sh</COMMAND>
+    <DESCRIPTION>Testcase to test mcelog package</DESCRIPTION>
+</TEST>

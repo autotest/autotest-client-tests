@@ -1,0 +1,11 @@
+AUTHOR = " Basavaraju.G <basavarg@in.ibm.com>  " 
+NAME = "perl_parent" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-parent package 
+    ''' 
+path = '' 
+job.run_test('perl_parent',test_path=path) 

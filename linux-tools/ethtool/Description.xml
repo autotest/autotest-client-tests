@@ -1,0 +1,8 @@
+<!-- Test configuration for 'ethtool' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>ethtool</PACKAGE>
+    <COMMAND>ethtool.sh</COMMAND>
+    <DESCRIPTION>Test the ethtool tool with some important parameters.</DESCRIPTION>
+</TEST>
+

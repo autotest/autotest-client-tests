@@ -1,0 +1,37 @@
+Description:
+=========
+Package: perl-Digest
+
+Digest - Modules that calculate message digests
+
+synopsis:
+  $md5  = Digest->new("MD5");
+  $sha1 = Digest->new("SHA-1");
+  $sha256 = Digest->new("SHA-256");
+  $sha384 = Digest->new("SHA-384");
+  $sha512 = Digest->new("SHA-512");
+
+
+Description:
+========
+The Digest:: modules calculate digests, also called "fingerprints" or
+"hashes", of some data, called a message. The digest is (usually) some
+small/fixed size string. The actual size of the digest depend of the algorithm
+used. The message is simply a sequence of arbitrary bytes or bits.
+
+An important property of the digest algorithms is that the digest is likely to
+change if the message change in some way. Another property is that digest
+functions are one-way functions, that is it should be hard to find a message
+that correspond to some given digest. Algorithms differ in how "likely" and
+how "hard", as well as how efficient they are to compute.
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Digest
+./perl-Digest.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Digest
+perl t/*.t
+

@@ -1,0 +1,11 @@
+AUTHOR = " Gowri Shankar <gowrishankar.m@in.ibm.com>  " 
+NAME = "libffi" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libffi package 
+    ''' 
+path = '' 
+job.run_test('libffi',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Shoji Sugiyama (shoji@jp.ibm.com)  " 
+NAME = "xorg_x11_fonts" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xorg-x11-fonts package 
+    ''' 
+path = '' 
+job.run_test('xorg_x11_fonts',test_path=path) 

@@ -1,0 +1,6 @@
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>libassuan</PACKAGE>
+ <COMMAND>libassuan.sh</COMMAND>
+ <DESCRIPTION>Test the libassuan package</DESCRIPTION>
+</TEST> 

@@ -1,0 +1,341 @@
+Crash test is to test the crash commands to analyze the dump image.
+
+Run kdump test before this to get the dump image. Please refer to /opt/fiv/ltp/testcases/fivextra/kexec-tools/kexec-tools.txt #Section BB for kdump.
+
+Objective: Analyze the dump image with "crash", try crash commands and check
+the output.
+
+	Steps:
+		(You may skip the following step, please refer to the note
+below it)
+		1. If "CONFIG_DEBUG_INFO=y" is already set in the installed
+kernel,
+		which you can check in the /boot/config-* file or
+/proc/config.gz,
+		then just install the kernel-debuginfo- and
+kernel-debuginfo-common-
+		rpms for the running kernel.  Otherwise, install kernel
+sources from
+		rpms, install cpp, glibc-devel, gcc and rebuild kernel with
+		CONFIG_DEBUG_INFO=y
+			cd /usr/src/linux
+			make cloneconfig
+			echo "CONFIG_DEBUG_INFO=y" >> .config
+			make
+
+		2. analyze live system with crash (use /usr/src/linux/vmlinux
+or
+		/usr/lib/debug/lib/modules/<version>/vmlinux as its namelist)
+			# crash /usr/src/linux/vmlinux [vmlinux.debug]
+
+		3. analyze core file
+			# crash /usr/src/linux/vmlinux [vmlinux.debug]
+			# /var/crash/<date>/vmcore
+
+  * sample ouput of some crash commands on x86_64, for your reference:
+
+===========================================================================================================
+test8:/usr/src/linux # crash  vmlinux
+/var/log/dump/2006-06-18-22\:18/vmcore 
+
+crash 4.0-25
+Copyright (C) 2002, 2003, 2004, 2005, 2006  Red Hat, Inc.
+Copyright (C) 2004, 2005, 2006  IBM Corporation
+Copyright (C) 1999-2006  Hewlett-Packard Co
+Copyright (C) 2005  Fujitsu Limited
+Copyright (C) 2005  NEC Corporation
+Copyright (C) 1999, 2002  Silicon Graphics, Inc.
+Copyright (C) 1999, 2000, 2001, 2002  Mission Critical Linux, Inc.
+This program is free software, covered by the GNU General Public License,
+and you are welcome to change it and/or distribute copies of it under
+certain conditions.  Enter "help copying" to see the conditions.
+This program has absolutely no warranty.  Enter "help warranty" for details.
+ 
+GNU gdb 6.1
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "x86_64-unknown-linux-gnu"...
+
+      KERNEL: vmlinux                           
+    DUMPFILE: /var/log/dump/2006-06-18-22:18/vmcore
+        CPUS: 4
+        DATE: Sun Jun 18 22:17:55 2006
+      UPTIME: 00:00:51
+LOAD AVERAGE: 0.07, 0.11, 0.08
+       TASKS: 87
+    NODENAME: test8
+     RELEASE: 2.6.16.16-1.6-smp
+     VERSION: #1 SMP Mon May 22 14:37:02 UTC 2006
+     MACHINE: x86_64  (3000 Mhz)
+      MEMORY: 2 GB
+       PANIC: "SysRq : Trigger a crashdump"
+         PID: 3442
+     COMMAND: "bash"
+        TASK: ffff81007da65040  [THREAD_INFO: ffff810063eb6000]
+         CPU: 0
+       STATE: TASK_RUNNING (SYSRQ)
+       
+crash> help
+
+*              files          mod            runq           union          
+alias          foreach        mount          search         vm             
+ascii          fuser          net            set            vtop           
+bt             gdb            p              sig            waitq          
+btop           help           ps             struct         whatis         
+dev            irq            pte            swap           wr             
+dis            kmem           ptob           sym            q              
+eval           list           ptov           sys            
+exit           log            rd             task           
+extend         mach           repeat         timer          
+
+crash version: 4.0-25   gdb version: 6.1
+For help on any command above, enter "help <command>".
+For help on input options, enter "help input".
+For help on output options, enter "help output".
+
+crash> ps
+   PID    PPID  CPU       TASK        ST  %MEM     VSZ    RSS  COMM
+      0      0   0  ffffffff80333340  RU   0.0       0      0  [swapper]
+   ...
+   3338   3333   2  ffff81007da37850  IN   0.1    9708   2228  bash
+   3400   3141   3  ffff81007da54810  IN   0.1   37500   2728  sshd
+>  3442   3400   0  ffff81007da65040  RU   0.1    9708   2284  bash
+
+crash> bt
+PID: 3442   TASK: ffff81007da65040  CPU: 0   COMMAND: "bash"
+ #0 [ffff810063eb7d78] crash_kexec at ffffffff8014f50b
+ #1 [ffff810063eb7dc0] machine_kexec at ffffffff8011af35
+ #2 [ffff810063eb7e00] crash_kexec at ffffffff8014f527
+ #3 [ffff810063eb7e88] crash_kexec at ffffffff8014f50b
+ #4 [ffff810063eb7eb8] __sysrq_get_key_op at ffffffff8023cf0c
+ #5 [ffff810063eb7ec0] __handle_sysrq at ffffffff8023d11d
+ #6 [ffff810063eb7f00] write_sysrq_trigger at ffffffff801b2230
+ #7 [ffff810063eb7f10] vfs_write at ffffffff8017ac08
+ #8 [ffff810063eb7f40] sys_write at ffffffff8017b1c0
+ #9 [ffff810063eb7f80] system_call at ffffffff8010a7be
+    RIP: 00002b64b3ad3cb0  RSP: 00007ffff76507a0  RFLAGS: 00010202
+    RAX: 0000000000000001  RBX: ffffffff8010a7be  RCX: 00000000005d4d31
+    RDX: 0000000000000002  RSI: 00002b64b3d61000  RDI: 0000000000000001
+    RBP: 0000000000000002   R8: 00000000ffffffff   R9: 00002b64b3c52ae0
+    R10: 0000000000000000  R11: 0000000000000246  R12: 00002b64b3c4c780
+    R13: 00002b64b3d61000  R14: 0000000000000002  R15: 0000000000000000
+    ORIG_RAX: 0000000000000001  CS: 0033  SS: 002b
+
+crash> bt 3141
+PID: 3141   TASK: ffff81007da53790  CPU: 1   COMMAND: "sshd"
+ #0 [ffff810076b0dcd0] schedule at ffffffff802cd952
+    RIP: 00002af6f88df1b3  RSP: 00007fffb34a7200  RFLAGS: 00010297
+    RAX: 0000000000000017  RBX: ffffffff8010a7be  RCX: 00000000556bb742
+    RDX: 0000000000000000  RSI: 00005555556bc6c0  RDI: 0000000000000006
+    RBP: 0000000000000000   R8: 0000000000000000   R9: 000000000000000a
+    R10: 0000000000000000  R11: 0000000000000246  R12: 0000000000000001
+    R13: 0000000000000001  R14: 00005555556bc6c0  R15: 0000000000000006
+    ORIG_RAX: 0000000000000017  CS: 0033  SS: 002b
+       
+# Note - A process is only on a runqueue when it is running, so it may not be
+# seen always by the runq command. Also we may see the crash command's child
+# processes running intermitently. For more details please refer Bug #53948.
+
+crash> runq
+RUNQUEUES[0]: ffff810005011680
+ ACTIVE PRIO_ARRAY: ffff8100050116f0
+  [115] PID: 3442   TASK: ffff81007da65040  CPU: 0   COMMAND: "bash"
+ EXPIRED PRIO_ARRAY: ffff810005011fd0
+RUNQUEUES[1]: ffff81000501d680
+ ACTIVE PRIO_ARRAY: ffff81000501dfd0
+ EXPIRED PRIO_ARRAY: ffff81000501d6f0
+RUNQUEUES[2]: ffff810005029680
+ ACTIVE PRIO_ARRAY: ffff8100050296f0
+  [116] PID: 2581   TASK: ffff81007e2ed850  CPU: 2   COMMAND: "klogd"
+ EXPIRED PRIO_ARRAY: ffff810005029fd0
+RUNQUEUES[3]: ffff810005035680
+ ACTIVE PRIO_ARRAY: ffff8100050356f0
+ EXPIRED PRIO_ARRAY: ffff810005035fd0
+ 
+crash> files 3128
+PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
+ROOT: /    CWD: /
+ FD       FILE            DENTRY           INODE       TYPE PATH
+  0 ffff81007c3bb680 ffff81007db0e490 ffff81007d706400 CHR  /dev/null
+  1 ffff81007c3bb680 ffff81007db0e490 ffff81007d706400 CHR  /dev/null
+  2 ffff81007c3bb680 ffff81007db0e490 ffff81007d706400 CHR  /dev/null
+  3 ffff81007c3bba80 ffff81007bc2a220 ffff810077627758 REG
+/var/run/nscd/passwd
+  4 ffff81007c197580 ffff81007bc2a220 ffff810077627758 REG
+/var/run/nscd/passwd
+  5 ffff81007c7097c0 ffff81007db10490 ffff810077627438 REG
+/var/run/nscd/group
+  6 ffff81007bd73a80 ffff81007db10490 ffff810077627438 REG
+/var/run/nscd/group
+  7 ffff81007dfd74c0 ffff810076c4dbe0 ffff810077627118 REG
+/var/run/nscd/dbqp5JOw
+  8 ffff81007c79c480 ffff810076c4dbe0 ffff810077627118 REG
+/var/run/nscd/dbqp5JOw
+  9 ffff81007da7dd80 ffff810076c4dcb0 ffff81007a0cf6d0 SOCK socket:/[8292]
+ 10 ffff81007cba9a80 ffff810076ef43c0 ffff81007a6471c8 UNKN eventpoll:/[8294]
+ 
+crash> whatis SyS_read ( Note: For PPC64, If this is not working, use altogether different
+variable "whatis jiffies". For more details refer Bug #54081)
+long SyS_read(long, long, long);
+
+crash> sym sys_read
+ffffffff8017b10d (T) sys_read  ../linux/fs/read_write.c: 343
+
+crash> sym ffffffff8017b10d
+ffffffff8017b10d (T) sys_read  ../linux/fs/read_write.c: 343        
+
+crash> sig 3128
+PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
+SIGPENDING: no
+    SIGNAL: 0000000000000000
+   BLOCKED: 0000000000000000
+SIGNAL_STRUCT: ffff81007d4d20c0  COUNT: 7
+ SIG    SIGACTION        HANDLER       MASK       FLAGS           
+ [1] ffff810037e92bc8    SIG_DFL 0000000000000000 0 
+ [2] ffff810037e92be8 5555555591c0 0000000000000002 14000000
+(SA_RESTORER|SA_RESTART)
+ [3] ffff810037e92c08 5555555591c0 0000000000000004 14000000
+(SA_RESTORER|SA_RESTART)
+ ...
+ [63] ffff810037e93388    SIG_DFL 0000000000000000 0 
+SIGQUEUE: (empty)
+
+crash> dis sys_read   ( Note: for PPC64, it should be "dis .sys_read" )
+0xffffffff8017b10d <sys_read>:  push   %r13
+0xffffffff8017b10f <sys_read+2>:        mov    %rsi,%r13
+0xffffffff8017b112 <sys_read+5>:        push   %r12
+0xffffffff8017b114 <sys_read+7>:        mov    $0xfffffffffffffff7,%r12
+0xffffffff8017b11b <sys_read+14>:       push   %rbp
+0xffffffff8017b11c <sys_read+15>:       mov    %rdx,%rbp
+...
+
+crash> timer
+TVEC_BASES[0]: ffff810005014e00
+       JIFFIES      
+          4295018332
+       EXPIRES           TIMER_LIST         FUNCTION    
+          4295018341  ffffffff804321c0  ffffffff80245ab8  <i8042_timer_func>
+          4295018344  ffff810005015290  ffffffff8013ff07
+<delayed_work_timer_fn>
+          4295018346  ffffffff8822c1f8  ffffffff8027b9f2
+<neigh_periodic_timer>
+          4295018361  ffff81007d45c2a8  ffffffff8028411d  <dev_watchdog>
+          4295018379  ffff81007c84f0b8  ffffffff8816053e  <rh_timer_func>
+          4295018409  ffffffff8822aca0  ffffffff881f825c  <addrconf_verify>
+          4295042296  ffffffff80431ee0  ffffffff80239c62  <blank_screen_t>
+          4295043564  ffffffff80337010  ffffffff8013ff07
+<delayed_work_timer_fn>
+          4295048413  ffffffff8823fd20  ffffffff8820c7fc
+<ip6_frag_secret_rebuild>
+          4295148731  ffff8100782cfd98  ffffffff80139210  <process_timeout>
+ 9223372041149673899  ffff810079a6be88  ffffffff80139210  <process_timeout>
+ 9223372041149674990  ffff81007b4c5e88  ffffffff80139210  <process_timeout>
+ 9223372041149750719  ffff81007b0ade88  ffffffff80139210  <process_timeout>
+TVEC_BASES[1]: ffff810005020e00
+  JIFFIES 
+4295018332
+  EXPIRES      TIMER_LIST         FUNCTION    
+4295018344  ffff810005021290  ffffffff8013ff07  <delayed_work_timer_fn>
+4295019888  ffff810077859e98  ffffffff80139210  <process_timeout>
+4295025350  ffff81007b331e88  ffffffff80139210  <process_timeout>
+4295028731  ffff81007825fd98  ffffffff80139210  <process_timeout>
+4296703738  ffff81007892ef80  ffffffff802a7da3  <tcp_keepalive_timer>
+...
+
+crash> mod
+     MODULE       NAME                  SIZE  OBJECT FILE
+ffffffff88025b00  scsi_mod            163760  (not loaded)  [CONFIG_KALLSYMS]
+ffffffff8802f380  sd_mod               34176  (not loaded)  [CONFIG_KALLSYMS]
+ffffffff88047100  libata               90904  (not loaded)  [CONFIG_KALLSYMS]
+ffffffff8804fc80  ata_piix             28292  (not loaded)  [CONFIG_KALLSYMS]
+ffffffff8805f680  cdrom                52392  (not loaded)  [CONFIG_KALLSYMS]
+ffffffff88068f00  sr_mod               33060  (not loaded)  [CONFIG_KALLSYMS]
+...
+
+crash> task 3128
+PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
+struct task_struct {
+  state = 1, 
+  thread_info = 0xffff810076e80000, 
+  usage = {
+    counter = 2
+  }, 
+  flags = 8388672, 
+  ptrace = 0, 
+  ...
+    rcu = {
+    next = 0x0, 
+    func = 0
+  }, 
+  delays = 0x0, 
+  map_base = 1431654400
+}
+
+crash> net
+   NET_DEVICE     NAME   IP ADDRESS(ES)
+ffffffff8035e500  lo     127.0.0.1
+ffff81007d45c000  eth0   172.30.1.118
+ffff81007d5bd000  eth1   
+ffff81007d5a2800  sit0   
+
+crash> rd  linux_banner 32
+ffffffff802d8000:  65762078756e694c 2e32206e6f697372   Linux version 2.
+ffffffff802d8010:  2d36312e36312e36 20706d732d362e31   6.16.16-1.6-smp 
+ffffffff802d8020:  62406f6b65656728 74736f68646c6975   (geeko@buildhost
+ffffffff802d8030:  7620636367282029 34206e6f69737265   ) (gcc version 4
+ffffffff802d8040:  55532820302e312e 78756e694c204553   .1.0 (SUSE Linux
+ffffffff802d8050:  4d53203123202929 614d206e6f4d2050   )) #1 SMP Mon Ma
+ffffffff802d8060:  3a34312032322079 54552032303a3733   y 22 14:37:02 UT
+ffffffff802d8070:  000a363030322043 0000000000000000   C 2006..........
+ffffffff802d8080:  ffffffff80462b61 ffffffff80462910   a+F......)F.....
+ffffffff802d8090:  ffffffff8046291c ffffffff80462928   .)F.....()F.....
+ffffffff802d80a0:  ffffffff80462b55 0000000000000000   U+F.............
+ffffffff802d80b0:  0000000000000000 0000000000000000   ................
+ffffffff802d80c0:  0000000100000000 0000000400000002   ................
+ffffffff802d80d0:  0000000700000005 0000000a00000008   ................
+ffffffff802d80e0:  0000000c0000000b 0000001600000010   ................
+ffffffff802d80f0:  0000001a00000017 0000000000000000   ................
+
+crash> rd -d jiffies
+c0554b00:       1458044
+
+crash> vm 3128
+ID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
+       MM               PGD          RSS    TOTAL_VM
+ffff81007ce9c880  ffff810077639000  1056k   121932k 
+      VMA           START       END     FLAGS FILE
+ffff81007c836c08   40000000   40001000 100070 
+ffff81007cb192b0   40001000   40201000 100073 
+ffff81007c1c4b50   40201000   40202000 100070 
+...
+
+crash> sym xtime
+c05f3680 (B) xtime
+
+crash> struct timespec
+struct timespec {
+    time_t tv_sec;
+    long int tv_nsec;
+}
+SIZE: 8
+
+crash> struct timespec c05f3680
+struct timespec {
+  tv_sec = 1244628609,
+  tv_nsec = 100031406
+}
+
+===========================================================================================================
+
+
+
+== Reference ==
+
+ * http://lse.sourceforge.net/kdump
+ * /usr/share/doc/packages/kexec-tools/README.SUSE
+ * /usr/src/linux/Documentation/kdump/kdump.txt
+
+							- rende

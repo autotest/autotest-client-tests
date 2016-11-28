@@ -1,0 +1,9 @@
+libdb is the package that provides the Berkeley DB database library for C
+
+building and running the in-built test suite is clearly mentioned in the link:
+https://github.com/gburd/libdb/blob/master/test/c/README
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libdb
+./libdb.sh

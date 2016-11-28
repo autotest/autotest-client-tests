@@ -1,0 +1,113 @@
+diff -Naur snmp_tests-orig/TESTCONF.sh snmp_tests/TESTCONF.sh
+--- snmp_tests-orig/TESTCONF.sh	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/TESTCONF.sh	2008-02-19 06:29:23.000000000 +0000
+@@ -140,13 +140,21 @@
+     SNMP_SNMPTRAPD_PORT=`expr $SNMP_SNMPD_PORT - 1`
+ fi
+ if [ "x$SNMP_TRANSPORT_SPEC" = "x" ];then
++	if [ "$IPV6" = "yes" ]; then
++	SNMP_TRANSPORT_SPEC="udp6"
++	else	
+ 	SNMP_TRANSPORT_SPEC="udp"
++	fi
+ fi
+ if [ "x$SNMP_TEST_DEST" = "x" -a $SNMP_TRANSPORT_SPEC != "unix" ];then
+     if [ "x$SNMP_TEST_HOST" != "x" ]; then
+ 	SNMP_TEST_DEST="$SNMP_TEST_HOST:"
+     else
++	if [ "$IPV6" = "yes" ]; then
++	SNMP_TEST_DEST="[$server_name]:"
++	else
+ 	SNMP_TEST_DEST="localhost:"
++	fi
+     fi
+ fi
+ export SNMP_FLAGS SNMP_SNMPD_PORT SNMP_SNMPTRAPD_PORT
+diff -Naur snmp_tests-orig/eval_onescript.sh snmp_tests/eval_onescript.sh
+--- snmp_tests-orig/eval_onescript.sh	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/eval_onescript.sh	2008-02-19 06:29:23.000000000 +0000
+@@ -1,4 +1,6 @@
+ #!/bin/sh
++export IPV6
++export server_name
+ #
+ # eval_onescript.sh SCRIPT  [TESTNUMBER [HEADERONLY] ]
+ #
+diff -Naur snmp_tests-orig/tests/T110agentxget snmp_tests/tests/T110agentxget
+--- snmp_tests-orig/tests/T110agentxget	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/tests/T110agentxget	2008-02-19 06:29:23.000000000 +0000
+@@ -19,7 +19,11 @@
+ if [ "x$SNMP_TRANSPORT_SPEC" = "xunix" ];then
+ ORIG_AGENT_FLAGS="$AGENT_FLAGS -x $SNMP_TMPDIR/agentx_socket"
+ else
+-ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	if [ "$IPV6" = "yes" ]; then
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp6:${SNMP_TEST_DEST}7676"
++	else	
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	fi
+ fi
+ AGENT_FLAGS="$ORIG_AGENT_FLAGS -I -system_mib"
+ STARTAGENT
+diff -Naur snmp_tests-orig/tests/T111agentxset snmp_tests/tests/T111agentxset
+--- snmp_tests-orig/tests/T111agentxset	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/tests/T111agentxset	2008-02-19 06:29:23.000000000 +0000
+@@ -19,7 +19,11 @@
+ if [ "x$SNMP_TRANSPORT_SPEC" = "xunix" ];then
+ ORIG_AGENT_FLAGS="$AGENT_FLAGS -x $SNMP_TMPDIR/agentx_socket"
+ else
+-ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	if [ "$IPV6" = "yes" ]; then
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp6:${SNMP_TEST_DEST}7676"
++	else
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	fi
+ fi
+ AGENT_FLAGS="$ORIG_AGENT_FLAGS -I -system_mib -DAgentX"
+ STARTAGENT
+diff -Naur snmp_tests-orig/tests/T112agentxsetfail snmp_tests/tests/T112agentxsetfail
+--- snmp_tests-orig/tests/T112agentxsetfail	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/tests/T112agentxsetfail	2008-02-19 06:29:23.000000000 +0000
+@@ -19,7 +19,11 @@
+ if [ "x$SNMP_TRANSPORT_SPEC" = "xunix" ];then
+ ORIG_AGENT_FLAGS="$AGENT_FLAGS -x $SNMP_TMPDIR/agentx_socket"
+ else
+-ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	if [ "$IPV6" = "yes" ]; then
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp6:${SNMP_TEST_DEST}7676"
++	else
++	ORIG_AGENT_FLAGS="$AGENT_FLAGS -x tcp:${SNMP_TEST_DEST}7676"
++	fi
+ fi
+ AGENT_FLAGS="$ORIG_AGENT_FLAGS -I -system_mib -DAgentX"
+ STARTAGENT
+diff -Naur snmp_tests-orig/tests/T120proxyget snmp_tests/tests/T120proxyget
+--- snmp_tests-orig/tests/T120proxyget	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/tests/T120proxyget	2008-02-19 06:29:23.000000000 +0000
+@@ -35,7 +35,11 @@
+   SNMP_SNMPD_PID_FILE=$SNMP_SNMPD_PID_FILE.num2
+   SNMP_SNMPD_LOG_FILE=$SNMP_SNMPD_LOG_FILE.num2
+   SNMP_CONFIG_FILE="$SNMP_TMPDIR/proxy.conf"
++  if [ "$IPV6" = "yes" ]; then
++  echo "rwcommunity6 testcommunity" >> $SNMP_CONFIG_FILE
++  else
+   echo "rwcommunity testcommunity" >> $SNMP_CONFIG_FILE
++  fi
+   AGENT_FLAGS=$ORIG_AGENT_FLAGS
+   ORIG_SNMP_SNMPD_PORT=$SNMP_SNMPD_PORT
+   SNMP_SNMPD_PORT="7676"
+diff -Naur snmp_tests-orig/tests/T121proxyset snmp_tests/tests/T121proxyset
+--- snmp_tests-orig/tests/T121proxyset	2008-02-19 06:03:07.000000000 +0000
++++ snmp_tests/tests/T121proxyset	2008-02-19 06:29:23.000000000 +0000
+@@ -35,7 +35,11 @@
+   SNMP_SNMPD_PID_FILE=$SNMP_SNMPD_PID_FILE.num2
+   SNMP_SNMPD_LOG_FILE=$SNMP_SNMPD_LOG_FILE.num2
+   SNMP_CONFIG_FILE="$SNMP_TMPDIR/proxy.conf"
++  if [ "$IPV6" = "yes" ]; then
++  echo "rwcommunity6 testcommunity" >> $SNMP_CONFIG_FILE
++  else
+   echo "rwcommunity testcommunity" >> $SNMP_CONFIG_FILE
++  fi
+   echo "psyscontact testcontact" >> $SNMP_CONFIG_FILE
+   AGENT_FLAGS="$ORIG_AGENT_FLAGS -Dmib_init"
+   ORIG_SNMP_SNMPD_PORT=$SNMP_SNMPD_PORT

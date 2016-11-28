@@ -1,0 +1,21 @@
+Hesiod is a simple lookup service for information that changes infrequently,
+like passwd, hosts, protocols etc. Hesiod service is built on top of DNS to
+serve the lookup requests using "name" and "type" as pair of strings. You
+can use hesiod's userspace tool itself to look up for eg,
+
+   hesiod root passwd
+
+root is name and passwd is type. But, our package does not ship userspace tool
+as hesiod is popularly used in NSS (Name Service Switch) facility in your
+system. For more info about nss, you can check /etc/nssswitch.conf. So,
+once you enable passwd look up using hesiod for instance, you can run glibc's
+userspace tool:
+
+  genent root passwd
+
+This should return  /etc/passwd entry for root account. In fivextra, we have
+one test from its source called "hestest" to test libhesiod.so.0. and one to
+test passwd lookup integration using NSS which is an usecase of this library.
+
+To run the tests, execute "./hesiod.sh".
+ 

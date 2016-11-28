@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "gstreamer" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gstreamer package 
+    ''' 
+path = '' 
+job.run_test('gstreamer',test_path=path) 

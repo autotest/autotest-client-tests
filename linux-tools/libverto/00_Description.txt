@@ -1,0 +1,15 @@
+About:
+libverto provides a way for libraries to expose asynchronous interfaces
+without having to choose a particular event loop, offloading this
+decision to the end application which consumes the library.
+
+libverto exists to solve an important problem: many applications and libraries are unable to write asynchronous code because they are unable to pick an event loop.
+This is particularly true of libraries who want to be useful to many applications who use loops that do not integrate with one another.
+
+It has sub-packages which different modules for libverto.
+example:
+libverto-libevent - Module for libverto which provides integration with libevent.
+
+How-to run the test
+cd /opt/fiv/ltp/testcases/fivextra/libverto
+./libverto.sh

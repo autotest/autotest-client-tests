@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "qemu_kvm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test qemu-kvm package 
+    ''' 
+path = '' 
+job.run_test('qemu_kvm',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##  " 
+NAME = "libdb" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libdb package 
+    ''' 
+path = '' 
+job.run_test('libdb',test_path=path) 

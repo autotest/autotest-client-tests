@@ -1,0 +1,11 @@
+AUTHOR = " Anitha MallojiRao amalloji@in.ibm.com                        ##  " 
+NAME = "gpgme" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gpgme package 
+    ''' 
+path = '' 
+job.run_test('gpgme',test_path=path) 

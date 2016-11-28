@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "lsof" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lsof package 
+    ''' 
+path = '' 
+job.run_test('lsof',test_path=path) 

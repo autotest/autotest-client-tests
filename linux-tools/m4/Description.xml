@@ -1,0 +1,8 @@
+<!-- Test configuration for 'm4' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>m4</PACKAGE>
+    <COMMAND>m4test.sh</COMMAND>
+    <DESCRIPTION>Test basic functions of the m4 tool.</DESCRIPTION>
+</TEST>
+

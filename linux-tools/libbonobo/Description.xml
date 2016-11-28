@@ -1,0 +1,8 @@
+<!-- Test configuration for 'libbonobo' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libbonobo</PACKAGE>
+    <COMMAND>libbonobo.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the libbonobo program.</DESCRIPTION>
+</TEST>
+

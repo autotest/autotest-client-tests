@@ -1,0 +1,25 @@
+===============================================================================
+TestCase	: openslp.sh
+
+Description	: This test will test openslp functions.
+
+Author		: James He <hejianj@cn.ibm.com>
+
+===============================================================================
+Howto:
+
+Invoke ./openslp.sh to start the test.
+----------------------------------
+Test-case coverage:
+SLPUnescape
+SLPReg
+SLPParseSrvURL
+SLPOpen
+SLPFindSrvTypes
+SLPFindSrvs
+SLPFindAttrs
+SLPEscape
+SLPDereg
+----------------------------------
+
+P.S.    All these test are rewrite from openslp source package.

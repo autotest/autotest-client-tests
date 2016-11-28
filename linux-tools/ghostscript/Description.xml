@@ -1,0 +1,8 @@
+<!-- Test configuration for 'ghostscript' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>ghostscript</PACKAGE>
+    <COMMAND>ghostscript.sh</COMMAND>
+    <DESCRIPTION>Test the basic functionality of ghostscript package.</DESCRIPTION>
+</TEST>
+

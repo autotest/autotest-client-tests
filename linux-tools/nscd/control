@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "nscd" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test nscd package 
+    ''' 
+path = '' 
+job.run_test('nscd',test_path=path) 

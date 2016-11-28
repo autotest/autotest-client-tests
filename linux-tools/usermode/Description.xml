@@ -1,0 +1,13 @@
+<!-- Test configuration for 'userhelper' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>usermode</PACKAGE>
+ <COMMAND>userhelper.sh</COMMAND>
+ <DESCRIPTION>Test the functionality of userhelper utility.</DESCRIPTION>
+</TEST>
+<TEST>
+<TYPE>MANUAL</TYPE>
+<PACKAGE>usermode</PACKAGE>
+<COMMAND>usermode.txt</COMMAND>
+<DESCRIPTION>Test the functionality of usermode.</DESCRIPTION>
+</TEST>

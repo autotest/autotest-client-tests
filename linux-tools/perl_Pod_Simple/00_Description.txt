@@ -1,0 +1,10 @@
+Pod::Simple is a Perl library for parsing text in the Pod ("plain old documentation") markup language.
+
+That is typically used for writing documentation for Perl and for Perl modules.
+
+
+How to run
+----------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-Pod-Simple
+
+./perl-Pod-Simple.sh

@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>                                 ##  " 
+NAME = "avahi" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test avahi package 
+    ''' 
+path = '' 
+job.run_test('avahi',test_path=path) 

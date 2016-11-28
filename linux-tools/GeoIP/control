@@ -1,0 +1,11 @@
+AUTHOR = " Poornima Nayak      mpnayak@linux.vnet.ibm.com  " 
+NAME = "GeoIP" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test GeoIP package 
+    ''' 
+path = '' 
+job.run_test('GeoIP',test_path=path) 

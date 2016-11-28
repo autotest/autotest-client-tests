@@ -1,0 +1,19 @@
+Description:
+------------
+Module Getopt::Long implements an extended getopt function called
+GetOptions(). This function implements the POSIX standard for command
+line options, with GNU extensions, while still capable of handling the
+traditional one-letter options.
+
+this means that command line options can have long names instead of single
+letters, and are introduced with a double dash `--'.
+
+Optionally, Getopt::Long can support the traditional bundling of single-letter
+command line options. 
+
+How to run?
+-----------
+
+cd /opt/fiv/ltp/testcases/fivextra/perl-Getopt-Long
+
+./perl-Getopt-Long.sh

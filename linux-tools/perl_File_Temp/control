@@ -1,0 +1,11 @@
+AUTHOR = " UmerQayam<umeqayam@in.ibm.com>                                ##  " 
+NAME = "perl_File_Temp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-File-Temp package 
+    ''' 
+path = '' 
+job.run_test('perl_File_Temp',test_path=path) 

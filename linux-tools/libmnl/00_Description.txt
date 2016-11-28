@@ -1,0 +1,32 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : libmnl.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from libmnl
+#		See run-tests in libmnl.sh under tests/ for the tests.
+#
+#
+#  Description : libmnl is a minimalistic user-space library oriented to
+#                Netlink developers.
+#                There are a lot of common tasks in parsing, validating, constructing of
+#                both the Netlink header and TLVs that are repetitive and easy to get wrong.
+#                This library aims to provide simple helpers that allows you to re-use code
+#                and to avoid re-inventing the wheel.
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/libmnl
+./libmnl.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/libmnl/tests
+./<binary>

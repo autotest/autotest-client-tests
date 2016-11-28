@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libcroco' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>libcroco</PACKAGE>
+ <COMMAND>libcroco.sh</COMMAND>
+ <DESCRIPTION>Test libcroco package</DESCRIPTION>
+</TEST>

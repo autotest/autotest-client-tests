@@ -1,0 +1,26 @@
+Index: openhpi/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorGet/3.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorGet/3.c	2009-09-18 11:30:47.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorGet/3.c	2009-09-18 11:31:10.000000000 +0000
+@@ -48,6 +48,9 @@
+ 	int retval = SAF_TEST_NOTSUPPORT;
+ 	int count = 0;
+ 
++	memset (&announcement, 0, sizeof(SaHpiAnnouncementT));
++	memset (&getAnnouncement, 0, sizeof(SaHpiAnnouncementT));
++
+ 	announcement.EntryId = SAHPI_FIRST_ENTRY;
+ 
+ 	while (status != SA_ERR_HPI_NOT_PRESENT
+Index: openhpi/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorAdd/3.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorAdd/3.c	2009-09-18 11:30:47.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/annunciator/saHpiAnnunciatorAdd/3.c	2009-09-18 11:31:33.000000000 +0000
+@@ -50,6 +50,7 @@
+ 	SaHpiSeverityT *severity;
+ 	int severityCount;
+ 
++	memset (&announcement, 0, sizeof(SaHpiAnnouncementT)); 
+ 	status = setWriteMode(sessionId, resourceId, annunRec, &mode);
+ 	if (status == ANNUN_ERROR) {
+ 		e_trace();

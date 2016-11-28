@@ -1,0 +1,28 @@
+TEST:           perl-File-Listing.sh
+
+AUTHOR:         Spoorthy <spoorts2@in.ibm.com>
+
+SOURCE:         Testcases taken from perl-File-Listing
+                See run-tests in perl-File-Listing under t/ for the tests.
+
+
+Description : File::Listing
+
+This module exports a single function called parse_dir(), which can be used to parse directory listings.
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-File-Listing
+./perl-File-Listing.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-File-Listing
+perl t/<apache.t>
+perl t/<dosftp.t>
+perl t/<ls-lR.t>
+perl t/<perm1.t>
+perl t/<perm2.t>
+perl t/<perm3.t>
+perl t/<perm4.t>
+

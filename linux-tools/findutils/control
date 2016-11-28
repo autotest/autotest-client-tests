@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "findutils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test findutils package 
+    ''' 
+path = '' 
+job.run_test('findutils',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Sharma < abhisshm@in.ibm.com >                                   ##  " 
+NAME = "libchewing" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libchewing package 
+    ''' 
+path = '' 
+job.run_test('libchewing',test_path=path) 

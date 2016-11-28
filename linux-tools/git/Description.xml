@@ -1,0 +1,7 @@
+<!-- Test configuration for 'git' -->
+<TEST>
+      <TYPE>AUTO</TYPE>
+      <PACKAGE>git</PACKAGE>
+      <COMMAND>git.sh</COMMAND>
+      <DESCRIPTION>Testcase for git</DESCRIPTION>
+</TEST> 

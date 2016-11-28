@@ -1,0 +1,11 @@
+AUTHOR = " Kumuda G - kumuda.govind@in.ibm.com  " 
+NAME = "ipmitool" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ipmitool package 
+    ''' 
+path = '' 
+job.run_test('ipmitool',test_path=path) 

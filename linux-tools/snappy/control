@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev>  " 
+NAME = "snappy" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test snappy package 
+    ''' 
+path = '' 
+job.run_test('snappy',test_path=path) 

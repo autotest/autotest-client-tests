@@ -1,0 +1,34 @@
+Description:
+
+Description:
+FriBidi package is an implementation of the Unicode Bidirectional Algorithm
+(BIDI). This is useful for supporting Arabic and Hebrew alphabets in other
+packages.
+This is a library to handle bidirectional scripts (for example Hebrew,
+Arabic), so that the display is done in the proper way; while the text data
+itself is always written in logical order.
+
+This library will stimulate the implementation of Hebrew and Arabic in lots of
+free software. Here is a small list of projects that would benefit from the
+use of the GNU FriBidi library, but of course there are many more: Wine,
+Mozilla, Qt, KDE, lynx, OpenOffice.
+
+Utilities provided by package:
+
+fribidi : is a command-line interface to the libfribidi library and can be
+used to convert a logical string to visual output.
+libfribidi.so : contains functions used to implement the Unicode Bidirectional
+Algorithm.
+
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/fribidi
+./fribidi.sh
+
+How to run individual test:
+cd /opt/fiv/ltp/testcases/fivextra/fribidi
+mkdir bin
+ln -s /usr/bin/fribidi /opt/fiv/ltp/testcases/fivextra/fribidi/bin/fribidi
+cd test
+./run.tests
+

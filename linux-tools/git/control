@@ -1,0 +1,11 @@
+AUTHOR = " Gopal Kalita <gokalita@in.ibm.com>  " 
+NAME = "git" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test git package 
+    ''' 
+path = '' 
+job.run_test('git',test_path=path) 

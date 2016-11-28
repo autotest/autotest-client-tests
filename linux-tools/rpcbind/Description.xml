@@ -1,0 +1,8 @@
+<!-- Test configuration for 'rpcbind' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>rpcbind</PACKAGE>
+    <COMMAND>rpcbind.sh</COMMAND>
+    <DESCRIPTION>Test rpcbind and rpcinfo command.</DESCRIPTION>
+</TEST>
+

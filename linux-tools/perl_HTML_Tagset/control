@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Sharma < abhisshm@in.ibm.com >                                   ##  " 
+NAME = "perl_HTML_Tagset" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTML-Tagset package 
+    ''' 
+path = '' 
+job.run_test('perl_HTML_Tagset',test_path=path) 

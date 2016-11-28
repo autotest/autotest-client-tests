@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "python_iniparse" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-iniparse package 
+    ''' 
+path = '' 
+job.run_test('python_iniparse',test_path=path) 

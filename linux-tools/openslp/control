@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  James He <hejianj@cn.ibm.com>  " 
+NAME = "openslp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test openslp package 
+    ''' 
+path = '' 
+job.run_test('openslp',test_path=path) 

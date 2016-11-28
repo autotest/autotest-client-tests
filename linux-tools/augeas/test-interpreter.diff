@@ -1,0 +1,10 @@
+--- tests/test-interpreter.sh.org	2013-07-26 07:48:06.861461542 -0400
++++ tests/test-interpreter.sh	2013-07-26 07:48:36.551462315 -0400
+@@ -8,7 +8,7 @@
+ TOPDIR=$(cd $(dirname $0)/.. && pwd)
+ DATADIR=${abs_top_srcdir-${TOPDIR}}/tests
+ MODULES=${DATADIR}/modules
+-AUGPARSE=${abs_top_builddir-${DATADIR}/..}/src/augparse
++AUGPARSE=/usr/bin/augparse
+ 
+ set -e

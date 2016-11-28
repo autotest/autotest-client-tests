@@ -1,0 +1,47 @@
+===============================================================================
+TestCase        : net-snmp
+
+Description     : Test net-snmp basic functions.
+
+===============================================================================
+
+* INTRODUCTION
+
+This is testcase for the net-snmp package (version 5.3.0.1).
+
+
+* RUN
+
+Two modes are supported: local and remote.  In local mode, the daemon
+and the client would run on same local machine, thus only one machine
+is needed.  In remote mode, you've to use two machines, one for the
+daemon and another for the client.  Remote mode is better because
+there will be real network flow thus the test better resembles real
+user environment.  For Auto FIV, local mode is enough.  The remote
+mode is designed for stress test.
+
+Local mode:
+1. Install net-snmp-devel package.
+2. Run ./net_snmp.sh.
+
+
+Remote mode:
+
+This testcase should be deployed on both machines.  The env variable
+SNMP_TEST_HOST on client machine is used to designate the address (or
+hostname) of the server machine.  And publickey ssh access
+(passwordless) should be set between these two machines. To start
+test, run ./net_snmp.sh on client machine.  For example:
+
+$ SNMP_TEST_HOST=serverhost ./net_snmp.sh
+
+Remember to install net-snmp-devel package.
+
+
+
+* NOTES
+
+These scripts mainly come from the net-snmp source package.  Testcase
+needs some *.h files in the net-snmp-devel package to determine build
+configurations.
+

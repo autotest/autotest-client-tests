@@ -1,0 +1,4 @@
+gettext.sh
+	Testcase to check the gettext package.
+
+	gettext-devel package is needed.

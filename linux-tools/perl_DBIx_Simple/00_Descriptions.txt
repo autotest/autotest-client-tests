@@ -1,0 +1,17 @@
+DBIx::Simple provides a simplified interface to DBI, Perl's powerful
+database module.
+
+DBIx::Simple has basic support for returning results as objects. The actual construction method has to be provided
+ by the chosen class.
+
+The DBI is a database access module for the Perl programming language. It defines a set of methods, variables, and conventions that provide a consistent database interface, independent of the actual database being used.
+
+It is important to remember that the DBI is just an interface. The DBI is a layer of "glue" between an application and one or more database driver modules. It is the driver modules which do most of the real work. The DBI provides a standard interface and framework for the drivers to operate within.
+
+For more info http://search.cpan.org/~juerd/DBIx-Simple-1.35/lib/DBIx/Simple.pm
+
+How to run the test:
+-------------------
+./perl-DBIx-Simple.sh
+To run individual test:  perl t/<testname.t>
+

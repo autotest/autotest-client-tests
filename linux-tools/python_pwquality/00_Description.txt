@@ -1,0 +1,7 @@
+The python-pwquality.sh tests the python wrapper. With in this a simple python program is called that makes use of the methods provided by the python wrapper.
+Python wrapper: The pwquality Python wrapper module can be used to call the libpwquality functionality from Python.
+
+How to execute the test.
+1. cd /opt/fiv/ltp/testcases/fivextra/python-pwquality
+2. Execute ./python-pwquality.sh
+

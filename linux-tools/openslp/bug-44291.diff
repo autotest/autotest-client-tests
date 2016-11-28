@@ -1,0 +1,33 @@
+diff -urN openslptest-orig/SLPDereg.c openslptest/SLPDereg.c
+--- openslptest-orig/SLPDereg.c	2008-05-19 10:08:38.000000000 -0500
++++ openslptest/SLPDereg.c	2008-05-19 10:07:41.000000000 -0500
+@@ -80,6 +80,7 @@
+ 
+ 
+ 	/* Now make sure that the service is there. */
++	sleep(10);
+ 	printf("Querying        = %s\n",(argc == 5)?argv[3]:argv[1]);
+ 	err = SLPFindSrvs (
+ 			hslp, 
+diff -urN openslptest-orig/SLPFindAttrs.c openslptest/SLPFindAttrs.c
+--- openslptest-orig/SLPFindAttrs.c	2006-07-28 09:56:34.000000000 -0500
++++ openslptest/SLPFindAttrs.c	2008-05-19 10:09:23.000000000 -0500
+@@ -93,6 +93,7 @@
+ 	} /* End If. */
+ 
+ 	// Check to ensure the service we want to ask about is actually there.
++	sleep(10);
+     printf("Querying                      = %s\n",argv[1]);
+ 	err = SLPFindSrvs (
+ 			hslp, 
+diff -urN openslptest-orig/SLPReg.c openslptest/SLPReg.c
+--- openslptest-orig/SLPReg.c	2008-05-19 10:08:47.000000000 -0500
++++ openslptest/SLPReg.c	2008-05-19 10:08:17.000000000 -0500
+@@ -65,6 +65,7 @@
+ 	check_error_state(callbackerr, "Error registering service with slp.");
+ 
+ 	printf("Querying        = %s\n",argv[3]);
++	sleep(10);
+ 	/* Now make sure that the service is there. */
+ 	err = SLPFindSrvs (
+ 			hslp, 

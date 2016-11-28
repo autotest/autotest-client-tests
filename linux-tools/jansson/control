@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T S <harihare@in.ibm.com>                           ##  " 
+NAME = "jansson" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test jansson package 
+    ''' 
+path = '' 
+job.run_test('jansson',test_path=path) 

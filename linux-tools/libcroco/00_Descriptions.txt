@@ -1,0 +1,34 @@
+libcroco: The libcroco package contains a standalone CSS2 parsing and
+manipulation library. It provides a low-level event-driven SAC-like API 
+and a CSS object model-like API. Cascading Style Sheets (CSS) is a style sheet
+language used for describing the presentation semantics (the look and formatting)
+of a document written in a markup language. Its most common application
+is to style web pages written in HTML and XHTML, but the language can also be
+applied to any kind of XML document, including plain XML, SVG and XUL
+
+The package has the following tests --
+----------------------------------------------------
+test0 -- This test reads a file byte per byte and sends each byte to stdout
+test1 -- This test reads a file character per character and sends each
+         character to stdout
+test2 -- Tests the cr_parser_parse () method. Returns OK if the status is
+         CR_OK,  otherwise returns KO
+test3 -- Tests the cr_parser_parse () method. Tests the parsing following the
+         css core syntax Returns OK if the status is CR_OK,  otherwise returns KO
+test4 -- Tests the cr_parser_parse () method. Tests the parsing following the
+         css core syntax Returns OK if the status is CR_OK, otherwise returns KO
+test5 -- Test the selection engineReturns OK if the status is CR_OK, KO
+         otherwise
+test6 -- The test of the cr_input_read_byte() method. Reads the each byte of
+         a_file_uri using the cr_input_read_byte() method. Each byte is send to stdout. 
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libcroco
+./libcroco.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libcroco/tests
+./test* <corresponding_css_file> 
+

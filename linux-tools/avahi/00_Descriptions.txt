@@ -1,0 +1,28 @@
+Avahi : avahi is a service auto-discovery package . It allows programs to
+publish and discover services and hosts running on a local network with no
+specific configuration. For example if are connected to a LAN network , then
+avahi can help you to find printers, shared files or irc clients etc. 
+avahi runs mDNS (multicast DNS) plus DNS-SD ( DNS service discovery ).
+
+In Multicast DNS, each equipped host stores its own DNS records. It uses the
+DNS programming interfaces, packet formats and operating, without configuring
+a conventional DNS server .A multicast address is used by clients
+wishing to get the IP address of a given hostname, and that host responds to
+the client request with its IP address.
+mDNS is useful for small networks without a DNS server.
+
+DNS-SD uses the same technology, but in addition to regular DNS information,
+hosts also publish service instance information: they announce what services 
+they provide and how to contact those services. All of this is intended
+to mean that hosts and services can connect to one another without requiring
+any user configuration: known as Zeroconf sharing. 
+
+How to run the test:
+------------------------
+cd /opt/fiv/ltp/testcases/fivextra/avahi
+./avahi.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

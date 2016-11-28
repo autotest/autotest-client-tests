@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>                           ##  " 
+NAME = "pyxdg" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pyxdg package 
+    ''' 
+path = '' 
+job.run_test('pyxdg',test_path=path) 

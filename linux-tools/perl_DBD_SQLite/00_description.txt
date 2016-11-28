@@ -1,0 +1,21 @@
+Testcase for perl-DBD-Sqlite
+
+DBD::SQLite is a Perl DBI driver for SQLite,
+that includes the entire thing in the distribution.
+
+where DBI - Database independent interface for Perl.
+It supports sqlite features like:
+• everything for the database is stored in a single disk file.
+• it supports full transactions
+• User-defined aggregate or regular functions can be registered with the SQL
+parser.
+
+SQLite creates a file per a database. Database name is a file name. 
+
+Usage:
+To run all tests:
+perl-DBD-Sqlite 	./perl-DBD-Sqlite
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-DBD-Sqlite
+perl t/<test.t>

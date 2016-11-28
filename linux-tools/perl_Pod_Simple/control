@@ -1,0 +1,11 @@
+AUTHOR = " UmerQayam<umeqayam@in.ibm.com>  " 
+NAME = "perl_Pod_Simple" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Pod-Simple package 
+    ''' 
+path = '' 
+job.run_test('perl_Pod_Simple',test_path=path) 

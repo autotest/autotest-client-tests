@@ -1,0 +1,11 @@
+AUTHOR = " Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##  " 
+NAME = "pixman" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pixman package 
+    ''' 
+path = '' 
+job.run_test('pixman',test_path=path) 

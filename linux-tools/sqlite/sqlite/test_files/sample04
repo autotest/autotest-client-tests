@@ -1,0 +1,8 @@
+t1key = 1
+data = This is c program sample data
+num = 3.0
+
+t1key = 2
+data = This is more c program sample data
+num = 6.0
+

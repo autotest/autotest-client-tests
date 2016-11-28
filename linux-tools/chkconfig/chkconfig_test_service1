@@ -1,0 +1,6 @@
+# This script says the service should be started in \
+# runlevels 3 and 5 with start priority 80 and stop priority 30
+#!/bin/bash 
+#
+# chkconfig: 35 80 30
+# description: chkconfig test script

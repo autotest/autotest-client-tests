@@ -1,0 +1,77 @@
+Index: openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGet/1.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/rdr/saHpiRdrGet/1.c	2009-06-21 08:16:27.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGet/1.c	2009-06-22 15:24:04.000000000 +0000
+@@ -33,7 +33,7 @@
+ {
+ 	int ret = 0;
+ 	if (prdr->RdrType < SAHPI_NO_RECORD
+-	    || prdr->RdrType > SAHPI_ANNUNCIATOR_RDR) {
++	    || prdr->RdrType > SAHPI_FUMI_RDR) {
+ 		m_print("rdr.RdrType invalid = %d", prdr->RdrType);
+ 		ret = -1;
+ 	}
+Index: openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/1.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/1.c	2009-06-21 08:16:27.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/1.c	2009-06-22 15:25:01.000000000 +0000
+@@ -70,7 +70,7 @@
+ {
+ 	int ret = 0;
+ 	if (pRdr->RdrType <= SAHPI_NO_RECORD
+-	    || pRdr->RdrType > SAHPI_ANNUNCIATOR_RDR) {
++	    || pRdr->RdrType > SAHPI_FUMI_RDR) {
+ 		m_print("rdr.RdrType invalid = %d", pRdr->RdrType);
+ 		ret = -1;
+ 	}
+Index: openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/7.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/7.c	2009-06-21 08:16:28.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/rdr/saHpiRdrGetByInstrumentId/7.c	2009-06-22 15:25:52.000000000 +0000
+@@ -87,7 +87,7 @@
+ 				status = saHpiRdrGetByInstrumentId(session_id,
+ 								   rpt_entry.
+ 								   ResourceId,
+-								   SAHPI_ANNUNCIATOR_RDR
++								   SAHPI_FUMI_RDR
+ 								   + 1, Id,
+ 								   &newRdr);
+ 				if (status != SA_ERR_HPI_INVALID_PARAMS) {
+Index: openhpi/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/5.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/5.c	2009-06-21 08:16:27.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/5.c	2009-06-22 15:33:12.000000000 +0000
+@@ -68,12 +68,12 @@
+ 
+ 		status = saHpiAlarmGet(session_id, SAHPI_FIRST_ENTRY, &Alarm);
+ 		if (status != SA_OK) {
+-			if (status == SA_ERR_HPI_NOT_PRESENT) {
++			if (status == SA_ERR_HPI_INVALID_PARAMS) {
+ 				//It is unclear whether this should work.
+ 				retval = SAF_TEST_PASS;
+ 			} else {
+ 				e_print(saHpiAlarmGet,
+-					status != SA_ERR_HPI_NOT_PRESENT,
++					status != SA_ERR_HPI_INVALID_PARAMS,
+ 					status);
+ 				retval = SAF_TEST_FAIL;
+ 			}
+Index: openhpi/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/6.c
+===================================================================
+--- openhpi.orig/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/6.c	2009-06-21 08:16:27.000000000 +0000
++++ openhpi/openhpi2-conformancetest/src/alarm/saHpiAlarmGet/6.c	2009-06-22 15:40:38.000000000 +0000
+@@ -66,12 +66,12 @@
+ 
+ 		status = saHpiAlarmGet(session_id, SAHPI_LAST_ENTRY, &Alarm);
+ 		if (status != SA_OK) {
+-			if (status == SA_ERR_HPI_NOT_PRESENT) {
++			if (status == SA_ERR_HPI_INVALID_PARAMS) {
+ 				//It is unclear whether this should work.
+ 				retval = SAF_TEST_PASS;
+ 			} else {
+ 				e_print(saHpiAlarmGet,
+-					SA_ERR_HPI_NOT_PRESENT, status);
++					SA_ERR_HPI_INVALID_PARAMS, status);
+ 				retval = SAF_TEST_FAIL;
+ 			}
+ 		} else {

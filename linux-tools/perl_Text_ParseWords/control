@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>  " 
+NAME = "perl_Text_ParseWords" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Text-ParseWords package 
+    ''' 
+path = '' 
+job.run_test('perl_Text_ParseWords',test_path=path) 

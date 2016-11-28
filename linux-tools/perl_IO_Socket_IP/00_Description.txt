@@ -1,0 +1,28 @@
+Package Name: perl-IO-Socket-IP
+
+Summary     : IO::Socket::IP - Family-neutral IP socket supporting both IPv4
+and IPv6
+
+
+Description :
+
+This module provides a protocol-independent way to use IPv4 and IPv6 sockets,
+intended as a replacement for IO::Socket::INET. Most constructor arguments and
+methods are provided in a backward-compatible way. For a list of known
+differences, see the IO::Socket::INET INCOMPATIBILITES section below.
+
+It uses the getaddrinfo(3) function to convert hostnames and service names or
+port numbers into sets of possible addresses to connect to or listen on. This
+allows it to work for IPv6 where the system supports it, while still falling
+back to IPv4-only on systems which don't.
+
+Source : http://search.cpan.org/~pevans/IO-Socket-IP-0.37/lib/IO/Socket/IP.pm
+
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-IO-Socket-IP
+run the script
+./perl-IO-Socket-IP.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-IO-Socket-IP/t
+perl t/<test.t>

@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
+NAME = "ibmusbasm" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ibmusbasm package 
+    ''' 
+path = '' 
+job.run_test('ibmusbasm',test_path=path) 

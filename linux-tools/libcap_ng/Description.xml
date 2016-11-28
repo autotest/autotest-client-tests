@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libcap-ng' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libcap-ng</PACKAGE>
+    <COMMAND>libcap-ng.sh</COMMAND>
+    <DESCRIPTION>Test Alternative Posix capabilities</DESCRIPTION>
+</TEST>

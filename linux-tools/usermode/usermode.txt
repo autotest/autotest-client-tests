@@ -1,0 +1,32 @@
+Title: usermode	
+
+Author:
+
+	Madhuri Appana <madhuria@linux.vnet.ibm.com>
+
+Assumptions:
+
+	You are running an linux distribution with usermode and usermode-gtk packages installed 
+
+Purpose:
+
+	Test the userhelper and consolehelper commands as a normal user.
+
+
+Instructions:
+
+	1. Invoke consolehelper command halt as a normal user<test>.
+	Login as test user
+	Execute halt  
+	check whether it returns correct error code or not (Should return halt: Need to be root) 
+	
+	2. Invoke consolehelper command poweroff as a normal user<test>
+	Login as test user
+	Execute poweroff  
+	check whether it returns correct error code or not (Should return poweroff: Need to be root) 
+	
+	3. Invoke consolehelper command reboot as a normal user<test>.
+	Login as test user
+	Execute reboot  
+	check whether it returns correct error code or not (Should return reboot: Need to be root) 
+

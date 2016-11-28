@@ -1,0 +1,6 @@
+libgcrypt is a general purpose cryptographic library based on the  code from GnuPG. It provides functions for all cryptograhic building blocks: symmetric ciphers, hash  algorithms  (MD4,  MD5,  SHA-1 ) MACs (HMAC for all hash algorithms), public key algorithms (RSA, ElGamal, DSA), large integer functions, random numbers and a lot of supporting functions.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libgcrypt
+./libgcrypt.sh

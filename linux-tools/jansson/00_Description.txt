@@ -1,0 +1,18 @@
+*Description :*
+Jansson is a C library for encoding, decoding and manipulating JSON data. It
+is an alternative for json-c.
+
+*Contents :*
+Installed Programs : None
+Installed Libraries: /usr/lib64/libjansson.so.4 and
+/usr/lib64/libjansson.so.4.4.0
+
+
+*Test Approach :*
+The package has test in source.  A wrapper script will be written to
+incorporate the tests to LTP-FIV. 
+
+*How to run the test :*
+cd /opt/fiv/ltp/testcases/fivextra/jansson
+./jansson.sh
+
