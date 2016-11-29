@@ -6,7 +6,7 @@ from autotest.client.shared import error
 
 
 class ltp(test.test):
-    version = 11
+    version = 12
 
     def _import_site_config(self):
         site_config_path = os.path.join(os.path.dirname(__file__),
@@ -24,8 +24,8 @@ class ltp(test.test):
         self._import_site_config()
         self.job.require_gcc()
 
-    # http://sourceforge.net/projects/ltp/files/LTP%20Source/ltp-20140115/
-    def setup(self, tarball='ltp-full-20140115.tar.bz2'):
+    # https://github.com/linux-test-project/ltp/releases/download/20160920
+    def setup(self, tarball='ltp-full-20160920.tar.bz2'):
         tarball = utils.unmap_url(self.bindir, tarball, self.tmpdir)
         utils.extract_tarball_to_dir(tarball, self.srcdir)
         os.chdir(self.srcdir)
