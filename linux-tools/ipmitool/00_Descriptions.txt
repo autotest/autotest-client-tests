@@ -1,0 +1,15 @@
+IPMI
+-----------------------------------------------------------------------------------------------
+Author:       	:	Kumuda G
+-----------------------------------------------------------------------------------------------
+Howto:
+1) Install the rpm 'ipmitool-fivextra' to install the ipmitool folder
+2) Run ipmi.sh which will test this package.
+-----------------------------------------------------------------------------------------------
+Notes           :       Automated
+                        This testcase checks if the machine under test has ipmi device using dmidecode.
+                        If it exists then ipmi modules are loaded and then ipmitool commands are exeucted
+
+For power:
+Execute ipmi.sh <FSP-IP> <IPMI-PASSWORD>
+Refer to ipmi-testing for manual instructions for testing on power.

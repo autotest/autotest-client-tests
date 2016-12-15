@@ -1,0 +1,19 @@
+===============================================================================
+TestCase	: m4test.sh
+
+Description	: Tested the functionality of the m4 command.
+
+Author		: James He <hejianj@cn.ibm.com>
+
+===============================================================================
+Howto:
+
+Run m4test.sh will test the m4 functions.
+----------------------------------
+Test-case coverage:
+
+1. These test cases test the basic functions of m4.
+2. These test cover the following functions:
+   define macro, array usage, definations copy,definations remove, parse expression and so on.
+
+----------------------------------

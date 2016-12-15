@@ -1,0 +1,9 @@
+quagga - tests the BGP protocol  
+
+How to run the test:
+------------------------
+./quagga.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx; 
