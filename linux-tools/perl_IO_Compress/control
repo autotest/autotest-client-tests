@@ -1,0 +1,11 @@
+AUTHOR = " Madhuri Appana <maappana@in.ibm.com>                          ##  " 
+NAME = "perl_IO_Compress" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-IO-Compress package 
+    ''' 
+path = '' 
+job.run_test('perl_IO_Compress',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "popt" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test popt package 
+    ''' 
+path = '' 
+job.run_test('popt',test_path=path) 

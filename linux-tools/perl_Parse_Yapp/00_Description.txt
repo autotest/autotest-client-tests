@@ -1,0 +1,20 @@
+TEST:        perl-Parse-Yapp
+
+AUTHOR:       Kowshik Jois B S<kowsjois@in.ibm.com>
+
+SOURCE: Testcases taken from perl-Parse-Yapp
+         See run-tests in perl-HTML-Tagset under t/ for the tests.
+
+
+Description : Parse::Yapp is a collection of modules that let you generate and use yacc like thread safe parsers with perl object oriented interface. The script yapp is a front-end to the Parse::Yapp module and let you easily create a Perl OO parser from an input grammar file.
+
+
+
+Usage:
+To run all tests:
+
+cd /opt/fiv/ltp/testcases/fivextra/perl-Parse-Yapp
+./perl-Parse-Yapp
+
+To run test individually:
+perl t/<test.t>

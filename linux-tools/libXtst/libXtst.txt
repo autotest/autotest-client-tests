@@ -1,0 +1,62 @@
+########################################################################
+## This text file has the instructions to test libXtst                ##
+##                                                                    ##
+## AUTHOR : Anitha MallojiRao <amalloji@in.ibm.com>                   ##
+##								      ##
+########################################################################
+ 
+Description: libXtst: This extension is a minimal set of client and server extensions
+             required to completely test the X11 server with no user intervention.
+
+Steps to test libXtst:
+
+1) Login to the System under test using ssh with xwindows mode enabled.
+   Ex: ssh -X root@test1.au.example.com
+
+2) fakekey binary tests the API XTestFakeKeyEvent
+ 
+  XTestFakeKeyEvent requests the server to simulate either a KeyPress (if is_press is True) or
+  a KeyRelease (if is_press is False) of the key with the specified keycode; otherwise, the request is ignored. 
+
+  Execute the binary fakekey
+  #./fakekey caps on
+  Result: CapsLk will be on - Now whatever is typed should be in caps
+
+  #./fakekey caps off 
+  Result: CapsLk key will be off - whatever typed should be in small letters
+
+3) mouseevent binary tests the APIs XTestFakeButtonEvent and XTestFakeMotionEvent
+
+   XTestFakeButtonEvent requests the server to simulate either a ButtonPress (if is_press is True) or a ButtonRelease
+  (if is_press is False) of the logical button numbered by the specified button; otherwise, the request is ignored. 
+
+  XTestFakeMotionEvent requests the server to simulate a movement of the pointer to the specified position (x, y) on the
+  root window of screen_number; otherwise, the request is ignored. If screen_number is -1, the current screen (that the pointer is on) is used. 
+
+  Execute the binary mouseevent
+
+  #./mouseevent
+  Result: Observe the movement of the cursor. The cursor will be moved to a new position and right button of the mouse will be clicked.
+
+4) comparecursor binary tests the API XTestCompareCursorWithWindow
+
+   XTestCompareCurrentCursorWithWindow performs a comparison of the current cursor with the cursor of the specified window returning
+   True if they are the same and False otherwise. If the extension is not supported, then the request is ignored and zero is returned. 
+
+   Execute the binary comparecursor
+
+   #./comparecursor
+   Result: A small window with black screen should be opened at the top left corner
+
+5) grabcontrol tests the API XTestGrabControl, XTestFakeButtonEvent, XTestFakeMotionEvent and XTestQueryExtension
+   
+   XTestQueryExtension returns True if the specified display supports the XTEST extension, else False.
+
+   XTestGrabControl cause the executing client to become impervious to server grabs. That is, it can continue to execute requests even if another client grabs the server.
+
+   Execute the binary grabcontrol
+
+   #./grabcontrol 10 30
+   Result: It should able to grab the control of your system. At this pixel position "Window menu" on your terminal on the top left corner is grabbed. 
+           Window menu drop down box should be opened.
+ 

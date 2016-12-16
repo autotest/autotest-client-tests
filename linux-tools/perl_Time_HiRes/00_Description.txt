@@ -1,0 +1,25 @@
+Description:
+The Time::HiRes module implements a Perl interface to the usleep,
+nanosleep,ualarm, gettimeofday, and setitimer/getitimer system calls, in other
+words,high resolution time and timers.
+
+In some cases, you may need to measure time in high-resolution, for example,
+microsecond resolution as provided by gettimeofday() system call. In order to
+use microsecond-resolution time in Perl, you can use Time::HiRes Perl module
+which provides gettimeofday() microsecond-resolution timer function.
+
+The module also provides usleep and ualarm functions, which are alternate
+versions of the standard Perl sleep and alarm functions that understand
+granularities of microseconds instead of just seconds.They take arguments in
+microseconds; alternatively, you can import the module's sleep and alarm
+functions, which take floating-point arguments in seconds.
+
+More information about this package can be found at:
+http://perldoc.perl.org/Time/HiRes.html
+
+cd /opt/fiv/ltp/testcases/fivextra/perl-Time-HiRes
+./perl-Time-HiRes.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Time-HiRes
+perl t/*.t

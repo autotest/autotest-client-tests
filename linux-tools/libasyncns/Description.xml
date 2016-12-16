@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libasyncns' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>libasyncns</PACKAGE>
+ <COMMAND>libasyncns.sh</COMMAND>
+ <DESCRIPTION>Test libasyncns package</DESCRIPTION>
+</TEST>

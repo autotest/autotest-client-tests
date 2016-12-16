@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_Data_Dumper" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Data-Dumper package 
+    ''' 
+path = '' 
+job.run_test('perl_Data_Dumper',test_path=path) 

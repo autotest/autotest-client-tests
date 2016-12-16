@@ -1,0 +1,11 @@
+AUTHOR = " Suzuki K P <suzukikp@in.ibm.com>  " 
+NAME = "libgpg_error" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libgpg-error package 
+    ''' 
+path = '' 
+job.run_test('libgpg_error',test_path=path) 

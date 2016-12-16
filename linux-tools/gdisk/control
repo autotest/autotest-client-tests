@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<basheer@linux.in.ibm.com>                                      ##  " 
+NAME = "gdisk" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gdisk package 
+    ''' 
+path = '' 
+job.run_test('gdisk',test_path=path) 

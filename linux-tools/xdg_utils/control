@@ -1,0 +1,11 @@
+AUTHOR = " Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##  " 
+NAME = "xdg_utils" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xdg-utils package 
+    ''' 
+path = '' 
+job.run_test('xdg_utils',test_path=path) 

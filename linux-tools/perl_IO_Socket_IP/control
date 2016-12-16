@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T.S. <harihare@in.ibm.com>                                  ##  " 
+NAME = "perl_IO_Socket_IP" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-IO-Socket-IP package 
+    ''' 
+path = '' 
+job.run_test('perl_IO_Socket_IP',test_path=path) 

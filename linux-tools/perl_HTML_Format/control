@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS , ramya@linux.vnet.ibm.com                                ##  " 
+NAME = "perl_HTML_Format" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-HTML-Format package 
+    ''' 
+path = '' 
+job.run_test('perl_HTML_Format',test_path=path) 

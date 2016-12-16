@@ -1,0 +1,23 @@
+===============================================================================
+TestCase	: libraw1394.sh
+
+Description	: libraw1394 is the only supported interface to the kernel side 
+		raw1394 of the Linux IEEE-1394 subsystem, which provides direct 
+		access to the connected 1394 buses to user space.  Through 
+		libraw1394/raw1394, applications can directly send to and receive 
+		from other nodes without requiring a kernel driver for the protocol 
+		in question. 
+
+Author		: Xie Jue <xiejue@cn.ibm.com>
+
+===============================================================================
+Howto:
+
+Invoke ./libraw1394.sh to start the test.
+----------------------------------
+Test-case coverage:
+
+1. Make sure that CONFIG_IEEE1394 has been set.
+2. This test case test the libraw1394 via testlibraw provided by libraw1394 package.
+3. Ddumpiso and Sendiso need hardware which use IEEE1394 to communicate with OS.
+----------------------------------

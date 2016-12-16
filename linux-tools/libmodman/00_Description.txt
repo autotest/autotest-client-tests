@@ -1,0 +1,9 @@
+Description: libmodman is a simple library for managing C++ modules (plug-ins).
+
+building and running the in-built test suite is same as running individual
+binaries plus some supporting files from source.
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/libmodman
+./libmodman.sh

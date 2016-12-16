@@ -1,0 +1,14 @@
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>chkconfig</PACKAGE>
+    <COMMAND>test_chkconfig.sh</COMMAND>
+    <DESCRIPTION>Test the chkconfig package and alternatives command</DESCRIPTION>
+</TEST>
+
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>update-alternatives</PACKAGE>
+    <DESCRIPTION>same as alternatives</DESCRIPTION>
+</TEST>

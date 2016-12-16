@@ -1,0 +1,10 @@
+FIPSCheck is a library used to verify the integrity of modules validated
+under FIPS-140-2. The fipscheck package provides helper binaries for
+creating and verifying HMAC-SHA256 checksum files. 
+
+fipscheck fivextra test script runs test for
+fipcheck binaries and also API provided by fipscheck-lib.
+
+How to run the test :
+---------------------
+./fipscheck.sh

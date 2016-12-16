@@ -1,0 +1,20 @@
+Description:
+If your applications currently use Digest::MD5 and you'd prefer the stronger
+security of SHA, it's a simple matter to convert them. The interface provides
+two ways to calculate digests: all-at-once, or in stages.
+
+If your applications currently use Digest::MD5 and you'd prefer the stronger
+security of SHA, it's a simple matter to convert them. The interface provides
+two ways to calculate digests: all-at-once, or in stages.
+
+More details can be found at:
+http://search.cpan.org/~mshelor/Digest-SHA-5.71/lib/Digest/SHA.pm
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Digest-SHA
+./perl-Digest-SHA.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Digest-SHA
+mkdir src
+perl t/*.t

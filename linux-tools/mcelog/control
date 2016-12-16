@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS  " 
+NAME = "mcelog" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test mcelog package 
+    ''' 
+path = '' 
+job.run_test('mcelog',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS <ramyabs1@in.ibm.com>                                            ##  " 
+NAME = "perl_File_Path" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-File-Path package 
+    ''' 
+path = '' 
+job.run_test('perl_File_Path',test_path=path) 

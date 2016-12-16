@@ -1,0 +1,8 @@
+TEST:		pam_krb5.sh
+
+AUTHOR:		Suzuki K P <suzuki@in.ibm.com>
+
+SOURCE:		Testcases taken from pam_krb5-2.3.1
+		See run-tests in pam_krb5 under tests/ for the tests.
+
+

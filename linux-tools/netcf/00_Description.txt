@@ -1,0 +1,13 @@
+netcf: netcf is a library and command line tool for configuring networking on
+Linux machines in a platform-independent way. Supported are all the various
+ways in which physical interfaces, bridges, bonds, and VLANs can be combined.
+The configuration of a network connection is described in an XML format that
+emphasizes the logical relationship between the interfaces involved.
+
+
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/netcf/
+./test_netcf.sh 
+

@@ -1,0 +1,20 @@
+popt
+	A command line parser library. Test is derived from self-test in the
+	source tree. Note that popt is a sub-package of the rpm package.
+
+how to run
+	popt.sh
+
+notes
+	when input is "-T something -a more args"
+	popt 1.6 output is "--arg2 something -- more args"
+	popt 1.7 output is "--arg2 something more args"
+
+
+The popt.sh overrides the "run" and "run_diff" methods of original testit.sh.
+And sources it for running the different tests.
+
+The patch to popt package should remove all the lines except the test
+invocation lines from testit.sh.
+
+

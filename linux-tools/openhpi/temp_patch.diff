@@ -1,0 +1,16 @@
+--- openhpi2-conformancetest/src/events/saHpiEventGet/10.c-orig	2008-08-31 12:05:45.000000000 -0500
++++ openhpi2-conformancetest/src/events/saHpiEventGet/10.c	2008-08-31 12:08:05.000000000 -0500
+@@ -90,8 +90,11 @@
+ 	printf("Testing...\n");
+ 	val = saHpiEventGet(session_id, TIME_OUT_VALUE, &event, &rdr,
+ 			    &rpt_entry, &eqs);
+-	if (val != SA_OK || eqs != SAHPI_EVT_QUEUE_OVERFLOW) {
+-		e_print(saHpiEventGet, SA_OK || eqs !, val);
++	if (val != SA_OK ) {
++		e_print(saHpiEventGet, SA_OK, val);
++		ret = SAF_TEST_FAIL;
++	} else if (eqs != SAHPI_EVT_QUEUE_OVERFLOW) {
++		e_print(saHpiEventGet, SAHPI_EVT_QUEUE_OVERFLOW, eqs);
+ 		ret = SAF_TEST_FAIL;
+ 	} else
+ 		ret = SAF_TEST_PASS;

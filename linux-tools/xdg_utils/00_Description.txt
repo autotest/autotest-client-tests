@@ -1,0 +1,10 @@
+Description: The xdg-utils package is a set of simple scripts that 
+provide basic desktop integration functions for any Free Desktop, such 
+as Linux. They are intended to provide a set of defacto standards.
+
+URL:     http://portland.freedesktop.org/
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/xdg-utils
+./xdg-utils.sh

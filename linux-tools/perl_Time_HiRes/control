@@ -1,0 +1,11 @@
+AUTHOR = " Charishma M <charism2@in.ibm.com>                             		  ##  " 
+NAME = "perl_Time_HiRes" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Time-HiRes package 
+    ''' 
+path = '' 
+job.run_test('perl_Time_HiRes',test_path=path) 

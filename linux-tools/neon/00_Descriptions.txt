@@ -1,0 +1,10 @@
+neon: neon is an HTTP and WebDAV client library.
+
+How to run the test:
+------------------------
+./neon.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx;
+

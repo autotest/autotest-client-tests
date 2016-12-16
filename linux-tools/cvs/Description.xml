@@ -1,0 +1,14 @@
+<!-- Test configuration for 'cvs' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>cvs</PACKAGE>
+    <COMMAND>cvs.sh</COMMAND>
+    <DESCRIPTION>Test the cvs package.</DESCRIPTION>
+</TEST>
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DOC</TYPE>
+    <PACKAGE>cvs-doc</PACKAGE>
+    <DESCRIPTION>Doc packages.</DESCRIPTION>
+</TEST>

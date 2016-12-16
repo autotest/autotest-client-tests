@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "xcb_util" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xcb-util package 
+    ''' 
+path = '' 
+job.run_test('xcb_util',test_path=path) 

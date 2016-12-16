@@ -1,0 +1,11 @@
+AUTHOR = " Feng, MiaoTao      fengmt@cn.ibm.com  " 
+NAME = "libevent" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libevent package 
+    ''' 
+path = '' 
+job.run_test('libevent',test_path=path) 

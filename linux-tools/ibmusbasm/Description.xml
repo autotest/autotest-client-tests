@@ -1,0 +1,11 @@
+<!-- Test configuration for 'ibmusbasm' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>ibmusbasm</PACKAGE>
+    <COMMAND>ibmusbasm.sh</COMMAND>
+    <ALLOW>
+        <ATTR>RSAII</ATTR>
+        <COMMENT>Requires RSAII hardware on the test machine.</COMMENT>
+    </ALLOW>
+    <DESCRIPTION>Test ibmusbasm, the USB interface to RSAII.</DESCRIPTION>
+</TEST>

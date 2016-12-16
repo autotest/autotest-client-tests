@@ -1,0 +1,11 @@
+AUTHOR = " Robert Paulsen  " 
+NAME = "xinetd" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xinetd package 
+    ''' 
+path = '' 
+job.run_test('xinetd',test_path=path) 

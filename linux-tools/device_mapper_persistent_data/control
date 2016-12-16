@@ -1,0 +1,11 @@
+AUTHOR = " Ramya BS , ramya@linux.vnet.ibm.com                                           ##  " 
+NAME = "device_mapper_persistent_data" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test device-mapper-persistent-data package 
+    ''' 
+path = '' 
+job.run_test('device_mapper_persistent_data',test_path=path) 

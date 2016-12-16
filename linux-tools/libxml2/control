@@ -1,0 +1,11 @@
+AUTHOR = " Andrew Pham, apham@us.ibm.com  " 
+NAME = "libxml2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libxml2 package 
+    ''' 
+path = '' 
+job.run_test('libxml2',test_path=path) 

@@ -1,0 +1,8 @@
+<!-- Test configuration for 'gnupg2' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>gnupg2</PACKAGE>
+    <COMMAND>gnupg2.sh</COMMAND>
+    <DESCRIPTION>Test the GNU Privacy Guard package.</DESCRIPTION>
+</TEST>
+

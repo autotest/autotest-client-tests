@@ -1,0 +1,7 @@
+<!-- Test configuration for 'python-pwquality' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>python-pwquality</PACKAGE>
+ <COMMAND>python-pwquality.sh</COMMAND>
+ <DESCRIPTION>Test python wrapper of the python-pwquality package.</DESCRIPTION>
+</TEST> 

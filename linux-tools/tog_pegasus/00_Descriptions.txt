@@ -1,0 +1,26 @@
+tog-pegasus
+	Author: CSDL James He, hejianj@cn.ibm.com
+
+	Tested the functionality of the pegasus
+	./pegasus_test.sh for the execution.
+
+
+===============================================================================
+TestCase	: pegasus_test.sh
+
+Description	: Tested the functionality of the tog-pegasus
+
+Author		: CSDL James He, hejianj@cn.ibm.com
+
+===============================================================================
+Howto:
+
+Invoke ./pegasus_test.sh to start the test.
+----------------------------------
+Test-case coverage:
+
+These test cases cover most of the common functions of pegasus, cimserver, cimconfig,
+cimuser, cimprovider and cimsecurity. 
+----------------------------------
+
+

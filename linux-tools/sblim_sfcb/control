@@ -1,0 +1,11 @@
+AUTHOR = " Wang Tao <wangttao@cn.ibm.com>  " 
+NAME = "sblim_sfcb" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test sblim-sfcb package 
+    ''' 
+path = '' 
+job.run_test('sblim_sfcb',test_path=path) 

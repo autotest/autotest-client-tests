@@ -1,0 +1,46 @@
+Title:
+
+	imlib2 testcase
+
+Author:
+
+	Robert Paulsen <rpaulsen@us.ibm.com>
+	Mike Ranweiler <mranweil@us.ibm.com>
+
+Assumptions:
+
+	1. System running Fluxbox.
+	2. The LTP is installed. (It has the executable used in this test.)
+
+Purpose:
+
+	Test that the imlib2 shared library is functional.
+
+Instructions:
+
+	1. Ensure that fluxbox is up and running (in a KVM image is fine):
+
+		startx
+
+	2. Open an xterm window.
+
+	3. Change to the LTP directory with the executable for this
+	   testcase. For example:
+
+		cd /opt/fiv/fiv-ltp-<date>-NULL-1.0/testcases/fivextra/imlib2
+
+	   This should contain a pairs of programs, named imlib2_convert and
+	   imlib2_basic_dispay, plus a script imlib2_test.sh and a sample image
+	   file named bombsquad.png. 
+
+	4. Run the script:
+
+		./imlib2_test.sh
+
+	   Expected Results:
+
+		The image should be displayed in its own window for a few seconds.
+		There will be console text displayed like the following:
+			bombsquad.jpg: JPEG image data, JFIF standard 1.01
+			image is 636 wide, 529 high
+

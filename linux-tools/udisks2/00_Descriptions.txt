@@ -1,0 +1,24 @@
+[RFC] testcases for udisks package
+
+udisks provides a daemon, D-Bus API and command line tools for managing
+disks and storage devices. It just acts as an enumeration on these block
+devices so that, any applications can access the org.freedesktop.UDisks
+service on the system message bus. Some operations (such as formatting
+disks etc.) are restricted using PolicyKit.
+
+udisks source has built-in tests which is written to test built binary
+or the one installed in the system. Hence, these tests can be run to
+check the package integration.
+
+To run FIV tests: ./udisks.sh
+
+Regarding customer on this package, it is used by RSS (Retail Store
+Solutions) which provides OS for Point of Sale (POS) hardware (known as
+IBM 4690 operating system).
+
+http://www-03.ibm.com/products/retail/products/software/4690/index.html
+
+The package tests can also be expanded to cover usecases particularly
+on its data storage management (so that, this package could be helping
+along with gnome-disk-utility which is available in mash), but not
+yet implemented at this time.

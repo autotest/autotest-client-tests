@@ -1,0 +1,11 @@
+AUTHOR = " Sohny Thomas <sohthoma@in.ibm.com>  " 
+NAME = "certmonger" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test certmonger package 
+    ''' 
+path = '' 
+job.run_test('certmonger',test_path=path) 

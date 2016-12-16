@@ -1,0 +1,7 @@
+<!-- Test configuration for 'sgml-common' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>sgml-common</PACKAGE>
+    <COMMAND>sgml-common.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the sgml-common</DESCRIPTION>
+</TEST>

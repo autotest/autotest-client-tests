@@ -1,0 +1,7 @@
+<!-- Test configuration for ' perl-Font-AFM ' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>perl-Font-AFM</PACKAGE>
+    <COMMAND>perl-Font-AFM.sh</COMMAND>
+    <DESCRIPTION>Testcase to test perl-Font-AFM package</DESCRIPTION>
+</TEST>

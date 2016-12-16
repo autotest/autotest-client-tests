@@ -1,0 +1,5 @@
+TEST:		libnl.sh
+
+AUTHOR:		Suzuki K P <suzuki@in.ibm.com>
+SOURCE:		The helper programs are built with the libnl package
+

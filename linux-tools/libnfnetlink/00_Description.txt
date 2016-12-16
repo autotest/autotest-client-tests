@@ -1,0 +1,30 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : libnfnetlink.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from libnfnetlink
+#		See run-tests in libnfnetlink.sh under tests/ for the tests.
+#
+#
+#  Description : libnfnetlink is a user space library that provides some
+#  low-level nfnetlink handling functions.  It is used as a foundation for other,
+#  netfilter subsystem specific libraries such as libnfnetlink_conntrack,
+#  libnfnetlink_log and libnfnetlink_queue.
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/libnfnetlink
+./libnfnetlink.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/libnfnetlink/tests
+./<binary>

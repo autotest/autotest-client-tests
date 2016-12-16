@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libconfig' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libconfig</PACKAGE>
+    <COMMAND>libconfig.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the libconfig package.</DESCRIPTION>
+</TEST>

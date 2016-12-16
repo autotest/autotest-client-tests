@@ -1,0 +1,21 @@
+
+Description : 
+
+lshw is a small tool to extract detailed information on the hardware
+configuration of the machine. It can report exact memory configuration,
+firmware version, mainboard configuration, CPU version and speed, cache
+configuration, bus speed, etc. It does so by reading
+different files in the /proc directory. 
+
+The lshw command needs to run with super privileges to be able to
+detect and report the maximum amount of information. So run as root,
+or use sudo. 
+
+
+Sources:http://linux.die.net/man/1/lshw
+
+How to run test ?
+
+cd /opt/fiv/ltp/testcases/fivextra/lshw
+run the script 
+./lshw.sh 

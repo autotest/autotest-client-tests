@@ -1,0 +1,11 @@
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
+NAME = "python" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python package 
+    ''' 
+path = '' 
+job.run_test('python',test_path=path) 

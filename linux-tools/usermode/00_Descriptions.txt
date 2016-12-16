@@ -1,0 +1,20 @@
+usermode contains the consolehelper and userhelper program, which can be
+used to allow configured programs to be run with superuser privileges by
+ordinary users, and several graphical tools for users.
+
+userhelper is a helper interface to PAM. This  program  provides a basic interface to change a user’s password, gecos information, and shell.
+
+userhelper covers the following tests:
+1. Change user password using userhelper which is equivalent to passwd command
+2. Change Gecos information using userhelper which is equivalent to chfn command
+3. Change shell using userhelper which is equivalent to chsh command
+4. Pass invalid shell to userhelper and check whether it returns correct error code or not
+5. Pass invalid user to userhelper and check whether it returns correct error code or not
+6. Execute userhelper as a normal user
+
+Note:
+	/usr/sbin/userhelper should be root setuid, (chmod u+s)
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/usermode
+./userhelper.sh

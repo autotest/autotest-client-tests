@@ -1,0 +1,106 @@
+###########################################################################################
+## Copyright 2003, 2015 IBM Corp                                                          ##
+##                                                                                        ##
+## Redistribution and use in source and binary forms, with or without modification,       ##
+## are permitted provided that the following conditions are met:                          ##
+##	1.Redistributions of source code must retain the above copyright notice,          ##
+##        this list of conditions and the following disclaimer.                           ##
+##	2.Redistributions in binary form must reproduce the above copyright notice, this  ##
+##        list of conditions and the following disclaimer in the documentation and/or     ##
+##        other materials provided with the distribution.                                 ##
+##                                                                                        ##
+## THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS AND ANY EXPRESS       ##
+## OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF        ##
+## MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ##
+## THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,    ##
+## EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF     ##
+## SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ##
+## HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  ##
+## OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  ##
+## SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                           ##
+############################################################################################
+
+###########################################################################
+# name of file  : tftp_test.exp                                           #
+# description   : expect file help to do tftp test                        #
+###########################################################################
+#
+#expect test.exp --- tftpserver  action  afile  tmode 	proto
+# Allowed inputs are
+#                                get/put file ascii/bin [-4/-6]
+#				 quit    dont   worry   -4/-6
+# For quit we dont worry about the afile and tmode. But we need a proto arg.
+# For all other commands, the proto is optional
+
+set ETCTMP $env(TCTMP)
+set tftpserver [lindex $argv 0] 
+set action [lindex $argv 1] 
+set afile [lindex $argv 2] 
+set tmode [lindex $argv 3] 
+set proto [lindex $argv 4]
+
+#send_user "tftpserver=$tftpserver  afile=$afile  action=$action tmode=$tmode \n"
+eval "cd $ETCTMP"
+
+#spawn tftp "$tftpserver"
+spawn tftp $proto
+send "\r"
+expect -re "(.*)tftp> $"  {
+} timeout {
+	exec echo "tftp start failed" > $ETCTMP/error.txt
+	exit 1
+}
+
+# If the action is quit, quit right away. This will be used for
+# verifying the ipv6 support for tftp.
+
+if {"$action"=="quit"} {
+	close
+	exit 0
+}
+
+send "verbose\r"
+expect -re "Verbose mode on(.*)tftp> $" {}
+
+send "connect $tftpserver\r"
+expect -re "Connected to(.*)tftp> $" {
+} timeout { 
+	exec echo "tftp connect error" > $ETCTMP/error.txt
+	exit 1 
+}
+
+send "$tmode\r"
+expect -re "mode set to(.*)tftp> $" {
+} timeout { 
+	exec echo "tftp set mode error" > $ETCTMP/error.txt
+	exit 2
+}
+
+if {"$action"=="get"} {
+	send "$action $afile\r"
+	expect -re "getting from(.*)Received(.*)tftp> $" {
+	} -re "(.*)File not found(.*)tftp> $" {
+		exec echo "tftp $action $afile, file not found" > $ETCTMP/error.txt
+		exec echo "tftp $action $afilE failed" >> /tmp/Log-error.txt
+		exit 3
+	} -re "(.*)Error code 2: Access violation(.*)tftp> $" {
+		exec echo "tftp $action $afile, Access violation" > $ETCTMP/error.txt
+		exit 3
+	} timeout { 
+		exec echo "tftp $action timeout" > $ETCTMP/error.txt
+		exit 3
+	}	
+} elseif {"$action"=="put"} {
+	send "$action $afile\r"
+	expect -re "putting (.*)Sent(.*)tftp> $" {
+
+	} timeout { 
+		exec echo "tftp star timeout" >> $ETCTMP/error.txt
+		exit 3
+	}		
+} 
+
+
+close
+exit 0
+

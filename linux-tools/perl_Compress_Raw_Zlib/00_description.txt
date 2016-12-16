@@ -1,0 +1,43 @@
+Description:
+=========
+Package: perl-Compress-Raw-Zlib
+
+Compress::Raw::Zlib - Low-Level Interface to zlib compression library
+
+Synopsis:
+-------------
+    use Compress::Raw::Zlib ;
+
+    ($d, $status) = new Compress::Raw::Zlib::Deflate( [OPT] ) ;
+    $status = $d->deflate($input, $output) ;
+    $status = $d->flush($output [, $flush_type]) ;
+    $d->deflateReset() ;
+    $d->deflateParams(OPTS) ;
+    $d->deflateTune(OPTS) ;
+    $d->dict_adler() ;
+    $d->crc32() ;
+    $d->adler32() ;
+    $d->total_in() ;
+    $d->total_out() ;
+    $d->msg() ;
+    $d->get_Strategy();
+    $d->get_Level();
+    $d->get_BufSize();
+
+Description:
+----------------
+The Compress::Raw::Zlib module provides a Perl interface to the zlib compression library
+
+Compress::Raw::Zlib::Deflate : An interface that allows in-memory compression using the deflate interface provided by zlib.
+Compress::Raw::Zlib::Inflate : An interface that allows in-memory uncompression using the inflate interface provided by zlib.
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Compress-Raw-Zlib
+./perl-Compress-Raw-Zlib.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Compress-Raw-Zlib
+perl t/<test>.t
+

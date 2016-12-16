@@ -1,0 +1,26 @@
+The tests are built as a sub-package : libevent-tests with the libevent package.
+The rpm installs the following files :
+
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/bench
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/bench.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress.gen.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress.gen.h
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress.h
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress_dns.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress_http.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/regress_rpc.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-eof
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-eof.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-init
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-init.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-time
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-time.c
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-weof
+/opt/fiv/ltp/testcases/fivextra/libevent/libevent-tests/test-weof.c
+
+
+It includes both the testcases as well as the sources.
+

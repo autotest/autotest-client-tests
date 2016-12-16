@@ -1,0 +1,33 @@
+--- Tests/026-local/run.sh.org	2016-03-15 05:28:46.501607457 +0000
++++ Tests/026-local/run.sh	2016-03-15 05:32:54.619622026 +0000
+@@ -33,7 +33,7 @@ echo "[csr]"
+ $toolsdir/csrgen request > csr
+ dumpreq csr
+ echo "[issue]"
+-$builddir/../src/local-submit -d $tmpdir csr > cert
++/usr/libexec/certmonger/local-submit -d $tmpdir csr > cert
+ echo "[issuer]"
+ openssl pkcs12 -in creds -passin pass: -nodes | openssl x509 > ca-cert
+ dumpcert ca-cert
+--- Tests/028-dbus/run.sh.org	2016-03-15 05:29:19.671609405 +0000
++++ Tests/028-dbus/run.sh	2016-03-15 05:32:54.623622026 +0000
+@@ -9,8 +9,8 @@ export CERTMONGER_LOCAL_CA_DIR="$tmpdir/
+ libexecdir=`$toolsdir/libexecdir`
+ cp ../certmonger.conf "$tmpdir"/config/
+ cp prequal.sh runsub.sh *.py "$tmpdir"/
+-ln -s `pwd`/../../src/getcert "$tmpdir"/
+-ln -s `pwd`/../../src/local-submit "$tmpdir"/
++ln -s /usr/bin/getcert "$tmpdir"/
++ln -s /usr/libexec/certmonger/local-submit "$tmpdir"/
+ for entry in entry bogus-entry ; do
+ 	sed "s|@tmpdir@|$tmpdir|g" $entry > "$tmpdir"/requests/$entry
+ done
+@@ -23,7 +23,7 @@ EOF
+ $DBUSDAEMON --session --print-address=3 --print-pid=4 --fork 3> $tmpdir/address 4> $tmpdir/pid
+ if test -s $tmpdir/pid ; then
+ 	env DBUS_SESSION_BUS_ADDRESS=`cat $tmpdir/address` \
+-	$toolsdir/../../src/certmonger-session -n -c $tmpdir/runsub.sh
++	/usr/libexec/certmonger/certmonger-session -n -c $tmpdir/runsub.sh
+ fi
+ kill `cat $tmpdir/pid`
+ 

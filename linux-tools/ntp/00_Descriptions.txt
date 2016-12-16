@@ -1,0 +1,11 @@
+This basic automation test only covers:
+	startup of ntpd
+	ntpdate <server>
+
+
+NOTES:
+
+	You may use one of the following time servers:
+
+	0.in.pool.ntp.org
+	1.asia.pool.ntp.org

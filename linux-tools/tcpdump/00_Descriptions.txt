@@ -1,0 +1,18 @@
+tcpdump	
+	Test the functionality of tcpdump and libpcap.
+
+	This test covers some commonly-used tcpdump options, 
+and we think it's fine from FIV perspective.
+
+Setup:
+
+1) Add the IP  & hostname of your machine to /etc/hosts
+
+cat >> /etc/hosts
+10.124.111.70	test24.in.example.com  test24
+
+2) Assuming eth0 as the network interface:
+Invoke the test as below:
+
+IF_NAME=eth0 ./tcpdump.sh
+

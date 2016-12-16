@@ -1,0 +1,8 @@
+<!-- Test configuration for 'ntp' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>ntp</PACKAGE>
+    <PACKAGE>ntpdate</PACKAGE>
+    <COMMAND>ntp.sh</COMMAND>
+    <DESCRIPTION>This test covers starting the server and using ntpdate comand.</DESCRIPTION>
+</TEST>

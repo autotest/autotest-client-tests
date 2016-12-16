@@ -1,0 +1,18 @@
+The libhbaapi library is the Host Bus Adapter (HBA) API library for
+Fibre Channel and Storage Area Network (SAN) resources. It contains a
+unified API that programmers can use to access, query, observe and
+modify SAN and Fibre Channel services
+
+libhbaapi covers the following tests:
+1) Test the functionality of different hba api's using hbaapitest file
+provided by the package
+
+Note:This test needs HBA card. As libhbaapi package is intended for testing vendor specific hba api's. So the testcase is
+using ixgbe kernel module as a driver.
+
+hbaapitest testcase will read the details of qlogic driver from /etc/hba.conf
+and prints all the information on connected adapter and its attributes.
+
+HOW TO RUN:
+cd /opt/fiv/ltp/testcases/fivextra/libhbaapi
+./libhbaapi.sh

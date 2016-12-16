@@ -1,0 +1,6 @@
+Libtasn1 library developed for ASN.1 (Abstract Syntax Notation One) structures 
+management and DER (Distinguished Encoding Rules) encoding functions. 
+
+Run the test:
+-----------------
+./libtasn1.sh

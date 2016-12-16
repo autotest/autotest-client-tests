@@ -1,0 +1,11 @@
+AUTHOR = " Poornima Nayak      mpnayak@linux.vnet.ibm.com  " 
+NAME = "ORBit2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ORBit2 package 
+    ''' 
+path = '' 
+job.run_test('ORBit2',test_path=path) 

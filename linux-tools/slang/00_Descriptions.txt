@@ -1,0 +1,18 @@
+S-Lang is an interpreted language and a programming library.  The
+S-Lang language was designed so that it can be easily embedded into
+a program to provide the program with a powerful extension language.
+The S-Lang library, provided in this package, provides the S-Lang
+extension language.  S-Lang's syntax resembles C, which makes it easy
+to recode S-Lang procedures in C if you need to.
+
+How to run:
+cd /opt/fiv/ltp/testcases/fivextra/slang
+./slang-test.sh
+
+Run test Individually:
+--------------------------
+In /opt/fiv/ltp/testcases/fivextra/slang/test dir
+./sltest "xxx.sl"
+
+Note: Not all ".sl" files in test dir are test scripts.
+To know what all tests we are running, check slang-test.sh file. 

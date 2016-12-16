@@ -1,0 +1,11 @@
+AUTHOR = " CSDL  " 
+NAME = "tftp" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test tftp package 
+    ''' 
+path = '' 
+job.run_test('tftp',test_path=path) 

@@ -1,0 +1,79 @@
+########################################################################
+## This text file has the instructiions to test authconfig-tui command ##
+##                                                                     ##
+## AUTHOR :  Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                 ##
+##                                                                     ##
+#########################################################################
+
+Note: You should have backup . So do authconfig --savebackup="/tmp/authconfig".
+You should see a dir created /tmp/authconfig and files inside it like
+authconfig , krb5.conf , login.defs , nslcd.conf etc.
+
+Note: Incase of missing files like - /etc/sysconfig/authconfig (which is expected), 
+	run the command : "authconfig --updateall"
+
+Instructions:
+
+	1. Run authconfig-tui command
+	##You should see a Blue screen text based interface
+
+	2. Select "Use IPAv2" Under User Information by pressing "spacebar"
+	## Come out by entering NEXT and OK
+	## You should see: Starting nslcd: OK
+	## cat /etc/sysconfig/authconfig
+	## You should see : USEIPAV2=yes
+
+	3. Select "Use LDAP" 
+	## Come out by entering NEXT and OK
+	## You should see: Starting nslcd: OK
+	## cat /etc/sysconfig/authconfig
+	## You should see : USELDAP=yes
+
+	4. Select "Use NIS"
+	## Come out by entering NEXT and OK ; cat /etc/sysconfig/authconfig
+        ## You should see : USENIS=yes 
+
+	5. Select "Use WINBIND"
+	## Come out by entering NEXT and OK
+	## You should see: Starting Winbind services: OK
+	## cat /etc/sysconfig/authconfig
+        ## You should see : USEWINBIND=yes
+
+	6. Select "Use MD5 Passwords" Under Authentication
+	## Come out by entering NEXT; cat /etc/sysconfig/authconfig
+	## You should see : PASSWDALGORITHM=md5
+
+	7. Select "Use Shadow Passwords"
+	## Come out by entering NEXT; cat /etc/sysconfig/authconfig
+        ## You should see : USESHADOW=yes
+
+	8. Select "Use LDAP Authentication"
+	## Come out by entering NEXT and OK
+	## You should see: Starting nslcd: OK
+	## cat /etc/sysconfig/authconfig
+        ## You should see : USELDAPAUTH=yes
+
+	9. Select "Use Kerberos"
+	## Come out by entering NEXT and OK
+	## You should see: Starting nslcd: OK
+	## cat /etc/sysconfig/authconfig
+        ## You should see : USEKERBEROS=yes
+
+	10. Select "Fingerprint reader"
+	## Come out by entering NEXT 
+	## You might get a WARNING : /lib64/security/pam_fprintd.so is missing
+	## cat /etc/sysconfig/authconfig 
+	## You should see : USEFPRINTD=yes
+
+	11. Select "Use Winbind Authentication"
+	## Come out by entering NEXT and OK 
+	## You should see: Starting Winbind services: OK
+	## cat /etc/sysconfig/authconfig
+        ## You should see : USEWINBINDAUTH=yes 
+
+	12. Select "Local authorization is sufficient"
+	## Come out by entering NEXT ; cat /etc/sysconfig/authconfig
+        ## You should see : USELOCAUTHORIZE=yes
+
+Restore the previous settings by :
+authconfig --restorebackup=/tmp/authconfig

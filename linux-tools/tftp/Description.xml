@@ -1,0 +1,8 @@
+<!-- Test configuration for 'tftp' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>tftp</PACKAGE>
+    <COMMAND>tftp_test.sh</COMMAND>
+    <DESCRIPTION>This test will test the functionality of tftp and tftpd.</DESCRIPTION>
+</TEST>
+

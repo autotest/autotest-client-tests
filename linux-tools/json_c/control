@@ -1,0 +1,11 @@
+AUTHOR = " Hariharan T S <harihare@in.ibm.com>                           ##  " 
+NAME = "json_c" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test json-c package 
+    ''' 
+path = '' 
+job.run_test('json_c',test_path=path) 

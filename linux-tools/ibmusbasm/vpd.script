@@ -1,0 +1,22 @@
+logonip -hostname 9.47.101.119 -u USERID -p PASSW0RD
+
+noprompt
+
+getmpid
+getmpclock
+
+getvpd -postbios
+
+getvpd -mphardware
+
+getvpd -mprom
+
+getvpd -mpboot
+
+getvpd -mpdevicedriver
+
+getvpd -dasd
+
+getvpd -ps
+
+getvpd -powerbackplane

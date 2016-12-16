@@ -1,0 +1,7 @@
+<!-- Test Services & interfaces of GeoIP -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>GeoIP</PACKAGE>
+    <COMMAND>GeoIP.sh</COMMAND>
+    <DESCRIPTION>Test various binaries and API's supported by GeoIP.</DESCRIPTION>
+</TEST>

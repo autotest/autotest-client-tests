@@ -1,0 +1,58 @@
+<!-- Test configuration for 'python' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>python</PACKAGE>
+    <COMMAND>pythontest.sh; pythontest.sh gdbm</COMMAND>
+    <DESCRIPTION>Wrapper of Python 2.6 built-in regression testcases.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>python</PACKAGE>
+    <DESCRIPTION>The manual part of python testcase.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>tkinter</PACKAGE>
+    <DESCRIPTION>tk interface for python, used in python manual test.</DESCRIPTION>
+</TEST>
+
+<!-- Implicitly Tested Packages -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>gdbm</PACKAGE>
+    <DESCRIPTION>gdbm is used by python to access Unix DBM databases</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>krb5-libs</PACKAGE>
+    <DESCRIPTION>The krb5-libs package are for adding Kerberos authentication and encryption</DESCRIPTION>
+</TEST>
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>python-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>DOC</TYPE>
+    <PACKAGE>python-doc</PACKAGE>
+    <DESCRIPTION>Doc packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>DOC</TYPE>
+    <PACKAGE>python-doc-pdf</PACKAGE>
+    <DESCRIPTION>Doc packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>python-tools</PACKAGE>
+    <DESCRIPTION>Python tools, used in python manual test.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>python-libs</PACKAGE>
+    <DESCRIPTION>Covered by Python testcases.</DESCRIPTION>
+</TEST>
+

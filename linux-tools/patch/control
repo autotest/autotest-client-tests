@@ -1,0 +1,11 @@
+AUTHOR = " Hong Bo Peng <penghb@cn.ibm.com>  " 
+NAME = "patch" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test patch package 
+    ''' 
+path = '' 
+job.run_test('patch',test_path=path) 

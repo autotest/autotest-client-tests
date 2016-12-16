@@ -1,0 +1,16 @@
+This test covers basic functions in powerpc-utils.
+
+not tested:
+hvcsadmin
+vscsisadmin
+serv_config
+rtas_ibm_get_vpd
+uesensor
+usysattn
+usysident
+lsprop
+
+destructive, skipped:
+set_poweron_time
+update_flash
+set_poweron_time

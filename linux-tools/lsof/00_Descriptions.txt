@@ -1,0 +1,19 @@
+lsof.sh
+	Testcase to check the lsof (list open files) command.
+===============================================================================
+TestCase	: lsof.sh
+
+Description	: This test will testcase to check the lsof (list open files) command.
+
+Author		: Robert Paulsen, rpaulsen@us.ibm.com
+
+===============================================================================
+Howto:
+
+Invoke ./lsof.sh to start the test.
+----------------------------------
+Test-case coverage:
+
+1. This test case creates and runs a executable file which in turn opens a data file. 
+lsof is running against the data file. Expect to see the executable in the lsof output.
+----------------------------------

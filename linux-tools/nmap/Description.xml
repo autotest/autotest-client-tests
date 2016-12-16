@@ -1,0 +1,38 @@
+<!-- Test configuration for 'nmap' -->
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>nmap</PACKAGE>
+    <COMMAND>nmap.sh</COMMAND>
+    <DESCRIPTION>Test the functionality of nmap</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>keyutils-libs</PACKAGE>
+    <DESCRIPTION>used by nmap</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>krb5-libs</PACKAGE>
+    <DESCRIPTION>used by nmap</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libstdc++</PACKAGE>
+    <DESCRIPTION>nmap runtime dependency</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libpcap</PACKAGE>
+    <DESCRIPTION>used by nmap for capturing raw IP packets</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>lua</PACKAGE>
+    <DESCRIPTION>used by nmap (for NSE) </DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>openssl</PACKAGE>
+    <DESCRIPTION>nmap to identify SSL services</DESCRIPTION>
+</TEST>

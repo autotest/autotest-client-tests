@@ -1,0 +1,7 @@
+<!-- Test configuration for 'sqlite-tcl' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>sqlite-tcl</PACKAGE>
+    <COMMAND>sqltcl.sh</COMMAND>
+    <DESCRIPTION>This tests sqlite-tcl </DESCRIPTION>
+</TEST>

@@ -1,0 +1,9 @@
+DBI - Database independent interface for Perl
+DBI Perl Module is designed to allow the use of SQl and mySQL queries, available on most platforms, including SQL Server, DB2, Oracle and MySQL.
+It defines a set of methods, variables, and conventions that provide a consistent database interface, independent of the actual database being used.This module allows the connection from a Perl script to different databases, using the appropriate database driver (DBD).
+The DBI is a layer of "glue" between an application and one or more database driver modules
+
+How to run test
+-------------------------------------------------------------
+cd /opt/fiv/ltp/testcases/fivextra/perl-DBI/
+./perl-DBI.sh 

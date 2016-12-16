@@ -1,0 +1,7 @@
+Network Security Services (NSS) is a set of libraries designed to support the
+development of security-enabled client and server applications. The nss-softokn
+packages provide NSS Softoken Cryptographic Module.
+
+How to run the test:
+-------------------
+./nss-softokn.sh 

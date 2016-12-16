@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev>  " 
+NAME = "libverto" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libverto package 
+    ''' 
+path = '' 
+job.run_test('libverto',test_path=path) 

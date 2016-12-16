@@ -1,0 +1,8 @@
+<!-- Test configuration for 'perl-File-Listing' -->
+<TEST>
+        <TYPE>AUTO</TYPE>
+        <PACKAGE>perl-File-Listing</PACKAGE>
+        <COMMAND>perl-File-Listing.sh</COMMAND>
+	<DESCRIPTION>Testcase for perl-File-Listing</DESCRIPTION>
+</TEST>
+

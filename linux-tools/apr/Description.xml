@@ -1,0 +1,7 @@
+<!-- Test configuration for 'apr' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>apr</PACKAGE>
+    <COMMAND>apr.sh</COMMAND>
+    <DESCRIPTION>Test the basic functionality of apr package</DESCRIPTION>
+</TEST>

@@ -1,0 +1,9 @@
+ustr - ustr string library functions 
+
+How to run the test:
+------------------------
+./ustr.sh
+
+Or you can run each test manually by:
+-----------------------------------
+cd tests; ./xxx; 

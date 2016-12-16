@@ -1,0 +1,11 @@
+AUTHOR = " Spoorthy S < spoorts2@in.ibm.com >                                        ##  " 
+NAME = "perl_File_Listing" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-File-Listing package 
+    ''' 
+path = '' 
+job.run_test('perl_File_Listing',test_path=path) 

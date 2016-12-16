@@ -1,0 +1,8 @@
+<!-- Test configuration for 'dos2unix' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>dos2unix</PACKAGE>
+    <COMMAND>dos2unix.sh</COMMAND>
+    <DESCRIPTION>Test the functionality of dos2unix.</DESCRIPTION>
+</TEST>
+

@@ -1,0 +1,11 @@
+AUTHOR = " Ramesh YR, rameshyr@linux.vnet.ibm.com                        		  ##  " 
+NAME = "libsemanage" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libsemanage package 
+    ''' 
+path = '' 
+job.run_test('libsemanage',test_path=path) 

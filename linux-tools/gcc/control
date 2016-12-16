@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "gcc" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test gcc package 
+    ''' 
+path = '' 
+job.run_test('gcc',test_path=path) 

@@ -1,0 +1,32 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : libqb.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from libqb
+#		See run-tests in libqb.sh under tests/ for the tests.
+#
+#
+#  Description : libqb is a library with the primary purpose of providing high performance
+#                client server reusable features. It provides high performance logging,
+#                tracing, ipc, and poll. The initial features of libqb comes from the features of corosync that were
+#                thought to useful to other projects.We don't intend be an all encompassing library, but instead provide very
+#                 specially focused APIs that are highly tuned for maximum performance for client/server applications.
+#
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/libqb
+./libqb.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/libqb/tests
+./<test_binary>

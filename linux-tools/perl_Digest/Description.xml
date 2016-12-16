@@ -1,0 +1,7 @@
+<!-- Test configuration for 'perl-Digest' -->
+<TEST>
+    <TYPE>AUTO</TYPE> 
+    <PACKAGE>perl-Digest</PACKAGE>
+    <COMMAND>perl-Digest.sh</COMMAND>
+    <DESCRIPTION>Testcase for perl-Digest</DESCRIPTION>
+</TEST>

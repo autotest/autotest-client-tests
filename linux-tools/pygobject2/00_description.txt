@@ -1,0 +1,20 @@
+About pygobject2:
+=================
+The pygobject2 package provides a convenient wrapper for the GObject library
+for use in Python programs. This provides module gobject.
+Other modules include glib, glib.option
+
+/usr/lib64/python2.7/site-packages/glib
+/usr/lib64/python2.7/site-packages/glib/__init__.py
+/usr/lib64/python2.7/site-packages/glib/_glib.so
+/usr/lib64/python2.7/site-packages/glib/option.py
+/usr/lib64/python2.7/site-packages/gobject
+/usr/lib64/python2.7/site-packages/gobject/__init__.py 
+
+There is test within the sources under tests.
+The testcase wrapper is runtests.py
+
+How to run the test:
+1) cd /opt/fiv/ltp/testcases/fivextra/pygobject2
+2) Execute ./pygobject2.sh
+

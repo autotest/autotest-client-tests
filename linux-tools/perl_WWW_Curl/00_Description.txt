@@ -1,0 +1,10 @@
+#########################################################################################
+WWW::Curl is a Perl extension interface for libcurl.This module provides a Perl interface to libcurl. libcurl is a free, open source client to get documents/files from servers, using any of the supported protocols.
+
+Sources:
+http://search.cpan.org/~szbalint/WWW-Curl-4.17/
+https://github.com/szbalint/WWW--Curl
+#########################################################################################
+How to run tests ??
+Ans: cd /opt/fiv/ltp/testcases/fivextra/perl-WWW-Curl
+    run the perl-WWW-curl.sh script

@@ -1,0 +1,8 @@
+pyxattr:   a Python extension module which gives access
+to the extended attributes for filesystem objects available in some
+operating systems. 
+
+How to run the test:
+--------------------
+cd /opt/fiv/ltp/testcases/fivextra/pyxattr
+./pyxattr.sh

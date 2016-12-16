@@ -1,0 +1,36 @@
+--- t/local/http.t.org	2016-02-16 00:53:59.888583943 -0600
++++ t/local/http.t	2016-02-16 00:54:22.411744706 -0600
+@@ -18,7 +18,7 @@ if ($D eq 'daemon') {
+ 
+     require HTTP::Daemon;
+ 
+-    my $d = HTTP::Daemon->new(Timeout => 10);
++    my $d = HTTP::Daemon->new(Timeout => 10,LocalAddr => 'localhost');
+ 
+     print "Please to meet you at: <URL:", $d->url, ">\n";
+     open(STDOUT, $^O eq 'VMS'? ">nl: " : ">/dev/null");
+
+--- t/robot/ua-get.t.org	2016-02-16 00:53:20.844305246 -0600
++++ t/robot/ua-get.t	2016-02-16 00:53:35.304408464 -0600
+@@ -17,7 +17,7 @@ if ($D eq 'daemon') {
+ 
+     require HTTP::Daemon;
+ 
+-    my $d = new HTTP::Daemon Timeout => 10;
++    my $d = new HTTP::Daemon Timeout => 10,LocalAddr => 'localhost';
+ 
+     print "Please to meet you at: <URL:", $d->url, ">\n";
+     open(STDOUT, $^O eq 'MSWin32' ?  ">nul" : $^O eq 'VMS' ? ">NL:"  : ">/dev/null");
+
+--- t/robot/ua.t.org	2016-02-16 00:52:19.296865892 -0600
++++ t/robot/ua.t	2016-02-16 00:52:38.172000636 -0600
+@@ -17,7 +17,7 @@ if ($D eq 'daemon') {
+ 
+     require HTTP::Daemon;
+ 
+-    my $d = new HTTP::Daemon Timeout => 10;
++    my $d = new HTTP::Daemon Timeout => 10,LocalAddr => 'localhost';
+ 
+     print "Please to meet you at: <URL:", $d->url, ">\n";
+     open(STDOUT, $^O eq 'MSWin32' ?  ">nul" : $^O eq 'VMS' ? ">NL:"  : ">/dev/null");
+

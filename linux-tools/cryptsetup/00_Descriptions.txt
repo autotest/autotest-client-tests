@@ -1,0 +1,12 @@
+The cryptsetup-luks packages provide the utility allowing users
+to set up encrypted devices with the Device Mapper and the
+dm-crypt target.
+
+How to run the test:
+-----------------------
+./cryptsetup-luks.sh
+
+You can also run each test manually
+------------------------------------
+cd `pwd`tests
+./xxx-test.sh

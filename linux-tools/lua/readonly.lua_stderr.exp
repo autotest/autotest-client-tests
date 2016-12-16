@@ -1,0 +1,6 @@
+lua: readonly.lua:12: cannot redefine global variable `y'
+stack traceback:
+	[C]: in function 'error'
+	readonly.lua:3: in function <readonly.lua:3>
+	readonly.lua:12: in main chunk
+	[C]: ?

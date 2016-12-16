@@ -1,0 +1,22 @@
+noprompt
+
+logon local
+
+getmpid
+getmpclock
+
+getvpd -postbios
+
+getvpd -mphardware
+
+getvpd -mprom
+
+getvpd -mpboot
+
+getvpd -mpdevicedriver
+
+getvpd -dasd
+
+getvpd -ps
+
+getvpd -powerbackplane

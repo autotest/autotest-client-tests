@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "lksctp_tools" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test lksctp-tools package 
+    ''' 
+path = '' 
+job.run_test('lksctp_tools',test_path=path) 

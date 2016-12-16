@@ -1,0 +1,15 @@
+chkconfig:
+          The testcase for automated test for chkconfig.
+
+usage:
+        ./test_chkconfig.sh
+
+Note:
+
+chkconfig:
+        chkconfig provides a simple command-line tool for maintaining the /etc/rc[0-6].d directory hierarchy
+        by relieving system administrators of the task of directly manipulating the numerous symbolic links in those directories
+
+alternatives:
+        alternatives creates, removes, maintains and displays information about the symbolic links comprising the alternatives system.
+        The alternatives system is a reimplementation of the Debian alternatives system.

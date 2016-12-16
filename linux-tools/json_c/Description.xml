@@ -1,0 +1,8 @@
+<!-- Test configuration for 'json-c' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>json-c</PACKAGE>
+ <COMMAND>json-c.sh</COMMAND>
+ <DESCRIPTION>Test json-c package</DESCRIPTION>
+</TEST>
+

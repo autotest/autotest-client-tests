@@ -1,0 +1,11 @@
+attach database examdatabase as e1;
+attach database examdatabase2 as e2;
+.database
+.header on
+.mode column
+select ln,fn,sum(score*(abs((exam-1)))) as exam1,
+sum(score*(abs((exam-2)))) as exam2,
+sum(score*(abs((exam-3)))) as exam3,
+sum(score*(abs((exam-4)))) as exam4
+from (select 'e1' as db,* from e1.exam union select 'e2' as db,* from e2.exam)
+group by ln,fn;

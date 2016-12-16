@@ -1,0 +1,10 @@
+Sqlite-tcl
+
+Description :
+SQLite provides a tcl interface 
+
+This test verifies the tcl interface to sqlite by creating a table and inserting some values.  
+We assume other functions are well tested by community.
+
+Execution:
+Execute sqltcl.sh to run the test.													

@@ -1,0 +1,31 @@
+Testcase for nettle
+
+Nettle is a low-level cryptographic library. Nettle is a cryptographic library
+that is designed to fit easily in more or less any context:
+In crypto toolkits for object-oriented languages (C++, Python, Pike, ...), in
+applications like LSH or GNUPG, or even in kernel space.
+As per the requirement of different applications, different cryptographic
+alogorithms nd libs exist.
+nettle provides a low-level crypto stuff, and providing a simple but general
+interface to it.
+one can build several application and context specific interfaces on top of
+Nettle.
+
+The features and support include:
+- Hash Functions:
+    -Cryptographic hash functions like SHA256, SHA224, SHA512, SHA3-224,
+SHA3-256, SHA3-384, SHA3-512
+    -Other hash functions - MD5 , MD2,  MD4
+    -nettle-hash-abstraction, cipher functions ( block cipher - AES,ARCTWO,
+     stream cipher - ARCFOUR, BLOWFISH ) etc,  Generate random number with
+Knuth's lagged fibonacci generator.
+
+The package provides binaries and libraries .
+
+The libraries include
+/usr/lib*/libhogweed.so*
+/usr/lib*/libnettle.so*
+
+How to execute the test:
+cd /opt/fiv/ltp/testcases/fivextra/nettle
+Execute ./nettle.sh

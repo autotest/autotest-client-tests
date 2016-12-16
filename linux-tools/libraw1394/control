@@ -1,0 +1,11 @@
+AUTHOR = " Xie Jue <xiejue@cn.ibm.com>  " 
+NAME = "libraw1394" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libraw1394 package 
+    ''' 
+path = '' 
+job.run_test('libraw1394',test_path=path) 

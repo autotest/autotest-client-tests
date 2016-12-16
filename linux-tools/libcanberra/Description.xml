@@ -1,0 +1,7 @@
+<!-- Test configuration for 'libcanberra' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>libcanberra</PACKAGE>
+    <COMMAND>libcanberra.sh</COMMAND>
+    <DESCRIPTION>Test libcanberra</DESCRIPTION>
+</TEST>

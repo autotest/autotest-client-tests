@@ -1,0 +1,22 @@
+Libart is a 2D drawing library: its goal is to be a high-quality
+vector-based 2D library with antialiasing and alpha composition. Libart
+was developed by Raph Levien in an attempt to provide a powerful yet
+easy-to-use foundation layer for the development of Gui-based
+applications in Gnome. Libart is thus distributed as a part of Gnome
+under the LGPL.
+
+Libart_lgpl thus provides the Graphics routines used by the GnomeCanvas
+widget and some other applications.
+
+For more information about libart, see the web page:
+http://www.levien.com/libart/
+http://www.gnome.org/~mathieu/libart/libart.html
+
+libart_lgpl covers the below tests
+1) Test the functionality of various libart API's provided by the package using testart executable with various arguments like testpat, gradient etc
+2) Test the functionality of various libart API's provided by the package using testuta executable
+
+How to test:
+------------
+cd /opt/fiv/ltp/testcases/fivextra/libart_lgpl
+./libart_lgpl.sh

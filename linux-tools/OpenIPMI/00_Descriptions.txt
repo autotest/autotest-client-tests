@@ -1,0 +1,49 @@
+OpenIPMI
+-----------------------------------------------------------------------------------------------
+Author:       	:	Abhishek Misra  <abmisra1@in.ibm.com>
+-----------------------------------------------------------------------------------------------
+Howto           :      	openipmi.sh
+-----------------------------------------------------------------------------------------------
+Notes		:	Automated and manual test
+        		Check if the machine under test has ipmi device
+                		plm64:/home/abmisra # dmidecode | grep -i ipmi
+                		IPMI Device Information
+                		plm64:/home/abmisra #
+		
+			For ipmi_ui test may need to start ipmi service if it is not already running.
+				service ipmi restart
+
+			Following should be done to configure BMC for lan test
+			note that you need to do this only if ipmi lan is not configured
+
+			Boot to Setup
+				Advanced Setup
+					Baseboard Management Controller (BMC) Settings
+						BMC Network Configuration
+							DHCP Control [manual]
+							IP Settings
+							IP Address [ assign IP to BMC ]
+							Subnet Mask [ mask ]
+							Gateway [ IP of default router ]
+
+
+						Save Network Settings in BMC
+						User Account Settings
+							USERID 1 [ Enabled ]
+							Username [ admin ]
+							Password [ lets8it ]
+							Confirm Password [ lets8it ]
+							Privileged [ Administrator ]
+
+					Save User Settings in BMC
+			Save and Exit
+
+-----------------------------------------------------------------------------------------------
+HowTo		: 	ipmi_ui_test [manual test]
+-----------------------------------------------------------------------------------------------
+Notes		: 	ipmi_ui_test manual is a set of comamds and expected o/p
+			this o/p may slightly varry depending upon the machine under test 
+			one is required to run ipmi_ui tool as described and then provide 
+			comands at ipmi_ui prompt.
+-----------------------------------------------------------------------------------------------
+

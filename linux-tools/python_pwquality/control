@@ -1,0 +1,11 @@
+AUTHOR = " Tejaswini Sambamurthy <tejaswin.linux.vnet.ibm.com>  " 
+NAME = "python_pwquality" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test python-pwquality package 
+    ''' 
+path = '' 
+job.run_test('python_pwquality',test_path=path) 

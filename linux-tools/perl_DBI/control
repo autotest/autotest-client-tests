@@ -1,0 +1,11 @@
+AUTHOR = " Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##  " 
+NAME = "perl_DBI" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-DBI package 
+    ''' 
+path = '' 
+job.run_test('perl_DBI',test_path=path) 

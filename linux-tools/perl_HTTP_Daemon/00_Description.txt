@@ -1,0 +1,27 @@
+#================================================================================================================
+#
+#         TEST : perl-HTTP-Daemon
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from perl-HTTP-Daemon
+#		 See run-tests in perl-HTTP-Daemon under t/ for the tests.
+#
+#  DESCRIPTION : HTTP::Daemon - a simple http server class,
+#                Instances of the HTTP::Daemon class are HTTP/1.1 servers that listen on a socket for incoming
+#                requests. The HTTP::Daemon is a subclass of IO::Socket::INET, 
+#                so you can perform socket operations directly on it too.
+#
+#================================================================================================================
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Daemon
+
+./perl-HTTP-Daemon.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Daemon/t
+perl <test.t>
+
+

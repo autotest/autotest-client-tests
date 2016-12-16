@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev <atrajeev@in.ibm.com>  " 
+NAME = "p11_kit" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test p11-kit package 
+    ''' 
+path = '' 
+job.run_test('p11_kit',test_path=path) 

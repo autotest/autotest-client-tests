@@ -1,0 +1,11 @@
+AUTHOR = " Athira Rajeev>  " 
+NAME = "libgsf" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test libgsf package 
+    ''' 
+path = '' 
+job.run_test('libgsf',test_path=path) 

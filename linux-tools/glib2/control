@@ -1,0 +1,11 @@
+AUTHOR = " rende@cn.ibm.com  " 
+NAME = "glib2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test glib2 package 
+    ''' 
+path = '' 
+job.run_test('glib2',test_path=path) 

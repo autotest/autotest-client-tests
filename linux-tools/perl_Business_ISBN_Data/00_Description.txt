@@ -1,0 +1,26 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : perl-Business-ISBN-Data.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from perl-Business-ISBN-Data
+#		See run-tests in perl-Business-ISBN-Data.sh under t/ for the tests.
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Business-ISBN-Data
+./perl-Business-ISBN-Data.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Business-ISBN-Data
+perl t/<test.t>
+
+

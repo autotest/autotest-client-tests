@@ -1,0 +1,29 @@
+<!-- Test configuration for 'openipmi' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>OpenIPMI</PACKAGE>
+    <COMMAND>openipmi.sh</COMMAND>
+    <ALLOW>
+        <ATTR>BMC</ATTR>
+        <COMMENT>Requires Baseboard Managemtnt Controller hardware on the test machine.</COMMENT>
+    </ALLOW>
+    <DESCRIPTION>Use ipmitool to access IPMI device. Check if the ipmitool returned correctly.</DESCRIPTION>
+</TEST>
+<TEST>
+	<TYPE>MANUAL</TYPE>
+	<PACKAGE>ipmi_ui</PACKAGE>
+	<DESCRIPTION>test ipmi user interface</DESCRIPTION>
+</TEST>
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>OpenIPMI-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>ipmitool</PACKAGE>
+    <DESCRIPTION>user level commandline tool.</DESCRIPTION>
+</TEST>
+

@@ -1,0 +1,19 @@
+curl
+-----------------------------------------------------------------------------------------------
+Author          :       Keshav Kushwaha<Email : kkushwah@in.ibm.com>
+-----------------------------------------------------------------------------------------------
+Howto           :       curl.sh
+-----------------------------------------------------------------------------------------------
+Evaluation      :       http test   - start a http server using httpserver.pl. And then tries
+				      different options for curl. Check the output.
+                        ftp  test   - start a ftp server using ftpsserver.pl. And then tries
+				      different options for curl. Check the output.
+                        file test   - prepare some files in local machine. And then tries
+				      different options for curl. Check the output.
+-----------------------------------------------------------------------------------------------
+Notes           :       Only curl is tested by this test scenario. libcurl is not tested by it.
+			Neither https nor ftps is tested because there is no stunnel.
+-----------------------------------------------------------------------------------------------
+Notes		:	Update the data directory with the new testcases from
+			the latest curl package 
+-----------------------------------------------------------------------------------------------

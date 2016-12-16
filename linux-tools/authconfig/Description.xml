@@ -1,0 +1,14 @@
+<!-- Test configuration for 'authconfig' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>authconfig</PACKAGE>
+    <COMMAND>authconfig-test.sh</COMMAND>
+    <DESCRIPTION>Test for authconfig.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>MANUAL</TYPE>
+    <PACKAGE>authconfig</PACKAGE>
+    <COMMAND>authconfig-test.txt</COMMAND>
+    <DESCRIPTION>Test for authconfig-tui</DESCRIPTION>
+</TEST> 

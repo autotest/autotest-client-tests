@@ -1,0 +1,32 @@
+###########################################################################################
+###########################################################################################
+#
+#         TEST : perl-HTTP-Date.sh
+#
+#       AUTHOR : Abhishek Sharma < abhisshm@in.ibm.com >
+#
+#       SOURCE : Testcases taken from perl-HTTP-Date
+#		See run-tests in perl-HTTP-Date.sh under t/ for the tests.
+#
+#
+#  Description : This module provides functions that deal the date formats
+#                used by the HTTP protocol (and then some more). Only the first two
+#                functions, time2str() and str2time(), are exported by default.
+#                time2str( [$time] )
+#
+#
+############################################################################################
+############################################################################################
+
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Date
+./perl-HTTP-Date.sh
+
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-HTTP-Date
+perl t/<test.t>
+
+

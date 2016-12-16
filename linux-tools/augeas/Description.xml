@@ -1,0 +1,14 @@
+<!-- Test configuration for 'augeas' -->
+<TEST>
+        <TYPE>AUTO</TYPE>
+        <PACKAGE>augeas</PACKAGE>
+        <COMMAND>augeas.sh</COMMAND>
+        <DESCRIPTION>Test the basic functionality of augeas package</DESCRIPTION>
+</TEST>
+
+<TEST>
+	<TYPE>MANUAL</TYPE>
+        <PACKAGE>augeas</PACKAGE>
+        <COMMAND>augeas.txt</COMMAND>
+        <DESCRIPTION>Test the functionality of fadot tool of augeas package</DESCRIPTION>
+</TEST>

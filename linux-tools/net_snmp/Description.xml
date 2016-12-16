@@ -1,0 +1,42 @@
+<!-- Test configuration for 'net-snmp' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>net-snmp</PACKAGE>
+    <COMMAND>net_snmp.sh</COMMAND>
+    <DENY>
+        <ATTR>hmc5_1</ATTR>
+        <COMMENT>HMC modified snmp so test not valid.</COMMENT>
+    </DENY>
+    <DESCRIPTION>Testcase for the net-snmp package.</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>net-snmp-with_openssl</PACKAGE>
+    <COMMAND>net_snmp.sh</COMMAND>
+    <DENY>
+        <ATTR>hmc5_1</ATTR>
+        <COMMENT>HMC modified snmp so test not valid.</COMMENT>
+    </DENY>
+    <DESCRIPTION>Testcase for the net-snmp package.</DESCRIPTION>
+</TEST>
+
+<!-- IMPLICIT -->
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>snmp-mibs</PACKAGE>
+    <DESCRIPTION>Holds MIB files for net-snmp. Tested by net-snmp</DESCRIPTION>
+</TEST>
+
+<TEST>
+    <TYPE>IMPLICIT</TYPE>
+    <PACKAGE>libsnmp15</PACKAGE>
+    <DESCRIPTION>Library used by the net-snmp utilities</DESCRIPTION>
+</TEST>
+
+<!-- UNTESTED PACKAGES -->
+<TEST>
+    <TYPE>DEVEL-LIB</TYPE>
+    <PACKAGE>net-snmp-devel</PACKAGE>
+    <DESCRIPTION>Dev packages.</DESCRIPTION>
+</TEST>

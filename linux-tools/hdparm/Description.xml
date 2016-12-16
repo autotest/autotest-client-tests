@@ -1,0 +1,12 @@
+<!-- Test configuration for 'hdparm' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>hdparm</PACKAGE>
+    <COMMAND>hdparm.sh</COMMAND>
+    <ALLOW>
+        <ATTR>IDE</ATTR>
+        <COMMENT>Some hdparm operations are only supported on IDE devices.</COMMENT>
+    </ALLOW>
+    <DESCRIPTION>Test the hdparm program.</DESCRIPTION>
+</TEST>
+

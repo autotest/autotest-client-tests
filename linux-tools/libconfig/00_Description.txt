@@ -1,0 +1,21 @@
+Testcase for libconfig.
+
+Libconfig is a library for reading, manipulating, and writing structured
+configuration files.
+Libconfig is a simple library for processing structured configuration files.
+This file format is more compact and more readable than XML.
+And unlike XML, it is type-aware, so it is not necessary to do string parsing
+in application code.
+Libconfig is very compact — a fraction of the size of the expat XML parser
+library.
+This makes it well-suited for memory-constrained systems like handheld
+devices.
+The library features a fully reentrant parser and includes bindings for both
+the C and C++ programming languages.
+
+To use the library from C code, include "#include <libconfig.h>"  and
+To use the library from C++, include "#include <libconfig.h++>"
+
+How to execute the test:
+cd /opt/fiv/ltp/testcases/fivextra/libconfig
+Execute ./libconfig.sh

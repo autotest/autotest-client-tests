@@ -1,0 +1,11 @@
+AUTHOR = " Ramesh YR, rameshyr@linux.vnet.ibm.com                        ##  " 
+NAME = "pango" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test pango package 
+    ''' 
+path = '' 
+job.run_test('pango',test_path=path) 

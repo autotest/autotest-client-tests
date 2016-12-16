@@ -1,0 +1,8 @@
+<!-- Test configuration for 'nscd' -->
+
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>nscd</PACKAGE>
+    <COMMAND>nscd.sh</COMMAND>
+    <DESCRIPTION>Verify files of nscd and restart the nscd service. Then ps to check wheather nscd is working or not.</DESCRIPTION>
+</TEST>

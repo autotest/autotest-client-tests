@@ -1,0 +1,8 @@
+<!-- Test configuration for 'patch' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>patch</PACKAGE>
+    <COMMAND>patch.sh</COMMAND>
+    <DESCRIPTION>Each test will create some files and diff, then use patch to modify the original files, and check the files with expected results.</DESCRIPTION>
+</TEST>
+

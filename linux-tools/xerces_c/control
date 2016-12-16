@@ -1,0 +1,11 @@
+AUTHOR = " Pravin S. Gaikar  " 
+NAME = "xerces_c" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test xerces-c package 
+    ''' 
+path = '' 
+job.run_test('xerces_c',test_path=path) 

@@ -1,0 +1,30 @@
+This portable C library implements Unicode string types in three flavours:
+(UTF-8, UTF-16, UTF-32), together with functions for character processing
+(names, classifications, properties) and functions for string processing
+(iteration, formatted output, width, word breaks, line breaks, normalization,
+case folding and regular expressions).
+
+Reference: http://www.gnu.org/software/libunistring/
+
+Text files are nowadays usually encoded in Unicode, and may consist of very
+different scripts – from Latin letters to Chinese Hanzi –, with many kinds of
+special characters.
+This library provides functions for manipulating Unicode strings and for
+manipulating C strings according to the Unicode standard.
+
+This library consists of the following parts:
+<unistr.h> elementary string functions
+<uniconv.h> conversion from/to legacy encodings
+<unistdio.h> formatted output to strings
+<uniname.h> character names
+<unictype.h> character classification and properties
+<uniwidth.h> string width when using nonproportional fonts
+<uniwbrk.h> word breaks
+<unilbrk.h> line breaking algorithm
+<uninorm.h> normalization (composition and decomposition)
+<unicase.h> case folding
+<uniregex.h> regular expressions (not yet implemented)
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/libunistring
+Execute ./libunistring.sh 

@@ -1,0 +1,11 @@
+AUTHOR = " Ramesh YR, rameshyr@linux.vnet.ibm.com                        ##  " 
+NAME = "ibus" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ibus package 
+    ''' 
+path = '' 
+job.run_test('ibus',test_path=path) 

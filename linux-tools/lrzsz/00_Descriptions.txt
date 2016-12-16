@@ -1,0 +1,8 @@
+Lrzsz (consisting of lrz and lsz) is a cosmetically modified
+zmodem/ymodem/xmodem package built from the public-domain version of
+the rzsz package. Lrzsz was created to provide a working GNU
+copylefted Zmodem solution for Linux systems.
+
+How To Run:
+cd /opt/fiv/ltp/testcases/fivextra/lrzsz
+./lrzsz.sh

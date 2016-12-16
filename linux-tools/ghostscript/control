@@ -1,0 +1,11 @@
+AUTHOR = " Basheer Khadarsabgari<bkhadars@in.ibm.com>                     ##  " 
+NAME = "ghostscript" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ghostscript package 
+    ''' 
+path = '' 
+job.run_test('ghostscript',test_path=path) 

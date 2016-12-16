@@ -1,0 +1,43 @@
+# TestCase	ibmusbasm.sh
+#
+# Description:  Test the USB interface to RSAII
+#
+# Tool Dependency:
+#
+#               This testcase depends on the command line tool mpcli. The
+#               version used here was found at:
+#
+# 		http://www.ibmquicklinks.com/
+# 			
+#		In the above page search for :
+#               "Management Processor Command Line Interface (MPCLI)
+#               version"
+#
+#               This will bring you to a place where you can download an RPM
+#               for the mpcli tool. (In my case the RPM was cryptically
+#               named "41y7832l.rpm"). This RPM contains two tarballs, one
+#               for a Java JRE and one for the tool itself.
+#
+#               The tarball for the tool itself (asmcli.tgz) is included
+#               with and will be installed by this testcase. The JRE
+#               included in the above RPM is not included here as it is
+#               quite large, and the tool works fine with the JRE supplied
+#               by MCP5.1.
+#
+#               The tool's normal startup script,
+#               /opt/IBMmpcli/bin/MPCLI.sh, expects to use the JRE supplied
+#               with the RPM. The script mpcli.sh in this directory is
+#               derived from MPCLI.sh and uses the MCP5.1 version of the
+#               JRE.
+#
+# Author:       Robert Paulsen, rpaulsen@us.ibm.com
+#
+# History:      01 Dec 2007 (rcp) created.
+#		24 May 2010 (suzie) Added note below
+
+NOTE:
+# Before you run this test, make sure the RSA-II card is configure for this machine with an ip and userid, password to login.
+# Edit the vpd.script file to add the "IPAddress" assigned above and the userid ,passwd assigned.
+#
+
+

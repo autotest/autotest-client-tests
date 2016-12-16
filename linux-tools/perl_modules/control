@@ -1,0 +1,11 @@
+AUTHOR = "   " 
+NAME = "perl_modules" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-modules package 
+    ''' 
+path = '' 
+job.run_test('perl_modules',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Yu-Pao Lee, yplee@us.ibm.com  " 
+NAME = "readline" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test readline package 
+    ''' 
+path = '' 
+job.run_test('readline',test_path=path) 

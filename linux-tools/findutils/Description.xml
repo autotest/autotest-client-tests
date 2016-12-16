@@ -1,0 +1,8 @@
+<!-- Test configuration for 'findutils' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>findutils</PACKAGE>
+    <COMMAND>find.sh ; xargs.sh</COMMAND>
+    <DESCRIPTION>Test the find and xargs program.</DESCRIPTION>
+</TEST>
+

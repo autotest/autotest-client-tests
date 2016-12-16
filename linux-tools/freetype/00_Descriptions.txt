@@ -1,0 +1,16 @@
+freetype
+-----------------------------------------------------------------------------------------------
+Author          :       Hong Bo Peng, penghb@cn.ibm.com
+-----------------------------------------------------------------------------------------------
+Maintainer      :       penghb
+-----------------------------------------------------------------------------------------------
+Howto           :       freetype.sh 
+-----------------------------------------------------------------------------------------------
+Evaluation      :       Use some demo programs to verify freetype APIs works correctly.
+			They will open the font files. And then retrive font information from
+			it. The result is compared to expected results. And return code is
+			checked.
+-----------------------------------------------------------------------------------------------
+Notes           :       This testcase verifies some base APIs of freetype.
+-----------------------------------------------------------------------------------------------
+

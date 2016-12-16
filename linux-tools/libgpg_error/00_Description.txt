@@ -1,0 +1,8 @@
+TEST:		libgpg-error.sh
+
+AUTHOR:		Suzuki K P <suzuki@in.ibm.com>
+
+SOURCE:		Testcases taken from libgpg-error package.
+
+SUMMARY:	Tests for libgpg-error package. This package contains library which defines common error codes for GnuPG.
+

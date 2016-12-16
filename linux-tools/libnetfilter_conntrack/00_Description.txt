@@ -1,0 +1,25 @@
+package Name : libnetfilter_conntrack
+Description :
+libnetfilter_conntrack is a userspace library providing a programming
+interface (API) to the in-kernel connection tracking state table.
+
+libnetfilter_conntrack - userspace library for the connection tracking system
+= Connection Tracking System =
+
+The connection tracking system is a in-kernel subsystem that stores information
+about the state of a connection in a memory structure that contains the source
+and destination IP addresses, port number pairs, protocol types, state, and
+timeout. With this extra information, we can define more intelligent filtering
+policies.
+
+How to run test ?
+cd /opt/fiv/ltp/testcases/fivextra/libnetfilter_conntrack
+run the script
+./libnetfilter_conntrack.sh
+
+To run test individually?
+cd /opt/fiv/ltp/testcases/fivextra/libnetfilter_conntrack/utils
+./$tests
+
+Note : The test has to run in order i.e after executig conntrack_create before calling conntrack_create_nat delete the first created conntrack i.e execute ./conntrack_delete .
+similarly take care the order for other tests,refer the variable $TESTS in libnetfilter_conntrack.sh for the order in which tests  needs to be executed.

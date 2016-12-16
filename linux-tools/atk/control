@@ -1,0 +1,11 @@
+AUTHOR = " Basheer Khadarsabgari<bkhadars@in.ibm.com>                     ##  " 
+NAME = "atk" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test atk package 
+    ''' 
+path = '' 
+job.run_test('atk',test_path=path) 

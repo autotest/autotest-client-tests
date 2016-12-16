@@ -1,0 +1,26 @@
+===============================================================================
+TestCase	: libxml2.sh
+
+Description	: This test will test the XML C library, xmlcatalog and xmllint.
+
+Author		: Andrew Pham, apham@us.ibm.com
+
+===============================================================================
+Howto:
+
+Invoke ./libxm2.sh to start the test.
+----------------------------------
+Test-case coverage:
+libxml2
+xmlcatalog
+xmllint
+----------------------------------
+libxml2-python.sh tests the libxml2-python test.
+
+
+NOTES: We run only the "runtest" from the libxml2-tests directory shipped by
+the sub package. It runs all the other tests internally.
+
+The test for libxml2-python are under python/tests/ and is driven by
+libxml2-python.sh
+

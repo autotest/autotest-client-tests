@@ -1,0 +1,8 @@
+ttmkfdir: utility to create fonts.scale files for truetype fonts
+
+ttmkfdir is a tool to create valid and complete fonts.scale file from TrueType fonts
+Refer: https://www.mankier.com/1/ttmkfdir
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/ttmkfdir
+./ttmkfdir.sh

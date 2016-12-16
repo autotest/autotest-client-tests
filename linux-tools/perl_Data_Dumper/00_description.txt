@@ -1,0 +1,41 @@
+Description:
+=========
+Package Name: Data::Dumper
+
+Data::Dumper - stringified perl data structures, suitable for both printing and eval
+
+Synopsis:
+---------
+     use Data::Dumper;
+    # simple procedural interface
+    print Dumper($foo, $bar);
+    # extended usage with names
+    print Data::Dumper->Dump([$foo, $bar], [qw(foo *ary)]);
+    # configuration variables
+    {
+    local $Data::Dumper::Purity = 1;
+    eval Data::Dumper->Dump([$foo, $bar], [qw(foo *ary)]);
+    }
+    # OO usage
+    $d = Data::Dumper->new([$foo, $bar], [qw(foo *ary)]);
+    ...
+    print $d->Dump;
+    ...
+    $d->Purity(1)->Terse(1)->Deepcopy(1);
+    eval $d->Dump;
+
+Description:
+------------
+Given a list of scalars or reference variables, writes out their contents in perl syntax. The references can also be objects. The content of each variable is output in a single Perl statement. Handles self-referential structures correctly.
+
+The return value can be evaled to get back an identical copy of the original reference structure.
+
+Usage:
+To run all tests:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Data-Dumper
+./perl-Data-Dumper.sh
+
+To run test individually:
+cd /opt/fiv/ltp/testcases/fivextra/perl-Data-Dumper
+perl t/<test>.t
+

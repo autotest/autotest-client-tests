@@ -1,0 +1,15 @@
+About:
+ibassuan is a small library implementing the so-called Assuan protocol.
+This protocol is used for IPC between most newer GnuPG components. Both, server and client side functions are provided.
+Assuan's primary use is to allow a client to interact with a non-persistent server. Using Assuan,
+this is accomplished by forking a subprocess and communicating with it via,
+for example, a pipe or unix domain socket. This method is neither elegant nor efficient especially
+when there is a lot of data spread across several transactions,
+also a significant amount of data is memcpy-ed from the client to a file descriptor and from the file descriptor to the server.
+This type of client/server communication can be useful: the client is completely separate from the server; they are in different address spaces.
+This is especially important in situations where the server must have a known degree of reliability and data must be protected
+
+How to run the test:
+cd /opt/fiv/ltp/testcases/fivextra/libassuan
+./libassuan.sh
+

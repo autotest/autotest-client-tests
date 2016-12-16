@@ -1,0 +1,16 @@
+--- t/rules.t.orig	2016-03-20 19:55:04.317900035 -0500
++++ t/rules.t	2016-03-20 19:55:26.613075317 -0500
+@@ -1,4 +1,4 @@
+-#!/local/bin/perl
++#!perl
+ 
+ =head1 NAME
+ 
+--- t/misc/dbmrobot.orig	2016-03-20 19:55:15.094984644 -0500
++++ t/misc/dbmrobot	2016-03-20 19:55:43.056204827 -0500
+@@ -1,4 +1,4 @@
+-#!/local/perl/bin/perl -w
++#!perl -w
+ 
+ use URI::URL;
+ $url = url(shift) || die "Usage: $0 <url>\n";

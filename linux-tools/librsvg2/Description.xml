@@ -1,0 +1,7 @@
+<!-- Test configuration for 'librsvg2' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>librsvg2</PACKAGE>
+ <COMMAND>librsvg2.sh</COMMAND>
+ <DESCRIPTION>Test librsvg2</DESCRIPTION>
+</TEST> 

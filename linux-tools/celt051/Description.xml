@@ -1,0 +1,7 @@
+<!-- Test configuration for 'celt051' -->
+<TEST>
+ <TYPE>AUTO</TYPE>
+ <PACKAGE>celt051</PACKAGE>
+ <COMMAND>celt.sh</COMMAND>
+ <DESCRIPTION>Test celt package</DESCRIPTION>
+</TEST>

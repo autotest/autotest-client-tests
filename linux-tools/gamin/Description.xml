@@ -1,0 +1,7 @@
+<!-- Test configuration for 'gamin' -->
+<TEST>
+      <TYPE>AUTO</TYPE>
+      <PACKAGE>gamin</PACKAGE>
+      <COMMAND>gamin.sh</COMMAND>
+      <DESCRIPTION>Testcase for gamin</DESCRIPTION>
+</TEST>

@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_Digest" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Digest package 
+    ''' 
+path = '' 
+job.run_test('perl_Digest',test_path=path) 

@@ -1,0 +1,11 @@
+AUTHOR = " Sohny Thomas <sohthoma@in.ibm.com>  " 
+NAME = "flac" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test flac package 
+    ''' 
+path = '' 
+job.run_test('flac',test_path=path) 

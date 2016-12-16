@@ -1,0 +1,137 @@
+--- tests/cache/inject.org	2016-04-13 10:39:15.586244179 +0000
++++ tests/cache/inject	2016-04-13 10:39:15.586244179 +0000
+@@ -1,8 +1,8 @@
+ #!/bin/sh
+ 
+-PATH=$PATH:$(pwd)/../../../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+-../../input/GENCACHE 1 1 data green | mce-inject
+-../../input/GENCACHE 1 1 data yellow | mce-inject
+-../../input/GENCACHE 1 2 generic yellow | mce-inject
++../../input/GENCACHE 1 1 data green | mce-inject.x86_64
++../../input/GENCACHE 1 1 data yellow | mce-inject.x86_64
++../../input/GENCACHE 1 2 generic yellow | mce-inject.x86_64
+ 
+--- tests/memdb/inject.org	2016-04-13 10:41:15.655248558 +0000
++++ tests/memdb/inject	2016-04-13 10:43:43.238253941 +0000
+@@ -1,10 +1,10 @@
+ #!/bin/sh
+ 
+-B=$(pwd)/../..
++#B=$(pwd)/../..
+ 
+-PATH=$PATH:$B/../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+-$B/input/GENMEM 0 1 0 2 | mce-inject
+-#$B/input/GENMEM 0 0 0 0 1 | mce-inject
+-#$B/input/GENMEM 0 1 0 0 1 | mce-inject
+-$B/input/GENMEM 0 2 0 3 | mce-inject
++../../input/GENMEM 0 1 0 2 | mce-inject.x86_64
++#$B/input/GENMEM 0 0 0 0 1 | mce-inject.x86_64
++#$B/input/GENMEM 0 1 0 0 1 | mce-inject.x86_64
++../../input/GENMEM 0 2 0 3 | mce-inject.x86_64
+
+--- tests/page/inject.org	2016-04-13 10:45:51.832258632 +0000
++++ tests/page/inject	2016-04-13 10:46:40.833260419 +0000
+@@ -1,10 +1,10 @@
+ #!/bin/sh
+-PATH=$PATH:$(pwd)/../../../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+ P=$RANDOM
+-../../input/GENPAGE $P | mce-inject
+-../../input/GENPAGE $P 0 1 1 5 | mce-inject
+-../../input/GENPAGE $P | mce-inject
+-../../input/GENPAGE | mce-inject
+-../../input/GENPAGE | mce-inject
+-../../input/GENPAGE | mce-inject
++../../input/GENPAGE $P | mce-inject.x86_64
++../../input/GENPAGE $P 0 1 1 5 | mce-inject.x86_64
++../../input/GENPAGE $P | mce-inject.x86_64
++../../input/GENPAGE | mce-inject.x86_64
++../../input/GENPAGE | mce-inject.x86_64
++../../input/GENPAGE | mce-inject.x86_64
+
+--- tests/pfa/inject.org	2016-04-13 10:47:59.625263293 +0000
++++ tests/pfa/inject	2016-04-13 10:49:00.317265507 +0000
+@@ -1,5 +1,5 @@
+ #!/bin/sh
+-PATH=$PATH:$(pwd)/../../../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+  
+ page_type="slab buddy mmap anonymous nopage huge"
+  
+@@ -65,7 +65,7 @@ while [ "$trigger_cnt" -lt "$NUMT" ]; do
+ 		inject_cnt=0
+ 		while [ "$inject_cnt" -lt "$THRESHOLD" ]; do
+ 			echo "inject for page type $i at physical address ${P}000 [ NO. $inject_cnt ]"
+-			../../input/GENPAGE $P | mce-inject
++			../../input/GENPAGE $P | mce-inject.x86_64
+ 			inject_cnt=$(($inject_cnt+1))
+ 		done
+ 		if [ "$inject_cnt" -eq "$THRESHOLD" ]; then
+--- tests/server/inject.org	2016-04-13 10:50:05.529267885 +0000
++++ tests/server/inject	2016-04-13 10:50:32.198268858 +0000
+@@ -1,8 +1,8 @@
+ #!/bin/sh
+ 
+-PATH=$PATH:$(pwd)/../../../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+-../../input/GENCACHE 1 1 data green | mce-inject
+-../../input/GENCACHE 1 1 data yellow | mce-inject
+-../../input/GENCACHE 1 2 generic yellow | mce-inject
++../../input/GENCACHE 1 1 data green | mce-inject.x86_64
++../../input/GENCACHE 1 1 data yellow | mce-inject.x86_64
++../../input/GENCACHE 1 2 generic yellow | mce-inject.x86_64
+ 
+--- tests/socket/inject.org	2016-04-13 10:52:00.548272081 +0000
++++ tests/socket/inject	2016-04-13 10:53:37.358275612 +0000
+@@ -1,10 +1,10 @@
+ #!/bin/sh
+ 
+-B=$(pwd)/../..
++#B=$(pwd)/../..
+ 
+-PATH=$PATH:$B/../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+-$B/input/GENMEM 0 1 0 2 | mce-inject
+-#$B/input/GENMEM 0 0 0 0 1 | mce-inject
+-#$B/input/GENMEM 0 1 0 0 1 | mce-inject
+-$B/input/GENMEM 0 2 0 3 | mce-inject
++../../input/GENMEM 0 1 0 2 | mce-inject.x86_64
++#$B/input/GENMEM 0 0 0 0 1 | mce-inject.x86_64
++#$B/input/GENMEM 0 1 0 0 1 | mce-inject.x86_64
++../../input/GENMEM 0 2 0 3 | mce-inject.x86_64
+
+--- tests/unknown/inject.org	2016-04-13 10:56:14.008281326 +0000
++++ tests/unknown/inject	2016-04-13 10:58:27.538286196 +0000
+@@ -1,8 +1,8 @@
+ #!/bin/sh
+ 
+-B=$(pwd)/../..
++#B=$(pwd)/../..
+ 
+-PATH=$PATH:$B/../mce-inject
++PATH=$PATH:$(pwd)/../../mce-inject
+ 
+-mce-inject $B/input/iomca
+-mce-inject $B/input/unknown
++mce-inject.x86_64 ../../input/iomca
++mce-inject.x86_64 ../../input/unknown
+
+--- tests/test.org	2016-04-13 10:59:21.725288173 +0000
++++ tests/test	2016-04-13 11:01:17.376292391 +0000
+@@ -45,7 +45,7 @@ for conf in `ls *.conf`
+ do
+ 	log=`echo $conf | sed "s/conf/log/g"`
+ 	./inject $conf
+-	$D ../../mcelog --foreground --daemon --debug-numerrors --config $conf --logfile $log >> result
++	$D /usr/sbin/mcelog --foreground --daemon --debug-numerrors --config $conf --logfile $log >> result
+ 
+ 	# let triggers finish
+ 	sleep 1
+

@@ -1,0 +1,11 @@
+AUTHOR = " Abhishek Misra  <abmisra1@in.ibm.com>  " 
+NAME = "OpenIPMI" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test OpenIPMI package 
+    ''' 
+path = '' 
+job.run_test('OpenIPMI',test_path=path) 

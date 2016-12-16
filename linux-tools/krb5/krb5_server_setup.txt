@@ -1,0 +1,98 @@
+
+********************************************************************************************************************************
+Title:  Kerberos server setup
+
+Author:            
+        rende@cn.ibm.com
+
+********************************************************************************************************************************
+
+Steps:
+
+First step:  SYNC THE TIME BETWEEN THE KDC SERVER and the TEST MACHINE
+
+Before we start: We are going to setup a KDC & Kerberos server.
+The steps below are performed on the machine which is going to act as the server.
+
+
+1. Create test user  "rende" with password "password" 
+
+2. kdb5_util create -r IN.IBM.COM -s  
+	# create KDC database: principal etc
+	# password must be "password"
+
+3. i) /var/kerberos/krb5kdc/kadm5.acl:
+		add line: "*			*"  
+   ii) /var/kerberos/krb5kdc/kdc.conf: modify realms: s/EXAMPLE.COM/IN.IBM.COM and
+   iii) In /etc/krb5.conf modify kdc and admin_server parameters with client address and port number. Example : kdc = llm39.in.ibm.com:88 and admin_server = llm39.in.ibm.com:749
+
+4.  Next step is to add the entities. users, hosts all are entities called principals.
+Add the 2 users, admin and rende. And then the kdc server itself and the other machines where you are 
+going to run the tests from. Add them by hostname and IP.
+
+kadmin.local:
+	addprinc admin  (password admin)
+	addprinc rende  (password password, rende user)
+	addprinc -randkey host/punetest3.in.ibm.com (for service: ktelnetd, krlogind, krshd)
+	addprinc -randkey host/9.182.205.100   (IP address)
+	ktadd host/punetest3.in.ibm.com  (key add to keytabs, for cyrus gssapi test)
+	ktadd host/9.182.205.100  (IP address)
+	exit
+
+5. Copy the contents of the /etc/krb5.keytab, /etc/krb5.conf, /var/kerberos/krb5kdc/kadm5.acl & /var/kerberos/krb5kdc/kdc.conf to client machine.
+
+6. /etc/init.d/krb5kdc start  (uncomment the failed lines, s/daemon/startproc)
+   /etc/init.d/kadmin start (similar to krb5kdc), it will create /var/lib/kerberos/krb5kdc/kadm5.keytab
+now you can "kadmin -p admin" from other machines.
+NOTE:- 
+	i.	sync the time between client and server. 
+AT THIS TIME, you may run the krb5 client tests on the test machine.
+
+
+7. on the kserver, start kerberos services. (k-services are usually brought up by inetd/xinetd)
+	create ~rende/.k5login, add "rende@IN.IBM.COM"
+
+8. on the kclient, kinit rende@IN.IBM.COM (rende is another principal created in step 5) to make local credential cache,
+	use klist to ensure you're currently accepted as rende@IN.IBM.COM
+
+9. on the kclient, /usr/kerberos/bin/telnet -a -l rende [-f] -x kserver.in.ibm.com,
+	you should log on kserver as user rende without a password prompt.
+	others:	rcp -x kserver:/etc/passwd .
+			rlogin/rsh -l rende kserver
+			ftp kserver
+
+Notes:
+	1. kserver is the server running kerberized service, e.g. ktelnetd, 
+	   kclient is the client to access kerberized service,
+	   they will all point to KDC(e.g.test0) in /etc/krb5.conf.
+	   Ensure they can be resolved by each other,  i.e. check /etc/hosts and DNS
+
+	2. Time must be synchronized between kserver, kclient and KDC server
+	either by ntp server or by manually set: date -u "xxxxxxx"
+
+	3. kinit -f: create a forwardable ticket
+
+	4. Use kpasswd to change principal's password in kerberos database
+
+	5. To display contents in your keytab file:
+		klist -k  or
+		ktutil: rkt /etc/krb5.keytab
+
+	6. [Important] Key of kerberos service should be addprinc to KDC, and exported to corresponding kserver:/etc/krb5.keytab.
+
+	7. Watch the log file defined in krb5.conf.
+
+	8. If KDC server is found corrupt the following steps can be followed and restart the test
+		# cd /var/kerberos/krb5kdc
+		# rm -i *.*
+        	rm: remove kadm5.acl (yes/no)? n
+        	rm: remove kadm5.keytab (yes/no)? yes
+        	rm: remove principal (yes/no)? yes
+        	rm: remove principal.kadm5 (yes/no)? yes
+        	rm: remove principal.kadm5.lock (yes/no)? yes
+        	rm: remove principal.ok (yes/no)? yes
+        	rm of . is not allowed
+        	rm of .. is not allowed
+        	rm: remove .k5.NIC.UALBERTA.CA (yes/no)? yes
+	
+********************************************************************************************************************************

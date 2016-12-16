@@ -1,0 +1,11 @@
+AUTHOR = " Basheer K<bkhadars@in.ibm.com>                                           ##  " 
+NAME = "perl_Compress_Raw_Bzip2" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test perl-Compress-Raw-Bzip2 package 
+    ''' 
+path = '' 
+job.run_test('perl_Compress_Raw_Bzip2',test_path=path) 

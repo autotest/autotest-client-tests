@@ -1,0 +1,11 @@
+fontcheck.sh
+	Checks integrety of fonts.dir, fonts.alias, encoding.dir.
+	Checks scalable fonts.
+	Checks "create fontset"
+	This is highly paraqmeterized to work with a large variety of fonts.
+
+NOTE:
+
+     1. This test case use command "Xvfb" as X server. 
+  
+

@@ -1,0 +1,21 @@
+About:
+The libbonobo package contains libbonobo libraries. This is a component and
+compound document system for GNOME-2.
+Bonobo is a component model for creating reusable software components and
+compound documents used in GNOME
+libbonobo is the non-GUI part of the bonobo component infrastructure, it is
+most useful for creating aggregate interfaces & doing IPC
+easily.
+
+It provides libraries and also bonobo-activation-server which are coverd by
+tests in the sources.
+There are also three binaries:
+
+/usr/bin/activation-client
+/usr/bin/bonobo-activation-run-query
+/usr/sbin/bonobo-activation-sysconf
+
+How-to:
+
+cd /opt/fiv/ltp/testcases/fivextra/libbonobo
+./libbonobo.sh
