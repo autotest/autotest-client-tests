@@ -21,14 +21,12 @@
 #               The tarball for the tool itself (asmcli.tgz) is included
 #               with and will be installed by this testcase. The JRE
 #               included in the above RPM is not included here as it is
-#               quite large, and the tool works fine with the JRE supplied
-#               by MCP5.1.
+#               quite larg.
 #
 #               The tool's normal startup script,
 #               /opt/IBMmpcli/bin/MPCLI.sh, expects to use the JRE supplied
 #               with the RPM. The script mpcli.sh in this directory is
-#               derived from MPCLI.sh and uses the MCP5.1 version of the
-#               JRE.
+#               derived from MPCLI.sh
 #
 # Author:       Robert Paulsen, rpaulsen@us.ibm.com
 #

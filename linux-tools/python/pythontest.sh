@@ -81,7 +81,7 @@ function tc_local_setup()
         export USE_PORT
 	
 	pushd $testdir &>/dev/null
-	patch -p0 <$fivtestdir/mcpbug-96332-regrtest.diff
+	patch -p0 <$fivtestdir/bug-96332-regrtest.diff
 	popd &>/dev/null
 }
 
@@ -128,7 +128,7 @@ function run_test {
 function tc_local_cleanup()
 {
 	pushd $testdir &>/dev/null
-	patch -p0 -R <$fivtestdir/mcpbug-96332-regrtest.diff
+	patch -p0 -R <$fivtestdir/bug-96332-regrtest.diff
 	popd &>/dev/null
 }
 ################################################################################

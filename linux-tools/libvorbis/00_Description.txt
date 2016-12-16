@@ -14,7 +14,6 @@ libvorbis directly.
 
 More details can be found here : https://www.xiph.org/vorbis/doc/libvorbis/
 
-Applying branches : mcp8-head(mcp8.2) mcp8-0-service-br and mcp8-1-service-br
 
 Signed-off-by : Hariharan T S <harihare@in.ibm.com>
 Tested-by     : Hariharan T S <harihare@in.ibm.com>

@@ -2,11 +2,10 @@
 #
 # This is essentially a copy pf MPCLI.sh from the MPCLI utility package.
 # Asside from this comment only one line has been added --
-# the setting JRE_DIR to use the JRE shipped with MCP.
 #
 ROOTDIR=/opt/IBMmpcli 
 JRE_DIR=${ROOTDIR}/IBMJava2-142-JRE
-JRE_DIR=/opt/ibm/java2-i386-50/     # This line added for MCP5.1
+JRE_DIR=/opt/ibm/java2-i386-50/     
 JRE_DIR=/opt/ibm/java2-x86_64-50
 
 PATH=${ROOTDIR}/bin:${JRE_DIR}/jre/bin:"$PATH"

@@ -2233,7 +2233,7 @@ function  tc_get_os_arch()
         ARCH=`uname -m`
     else
         source /etc/OS.manifest || return
-        ARCH=$( IFS=\" ; set $_MCP_ARCH ; echo $1 )
+        ARCH=$( IFS=\" ; set $_OS_ARCH ; echo $1 )
     fi
     TC_OS_ARCH=`echo $ARCH` 
 }

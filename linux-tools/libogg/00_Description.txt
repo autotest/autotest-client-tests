@@ -13,8 +13,6 @@ creating (encoding) or playing (decoding) a single physical bit stream.
 https://xiph.org/ogg/doc/libogg/overview.html
 
 
-Applying branches : mcp8-head(mcp8.2) mcp8-0-service-br and mcp8-1-service-br
-
 
 
 Signed-off-by : Hariharan T S <harihare@in.ibm.com>
@@ -40,32 +38,8 @@ wrapper script to integrate to fivextra.
 
 
 
--bash-4.2# pwd
-/usr/share/mcpsource/libogg-1.3.0-7.el7_1.ibm.1-source
 
 -bash-4.2# make check
-Making check in src
-make[1]: Entering directory
-`/usr/share/mcpsource/libogg-1.3.0-7.el7_1.ibm.1-source/src'
-./test_bitwise
-
-Small preclipped packing (LSb): ok.
-Null bit call (LSb): ok.
-Large preclipped packing (LSb): ok.
-32 bit preclipped packing (LSb): ok.
-Small unclipped packing (LSb): ok.
-Large unclipped packing (LSb): ok.
-Single bit unclipped packing (LSb): ok.
-Testing read past end (LSb): ok.
-
-Small preclipped packing (MSb): ok.
-Null bit call (MSb): ok.
-Large preclipped packing (MSb): ok.
-32 bit preclipped packing (MSb): ok.
-Small unclipped packing (MSb): ok.
-Large unclipped packing (MSb): ok.	
-Single bit unclipped packing (MSb): ok.
-Testing read past end (MSb): ok.
 
 ./test_framing
 testing single page encoding... 0, (0),  granule:0 ok.
