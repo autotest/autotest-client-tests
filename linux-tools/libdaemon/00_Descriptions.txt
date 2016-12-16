@@ -1,4 +1,4 @@
-libdaemon -- It is a lightweight C library that eases the 
+libdaemon -- It is a lightweight C library that eases the
 writing of UNIX daemons
 
 How to run the test:

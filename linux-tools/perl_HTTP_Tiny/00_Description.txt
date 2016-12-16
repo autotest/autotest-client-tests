@@ -1,7 +1,7 @@
 Description:
 ----------------
 This is a very simple HTTP/1.1 client, designed for doing simple GET, requests without the overhead of a large framework like LWP::UserAgent.
-It is more correct and more complete than HTTP::Lite. 
+It is more correct and more complete than HTTP::Lite.
 
 
 How to run ?

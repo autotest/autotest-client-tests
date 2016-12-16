@@ -1,5 +1,5 @@
 
-Description : 
+Description :
 
 XML::RegExp - Regular expressions for XML tokens
 
@@ -21,9 +21,9 @@ http://www.xml.com/pub/a/2001/07/25/namingparts.html
 https://msdn.microsoft.com/en-us/library/windows/desktop/dd892769%28v=vs.85%29.aspx
 http://www.w3.org/TR/REC-xml
 http://xmlbeans.apache.org/docs/2.1.0/guide/conUnderstandingXMLTokens.html
-http://perl-xml.sourceforge.net/faq/ 
+http://perl-xml.sourceforge.net/faq/
 
 How to run test ?
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-RegExp
-run the script 
-./perl-XML-RegExp.sh 
+run the script
+./perl-XML-RegExp.sh

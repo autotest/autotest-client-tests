@@ -1,5 +1,5 @@
 
-Description : 
+Description :
 
 XML::SAX
 ========
@@ -12,5 +12,5 @@ Source : http://search.cpan.org/~grantm/XML-SAX-0.99/SAX.pm
 
 How to run test ?
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-SAX
-run the script 
-./perl-XML-SAX.sh 
+run the script
+./perl-XML-SAX.sh

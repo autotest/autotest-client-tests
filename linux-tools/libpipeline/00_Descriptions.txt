@@ -1,7 +1,7 @@
 #########################################################################################
 What is libpipeline ??
 
-Ans: A C library for manipulating pipelines of subprocesses in a 
+Ans: A C library for manipulating pipelines of subprocesses in a
 flexible and convenient way
 
 #########################################################################################

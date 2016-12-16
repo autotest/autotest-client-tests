@@ -18,4 +18,4 @@ one test from its source called "hestest" to test libhesiod.so.0. and one to
 test passwd lookup integration using NSS which is an usecase of this library.
 
 To run the tests, execute "./hesiod.sh".
- 
+

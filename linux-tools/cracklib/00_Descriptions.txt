@@ -8,13 +8,13 @@
 #
 # Information :
 #        cracklib_test01
-#	       When FascistCheck() in cracklib is called with a password containing 
+#	       When FascistCheck() in cracklib is called with a password containing
 #               alphabets and numerals, FascistCheck() returns a NULL indicating good password.
 #
 #        cracklib_test02
-#	       When FascistCheck() in cracklib is called with a password that is short and 
+#	       When FascistCheck() in cracklib is called with a password that is short and
 #               easy to guess, FascistCheck() returns a (non_NULL)  a pointer to a diagnostic string.
-#	
+#
 #	Run below command prior running test.
 #	/usr/sbin/create-cracklib-dict /usr/share/cracklib/pw*
 ===============================================================================

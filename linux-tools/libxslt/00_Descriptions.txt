@@ -2,13 +2,13 @@ libxslt
 -----------------------------------------------------------------------------------------------
 Author          :       Pravin S. Gaikar, prgaikar@in.ibm.com
 -----------------------------------------------------------------------------------------------
-History         :       Created By Pravin S. Gaikar (prgaikar@in.ibm.com) 
+History         :       Created By Pravin S. Gaikar (prgaikar@in.ibm.com)
 -----------------------------------------------------------------------------------------------
 Howto           :       libxslt.sh
 -----------------------------------------------------------------------------------------------
 Evaluation      :       Run as a bash script.
 -----------------------------------------------------------------------------------------------
-Description     :       Libxslt is the XSLT C library developed for the GNOME project. 
-			XSLT itself is a an XML language to define transformation for XML. 
+Description     :       Libxslt is the XSLT C library developed for the GNOME project.
+			XSLT itself is a an XML language to define transformation for XML.
 			Libxslt is based on libxml2 the XML C library developed for the GNOME project.
 -----------------------------------------------------------------------------------------------

@@ -4,29 +4,29 @@ Author:
 	Dan Streetman <ddstreet@us.ibm.com>
 
 Introduction:
-	
+
 	mutt is highly configurable and very powerful text-based program
-	for reading and writing electronic mail under unix and linux 
+	for reading and writing electronic mail under unix and linux
 	operation systems
 
 	General steps to run mutt:
 	--------------------------
 
-		- Press Enter twice after you verify mail address sent 
+		- Press Enter twice after you verify mail address sent
 		  and the subject title;
 		- Press 'Esc' and 'i' to start writing the mail;
 		- Press 'Esc', ':', 'x', and Enter to save your mail;
 		- Press 'y' for send;
-		- Press 'q' for abort and Press Enter when ask you to postpone 
+		- Press 'q' for abort and Press Enter when ask you to postpone
 		  this message;
 		- Press 'c' for cc and Press Enter after you add the Cc's
 		  address and Press 'y' for send the mail
 
 
 Instructions:
-	
+
 	1. Login as root on the test machine, run:
-		
+
 		/etc/init.d/sendmail start
 
 	2. Run pre_mutt.sh
@@ -35,7 +35,7 @@ Instructions:
 		created; myfile with its content of "Hello, this is my first
 		mutt mail" is created by mutt_1 and saved at /home/mutt_1;
 		.muttrc filse for user mutt_1 and mutt_2 are created ans
-		saved at their local home dir. 
+		saved at their local home dir.
 
 	3. Run alias_mutt.sh
 
@@ -54,7 +54,7 @@ Instructions:
 		* Expected result: Switch user id to mutt_2; Type mail and
 		then Press return key; you should find the subject as
 		'wonder' mail with its content of "Hello, this is my first
-		mutt mail" 
+		mutt mail"
 
 	5. Run attach_mutt.sh
 

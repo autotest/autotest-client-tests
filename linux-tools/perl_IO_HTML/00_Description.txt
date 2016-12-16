@@ -2,7 +2,7 @@ Description:
 IO::HTML  provides an easy way to open a file containing HTML while
 automatically determining its encoding.
 This module opens a file and performs automatic charset detection based on the
-HTML5 encoding sniffing algorithm.  
+HTML5 encoding sniffing algorithm.
 You can then pass the filehandle to HTML::Parser or a related module (or just
 read it yourself).
 

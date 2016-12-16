@@ -14,9 +14,9 @@
 #                so that they can be matched despite minor differences in spelling. Soundex is the most widely known of all phonetic
 #                algorithms and is often used (incorrectly) as a synonym for "phonetic algorithm". Improvements
 #                to Soundex are the basis for many modern phonetic algorithms.(Wikipedia,2007)
-#               
-#               
-#               
+#
+#
+#
 #
 #
 ###########################################################################################################################################

@@ -8,8 +8,8 @@ The binaries provided by package includes:
 
 This manual test includes testing of /usr/bin/nfs4_editfacl
 
-nfs4_editfacl is equivalent to nfs4_setfacl -e. 
-This will edit the file's ACL in the editor 
+nfs4_editfacl is equivalent to nfs4_setfacl -e.
+This will edit the file's ACL in the editor
 defined in the EDITOR environment variable (DEFAULT: vi(1))
 and set the resulting ACL
 
@@ -21,7 +21,7 @@ A. Prepare and export the NFS directory.
 1) Create regular file ext3.img
 # dd if=/dev/zero of=ext3.img bs=1 count=10MB
 
-2) Put ext3 filesystem 
+2) Put ext3 filesystem
 # losetup -f ext3.img
 # mkfs.ext3 ext3.img
 
@@ -32,12 +32,12 @@ where ip is the ip address of the test machine.
 4) mkdir -p /mnt/NFS_PARTITION
 
 5) mount the partition to be exported with acl
-# mount -o loop -o acl ext3.img /mnt/NFS_PARTITION/ 
+# mount -o loop -o acl ext3.img /mnt/NFS_PARTITION/
 
 6) Restart nfs server for the changes to take effect
 # systemctl restart nfs
 
-7)mount the exported NFS directory 
+7)mount the exported NFS directory
 # mkdir -p /NFS_PARTITION/
 # mount -t nfs4 -o acl $ip:/mnt/NFS_PARTITION /NFS_PARTITION/
 
@@ -59,7 +59,7 @@ A::GROUP@:rtcy
 A::EVERYONE@:rtcy
 
 3. Edit the acl with nfs4_editfacl,
-   
+
    # nfs4_editfacl f
 
 This will open the vi editor.

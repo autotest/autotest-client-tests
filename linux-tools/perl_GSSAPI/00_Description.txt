@@ -12,7 +12,7 @@ quickhacking GSSAPI enabeled GSSAPI TCP services.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-GSSAPI/
-./perl-GSSAPI.sh 
+./perl-GSSAPI.sh
 
 To run individual test,
 perl t/<testname>

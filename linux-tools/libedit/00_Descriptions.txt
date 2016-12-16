@@ -3,15 +3,15 @@ How to
 ./libedit_test.sh
 
 
-	test basic functionality of libedit package.	
+	test basic functionality of libedit package.
 
-    libedit is a library which works like GNU Readline, and is        
-    mostly API compatible. Many libreadline-using applications can        
-    be ported by simply changing the inclusion of readline.h to        
-    editline.h.        
+    libedit is a library which works like GNU Readline, and is
+    mostly API compatible. Many libreadline-using applications can
+    be ported by simply changing the inclusion of readline.h to
+    editline.h.
 
 
-http://www.s11n.net/download/#editline        
+http://www.s11n.net/download/#editline
 
 
 

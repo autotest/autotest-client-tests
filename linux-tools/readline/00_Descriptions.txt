@@ -1,3 +1,3 @@
 readline.sh
 
-	test basic functionality of readline funciton.	
+	test basic functionality of readline funciton.

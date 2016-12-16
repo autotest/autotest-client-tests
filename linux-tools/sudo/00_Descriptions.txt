@@ -16,5 +16,5 @@ Test-case coverage:
 1. Sudo should configure the /etc/sudoers file.
 2. The test case will add two sudo users and set their priviliges to the /etc/sudoers.
 After that, the test case will execute sudo -c/ sudo -S with each sudo users that created
-before. 
+before.
 ----------------------------------

@@ -7,7 +7,7 @@ with a DOM Level 1 compliant interface.
 Usage:
 To run all tests:
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-DOM
-./perl-XML-DOM.sh	
+./perl-XML-DOM.sh
 
 To run test individually:
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-DOM

@@ -14,10 +14,10 @@ unwrapdiff — demangle word-wrapped patches
 dehtmldiff — get usable diff from an HTML page
 flipdiff — exchange the order of two incremental patches
 espdiff — apply the appropriate transformation to a set of patches
-editdiff — editing a diff file in-place 
-splitdiff — separate out incremental patches 
-fixcvsdiff - fix problematic diff files 
-dehtmldiff — get usable diff from an HTML page 
+editdiff — editing a diff file in-place
+splitdiff — separate out incremental patches
+fixcvsdiff - fix problematic diff files
+dehtmldiff — get usable diff from an HTML page
 
 How to run the test :
 -------------------

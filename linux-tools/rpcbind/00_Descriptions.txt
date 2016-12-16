@@ -13,4 +13,4 @@ generate the server and client side stubs and headers.
 rpcgen printmsg.x generates below files:
 printmsg_svc.c
 printmsg_clnt.c
-printmsg.h 
+printmsg.h

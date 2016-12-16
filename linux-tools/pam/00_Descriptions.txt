@@ -1,6 +1,6 @@
 pam
-	test pam which is a security tool that provides authentication for applications.	
-	
+	test pam which is a security tool that provides authentication for applications.
+
 notes:
 	pam_test01
 		check authentication and authorize a user when provided with correct password.

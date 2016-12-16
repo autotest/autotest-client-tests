@@ -19,4 +19,4 @@ cd /opt/fiv/ltp/testcases/fivextra/augeas
 
 Manual Test:
 cd /opt/fiv/ltp/testcases/fivextra/augeas
-Follow the instructions in augeas.txt 
+Follow the instructions in augeas.txt

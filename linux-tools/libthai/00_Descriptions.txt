@@ -1,4 +1,4 @@
-quagga - tests the BGP protocol  
+quagga - tests the BGP protocol
 
 How to run the test:
 ------------------------
@@ -6,4 +6,4 @@ How to run the test:
 
 Or you can run each test manually by:
 -----------------------------------
-cd tests; ./xxx; 
+cd tests; ./xxx;

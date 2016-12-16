@@ -1,4 +1,4 @@
-shared-mime-info package contains a MIME database. This allows central updates of MIME information for all supporting applications. 
+shared-mime-info package contains a MIME database. This allows central updates of MIME information for all supporting applications.
 
 update-mime-database assists in adding MIME data to the database.
 It is a program to build the Shared MIME-Info database cache.

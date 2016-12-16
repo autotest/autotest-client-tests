@@ -23,7 +23,7 @@
                  The top-half of the window has some code in it .verify that this part of the
                  window can be scrolled. The bottom half of the window is
                  divided into two parts (left and right). The left half of the window contains
-                 names of various geometrical shapes (eg, arc, clip, ellipse). Click on the names, 
+                 names of various geometrical shapes (eg, arc, clip, ellipse). Click on the names,
                  one by one and see that the shapes are displayed as images on the right side of the bottom half.
                  Verify that the images are displayed according to the names.
 

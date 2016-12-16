@@ -5,5 +5,5 @@ Sources:http://perldoc.perl.org/File/Path.html
 How to run test ?
 
 cd /opt/fiv/ltp/testcases/fivextra/perl-File-Path
-run the ./perl-File-Path.sh script 
-./perl-File-Path.sh 
+run the ./perl-File-Path.sh script
+./perl-File-Path.sh

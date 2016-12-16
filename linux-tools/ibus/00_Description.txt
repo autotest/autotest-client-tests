@@ -8,4 +8,4 @@ http://code.google.com/p/ibus/issues/list and then report a bug.
 usage:
 ------
 cd /opt/fiv/ltp/testcases/fivextra/ibus
-./ibus.sh 
+./ibus.sh

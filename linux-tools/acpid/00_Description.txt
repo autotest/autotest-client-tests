@@ -5,7 +5,7 @@ Author		:	Suzuki K P <suzukikp@in.ibm.com>
 -----------------------------------------------------------------------------------------------------------------------------
 Testcase	:	acpid - ACPI Daemon
 -----------------------------------------------------------------------------------------------------------------------------
-		
+
 	ACPI daemon runs in userspace reading the events from /proc/acpi/event to which ACPI events are reported by the kernel. The daemon could
 be made to execute specific actions upon the events by specifying the rules in the conf/ directory. It also allows clients to connect to the socket
 and sends the events to all the connected clients. Refer. man acpid for more details.
@@ -29,7 +29,7 @@ the generation of the events.
 	The client behaviour is tested using the acpi_listen program shipped with the acpid package.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Test Scenarios	: 
+Test Scenarios	:
 
 	We test 4 scenarios.
 
@@ -45,7 +45,7 @@ Test Scenarios	:
 
 	3)	Test the rules and related actions for the acpi events.
 
-		a) Start the acpid 
+		a) Start the acpid
 		b) Also start the acpi client
 		c) Now generate the events by writing some events to the EVENT_FILE.
 		d) We should see the action taken by the acpid with the rules in conf/ and also the client's out put.
@@ -59,11 +59,11 @@ Test Scenarios	:
 		e) Check the results for the client and actions. We should see the actions for the new rule added.
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-NOTE:	There is one environment variable that you could try experimenting with in case of failures. 
+NOTE:	There is one environment variable that you could try experimenting with in case of failures.
 
 	*) INTERVAL 	-	In acpid-test.sh, is the interval to wait for the acpid daemon to settle itself before the client tries to connect.
-				The default is 1sec. You could increase it to see if it helps in getting rid of the problems. 
-				
-				There is really no way to find out if the acpid has finished reading the rules and configs. 
+				The default is 1sec. You could increase it to see if it helps in getting rid of the problems.
+
+				There is really no way to find out if the acpid has finished reading the rules and configs.
 --------------------------------------------------------------------------------------------------------------------------------------------
 

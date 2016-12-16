@@ -17,4 +17,4 @@ Test coverage:
 mksquashfs
 unsquashfs
 ----------------------------------
-~                                                           
+~

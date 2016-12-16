@@ -1,4 +1,4 @@
-libasyncns -- is a C library for Linux/Unix 
+libasyncns -- is a C library for Linux/Unix
 for executing name service queries asynchronously
 
 How to run the test:

@@ -9,5 +9,5 @@ emphasizes the logical relationship between the interfaces involved.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/netcf/
-./test_netcf.sh 
+./test_netcf.sh
 

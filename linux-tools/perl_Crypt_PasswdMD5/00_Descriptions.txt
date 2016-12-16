@@ -9,4 +9,4 @@ How to run the tests
 
     or
 cd t
-perl XXX.t 
+perl XXX.t

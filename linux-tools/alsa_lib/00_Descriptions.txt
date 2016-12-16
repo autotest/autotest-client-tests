@@ -9,4 +9,4 @@ and is a way for electronic instruments to communicate with each other.
 
 How to run the tests:
 ./alsa-lib.sh
- 
+

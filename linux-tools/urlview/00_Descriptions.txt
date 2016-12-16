@@ -2,7 +2,7 @@ urlview is a screen oriented program for extracting URLs from text
 files and displaying a menu from which you may launch a command to
 view a specific item.
 
-However in our test you will not able to view the screen as it is 
+However in our test you will not able to view the screen as it is
 written to be automated.
 If you want to check the screen, run "urlview text_file"
 Please report if you have any problem viewing the screen.

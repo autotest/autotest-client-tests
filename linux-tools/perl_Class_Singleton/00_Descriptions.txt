@@ -9,7 +9,7 @@ Singletons can be used for many things. If you only want one database connection
 
 Functionality of the test:
 
-* Creates 2 instances in the same class (calls Singleton->instance(), DerivedSingleton->instance(), AnotherSingleton->instance( x => 10 )) 
+* Creates 2 instances in the same class (calls Singleton->instance(), DerivedSingleton->instance(), AnotherSingleton->instance( x => 10 ))
     and checks that each instance of the same class is the same.
 
 * check that the instances of the separate classes are actually different from each other.

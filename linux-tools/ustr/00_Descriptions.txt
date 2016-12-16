@@ -1,4 +1,4 @@
-ustr - ustr string library functions 
+ustr - ustr string library functions
 
 How to run the test:
 ------------------------
@@ -6,4 +6,4 @@ How to run the test:
 
 Or you can run each test manually by:
 -----------------------------------
-cd tests; ./xxx; 
+cd tests; ./xxx;

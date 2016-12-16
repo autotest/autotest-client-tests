@@ -27,4 +27,4 @@ This library consists of the following parts:
 
 How to run the test:
 cd /opt/fiv/ltp/testcases/fivextra/libunistring
-Execute ./libunistring.sh 
+Execute ./libunistring.sh

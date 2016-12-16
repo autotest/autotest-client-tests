@@ -1,4 +1,4 @@
-yum-utils is a collection of tools and programs for managing yum repositories, installing debug packages, source packages, extended information from repositories and administration. 
+yum-utils is a collection of tools and programs for managing yum repositories, installing debug packages, source packages, extended information from repositories and administration.
 
 How to run the tests:
 # cd /opt/fiv/ltp/testcases/fivextra/yum-utils

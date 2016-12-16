@@ -1,19 +1,19 @@
-Descirpton: 
------------ 
-libsemanage provides an API for the manipulation of SELinux binary policies. 
-It is used by checkpolicy (the policy compiler) and similar tools, as well as 
-by programs such as load_policy, which must perform specific transformations 
-on binary policies (for example, customizing policy boolean settings). 
- 
-Tests included: 
--------------- 
--test_semanage_store 
--test_utilities 
- 
-But "libsemanage-tests" is a wrapper which implicitly runs the above two tests. 
- 
-How to run: 
------------ 
-cd /opt/fiv/ltp/testcases/fivextra/libsemanage/tests 
-./libsemanage-tests 
- 
+Descirpton:
+-----------
+libsemanage provides an API for the manipulation of SELinux binary policies.
+It is used by checkpolicy (the policy compiler) and similar tools, as well as
+by programs such as load_policy, which must perform specific transformations
+on binary policies (for example, customizing policy boolean settings).
+
+Tests included:
+--------------
+-test_semanage_store
+-test_utilities
+
+But "libsemanage-tests" is a wrapper which implicitly runs the above two tests.
+
+How to run:
+-----------
+cd /opt/fiv/ltp/testcases/fivextra/libsemanage/tests
+./libsemanage-tests
+

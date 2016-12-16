@@ -4,4 +4,4 @@ packages provide NSS Softoken Cryptographic Module.
 
 How to run the test:
 -------------------
-./nss-softokn.sh 
+./nss-softokn.sh

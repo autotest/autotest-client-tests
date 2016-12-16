@@ -20,6 +20,6 @@ APR package provides the library:
 /usr/lib64/libapr-1.so.0
 
 
-HOW TO RUN THE TEST: 
+HOW TO RUN THE TEST:
 ===================
 /opt/fiv/ltp/testcases/fivextra/apr/apr.sh

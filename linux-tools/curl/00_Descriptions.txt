@@ -15,5 +15,5 @@ Notes           :       Only curl is tested by this test scenario. libcurl is no
 			Neither https nor ftps is tested because there is no stunnel.
 -----------------------------------------------------------------------------------------------
 Notes		:	Update the data directory with the new testcases from
-			the latest curl package 
+			the latest curl package
 -----------------------------------------------------------------------------------------------

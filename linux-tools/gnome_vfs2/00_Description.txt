@@ -1,4 +1,4 @@
-GnomeVFS is the core library used to access files and folders in GNOME applications.It 
+GnomeVFS is the core library used to access files and folders in GNOME applications.It
 provides a file system abstraction which allows applications to access local and remote
 files with a single consistent API.
 

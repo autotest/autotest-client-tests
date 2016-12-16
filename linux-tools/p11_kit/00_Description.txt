@@ -6,7 +6,7 @@ PKCS stands for Public-Key Cryptography Standards.
 p11-kit provides:
 /usr/bin/p11-kit -> command line tool that can be used to perform operations on PKCS#11 modules configured on the system.
 libp11-kit.so -> contains functions used to coordinate initialization and finalization of any PKCS#11 module.
-p11-kit-proxy.so -> is the PKCS#11 proxy module. 
+p11-kit-proxy.so -> is the PKCS#11 proxy module.
 
 To execute test:
 cd /opt/fiv/ltp/testcases/fivextra/p11-kit/

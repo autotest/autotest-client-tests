@@ -4,7 +4,7 @@ Manual tests for ghostscript package
 Ghostscript is capable of interpreting PostScript, encapsulated PostScript
 (EPS), DOS EPS (EPSF), and Adobe Portable Document Format (PDF).
 The interpreter reads and executes the files in sequence, using the method
-described under "File searching" to find them. 
+described under "File searching" to find them.
 
 The interpreter runs in interactive mode by default. After processing the
 files given on the command line (if any) ,
@@ -30,7 +30,7 @@ If incase ghostscript package is not available on the test machine ,install it
 using rpm or yum.
 
 2. Ensure VNC Server is running on the host machine.
-	# vncserver 
+	# vncserver
 
 3.Start VNC Viewer on the client Machine:
 	# vncviewer <HostName>
@@ -53,7 +53,7 @@ verify that gs messages are not redirected to standard output
 
 It will create output file "tiger.png",it can be opened using display command
 	Ex: display tiger.png
-   
+
 
 5.To render the same image at 300 dpi using -r switch:
 
@@ -62,7 +62,7 @@ It will create output file "tiger.png",it can be opened using display command
 It will create output file "tiger_300.png",it can be opened using display command
 	Ex: display tiger_300.png
 
-6.To render a figure in grayscale: 
+6.To render a figure in grayscale:
 
 	 gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pnggray -sOutputFile=tiger.png tiger.eps
 
@@ -86,14 +86,14 @@ annots.pdf file
      2.Understanding the different switches.
 	i) gs -dSAFER -dBATCH -dLastPage=3 annots.pdf
        It will print till 3rd page
-    
-	ii) gs -dSAFER -dBATCH -dFirstPage=3 annots.pdf     
+
+	ii) gs -dSAFER -dBATCH -dFirstPage=3 annots.pdf
         It will start print from 3rd page till the end
 
 Follow the above suitable steps for the files in examples folder,for .eps and .ps files follow steps from 2 to 7,for pdf files steps mentioned in the step 8
 can be verified.
 
-Additionally, any of the URW fonts can be verified using waterfal.ps. 
+Additionally, any of the URW fonts can be verified using waterfal.ps.
 Do changes as below to provide urw-fonts Fontname.
 --- waterfal.ps.orig   	2016-08-23 08:57:28.441832097 +0000
 +++ waterfal.ps	2016-08-23 08:57:52.171832488 +0000

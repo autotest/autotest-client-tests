@@ -12,7 +12,7 @@ Run rsyslog.sh
 
 Test coverage:
 ----------------------------------
-- Starts and stops log daemon. 
+- Starts and stops log daemon.
 - Checks to see that it is listening on network port.
 - Use the logger utility to log a messsage then check to see that it arrived
   in /var/log/messages.

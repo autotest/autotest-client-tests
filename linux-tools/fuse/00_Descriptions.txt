@@ -11,8 +11,8 @@ About FUSE:
 FUSE: ( Filesystem in userspace.) is a simple interface which allows userspace programs to create own virtual filesystem.
 By specifying a mountpoint, a virtual FUSE filesystem will be created at the mountpoint,
 and its filled and controlled by the supplied userspace program.
-The testcase uses a sample program which comes along with the SOURCES for fuse package 
+The testcase uses a sample program which comes along with the SOURCES for fuse package
 in the example directory ( from fuse/SOURCES/fuse-<version>/example/ )
 
 One of the most important feature is allowing secure, non-privileged mount .
-ie to provide a secure method for non privileged ( non-root) users to create and mount and their own filesystem implementations.  
+ie to provide a secure method for non privileged ( non-root) users to create and mount and their own filesystem implementations.

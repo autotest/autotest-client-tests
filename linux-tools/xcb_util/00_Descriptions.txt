@@ -13,7 +13,7 @@ keysyms: Standard X key constants and conversion to/from keycodes.
 event: Callback X event handling.
 image: Port of Xlib's XImage and XShmImage functions.
 reply: covers functions which ease the usage of asynchronous possibility of
-XCB about the reply retrieve of sent requests. 
+XCB about the reply retrieve of sent requests.
 
 APIs provided:
 ------------------
@@ -21,7 +21,7 @@ APIs provided:
 *Protocol Stub API
 *Protocol Extension API
 
-For more info on the APIs http://xcb.freedesktop.org/XcbApi/ 
+For more info on the APIs http://xcb.freedesktop.org/XcbApi/
 
 How to run the test:
 --------------------

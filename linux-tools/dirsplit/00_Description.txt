@@ -9,10 +9,10 @@ Options include:
  -l|--symlink  similar to -m but just creates symlinks in the target dirs
 -e|--expmode  NUMBER, special exploration modes, used with directory argument
 -p|--prefix   STRING - first part of catalog/directory name (default: vol_)
- -f|--filter   EXPR - Filter expression, 
+ -f|--filter   EXPR - Filter expression,
 
 The testcase tests these options.
-Also usecase of dirsplit is that the .list files created by dirsplit can be utilized by 
+Also usecase of dirsplit is that the .list files created by dirsplit can be utilized by
 mkisofs to generate .iso files, one for each .list file.
 The command mkisofs has an option, path-list which takes the .list file as an argument.
 The testcase covers this as well.

@@ -1,8 +1,8 @@
 stunnel : Stunnel, is an SSL-wrapper utility, that allows plain text communication
-to be encrypted during transmission. Stunnel can be used to encrypt connections 
+to be encrypted during transmission. Stunnel can be used to encrypt connections
 involving  any "single-port TCP service" in SSL tunnels, without any modifications
-to the service itself. "single-port TCP service,"  is  a service that listens for 
-connections on a single TCP port without subsequently using additional ports for other functions. 
+to the service itself. "single-port TCP service,"  is  a service that listens for
+connections on a single TCP port without subsequently using additional ports for other functions.
 
 The test case execution flow :
 ------------------------------
@@ -12,7 +12,7 @@ The test case execution flow :
 4. Start stunnel and keep it running.
 5. Transfer file by Rsync.
 6. Verify that the files are received.
- 
+
 How to run the test :
 -------------------
 ./stunnel.sh

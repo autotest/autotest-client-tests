@@ -28,7 +28,7 @@ checkpolicy:  policy configuration loaded
 
 3) The sedismod is used to query the policy in micro level , ie, the individual rules and policies of the policy file.
 ---output---
-***[root@testp62 checkpolicy] # sedismod          
+***[root@testp62 checkpolicy] # sedismod
 usage:  sedismod binary_pol_file
 
 [root@testp62 checkpolicy] # sedismod policy.mod

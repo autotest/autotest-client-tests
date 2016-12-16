@@ -12,7 +12,7 @@ Author          : Gong, Jie,   gongjie@cn.ibm.com
 
 * INTRODUCTION
 
-This testcase PHP5 basic functions and modules.  
+This testcase PHP5 basic functions and modules.
 
 
 INSTALL:

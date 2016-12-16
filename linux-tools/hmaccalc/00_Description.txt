@@ -31,7 +31,7 @@ Put this format output in a file :
 Now verify the HMAC,
 
 #sha384hmac -K abcd -c out
-/etc/hosts: OK 
+/etc/hosts: OK
 
 How to execute the test:
 cd /opt/fiv/ltp/testcases/fivextra/hmaccalc/test

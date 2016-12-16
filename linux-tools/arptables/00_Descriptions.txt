@@ -1,5 +1,5 @@
 * Arptables test is entirely an automated test.
-    
+
 * Features to be tested (Is there a list of commands?)
   Test 1 : Installation check for presence of Arptables package
   Test 2 : Setting up the Rule and then check it whether it is working properly or not.
@@ -12,9 +12,9 @@
 
 * This test takes minimum 45 seconds to ran successfully
 
-* As this version of arptables do not support the arptables-save and arptables-restore command , test will not be 
+* As this version of arptables do not support the arptables-save and arptables-restore command , test will not be
   able to restore the arptables to original state if had some entries.
 
-* Test momentarily drops the incoming ARP traffic from its router so any other ssh connection to this machine at 
+* Test momentarily drops the incoming ARP traffic from its router so any other ssh connection to this machine at
   same time may experienced momentary hang up.
 

@@ -6,4 +6,4 @@ The DBI is a layer of "glue" between an application and one or more database dri
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-DBI/
-./perl-DBI.sh 
+./perl-DBI.sh

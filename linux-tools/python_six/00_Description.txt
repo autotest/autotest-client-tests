@@ -13,7 +13,7 @@ cd /opt/fiv/ltp/testcases/fivextra/python-six
 run the python-six.sh script
 ./python-six.sh
 
-To run test individually: 
+To run test individually:
 --------------------------
 cd /opt/fiv/ltp/testcases/fivextra/python-six
 py.test test_six.py

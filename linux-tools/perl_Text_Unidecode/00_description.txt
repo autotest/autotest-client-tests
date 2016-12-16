@@ -18,8 +18,8 @@ Synopsis:
     "北亰\n"
     # Chinese characters for Beijing (U+5317 U+4EB0)
   );
- 
-  # That prints: Bei Jing 
+
+  # That prints: Bei Jing
 
 Source: http://search.cpan.org/~sburke/Text-Unidecode-1.27/lib/Text/Unidecode.pm
 

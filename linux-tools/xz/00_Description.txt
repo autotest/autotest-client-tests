@@ -2,7 +2,7 @@ Description:
 ------------
 xz is a general-purpose data compression tool with command line syntax similar to
 gzip and bzip2.The native file format is the .xz format, but also the legacy .lzma
-format and raw compressed streams with no container format headers are supported. 
+format and raw compressed streams with no container format headers are supported.
 
 How to run:
 -----------

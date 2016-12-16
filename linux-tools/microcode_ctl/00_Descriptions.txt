@@ -8,4 +8,4 @@ The utility has two uses:
 HOW TO RUN
 -------------------
 cd /opt/fiv/ltp/testcases/fivextra/microcode_ctl
-./microcode_ctl.sh 
+./microcode_ctl.sh

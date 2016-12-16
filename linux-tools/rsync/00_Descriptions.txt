@@ -24,4 +24,4 @@ Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
 Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
 
 Rsync can also be run as a daemon, in which case the options
-like "--daemon - run as an rsync daemon" is accepted. 
+like "--daemon - run as an rsync daemon" is accepted.

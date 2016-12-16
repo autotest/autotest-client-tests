@@ -20,4 +20,4 @@ otherwise programs are relocated normally.
 prelink first collects ELF binaries to be prelinked and
 all the ELF shared libraries they depend on.
 Then it assigns a unique virtual address space slot
-to each library and relinks the shared library to that base address. 
+to each library and relinks the shared library to that base address.

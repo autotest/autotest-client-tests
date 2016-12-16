@@ -9,5 +9,5 @@ Evaluation      :       Run as a bash script.
 Description     :       Socat is a relay for bidirectional communication via several types of
 			data sinks & sources.
 			http://www.dest-unreach.org/socat/
-			
+
 -----------------------------------------------------------------------------------------------

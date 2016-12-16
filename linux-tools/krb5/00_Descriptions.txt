@@ -2,7 +2,7 @@ In this test, we rely on a separate KDC server established up front.
 Please refer to the document "krb5_server_setup.txt" for KDC server setup.
 
 krb5-workstation
-	Test a couple of kerberized services/clients and utilities, 
+	Test a couple of kerberized services/clients and utilities,
 	including telnetd, ftpd, kshd, klogind
 		ksu, rlogin, telnet, rsh, rcp, ftp
 		kadmin, kinit, klist, kpasswd, ktutil, kvno ..
@@ -14,7 +14,7 @@ Note:
 	2. ksu should be root setuid, (chmod u+s),
 	   otherwise, ksu from a non-root user will fail.
 
-						- rende 
+						- rende
 
 Please refer to the document "krb5_server_setup.txt" for KDC server setup.
 
@@ -26,8 +26,8 @@ Packages from krb5.spec:
 	krb5-devel:
 		header and library for development, will not test
 
-	krb5-server: 
-		server may not included if included, implicit tested by serve setup 
+	krb5-server:
+		server may not included if included, implicit tested by serve setup
 		and conresponding client testcases
 		krb5kdc, kadmind, kadmin.local, sim_server, sserver(sample server)
 
@@ -44,4 +44,4 @@ Packages from krb5.spec:
 		ftp, ksu, rcp, rlogin, rsh, telnet, uuclient
 
 
-						- rende 
+						- rende

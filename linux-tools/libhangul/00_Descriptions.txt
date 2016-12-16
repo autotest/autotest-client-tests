@@ -2,7 +2,7 @@ libhangul provides common features for Hangul input method programs.
 
 This library implements Hangul keyboard input with various types of Korean keyboards.
  It is intended to be a base library of Korean input methods on multiple platforms.
-This package contains the shared library and the runtime data. 
+This package contains the shared library and the runtime data.
 
 Functionality of the tests:
   inserts some symbols (~E~H) when a syllabale is not started with a consonant,

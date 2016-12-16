@@ -7,7 +7,7 @@ I exclude these two testcases.
 
 Nanddump & nandwrite cannot work
 ============
-Both the two utilities complain ``Unknown flash (not normal NAND)''. 
+Both the two utilities complain ``Unknown flash (not normal NAND)''.
 I exclude these two testcases.
 
 

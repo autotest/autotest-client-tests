@@ -5,4 +5,4 @@ locations known to the pkg-config tool
 
 How to run the test:
 -----------------------
-./pkg-config.sh 
+./pkg-config.sh

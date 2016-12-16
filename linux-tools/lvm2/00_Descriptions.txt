@@ -1,4 +1,4 @@
-Bootsystem can base on the LVM, but that will make you system hard to be updated. 
+Bootsystem can base on the LVM, but that will make you system hard to be updated.
 
 How to make bootsystem on LVM
 Suppose /dev/hda7 as LVM's physical volume
@@ -11,13 +11,13 @@ Command (m for help): t
 Partition number (1-8): 7
 Hex code (type L to list codes): 8e
 Changed system type of partition 7 to 8e (Unknown)
-Command (m for help): w 
+Command (m for help): w
 
 3,Set LVM
 # vgscan
 # pvcreate /dev/hda7
 # vgcreate vg_name /dev/hda7
-# lvcreate -L3000M lv_name vg_name 
+# lvcreate -L3000M lv_name vg_name
 
 4,Make filesystem on LVM
 # mke2fs /dev/vg_name/lv_name
@@ -25,7 +25,7 @@ Command (m for help): w
 Copy bootable image to /mnt
 
 5,Edit /mnt/etc/fstab
-Change 
+Change
 /dev/hda7 / ext2 defaults 1 1
 to
 /dev/vg_name/lv_name / ext2 defaults 1 1
@@ -35,7 +35,7 @@ to
 
 7,Edit /boot/grub/menu.lst
 Sample:
-title LVM on /dev/mapper/aaa-lvol0 
+title LVM on /dev/mapper/aaa-lvol0
    kernel (hd0,0)/boot/vmlinuz  root=/dev/mapper/aaa-lvol0
    initrd (hd0,0)/boot/initrd-lvm
 

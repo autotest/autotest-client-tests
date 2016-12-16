@@ -1,21 +1,21 @@
 XML::Parser - A perl module for parsing XML documents
 
 XML::Parser is an event-based parser. Prior to parsing the document,
-an application registers various event handlers with the parser. Then, as 
-the document is parsed, the handlers are called when the relevant parts 
+an application registers various event handlers with the parser. Then, as
+the document is parsed, the handlers are called when the relevant parts
 are recognized.
 
 Most utilities need only register 3 handlers: start, end, and character
-handlers. 
-The start handler is called when an XML start tag is recognized; 
+handlers.
+The start handler is called when an XML start tag is recognized;
 the end handler is called on recognition of an end tag; and the character
-handler 
+handler
 is called for non-markup content inside an element
 
 Usage:
 To run all tests:
 
-./perl-XML-Parser.sh	
+./perl-XML-Parser.sh
 
 To run test individually:
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-Parser

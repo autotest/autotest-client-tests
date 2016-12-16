@@ -1,7 +1,7 @@
 This package contains the Linux user space daemon and configuration tool for
 Intel LLDP Agent with Enhanced Ethernet support for the Data Center
 
-This package covers testing of the below binaries with several options 
+This package covers testing of the below binaries with several options
 /usr/sbin/lldpad
 /usr/sbin/dcbtool
 /usr/sbin/lldptool

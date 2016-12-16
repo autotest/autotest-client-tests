@@ -1,8 +1,8 @@
 lksctp-tools
 
 Although the package is named lksctp-tools, it primarily provides the user space libsctp API.
-In this test, we practise all the API invocations with package built-in testsuite. 
+In this test, we practise all the API invocations with package built-in testsuite.
 
 There's a manual test to transfer SCTP messages between two SUTs, check it out from cvs.
 
-									 - rende 
+									 - rende

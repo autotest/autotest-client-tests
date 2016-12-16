@@ -20,7 +20,7 @@ Invoke ./pegasus_test.sh to start the test.
 Test-case coverage:
 
 These test cases cover most of the common functions of pegasus, cimserver, cimconfig,
-cimuser, cimprovider and cimsecurity. 
+cimuser, cimprovider and cimsecurity.
 ----------------------------------
 
 

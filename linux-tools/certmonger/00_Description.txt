@@ -36,4 +36,4 @@ selfsign-getcert
 
 How to run:
 ---------------------------
-./certmonger.sh 
+./certmonger.sh

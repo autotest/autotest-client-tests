@@ -4,6 +4,6 @@
 #parent allows you to both load one or more modules, while setting up
 #inheritance from those modules at the same time.
 #########################################################################################
-running perl tests 
+running perl tests
 cd /opt/fiv/ltp/testcases/fivextra/perl-parent
 run the test_perl_parent.sh script

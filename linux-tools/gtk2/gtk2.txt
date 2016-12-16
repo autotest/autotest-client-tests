@@ -10,41 +10,41 @@ History: Created on July 17 2013
 GTK+ is a multi-platform toolkit for creating graphical user interfaces.
 Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off tools to complete application suites.
 
-Steps for verifying the manual tests: 
+Steps for verifying the manual tests:
  ---------------------------------------
 
 1) Start vncserver on the test machine and run vncviewer from your machine by specifying the test machine IP and port number.
-        on test machine :  
+        on test machine :
     vncserver
     New 'plm62:4 (root)' desktop is plm62:4
     plm62 machine ip : 9.182.176.62
 
     on local machine :
-    vncviewer 9.182.176.62:4    
- 
+    vncviewer 9.182.176.62:4
+
 2) Open xterm on the X-window
     Right click -> xterm
-     
+
 3) cd /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests/
 
 4) Execute the test binaries one by one. Each test on execution, opens a widget, on which certain operations has to be done and closed.
 
     $ ls /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests
     simple  stresstest-toolbar  testframe  testorientable  testspinbutton  testtext
-a) Execute simple test 
-    $ ./simple 
+a) Execute simple test
+    $ ./simple
 A widget containing a button named "hello world" appears on the screen.
-Click the helloworld button and check if the helloworld text appears in the console for every click. 
+Click the helloworld button and check if the helloworld text appears in the console for every click.
 Close the widget.
 
 b) Execute stresstest-toolbar test
-    $ ./stresstest-toolbar 
+    $ ./stresstest-toolbar
 A widget flickers when the test is executed.
 Widget gets closed automatically.
 
 c) Execute testframe test
     $ ./testframe
-A widget containing a frame named "Hello!" in the middle and four spinner boxes(x thickness, y thickness, x align, y align) appears on the screen. 
+A widget containing a frame named "Hello!" in the middle and four spinner boxes(x thickness, y thickness, x align, y align) appears on the screen.
 Using the 4 spinners, modify the thickness and aligment in x and y axis and check if the "Hello!" frame size is modified accordingly.
 Close the widget.
 
@@ -84,6 +84,6 @@ Testing for gtk2 modules like libgail.
    For example, for testactions, it would be "libgail:libtestactions"
 
 3) Run the GTK+ test program specified.
-	Example, 
+	Example,
    cd /opt/fiv/ltp/testcases/fivextra/gtk2/manual-tests
    ./testactions

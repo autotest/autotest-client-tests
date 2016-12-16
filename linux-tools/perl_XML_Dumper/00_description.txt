@@ -9,7 +9,7 @@ You can use the module read the XML from a file and write the XML to a file
 • pl2xml( $xml, [ $file ] ) - Converts Perl data to XML
 • xml2pl( $xml_or_filename, [ $callback ] ) - Converts XML to a Perl datatype.
 • xml_compare( $xml1, $xml2 ) - Compares xml for content
-• xml_identity( $xml1, $xml2 ) - Compares xml for identity 
+• xml_identity( $xml1, $xml2 ) - Compares xml for identity
 
 Usage:
 To run all tests:

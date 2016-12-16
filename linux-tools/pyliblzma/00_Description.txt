@@ -30,7 +30,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> f = open("test.xz", 'rb')
 >>> lzma.decompress(f.read())
 'Testing liblzma'
->>> 
+>>>
 
 
 How to run the test:

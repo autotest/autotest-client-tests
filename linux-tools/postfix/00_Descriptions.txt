@@ -1,18 +1,18 @@
 Description: It is a highly-efficient and highly-secure Mail
-Transport Agent written by Wietse Venema. Developed by Wietse Venema's, 
-this mailer started its life at IBM research as an alternative to the 
+Transport Agent written by Wietse Venema. Developed by Wietse Venema's,
+this mailer started its life at IBM research as an alternative to the
 widely-used Sendmail program. Postfix attempts to be fast, easy to administer,
 and secure. The outside of the mailer looks similar to sendmail but the inside
 is completely different. Sendmail is implemented as one large monolithic program
-that does everything. One large program certainly makes it easy to share data 
-between different parts of the system. Unfortunately, one large program also makes 
-it easy to make fatal mistakes. Postfix is based on semi-resident, mutually-cooperating, 
+that does everything. One large program certainly makes it easy to share data
+between different parts of the system. Unfortunately, one large program also makes
+it easy to make fatal mistakes. Postfix is based on semi-resident, mutually-cooperating,
 processes that perform specific tasks for each other, without any particular parent-child
 relationship. Postfix is implemented as a resident master server that runs Postfix daemon
 processes on demand. There are 2 such daemons -- 1) daemon processes to send or receive network
 mail messages, 2) daemon processes to deliver mail locally.
 Postfix is intended to be a sendmail replacement. For this reason it tries to
-be compatible with existing infrastructure. 
+be compatible with existing infrastructure.
 
 How to run the test:
 ------------------------

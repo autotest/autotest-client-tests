@@ -1,4 +1,4 @@
-The tests are built as a sub-package from ORBit2 source package 
+The tests are built as a sub-package from ORBit2 source package
 All the testcases binaries are in tests/.lib
 
 How to Execute
