@@ -30,8 +30,9 @@ class perl_IO_Socket_SSL(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_IO_Socket_SSL' + '/perl-IO-Socket-SSL.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-IO-Socket-SSL.sh'], cwd="%s/perl_IO_Socket_SSL" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " Robert Paulsen, rpaulsen@us.ibm.com  " 
 NAME = "mlocate" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

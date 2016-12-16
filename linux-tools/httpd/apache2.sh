@@ -28,7 +28,7 @@
 ###########################################################################################
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/httpd
 source $LTPBIN/tc_utils.source
 SDIR=${LTPBIN%/shared}/httpd
 
@@ -100,8 +100,10 @@ function tc_local_setup()
 	tc_root_or_break || exit
 	tc_exec_or_break cat grep httpd snmpd || exit
 	
-	rpm -q "mod_ssl" >$stdout 2>$stderr
-        mod_ssl=`echo $?`
+        tc_install_testdep php-snmp
+	
+	tc_install_testdep mod_ssl
+	mod_ssl=`echo $?`
 	# backup files which are touched by the testcase.
         cp -f $APACHE2_CONFIG $TCTMP/sysconfig.apache2
         cp -f $HTTPD_CONF $TCTMP/httpd.conf

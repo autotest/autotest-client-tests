@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " xu zheng<zhengxu@cn.ibm.com>  " 
 NAME = "httpd" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

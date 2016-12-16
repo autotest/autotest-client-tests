@@ -30,8 +30,9 @@ class perl_Crypt_SSLeay(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Crypt_SSLeay' + '/perl-Crypt-SSLeay.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Crypt-SSLeay.sh'], cwd="%s/perl_Crypt_SSLeay" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

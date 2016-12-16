@@ -32,7 +32,7 @@
 # source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/GConf2
 TESTDIR=${LTPBIN%/shared}/GConf2/
 REQUIRED="gconftool-2 gconf-merge-tree grep cat"
 source $LTPBIN/tc_utils.source

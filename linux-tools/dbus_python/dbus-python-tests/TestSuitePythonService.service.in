@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.freedesktop.DBus.TestSuitePythonService
-Exec=/bin/bash -c "@PYTHON@ @abs_top_srcdir@/test/test-service.py"

@@ -1,9 +1,10 @@
 #!/bin/python
 import os, subprocess
+import shutil
 import logging
 
-from autotest.client import test
-from autotest.client.shared import error
+from autotest.client import test, utils
+from autotest.client.shared import error, software_manager
 
 class perl_Authen_SASL(test.test):
 
@@ -30,8 +31,9 @@ class perl_Authen_SASL(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Authen_SASL' + '/perl-Authen-SASL.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Authen-SASL.sh'], cwd="%s/perl_Authen_SASL" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

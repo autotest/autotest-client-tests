@@ -30,8 +30,9 @@ class perl_Carp(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Carp' + '/perl-Carp.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Carp.sh'], cwd="%s/perl_Carp" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

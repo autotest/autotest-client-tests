@@ -30,8 +30,9 @@ class perl_String_CRC32(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_String_CRC32' + '/perl-String-CRC32.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-String-CRC32.sh'], cwd="%s/perl_String_CRC32" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

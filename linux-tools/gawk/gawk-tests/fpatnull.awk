@@ -1,2 +1,0 @@
-BEGIN { FPAT = "" }
-{ print NF }
