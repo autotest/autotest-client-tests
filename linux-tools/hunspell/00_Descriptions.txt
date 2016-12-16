@@ -10,4 +10,4 @@ cd /opt/fiv/ltp/testcases/fivextra/hunspell
 Run each test individually:
 ----------------------------------
 In tests directory , for test "xxx.test"
-./xxx.test 
+./xxx.test

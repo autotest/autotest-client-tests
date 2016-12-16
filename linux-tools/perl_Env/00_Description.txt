@@ -6,7 +6,7 @@ SOURCE:		Testcases taken from perl-Env
 		See run-tests in perl-Env under t/ for the tests.
 
 
-Description : Perl maintains environment variables in a special hash named %ENV. For when this access method is inconvenient, 
+Description : Perl maintains environment variables in a special hash named %ENV. For when this access method is inconvenient,
               the Perl module Env allows environment variables to be treated as scalar or array variables.
 
 

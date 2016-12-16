@@ -8,7 +8,7 @@ a XML::XPath-like interface to XPath API of libxml2
 Usage:
 To run all tests:
 
-./perl-XML-LibXML.sh	
+./perl-XML-LibXML.sh
 
 To run test individually:
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-LibXML

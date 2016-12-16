@@ -7,4 +7,4 @@ used in scripts.
 
 Run the test
 ---------------
-./parted.sh 
+./parted.sh

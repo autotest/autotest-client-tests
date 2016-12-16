@@ -1,2 +1,2 @@
 dosfstools
-Test mkdosfs and dosfsck commands	
+Test mkdosfs and dosfsck commands

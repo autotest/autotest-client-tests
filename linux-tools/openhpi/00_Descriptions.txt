@@ -3,7 +3,7 @@ testcase for the openhpi package, test against dummy plugin only.
 test material from openhpi sourceforge cvs: vB.
 
 REQUIREMENT: openhpi, openhpi-devel installed
-	
+
 	if not present /usr/lib64/libopenhpi.so
 	make a soft link
 	ln -s /usr/lib64/libopenhpi.so<version> /usr/lib64/libopenhpi.so
@@ -14,9 +14,9 @@ REQUIREMENT: openhpi, openhpi-devel installed
 
 openhpi-commands_test.sh: FIV testcase for openhpi-commands
 
-	This is not HPI implementation API compliance test, it's a basic test for client tools, 
+	This is not HPI implementation API compliance test, it's a basic test for client tools,
 	e.g. hpifan, hpievent ..
-	currently only dummy plugin is tested. 
+	currently only dummy plugin is tested.
 
    make sure you have the following settings in your /etc/openhpi/openhpi.conf: (enabled by default)
 	plugin libdummy
@@ -24,12 +24,12 @@ openhpi-commands_test.sh: FIV testcase for openhpi-commands
 		entity_root = "{SYSTEM_CHASSIS,1}"
 		name = "test"
 		addr =  0
-	}   
-      
+	}
+
 
 Note: you can enable watchdog plugin as well:
 
-1. add the following in openhpi.conf    
+1. add the following in openhpi.conf
 	plugin libwatchdog0
 	handler        libwatchdog {
 		name = "0"
@@ -43,7 +43,7 @@ Note: you can enable watchdog plugin as well:
 3.	the test script is the same as for dummy plugin.
 
 
-Note:  ipmi and directipmi plugin fails due to the lack of device support for /dev/ipmi0 
+Note:  ipmi and directipmi plugin fails due to the lack of device support for /dev/ipmi0
 
 Note:  the following changes are made for 2.6.1.
         # for 2.6.1, hpievent, hpifan, hpigetevnets, hpireset2 and hpidomainel are removed

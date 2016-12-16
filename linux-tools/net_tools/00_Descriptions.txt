@@ -6,7 +6,7 @@ Maintainer      :       penghb
 -----------------------------------------------------------------------------------------------
 Howto           :       net-tools.sh
 -----------------------------------------------------------------------------------------------
-Evaluation      :       
+Evaluation      :
 			hostname: set/get hostname by cmd. Check it with the expected result.
 			ifconfig: setup an alias for lo. Check it can be listed.
 			netstat: run it with different options. Check the return code.
@@ -20,6 +20,6 @@ Evaluation      :
 				configable.
 -----------------------------------------------------------------------------------------------
 Notes		:	IPv6 includes the Neighbor Discovery Protocol which replaces
-			ARP (broadcast disappears, so does ARP)	
+			ARP (broadcast disappears, so does ARP)
 -----------------------------------------------------------------------------------------------
 

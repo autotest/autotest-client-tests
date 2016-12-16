@@ -7,5 +7,5 @@ How to run the tests:
 1. Automated tests can be executed from the path /opt/fiv/ltp/testcases/fivextra/mtr
 # ./mtr.sh
 
-2. For manual tests to test the GTK+ interface for X , instructions are available in 
+2. For manual tests to test the GTK+ interface for X , instructions are available in
 /opt/fiv/ltp/testcases/fivextra/mtr/mtr.txt

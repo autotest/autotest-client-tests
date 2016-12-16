@@ -15,11 +15,11 @@ cd /opt/fiv/ltp/testcases/fivextra/device-mapper-persistent-data
 run the script
 ./device-mapper-persistent-data.sh
 
-To run individual tests 
+To run individual tests
 cd /opt/fiv/ltp/testcases/fivextra/device-mapper-persistent-data/unit-tests
 execute the below command, it will list the test names to be given as input.
 unit-tests/unit_tests --gtest_list_tests
-then we can run individula test as shown below 
+then we can run individula test as shown below
 ex:
 unit-tests/unit_tests --gtest_filter=ArrayBlockTests.*
 unit-tests/unit_tests --gtest_filter=BtreeTests.*

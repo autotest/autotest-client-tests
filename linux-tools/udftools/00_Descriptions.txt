@@ -35,5 +35,5 @@ the following are steps to test this command.
 6. Assume test.iso is of size 600M.
    cp test.iso /mnt/cdrom
    cp /mnt/cdrom/test.iso ~
-	
+
 

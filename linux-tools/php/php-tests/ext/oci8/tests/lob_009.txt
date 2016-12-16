@@ -1,6 +1,6 @@
 this
 is
-a 
+a
 test
 file for
 test lob_009.phpt

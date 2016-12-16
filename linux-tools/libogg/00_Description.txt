@@ -1,13 +1,13 @@
 Package Name: libogg
 
 Summary     : Libogg contains necessary functionality to create, decode, and
-work with Ogg bitstreams. 
+work with Ogg bitstreams.
 
 
 Description :
 
  The libogg package contains the Ogg file structure. This is useful for
-creating (encoding) or playing (decoding) a single physical bit stream. 
+creating (encoding) or playing (decoding) a single physical bit stream.
 
  More details can be found here :
 https://xiph.org/ogg/doc/libogg/overview.html
@@ -63,7 +63,7 @@ Null bit call (MSb): ok.
 Large preclipped packing (MSb): ok.
 32 bit preclipped packing (MSb): ok.
 Small unclipped packing (MSb): ok.
-Large unclipped packing (MSb): ok.	
+Large unclipped packing (MSb): ok.
 Single bit unclipped packing (MSb): ok.
 Testing read past end (MSb): ok.
 

@@ -4,7 +4,7 @@ The lockdev command can perform one of the following operations:
 
 -u - unlock device with dev_unlock() function
 
-no operation - test lock with dev_testlock() function 
+no operation - test lock with dev_testlock() function
 
 How to run:
 -------------

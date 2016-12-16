@@ -7,4 +7,4 @@ JSON is a text format that is completely language independent but uses conventio
 
 How to run the test
 -------------------
-./yajl.sh 
+./yajl.sh

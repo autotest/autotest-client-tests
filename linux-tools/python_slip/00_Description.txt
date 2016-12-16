@@ -5,4 +5,4 @@ The Simple Library for Python packages contain miscellaneous code for convenienc
 Execution:
 ----------
 cd /opt/fiv/ltp/testcases/fivextra/python-slip/
-./python-slip.sh 
+./python-slip.sh

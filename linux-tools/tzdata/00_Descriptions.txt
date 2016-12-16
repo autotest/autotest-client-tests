@@ -7,4 +7,4 @@ used by several implementations.
 
 How to run the test :
 --------------------------
-./tzdata.sh 
+./tzdata.sh

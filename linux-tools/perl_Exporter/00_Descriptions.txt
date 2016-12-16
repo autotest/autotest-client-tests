@@ -10,4 +10,4 @@ How to run tests ??
 Ans: cd /opt/fiv/ltp/testcases/fivextra/perl-Exporter
 	run the perl-Exporter.sh script
 How to interpret test results ??
-Ans: Prove will exit with non zero if any test fails. 
+Ans: Prove will exit with non zero if any test fails.

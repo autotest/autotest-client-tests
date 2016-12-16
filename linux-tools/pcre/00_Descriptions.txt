@@ -4,7 +4,7 @@ Author          : Robb Romans <robb@austin.ibm.com>
 --------------------------------------------------------------------------------
 Howto           : pcre.sh
 --------------------------------------------------------------------------------
-Evaluation      : invoke pcretest with testinput file and save the results and 
+Evaluation      : invoke pcretest with testinput file and save the results and
                   then compare the results with testoutput file.
 --------------------------------------------------------------------------------
 Notes           : pcregrep is internally used by the testcase

@@ -6,7 +6,7 @@ The package provides:
 
 /usr/bin/gsf-office-thumbnailer
 /usr/lib64/libgsf-1.so.114
-/usr/lib64/libgsf-1.so.114.0.26 
+/usr/lib64/libgsf-1.so.114.0.26
 
 How to run the test:
 cd /opt/fiv/ltp/testcases/fivextra/libgsf/

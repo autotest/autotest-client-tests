@@ -1,11 +1,11 @@
 Description:
 ------------
 IBM® Power® RAID (IPR) adapter utilities provide tools that are required by the IBM Power RAID adapter device driver.
-With IBM Power RAID adapter utilities, you can configure, update, and query the adapter. 
+With IBM Power RAID adapter utilities, you can configure, update, and query the adapter.
 The information that you can query includes disk status, disk array status, and Serial-attached SCSI (SAS) path status.
 You also gather adapter failure information.
 
 How to run:
 -----------
 cd /opt/fiv/ltp/testcases/fivextra/iprutils
-./iprutils.sh 
+./iprutils.sh

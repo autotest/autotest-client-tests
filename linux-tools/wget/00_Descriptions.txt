@@ -18,5 +18,5 @@ Features include:
 7. FTP download using wget  etc
 
 How to run the tests:
-1. To execute all the tests ./run-px 
+1. To execute all the tests ./run-px
 2. To execute each test, run the "<test>-px" script in the tests directory

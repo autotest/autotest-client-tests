@@ -19,7 +19,7 @@ filesystems, but
 
 - cgdisk -- This program is modeled after Linux cfdisk, but it operates on GPT
   disks rather than the MBR disks that cfdisk modifies. As such, cgdisk is a
-curses-based 
+curses-based
   text-mode tool for manipulating partitions, which is to say that it uses an
 interface that relies on arrow keys and a dynamic display rather than the
 command letters and a

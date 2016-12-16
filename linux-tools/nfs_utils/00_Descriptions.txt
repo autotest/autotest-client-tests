@@ -1,7 +1,7 @@
 nfs-utils.sh
 	Tests for the nfs-utils package
 
-how to run 
+how to run
 	nfs-utils.sh
 
 notes

@@ -8,7 +8,7 @@ rpm -ql yum-metadata-parser
 /usr/lib64/python2.6/site-packages/sqlitecachec.pyo
 
 These modules are covered by yum. While running any yum commands, yum update or install etc,
-it uses these modules. 
+it uses these modules.
 
 This testcase covers additional scenarios like:
 1) Corrupt the yum metadata by modifying the primary.xml and verify if yum detects the same

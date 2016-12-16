@@ -2,7 +2,7 @@
 TestCase	: libmng.sh
 
 Description	:This test will parse the mng file format and create a new simple
-		mng file using APIs in libmng. 
+		mng file using APIs in libmng.
 
 Author		: CSDL
 

@@ -1,6 +1,6 @@
 Net::LibIDN - GNU Libidn is a fully documented implementation of the Stringprep, Punycode and IDNA specifications.
 Libidn's purpose is to encode and decode internationalized domain names.
- 
+
 The library contains a generic Stringprep implementation. Profiles for Nameprep, iSCSI, SASL, XMPP and Kerberos V5 are included.
 Punycode and ASCII Compatible Encoding via IDNA are supported.
 A mechanism to define Top-Level Domain (TLD) specific validation tables, and to compare strings against those tables, is included. Default tables for some TLDs are also included.
@@ -17,7 +17,7 @@ Functionality of the test:
 
    Net:::LibIDN::idn_to_unicode($idn_hostname, [$charset, [$flags]]) - Converts ASCII $idn_hostname, which might be IDNA ACE encoded, into the decoded form in $charset or ISO-8859-1
 
-   Net:::LibIDN::idn_to_punycode_encode($string, [$charset])  - Encodes $string into "punycode" . If $charset is present, treats $string as being in $charset, otherwise uses ISO-8859-1    
+   Net:::LibIDN::idn_to_punycode_encode($string, [$charset])  - Encodes $string into "punycode" . If $charset is present, treats $string as being in $charset, otherwise uses ISO-8859-1
 
    Net:::LibIDN::idn_prep_name($string, [$charset]) - Performs "stringprep" on $string according to the named profile. If $charset is present, converts from and to this charset before and after the                                                                                         operation respectively. Returns result string, or undef on error.
 

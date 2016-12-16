@@ -12,12 +12,12 @@ Notes		:	bdb and ldbm are "primary" storage database backends. These backends
 			featured than other backends. We do full testing with slapd and various
 			client utilities.
 
-			back-ldap and back-meta are special purpose backends designed to 
-				forward (proxy) requests to other remote servers. 
+			back-ldap and back-meta are special purpose backends designed to
+				forward (proxy) requests to other remote servers.
 			back-monitor is a status monitoring backend that gives operating
-				statistics on slapd itself. 
+				statistics on slapd itself.
 			back-perl is an interfaces to external scripts written in perl
-				languages. 
+				languages.
 
 			openldap2-client are implicit tested in the other tests.
 

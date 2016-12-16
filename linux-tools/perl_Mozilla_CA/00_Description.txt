@@ -4,7 +4,7 @@ certificates in a form that can be consumed by modules and libraries based on
 OpenSSL.
 
 More details can be found at:
-http://curl.haxx.se/docs/caextract.html 
+http://curl.haxx.se/docs/caextract.html
 
 How to run the test:
 cd /opt/fiv/ltp/testcases/fivextra/perl-Mozilla-CA

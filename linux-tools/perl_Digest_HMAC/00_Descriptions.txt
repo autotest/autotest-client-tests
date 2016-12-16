@@ -11,4 +11,4 @@ cd /opt/fiv/ltp/testcases/fivextra/perl-Digest-HMAC
 
     or
 
-perl t/XXX.t 
+perl t/XXX.t

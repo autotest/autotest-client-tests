@@ -10,7 +10,7 @@ It supports sqlite features like:
 • User-defined aggregate or regular functions can be registered with the SQL
 parser.
 
-SQLite creates a file per a database. Database name is a file name. 
+SQLite creates a file per a database. Database name is a file name.
 
 Usage:
 To run all tests:

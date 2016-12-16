@@ -1,7 +1,7 @@
 Description: The libXau package contains a library implementing the X11
-Authorization Protocol. It uses existing core protocol and library hooks 
+Authorization Protocol. It uses existing core protocol and library hooks
 for specifying authorization data in the connection setup block to restrict
-use of the display to only those clients that show that they know a 
+use of the display to only those clients that show that they know a
 server-specific key called a "magic cookie".
 
 The working scheme involved in a X11 session involves the following parts --
@@ -26,7 +26,7 @@ The working scheme involved in a X11 session involves the following parts --
         -  add entries to user's auth file
         -  remove entries from user's auth file
 
-From the above parts, this package does the xauth part . 
+From the above parts, this package does the xauth part .
 
 How to run the test:
 ------------------------

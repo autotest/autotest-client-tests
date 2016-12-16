@@ -11,7 +11,7 @@ Run Single test manually:
 cd /opt/fiv/ltp/testcases/fivextra/perl-libxml-perl/t
 perl test_file.t
 For e.g :
-perl amsterdam.t 
+perl amsterdam.t
 
 Sample output:
 ........

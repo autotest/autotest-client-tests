@@ -15,4 +15,4 @@ In /opt/fiv/ltp/testcases/fivextra/slang/test dir
 ./sltest "xxx.sl"
 
 Note: Not all ".sl" files in test dir are test scripts.
-To know what all tests we are running, check slang-test.sh file. 
+To know what all tests we are running, check slang-test.sh file.

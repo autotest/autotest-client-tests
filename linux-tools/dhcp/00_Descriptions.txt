@@ -10,7 +10,7 @@ Evaluation      :       Setup a network alias. Then start the dhcpd server on th
 			Check the output contains the expected strings.
 -----------------------------------------------------------------------------------------------
 Notes           :       There should only be a maximum of 2 IPs associated with hostname
-			i.e. 'hostname -i' should not output more than 2 IPs. 
+			i.e. 'hostname -i' should not output more than 2 IPs.
 			If this is not the case, modify the /etc/hosts file accordingly,
 			and then run the tests
 -----------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ Notes           :
 -----------------------------------------------------------------------------------------------
 
 
-omshell 
+omshell
 -----------------------------------------------------------------------------------------------
 Author          :       Hong Bo Peng, penghb@cn.ibm.com
 -----------------------------------------------------------------------------------------------
@@ -39,8 +39,8 @@ Maintainer      :       penghb
 -----------------------------------------------------------------------------------------------
 Howto           :       OMSHELL=yes dhcp-server.sh
 -----------------------------------------------------------------------------------------------
-Evaluation      :       checks the working of omshell 
-                       
+Evaluation      :       checks the working of omshell
+
 -----------------------------------------------------------------------------------------------
 Notes           :
 -----------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ Howto:
 Invoke ./iptraf.sh to start the test.
 ----------------------------------
 Test-case coverage:
-iptraf -i -t -B -L 
+iptraf -i -t -B -L
 iptraf -g -t -B -L
 iptraf -d -t -B -L
 ----------------------------------

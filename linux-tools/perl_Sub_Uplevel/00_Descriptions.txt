@@ -5,9 +5,9 @@ All the really naughty bits of Tcl's uplevel() are avoided.
 Makes the given function think it's being executed $num_frames higher than the current stack level. So when they use
 caller($frames) it will actually give caller($frames + $num_frames) for them.
 
-"uplevel" will issue a warning if $num_frames is more than the current call stack depth. 
+"uplevel" will issue a warning if $num_frames is more than the current call stack depth.
 
-The tests checks for the functionality like - uplevel, nested uplevel, uplevel too high, etc. 
+The tests checks for the functionality like - uplevel, nested uplevel, uplevel too high, etc.
 
 How to run the test:
 --------------------

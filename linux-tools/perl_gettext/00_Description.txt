@@ -5,9 +5,9 @@ internationalize software.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-gettext/
-./perl-gettext.sh 
+./perl-gettext.sh
 
 Individual test execution
 ------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-gettext
-perl t/<test_name>.t 
+perl t/<test_name>.t

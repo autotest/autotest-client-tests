@@ -6,7 +6,7 @@ ftplib
 usage:
         ./ftplib_test.sh [-r host  [ -u user ] -p password ] [-h]
         ./ftplib_test.sh        -r : Set the remote ftpserver. If not set, will use localhost.
-        ./ftplib_test.sh        -u : Set the remote ftp user name. Default is root. 
+        ./ftplib_test.sh        -u : Set the remote ftp user name. Default is root.
         ./ftplib_test.sh        -p : Set the remote ftp user's password.
         ./ftplib_test.sh        -h : Print this help text.
 

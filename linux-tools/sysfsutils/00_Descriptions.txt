@@ -1,6 +1,6 @@
 ===============================================================================
 
-Description    : This program tests basic functionality of sysfsutils package. 
+Description    : This program tests basic functionality of sysfsutils package.
 Author		: Chen Jian <chenjian@cn.ibm.com>
 
 ===============================================================================
@@ -10,8 +10,8 @@ Howto:
 Test coverage:
 ----------------------------------
 get_bus_devices_list
-get_classdev_parent   
+get_classdev_parent
 get_driver
-get_class_dev         
-get_device            
+get_class_dev
+get_device
 ----------------------------------

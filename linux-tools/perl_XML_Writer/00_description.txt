@@ -5,15 +5,15 @@ instructions.
 
 XML::Writer methods:
 ===================
-xmlDecl() : Add an XML Declaration at the top of the document. 
-doctype() : Add a document type declaration at the top of the document. 
-comment() : Write an XML comment. 
+xmlDecl() : Add an XML Declaration at the top of the document.
+doctype() : Add a document type declaration at the top of the document.
+comment() : Write an XML comment.
 
 
 Usage:
 To run all tests:
 
-./perl-XML-Writer.sh	
+./perl-XML-Writer.sh
 
 To run test individually:
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-Writer

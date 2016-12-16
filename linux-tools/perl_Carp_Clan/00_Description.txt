@@ -7,9 +7,9 @@ which shall never be blamed for any error.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-Carp-Clan/
-./perl-Carp-Clan.sh 
+./perl-Carp-Clan.sh
 
 Individual test execution
 ------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-Carp-Clan
-perl t/<test_name>.t 
+perl t/<test_name>.t

@@ -4,7 +4,7 @@ Author          :       Hong Bo Peng, penghb@cn.ibm.com
 -----------------------------------------------------------------------------------------------
 Maintainer      :       penghb
 -----------------------------------------------------------------------------------------------
-Howto           :       freetype.sh 
+Howto           :       freetype.sh
 -----------------------------------------------------------------------------------------------
 Evaluation      :       Use some demo programs to verify freetype APIs works correctly.
 			They will open the font files. And then retrive font information from

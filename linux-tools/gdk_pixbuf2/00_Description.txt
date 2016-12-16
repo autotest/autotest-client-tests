@@ -1,7 +1,7 @@
 Package:gdk-pixbuf2
 
 Description:
-The Gdk Pixbuf is a toolkit for image loading and pixel buffer manipulation. It is used by GTK+ 2 and GTK+ 3 to load and manipulate images. In the past it was distributed as part of GTK+ 2 but it was split off into a separate package in preparation for the change to GTK+ 3. 
+The Gdk Pixbuf is a toolkit for image loading and pixel buffer manipulation. It is used by GTK+ 2 and GTK+ 3 to load and manipulate images. In the past it was distributed as part of GTK+ 2 but it was split off into a separate package in preparation for the change to GTK+ 3.
 
 Description about Package deliverables:
 libgdk_pixbuf-2.0.so  - contains functions used to load and render images.
@@ -15,7 +15,7 @@ cd /opt/fiv/ltp/testcases/fivextra/gdk-pixbuf2
 ./gdk-pixbuf2.sh
 
 How to run individual test:
-ln -s /usr/libexec/installed-tests/gdk-pixbuf /opt/fiv/ltp/testcases/fivextra/gdk-pixbuf2/gdk-pixbuf 
+ln -s /usr/libexec/installed-tests/gdk-pixbuf /opt/fiv/ltp/testcases/fivextra/gdk-pixbuf2/gdk-pixbuf
 cd /opt/fiv/ltp/testcases/fivextra/gdk-pixbuf2/gdk-pixbuf
 ./testname
 

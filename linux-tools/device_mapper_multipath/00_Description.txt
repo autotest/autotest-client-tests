@@ -3,7 +3,7 @@ dmsetup - Testcase for device-mapper utility.
 Device mapper is a user space configuration utility to manage the dm devices in the kernel.
 
 Test Case 	:	dmsetup.sh
-	 
+
 Author: Suzuki K P <suzuki@in.ibm.com>
 
 

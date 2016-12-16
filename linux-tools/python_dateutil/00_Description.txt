@@ -8,7 +8,7 @@ Sources:https://pypi.python.org/pypi/python-dateutil/2.4.0
 How to run the test:
 --------------------
 cd /opt/fiv/ltp/testcases/fivextra/python-dateutil
-run the python-dateutil.sh script 
+run the python-dateutil.sh script
 ./python-dateutil.sh
 
 

@@ -12,7 +12,7 @@ AUTHOR
 
 HOWTO RUN
 	1. Edit the kernel command line in  /boot/grum/menu.lst file to append "vga=0x0314"(excluding double quotes) after root=/dev/sda.
-	2. Reboot the system.  
+	2. Reboot the system.
 	3. Go the directory /opt/fiv/ltp/testcases/fivextra/fbset/ and run the testscript "fbset_tests.sh".
 	4. One of the expected Output is given below.
 

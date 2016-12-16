@@ -10,14 +10,14 @@ Assumptions:
 	X Windows(either X or Xvnc) and fluxbox can run properly.
 
 Purpose:
-	
-	ssh includes built-in support that allows it to communicate with
-	ssh-agent, allowing ssh to acquire your decrypted private keys without 
-        prompting you for a password for every single new connection. With 
-        ssh-agent you simply use ssh-add to add your private keys to 
-	ssh-agent's cache. 
 
-	When you use ssh-add to add a decrypted private key to the ssh-agent 
+	ssh includes built-in support that allows it to communicate with
+	ssh-agent, allowing ssh to acquire your decrypted private keys without
+        prompting you for a password for every single new connection. With
+        ssh-agent you simply use ssh-add to add your private keys to
+	ssh-agent's cache.
+
+	When you use ssh-add to add a decrypted private key to the ssh-agent
 	cache, you need to provide the password. The openssh-askpass package
         provides a password dialog under the X Windows System.
 
@@ -35,22 +35,22 @@ Test:
 	2. start ssh-agent
 	  eval `ssh-agent`
 	  #This command tells bash to run ssh-agent and then evaluate ssh-agent's output.
-	  #Invoked this way (with back-quotes, not normal single quotes), 
-           the SSH_AGENT_PID and SSH_AUTH_SOCK variables get set and exported 
-           by your shell, making these variables available to any new processes 
+	  #Invoked this way (with back-quotes, not normal single quotes),
+           the SSH_AGENT_PID and SSH_AUTH_SOCK variables get set and exported
+           by your shell, making these variables available to any new processes
 	   you may start during your login session.
-         
+
 	3. start X-Windows or Xvnc(to connect via vncviewer) and fluxbox
 	  export DISPLAY=:0.0
 	  startx (or Xvnc)
 	  fluxbox &
-         
-	4. click right button and select run, or open an xterm console, type in the command to run: 
+
+	4. click right button and select run, or open an xterm console, type in the command to run:
            "SSH_ASKPASS=/usr/libexec/openssh/ssh-askpass ssh-add < /dev/null".
 
 	5. you should see a dialog for input passphrase of the decrypted private
 	   key, enter the password.
-	
-	6. use command "ssh-add -l" to verify the key has added to ssh agent cache.   
+
+	6. use command "ssh-add -l" to verify the key has added to ssh agent cache.
 
 	7. copy back the backup id_dsa and id_dsa.pub if they were there before this test.

@@ -6,4 +6,4 @@ the objects using normal Perl syntax
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-XML-Grove/
-./perl-XML-Grove.sh 
+./perl-XML-Grove.sh

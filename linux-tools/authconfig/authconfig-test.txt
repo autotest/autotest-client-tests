@@ -9,7 +9,7 @@ Note: You should have backup . So do authconfig --savebackup="/tmp/authconfig".
 You should see a dir created /tmp/authconfig and files inside it like
 authconfig , krb5.conf , login.defs , nslcd.conf etc.
 
-Note: Incase of missing files like - /etc/sysconfig/authconfig (which is expected), 
+Note: Incase of missing files like - /etc/sysconfig/authconfig (which is expected),
 	run the command : "authconfig --updateall"
 
 Instructions:
@@ -23,7 +23,7 @@ Instructions:
 	## cat /etc/sysconfig/authconfig
 	## You should see : USEIPAV2=yes
 
-	3. Select "Use LDAP" 
+	3. Select "Use LDAP"
 	## Come out by entering NEXT and OK
 	## You should see: Starting nslcd: OK
 	## cat /etc/sysconfig/authconfig
@@ -31,7 +31,7 @@ Instructions:
 
 	4. Select "Use NIS"
 	## Come out by entering NEXT and OK ; cat /etc/sysconfig/authconfig
-        ## You should see : USENIS=yes 
+        ## You should see : USENIS=yes
 
 	5. Select "Use WINBIND"
 	## Come out by entering NEXT and OK
@@ -60,16 +60,16 @@ Instructions:
         ## You should see : USEKERBEROS=yes
 
 	10. Select "Fingerprint reader"
-	## Come out by entering NEXT 
+	## Come out by entering NEXT
 	## You might get a WARNING : /lib64/security/pam_fprintd.so is missing
-	## cat /etc/sysconfig/authconfig 
+	## cat /etc/sysconfig/authconfig
 	## You should see : USEFPRINTD=yes
 
 	11. Select "Use Winbind Authentication"
-	## Come out by entering NEXT and OK 
+	## Come out by entering NEXT and OK
 	## You should see: Starting Winbind services: OK
 	## cat /etc/sysconfig/authconfig
-        ## You should see : USEWINBINDAUTH=yes 
+        ## You should see : USEWINBINDAUTH=yes
 
 	12. Select "Local authorization is sufficient"
 	## Come out by entering NEXT ; cat /etc/sysconfig/authconfig

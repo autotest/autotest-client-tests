@@ -8,7 +8,7 @@ Note:
 About libuser:
 -------------
 libuser is a collection of libraries and toolsto manage users and groups.
-libuser.conf is the configuration file for libuser and libuser utilities. 
+libuser.conf is the configuration file for libuser and libuser utilities.
 
 libuser has several modules allowing to manage users and groups
 through different backends, like local (password and shadow) and LDAP

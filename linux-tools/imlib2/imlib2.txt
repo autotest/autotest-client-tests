@@ -31,7 +31,7 @@ Instructions:
 
 	   This should contain a pairs of programs, named imlib2_convert and
 	   imlib2_basic_dispay, plus a script imlib2_test.sh and a sample image
-	   file named bombsquad.png. 
+	   file named bombsquad.png.
 
 	4. Run the script:
 

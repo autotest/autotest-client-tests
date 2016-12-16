@@ -13,7 +13,7 @@ fdpexpect - fdpexpect extension of 'pexpect.spawn' that uses an open file descri
            match output from your fd.
 screen - This represents a virtual 'screen'.
 ANSI - This parses ANSI/VT-100 terminal escape codes.
-FSM - This is a finite state machine used by ANSI. 
+FSM - This is a finite state machine used by ANSI.
 
 Usage:
 pexpect:	./pexpect.sh

@@ -5,4 +5,4 @@ be run in command line to generate pdf/png/ps files whose type can then
 be examined later by commands such as identify. Some tests are in manual
 category to verify through GTK.
 
-To execute FIV tests, run ./pycairo.sh 
+To execute FIV tests, run ./pycairo.sh

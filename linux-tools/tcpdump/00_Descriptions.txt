@@ -1,7 +1,7 @@
-tcpdump	
+tcpdump
 	Test the functionality of tcpdump and libpcap.
 
-	This test covers some commonly-used tcpdump options, 
+	This test covers some commonly-used tcpdump options,
 and we think it's fine from FIV perspective.
 
 Setup:

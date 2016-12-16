@@ -5,5 +5,5 @@ name and to display or set its hostname or NIS domain name.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/hostname/
-./hostname.sh 
+./hostname.sh
 

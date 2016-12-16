@@ -9,4 +9,4 @@ cd /opt/fiv/ltp/testcases/fivextra/git
 
 Or you can run each test manually by:
 -----------------------------------
-cd t; ./xxx; 
+cd t; ./xxx;

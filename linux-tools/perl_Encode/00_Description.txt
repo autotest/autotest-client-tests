@@ -11,7 +11,7 @@ convert ISO-8859-1 data into a string in Perl's internal format
 
 find_encoding(ENCODING): Returns the encoding object corresponding to ENCODING.
 
-See  http://perldoc.perl.org/Encode.html    for details. 
+See  http://perldoc.perl.org/Encode.html    for details.
 
 How to run the test:
 cd /opt/fiv/ltp/testcases/fivextra/perl-Encode

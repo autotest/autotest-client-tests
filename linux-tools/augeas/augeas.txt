@@ -5,11 +5,11 @@ Author: Mithu Ganesan <miganesa@in.ibm.com>
 
 ########################################################
 
-Augeas package provides fadot tool, which converts regular expressions into finite automata(FA). 
+Augeas package provides fadot tool, which converts regular expressions into finite automata(FA).
 
 Instructions:
 --------------
-1. Run the script fadot.sh 
+1. Run the script fadot.sh
 	cd /opt/fiv/ltp/testcases/fivextra/augeas
 	./fadot.sh
 2. Script will create 6 images in /opt/fiv/ltp/testcases/fivextra/augeas/fadot-output directory.
@@ -21,7 +21,7 @@ Steps for verifying the FA :
 a) Start vncserver on the test machine and run vncviewer from your machine by specifying the test machine IP and port number provided by the vncserver command.
 	Example
 	-------
-	on test machine :  
+	on test machine :
 	vncserver
 	New 'test62:4 (root)' desktop is test62:4
 	test62 machine ip :<server ip >
@@ -29,12 +29,12 @@ a) Start vncserver on the test machine and run vncviewer from your machine by sp
 	on local machine :
 	vncviewer <server ip > : 4
 
-b) Open xterm on the X-window 
+b) Open xterm on the X-window
 	Right click -> xterm
 
 c) cd /opt/fiv/ltp/testcases/fivextra/augeas/fadot-output
 
-d) Open the images using display command.Verify the 6 images in fadot-output directory  with the respective images in the sample-images directory. 
+d) Open the images using display command.Verify the 6 images in fadot-output directory  with the respective images in the sample-images directory.
 
 	 $ ls /opt/fiv/ltp/testcases/fivextra/augeas/sample-images
 	 complement.png  concat.png  intersect.png  minus.png  sample.png

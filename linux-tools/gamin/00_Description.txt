@@ -3,4 +3,4 @@ Running as a service, it allows for the detection of modifications to a file or 
 
 How to run test
 ---------------
-./gamin.sh 
+./gamin.sh

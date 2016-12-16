@@ -36,7 +36,7 @@ or
 
 ===========================================================================================================
 test8:/usr/src/linux # crash  vmlinux
-/var/log/dump/2006-06-18-22\:18/vmcore 
+/var/log/dump/2006-06-18-22\:18/vmcore
 
 crash 4.0-25
 Copyright (C) 2002, 2003, 2004, 2005, 2006  Red Hat, Inc.
@@ -50,7 +50,7 @@ This program is free software, covered by the GNU General Public License,
 and you are welcome to change it and/or distribute copies of it under
 certain conditions.  Enter "help copying" to see the conditions.
 This program has absolutely no warranty.  Enter "help warranty" for details.
- 
+
 GNU gdb 6.1
 Copyright 2004 Free Software Foundation, Inc.
 GDB is free software, covered by the GNU General Public License, and you are
@@ -59,7 +59,7 @@ Type "show copying" to see the conditions.
 There is absolutely no warranty for GDB.  Type "show warranty" for details.
 This GDB was configured as "x86_64-unknown-linux-gnu"...
 
-      KERNEL: vmlinux                           
+      KERNEL: vmlinux
     DUMPFILE: /var/log/dump/2006-06-18-22:18/vmcore
         CPUS: 4
         DATE: Sun Jun 18 22:17:55 2006
@@ -77,19 +77,19 @@ LOAD AVERAGE: 0.07, 0.11, 0.08
         TASK: ffff81007da65040  [THREAD_INFO: ffff810063eb6000]
          CPU: 0
        STATE: TASK_RUNNING (SYSRQ)
-       
+
 crash> help
 
-*              files          mod            runq           union          
-alias          foreach        mount          search         vm             
-ascii          fuser          net            set            vtop           
-bt             gdb            p              sig            waitq          
-btop           help           ps             struct         whatis         
-dev            irq            pte            swap           wr             
-dis            kmem           ptob           sym            q              
-eval           list           ptov           sys            
-exit           log            rd             task           
-extend         mach           repeat         timer          
+*              files          mod            runq           union
+alias          foreach        mount          search         vm
+ascii          fuser          net            set            vtop
+bt             gdb            p              sig            waitq
+btop           help           ps             struct         whatis
+dev            irq            pte            swap           wr
+dis            kmem           ptob           sym            q
+eval           list           ptov           sys
+exit           log            rd             task
+extend         mach           repeat         timer
 
 crash version: 4.0-25   gdb version: 6.1
 For help on any command above, enter "help <command>".
@@ -134,7 +134,7 @@ PID: 3141   TASK: ffff81007da53790  CPU: 1   COMMAND: "sshd"
     R10: 0000000000000000  R11: 0000000000000246  R12: 0000000000000001
     R13: 0000000000000001  R14: 00005555556bc6c0  R15: 0000000000000006
     ORIG_RAX: 0000000000000017  CS: 0033  SS: 002b
-       
+
 # Note - A process is only on a runqueue when it is running, so it may not be
 # seen always by the runq command. Also we may see the crash command's child
 # processes running intermitently. For more details please refer Bug #53948.
@@ -154,7 +154,7 @@ RUNQUEUES[2]: ffff810005029680
 RUNQUEUES[3]: ffff810005035680
  ACTIVE PRIO_ARRAY: ffff8100050356f0
  EXPIRED PRIO_ARRAY: ffff810005035fd0
- 
+
 crash> files 3128
 PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
 ROOT: /    CWD: /
@@ -176,7 +176,7 @@ ROOT: /    CWD: /
 /var/run/nscd/dbqp5JOw
   9 ffff81007da7dd80 ffff810076c4dcb0 ffff81007a0cf6d0 SOCK socket:/[8292]
  10 ffff81007cba9a80 ffff810076ef43c0 ffff81007a6471c8 UNKN eventpoll:/[8294]
- 
+
 crash> whatis SyS_read ( Note: For PPC64, If this is not working, use altogether different
 variable "whatis jiffies". For more details refer Bug #54081)
 long SyS_read(long, long, long);
@@ -185,7 +185,7 @@ crash> sym sys_read
 ffffffff8017b10d (T) sys_read  ../linux/fs/read_write.c: 343
 
 crash> sym ffffffff8017b10d
-ffffffff8017b10d (T) sys_read  ../linux/fs/read_write.c: 343        
+ffffffff8017b10d (T) sys_read  ../linux/fs/read_write.c: 343
 
 crash> sig 3128
 PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
@@ -193,14 +193,14 @@ SIGPENDING: no
     SIGNAL: 0000000000000000
    BLOCKED: 0000000000000000
 SIGNAL_STRUCT: ffff81007d4d20c0  COUNT: 7
- SIG    SIGACTION        HANDLER       MASK       FLAGS           
- [1] ffff810037e92bc8    SIG_DFL 0000000000000000 0 
+ SIG    SIGACTION        HANDLER       MASK       FLAGS
+ [1] ffff810037e92bc8    SIG_DFL 0000000000000000 0
  [2] ffff810037e92be8 5555555591c0 0000000000000002 14000000
 (SA_RESTORER|SA_RESTART)
  [3] ffff810037e92c08 5555555591c0 0000000000000004 14000000
 (SA_RESTORER|SA_RESTART)
  ...
- [63] ffff810037e93388    SIG_DFL 0000000000000000 0 
+ [63] ffff810037e93388    SIG_DFL 0000000000000000 0
 SIGQUEUE: (empty)
 
 crash> dis sys_read   ( Note: for PPC64, it should be "dis .sys_read" )
@@ -214,9 +214,9 @@ crash> dis sys_read   ( Note: for PPC64, it should be "dis .sys_read" )
 
 crash> timer
 TVEC_BASES[0]: ffff810005014e00
-       JIFFIES      
+       JIFFIES
           4295018332
-       EXPIRES           TIMER_LIST         FUNCTION    
+       EXPIRES           TIMER_LIST         FUNCTION
           4295018341  ffffffff804321c0  ffffffff80245ab8  <i8042_timer_func>
           4295018344  ffff810005015290  ffffffff8013ff07
 <delayed_work_timer_fn>
@@ -235,9 +235,9 @@ TVEC_BASES[0]: ffff810005014e00
  9223372041149674990  ffff81007b4c5e88  ffffffff80139210  <process_timeout>
  9223372041149750719  ffff81007b0ade88  ffffffff80139210  <process_timeout>
 TVEC_BASES[1]: ffff810005020e00
-  JIFFIES 
+  JIFFIES
 4295018332
-  EXPIRES      TIMER_LIST         FUNCTION    
+  EXPIRES      TIMER_LIST         FUNCTION
 4295018344  ffff810005021290  ffffffff8013ff07  <delayed_work_timer_fn>
 4295019888  ffff810077859e98  ffffffff80139210  <process_timeout>
 4295025350  ffff81007b331e88  ffffffff80139210  <process_timeout>
@@ -258,19 +258,19 @@ ffffffff88068f00  sr_mod               33060  (not loaded)  [CONFIG_KALLSYMS]
 crash> task 3128
 PID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
 struct task_struct {
-  state = 1, 
-  thread_info = 0xffff810076e80000, 
+  state = 1,
+  thread_info = 0xffff810076e80000,
   usage = {
     counter = 2
-  }, 
-  flags = 8388672, 
-  ptrace = 0, 
+  },
+  flags = 8388672,
+  ptrace = 0,
   ...
     rcu = {
-    next = 0x0, 
+    next = 0x0,
     func = 0
-  }, 
-  delays = 0x0, 
+  },
+  delays = 0x0,
   map_base = 1431654400
 }
 
@@ -278,12 +278,12 @@ crash> net
    NET_DEVICE     NAME   IP ADDRESS(ES)
 ffffffff8035e500  lo     127.0.0.1
 ffff81007d45c000  eth0   172.30.1.118
-ffff81007d5bd000  eth1   
-ffff81007d5a2800  sit0   
+ffff81007d5bd000  eth1
+ffff81007d5a2800  sit0
 
 crash> rd  linux_banner 32
 ffffffff802d8000:  65762078756e694c 2e32206e6f697372   Linux version 2.
-ffffffff802d8010:  2d36312e36312e36 20706d732d362e31   6.16.16-1.6-smp 
+ffffffff802d8010:  2d36312e36312e36 20706d732d362e31   6.16.16-1.6-smp
 ffffffff802d8020:  62406f6b65656728 74736f68646c6975   (geeko@buildhost
 ffffffff802d8030:  7620636367282029 34206e6f69737265   ) (gcc version 4
 ffffffff802d8040:  55532820302e312e 78756e694c204553   .1.0 (SUSE Linux
@@ -305,11 +305,11 @@ c0554b00:       1458044
 crash> vm 3128
 ID: 3128   TASK: ffff81007da79080  CPU: 2   COMMAND: "nscd"
        MM               PGD          RSS    TOTAL_VM
-ffff81007ce9c880  ffff810077639000  1056k   121932k 
+ffff81007ce9c880  ffff810077639000  1056k   121932k
       VMA           START       END     FLAGS FILE
-ffff81007c836c08   40000000   40001000 100070 
-ffff81007cb192b0   40001000   40201000 100073 
-ffff81007c1c4b50   40201000   40202000 100070 
+ffff81007c836c08   40000000   40001000 100070
+ffff81007cb192b0   40001000   40201000 100073
+ffff81007c1c4b50   40201000   40202000 100070
 ...
 
 crash> sym xtime

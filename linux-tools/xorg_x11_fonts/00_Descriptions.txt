@@ -6,6 +6,6 @@ fontcheck.sh
 
 NOTE:
 
-     1. This test case use command "Xvfb" as X server. 
-  
+     1. This test case use command "Xvfb" as X server.
+
 

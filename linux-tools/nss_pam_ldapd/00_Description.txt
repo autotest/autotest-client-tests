@@ -10,7 +10,7 @@ NSS is a mechanism to lookup for various information from the system. Things lik
 
 What is nss_ldap ?
 
-nss_ldap test provides NSS library functions to retrieve information from an LDAP server. 
+nss_ldap test provides NSS library functions to retrieve information from an LDAP server.
 
 Testcase:
 
@@ -27,10 +27,10 @@ FILES:
 
 db/		: Path for LDAP Server database
 
-ldapserver/ 	: Configs for LDAP Server and databases. 
+ldapserver/ 	: Configs for LDAP Server and databases.
 
 	nslcd.conf	- Client configs for ldap. This becomes /etc/nslcd.conf
-	
+
 	ldap-master.conf	- This is how the slapd.conf will look like. We create it runtime
 
 	nis_sample.ldif		- Sample definitions of NIS entries.

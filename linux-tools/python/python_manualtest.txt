@@ -49,7 +49,7 @@ Instructions:
 
 		2. There are some other tests in python-tools for curses:
 			cd /usr/lib*/python2.6/Demo/curses/
-			run life.py, rain.py, tclock.py, xmas.py etc	
+			run life.py, rain.py, tclock.py, xmas.py etc
 
 	C>. idle provided by python-tools.  This test requires that the tkinter
             rpm is installed. Use the "test.py" provided in test case directory.

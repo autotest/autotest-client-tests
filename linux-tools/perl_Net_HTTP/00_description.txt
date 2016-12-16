@@ -2,7 +2,7 @@ Package : perl-Net-HTTP
 -------
 
 Description :
------------ 
+-----------
 
 Net::HTTP - Low-level HTTP connection (client)
 

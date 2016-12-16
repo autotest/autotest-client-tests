@@ -1,12 +1,12 @@
 logrotate01
 	test basic functionality of logrotate. use logrotate -f <config> to force rotation. 1. rotate /var/log/tst_logfile file. 2. compresses it.
 ===============================================================================
-TestCase	: logrotate.sh 
+TestCase	: logrotate.sh
 
-Description	: This test will test basic functionality of logrotate. 
+Description	: This test will test basic functionality of logrotate.
 		use logrotate -f <config> to force rotation. 1. rotate /var/log
 		/tst_logfile file. 2. compresses it.
-Author		: Manoj Iyer 
+Author		: Manoj Iyer
 
 ===============================================================================
 Howto:

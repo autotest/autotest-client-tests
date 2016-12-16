@@ -19,8 +19,8 @@ packets sent/received and so on.
 
 6. Press Alt+R to Reset the ping counters.
 
-7. Enter new hostname in the Hostname input field and press Enter button. 
-All the counters should be reset and packet sent/recevied to/from the entered hostname should 
+7. Enter new hostname in the Hostname input field and press Enter button.
+All the counters should be reset and packet sent/recevied to/from the entered hostname should
 be shown. Also the trace route to the destination has to be seen on the screen.
 For instance, give any internet URL google.com.
 

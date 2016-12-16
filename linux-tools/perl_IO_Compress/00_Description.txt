@@ -4,4 +4,4 @@ compressed data created with the zlib and bzip2 libraries.
 How to run test
 -------------------------------------------------------------
 cd /opt/fiv/ltp/testcases/fivextra/perl-IO-Compress/
-./perl-IO-Compress.sh 
+./perl-IO-Compress.sh

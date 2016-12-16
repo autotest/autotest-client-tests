@@ -10,14 +10,14 @@ Synopsis:
 
     my ($bz, $status) = new Compress::Raw::Bzip2 [OPTS]
         or die "Cannot create bzip2 object: $bzerno\n";
-    
+
     $status = $bz->bzdeflate($input, $output);
     $status = $bz->bzflush($output);
     $status = $bz->bzclose($output);
 
     my ($bz, $status) = new Compress::Raw::Bunzip2 [OPTS]
         or die "Cannot create bunzip2 object: $bzerno\n";
-    
+
     $status = $bz->bzinflate($input, $output);
 
     my $version = Compress::Raw::Bzip2::bzlibversion();

@@ -9,7 +9,7 @@ Notes		:	Automated and manual test
                 		plm64:/home/abmisra # dmidecode | grep -i ipmi
                 		IPMI Device Information
                 		plm64:/home/abmisra #
-		
+
 			For ipmi_ui test may need to start ipmi service if it is not already running.
 				service ipmi restart
 
@@ -42,8 +42,8 @@ Notes		:	Automated and manual test
 HowTo		: 	ipmi_ui_test [manual test]
 -----------------------------------------------------------------------------------------------
 Notes		: 	ipmi_ui_test manual is a set of comamds and expected o/p
-			this o/p may slightly varry depending upon the machine under test 
-			one is required to run ipmi_ui tool as described and then provide 
+			this o/p may slightly varry depending upon the machine under test
+			one is required to run ipmi_ui tool as described and then provide
 			comands at ipmi_ui prompt.
 -----------------------------------------------------------------------------------------------
 

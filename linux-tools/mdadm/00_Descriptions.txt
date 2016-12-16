@@ -4,11 +4,11 @@ mdadm
 	CSDL: Hu Chenli<huchenli@cn.ibm.com>
 usage:
 	mdadm.sh (use loop back devices as softraid partitions)
-	
+
 Make sure RAIDTYPE(i.e. linear, 0, 1, 5) set in the testscript is supported by your kernel config.
 eg:
-# cat /proc/mdstat 
-Personalities : [raid0] [raid1] 
+# cat /proc/mdstat
+Personalities : [raid0] [raid1]
 unused devices: <none>
 
-the above output suggests support for raid0 and raid1	
+the above output suggests support for raid0 and raid1

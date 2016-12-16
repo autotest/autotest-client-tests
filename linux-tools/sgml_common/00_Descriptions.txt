@@ -13,4 +13,4 @@ referencing other "ordinary" SGML or XML Open Catalogs.
 There are scattered throughout the /usr/share/sgml directory tree.
 
 Installed Programs: install-catalog and sgmlwhich
-Installed Directories: /etc/sgml, /usr/share/sgml 
+Installed Directories: /etc/sgml, /usr/share/sgml

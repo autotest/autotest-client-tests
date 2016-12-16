@@ -4,6 +4,6 @@
 #straightforward programmer's interface and a simple syntax for config files.
 #
 #########################################################################################
-running tests 
+running tests
 cd /opt/fiv/ltp/testcases/fivextra/python-configobj
 run the python-configobj.sh script

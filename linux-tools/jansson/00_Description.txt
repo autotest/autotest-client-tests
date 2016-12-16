@@ -10,7 +10,7 @@ Installed Libraries: /usr/lib64/libjansson.so.4 and
 
 *Test Approach :*
 The package has test in source.  A wrapper script will be written to
-incorporate the tests to LTP-FIV. 
+incorporate the tests to LTP-FIV.
 
 *How to run the test :*
 cd /opt/fiv/ltp/testcases/fivextra/jansson
