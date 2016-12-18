@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " James He <hejianj@cn.ibm.com>  " 
 NAME = "iptraf_ng" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

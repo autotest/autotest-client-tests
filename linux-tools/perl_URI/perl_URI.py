@@ -30,8 +30,9 @@ class perl_URI(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_URI' + '/perl-URI.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-URI.sh'], cwd="%s/perl_URI" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

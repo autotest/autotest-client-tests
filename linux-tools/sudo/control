@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " CSDL  James He <hejianj@cn.ibm.com>  " 
 NAME = "sudo" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

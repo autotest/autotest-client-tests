@@ -1,2 +1,0 @@
-event=video/lid.*
-action=/bin/echo %e >> $ACTION_LOG

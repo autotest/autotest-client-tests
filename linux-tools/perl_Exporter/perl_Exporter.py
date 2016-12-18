@@ -30,8 +30,9 @@ class perl_Exporter(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Exporter' + '/perl-Exporter.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Exporter.sh'], cwd="%s/perl_Exporter" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

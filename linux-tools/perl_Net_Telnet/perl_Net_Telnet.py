@@ -30,8 +30,9 @@ class perl_Net_Telnet(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Net_Telnet' + '/perl-Net-Telnet.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Net-Telnet.sh'], cwd="%s/perl_Net_Telnet" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

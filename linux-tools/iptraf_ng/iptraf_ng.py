@@ -11,7 +11,7 @@ class iptraf_ng(test.test):
     Autotest module for testing basic functionality
     of iptraf_ng
 
-    @author 
+    @author James He <hejianj@cn.ibm.com>
     """
     version = 1
     nfail = 0
@@ -30,8 +30,9 @@ class iptraf_ng(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/iptraf_ng' + '/iptraf-ng_tests.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./iptraf.sh'], cwd="%s/iptraf_ng" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

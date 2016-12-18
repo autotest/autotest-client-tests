@@ -24,7 +24,7 @@
 ############################################################################################
 
 TARGETS=certmonger.sh
-PATCH_NAME="mcpbug127071-change-path.patch"
+PATCH_NAME="bug127071-change-path.patch"
 all:
 
 install:

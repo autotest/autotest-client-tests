@@ -30,8 +30,9 @@ class perl_podlators(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_podlators' + '/perl-podlators.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-podlators.sh'], cwd="%s/perl_podlators" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

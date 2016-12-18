@@ -1,4 +1,4 @@
-22441 execve("/usr/bin/xlsfonts", ["xlsfonts", "-lllo", "-fn", "-adobe-times-medium-r-normal--34"...], ["XDG_SESSION_ID=3845", "HOSTNAME=mcptest27.austin.ibm.co"..., "SELINUX_ROLE_REQUESTED=", "SHELL=/bin/bash", "TERM=xterm", "HISTSIZE=1000", "SSH_CLIENT=9.124.213.17 36140 22", "SELINUX_USE_CURRENT_RANGE=", "OLDPWD=/opt/fiv/ltp/testcases/fi"..., "SSH_TTY=/dev/pts/0", "USER=root", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "TST_TOTAL=3", "PATH=/opt/fiv/ltp/testcases/bin:"..., "MAIL=/var/spool/mail/root", "PWD=/opt/fiv/ltp/testcases/fivex"..., "LANG=POSIX", "TCID=fontcheck.sh", "SELINUX_LEVEL_REQUESTED=", "HISTCONTROL=ignoredups", "HOME=/root", "SHLVL=2", "TST_COUNT=2", "LOGNAME=root", "SSH_CONNECTION=9.124.213.17 3614"..., "LESSOPEN=||/usr/bin/lesspipe.sh "..., "DISPLAY=:100.0", "XDG_RUNTIME_DIR=/run/user/0", "_=/usr/bin/strace"]) = 0
+22441 execve("/usr/bin/xlsfonts", ["xlsfonts", "-lllo", "-fn", "-adobe-times-medium-r-normal--34"...], ["XDG_SESSION_ID=3845", "HOSTNAME=test27.austin.ibm.co"..., "SELINUX_ROLE_REQUESTED=", "SHELL=/bin/bash", "TERM=xterm", "HISTSIZE=1000", "SSH_CLIENT=9.124.213.17 36140 22", "SELINUX_USE_CURRENT_RANGE=", "OLDPWD=/opt/fiv/ltp/testcases/fi"..., "SSH_TTY=/dev/pts/0", "USER=root", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "TST_TOTAL=3", "PATH=/opt/fiv/ltp/testcases/bin:"..., "MAIL=/var/spool/mail/root", "PWD=/opt/fiv/ltp/testcases/fivex"..., "LANG=POSIX", "TCID=fontcheck.sh", "SELINUX_LEVEL_REQUESTED=", "HISTCONTROL=ignoredups", "HOME=/root", "SHLVL=2", "TST_COUNT=2", "LOGNAME=root", "SSH_CONNECTION=9.124.213.17 3614"..., "LESSOPEN=||/usr/bin/lesspipe.sh "..., "DISPLAY=:100.0", "XDG_RUNTIME_DIR=/run/user/0", "_=/usr/bin/strace"]) = 0
 22441 brk(0)                            = 0x10a0000
 22441 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc291d09000
 22441 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
@@ -60,7 +60,7 @@
 22441 socket(PF_LOCAL, SOCK_STREAM|SOCK_CLOEXEC, 0) = 3
 22441 connect(3, {sa_family=AF_LOCAL, sun_path=@"/tmp/.X11-unix/X100"}, 22) = 0
 22441 getpeername(3, {sa_family=AF_LOCAL, sun_path=@"/tmp/.X11-unix/X100"}, [22]) = 0
-22441 uname({sysname="Linux", nodename="mcptest27.austin.ibm.com", release="3.10.0-327.28.3.el7_2.ibm.1.x86_64", version="#1 SMP Thu Aug 18 16:34:40 CDT 2016", machine="x86_64", domainname="(none)"}) = 0
+22441 uname({sysname="Linux", nodename="test27.austin.ibm.com", release="3.10.0-327.28.3.el7_2.ibm.1.x86_64", version="#1 SMP Thu Aug 18 16:34:40 CDT 2016", machine="x86_64", domainname="(none)"}) = 0
 22441 access("/root/.Xauthority", R_OK) = 0
 22441 open("/root/.Xauthority", O_RDONLY) = 4
 22441 fstat(4, {st_dev=makedev(8, 5), st_ino=139525, st_mode=S_IFREG|0600, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=8, st_size=118, st_atime=2016/09/24-03:48:37, st_mtime=2016/09/12-13:27:45, st_ctime=2016/09/12-13:27:45}) = 0

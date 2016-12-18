@@ -11,7 +11,7 @@ class GConf2(test.test):
     Autotest module for testing basic functionality
     of GConf2
 
-    @author 
+    @author Poornima.Nayak <mpnayak@linux.vnet.ibm.com>
     """
     version = 1
     nfail = 0
@@ -30,8 +30,9 @@ class GConf2(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/GConf2' + '/GConf2_tests.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./gconf.sh'], cwd="%s/GConf2" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

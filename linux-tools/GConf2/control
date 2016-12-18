@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " Poornima.Nayak <mpnayak@linux.vnet.ibm.com>  " 
 NAME = "GConf2" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

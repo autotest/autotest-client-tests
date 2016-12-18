@@ -25,11 +25,17 @@ do
     grep "$test_dir" rpms >/dev/null 2>&1
     if [ $? -eq 0 ]
     then
-        sed "1,/'''/d" $test/control | sed "1,/'''/d" >>control_tmp
+        if [ -e $test/control ]
+        then
+            sed "1,/'''/d" $test/control | sed "1,/'''/d" >>control_tmp
+        fi
     else
         test_dir=`echo $test_dir | tr '-' '_'`
-        grep "$test_dir" rpms >/dev/null 2>&1 && 
+        grep "$test_dir" rpms >/dev/null 2>&1 
+        if [[ $? -eq 0 && -e $test/control ]]
+        then
             sed "1,/'''/d" $test/control | sed "1,/'''/d" >>control_tmp
+        fi
     fi
 done < tests
 grep "import" control_tmp > import_list

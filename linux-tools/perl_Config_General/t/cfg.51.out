@@ -1,5 +1,0 @@
-bgcolor   \#fff
-hostparam   \"'wsh.dir'\"
-backslash   contains \\ backslash
-dollar   \$foo
-prize   18 \$

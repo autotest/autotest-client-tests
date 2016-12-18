@@ -29,8 +29,9 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/lvm2
 source $LTPBIN/tc_utils.source
+conf="/etc/lvm/lvm.conf"
 part1=""
 part2=""
 vgname1="test_vg1_$$"
@@ -194,6 +195,8 @@ function test03()
 	vgcfgrestore $vgname1 &>$stdout
 	tc_pass_or_fail  $? "unexpected response" || return
 
+	cp $conf $conf.orig
+	sed -i -e 's/use_lvmetad = 1/use_lvmetad = 0/' $conf
 	tc_register "vgconvert -M1 $vgname1"
 	vgconvert -M1 $vgname1 &>$stdout
 	tc_pass_or_fail  $? "unexpected response" || return
@@ -201,6 +204,7 @@ function test03()
 	tc_register "vgconvert -M2 $vgname1"
 	vgconvert -M2 $vgname1 &>$stdout
 	tc_pass_or_fail  $? "unexpected response" || return
+	mv $conf.orig $conf
 	
 	tc_register "pvcreate $part2"
 	pvcreate $part2 &>$stdout

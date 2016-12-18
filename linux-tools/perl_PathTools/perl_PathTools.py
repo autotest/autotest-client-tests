@@ -30,8 +30,9 @@ class perl_PathTools(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_PathTools' + '/perl-PathTools.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-PathTools.sh'], cwd="%s/perl_PathTools" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

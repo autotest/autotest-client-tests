@@ -30,8 +30,9 @@ class perl_Date_Manip(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Date_Manip' + '/perl-Date-Manip.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Date-Manip.sh'], cwd="%s/perl_Date_Manip" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:
