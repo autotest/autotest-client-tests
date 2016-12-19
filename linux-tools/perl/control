@@ -1,4 +1,4 @@
-AUTHOR = "   " 
+AUTHOR = " Robb Romans <robb@austin.ibm.com>  " 
 NAME = "perl" 
 TEST_CATEGORY = "Functional" 
 TEST_CLASS = "Linux Tools" 

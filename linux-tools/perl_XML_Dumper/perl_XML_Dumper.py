@@ -30,8 +30,9 @@ class perl_XML_Dumper(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_XML_Dumper' + '/perl-XML-Dumper.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-XML-Dumper.sh'], cwd="%s/perl_XML_Dumper" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

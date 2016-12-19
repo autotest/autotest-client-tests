@@ -11,7 +11,7 @@ class sudo(test.test):
     Autotest module for testing basic functionality
     of sudo
 
-    @author 
+    @author CSDL  James He <hejianj@cn.ibm.com>
     """
     version = 1
     nfail = 0
@@ -30,8 +30,9 @@ class sudo(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/sudo' + '/sudo_tests.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./sudo_test.sh'], cwd="%s/sudo" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

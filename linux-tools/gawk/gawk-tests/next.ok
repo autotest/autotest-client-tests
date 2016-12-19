@@ -1,4 +1,0 @@
-gawk: cmd. line:1: fatal: `next' cannot be called from a `BEGIN' rule
-gawk: cmd. line:1: fatal: `next' cannot be called from a `END' rule
-gawk: cmd. line:1: fatal: `next' cannot be called from a `BEGINFILE' rule
-gawk: cmd. line:1: fatal: `next' cannot be called from a `ENDFILE' rule

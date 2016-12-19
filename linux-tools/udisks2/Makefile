@@ -24,12 +24,10 @@ TARGETS=udisks.sh
 all:
 
 install:
-	#patch -p0 <mcpbug84996-fix-multiple-test-issues.diff
 	for i in $(TARGETS) ; do ln -f $$i ../../bin/$$i || break ; done
 
 uninstall:
 	for j in $(TARGETS) ; do rm -f ../../bin/$$j ; done
-	#patch -p0 -R <mcpbug84996-fix-multiple-test-issues.diff
 
 clean:
 	@rm -f *~

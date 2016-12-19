@@ -30,8 +30,12 @@ class iptables(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/iptables' + '/iptables.sh', shell=True)
+            ret_val = subprocess.call(test_path + '/iptables' + '/iptables.sh ipv4', shell=True)
             if ret_val != 0:
+                self.nfail += 1
+            ret_val = subprocess.Popen(['./iptables.sh', 'ipv6'], cwd="%s/iptables" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:

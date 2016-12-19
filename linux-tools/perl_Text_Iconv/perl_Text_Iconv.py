@@ -30,8 +30,9 @@ class perl_Text_Iconv(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/perl_Text_Iconv' + '/perl-Text-Iconv.sh', shell=True)
-            if ret_val != 0:
+            ret_val = subprocess.Popen(['./perl-Text-Iconv.sh'], cwd="%s/perl_Text_Iconv" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:
