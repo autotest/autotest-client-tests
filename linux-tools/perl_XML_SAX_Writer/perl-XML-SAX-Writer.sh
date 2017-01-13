@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_XML_SAX_Writer
 source $LTPBIN/tc_utils.source
 SAX_Writer_DIR="${LTPBIN%/shared}/perl_XML_SAX_Writer"
 PERL_CMD=`which perl`

@@ -38,6 +38,11 @@ REQUIRED="git grep sed"
 function tc_local_setup()
 {
 tc_exec_or_break $REQUIRED || return
+rm -f $TESTS_DIR/t9001-send-email.sh
+rm -f $TESTS_DIR/t5801-remote-helpers.sh
+rm -f $TESTS_DIR/t4135-apply-weird-filenames.sh
+rm -f $TESTS_DIR/t5815-submodule-protos-sh
+chmod 655 $GIT_DIR/COPYING $GIT_DIR/README
 ln -s /usr/bin/git $GIT_DIR/git
 ln -s /usr/share/git-core/templates/ $GIT_DIR/templates
 ln -s /usr/share/doc/git-1.8.3.1/contrib/ $GIT_DIR/contrib

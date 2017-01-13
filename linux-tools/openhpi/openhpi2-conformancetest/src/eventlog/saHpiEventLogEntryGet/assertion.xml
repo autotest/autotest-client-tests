@@ -1,0 +1,81 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogEntryGet">
+  <assertion id="1" line="P29-44:29-46">
+   Call saHpiEventLogEntryGet while passing in a bad ResourceId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogEntryGet while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P50-11:P50-12">
+   Add an event log entry then get the entry.
+   saHpiEventLogEntryGet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P50-1:P50-2">
+   Call saHpiEventLogEntryGet on a resource which does not support event logs.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P50-2:P50-3">
+   Call saHpiEventLogEntryGet on all domain event logs.
+   saHpiEventLogEntryGet() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P50-4:P50-5">
+   Clear the event log. Call saHpiEventLogEntryGet to get an entry.
+   saHpiEventLogEntryGet() returns SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P50-6:P50-6">
+   Call saHpiEventLogEntryGet while passing in a bad Entry ID.
+   Expected return:  call returns SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="8-1" line="P50-7:P50-8">
+   Call saHpiEventLogEntryGet while passing in a NULL pointer for PrevEntryId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8-2" line="P50-7:P50-8">
+   Call saHpiEventLogEntryGet while passing in a NULL pointer for NextEntryId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8-3" line="P50-7:P50-8">
+   Call saHpiEventLogEntryGet while passing in a NULL pointer for EventLogEntry.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P50-9:P50-9">
+   Call saHpiEventLogEntryGet while passing in SAHPI_NO_MORE_ENTRIES for Entry ID.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="10-1" line="P50-11:P50-12">
+   Clear the event log. Then add several entries to the event log. Get the 
+   oldest entries and compare it to what we added.
+   saHpiEventLogEntryGet() returns SA_OK.
+  </assertion>
+  <assertion id="10-2" line="P50-11:P50-12">
+   Clear the event log. Then add several entries to the event log. Get the 
+   newest entry and compare it to what we added.
+   saHpiEventLogEntryGet() returns SA_OK.
+  </assertion>
+  <assertion id="11" line="P50-11:50-18">
+     Retrieve an entire list of entries going forward in the log.
+     EntryId: First: SAHPI_OLDEST_ENTRY Then: returned NextEntryID Until:
+     NextEntryID is returned is SAHPI_NO_MORE_ENTRIES.
+     saHpiEventLogEntryGet() returns SA_OK, and the entire list of entries 
+     is tracked forward. 
+  </assertion>
+  <assertion id="12" line="P50-19:50-21">
+     EntryId: First: SAHPI_NEWEST_ENTRY Then: returned PrevEntryID Until:
+     PrevEntryID is returned is SAHPI_NO_MORE_ENTRIES.
+     saHpiEventLogEntryGet() returns SA_OK, and the entire list of entries 
+     is tracked backwards. 
+  </assertion>
+  <assertion id="13" line="P50-27:P50-29">
+   Pass a non-Null RPT entry pointer to this function.  Check whether 
+   RptEntry->ResourceCapabilities is set to 0 and whether the Rpt entry 
+   can be found.
+   saHpiEventLogEntryGet() returns SA_OK.
+  </assertion>
+  <assertion id="14" line="P50-30:P50-31">
+   Pass a non-Null RDR pointer to this function.  Check whether 
+   Rdr->RdrType is set to SAHPI_NO_RECORD and whether the Rdr entry 
+   can be found.
+   saHpiEventLogEntryGet() returns SA_OK.
+  </assertion>
+</assertions>

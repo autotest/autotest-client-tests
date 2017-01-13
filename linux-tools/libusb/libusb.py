@@ -22,6 +22,7 @@ class libusb(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
+	os.system("yum -y install libusb-devel")
         ret_val = subprocess.Popen(['make', 'all'], cwd="%s/libusb" %(test_path))
         ret_val.communicate()
         if ret_val.returncode != 0:

@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_String_CRC32
 source $LTPBIN/tc_utils.source
 CRC32_TEST_DIR="${LTPBIN%/shared}/perl_String_CRC32"
 PERL_CMD=`which perl`

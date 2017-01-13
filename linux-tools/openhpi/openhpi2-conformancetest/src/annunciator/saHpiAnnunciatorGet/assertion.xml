@@ -1,0 +1,32 @@
+<assertions spec="HPI-B.01.01" function="saHpiAnnunciatorGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Test an invalid Resource Id.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Test an invalid Session Id.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P124-19:P124-19">
+   Attempt to retrieve a specific announcement using a valid EntryId.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P124-20:P124-21">
+   Attempt to get an announcement from a resource that does 
+   not support Annunciators. 
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P124-22:P124-23">
+   Test an invalid AnnunciatorNum. 
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P124-24:P124-24">
+   Invoke saHpiAnnunciatorGet with an EntryId that does not 
+   correspond to any announcements in the Annunciator.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P124-25:P124-25">
+   Use NULL for the Announcement parameter.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

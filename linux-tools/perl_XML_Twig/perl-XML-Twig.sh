@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_XML_Twig
 source $LTPBIN/tc_utils.source
 XML_Twig_DIR="${LTPBIN%/shared}/perl_XML_Twig"
 PERL_CMD=`which perl`

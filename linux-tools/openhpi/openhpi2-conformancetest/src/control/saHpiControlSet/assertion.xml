@@ -1,0 +1,145 @@
+<assertions spec="HPI-B.01.01" function="saHpiControlSet">
+  <assertion id="1" line="P29-44:P29-46">
+      Call saHpiControlSet passing in a bad ResourceId.
+      Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+      Call saHpiControlSet passing in a bad Session Id.
+      Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P97-26:P97-27">
+      Call saHpiControlGet() to set MID of OEM control. 
+	Check whether the MID is ignored.
+  </assertion>
+  <assertion id="4" line="P96-18:P96-18">
+      Get control information, then set it back without modification.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="5" line="P96-27:P96-27">
+      For a Text control, use a DataType that is not
+      specified in the RDR.
+      Expected return: SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="6" line="P97-10:P97-11">
+      For Text controls, fill the text buffers for each line.
+      Verify that the change occured by reading the text lines.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="8" line="P96-19:P96-20">
+      Call saHpiControlSet on a resource which does not 
+      support Controls.
+      Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="9" line="P96-21:P96-21">
+      Call saHpiControlSet passing in a bad control number.
+      Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="10" line="P96-23:P96-23">
+      Call saHpiControlSet passing in an invalid CtrlState type.
+      Expected return: SA_ERR_HPI_INVALID_DATA. 
+  </assertion>
+  <assertion id="11" line="P96-24:P96-24">
+      Test an Analog setting that is out of range. 
+      Expected return: SA_ERR_HPI_INVALID_DATA. 
+  </assertion>
+  <assertion id="12" line="P96-25:P96-26">
+      Call saHpiControlSet setting the Data Length and Line so
+      that it overflows the remaining Text control space.
+      Expected return: SA_ERR_HPI_INVALID_DATA. 
+  </assertion>
+  <assertion id="13" line="P96-28:P96-29">
+      For a Text control with a DataType of SAHPI_TL_TYPE_UNICODE 
+      or SAHPI_TL_TYPE_TEXT, change the Language to a value not
+      specified in the RDR.
+      Expected return: SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="14" line="P96-32:P96-32">
+      Test a CtrlMode that is not one of the valid enumerated values.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="15" line="P96-33:P96-33">
+      Set the CtrlMode parameter to SAHPI_CTRL_MODE_MANUAL and 
+      set the CtrlState parameter to NULL.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS. 
+  </assertion>
+  <assertion id="16" line="P96-34:P96-34">
+      Set the Digital value to an invalid value. 
+      Expected return: SA_ERR_HPI_INVALID_PARAMS. 
+  </assertion>
+  <assertion id="17" line="P96-35:P96-35">
+      Set the StreamLength greater than SAHPI_CTRL_MAX_STREAM_LENGTH.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS. 
+  </assertion>
+  <assertion id="18" line="P96-36:P96-37">
+      For a Text Control, set the text buffer with characters that are not
+      allowed according to the DataType.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS. 
+  </assertion>
+  <assertion id="19" line="P97-1:P97-2">
+      For a Digital control, set the control to 
+      SAHPI_CTRL_STATE_PULSE_ON for a control which 
+      is already ON. 
+      Expected return: SA_ERR_HPI_INVALID_REQUEST. 
+  </assertion>
+  <assertion id="20" line="P97-2:P97-3">
+      For a Digital control, set the digital value to 
+      SAHPI_CTRL_STATE_PULSE_OFF for a digital control which 
+      is already OFF. 
+      Expected return: SA_ERR_HPI_INVALID_REQUEST. 
+  </assertion>
+  <assertion id="21" line="P97-4:P97-4">
+      Test changinig a CtrlMode for a control with a read-only mode.
+      Expected return: SA_ERR_HPI_READ_ONLY. 
+  </assertion>
+  <assertion id="22" line="P97-6:P97-7">
+      Set the mode to SAHPI_CTRL_MODE_AUTO and use an invalid CtrlState. 
+      The state input should be ignored.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="23" line="P97-9:P97-10">
+      Set the mode to SAHPI_CTRL_MODE_AUTO and use a NULL CtrlState. 
+      The state input should be ignored.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="24" line="P97-12:P97-13">
+      For a Text control, write less than a full line of text.
+      The remaining spaces will be cleared.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="25" line="P97-13:P97-13">
+      For a Text control, write a zero-length string which
+      should clear the line.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="26" line="P97-19:P97-21">
+      Use SAHPI_TLN_ALL_LINES to clear all of the lines
+      and write data starting at line 1.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="27" line="P97-22:P97-24">
+      Use SAHPI_TLN_ALL_LINES and a DataLength of zero to
+      clear the entire control.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="28" line="P97-14:P97-15">
+      For a Text control, write more text than will fit on one
+      line and verify that the text wraps to the next line.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="29" line="P96-18:P96-18">
+      Set a legal value for an Analog Control.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="30" line="P96-18:P96-18">
+      Set a legal value for a Digital Control.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="31" line="P96-18:P96-18">
+      Set a legal value for a Discrete Control.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="32" line="P96-18:P96-18">
+      Set a legal value for a Stream Control.
+      Expected return: SA_OK.
+  </assertion>
+</assertions>

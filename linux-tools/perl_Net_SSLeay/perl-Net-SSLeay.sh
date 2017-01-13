@@ -27,8 +27,8 @@
 ### Author:      Athira Rajeev <atrajeev@in.ibm.com>                     ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Net_SSLeay
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Net_SSLeay"
 REQUIRED="perl rpm"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CIM CIMVERSION="2.0" DTDVERSION="2.0">
+  <MESSAGE ID="4711" PROTOCOLVERSION="1.0">
+    <SIMPLEREQ>
+      <IMETHODCALL NAME="EnumerateClasses">
+        <LOCALNAMESPACEPATH>
+          <NAMESPACE NAME="root"/>
+          <NAMESPACE NAME="interop"/>
+        </LOCALNAMESPACEPATH>
+      </IMETHODCALL>
+    </SIMPLEREQ>
+  </MESSAGE>
+</CIM>

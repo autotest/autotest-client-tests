@@ -1,0 +1,38 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorThresholdsGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorThreshholdsGet passing in a bad ResourceID
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorThresholdsGet passing in a bad SessionId
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="3" line="P81-16:P81-16">
+   Get the thresholds and verify that the thresholds are valid.
+   The IsSupported field must correspond to ReadThold field in the
+   RDR and the reading type cannot be SAHPI_SENSOR_READING_TYPE_BUFFER 
+   as indicated in SaHpi.h, line 1060.
+   Expected return: SA_OK
+  </assertion>
+  <assertion id="6" line="P81-17:P81-18">
+   Call function on a resource which does not support sensors.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="7" line="P81-19:P81-19">
+   Call saHpiSensorThresholdsGet passing in a NULL pointer to SensorThresholds.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P81-22:P81-22">
+   Call function on a sensor which has no readable thresholds marked.
+   Expected return: SA_ERR_HPI_INVALID_CMD.
+  </assertion>
+  <assertion id="9" line="P81-20:P81-21">
+   Call function on a sensor which the threshold definition
+   is set as non-accessible (Is not threshold type).
+   Expected return: SA_ERR_HPI_INVALID_CMD.
+  </assertion>
+  <assertion id="10" line="P81-23:P81-23">
+   Call saHpiSensorReadingGet passing in a bad Sensor Number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+</assertions>

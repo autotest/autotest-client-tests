@@ -1,0 +1,36 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogOverflowReset">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogOverflowReset() while passing in a bad ResourceId.
+   saHpiEventLogOverflowReset() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogOverflowReset() while passing in a bad SessionId.
+   saHpiEventLogOverflowReset() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P58-13:P58-13">
+   Fill the event log to overflow.  Clear the overflow flag.  
+   saHpiEventLogOverflowReset() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P58-14:P58-15">
+   Call saHpiEventLogOverflowReset on a resource or domain which does 
+   not support overflow reset of the event log as signified by 
+   event log info structure's OverflowResetable flag.
+   saHpiEventLogOverflowReset() returns SA_ERR_HPI_INVALID_CMD.
+  </assertion>
+  <assertion id="5" line="P58-16:P58-17">
+   Call saHpiEventLogOverflowReset on a resource which does not support   
+   event logs.
+   saHpiEventLogOverflowReset() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P58-17:P58-18">
+   Call saHpiEventLogOverflowReset on a domain event log.
+   saHpiEventLogOverflowReset() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="7" line="P58-20:P58-22">
+   Fill the event log to overflow. Clear the overflow flag.  Add an
+   additional event log entry. Verify that the overflow flag has been 
+   reset.
+   saHpiEventLogOverflowReset() returns SA_OK, and the overflow is set
+   again, after another event log entry has been added.
+  </assertion>
+</assertions>

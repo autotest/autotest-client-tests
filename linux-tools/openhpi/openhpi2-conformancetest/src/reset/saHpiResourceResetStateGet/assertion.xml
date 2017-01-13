@@ -1,0 +1,27 @@
+<assertions spec="HPI-B.01.01" function="saHpiResourceResetStateGet">
+  <assertion id="1" line="P155-18:P155-19">
+   Call saHpiResourceResetStateGet to get reset state of the resources.
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="2" line="P155-25:P155-26">
+   Call saHpiResourceResetStateSet to set reset state as SAHPI_RESET_ASSERT, 
+   			then SAHPI_RESET_DEASSERT,get the state.
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="3" line="P29-44:P29-46">
+   Call saHpiResourceResetStateGet passing a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="4" line="P29-44:P29-46">
+   Call saHpiResourceResetStateGet passing a bad ResourceId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="5" line="P155-20:P155-21">
+   Call saHpiResourceResetStateGet on resource which doesn't support RESET.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="6" line="P155-22:P155-22">
+   Call saHpiResourceResetStateGet passing NULL as state.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+  </assertion>
+</assertions>

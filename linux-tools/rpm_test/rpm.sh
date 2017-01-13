@@ -36,7 +36,7 @@
 #cd `dirname $0`
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
 source $LTPBIN/tc_utils.source
-
+cp $LTPBIN/../rpm_test/rpm-python.sh $LTPBIN/
 PKG_NAME=tst_rpm
 FILE_NAME=hello.sh
 INSTALL_DIR=for_my_test_$$

@@ -1,0 +1,33 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiAutoInsertTimeoutSet">
+  <assertion id="1" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiAutoInsertTimeoutSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P142-16:P142-16">
+   Set the AutoInsertTimeout for all domains.
+   saHpiAutoInsertTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P142-17:P142-18">
+   Call on a domain which has SAHPI_DOMAIN_CAP_AUTPINSERT_READ_ONLY 
+   flag in the DomainInfo structure.
+   saHpiAutoInsertTimeoutSet() returns SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="4" line="P142-19:P142-20">
+   Pass in a Timeout value which is negative.
+   saHpiAutoInsertTimeoutSet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5-1" line="P142-22:P142-30">
+   Pass in a Timeout value equal to SAHPI_TIMEOUT_IMMEDIATE.
+   saHpiAutoInsertTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="5-2" line="P142-22:P142-30">
+   Pass in a Timeout value not equal to SAHPI_TIMEOUT_IMMEDIATE 
+   or SAHPI_TIMEOUT_BLOCK.
+   saHpiAutoInsertTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="5-3" line="P142-22:P142-30">
+   Pass in a Timeout value equal to SAHPI_TIMEOUT_BLOCK.
+   saHpiAutoInsertTimeoutSet() returns SA_OK.
+  </assertion>
+</assertions>

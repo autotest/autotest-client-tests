@@ -27,8 +27,8 @@
 ### Author:      Hariharan T S <harihare@in.ibm.com>                           ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_podlators
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_podlators"
 REQUIRED="perl rpm"

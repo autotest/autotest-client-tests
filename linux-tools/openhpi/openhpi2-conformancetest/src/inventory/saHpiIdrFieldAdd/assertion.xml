@@ -1,0 +1,77 @@
+<assertions spec="HPI-B.01.01" function="saHpiIdrFieldAdd">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P109-17:P109-17">
+   Add in a new IDR field in each IDR area.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P109-18:P109-19">
+   Call on a resource which does not support Inventory Data Repositories.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P109-20:P109-21">
+   Call on an Inventory Data Repository which does not exist. Pass in an invalid IdrId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P109-22:P109-22">
+   Area identified by Field->AreaId does not exist within the IDR.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P109-27:P109-28">
+   Call on an Area which is READ_ONLY.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="8" line="P109-29:P109-29">
+   Call the function on a IDR which is READ-ONLY.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="9" line="P109-30:P109-31">
+   Set the Field->Type to an out-of-range value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="10" line="P109-32:P109-32">
+   Set the Field->Type to SAHPI_IDR_FILEDTYPE_UNSPECIFIED.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="11" line="P109-33:P109-34">
+   Pass in an Invalid Text Buffer in the Field structure.  Set the 
+   Data Type out-of-range.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="12" line="P109-35:P109-35">
+   Pass in an Invalid Text Buffer in the Field structure.  Pass in 
+   invalid characters in the data field for the specified type.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="13" line="P110-1:P110-2">
+   Pass in an Invalid Text Buffer in the Field structure.  Set the 
+   Language out-of-range.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="14" line="P110-3:P110-3">
+   Call the function when the Field pointer is set to NULL.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="15" line="P110-5:P110-6">
+   Add a new field to an area in each IDR.  Verify that
+   the FieldId is successfully set to a new value.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="16" line="P110-7:P110-8">
+   Add a new field to an area in each IDR.  Verify that
+   the ReadOnly field is always set to false.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="17" line="P110-9:P110-10">
+   Add a new field to an area in each IDR. Setting the 
+   Read-only field to TRUE.
+   saHpiIdrFieldAdd() returns SA_OK, the readonly field is 
+   ignored and the Read-Only field is always set to FALSE.
+  </assertion>
+</assertions>

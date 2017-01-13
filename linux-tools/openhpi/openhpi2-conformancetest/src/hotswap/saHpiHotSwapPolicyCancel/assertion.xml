@@ -1,0 +1,23 @@
+<assertions spec="HPI-B.01.01" function ="saHpiHotSwapPolicyCancel">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiHotSwapPolicyCancel() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiHotSwapPolicyCancel() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P138-21:P138-21">
+   On each resource, if there is a Hot swap extraction or insertion pending,
+   cancel the default policy.
+   saHpiHotSwapPolicyCancel() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P138-22:P138-23">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiHotSwapPolicyCancel() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P138-24:P138-25">
+   Call on a resource which is not in the Insertion or Extraction Pending state.
+   saHpiHotSwapPolicyCancel() returns SA_ERR_HPI_INVALID_REQUEST .
+  </assertion>
+</assertions>

@@ -1,0 +1,12 @@
+Assertion	Status
+
+1		Yes
+2		Yes
+3		Yes
+4-1		Yes
+4-2		Yes
+4-3		Yes
+5		Yes
+6		Yes
+7		Yes
+8		Yes

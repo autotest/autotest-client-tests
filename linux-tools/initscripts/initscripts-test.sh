@@ -29,7 +29,7 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/initscripts
 TESTDIR=${LTPBIN%/shared}/initscripts
 source $LTPBIN/tc_utils.source
 prog="dummy_service_initscripts"

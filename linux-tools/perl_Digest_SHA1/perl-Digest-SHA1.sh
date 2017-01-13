@@ -27,8 +27,8 @@
 ### Author:      Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Digest_SHA1
 source $LTPBIN/tc_utils.source
 TESTDIR=${LTPBIN%/shared}/perl_Digest_SHA1/t
 required_cmd="perl"

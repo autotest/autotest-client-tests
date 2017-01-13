@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CIM CIMVERSION="2.0" DTDVERSION="2.0">
+<MESSAGE ID="4711" PROTOCOLVERSION="1.0">
+<SIMPLERSP>
+<IMETHODRESPONSE NAME="EnumerateClasses">
+<IRETURNVALUE>
+<CLASS NAME="CIM_IndicationFilter" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceNamespace" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="SourceNamespaces" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndividualSubscriptionSupported" TYPE="boolean">
+<VALUE>TRUE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="Query" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="QueryLanguage" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="TemplateVariable" TYPE="string">
+</PROPERTY.ARRAY>
+</CLASS>
+<CLASS NAME="CIM_Service" SUPERCLASS="CIM_EnabledLogicalElement">
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerContact" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="StartMode" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Started" TYPE="boolean">
+</PROPERTY>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+<METHOD NAME="StartService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="StopService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="ChangeAffectedElementsAssignedSequence" TYPE="uint32">
+<PARAMETER.REFARRAY NAME="ManagedElements" REFERENCECLASS="CIM_ManagedElement"></PARAMETER.REFARRAY>
+<PARAMETER.ARRAY NAME="AssignedSequence" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_RegisteredSubProfile" SUPERCLASS="CIM_RegisteredProfile">
+<PROPERTY.ARRAY NAME="ImplementedFeatures" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="SpecificationType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherSpecificationType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredOrganization" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherRegisteredOrganization" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredVersion" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AdvertiseTypes" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AdvertiseTypeDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<METHOD NAME="PullConformantInstances" TYPE="uint32">
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+<METHOD NAME="OpenConformantInstances" TYPE="uint32">
+<PARAMETER NAME="ResultClass" TYPE="string">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="IncludedPropertyList" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER NAME="OperationTimeout" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="ContinueOnError" TYPE="boolean">
+</PARAMETER>
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+<METHOD NAME="CloseConformantInstances" TYPE="uint32">
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_WBEMService" SUPERCLASS="CIM_Service">
+<PROPERTY NAME="Started" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="StartMode" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerContact" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<METHOD NAME="ChangeAffectedElementsAssignedSequence" TYPE="uint32">
+<PARAMETER.REFARRAY NAME="ManagedElements" REFERENCECLASS="CIM_ManagedElement"></PARAMETER.REFARRAY>
+<PARAMETER.ARRAY NAME="AssignedSequence" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+</METHOD>
+<METHOD NAME="StopService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="StartService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_ReferencedSpecification" SUPERCLASS="CIM_Dependency">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_RegisteredSpecification">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_RegisteredSpecification">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_AbstractIndicationSubscription">
+<PROPERTY.REFERENCE NAME="Filter" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Handler" REFERENCECLASS="CIM_ListenerDestination">
+</PROPERTY.REFERENCE>
+<PROPERTY NAME="OnFatalErrorPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherOnFatalErrorPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="FailureTriggerTimeInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSubscriptionState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionDuration" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionStartTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionTimeRemaining" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherRepeatNotificationPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationGap" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationCount" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="AlertOnStateChange" TYPE="boolean">
+<VALUE>FALSE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="LastIndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="LastIndicationProductionDateTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionInfo" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_IndicationService" SUPERCLASS="CIM_Service">
+<PROPERTY NAME="Started" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="StartMode" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerContact" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="FilterCreationEnabled" TYPE="boolean">
+<VALUE>FALSE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryAttempts" TYPE="uint16">
+<VALUE>3</VALUE>
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryInterval" TYPE="uint32">
+<VALUE>30</VALUE>
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalAction" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalTimeInterval" TYPE="uint32">
+</PROPERTY>
+<METHOD NAME="ChangeAffectedElementsAssignedSequence" TYPE="uint32">
+<PARAMETER.REFARRAY NAME="ManagedElements" REFERENCECLASS="CIM_ManagedElement"></PARAMETER.REFARRAY>
+<PARAMETER.ARRAY NAME="AssignedSequence" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+</METHOD>
+<METHOD NAME="StopService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="StartService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_ListenerDestinationCIMXML" SUPERCLASS="CIM_ListenerDestination">
+<PROPERTY NAME="Protocol" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherProtocol" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherPersistenceType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PersistenceType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="Destination" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_IndicationHandler" SUPERCLASS="CIM_ListenerDestination">
+<PROPERTY NAME="Protocol" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherProtocol" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Destination" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherPersistenceType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PersistenceType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="Owner" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_RegisteredProfile" SUPERCLASS="CIM_RegisteredSpecification">
+<PROPERTY.ARRAY NAME="AdvertiseTypeDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AdvertiseTypes" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="RegisteredVersion" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherRegisteredOrganization" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredOrganization" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSpecificationType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SpecificationType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="ImplementedFeatures" TYPE="string">
+</PROPERTY.ARRAY>
+<METHOD NAME="CloseConformantInstances" TYPE="uint32">
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+</METHOD>
+<METHOD NAME="OpenConformantInstances" TYPE="uint32">
+<PARAMETER NAME="ResultClass" TYPE="string">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="IncludedPropertyList" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER NAME="OperationTimeout" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="ContinueOnError" TYPE="boolean">
+</PARAMETER>
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+<METHOD NAME="PullConformantInstances" TYPE="uint32">
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_SubProfileRequiresProfile" SUPERCLASS="CIM_ReferencedProfile">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_RegisteredProfile">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_RegisteredSubProfile">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="SFCB_IndicationServiceCapabilities" SUPERCLASS="CIM_IndicationServiceCapabilities">
+<PROPERTY NAME="SubscriptionsPersisted" TYPE="boolean">
+<VALUE>FALSE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="MaxActiveSubscriptions" TYPE="uint32">
+<VALUE>1</VALUE>
+</PROPERTY>
+<PROPERTY NAME="MaxListenerDestinations" TYPE="uint32">
+<VALUE>1</VALUE>
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalTimeIntervalIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalActionIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryIntervalIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryAttemptsIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="FilterCreationEnabledIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<METHOD NAME="CreateGoalSettings" TYPE="uint16">
+<PARAMETER.ARRAY NAME="TemplateGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="SupportedGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_LogicalElement" SUPERCLASS="CIM_ManagedSystemElement">
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_IndicationServiceCapabilities" SUPERCLASS="CIM_Capabilities">
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="FilterCreationEnabledIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryAttemptsIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="DeliveryRetryIntervalIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalActionIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionRemovalTimeIntervalIsSettable" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="MaxListenerDestinations" TYPE="uint32">
+<VALUE>1</VALUE>
+</PROPERTY>
+<PROPERTY NAME="MaxActiveSubscriptions" TYPE="uint32">
+<VALUE>1</VALUE>
+</PROPERTY>
+<PROPERTY NAME="SubscriptionsPersisted" TYPE="boolean">
+<VALUE>FALSE</VALUE>
+</PROPERTY>
+<METHOD NAME="CreateGoalSettings" TYPE="uint16">
+<PARAMETER.ARRAY NAME="TemplateGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="SupportedGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_ReferencedProfile" SUPERCLASS="CIM_ReferencedSpecification">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_RegisteredProfile">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_RegisteredProfile">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="SFCB_ElementCapabilities" SUPERCLASS="CIM_ElementCapabilities">
+<PROPERTY.ARRAY NAME="Characteristics" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.REFERENCE NAME="Capabilities" REFERENCECLASS="CIM_Capabilities">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="ManagedElement" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_Indication">
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationFilterName" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_ManagedSystemElement" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_ManagedElement">
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_RegisteredSpecification" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SpecificationType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSpecificationType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredOrganization" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherRegisteredOrganization" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredVersion" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AdvertiseTypes" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AdvertiseTypeDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+</CLASS>
+<CLASS NAME="CIM_Capabilities" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<METHOD NAME="CreateGoalSettings" TYPE="uint16">
+<PARAMETER.ARRAY NAME="TemplateGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="SupportedGoalSettings" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_IndicationHandlerCIMXML" SUPERCLASS="CIM_IndicationHandler">
+<PROPERTY NAME="Owner" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PersistenceType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherPersistenceType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherProtocol" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Protocol" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="Destination" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_EnabledLogicalElement" SUPERCLASS="CIM_LogicalElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_IndicationSubscription" SUPERCLASS="CIM_AbstractIndicationSubscription">
+<PROPERTY NAME="SubscriptionInfo" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="LastIndicationProductionDateTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="LastIndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="AlertOnStateChange" TYPE="boolean">
+<VALUE>FALSE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationCount" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationGap" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="OtherRepeatNotificationPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionTimeRemaining" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionStartTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionDuration" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="OtherSubscriptionState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="FailureTriggerTimeInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="OtherOnFatalErrorPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OnFatalErrorPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY.REFERENCE NAME="Filter" REFERENCECLASS="CIM_IndicationFilter">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Handler" REFERENCECLASS="CIM_ListenerDestination">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_ObjectManagerCommunicationMechanism" SUPERCLASS="CIM_ServiceAccessPoint">
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="CommunicationMechanism" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherCommunicationMechanismDescription" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="FunctionalProfilesSupported" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="FunctionalProfileDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="MultipleOperationsSupported" TYPE="boolean">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AuthenticationMechanismsSupported" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AuthenticationMechanismDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="Version" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AdvertiseTypes" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AdvertiseTypeDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_ListenerDestination" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PersistenceType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherPersistenceType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Destination" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherProtocol" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Protocol" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_HostedService" SUPERCLASS="CIM_HostedDependency">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_System">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_Service">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_ElementConformsToProfile">
+<PROPERTY.REFERENCE NAME="ConformantStandard" REFERENCECLASS="CIM_RegisteredProfile">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="ManagedElement" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_InstModification" SUPERCLASS="CIM_InstIndication">
+<PROPERTY NAME="SourceInstanceHost" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstanceModelPath" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstance" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationFilterName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PreviousInstance" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="SFCB_RegisteredProfile" SUPERCLASS="CIM_RegisteredProfile">
+<PROPERTY.ARRAY NAME="ImplementedFeatures" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="SpecificationType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherSpecificationType" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredOrganization" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherRegisteredOrganization" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RegisteredVersion" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AdvertiseTypes" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="AdvertiseTypeDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<METHOD NAME="PullConformantInstances" TYPE="uint32">
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+<METHOD NAME="OpenConformantInstances" TYPE="uint32">
+<PARAMETER NAME="ResultClass" TYPE="string">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="IncludedPropertyList" TYPE="string">
+</PARAMETER.ARRAY>
+<PARAMETER NAME="OperationTimeout" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="ContinueOnError" TYPE="boolean">
+</PARAMETER>
+<PARAMETER NAME="MaxObjectCount" TYPE="uint32">
+</PARAMETER>
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+<PARAMETER NAME="EndOfSequence" TYPE="boolean">
+</PARAMETER>
+<PARAMETER.ARRAY NAME="InstanceType" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.ARRAY NAME="InstanceWithPathList" TYPE="string">
+</PARAMETER.ARRAY>
+</METHOD>
+<METHOD NAME="CloseConformantInstances" TYPE="uint32">
+<PARAMETER NAME="EnumerationContext" TYPE="string">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_ElementCapabilities">
+<PROPERTY.REFERENCE NAME="ManagedElement" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Capabilities" REFERENCECLASS="CIM_Capabilities">
+</PROPERTY.REFERENCE>
+<PROPERTY.ARRAY NAME="Characteristics" TYPE="uint16">
+</PROPERTY.ARRAY>
+</CLASS>
+<CLASS NAME="CIM_ProcessIndication" SUPERCLASS="CIM_Indication">
+<PROPERTY NAME="IndicationFilterName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_ObjectManager" SUPERCLASS="CIM_WBEMService">
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PrimaryOwnerContact" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="StartMode" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Started" TYPE="boolean">
+</PROPERTY>
+<PROPERTY NAME="GatherStatisticalData" TYPE="boolean">
+<VALUE>TRUE</VALUE>
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+<METHOD NAME="StartService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="StopService" TYPE="uint32">
+</METHOD>
+<METHOD NAME="ChangeAffectedElementsAssignedSequence" TYPE="uint32">
+<PARAMETER.REFARRAY NAME="ManagedElements" REFERENCECLASS="CIM_ManagedElement"></PARAMETER.REFARRAY>
+<PARAMETER.ARRAY NAME="AssignedSequence" TYPE="uint16">
+</PARAMETER.ARRAY>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_InstCreation" SUPERCLASS="CIM_InstIndication">
+<PROPERTY NAME="SourceInstanceHost" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstanceModelPath" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstance" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationFilterName" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_Dependency">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="SFCB_IndicationElement" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="IndicationID" TYPE="uint32">
+</PROPERTY>
+<PROPERTY NAME="RetryCount" TYPE="uint32">
+</PROPERTY>
+<PROPERTY NAME="LastDelivery" TYPE="sint32">
+</PROPERTY>
+<PROPERTY.REFERENCE NAME="ind" REFERENCECLASS="CIM_Indication">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="sub" REFERENCECLASS="CIM_IndicationSubscription">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="ld" REFERENCECLASS="CIM_ListenerDestination">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_ServiceAffectsElement">
+<PROPERTY.REFERENCE NAME="AffectedElement" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="AffectingElement" REFERENCECLASS="CIM_Service">
+</PROPERTY.REFERENCE>
+<PROPERTY.ARRAY NAME="ElementEffects" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="OtherElementEffectsDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="AssignedSequence" TYPE="uint16">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_InstIndication" SUPERCLASS="CIM_Indication">
+<PROPERTY NAME="IndicationFilterName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstance" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstanceModelPath" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SourceInstanceHost" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_HostedDependency" SUPERCLASS="CIM_Dependency">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+<CLASS NAME="CIM_ServiceAccessPoint" SUPERCLASS="CIM_EnabledLogicalElement">
+<PROPERTY NAME="TransitioningToState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY.ARRAY NAME="AvailableRequestedStates" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="EnabledDefault" TYPE="uint16">
+<VALUE>2</VALUE>
+</PROPERTY>
+<PROPERTY NAME="RequestedState" TYPE="uint16">
+<VALUE>12</VALUE>
+</PROPERTY>
+<PROPERTY NAME="OtherEnabledState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="EnabledState" TYPE="uint16">
+<VALUE>5</VALUE>
+</PROPERTY>
+<PROPERTY NAME="PrimaryStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OperatingStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DetailedStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="CommunicationStatus" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="HealthState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="Status" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="StatusDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="OperationalStatus" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="InstallDate" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<METHOD NAME="RequestStateChange" TYPE="uint32">
+<PARAMETER NAME="RequestedState" TYPE="uint16">
+</PARAMETER>
+<PARAMETER.REFERENCE NAME="Job" REFERENCECLASS="CIM_ConcreteJob">
+</PARAMETER.REFERENCE>
+<PARAMETER NAME="TimeoutPeriod" TYPE="datetime">
+</PARAMETER>
+</METHOD>
+</CLASS>
+<CLASS NAME="CIM_Namespace" SUPERCLASS="CIM_ManagedElement">
+<PROPERTY NAME="Generation" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="SystemName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ObjectManagerCreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ObjectManagerName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="CreationClassName" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Name" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ClassInfo" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="DescriptionOfClassInfo" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ClassType" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="ClassTypeVersion" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="DescriptionOfClassType" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="SFCB_ServiceAffectsElement" SUPERCLASS="CIM_ServiceAffectsElement">
+<PROPERTY NAME="AssignedSequence" TYPE="uint16">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="OtherElementEffectsDescriptions" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY.ARRAY NAME="ElementEffects" TYPE="uint16">
+</PROPERTY.ARRAY>
+<PROPERTY.REFERENCE NAME="AffectingElement" REFERENCECLASS="CIM_Service">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="AffectedElement" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+</IRETURNVALUE>
+</IMETHODRESPONSE>
+</SIMPLERSP>
+</MESSAGE>
+</CIM>

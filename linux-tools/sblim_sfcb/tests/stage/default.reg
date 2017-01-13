@@ -1,0 +1,54 @@
+[$ClassProvider$]
+   provider: ClassProvider
+   location: sfcClassProvider
+   type: class method
+   unload: never
+#
+[$DefaultProvider$]
+   provider: InternalProvider
+   location: sfcInternalProvider
+   type: instance association method
+   unload: never
+#
+[$InterOpProvider$]
+   provider: InteropProvider
+   location: sfcInteropProvider
+   type: instance association method
+   unload: never
+#
+[CIM_IndicationHandlerCIMXML]
+   provider: IndCIMXMLHandler
+   location: sfcIndCIMXMLHandler
+   type: instance method
+   namespace: root/interop
+#
+[CIM_ListenerDestinationCIMXML]
+   provider: IndCIMXMLHandler
+   location: sfcIndCIMXMLHandler
+   type: instance method
+   namespace: root/interop
+#
+[CIM_Namespace]
+   provider: ServerProvider
+   location: sfcInteropServerProvider
+   type: instance
+   namespace: root/interop
+#
+[__Namespace]
+   provider: ServerProvider
+   location: sfcInteropServerProvider
+   type: instance
+   namespace: *
+#
+[CIM_ObjectManager]
+   provider: ServerProvider
+   location: sfcInteropServerProvider
+   type: instance
+   namespace: root/interop
+#
+[CIM_ObjectManagerCommunicationMechanism]
+   provider: ServerProvider
+   location: sfcInteropServerProvider
+   type: instance
+   namespace: root/interop
+#

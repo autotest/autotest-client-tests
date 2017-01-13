@@ -22,7 +22,8 @@ class freetype(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-        ret_val = subprocess.Popen(['make', 'all'], cwd="%s/freetype" %(test_path))
+        os.system("yum install -y freetype-devel")
+        ret_val = subprocess.Popen(['make', 'all'], cwd="%s/freetype/freetype-test" %(test_path))
         ret_val.communicate()
         if ret_val.returncode != 0:
             self.nfail += 1

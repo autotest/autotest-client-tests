@@ -29,7 +29,7 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/iptraf_ng
 source $LTPBIN/tc_utils.source
 TESTDIR=${LTPBIN%/shared}/iptraf_ng
 IPADDR=$(ifconfig lo | head -n2 | tail -n1 | awk '{print $2}' | cut -f2 -d:)

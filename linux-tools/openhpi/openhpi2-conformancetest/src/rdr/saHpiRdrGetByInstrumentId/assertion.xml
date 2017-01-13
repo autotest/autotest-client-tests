@@ -1,0 +1,38 @@
+<assertions spec="HPI-B.01.01" function="saHpiRdrGetByInstrumentId">
+  <assertion id="1" line="P76-34:P76-36">
+   Call saHpiRdrGetByInstrumentId to retrieve all Rdr in each resource.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="2" line="P29-44:P29-46">
+   Call saHpiRdrGetByInstrumentId passing a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P29-44:P29-46">
+   Call saHpiRdrGetByInstrumentId passing a bad ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="4" line="P76-23:P76-24">
+   Call saHpiRdrGetByInstrumentId passing a ResourceId which has no Rdr inside.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P76-25:P76-26">
+   Call saHpiRdrGetByInstrumentId passing a unsupported RdrType.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P76-27:P76-28">
+   Call saHpiRdrGetByInstrumentId passing a not-present InstrumentId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P76-30:P76-30">
+   Call saHpiRdrGetByInstrumentId passing a bad RdrType.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P76-31:P76-31">
+   Call saHpiRdrGetByInstrumentId passing SAHPI_NO_RECORD as RdrType.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P76-32:P76-32">
+   Call saHpiRdrGetByInstrumentId passing NULL as rdr.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

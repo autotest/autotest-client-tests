@@ -30,7 +30,7 @@ class socat(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/socat' + '/socat_tests.sh', shell=True)
+            ret_val = subprocess.call(test_path + '/socat' + '/socat_test.sh', shell=True)
             if ret_val != 0:
                 self.nfail += 1
 

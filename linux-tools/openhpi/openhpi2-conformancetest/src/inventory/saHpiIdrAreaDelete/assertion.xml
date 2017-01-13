@@ -1,0 +1,52 @@
+<assertions spec="HPI-B.01.01" function="saHpiIdrAreaDelete">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-44:P29-46">
+   Pass in an invalid SessionID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P106-17:P106-17">
+      In each resource which supports IDR's add in a new IDR area, 
+      and then remove it with a saHpiIdrAreaDelete() call.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P106-18:P106-19">
+   Call on a resource which does not support Inventory Data Repositories.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P106-20:P106-21">
+   Pass in an invalid IdrId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P106-22:P106-22">
+   Test an AreaId that does not exist within the IDR.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7-1" line="P106-23:P106-24">
+   Pass in an AreaId set to SAHPI_LAST_ENTRY.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7-2" line="P106-23:P106-24">
+   Pass in an AreaId set to SAHPI_FIRST_ENTRY.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P106-25:P106-26">
+   Delete an IDA which is read-only.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="9" line="P106-27:P106-27">
+   Delete an IDA which contains a read-only field.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="10" line="P106-28:P106-28">
+   Try deleting an area from a read-only IDR.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="11" line="P106-30:P106-30">
+   Add an Area with a field to this IDR.  Delete the area.  The
+   Field will also be deleted.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

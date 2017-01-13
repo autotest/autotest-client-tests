@@ -34,7 +34,11 @@ class lsof(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.Popen(['./'], cwd="%s/lsof" %(test_path))
+            ret_val = subprocess.Popen(['./patch_lsof.sh'], cwd="%s/lsof" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
+                self.nfail += 1
+            ret_val = subprocess.Popen(['./lsof.sh'], cwd="%s/lsof" %(test_path))
             ret_val.communicate()
             if ret_val.returncode != 0:
                 self.nfail += 1

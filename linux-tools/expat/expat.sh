@@ -31,6 +31,7 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/expat
 source $LTPBIN/tc_utils.source
+PWD=`pwd`
 
 tc_local_setup()
 {
@@ -99,7 +100,7 @@ function test02()
         tc_register "test element"
 	tc_exec_or_break diff || return
 
-	p_name <$GOODXML >$TCTMP/result1
+	$PWD/p_name <$GOODXML >$TCTMP/result1
 	diff p_name.out $TCTMP/result1 >$stdout 2>$stderr
         tc_pass_or_fail $? "failed the element test"
 }
@@ -112,7 +113,7 @@ function test03()
 	tc_register "test attr"
 	tc_exec_or_break diff || return
 
-	p_name_attr <$GOODXML >$TCTMP/result2
+	$PWD/p_name_attr <$GOODXML >$TCTMP/result2
 	diff p_name_attr.out $TCTMP/result2 >$stdout 2>$stderr
 	tc_pass_or_fail $? "failed the attr test"
 }
