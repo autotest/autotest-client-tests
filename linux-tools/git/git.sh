@@ -38,6 +38,7 @@ REQUIRED="git grep sed"
 function tc_local_setup()
 {
 tc_exec_or_break $REQUIRED || return
+#removing these tests as it requires lib-proto-disable.sh file, which is not available in upstream git
 rm -f $TESTS_DIR/t9001-send-email.sh
 rm -f $TESTS_DIR/t5801-remote-helpers.sh
 rm -f $TESTS_DIR/t4135-apply-weird-filenames.sh

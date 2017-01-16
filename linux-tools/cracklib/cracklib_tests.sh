@@ -34,7 +34,7 @@ DICT_PASS=he11o # to test dictionary password
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/cracklib
 source $LTPBIN/tc_utils.source
-PWD=`pwd`
+TEST_PATH=${LTPBIN%/shared}/cracklib
 
 ###########################################################################
 # the testcase functions
@@ -84,7 +84,7 @@ test03()
 {
     tc_register "good password"
 
-    $PWD/crack_check manjo1234 $DICTDIR/tst_cracklib >$stdout 2>$stderr
+    $TEST_PATH/crack_check manjo1234 $DICTDIR/tst_cracklib >$stdout 2>$stderr
     tc_pass_or_fail $? "Unexpected response"
 }
 
@@ -95,7 +95,7 @@ test04()
 {
     tc_register "bad password"
 
-    $PWD/crack_check bad $DICTDIR/tst_cracklib >$stdout 2>$stderr
+    $TEST_PATH/crack_check bad $DICTDIR/tst_cracklib >$stdout 2>$stderr
     rc=$?
     [ $rc -eq $BAD_PASS ]
     tc_pass_or_fail $? "expected rc=$BAD_PASS but got rc=$rc"
@@ -108,7 +108,7 @@ test05()
 {
     tc_register "dictionary password"
 
-    $PWD/crack_check $DICT_PASS $DICTDIR/tst_cracklib >$stdout 2>$stderr
+    $TEST_PATH/crack_check $DICT_PASS $DICTDIR/tst_cracklib >$stdout 2>$stderr
     rc=$?
     [ $rc -eq $BAD_PASS ]
     tc_pass_or_fail $? "expected rc=$BAD_PASS but got rc=$rc"

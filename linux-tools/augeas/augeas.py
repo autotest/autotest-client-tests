@@ -32,7 +32,7 @@ class augeas(test.test):
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
             cwd = os.getcwd()
             os.chdir("%s/augeas" %(test_path))
-            os.system("patch -p0 -R < test-interpreter.diff")
+            os.system("patch -p0 < test-interpreter.diff")
             os.chdir(cwd)
             ret_val = subprocess.Popen(['./augeas.sh'], cwd="%s/augeas" %(test_path))
             ret_val.communicate()

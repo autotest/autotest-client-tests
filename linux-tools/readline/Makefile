@@ -24,7 +24,7 @@
 ###########################################################################
 
 TARGETS = rltest fileman
-LDFLAGS = /usr/lib*/libreadline.so.6.2 -lncurses
+LDFLAGS = /usr/lib*/libreadline.so -lncurses
 CFLAGS = -O2 -I /usr/include/readline  -DREADLINE_LIBRARY 
 
 all:	$(TARGETS)

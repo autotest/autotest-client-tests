@@ -31,9 +31,9 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/rpcbind
 source $LTPBIN/tc_utils.source
-PWD=`pwd`
-printmsg_svr=$PWD/printmsg_server
-printmsg_clnt=$PWD/printmsg_client
+TEST_PATH=${LTPBIN%/shared}/rpcbind
+printmsg_svr=$TEST_PATH/printmsg_server
+printmsg_clnt=$TEST_PATH/printmsg_client
 
 
 ################################################################################

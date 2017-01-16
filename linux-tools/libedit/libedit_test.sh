@@ -67,8 +67,8 @@ function test01()
 	$TCTMP/exp$TCID >$stdout 2>$stderr
 	tc_fail_if_bad $? "expect file failed." || return
 
-	MyPWD=`pwd`
-	grep -q ${MyPWD} $stdout
+	
+	grep -q $MyDIR $stdout
 	tc_pass_or_fail $? "unexpected script output" 
 
 }
