@@ -30,7 +30,7 @@ class nss_pam_ldapd(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/nss_pam_ldapd' + '/nss-pam-ldapd_tests.sh', shell=True)
+            ret_val = subprocess.call(test_path + '/nss_pam_ldapd' + '/nss_ldap.sh', shell=True)
             if ret_val != 0:
                 self.nfail += 1
 

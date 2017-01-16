@@ -3,7 +3,8 @@ import os, subprocess
 import logging
 
 from autotest.client import test
-from autotest.client.shared import error
+from autotest.client.shared import error, software_manager
+sm = software_manager.SoftwareManager()
 
 class strace(test.test):
 
@@ -22,6 +23,9 @@ class strace(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
+        if not sm.check_installed('gcc'):
+            logging.debug("gcc missing - trying to install")
+            sm.install('gcc')
         ret_val = subprocess.Popen(['make', 'all'], cwd="%s/strace" %(test_path))
         ret_val.communicate()
         if ret_val.returncode != 0:

@@ -1,0 +1,14 @@
+<assertions spec="HPI-B.01.01" function="saHpiDomainInfoGet">
+  <assertion id="1" line="P29-47:P29-49">
+   Pass in an invalid SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P36-14:P36-14">
+   Perform domain info discovery in each domain.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="3" line="P36-15:P36-15">
+   Pass in a NULL DomainInfo pointer.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

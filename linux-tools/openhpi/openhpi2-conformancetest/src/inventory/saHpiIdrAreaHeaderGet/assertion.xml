@@ -1,0 +1,61 @@
+<assertions spec="HPI-B.01.01" function="saHpiAreaHeaderGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiIdrAreaHeaderGet() passing in an invalid ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiIdrAreaHeaderGet() passing in an invalid SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P102-25:P102-29">
+   Retrieve one Area Header.
+   Expected return: SA_OK or SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="4" line="P106-26:P106-27">
+      Call saHpiIdrAreaHeaderGet() on a resource which does not
+      support inventory data records
+      Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P102-28:P102-29">
+   Pass in an invalid IdrId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P102-34:P102-35">
+   Area Type is set to SAHPI_IDR_AREATYPE_UNSPECIFIED, and the  
+   area specified by the AreaId parameter does not exist in the IDR.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P102-32:P102-33">
+   AreaType is set to a specific area, but an area matching both the AreaId
+   parameter and the AreaType does not exist in the IDR.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="8" line="P102-34:P102-35">
+      Pass in an invalid AreaType.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P102-36:P102-36">
+      Call saHpiIdrAreaHeaderGet() on an AreaId set to SAHPI_LAST_ENTRY.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="10" line="P102-37:P102-37">
+      Call saHpiIdrAreaHeaderGet() with the NextAreaId pointer set to NULL.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="11" line="P102-38:P102-38">
+      Call saHpiIdrAreaHeaderGet() with the Header pointer set to NULL.
+      Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="12" line="P103-2:P103-3">
+   Retrieve an Area Header by its ID and by its type.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="13" line="P103-4:P103-7">
+   Retrieve all Area Headers.
+   Expected return: SA_OK or SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="14" line="P103-8:P103-11">
+   Retrieve all of the Area Headers of a specific Area type.
+   Expected return: SA_OK or SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+</assertions>

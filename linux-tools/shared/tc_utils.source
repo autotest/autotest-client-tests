@@ -2469,3 +2469,14 @@ EOF
         rm -f /etc/yum.repos.d/$REPO.base.repo
     fi
 }
+
+
+# function tc_install_testdep will install the package from mash.
+#   $1 (required) Name of the package to be installed
+#   Returns  non-zero on failure
+function tc_install_testdep()
+{
+    local package=$1
+    yum install $package $1 -y &>/dev/null
+    tc_break_if_bad $? "$package not installed"
+}

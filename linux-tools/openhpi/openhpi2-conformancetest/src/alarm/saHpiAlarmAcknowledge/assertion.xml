@@ -1,0 +1,56 @@
+<assertions spec="HPI-B.01.01" function="saHpiAlarmAcknowledge">
+  <assertion id="1" line="P29-47:P29-49">
+      Call the function passing in an bad SessionId. 
+      saHpiAlarmAcknowledge returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P70-15:P70-15">
+      Add a new user alarm to each domain, and make sure that it 
+      could be acknowledged.  Clean up by erasing the user alarm created.
+      saHpiAlarmAcknowledge() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P70-16:P70-17">
+      Call the function passing in an bad AlarmId. 
+      saHpiAlarmAcknowledge returns SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="4" line="P70-18:P70-19">
+      Call the function passing in an bad Severity. 
+      saHpiAlarmAcknowledge returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P70-25:P70-25">
+      Add a new user alarm to each domain, and make sure that it 
+      could be acknowledged. Acknowledge it. Make sure it was 
+      acknowledged.  Clean up by erasing the user alarm created.
+      saHpiAlarmAcknowledge() returns SA_OK.
+  </assertion>
+  <assertion id="6" line="P70-30:P70-31">
+      Add two new user alarms with the same severity to each 
+      domain, and acknowedge both of them.  Clean up by erasing 
+      both of the user alarms created. 
+      saHpiAlarmAcknowledge returns SA_OK.
+  </assertion>
+  <assertion id="7" line="P70-30:P70-31">
+      Add  two new user alarms with different severities to each 
+      domain, and acknowledge one of them using it's severity.  
+      Clean up by erasing both of the user alarms created. 
+      saHpiAlarmAcknowledge returns SA_OK. Only the alarm with
+      the matching severity is acknowledged the other one isn't.
+  </assertion>
+  <assertion id="8" line="P70-28:P70-29">
+      Acknowledge all alarms.
+      saHpiAlarmAcknowledge() returns SA_OK.
+  </assertion>
+  <assertion id="9" line="P70-35:P70-36">
+      Acknowledge the same alarm twice
+      saHpiAlarmAcknowledge() returns SA_OK.
+  </assertion>
+  <assertion id="10" line="P70-37:P70-37">
+      Acknowledge a specific alarm passing in a different severity.
+      saHpiAlarmAcknowledge() returns SA_OK.
+  </assertion>
+  <assertion id="11" line="P71-1:P71-2">
+      If the AlarmId is SAHPI_ENTRY_UNSPECIFIED and no alarms
+      are present that meet the requested Severity, this
+      function will have no effect.
+      Expected return: SA_OK.
+  </assertion>
+</assertions>

@@ -1,0 +1,63 @@
+<assertions spec="HPI-B.01.01" function="saHpiAnnunciatorAcknowledge">
+  <assertion id="1" line="P29-44:P29-46">
+   Test an invalid Resource ID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Test an invalid Session Id.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P125-2:P125-3">
+     Acknowledge a single announcement.
+     Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P125-22:P125-23">
+    Attempt to acknowledge an announcement on a resource that 
+    does not support annunciators.
+    Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P125-24:P125-25">
+   Test an invalid AnnunciatorNum.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P125-26:P125-26">
+   Acknowledge an announcement with an EntryId
+   that does not exist in the Annunciator Table.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P125-27:P125-28">
+   Acknowledge announcements by passing in SAHPI_ENTRY_UNSPECIFIED
+   as the EntryId and a Severity that is out-of-range.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P125-34:P125-34">
+   Attempt to acknowledge an announcement and then
+   verify that the Acknowledged flag is set to true.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="9" line="P125-35:P125-36">
+   Attempt to acknowledge all of the announcements in the table and
+   then verify that the Acknowledged field has been set to true.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="10" line="P126-1:P126-2">
+   Attempt to acknowledge all of the announcements with a specific
+   severity and then verify that the Acknowledged field has been set to true.
+   Expected return: SA_OK
+  </assertion>
+  <assertion id="11" line="P126-6:P125-7">
+   Acknowledge an announcement twice in a row.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="12" line="P126-8:P126-8">
+   Attempt to acknowledge an announcement with a specific
+   EntryId and an unmatched Severity.  The severity should
+   be ignored.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="13" line="P126-9:P126-10">
+   Acknowledge all announcements of a specific severity, 
+   but there are not such announcements of that severity.
+   Expected return: SA_OK
+  </assertion>
+</assertions>

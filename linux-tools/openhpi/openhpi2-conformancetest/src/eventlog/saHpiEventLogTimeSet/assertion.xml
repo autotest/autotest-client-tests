@@ -1,0 +1,32 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogTimeSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogTimeSet while passing in a bad ResourceId.
+   saHpiEventLogTimeSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogTimeSet while passing in  
+       a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P55-16:P55-18">
+   Call saHpiEventLogTimeSet on a resource which does not support   
+       event logs.
+   saHpiEventLogTimeSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="4" line="P55-17:P55-18">
+   Call saHpiEventLogTimeSet on every domain event log.
+   Expected return:  call never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P55-19:P55-19">
+   Set event log's time clock equal to SAHPI_TIME_UNSPECIFIED.
+   saHpiEventLogTimeSet() returns SA_ERR_HPI_INVALID_PARAMS.  
+  </assertion>
+  <assertion id="6" line="P55-23:P55-24">
+  Set event log's time clock. Time < SAHPI_TIME_MAX_RELATIVE.
+  saHpiEventLogTimeSet() returns SA_OK.
+  </assertion>
+  <assertion id="7" line="P55-23:P55-24">
+  Set event log's time clock. Time > SAHPI_TIME_MAX_RELATIVE.
+  saHpiEventLogTimeSet() returns SA_OK.
+  </assertion>
+</assertions>

@@ -1,0 +1,32 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorEventEnableGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorEventEnableGet passing in a bad ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorEventEnableGet passing in a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P87-16:P87-16">
+   Call this function passing valid parameters.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P87-17:P87-18">
+   Call saHpiSensorEventEnableGet on a resource which does
+   not support sensors.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P87-19:P87-19">
+   Call saHpiSensorEventEnableGet passing in a NULL pointer 
+   for SensorEventsEnabled.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P87-20:P87-20">
+   Call saHpiSensorEventEnableGet passing in a bad Sensor Number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P87-22:P87-23">
+   Set event enable status then call this function to check
+   if it takes effect.
+  </assertion>
+</assertions>

@@ -45,6 +45,9 @@ function tc_local_setup()
 	rpm -q python-ldap >$stdout 2>$stderr 
 	tc_break_if_bad $? "python-ldap required, but not installed" || return 
 
+
+	cp $TSTDIR/../sasl.py $TSTDIR/../slapd.conf $TSTDIR/../t_setupslapd.py $TSTDIR
+
 	host_name=`hostname -f`
 	set $host_name
 	host_name=$1

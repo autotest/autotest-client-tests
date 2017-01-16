@@ -1,0 +1,34 @@
+<assertions spec="HPI-B.01.01" function="saHpiHotSwapIndicatorStateSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiHotSwapIndicatorStateSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiHotSwapIndicatorStateSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3-1" line="P150-20:P150-20">
+   Set the state of the hot swap indicator associated with the 
+   specified resource.
+   state = SAHPI_HS_INDICATOR_OFF.
+   saHpiHotSwapIndicatorStateSet() returns SA_OK.
+  </assertion>
+  <assertion id="3-2" line="P150-20:P150-20">
+   Set the state of the hot swap indicator associated with the 
+   specified resource.
+   state = SAHPI_HS_INDICATOR_ON.
+   saHpiHotSwapIndicatorStateSet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P150-21:P150-22">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiHotSwapIndicatorStateSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P150-23:P150-24">
+   Call on a resource which does not support the indicator on a given resource.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P150-25:P150-25">
+   Pass in an invalid State.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

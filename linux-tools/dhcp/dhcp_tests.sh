@@ -34,7 +34,7 @@
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
 source $LTPBIN/tc_utils.source
 #REQUIRED_SCRIPTS="dhcp-server.sh dhcrelay_tests.sh"
-
+cp $LTPBIN/../dhcp/dhcp-server.sh $LTPBIN/../dhcp/dhcrelay_tests.sh $LTPBIN
 
 ################################################################################
 # the testcase functions

@@ -1,0 +1,32 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorEnableGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorEnableGet passing in a bad ResourceID.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorEnableGet passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="3" line="P84-20:P84-20">
+   Call saHpiSensorEnableGet passing in a bad Sensor number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="4" line="P85-16:P85-16">
+   Call this function passing valid params
+   Expected return: SA_OK
+  </assertion>
+  <assertion id="5" line="P85-17:P85-18">
+   Call saHpiSensorEnableGet on a resource which does
+   not support sensors.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P85-19:P85-19">
+   Call saHpiSensorEnableGet passing in a NULL pointer 
+   for SensorEventsEnable.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P85-22:P85-23">
+   Attempt to toggle the sensor enable status to true and false
+   and verify that the status changed using saHpiSensorEnableGet.
+  </assertion>
+</assertions>

@@ -28,7 +28,7 @@
 ###########################################################################################
 ## source the utility functions
 
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/perl_Exporter
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Exporter" 
 ################################################################################

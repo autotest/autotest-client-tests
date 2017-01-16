@@ -1,0 +1,40 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorEnableSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorEnableSet passing in a bad ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorEnableSet passing in a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P86-16:P86-16">
+   Attempt to toggle the sensor enable status to true and false
+   and verify that the status changed using saHpiSensorEnableGet.
+  </assertion>
+  <assertion id="4" line="P86-17:P86-18">
+   Call saHpiSensorEnableSet on a resource which does
+   not support sensors.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P86-19:P86-19">
+   Call saHpiSensorEnableSet passing in a bad Sensor Number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P86-20:P86-21">
+   Call saHpiSensorEnableSet on a sensor which does not
+   support the changing of the sensor enable status.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7" line="P86-23:P86-23">
+   Disable a sensor, then call saHpiSensorReadingGet
+   to check if it return an error.
+  </assertion>
+  <assertion id="8" line="P86-23:P86-24">
+   Disable a sensor, then
+   to check no events will generated for this sensor
+  </assertion>
+  <assertion id="9" line="P86-27:P86-27">
+   Change a sensor enable status,
+   to check if there's an event generated
+  </assertion>
+</assertions>

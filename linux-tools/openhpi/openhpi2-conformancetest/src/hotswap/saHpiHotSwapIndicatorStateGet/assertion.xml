@@ -1,0 +1,32 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiHotSwapIndicatorStateGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P149-20:P149-20">
+   Get the current Hot Swap Indicator state for each resource.
+   saHpiHotSwapIndicatorStateGet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P149-21:P149-22">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P149-23:P149-24">
+   Call on a resource which does not support the indicator on a given resource.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P149-25:P149-25">
+   Pass in a Null pointer for State.
+   saHpiHotSwapIndicatorStateGet() returns SA_ERR_HPI_INVALID_PARAMS .
+  </assertion>
+  <assertion id="7" line="P149-27:P149-28">
+   Get the current Hot Swap Indicator state for each resource.
+   Compare the returned result to make sure it is only off or on.
+   saHpiHotSwapIndicatorStateGet() returns SA_OK.
+  </assertion>
+</assertions>

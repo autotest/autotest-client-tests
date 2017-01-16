@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_TimeDate
 source $LTPBIN/tc_utils.source
 PERL_TIMEDATE_DIR="${LTPBIN%/shared}/perl_TimeDate"
 PERL_CMD=`which perl`

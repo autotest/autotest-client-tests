@@ -1,0 +1,85 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogEntryAdd">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogEntryAdd while passing in a bad ResourceId.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogEntryAdd while passing in a bad SessionId.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P51-16:P51-16">
+ saHpiEventLogEntryAdd() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P51-17:P51-18">
+   Call saHpiEventLogEntryAdd on a resource which does
+       not support event logs.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P51-18:P51-19">
+  Call saHpiEventLogEntryAdd on every domain.
+  saHpiEventLogEntryAdd() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P51-20:P51-21">
+   Call saHpiEventLogEntryAdd while passing in a DataLength which 
+   is larger than that supported by the implementation and reported 
+   in the Event Log info record. 
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="7" line="P51-22:51-23">
+   Call saHpiEventLogEntryAdd while passing in a NULL pointer for EvtEntry.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P51-24:P51-25">
+  Call saHpiEventLogEntryAdd passing in a EvtEntry structure with 
+  the Source set to SAHPI_UNSPECIFIED_RESOURCE_ID and the event
+  type tried with all values except SAHPI_ET_USER.
+  saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS 
+  </assertion>
+  <assertion id="9" line="P51-26:P51-26">
+  Call saHpiEventLogEntryAdd passing in a value for 
+  EvtEntry->Severity which is out-of-range.
+  saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS. 
+  </assertion>
+  <assertion id="10" line="P51-27:P51-29">
+  Call saHpiEventLogEntryAdd setting the text buffer 
+  data type to an invalid value.
+  saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="11" line="P51-30:P51-30">
+   Call saHpiEventLogEntryAdd passing in a bad character
+   in the text buffer.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="12" line="P51-31:P51-32">
+   Call saHpiEventLogEntryAdd setting the text buffer Language to 
+   an invalid value.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="13" line="P51-33:P51-34">
+   For Event logs which support OVERFLOW_DROP overflow action,  
+   add entries until the overflow is exceeded.
+   saHpiEventLogEntryAdd() returns SA_ERR_HPI_OUT_OF_SPACE.
+  </assertion>
+  <assertion id="14" line="P52-1:P52-10">
+   For Event logs which support OVERFLOW_OVERWRITE overflow action,  
+   add entries until the overflow is exceeded.
+   saHpiEventLogEntryAdd() returns SA_OK, and the new event log 
+   entry is present in the log.
+  </assertion>
+  <assertion id="15" line="P52-1:P52-10">
+   For Event logs which support OVERFLOW_OVERWRITE overflow action,  
+   add entries until the overflow is exceeded.
+   saHpiEventLogEntryAdd() returns SA_OK, and the number of entries
+   is not greater than the size. 
+  </assertion>
+  <assertion id="16" line="P51-27:P51-29">
+  Call saHpiEventLogEntryAdd to test all valid text data type to check 
+  whether all types are supported. saHpiEventLogEntryAdd() returns SA_OK.
+  </assertion>
+  <assertion id="17" line="P52-1:P52-10">
+   For Event logs which support OVERFLOW_DROP overflow action,  
+   add entries until the overflow is exceeded.
+   saHpiEventLogEntryAdd() returns SA_OK, and the number of entries
+   is not greater than the size. 
+  </assertion>
+</assertions>

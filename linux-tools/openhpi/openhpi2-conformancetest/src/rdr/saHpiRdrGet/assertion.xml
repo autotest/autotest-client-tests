@@ -1,0 +1,34 @@
+<assertions spec="HPI-B.01.01" function="saHpiRdrGet">
+  <assertion id="1" line="P75-30:P75-33">
+   Call saHpiRdrGet to retrieve all Rdr in each resource.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiRdrGet passing a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P29-44:P29-46">
+   Call saHpiRdrGet passing a bad ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="4" line="P75-21:P75-22">
+   Call saHpiRdrGet passing a ResourceId which has no RDR inside.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P75-23:P75-24">
+   Call saHpiRdrGet passing a invalid(not present) EntryId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P75-25:P75-26">
+   Call saHpiRdrGet passing SAHPI_LAST_ENTRY as EntryId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P75-27:P75-27">
+   Call saHpiRdrGet passing NULL as NextEntryId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P75-28:P75-28">
+   Call saHpiRdrGet passing NULL as RDR.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

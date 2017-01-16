@@ -1,0 +1,4 @@
+# Place your libary file here. 
+# Format: -l<libary name>
+# Example: -l<lopenhpi>
+-lopenhpi

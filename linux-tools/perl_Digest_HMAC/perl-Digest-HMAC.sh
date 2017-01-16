@@ -27,8 +27,8 @@
 ### Author:      Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Digest_HMAC
 source $LTPBIN/tc_utils.source
 TESTDIR=${LTPBIN%/shared}/perl_Digest_HMAC/t
 installed_dir=/usr/share/perl*/vendor_perl/Digest

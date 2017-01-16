@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Text_Iconv
 source $LTPBIN/tc_utils.source
 ICONV_DIR="${LTPBIN%/shared}/perl_Text_Iconv"
 PERL_CMD=`which perl`

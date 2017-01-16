@@ -1,0 +1,26 @@
+<assertions spec="HPI-B.01.01" function="saHpiDrtEntryGet">
+  <assertion id="1" line="P29-47:P29-49">
+   Pass in an invalid SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P37-19:P37-19">
+   Get all of the DRT entries in all in each domain.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="3" line="P37-21:P37-21">
+   Pass in an invalid EntryId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="4" line="P37-24:P37-24">
+   Pass in a NULL pointer for DrtEntry.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P37-25:P37-25">
+   Pass in a NULL pointer for NextEntryId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P37-26:P37-26">
+   Pass in a SAHPI_LAST_ENTRY for EntryId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

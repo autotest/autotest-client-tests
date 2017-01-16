@@ -1,0 +1,22 @@
+<assertions spec="HPI-B.01.01" function="saHpiResourceSeveritySet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiResourceSeveritySet passing in a bad ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:p29-49">
+   Call saHpiResourceSeveritySet while passing in an invalid Session ID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P43-2:43-6" manual="yes">
+   Check if saHpiResourceSeveritySet takes effect
+   User needs insert/extract a FRU manually
+  </assertion>
+  <assertion id="4" line="P43-18:p43-18">
+ 	Call the function with valid paramaters.
+ 	Expected return: SA_OK.
+  </assertion>
+  <assertion id="5" line="P43-19:P43-20">
+   Call saHpiResourceSeveritySet() passing in an invalid value for Severity.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

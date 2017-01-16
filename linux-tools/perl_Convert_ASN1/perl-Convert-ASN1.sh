@@ -27,8 +27,8 @@
 ### Author:      Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Convert_ASN1
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_Convert_ASN1"
 REQUIRED="perl rpm"

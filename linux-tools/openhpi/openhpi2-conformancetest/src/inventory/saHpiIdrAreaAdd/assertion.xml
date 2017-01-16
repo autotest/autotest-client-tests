@@ -1,0 +1,48 @@
+<assertions spec="HPI-B.01.01" function="saHpiIdrAreaAdd">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P104-18:P104-18">
+      Add an IDR area to each IDR.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P104-19:P104-20">
+      Call saHpiIdrAreaAdd() on a Resource which does not support IDRs.
+      Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P104-21:P104-21">
+      Call on an Inventory Data Repositories which does not exist.
+      Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P104-22:P104-24">
+   Pass in an Area type set to SAHPI_IDR_AREATYPE_UNSPECIFIED.
+   Expected return: SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="7" line="P104-27:P104-28">
+   Set AreaId pointer to NULL.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P104-29:P104-29">
+   Call saHpiIdrAreaAdd() passing in an Area Type which is out-of-range.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P104-30:P104-30">
+   Call saHpiIdrAreaAdd() on an IDR which is read only.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="10" line="P104-32:P104-32">
+   Add a new IDR area with saHpiIdrAreaAdd() and confirm that the
+   AreaId has been set to a new value.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="11" line="P104-33:P104-33">
+   Add in a new IDR area with saHpiIdrAreaAdd(), and confirm that 
+   ReadOnly is set to FALSE.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

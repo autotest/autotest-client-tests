@@ -1,0 +1,53 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiHotSwapActionRequest">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3-1" line="P148-20:P148-20">
+   Invoke an insertion process via software. 
+   Action = SAHPI_HS_ACTION_INSERTION.
+   saHpiHotSwapActionRequest() returns SA_OK.
+  </assertion>
+  <assertion id="3-2" line="P148-20:P148-20">
+   Invoke an extraction process via software. 
+   Action = SAHPI_HS_ACTION_EXTRACTION.
+   saHpiHotSwapActionRequest() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P148-21:P148-22">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P148-25:P148-25">
+   Pass in an invalid Action.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_PARAMS .
+  </assertion>
+  <assertion id="6" line="P148-31:P148-32">
+   Request an Insertion action when in an active state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="7" line="P148-33:P148-33">
+   Request an extraction action when in an inactive state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="8-1" line="P148-34:P148-34">
+   Request an Insertion action when in the EXTRACTION_PENDING state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="8-2" line="P148-34:P148-34">
+   Request an Insertion action when in the INSERTION_PENDING state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="8-3" line="P148-34:P148-34">
+   Request an Extraction action when in the EXTRACTION_PENDING state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="8-4" line="P148-34:P148-34">
+   Request an Extraction action when in the INSERTION_PENDING state.
+   saHpiHotSwapActionRequest() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+</assertions>

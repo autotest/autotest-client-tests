@@ -1,0 +1,52 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiAutoExtractTimeoutSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiAutoExtractTimeoutSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiAutoExtractTimeoutSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P145-18:P145-18">
+   Set the AutoExtractTimeout for all resources.
+   saHpiAutoExtractTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P145-19:P145-20">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiAutoExtractTimeoutSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P145-21:P145-22">
+   Pass in a Timeout which is negative and not equal to 
+   SAHPI_TIMEOUT_BLOCK or SAHPI_TIMEOUT_IMMEDIATE.
+   saHpiAutoExtractTimeoutSet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P145-23:P145-24">
+   Call against a resoruce which the auto-extract timeout is fixed 
+   with the SAHPI_HS_CAPABILITY_AUTOEXTRACT_READ_ONLY flag in the 
+   resource's RPT entry.
+   saHpiAutoExtractTimeoutSet() returns SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7-1" line="P145-26:P145-31">
+   Configure a timeout for how long to wait before the 
+   default auto-extraction poilicy is involked. Timeout = 
+   SAHPI_TIMEOUT_IMMEDIATE.  This is a 
+   Read/Write/Read/Compare/Restore test.
+   saHpiAutoExtractTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="7-2" line="P145-26:P145-31">
+   Configure a timeout for how long to wait before the 
+   default auto-extraction poilicy is involked. 
+   Timeout != SAHPI_TIMEOUT_IMMEDIATE. 
+   Timeout != SAHPI_TIMEOUT_BLOCK.
+   This is a Read/Write/Read/Compare/Restore test.
+   saHpiAutoExtractTimeoutSet() returns SA_OK.
+  </assertion>
+  <assertion id="7-3" line="P145-26:P145-31">
+   Configure a timeout for how long to wait before the 
+   default auto-extraction poilicy is involked. 
+   Timeout == SAHPI_TIMEOUT_BLOCK.
+   This is a Read/Write/Read/Compare/Restore test.
+   saHpiAutoExtractTimeoutSet() returns SA_OK.
+  </assertion>
+</assertions>

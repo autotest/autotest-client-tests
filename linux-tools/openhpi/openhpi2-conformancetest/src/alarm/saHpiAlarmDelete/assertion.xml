@@ -1,0 +1,63 @@
+<assertions spec="HPI-B.01.01" function="saHpiAlarmDelete">
+  <assertion id="1" line="P29-47:P29-49">
+      Call saHpiAlarmDelete() passing in a bad SessionId.
+      saHpiAlarmDelete() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P73-17:P73-17">
+      Add a new user alarm to each domain and delete it.
+      saHpiAlarmDelete() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P73-18:P73-19">
+      Call saHpiAlarmDelete() passing in a bad Severity.
+      saHpiAlarmDelete() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4" line="P73-20:P73-21">
+      Call saHpiAlarmDelete() passing in a bad AlarmId.
+      saHpiAlarmDelete() returns SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="5-1" line="P73-24:P73-25" manual="yes">
+      Manually generate an alarm and add another alarm
+      of any severity.  Delete both.  Only the user alarms
+      will be deleted.
+      saHpiAlarmDelete() returns SA_OK, non-user alarm not removed.
+  </assertion>
+  <assertion id="5-2" line="P73-24:P73-25" manual="yes">
+      If a non-user alarm exist, create a user alarm with the same severity
+      Attempt to delete all of the alarms with that severity.
+      saHpiAlarmDelete() returns SA_OK. The non-user alarm is not removed.
+  </assertion>
+  <assertion id="5-3" line="P73-22:P73-22" manual="yes">
+      If a non-user alarm is present, attempt to delete it.
+      saHpiAlarmDelete() returns SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7" line="P73-24:P73-25">
+      Add two new user alarms of different severities in each 
+      domain and delete only one of them by specifying the severity.
+      saHpiAlarmDelete() returns SA_OK, only the alarm of the specified
+      severity is deleted.
+  </assertion>
+  <assertion id="8" line="P73-26:P73-28">
+      Add a new user alarm to each domain and delete it
+      with the wrong severity.
+      saHpiAlarmDelete() returns SA_OK.
+  </assertion>
+  <assertion id="9" line="P73-29:P73-31">
+      Add two new user alarms of the same severity in each 
+      domain and delete both of them together with one delete 
+      command.
+      saHpiAlarmDelete() returns SA_OK.
+  </assertion>
+  <assertion id="10" line="P73-30:P73-31">
+      Add a new user alarm to each domain and delete all alarms.
+      saHpiAlarmDelete() returns SA_OK.
+  </assertion>
+  <assertion id="11" line="P73-27:P73-28">
+      Set severity to 'SAHPI_OK+1' on call to saHpiAlarmDelete()
+      to make sure this parameter really is being ignored, as it
+      should be.
+  </assertion>
+  <assertion id="12" line="P73-30:P73-31">
+      Add a new user alarm to each domain and delete all alarms.
+      saHpiAlarmDelete() returns SA_OK.
+  </assertion>
+</assertions>

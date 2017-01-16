@@ -1,0 +1,23 @@
+<assertions spec="HPI-B.01.01" function ="saHpiResourceInactiveSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiResourceInactiveSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiResourceInactiveSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P140-13:P140-13">
+   Signal that the resource should now transition into the INACTIVE state.
+   saHpiResourceInactiveSet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P140-14:P140-15">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiResourceInactiveSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P140-16:P140-17">
+   Call on a resource which is not in the Insertion or Extraction Pending state.
+   saHpiResourceInactiveSet() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+</assertions>
+

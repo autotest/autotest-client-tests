@@ -1,0 +1,53 @@
+<assertions spec="HPI-B.01.01" function="saHpiIdrFieldDelete">
+  <assertion id="1" line="P29-44:P29-46">
+   Call the routine while passing in a bad value for ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call the routine while passing in a bad value for SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P113-18:P113-18">
+   Create a field, and then delete it. Do this on all IDR 
+   areas available.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P113-19:P113-20">
+   Call on a resource which does not support Inventory Data Repositories.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P113-21:P113-22">
+   Pass in an Invalid IdrId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6-1" line="P113-23:P113-23">
+   Pass in an AreaId which is set to a non-existent area value in the specified IDR.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6-2" line="P113-23:P113-24">
+   Pass in an FieldId which is set to a non-existent 
+   field value in the specified IDR Area.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7-1" line="P113-25:P113-25">
+   Test deleting a Field that is ReadOnly and the
+   the IDR and IDA are not ReadOnly.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7-2" line="P113-25:P113-25">
+   Call on a IDR area which is read only.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7-3" line="P113-25:P113-25">
+   Call on a IDR which is read only.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="8-1" line="P113-26:P113-27">
+   Pass in an AreaId set to SAHPI_LAST_ENTRY.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8-2" line="P113-26:P113-27">
+   Pass in an FieldId set to SAHPI_LAST_ENTRY.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

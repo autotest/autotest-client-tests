@@ -1,0 +1,31 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogTimeGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogTimeGet while passing in a bad ResourceId.
+   saHpiEventLogTimeGet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P54-20:P54-20">
+   Call saHpiEventLogTimeGet while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P54-16:P54-16">
+   Get the EventLog time.
+   saHpiEventLogTimeGet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P54-17:P54-18">
+   Call saHpiEventLogTimeGet on a resource which does not support   
+       event logs.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P54-18:P54-19">
+   Call saHpiEventLogTimeGet on domain event logs.
+   saHpiEventLogTimeGet() returns SA_OK and never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P54-20:P54-20">
+   Call saHpiEventLogTimeGet passing in a NULL pointer for Time.
+   saHpiEventLogTimeGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P54-22:P54-24">
+              saHpiEventLogTimeGet() returns SA_OK, time 
+              is never SAHPI_TIME_UNSPECIFIED.  
+  </assertion>
+</assertions>

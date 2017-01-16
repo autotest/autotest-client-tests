@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Class_Singleton
 source $LTPBIN/tc_utils.source
 Singleton_TEST_DIR="${LTPBIN%/shared}/perl_Class_Singleton/tests"
 Required=perl

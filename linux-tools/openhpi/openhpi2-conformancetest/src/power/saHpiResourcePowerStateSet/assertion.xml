@@ -1,0 +1,30 @@
+<assertions spec="HPI-B.01.01" function="saHpiResourcePowerStateSet">
+  <assertion id="1" line="P159-2:P159-4">
+   Call saHpiResourcePowerStateSet to set power state of the resources.
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="2" line="P159-17">
+   Call saHpiResourcePowerStateSet to set power state as SAHPI_POWER_CYCLE.
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="3" line="P157-5">
+   Call saHpiResourcePowerStateSet to set power state same as the old state.
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="4" line="P29-44:P29-46">
+   Call saHpiResourcePowerStateSet passing a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="5" line="P29-44:P29-46">
+   Call saHpiResourcePowerStateSet passing a bad ResourceId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="6" line="P159-20:P159-21">
+   Call saHpiResourcePowerStateSet on resource which does't support POWER capability.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="7" line="P159-22">
+   Call saHpiResourcePowerStateSet passing invalid value as State.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+  </assertion>
+</assertions>
