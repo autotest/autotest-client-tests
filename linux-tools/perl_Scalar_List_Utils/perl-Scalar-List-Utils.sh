@@ -27,8 +27,8 @@
 ### Author:      Ravindran Arani <ravi@linux.vnet.ibm.com>                     ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Scalar_List_Utils
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_Scalar_List_Utils/"
 

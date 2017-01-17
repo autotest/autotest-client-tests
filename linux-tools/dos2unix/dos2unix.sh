@@ -31,6 +31,7 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/dos2unix
 source $LTPBIN/tc_utils.source
+TEST_PATH=${LTPBIN%/shared}/dos2unix
 
 TST_TOTAL=6
 REQUIRED="dos2unix mac2unix ls cat"
@@ -59,7 +60,7 @@ function TC_dos2unix-n()
 	dos2unix -n $TCTMP/tstfile.txt $TCTMP/dos_out.txt > $stdout 2>/dev/null
 	tc_fail_if_bad $? "Not available." || return
 
-	dos2unix_chk dos $TCTMP/dos_out.txt 
+	$TEST_PATH/dos2unix_chk dos $TCTMP/dos_out.txt 
 	tc_pass_or_fail $? "Unexpected output: cr still there in output." 
 }
 
@@ -84,7 +85,7 @@ function TC_mac2unix-n()
 	mac2unix -n $TCTMP/mac_tstfile.txt $TCTMP/mac_out.txt >$stdout 2>/dev/null
 	tc_fail_if_bad $? "Not available." || return
 	
-	dos2unix_chk mac $TCTMP/mac_out.txt 
+	$TEST_PATH/dos2unix_chk mac $TCTMP/mac_out.txt 
 	tc_pass_or_fail $? "Unexpected output: cr still there or cr not converted to newline." 
 }
 

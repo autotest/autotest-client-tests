@@ -29,7 +29,7 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/perl
 source $LTPBIN/tc_utils.source
 
 TEST_DIR="${LTPBIN%/shared}/perl/t"	# directory for individual testcases

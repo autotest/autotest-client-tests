@@ -1,0 +1,22 @@
+<assertions spec="HPI-B.01.01" function="saHpiSubscribe">
+  <assertion id="1-1" line="P60-2:P60-3">
+   Check whether events with different severities 
+   are received.
+  </assertion>
+  <assertion id="1-2" line="P60-1:P60-2" manual="yes">
+    Check whether different types of events can be got.
+    User need plug out a FRU in the domain manually.
+  </assertion>
+  <assertion id="2" line="P60-11:P60-11">
+	Call the function passing in a valid SessionId.
+	saHpiSubscribe() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P29-47:P29-49">
+   Call saHpiSubscribe passing in a bad SessionId
+   Expected return:  call returns with an error
+  </assertion>
+  <assertion id="5" line="P60-12:P60-12">
+	Call the function twice.
+	saHpiSubscribe() returns SA_ERR_HPI_DUPLICATE.
+  </assertion>
+</assertions>

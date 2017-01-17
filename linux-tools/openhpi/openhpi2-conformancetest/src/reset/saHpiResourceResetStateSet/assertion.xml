@@ -1,0 +1,42 @@
+<assertions spec="HPI-B.01.01" function="saHpiResourceResetActionSet">
+  <assertion id="1" line="P156-14">
+   Call saHpiResourceResetStateSet to set reset state as SAHPI_COLD_RESET
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="2" line="P156-15">
+   Call saHpiResourceResetStateSet to set reset state as SAHPI_WARM_RESET
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="3" line="P156-16:P156-18">
+   Call saHpiResourceResetStateSet to set reset state as SAHPI_RESET_ASSERT
+   Expected return:  call returns SA_OK 
+  </assertion>
+  <assertion id="4" line="P29-44:P29:46">
+   Call saHpiResourceResetStateSet passing a bad SessionId
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="5" line="P29-44:P29:46">
+   Call saHpiResourceResetStateSet passing a bad ResourceId
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="6" line="P156-22">
+   Call saHpiResourceResetStateSet on resource which doesn't support RESET
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="7" line="P156:24">
+   Call saHpiResourceResetStateSet passing a invalid  ResetAction
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+  </assertion>
+  <assertion id="8" line="P156-25">
+   Call saHpiResourceResetStateSet to set reset state as SAHPI_RESET_ASSERT for resource which doesn't support it
+   Expected return:  call returns SA_ERR_HPI_INVALID_CMD
+  </assertion>
+  <assertion id="9" line="P156-27">
+   Call saHpiResourceResetStateSet to cold reset the resource when it has been in ASSERT STATUS
+   Expected return:  call returns SA_ERR_HPI_INVALID_REQUEST
+  </assertion>
+  <assertion id="10" line="P156-27">
+   Call saHpiResourceResetStateSet to warm reset the resource when it has been in ASSERT STATUS
+   Expected return:  call returns SA_ERR_HPI_INVALID_REQUEST
+  </assertion>
+</assertions>

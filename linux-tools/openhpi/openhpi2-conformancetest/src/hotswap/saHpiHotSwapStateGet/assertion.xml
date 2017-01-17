@@ -1,0 +1,33 @@
+<assertions spec="HPI-B.01.01" function ="saHpiHotSwapStateGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiHotSwapStateGet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiHotSwapStateGet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P147-18:P147-18">
+   Obtain the current hot swap state of each resource.
+   saHpiHotSwapStateGet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P147-19:P147-20">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiHotSwapStateGet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P147-21:P147-21">
+   Pass in a NULL pointer for State.
+   saHpiHotSwapStateGet() returns SA_ERR_HPI_INVALID_PARAMS .
+  </assertion>
+  <assertion id="6" line="P147-23:P147-27">
+   Obtain the current hot swap state of each resource. Compare
+   the returned state to make sure that only the supported states
+   are returned.
+   saHpiHotSwapStateGet() returns SA_OK.
+  </assertion>
+  <assertion id="7" line="P147-28:P147-29">
+   Obtain the current hot swap state of each resource. Make sure 
+   that Not Present state is never returned.
+   saHpiHotSwapStateGet() returns SA_OK.
+  </assertion>
+</assertions>

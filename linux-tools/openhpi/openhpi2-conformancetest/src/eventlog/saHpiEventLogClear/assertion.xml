@@ -1,0 +1,27 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogClear">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogClear while passing in a bad ResourceId.
+   saHpiEventLogClear() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogClear while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P53-13:P53-13">
+   Erase the contents of the event logs.
+   saHpiEventLogClear() returns SA_OK, and the event log is cleared.  
+  </assertion>
+  <assertion id="4" line="P53-14:P53-16">
+   Call saHpiEventLogClear on a resource which does
+       not support event logs.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P53-14:P53-16">
+   Call saHpiEventLogClear on every domain.
+   saHpiEventLogClear() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P53-18:P53-18">
+   Call saHpiEventLogClear on an overflowed event log.
+   saHpiEventLogClear() returns SA_OK, and the overflow flag is cleared.  
+  </assertion>
+</assertions>

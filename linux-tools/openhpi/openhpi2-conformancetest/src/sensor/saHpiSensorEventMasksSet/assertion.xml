@@ -1,0 +1,67 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorEventMasksSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorEventMasksSet passing in a bad ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorEventMasksSet passing in a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P90-19:P90-23">
+   First call saHpiSensorEventMasksSet, expect returns SA_OK.
+   After its clearing/setting mask, call saHpiSensorEventMasksGet
+   to check if it takes effect.  Also tests line P90-30:P90-30.
+  </assertion>
+  <assertion id="4" line="P90-31:P90-32">
+   Call saHpiSensorEventMasksSet on a resource which does
+   not support sensors.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P90-37:P90-37">
+   Call saHpiSensorEventMasksSet passing in a bad Sensor Number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P90-38:P90-39">
+   Call saHpiSensorEventMasksSet on a sensor which does not
+   support the changing of the event enable status.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7" line="P91-9:P91-13">
+   Call saHpiSensorEventMasksSet against the sensor 
+   with SAHPI_CAPABILITY_EVT_DEASSERTS flag set, 
+   check DeassertEventMask is ignored
+  </assertion>
+  <assertion id="8" line="P91-14:P91-16">
+   Call saHpiSensorEventMasksSet to clear the mask with 
+   AssertEventMask/DeassertEventMask = SAHPI_ALL_EVENT_STATES 
+   Check if AssertEventMask/DeassertEventMask are both set to 0
+  </assertion>
+  <assertion id="9" line="P91-17:P91-18">
+   Change the sensor's event masks, then check if an event
+   SAHPI_ET_SENSOR_ENABLE_CHANGE was generated.
+  </assertion>
+  <assertion id="10" line="P90-36:P90-36">
+   Call saHpiSensorEventMasksSet with an invalid Action parameter.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="11" line="P90-33:P90-35">
+   Call saHpiSensorReadingGet to retrieve a sensor reading and the event
+   states that are supported. Find an event state that is not supported.
+   First call saHpiSensorEventMasksSet() with the Action parameter equal to
+   SAHPI_SENS_ADD_EVENTS_TO_MASKS and with an assertEventMask that includes
+   a bit for an event state that is not supported by the sensor. Then
+   call saHpiSensorEventMasksSet() with the Action parameter equal to
+   SAHPI_SENS_ADD_EVENTS_TO_MASKS and with a deassertEventMask that includes
+   a bit for an event state that is not supported by the sensor.
+   Expected return: SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="12" line="P91-17:P91-18">
+   Change the assert and deassert masks separately and verify
+   that the event SAHPI_ET_SENSOR_ENABLE_CHANGE is generated.
+  </assertion>
+  <assertion id="13" line="P91-9:P91-10">
+   For sensors that don't support SAHPI_CAPABILITY_EVT_DEASSERTS, 
+   verify that the assert/deassert event masks can be independently
+   changed.
+  </assertion>
+</assertions>

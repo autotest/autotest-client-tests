@@ -1,0 +1,53 @@
+<assertions spec="HPI-B.01.01" function="saHpiAnnunciatorAdd">
+  <assertion id="1" line="P29-44:P29-46">
+   Test an invalid Resource Id.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Test an invalid Session Id.
+   Expected return:  SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P127-2:P127-3">
+   Add announcements to each Annunciator. 
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P127-20:P127-21">
+   Test an invalid AnnunciatorNum.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="5" line="P127-18:P127-19">
+   Attempt to add an announcement to a resource that 
+   does not support Annunciators.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P127-22:P127-23">
+   Test passing a NULL pointer for the announcement parameter.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P127-25:P127-25">
+   Add an announcement using an invalid StatusCond.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P127-24:P127-24">
+   Add an announcement using an invalid Severity.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P127-28:P127-28">
+   Add an announcement to an Annunciator in AUTO mode.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="10" line="P127-30:P127-32">
+   Add an announcement and verify that the Timestamp field
+   is set to a new value.
+   Expected return: SA_OK 
+  </assertion>
+  <assertion id="11" line="P127-30:P127-32">
+   Add an announcement and verify that the AddedByUser field is set to True.
+   Expected return: SA_OK 
+  </assertion>
+  <assertion id="12" line="P127-30:P127-32">
+   Add a new announcement, then check whether the EntryId field
+   is set to  a new value.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

@@ -1,0 +1,31 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorTypeGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorTypeGet passing in a bad ResourceID.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorTypeGet passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="3" line="P84-18:P84-18">
+   Call saHpiSensorTypeGet 
+   then check whether Type and Category are valid.
+  </assertion>
+  <assertion id="6" line="P84-19:P84-20">
+   Call saHpiSensorTypeGet on a resource which does not 
+   support sensors.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="7" line="P84-21:P84-21">
+   Call saHpiSensorTypeGet passing in a bad Sensor Number.
+   Expected return:  call returns SA_ERR_HPI_NOT_PRESENT
+  </assertion>
+  <assertion id="8" line="P84-23:P84-23">
+   Call saHpiSensorTypeGet passing in a NULL pointer for Type.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+  </assertion>
+  <assertion id="9" line="P84-24:P84-24">
+   Call saHpiSensorTypeGet passing in a NULL pointer for Catagory.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+  </assertion>
+</assertions>

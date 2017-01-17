@@ -1,0 +1,31 @@
+<assertions spec="HPI-B.01.01" function="saHpiAlarmGet">
+  <assertion id="1" line="P29-47:P29-49">
+      Call saHpiAlarmGet() passing in a bad SessionId
+      saHpiAlarmGet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P69-15:P69-15">
+      Add a new user alarm to each domain, and make sure that it 
+      could be read.  Clean up by erasing the user alarm created.
+      saHpiAlarmGet() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P69-16:P69-17">
+      Call saHpiAlarmGet() passing in a bad AlarmId.
+      saHpiAlarmGet() returns SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="4" line="P69-18:P69-18">
+      Call saHpiAlarmGet() passing in a NULL Alarm pointer
+      saHpiAlarmGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P69-20:P69-21">
+      Attempt to get the first alarm using SAHPI_FIRST_ENTRY 
+      as the AlarmId.  The implementation should return
+      SA_OK or SA_ERR_HPI_NOT_PRESENT.  Either return code
+      is valid since the specification is ambiguous.
+  </assertion>
+  <assertion id="6" line="P69-20:P69-21">
+      Attempt to get the last alarm using SAHPI_LAST_ENTRY 
+      as the AlarmId.  The implementation should return
+      SA_OK or SA_ERR_HPI_NOT_PRESENT.  Either return code
+      is valid since the specification is ambiguous.
+  </assertion>
+</assertions>

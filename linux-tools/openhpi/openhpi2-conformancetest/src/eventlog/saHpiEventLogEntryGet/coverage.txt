@@ -1,0 +1,17 @@
+1		Yes
+2		Yes
+3		Yes
+4		Yes
+5		Yes
+6		Yes
+7		Yes
+8-1		Yes
+8-2		Yes
+8-3		Yes
+9		Yes
+10-1		Yes
+10-2		Yes
+11		Yes
+12		Yes
+13		Yes
+14		Yes

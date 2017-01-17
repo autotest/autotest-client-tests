@@ -1,0 +1,34 @@
+<assertions spec="HPI-B.01.01" function="saHpiRptEntryGet">
+  <assertion id="1" line="P29-47:P29-49">
+   Call saHpiRptEntryGet while passing in an invalid Session ID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P40-21:P40-21">
+   Call saHpiRptEntryGet passing in a bad EntryId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="3" line="P40-24:P40-24">
+   Call saHpiRptEntryGet passing in a NULL for RptEntry.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4" line="P40-25:P40-25">
+   Call saHpiRptEntryGet passing in a NULL for NextEntryId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P40-26:P40-26">
+   Pass in EntryId with the SAHPI_LAST_ENTRY value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P40-28:40-32">
+   Get all of the rpt entries in all in each domain.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="7" line="P41-1:P41-3" manual="yes">
+   Check whether RPT updates automatically.
+   User needs to remove/insert a FRU manually.
+  </assertion>
+  <assertion id="8" line="P41-4:P41-8" manual="yes">
+   Check whether RptUpdateCount is updated if we insert a FRU
+   User need insert a FRU manually
+  </assertion>
+</assertions>

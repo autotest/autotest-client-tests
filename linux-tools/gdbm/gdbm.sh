@@ -31,7 +31,7 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/gdbm
 source $LTPBIN/tc_utils.source
-PWD=`pwd`
+TEST_PATH=${LTPBIN%/shared}/gdbm
 ################################################################################
 # any utility functions specific to this file can go here
 ################################################################################
@@ -60,7 +60,7 @@ function test01()
 		quit
 	EOF
 	
-	$PWD/testgdbm < $TCTMP/gdbm_data >$stdout 2>$stderr
+	$TEST_PATH/testgdbm < $TCTMP/gdbm_data >$stdout 2>$stderr
 	tc_break_if_bad $? "unexpected response" || return
 	
 	expected="com -> key -> data is ->welovetest"

@@ -1,0 +1,77 @@
+<assertions spec="HPI-B.01.01" function="saHpiIdrFieldSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P111-16:P111-16">
+   Set a field in each IDR area to a new value.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P111-17:P111-18">
+   Call on a resource which does not support Inventory Data Repositories.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P111-19:P111-20">
+   Call on an Inventory Data Repositories which does not exist. 
+   Pass in an invalid IdrId.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P111-21:P111-22">
+   Call saHpiIdrFieldSet() with the Aread identified by
+    Field->AreaId does not exist within the IDR.
+    Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P111-23:P111-24">
+   Pass in a Field pointer set to NULL.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P111-25:P111-25">
+   Pass in a Field->Type set to an out-of-range value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P111-26:P111-26">
+   Pass in a Field->Type set to SAHPI_IDR_FIELDTYPE_UNSPECIFIED.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="10" line="P111-31:P111-32">
+   Call saHpiIdrFieldSet() on a Field which is READ_ONLY.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="11" line="P111-33:P111-33">
+   Call saHpiIdrFieldSet() on a Area which is READ_ONLY.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="12" line="P111-34:P111-34">
+   Call saHpiIdrFieldSet() on a IDR which is READ_ONLY.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="13" line="P111-35:P112-1">
+   Pass in an Invalid Text Buffer in the Field Structure. Set the Data 
+   Type to an out-of-range value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="14" line="P112-2:P112-2">
+   Pass in an Invalid Text Buffer in the Field Structure. Pass in an 
+   invalid character in the data field.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="15" line="P112-3:P112-4">
+   Pass in an Invalid Text Buffer in the Field Structure. Set the Language 
+   to an out-of-range value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="16" line="P112-6:P112-6">
+   Modify both the field type and field data in the same call.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="17" line="P112-7:P112-8">
+   Attempt to set the field to read-only.  The input
+   value should be ignored and the ReadOnly element
+   will always be false.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

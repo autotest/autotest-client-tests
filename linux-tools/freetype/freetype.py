@@ -3,7 +3,8 @@ import os, subprocess
 import logging
 
 from autotest.client import test
-from autotest.client.shared import error
+from autotest.client.shared import error, software_manager
+sm = software_manager.SoftwareManager()
 
 class freetype(test.test):
 
@@ -22,7 +23,11 @@ class freetype(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-        ret_val = subprocess.Popen(['make', 'all'], cwd="%s/freetype" %(test_path))
+        for package in ['gcc', 'freetype-devel']:
+            if not sm.check_installed(package):
+                logging.debug("%s missing - trying to install", package)
+                sm.install(package)
+        ret_val = subprocess.Popen(['make', 'all'], cwd="%s/freetype/freetype-test" %(test_path))
         ret_val.communicate()
         if ret_val.returncode != 0:
             self.nfail += 1

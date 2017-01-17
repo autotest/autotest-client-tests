@@ -1,0 +1,207 @@
+<assertions spec="HPI-B.01.01" function="saHpiParmControl">
+  <assertion id="1" line="P153-24:P153-25">
+   Call saHpiParmControl on a resource which doesn't support 
+      parameter control.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+
+  </assertion>
+  <assertion id="2" line="P29-44:P29-46">
+   Call saHpiParmControl passing a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION
+
+  </assertion>
+  <assertion id="3" line="P29-44:P29-46">
+   Call saHpiParmControl passing a bad ResourceId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+
+  </assertion>
+  <assertion id="4" line="P153:26">
+   Call saHpiParmControl passing an invalid parameter for action.
+      
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS
+
+  </assertion>
+  <assertion id="5" line="P153-23">
+   Call saHpiParmControl passing valid parameters
+     with action = SAHPI_SAVE_PARM
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="6" line="P152-6:P153-16:P153-17:P153-18">
+   Call saHpiParmControl with Action=SAHPI_SAVE_PARM. Use 
+      saHpiAutoExtractTimeoutGet() to get the auto-extract timeout value.
+      Then use saHpiAutoExtractTimeoutSet() to change the value. Then
+      call saHpiParmControl with Action=SAHPI_RESTORE_PARM to make sure
+      that saHpiParmControl SAHPI_SAVE_PARM works.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="7" line="P152-7:P153-16:P153-17:P153-18">
+   Call saHpiParmControl with Action=SAHPI_SAVE_PARM. Use
+      saHpiSensorEnableGet() to get the sensor enable state.
+      Then use saHpiAutoSensorEnableSet() to change the value.
+      Then call saHpiParmControl with Action=SAHPI_RESTORE_PARM to
+      make sure that saHpiParmControl with SAHPI_SAVE_PARM works.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="8" line="P153-16:P153-18">
+   Call saHpiParmControl with Action=SAHPI_SAVE_PARM. Use
+      saHpiSensorEventEnableGet() to get the sensor event enable
+      state. Use saHpiSensorEventEnableSet() to change the value.
+      Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get
+      the new value from the sensor event enable state. Then 
+      compare the old and new values to make sure that 
+      saHpiParmControl with Action=SAHPI_SAVE_PARM works.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="9" line="P153-16:P153-18">
+   Call saHpiParmControl with Action=SAHPI_SAVE_PARM. Use
+      saHpiSensorEventMasksSet() to get the sensor assert and deassert
+      states. Use saHpiSensorEventMasksGet() to change the values.
+      Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get the
+      new values for the sensor assert and deassert states. Compare 
+      the old and new values to make sure that saHpiParmControl 
+      with Action=SAHPI_SAVE_PARM works.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="10" line="P153-16:P153-18">
+   Call saHpiParmControl with Action=SAHPI_SAVE_PARM, use 
+      saHpiSensorThresholdsGet to retrieve the threshold values.
+      Use saHpiSensorThresholdsSet to set the threshold values. 
+      Call saHpiParmControl with SAHPI_RESTORE_PARM. Then use 
+      saHpiSensorThresholdsGet to retrieve the threshold values. 
+      This is used to show that saHpiParmControl with
+      Action=SAHPI_SAVE_PARM works.
+      
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="11" line="P153-19:P153-23">
+   Call saHpiParmControl passing valid parameters with
+      action=SAHPI_RESTORE_PARM
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="12" line="P153-19:P153-21">
+   Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Use 
+      saHpiAutoExtractTimeoutGet() to get the auto-extract timeout value.
+      Use saHpiAutoExtractTimeoutSet() to change the value.
+      Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get
+      the new values of the auto-extract timeout value. Compare
+      the old value and the new value to make sure that 
+      saHpiParmControl with Action=SAHPI_RESTORE_PARM works.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="13" line="P153-19:P153-21">
+   Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Use
+      saHpiSensorEnableGet() to get the sensor enable state.
+      Use saHpiSensorEnableSet() to change the value. Call 
+      saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get the
+      new value for the sensor enable state. Compare the new value
+      and the old value to make sure that saHpiParmControl works
+      with Action=SAHPI_RESTORE_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="14" line="P153-19:P153-21">
+   Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Use
+      saHpiSensorEventEnableGet() to get the sensor event enable
+      state. Use saHpiSensorEventEnableSet() to change the value.
+      Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get
+      the new value for the sensor event enable state. Compare
+      the new value and the old value to make sure that 
+      saHpiParmControl works with Action=SAHPI_RESTORE_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="15" line="P153-19:P153-21">
+   Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Use
+      saHpiSensorEventMasksSet() to get the sensor assert and deassert
+      states. Use saHpiSensorEventMasksGet() to change the values.
+      Call saHpiParmControl with Action=SAHPI_RESTORE_PARM. Get the 
+      new sensor assert and deassert states. Compare the old and new
+      values to make sure that saHpiParmControl works with 
+      Action=SAHPI_RESTORE_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="16" line="P153-19:P153-21">
+   Call saHpiParmControl with Action=SAHPI_RESTORE_PARM, use 
+      saHpiSensorThresholdsGet to retrieve the threshold values.
+      Use saHpiSensorThresholdsSet to set the threshold values. 
+      Call saHpiParmControl with SAHPI_RESTORE_PARM. Then use 
+      saHpiSensorThresholdsGet to retrieve the threshold values. 
+      This is used to show that saHpiParmControl works with
+      Action=SAHPI_RESTORE_PARM.
+      
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="17" line="P153-14:P153-15:P153-23">
+   Call saHpiParmControl passing valid parameters with
+      action=SAHPI_DEFAULT_PARM
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="18" line="P153-14:P153-15">
+   Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Use 
+      saHpiAutoExtractTimeoutGet() to get the auto-extract timeout 
+      value. Use saHpiAutoExtractTimeoutSet() to change the value.
+      Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Get
+      the new auto-extract timeout value. Compare the old value 
+      and the new value to make sure that saHpiParmControl works 
+      with Action=SAHPI_DEFAULT_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="19" line="P153-14:P153-15">
+   Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Use
+      saHpiSensorEnableGet() to get the sensor enable state.
+      Use saHpiSensorEnableSet() to change the value. Call 
+      saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Get the
+      new sensor enable state. Compare the old value and the
+      new value to make sure that saHpiParmControl works with 
+      Action=SAHPI_DEFAULT_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="20" line="P153-14:P153-15">
+   Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Use
+      saHpiSensorEventEnableGet() to get the sensor event enable
+      state. Then use saHpiSensorEventEnableSet() to change the value.
+      Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Get
+      the new value for the sensor event enable state. Compare the
+      old and new values to make sure that saHpiParmControl works 
+      with Action=SAHPI_DEFAULT_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="21" line="P153-14:P153-15">
+   Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM. Use
+      saHpiSensorEventMasksSet() to get the sensor assert and 
+      deassert states. Use saHpiSensorEventMasksGet() to change the
+      value. Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM.
+      Get the new values for the sensor assert and deassert states.
+      Compare the new and old values to make sure that 
+      saHpiParmControl works with Action=SAHPI_DEFAULT_PARM.
+   Expected return:  call returns SA_OK
+
+  </assertion>
+  <assertion id="22" line="P153-14:P153-15">
+   Call saHpiParmControl with Action=SAHPI_DEFAULT_PARM, use 
+      saHpiSensorThresholdsGet to retrieve the threshold values.
+      Use saHpiSensorThresholdsSet to set the threshold values. 
+      Call saHpiParmControl with SAHPI_DEFAULT_PARM. Then use 
+      saHpiSensorThresholdsGet to retrieve the threshold values. 
+      This is used to show that saHpiParmControl works with
+      Action=SAHPI_DEFAULT_PARM.
+      
+   Expected return:  call returns SA_OK
+
+  </assertion>
+
+</assertions>

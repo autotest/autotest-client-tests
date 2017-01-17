@@ -26,7 +26,7 @@
 EXE = fontview
 
 LDFLAGS = -L../../objs/.libs -lfreetype -lm
-CFLAGS  = -I../../include -I.
+CFLAGS  = -I/usr/include/freetype2 -I.
 
 all: $(EXE)
 

@@ -30,8 +30,14 @@ class m2crypto(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/m2crypto' + '/m2crypto.sh', shell=True)
-            if ret_val != 0:
+            cwd = os.getcwd()
+            os.chdir("%s/m2crypto" %(test_path))
+            os.system("patch -p0 < bug81712-fix-test_pgp-test-rc.diff")
+            os.system("patch -p0 < bug85378-fix-test-with-exp-values.diff")
+            os.chdir(cwd)
+            ret_val = subprocess.Popen(['./m2crypto.sh'], cwd="%s/m2crypto" %(test_path))
+            ret_val.communicate()
+            if ret_val.returncode != 0:
                 self.nfail += 1
 
         except error.CmdError, e:
@@ -44,4 +50,5 @@ class m2crypto(test.test):
             raise error.TestError('\nTest failed')
         else:
             logging.info('\n Test completed successfully ')
+
 

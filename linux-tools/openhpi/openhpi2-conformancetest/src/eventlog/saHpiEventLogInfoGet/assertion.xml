@@ -1,0 +1,40 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogInfoGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogInfoGet while passing in  
+       a bad ResourceId.
+  Returns SAF_TEST return codes: PASS, FAIL, UNKNOWN, NOTSUPPORT, UNRESOLVED
+   Expected return:  call returns with an error
+  </assertion>
+  <assertion id="2" line="P29-47:29-49">
+   Call saHpiEventLogInfoGet while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P48-18:P48-18">
+   Get the information of the event log from each domain.
+    (entry number, total size, timestamp, etc...)
+   Expected return:  saHpiEventLogInfoGet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P48-19:P48-21">
+   Call saHpiEventLogInfoGet on a resource which does not support   
+       event logs.
+  Returns SAF_TEST return codes: PASS, FAIL, UNKNOWN, NOTSUPPORT, UNRESOLVED
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P48-24:P48-25">
+   Call saHpiEventLogInfoGet on every domain.
+   saHpiEventLogInfoGet() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P48-22:P48-22">
+   Call saHpiEventLogInfoGet while passing in a NULL pointer for Info.
+   saHpiEventLogInfoGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P48-18:P48-18">
+   Call saHpiEventLogInfoGet to get the eventlog size. Add 
+   user event log entries to fill the eventlog to confirm 
+   the size. Add one more entry to confirm the overflow.
+   Confirm the size is constant.   
+   Expected return:  call returns SA_OK and the eventlog does
+   not overflow until the maximum number of entries is 
+   reached.
+  </assertion>
+</assertions>

@@ -1,0 +1,57 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventAdd">
+  <assertion id="1" line="P64-19:64-19">
+   Call saHpiEventAdd() with an event which has a specific,
+   invalid resourceId for a source.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventAdd while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P64-16:P64-16">
+   Add a dummy event to each domain. Read back the event 
+   to make sure it is there.
+   Expected return:  call returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P64-38:P64-38">
+	Add a user event then call saHpiEventLogEntryGet
+	to see if the event is logged in the Domain Event log
+  </assertion>
+  <assertion id="5" line="P64-18:P64-18">
+   Call saHpiEventAdd() with NULL for EvtEntry pointer.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P64-19:P64-20">
+   Call saHpiEventAdd() with an event which is not of the 
+   type SA_HPI_ET_USER.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P64-21:P64-21">
+   Call saHpiEventAdd() with an event with an invalid severity.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P64-24:P64-24">
+   Call saHpiEventAdd() with an event with an invalid data 
+   type in the text buffer.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P64-25:P64-25">
+   Call saHpiEventAdd() with an event with an invalid 
+   characters in the text buffer.
+   Expected return:  call returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="10" line="P64-26:P64-27">
+   Call saHpiEventAdd() with an event with an invalid 
+   language ID in the text buffer.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="11" line="P64-28:P64-29">
+	Add a user event whose data surpasses the maximum data length.
+      Expected return: SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="12" line="P64-36:P64-37">
+   Open two sessions for the same domain and verify
+   that an event added in one session is published
+   to both sessions.
+  </assertion>
+</assertions>

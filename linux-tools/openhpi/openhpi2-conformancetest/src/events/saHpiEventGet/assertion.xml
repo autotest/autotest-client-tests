@@ -1,0 +1,84 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventAdd">
+  <assertion id="1" line="P29-47:29-49">
+   Call saHpiEventGet while passing in a bad SessionId.
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P62-28:P62-28">
+   Check whether saHpiEventGet can get events before subscription.
+  </assertion>
+  <assertion id="3" line="P62-15:P62-17">
+ 	Call the function with passing a series of timeout values.
+  </assertion>
+  <assertion id="5" line="P62-16:P62-17">
+	Call the function passing SAHPI_TIMEOUT_IMMEDIATE
+  </assertion>
+  <assertion id="6" line="P62-18:P62-18">
+ 	Call the function passing SAHPI_TIMEOUT_BLOCK
+  </assertion>
+  <assertion id="7" line="P62-29:P62-30">
+   Call saHpiEventGet passing in a NULL pointer for Event.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="8" line="P62-31:P62-31">
+   Call saHpiEventGet passing in a negetive value for Timeout.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="9" line="P62-33:P62-34">
+ 	Call the function with SAHPI_TIMEOUT_IMMEDIATE when
+ 	the event queue is empty.
+ 	Expected return: SA_ERR_HPI_TIMEOUT.
+  </assertion>
+  <assertion id="10" line="P62-36:P62-38">
+	Make the event queue overflow firstly,	
+ 	then call saHpiEventGet function to see if overflow flag is set
+  </assertion>
+  <assertion id="11" line="P62-36:P62-38">
+	Make the event queue overflow firstly,	
+ 	then call the function to see if overflow flag is set,
+ 	then call the function to see if overflow flag is reset
+  </assertion>
+  <assertion id="12" line="P63-1:P63-3">
+	Verify that the function returns "immediately" if the function
+	is called with SAHPI_TIMEOUT_IMMEDIATE and the event queue is empty.
+  </assertion>
+  <assertion id="13" line="P63-1:P63-2">
+	Add an event to queue.
+	Call the function passing TIMEOUT to Timeout
+	Check if the function return immediately 
+  </assertion>
+  <assertion id="14" line="P63-4:P63-5">
+	Verify that when SA_ERR_HPI_TIMEOUT is returned that
+	the function did indeed block for the given timeout period.
+  </assertion>
+  <assertion id="15" line="P63-10:P63-10" manual="yes">
+ 	No valid RPT entry will have a zero ResourceCapabilities.
+	User will need to manually insert a FRU.
+  </assertion>
+  <assertion id="16" line="P63-11:P63-13">
+	Add a user event
+ 	Call the function to get this event
+	See if Rdr->RdrType is set to SAHPI_NO_RECORD
+  </assertion>
+  <assertion id="17" line="P63-22:P63-25">
+	Make the event queue overflow firstly,	
+ 	then call the function passing NULL to EventQueueStatus
+ 	then call the function to see if overflow flag is reset
+  </assertion>
+  <assertion id="18" line="P63-26:P63-27">
+	Call the function while another thread closes the session.
+	Expected return: SA_ERR_HPI_INVALID_SESSION
+  </assertion>
+  <assertion id="19" line="P63-28:P63-30">
+	Call the function while another thread called saHpiUnsubscribe
+	Check if the return code is SA_ERR_HPI_INVALID_REQUEST
+  </assertion>
+  <assertion id="20" line="P63-8:P63-10">
+	Verify that the ResourceCapabilities is set to zero
+	when a user event is retrieved from the event queue.
+  </assertion>
+  <assertion id="21" line="P62-20:P62-21">
+	Create a sensor change event and verify that
+      the rdr returned by saHpiEventGet() is the
+      the correct rdr.
+  </assertion>
+</assertions>

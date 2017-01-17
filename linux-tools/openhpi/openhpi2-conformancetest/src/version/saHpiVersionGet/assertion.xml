@@ -1,0 +1,6 @@
+<assertions spec="HPI-B.01.01" function="saHpiVersionGet">
+  <assertion id="1" line="P31-9:P31-18">
+   Match the test code verion to the HPI implementation version.
+   Expected return:  Both versions match.
+  </assertion>
+</assertions>

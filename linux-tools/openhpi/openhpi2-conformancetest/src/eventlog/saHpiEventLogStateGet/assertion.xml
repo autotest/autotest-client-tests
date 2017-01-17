@@ -1,0 +1,28 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogStateGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogStateGet while passing in  
+       a bad ResourceId.
+   saHpiEventLogStateGet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogStateGet while passing in a bad SessionId.
+   saHpiEventLogStateGet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P56-16:P56-16">
+    Get the current event log state.
+    saHpiEventLogStateGet() returns SA_OK.  
+  </assertion>
+  <assertion id="4" line="P56-17:P56-19">
+   Call saHpiEventLogStateGet on a resource which does not support   
+       event logs.
+   saHpiEventLogStateGet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P56-17:P56-19">
+   Call saHpiEventLogStateGet on every domain event log.
+   saHpiEventLogStateGet() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P56-20:P56-20">
+   Call saHpiEventLogStateGet passing in a NULL pointer for EnabledState.
+   saHpiEventLogStateGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

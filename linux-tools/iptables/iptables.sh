@@ -29,7 +29,7 @@
 ## source the standard utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/iptables
 source $LTPBIN/tc_utils.source
 
 ################################################################################

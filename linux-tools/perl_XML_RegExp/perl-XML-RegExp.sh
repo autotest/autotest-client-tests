@@ -25,8 +25,8 @@
 ## Author:      Ramya BS <ramyabs1@in.ibm.com>                                            ##
 ############################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_XML_RegExp
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_XML_RegExp"
 REQUIREl="perl rpm" 

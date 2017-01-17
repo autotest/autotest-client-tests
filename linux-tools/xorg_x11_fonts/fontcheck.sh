@@ -31,7 +31,8 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/xorg_x11_fonts
 source $LTPBIN/tc_utils.source
-
+TEST_PATH=${LTPBIN%/shared}/xorg_x11_fonts
+cp $TEST_PATH/xclient $LTPBIN
 ################################################################################
 # Global variables
 ################################################################################

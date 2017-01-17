@@ -44,7 +44,7 @@ export HOME=`pwd`
 SERVER2=""
 UPFILE=$CASEBIN/ncftp-test/ncftp_testfile.txt
 CMDFILE=$CASEBIN/ncftp-test/test_01.txt
-
+vsftp_path="$LTPBIN/../vsftpd"
 # array to parse error codes into readable string
 errmsg[1]="ERROR: Could not connect to remote host."
 errmsg[2]="ERROR: Could not connect to remote host - timed out."
@@ -74,7 +74,7 @@ function start_server()
 	}
 
         STOP_SERVER=1
-	$LTPBIN/vsftpd.sh START_SERVER || return
+	$vsftp_path/vsftpd.sh START_SERVER || return
 	tc_break_if_bad $? "Our local vsftpd server is busted!" || exit
 
 	# Create the files required at the server side.
@@ -90,7 +90,7 @@ function tc_local_setup {
 }
 
 function tc_local_cleanup {
-	((STOP_SERVER)) && $LTPBIN/vsftpd.sh "STOP_SERVER"
+	((STOP_SERVER)) && $vsftp_path/vsftpd.sh "STOP_SERVER"
 }
 		
 function ncftp_00 {
