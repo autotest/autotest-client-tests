@@ -27,8 +27,8 @@
 ### Author: Kingsuk Deb, kingsdeb@linux.vnet.ibm.com                           ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Crypt_PasswdMD5
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Crypt_PasswdMD5/t"
 REQUIRED="perl"

@@ -1,0 +1,89 @@
+#or example
+#./src/control/saHpiControlTypeGet/1.test
+#
+#manual cases
+./src/session/saHpiDiscover/manual/2.test
+./src/resource/saHpiRptEntryGet/manual/8.test
+./src/events/saHpiSubscribe/manual/1-2.test
+./src/resource/saHpiRptEntryGet/manual/7.test
+./src/events/saHpiEventGet/manual/15.test
+./src/resource/saHpiRptEntryGetByResourceId/manual/6.test
+./src/resource/saHpiRptEntryGetByResourceId/manual/7.test
+./src/resource/saHpiResourceSeveritySet/manual/3.test
+./src/alarm/saHpiAlarmDelete/manual/5-2.test
+./src/alarm/saHpiAlarmDelete/manual/5-3.test
+./src/alarm/saHpiAlarmDelete/manual/5-1.test
+
+# these cases failed because of known cases issues
+./src/annunciator/saHpiAnnunciatorAdd/7.test 
+./src/domain/saHpiDomainTagSet/4-2.test 
+./src/sensor/saHpiSensorThresholdsGet/3.test 
+./src/sensor/saHpiSensorThresholdsSet/1.test 
+./src/sensor/saHpiSensorThresholdsSet/12.test 
+./src/sensor/saHpiSensorThresholdsSet/3.test 
+./src/sensor/saHpiSensorThresholdsSet/7.test 
+./src/sensor/saHpiSensorThresholdsSet/9.test 
+
+#invalid params - due to simulator plugin not following HPI B_01_01
+#./src/sensor/saHpiSensorReadingGet/3.test
+#./src/sensor/saHpiSensorReadingGet/9.test
+#./src/sensor/saHpiSensorEventMasksGet/3.test
+#./src/control/saHpiControlSet/21.test
+#
+#simulator plugin's sensor threshold do not follow order strictly as HPI B_01_01 suggested 
+#./src/sensor/saHpiSensorThresholdsSet/12.test
+#
+#due to openhpi core's different definition of TimeGet and TimeSet
+#./src/eventlog/saHpiEventLogTimeSet/6.test
+#./src/eventlog/saHpiEventLogTimeSet/7.test
+#
+#cases passed, but test framework take them as failed because case output info messages to STDERR
+#./src/sensor/saHpiSensorEventMasksGet/4.test
+#./src/sensor/saHpiSensorTypeGet/3.test
+#./src/events/saHpiEventGet/6.test
+#./src/events/saHpiEventGet/18.test
+#./src/events/saHpiEventGet/19.test
+#
+#test case error
+#./src/watchdogtimer/saHpiWatchdogTimerSet/5.test
+#
+#may be due to similar reasons as above - simulator plugin or openhpi do not follow B.01.01 strictly
+#./src/sensor/saHpiSensorThresholdsSet/15.test
+#./src/sensor/saHpiSensorThresholdsSet/13.test
+#./src/sensor/saHpiSensorThresholdsSet/14.test
+#./src/sensor/saHpiSensorThresholdsGet/3.test
+#./src/sensor/saHpiSensorThresholdsGet/9.test
+#./src/eventlog/saHpiEventLogStateSet/3-1.test
+#./src/eventlog/saHpiEventLogStateSet/3-2.test
+#./src/watchdogtimer/saHpiWatchdogTimerSet/10.test
+#./src/watchdogtimer/saHpiWatchdogTimerReset/5.test
+#./src/control/saHpiControlGet/11.test
+#./src/control/saHpiControlGet/7.test
+#./src/events/saHpiEventGet/10.test
+#./src/domain/saHpiDomainTagSet/4-2.test
+#./src/annunciator/saHpiAnnunciatorGetNext/12.test
+#./src/annunciator/saHpiAnnunciatorGetNext/5.test
+#./src/annunciator/saHpiAnnunciatorGetNext/13.test
+#./src/annunciator/saHpiAnnunciatorGetNext/4.test
+#./src/annunciator/saHpiAnnunciatorAcknowledge/10.test
+#./src/annunciator/saHpiAnnunciatorAdd/8.test
+#./src/annunciator/saHpiAnnunciatorAdd/7.test
+#./src/resource/saHpiResourceSeveritySet/5.test
+#./src/resource/saHpiResourceSeveritySet/4.test
+#./src/power/saHpiResourcePowerStateSet/1.test
+#./src/power/saHpiResourcePowerStateSet/2.test
+#./src/inventory/saHpiIdrAreaAdd/9.test
+#./src/inventory/saHpiIdrFieldAdd/8.test
+#./src/inventory/saHpiIdrFieldSet/1.test
+#./src/inventory/saHpiIdrFieldSet/5.test
+#./src/inventory/saHpiIdrFieldSet/2.test
+#./src/inventory/saHpiIdrAreaHeaderGet/13.test
+#./src/inventory/saHpiIdrFieldGet/12.test
+#./src/inventory/saHpiIdrFieldGet/8.test
+#./src/inventory/saHpiIdrFieldGet/11.test
+#./src/inventory/saHpiIdrFieldGet/10-2.test
+#./src/inventory/saHpiIdrFieldGet/14.test
+#./src/inventory/saHpiIdrFieldGet/3.test
+#./src/inventory/saHpiIdrFieldGet/9.test
+#./src/inventory/saHpiIdrFieldGet/10-1.test
+#./src/eventlog/saHpiEventLogTimeSet/5.test

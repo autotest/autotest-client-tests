@@ -27,8 +27,8 @@
 ### Author:      Madhuri Appana <maappana@in.ibm.com>                          ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_XML_Grove
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_XML_Grove"
 REQUIRED="perl"

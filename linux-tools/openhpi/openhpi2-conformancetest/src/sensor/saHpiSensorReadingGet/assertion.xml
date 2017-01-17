@@ -1,0 +1,40 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorReadingGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorReadingGet passing in a bad ResourceID
+   Expected return:  call returns SA_ERR_HPI_INVALID_RESOURCE
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorReadingGet passing in a bad SessionId
+   Expected return:  call returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P80-20:P80-20   ">
+   Call saHpiSensorReadingGet() on every sensor on every resource
+   which supports sensors.
+   Expected return:  SA_OK.
+  </assertion>
+  <assertion id="4" line="P80-21:P80-22">
+   Call saHpiSensorReadingGet on a sensor which does not support sensors.
+   Expected return:  call returns SA_ERR_HPI_CAPABILITY
+  </assertion>
+  <assertion id="5" line="P80-23:P80-23">
+   Call saHpiSensorReadingGet on a sensor which is disabled.
+   Expected return:  call returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+  <assertion id="6" line="P80-24:P80-24">
+   Call saHpiSensorReadingGet passing in a bad Sensor Number.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="7" line="P80-28:P80-30">
+   Check if the sensor doesn't provide a reading, reading.IsSupported is set
+   to false
+  </assertion>
+  <assertion id="8" line="P80-31:P80-34">
+   The EventState can only have bits set that correspond to the
+   Sensor RDR Events field.
+  </assertion>
+  <assertion id="9" line="P80-35:P80-38">
+   Call saHpiSensorReadingGet while passing NULL for
+   Reading and EventState pointers.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

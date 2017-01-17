@@ -1,0 +1,26 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiResourceActiveSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Pass in an invalid ResourceID.
+   saHpiResourceActiveSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiResourceActiveSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P139-13:P139-13">
+   For each Hotswapable resource which supports the full hot 
+   swap model, transition the resource into the extraction 
+   pending state and call the function to transition it to the 
+   active state.
+   saHpiResourceActiveSet() returns SA_OK.
+  </assertion>
+  <assertion id="4" line="P139-14:P139-15">
+   Call on a resource which does not support Managed Hot Swap.
+   saHpiResourceActiveSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P139-16:P139-18">
+   Call on a resource which is not in the Insertion or Extraction Pending state.
+   saHpiResourceActiveSet() returns SA_ERR_HPI_INVALID_REQUEST.
+  </assertion>
+</assertions>

@@ -1,0 +1,14 @@
+<assertions spec="HPI-B.01.01" function="saHpiDiscover">
+  <assertion id="1" line="P29-47:P29-49">
+   Do discovery with an invalid sessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P35-2:P35-7" manual="yes">
+   Check whether RPT updates after calling discovery
+   User need insert a FRU manually
+  </assertion>
+  <assertion id="3" line="P35-10:P35-10">
+   Do discovery when the domain's sessionId exists.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CIM CIMVERSION="2.0" DTDVERSION="2.0">
+<MESSAGE ID="4711" PROTOCOLVERSION="1.0">
+<SIMPLERSP>
+<IMETHODRESPONSE NAME="EnumerateClasses">
+<IRETURNVALUE>
+<CLASS NAME="CIM_AbstractIndicationSubscription">
+<PROPERTY.REFERENCE NAME="Filter" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Handler" REFERENCECLASS="CIM_ListenerDestination">
+</PROPERTY.REFERENCE>
+<PROPERTY NAME="OnFatalErrorPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherOnFatalErrorPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="FailureTriggerTimeInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionState" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSubscriptionState" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="TimeOfLastStateChange" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionDuration" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionStartTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="SubscriptionTimeRemaining" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationPolicy" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherRepeatNotificationPolicy" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationInterval" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationGap" TYPE="uint64">
+</PROPERTY>
+<PROPERTY NAME="RepeatNotificationCount" TYPE="uint16">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_ManagedElement">
+<PROPERTY NAME="InstanceID" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Caption" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="Description" TYPE="string">
+</PROPERTY>
+<PROPERTY NAME="ElementName" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_Indication">
+<PROPERTY NAME="IndicationIdentifier" TYPE="string">
+</PROPERTY>
+<PROPERTY.ARRAY NAME="CorrelatedIndications" TYPE="string">
+</PROPERTY.ARRAY>
+<PROPERTY NAME="IndicationTime" TYPE="datetime">
+</PROPERTY>
+<PROPERTY NAME="PerceivedSeverity" TYPE="uint16">
+</PROPERTY>
+<PROPERTY NAME="OtherSeverity" TYPE="string">
+</PROPERTY>
+</CLASS>
+<CLASS NAME="CIM_Dependency">
+<PROPERTY.REFERENCE NAME="Antecedent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+<PROPERTY.REFERENCE NAME="Dependent" REFERENCECLASS="CIM_ManagedElement">
+</PROPERTY.REFERENCE>
+</CLASS>
+</IRETURNVALUE>
+</IMETHODRESPONSE>
+</SIMPLERSP>
+</MESSAGE>
+</CIM>

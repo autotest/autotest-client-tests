@@ -27,8 +27,8 @@
 ### Author:      Kumuda G <kumuda.govind@in.ibm.com>                           ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Carp_Clan
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_Carp_Clan/t"
 REQUIRED="perl rpm"

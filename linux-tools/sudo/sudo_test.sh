@@ -29,7 +29,7 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+#LTPBIN=${LTPBIN%/shared}/sudo
 source $LTPBIN/tc_utils.source
 
 TSTCMD=""	# will hold command to test sudotestadmin and sudotestuser

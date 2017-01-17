@@ -28,8 +28,8 @@
 ## Author:      Sheetal Kamatar <sheetal.kamatar@in.ibm.com>                  ##
 ##                                                                            ##
 ################################################################################
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Crypt_SSLeay
 source $LTPBIN/tc_utils.source
 PERL_CRYPT_TESTDIR="${LTPBIN%/shared}/perl_Crypt_SSLeay/t"
 REQUIRED="perl rpm"

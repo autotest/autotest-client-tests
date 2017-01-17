@@ -44,7 +44,7 @@ function tc_local_setup()
 	sed -e 's/break/exit 1/g' -e '/exit 0/d' -i $TESTDIR/tests/test-oddjobd.sh
  	pkgname=`rpm -q oddjob | awk -F"-" '{print $1"-"$2}'`
 	cp $TESTDIR/tests/test-oddjobd.conf $TESTDIR/tests/test-oddjobd.conf.bkp
-	sed -e 's|/builddir/build/BUILD/'$pkgname'/tests/|${LTPBIN%/shared}/oddjob/tests/|g' -e 's/"mockbuild"/"root"/' -i $TESTDIR/tests/test-oddjobd.conf
+	sed -e 's|/builddir/build/BUILD/'$pkgname'/tests/|'$ODDJOB_TESTDIR'|g' -e 's/"mockbuild"/"root"/' -i $TESTDIR/tests/test-oddjobd.conf
 	sed -e 's|\(^[0-9].*\)|0|g' -e 's|mockbuild|root|g' -i $TESTDIR/tests/006/expected_stdout
 	sed -e 's|\(^[0-9].*\)|0|g' -e 's|mockbuild|root|g' -i $TESTDIR/tests/007/expected_stdout
 	sed -e 's|mockbuild|root|g' -i $TESTDIR/tests/008/expected_stdout

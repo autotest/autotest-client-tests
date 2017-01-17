@@ -28,8 +28,8 @@
 ##                                                                                        ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_XML_NamespaceSupport
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_NamespaceSupport"
 REQUIRED="perl rpm"

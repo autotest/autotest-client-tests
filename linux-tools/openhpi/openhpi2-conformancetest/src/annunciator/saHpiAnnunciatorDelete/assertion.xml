@@ -1,0 +1,56 @@
+<assertions spec="HPI-B.01.01" function="saHpiAnnunciatorDelete">
+  <assertion id="1" line="P29-44:P29-46">
+   Test an invalid Resource Id.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Test an invalid Session Id.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P128-4:P128-4">
+   Delete an announcement using a valid EntryId.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P128-2:P128-4">
+   Attempt to delete announcements using only a valid Severity.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="5" line="P128-23:P128-24">
+   Try deleting announcements on a resource that does 
+   not support Annunciators.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P128-25:P128-26">
+   Attempt to delete announcements using an invalid Severity.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P128-27:P128-28">
+   Test an invalid AnnunciatorNum.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="8" line="P128-29:P128-30">
+   Attempt to delete an announcement with an EntryId that 
+   is not contained in the Annunciator.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="9" line="P128-31:P128-31">
+   Attempt to delete an announcement for an Annunciatior that is in Auto Mode.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="10" line="P128-34:P128-35">
+   Use an unmatched severity when deleting a specific 
+   announcement to verify that the severity parameter is ignored.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="11" line="P128-36:P128-38">
+   Attempt to delete all of the announcements in the Annunciator table
+   by setting the EntryId to SAHPI_ENTRY_UNSPECIFIED and Severity to
+   SAHPI_ALL_SEVERITIES.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="12" line="P129-1:P129-2">
+   Attempt to delete announcements for a particular severity where
+   there are no announcements of that severity level in the Annunciator.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

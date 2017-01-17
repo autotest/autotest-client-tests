@@ -1,0 +1,61 @@
+<assertions spec="HPI-B.01.01" function="saHpiAlarmGetNext">
+  <assertion id="1" line="P29-47:P29-49">
+       Call saHpiAlarmGetNext() passing in a bad SessionId.
+       saHpiAlarmGetNext() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P67-20:P67-20">
+      Add a new user alarm to each domain, and make sure that it 
+      could be read.  Clean up by erasing the user alarm created.
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P67-22:P67-22">
+      Call saHpiAlarmGetNext() passing in a Severity value 
+      which is out of range.
+      saHpiAlarmGetNext() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4" line="P67-23:P67-23">
+      Call saHpiAlarmGetNext() passing in a NULL Alarm pointer.
+      saHpiAlarmGetNext() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P67-29:P67-30">
+      Call the function passing in an Alarm Structure with a 
+      mis-matching AlarmId and Timestamp.
+      saHpiAlarmGetNext() returns SA_ERR_HPI_INVALID_DATA.
+  </assertion>
+  <assertion id="6" line="P67-32:P67-32">
+      Add two new user alarms to each domain, and make sure that it 
+      could be read.  Clean up by erasing the user alarms created.
+      saHpiAlarmGetNext() returns SA_OK.  The first Alarm set 
+      will be the first alarm returned.  Both Alarms will be returned.
+  </assertion>
+  <assertion id="7" line="P67-32:P67-35">
+      Attempt to get the next alarm from the DAT
+      using an alarm that was deleted.
+  </assertion>
+  <assertion id="8" line="P67-37:P67-37">
+      Get all alarms of a specific severity.
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+  <assertion id="9" line="P67-37:P67-37">
+      Retrieve all of the alarms of all of the domains that are
+      un-acknowledged. 
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+  <assertion id="10" line="P68-1:P68-6">
+      Retrieve all of the alarms from all of the domains.
+	   Also, verify that the two added user alarms are retrieved
+	   with the correct acknowledgement.  One is acknowledged
+	   and the other is not acknowledged.
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+  <assertion id="11" line="P68-7:P68-8">
+      Retrieve all of the alarms from all of the domains. Make
+      sure that the AlarmId's never match SAHPI_LAST_ENTRY or
+      SAHPI_FIRST_ENTRY.
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+  <assertion id="12" line="P67-37:P67-37">
+      Get all unacknowledged alarms of a severity equal to Major.
+      saHpiAlarmGetNext() returns SA_OK.
+  </assertion>
+</assertions>

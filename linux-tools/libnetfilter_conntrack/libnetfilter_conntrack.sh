@@ -54,7 +54,16 @@ function tc_local_setup()
 function run_test()
 {
 	pushd $TESTS_DIR &>/dev/null
-	TESTS="conntrack_create conntrack_get conntrack_update conntrack_dump conntrack_dump_filter conntrack_events conntrack_filter conntrack_flush conntrack_create_nat conntrack_delete conntrack_grp_create ctexp_events conntrack_master expect_create expect_get expect_dump expect_flush expect_create_nat expect_create_userspace expect_delete expect_events"
+	tc_get_os_arch
+	if [ $TC_OS_ARCH == "s390x" ]; then
+		TESTS="conntrack_create conntrack_get conntrack_update conntrack_dump conntrack_dump_filter conntrack_flush conntrack_create_nat conntrack_delete conntrack_grp_create conntrack_master expect_create expect_get expect_dump expect_flush expect_create_nat expect_create_userspace expect_delete expect_events"
+		./conntrack_filter > conntrack_filter.out &
+		./conntrack_events > conntrack_events.out &
+		./ctexp_events > ctexp_events.out &
+	else
+		TESTS="conntrack_create conntrack_get conntrack_update conntrack_dump conntrack_dump_filter conntrack_events conntrack_filter conntrack_flush conntrack_create_nat conntrack_delete conntrack_grp_create ctexp_events conntrack_master expect_create expect_get expect_dump expect_flush expect_create_nat expect_create_userspace expect_delete expect_events"
+	fi
+
 	TST_TOTAL=`echo $TESTS | wc -w`
 	for test in $TESTS; do
 	tc_register "Test $test"
@@ -75,6 +84,7 @@ function run_test()
                 tc_pass_or_fail $? "$test failed"
 	elif [ "$test" = "expect_events" ]; then
 		./$test >out.txt  &
+		wait_pid=$!
 		for i in 1 2 3 4 5
 		do
 		./expect_create >$stdout 2>$stderr
@@ -84,7 +94,7 @@ function run_test()
                 ./conntrack_flush >$stdout 2>$stderr
 		tc_fail_if_bad $? "conntrack_flush test failed"
                 done
-                grep -q  "TEST: expectation events (OK)" out.txt
+		tc_wait_for_no_pid $wait_pid && tc_wait_for_file_text out.txt "TEST: expectation events (OK)"
                 tc_pass_or_fail $? "$test failed"
 		rm out.txt -f 
 	else
@@ -92,6 +102,18 @@ function run_test()
                 tc_pass_or_fail $? "$test failed"
         fi
 	done
+	if [ $TC_OS_ARCH == "s390x" ]; then
+		tc_register "conntrack_filter"
+		tc_wait_for_file_text conntrack_filter.out "TEST: conntrack events (OK)"
+		tc_pass_or_fail $? "failed"
+		tc_register "conntrack_events"
+		tc_wait_for_file_text conntrack_events.out "TEST: conntrack events (OK)"
+		tc_pass_or_fail $? "failed"
+		tc_register "ctexp_events"
+		tc_wait_for_file_text ctexp_events.out "TEST: expectation events (OK)"
+		tc_pass_or_fail $? "failed"
+		rm -f conntrack_filter.out conntrack_events.out ctexp_events.out
+	fi
 	popd >$stdout 2>$stderr
 }
 

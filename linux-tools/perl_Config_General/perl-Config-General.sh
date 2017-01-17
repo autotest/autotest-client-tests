@@ -27,8 +27,8 @@
 ### Author:      Kingsuk Deb <kingsdeb@linux.vnet.ibm.com>                     ##
 ###########################################################################################
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Config_General
 source $LTPBIN/tc_utils.source
 TESTDIR=${LTPBIN%/shared}/perl_Config_General
 REQUIRED="perl rpm"

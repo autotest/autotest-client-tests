@@ -29,7 +29,7 @@
 ###########################################################################################
 
 #cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+LTPBIN=${LTPBIN%/shared}/perl_XML_Simple
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_Simple"
 REQUIRED="perl rpm"

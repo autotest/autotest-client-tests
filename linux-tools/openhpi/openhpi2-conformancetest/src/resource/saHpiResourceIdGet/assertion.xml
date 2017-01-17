@@ -1,0 +1,15 @@
+<assertions spec="HPI-B.01.01" function="saHpiResourceIdGet">
+  <assertion id="1" line="P45-14:P45-14">
+   Call saHpiResourceIdGet while passing in a NULL pointer for ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiResourceIdGet while passing in an invalid Session ID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P45-13:P45-13">
+   Obtain the resource ID of the resource associated with
+   the entity upon which the caller is running.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

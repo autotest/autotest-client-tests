@@ -1,5 +1,5 @@
+#!/bin/bash
 ############################################################################################
-#!/bin/bash										  ##
 ## copyright 2003, 2016 IBM Corp                                                          ##
 ##                                                                                        ##
 ## Redistribution and use in source and binary forms, with or without modification,       ##

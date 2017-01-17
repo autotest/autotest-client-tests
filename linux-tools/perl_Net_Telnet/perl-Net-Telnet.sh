@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Net_Telnet
 source $LTPBIN/tc_utils.source
 Net_Telnet_DIR="${LTPBIN%/shared}/perl_Net_Telnet"
 PERL_CMD=`which perl`

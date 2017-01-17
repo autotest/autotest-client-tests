@@ -1,0 +1,32 @@
+//
+// interop base classes for mofc/
+//
+//
+
+// ===================================================================
+// 	dummy classes to get event classes loaded by mofc
+// ===================================================================
+
+class DMY_IndicationSubscription : CIM_IndicationSubscription
+{
+};
+
+class DMY_IndicationFilter : CIM_IndicationFilter
+{
+};
+
+class DMY_ProcessIndication : CIM_ProcessIndication
+{
+};
+
+class DMY_InstCreation : CIM_InstCreation
+{
+};
+
+class DMY_ListenerDestinationCIMXML : CIM_ListenerDestinationCIMXML
+{
+};
+
+class DMY_IndicationHandlerCIMXML : CIM_IndicationHandlerCIMXML
+{
+};

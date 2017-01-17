@@ -30,6 +30,10 @@ class pygpgme(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/pygpgme" %(test_path))
+            os.system("patch -p1 < skip_interactive_test.diff")
+            os.chdir(cwd)
             ret_val = subprocess.Popen(['./pygpgme.sh'], cwd="%s/pygpgme" %(test_path))
             ret_val.communicate()
             if ret_val.returncode != 0:

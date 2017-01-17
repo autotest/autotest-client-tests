@@ -31,7 +31,7 @@
 #cd `dirname $0`
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
 source $LTPBIN/tc_utils.source
-
+cp $LTPBIN/../grep/grep_tests/grep-bre.script $LTPBIN
 ################################################################################
 # any utility functions specific to this file can go here
 ################################################################################

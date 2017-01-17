@@ -1,0 +1,33 @@
+<assertions spec="HPI-B.01.01" function="saHpiRptEntryGetByResourceId">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiRptEntryGetByResourceId passing in a bad ResourceId.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiRptEntryGetByResourceId() while passing in an
+   invalid Session ID.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P42-15:P42-15">
+	Call the function passing valid paramaters.
+      Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P42-16:P42-16">
+   Call saHpiRptEntryGetByResourceId passing in a NULL for RptEntry.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P42-18:P42-19">
+   Call saHpiRptEntryGetByResourceId comparing the Reports 
+   received from the call to the one which we received from
+   the saHpiRptEntryGet call.
+   Expected return:  call returns with successful status
+  </assertion>
+  <assertion id="6" line="P42-25:42-26" manual="yes">
+   Call saHpiRptEntryGetByResourceId with a ResourceId from hotswap extraction event
+   User need plug out a FRU manually
+  </assertion>
+  <assertion id="7" line="P42-20:42-24" manual="yes">
+   Call saHpiRptEntryGetByResourceId with a ResourceId from hotswap insert event
+   User need insert a FRU manually
+  </assertion>
+</assertions>

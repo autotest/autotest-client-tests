@@ -1,0 +1,46 @@
+<assertions spec="HPI-B.01.01" function="saHpiDomainTagSet">
+  <assertion id="1" line="P29-47:P29-49">
+   Pass in an invalid SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P38-13:P38-13">
+   Set a new Domain Tag in each domain and restore it.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="3" line="P38-16:P38-16">
+   Set the DomainTag->DataType to an Out-of-Range Value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4-1" line="P38-17:P38-17">
+   Set a character in the data of the DomainTag to an 
+   invalid character for the given data type.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4-2" line="P38-17:P38-17">
+   Set a character in the data of the DomainTag to an 
+   invalid character for the given SAHPI_TL_TYPE_UNICODE.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4-3" line="P38-17:P38-17">
+   Set a character in the data of the DomainTag to an 
+   invalid character for the data type BCDPLUS.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="5" line="P38-18:P38-19">
+   Set the DomainTag->DataType to SAHPI_TL_TYPE_TEXT, and
+   the DomainTag->Language to an out-of-range value.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P38-20:P38-20">
+   Pass in a NULL pointer for DomainTag.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="7" line="P38-22:38-24">
+   Set a new Domain Tag in each domain and see if it takes effect.
+  </assertion>
+  <assertion id="8" line="P38-22:P38-26">
+   Update DomainTag and insure it's immediately visible
+   on another session opened to the same domain.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

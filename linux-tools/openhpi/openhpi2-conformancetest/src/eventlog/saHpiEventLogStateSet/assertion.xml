@@ -1,0 +1,45 @@
+<assertions spec="HPI-B.01.01" function="saHpiEventLogStateSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiEventLogStateSet while passing in a bad ResourceId.
+   saHpiEventLogStateSet() returns SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiEventLogStateSet while passing in a bad SessionId.
+   saHpiEventLogStateSet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3-1" line="P57-16:P57-16">
+   Set the event log enable state. Enable = SAHPI_TRUE. Read, Write,
+   Read, Verify, and Restore test.
+   saHpiEventLogStateSet() returns SA_OK, and the state reads SAHPI_TRUE.
+  </assertion>
+  <assertion id="3-2" line="P57-16:P57-16">
+   Set the event log enable state. Enable = SAHPI_FALSE. Read, Write,
+   Read, Verify, and Restore test.
+   saHpiEventLogStateSet() returns SA_OK, and the state reads SAHPI_FALSE.
+  </assertion>
+  <assertion id="4" line="P57-17:P57-18">
+   Call saHpiEventLogStateSet on a resource which does not support   
+       event logs.
+   saHpiEventLogStateSet() returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P57-18:P57-19">
+   Call saHpiEventLogStateSet on a domain event log.
+   saHpiEventLogStateSet() never returns SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="6" line="P57-21:P57-22">
+   Disable the event log state.  Get event log state. Add an event by
+   saHpiEventLogEntryAdd(). Get the event log entry and verify it does exist.
+   saHpiEventLogStateSet() returns SA_OK, and the added event is found
+   in the event log.
+  </assertion>
+  <assertion id="7" line="P57-22:P57-24">
+   Enable the event log state. Add an event log entry. Get the event log 
+   entry and verify it does exist.
+   saHpiEventLogStateSet() returns SA_OK, and the added event is found
+   in the event log. 
+  </assertion>
+  <assertion id="8" line="P57-22:P57-24">
+   creates a system event after the event log state has been disabled 
+   and re-enabled, making sure that it is added to the log.
+  </assertion>
+</assertions>

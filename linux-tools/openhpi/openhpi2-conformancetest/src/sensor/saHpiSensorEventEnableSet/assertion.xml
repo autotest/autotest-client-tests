@@ -1,0 +1,46 @@
+<assertions spec="HPI-B.01.01" function="saHpiSensorEventEnableSet">
+  <assertion id="1" line="P29-44:P29-46">
+   Call saHpiSensorEventEnableSet passing in a bad ResourceID.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Call saHpiSensorEventEnableSet passing in a bad SessionId.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P88-16:P88-16">
+   Set event enable status with saHpiSensorEventEnableSet, then
+   call saHpiSensorEventEnableGet to check if it takes effect.
+  </assertion>
+  <assertion id="4" line="P88-17:P88-18">
+   Call saHpiSensorEventEnableSet on a resource which does
+   not support sensors.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P88-19:P88-19">
+   Call saHpiSensorEventEnableSet passing in a bad Sensor 
+    Number
+   Expected return:  call returns SA_ERR_HPI_NOT_PRESENT
+  </assertion>
+  <assertion id="6" line="P88-20:P88-21">
+   Call saHpiSensorEventEnableSet on a sensor which does not
+   support the changing of the event enable status.
+   Expected return: SA_ERR_HPI_READ_ONLY.
+  </assertion>
+  <assertion id="7" line="P88-23:P88-24">
+   Set event enable status disable, change the thresholds to cross the current value
+   Check no asserted events will be generated
+  </assertion>
+  <assertion id="8" line="P88-25:P88-26">
+   Set event enable status enable, change the thresholds to cross the current value
+   Check asserted events will be generated.
+  </assertion>
+  <assertion id="9" line="P88-26:P88-27">
+   Event states may still be read for a sensor even if the event
+   generation is disabled, by using saHpiSensorReadingGet().
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="10" line="P88-31:P88-31">
+   Change event enable status,
+   see if there's an event generated
+  </assertion>
+</assertions>

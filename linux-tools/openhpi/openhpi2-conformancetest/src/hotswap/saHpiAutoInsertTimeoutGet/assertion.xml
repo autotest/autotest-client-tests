@@ -1,0 +1,15 @@
+
+<assertions spec="HPI-B.01.01" function ="saHpiAutoInsertTimeoutGet">
+  <assertion id="1" line="P29-47:P29-49">
+   Pass in an invalid SessionID.
+   saHpiAutoInsertTimeoutGet() returns SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="2" line="P141-16:P141-16">
+   Obtain the AutoInsertTimeout for all resources.
+   saHpiAutoInsertTimeoutGet() returns SA_OK.
+  </assertion>
+  <assertion id="3" line="P141-17:P141-17">
+   Pass in a NULL pointer for Timeout.
+   saHpiAutoInsertTimeoutGet() returns SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

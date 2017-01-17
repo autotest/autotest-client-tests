@@ -1,0 +1,29 @@
+<assertions spec="HPI-B.01.01" function="saHpiAnnunciatorModeGet">
+  <assertion id="1" line="P29-44:P29-46">
+   Test an invalid Resource Id.
+   Expected return: SA_ERR_HPI_INVALID_RESOURCE.
+  </assertion>
+  <assertion id="2" line="P29-47:P29-49">
+   Test an invalid Session Id.
+   Expected return: SA_ERR_HPI_INVALID_SESSION.
+  </assertion>
+  <assertion id="3" line="P130-2:P130-4">
+   Attempt to retrieve the mode from all of the annunciators.
+   Verify that the mode is one of the three legal values: 
+   Auto, User, or Shared.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="4" line="P130-26:P130-27">
+   Attempt to get the annunciator mode for a resource 
+   that does not support annunciators.
+   Expected return: SA_ERR_HPI_CAPABILITY.
+  </assertion>
+  <assertion id="5" line="P130-28:P130-29">
+   Test an invalid AnnunciatorNum.
+   Expected return: SA_ERR_HPI_NOT_PRESENT.
+  </assertion>
+  <assertion id="6" line="P130-30:P130-30">
+   Use a NULL pointer for the mode parameter.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+</assertions>

@@ -1,0 +1,22 @@
+<assertions spec="HPI-B.01.01" function="saHpiSessionOpen">
+  <assertion id="1" line="P33-10:P33-11">
+   Open a new session with the DomainId equal to SAHPI_UNSPECIFIED_DOMAIN_ID.
+   Expected return: SA_OK.
+  </assertion>
+  <assertion id="2" line="P33-18:P33-18">
+   Open a new session when the DomainId does not exists.
+   Expected return:  SA_ERR_HPI_INVALID_DOMAIN.
+  </assertion>
+  <assertion id="3" line="P33-20:P33-20">
+   Open a new session passing a buffer for security parameters.
+   Expected return:  SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="4" line="P33-21:P33-21">
+   Open a new session passing a NULL pointer for the SessionId.
+   Expected return: SA_ERR_HPI_INVALID_PARAMS.
+  </assertion>
+  <assertion id="6" line="P33-17:P33-17">
+   Open a new session with a specific DomainId.
+   Expected return: SA_OK.
+  </assertion>
+</assertions>

@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_LDAP
 source $LTPBIN/tc_utils.source
 PERL_LDAP_DIR="${LTPBIN%/shared}/perl_LDAP"
 PERL_CMD=`which perl`

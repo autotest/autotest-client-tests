@@ -62,7 +62,7 @@ function run_test()
 {
 	tc_register "Test urlview"
 	screen -dmSL test  urlview $TCTMP/urlview_test_file
-	sleep 10;sync
+	sync;sleep 10
 	grep -q "5 matches" screenlog.0
 	tc_pass_or_fail $? "urlview failed" 
 	tc_register "Test urlview.conf"
@@ -73,7 +73,7 @@ function run_test()
 		REGEXP (((https?|gopher)://|(news):)[^' \t<>"]+|(web)\.[-a-z0-9.]+)[^' \t.,;<>"\):]
 	EOF
 	screen -dmSL test  urlview $TCTMP/urlview_test_file  
-	sleep 10; sync
+	sync;sleep 10
 	grep -q "2 matches" screenlog.0
 	tc_pass_or_fail $? "Reading from urlview.conf fail"
 	tc_register "Test url_handler.sh"

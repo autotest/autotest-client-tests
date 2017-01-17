@@ -28,8 +28,8 @@
 ###########################################################################################
 ## source the utility functions
 
-#cd $(dirname $0)
-#LTPBIN=${PWD%%/testcases/*}/testcases/bin
+######cd $(dirname $0)
+#LTPBIN=${LTPBIN%/shared}/perl_Net_LibIDN
 source $LTPBIN/tc_utils.source
 NETLIBIDN_TEST_DIR="${LTPBIN%/shared}/perl_Net_LibIDN/test"
 

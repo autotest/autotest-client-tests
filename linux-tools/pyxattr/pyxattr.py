@@ -30,6 +30,10 @@ class pyxattr(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/pyxattr" %(test_path))
+            os.system("patch -p0 < pyxattr-0.5.1-test.patch")
+            os.chdir(cwd)
             ret_val = subprocess.Popen(['./pyxattr.sh'], cwd="%s/pyxattr" %(test_path))
             ret_val.communicate()
             if ret_val.returncode != 0:

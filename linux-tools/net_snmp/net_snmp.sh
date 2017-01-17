@@ -29,6 +29,7 @@
 ## source the utility functions
 LTPROOT=${PWD%%/testcases/*}/
 source $LTPBIN/tc_utils.source
+TEST_PATH=${LTPBIN%/shared}/net_snmp
 
 IPV6=""
 server_name=""
@@ -54,6 +55,9 @@ function tc_local_setup()
         export SNMP_SLEEP
         SNMP_UPDIR="/usr"
 	export SNMP_UPDIR
+
+	cp $TEST_PATH/net-snmp-config.h /usr/include/net-snmp/
+	cp $TEST_PATH/agent_module_config.h $TEST_PATH/mib_module_config.h /usr/include/net-snmp/agent/
 
 	#
 	# Check for the configuration script.
