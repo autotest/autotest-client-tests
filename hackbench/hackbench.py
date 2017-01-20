@@ -22,7 +22,7 @@ class hackbench(test.test):
             cc = '$CC'
         else:
             cc = 'cc'
-        utils.system('%s -lpthread hackbench.c -o hackbench' % cc)
+        utils.system('%s hackbench.c -o hackbench -lpthread' % cc)
 
     def initialize(self):
         self.job.require_gcc()
