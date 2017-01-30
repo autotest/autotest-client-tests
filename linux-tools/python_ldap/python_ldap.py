@@ -30,6 +30,10 @@ class python_ldap(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/python_ldap" %(test_path))
+            os.system("patch -p0 < python-ldap-tests.diff")
+            os.chdir(cwd)
             ret_val = subprocess.call(test_path + '/python_ldap' + '/python-ldap.sh', shell=True)
             if ret_val != 0:
                 self.nfail += 1

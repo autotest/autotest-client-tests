@@ -54,15 +54,17 @@ function tc_local_cleanup()
 function tc_local_setup()
 {
 	tc_executes "dbus-launch python" || tc_break || return;
-	# For dbus-launch copied from the fakeroot !	
+	# For dbus-launch copied from the fakeroot !
+	#copy the test directory to tmp path, to avoid error while starting the dbus-daemon if path length is > 99 in dbus.conf file
+        cp -r $TESTDIR $TCTMP/dbus-python-tests	
 	export PATH=$PATH:$TESTDIR/../
 
 	# Create the dbus conf file
 	cat > $TCTMP/dbus.conf <<EOF
 <busconfig>
   <type>session</type>
-  <listen>unix:tmpdir=$TESTDIR</listen>
-  <servicedir>$TESTDIR</servicedir>
+  <listen>unix:tmpdir=$TCTMP/dbus-python-tests</listen>
+  <servicedir>$TCTMP/dbus-python-tests</servicedir>
   
   <policy context="default">
     <!-- Allow everything to be sent -->

@@ -7,5 +7,5 @@ TIME = 'SHORT'
 DOC = '''
 Test libteam package
 '''
-
-job.run_test('linux-tools/libteam')
+path = ''
+job.run_test('libteam',test_path=path)

@@ -90,6 +90,7 @@ function tcp_server_client_fn()
         SERVER="tcpserver"
         kill_pid_fn "$SERVER" >$stdout 2>$stderr
         ./$SERVER & >$stdout 2>$stderr
+        sleep 2
         ./$CLIENT</tmp/EOD_FILE >$stdout 2>$stderr
 	RC_TCP="$?"
         kill_pid_fn "$SERVER" >$stdout 2>$stderr

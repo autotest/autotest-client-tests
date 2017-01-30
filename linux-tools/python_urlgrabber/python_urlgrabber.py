@@ -30,6 +30,12 @@ class python_urlgrabber(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/python_urlgrabber" %(test_path))
+            os.system("patch -p0 < ibmbug81490-exclude-test_byterange.diff")
+            os.system("patch -p0 < ibmbug78855-fix-test_url-fix-pycurl_error.diff")
+            os.system("patch -p0 < ibmbug78855-print_to_stderr_in_interrupt_callback_tests.diff")
+            os.chdir(cwd)
             ret_val = subprocess.call(test_path + '/python_urlgrabber' + '/python-urlgrabber.sh', shell=True)
             if ret_val != 0:
                 self.nfail += 1
