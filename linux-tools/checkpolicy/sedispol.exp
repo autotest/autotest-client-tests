@@ -19,7 +19,7 @@ expect {
 }
 expect {
 	timeout abort
-	"u\r\nDeny unknown classes and permisions\r\n\r\nCommand ('m' for menu):  "
+        "u\r\nDeny unknown classes and permissions\r\n\r\nCommand ('m' for menu): "
 	{ send "q\r" }
 }
 expect eof

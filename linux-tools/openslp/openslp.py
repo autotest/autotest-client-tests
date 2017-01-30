@@ -23,7 +23,7 @@ class openslp(test.test):
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-        or package in ['gcc', 'openslp-devel']:
+        for package in ['gcc', 'openslp-devel']:
             if not sm.check_installed(package):
                 logging.debug("%s missing - trying to install", package)
                 sm.install(package)

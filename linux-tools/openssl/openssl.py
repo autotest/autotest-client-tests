@@ -18,19 +18,11 @@ class openssl(test.test):
     nfail = 0
     path = ''
 
-    def initialize(self, test_path=''):
+    def initialize(self):
         """
         Sets the overall failure counter for the test.
         """
         self.nfail = 0
-        for package in ['gcc', 'openssl-devel']:
-            if not sm.check_installed(package):
-                logging.debug("%s missing - trying to install", package)
-                sm.install(package)
-        ret_val = subprocess.Popen(['make', 'all'], cwd="%s/openssl" %(test_path))
-        ret_val.communicate()
-        if ret_val.returncode != 0:
-            self.nfail += 1
         logging.info('\n Test initialize successfully')
 
     def run_once(self, test_path=''):

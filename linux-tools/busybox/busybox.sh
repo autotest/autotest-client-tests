@@ -661,7 +661,9 @@ function do_chpasswd()
     local shadow_line1=$(grep $user /etc/shadow)
 
     echo $user:etu357dgj | busybox chpasswd >$stdout 2>$stderr
+    tc_ignore_warnings "chpasswd: password for '$user' changed"
     tc_fail_if_bad $? "unexpected response from \"echo $user:etu357dgj | busybox chpasswd\"" || return
+
 
     local shadow_line2=$(grep $user /etc/shadow)
 

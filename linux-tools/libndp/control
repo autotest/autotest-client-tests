@@ -7,6 +7,6 @@ TIME = 'SHORT'
 DOC = '''
 Test libndp package
 '''
-
-job.run_test('linux-tools/libndp')
+path = ''
+job.run_test('libndp',test_path=path)
 

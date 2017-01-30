@@ -4,6 +4,7 @@ import logging
 
 from autotest.client import test
 from autotest.client.shared import error
+import platform
 
 class mcelog(test.test):
 
@@ -30,6 +31,13 @@ class mcelog(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/mcelog" %(test_path))
+            if platform.machine() == "x86_64":
+                os.system("patch -p0 < path_x86_64.patch")
+            else:
+                os.system("patch -p0 < path_ia32.patch")
+            os.chdir(cwd)                
             ret_val = subprocess.Popen(['./mcelog.sh'], cwd="%s/mcelog" %(test_path))
             ret_val.communicate()
             if ret_val.returncode != 0:
