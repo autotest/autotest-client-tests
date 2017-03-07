@@ -30,6 +30,10 @@ class pexpect_test(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
+            cwd = os.getcwd()
+            os.chdir("%s/pexpect_test" %(test_path))
+            os.system("patch -p0 < pexpect-pxssh-scripts.diff")
+            os.chdir(cwd)
             ret_val = subprocess.call(test_path + '/pexpect_test' + '/pexpect.sh', shell=True)
             if ret_val != 0:
                 self.nfail += 1
