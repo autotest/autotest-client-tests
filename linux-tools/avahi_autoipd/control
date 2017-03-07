@@ -7,5 +7,5 @@ TIME = 'SHORT'
 DOC = '''
 Test avahi-autoipd package
 '''
-
-job.run_test('linux-tools/avahi_autoipd')
+path = ''
+job.run_test('avahi_autoipd',test_path=path)
