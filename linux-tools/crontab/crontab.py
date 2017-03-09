@@ -1,9 +1,10 @@
 #!/bin/python
 import os
+import shutil
 import logging
-import shutil 
-from autotest.client import utils
 from time import sleep
+
+from autotest.client import utils
 
 from autotest.client import test
 
