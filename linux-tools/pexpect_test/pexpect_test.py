@@ -29,10 +29,18 @@ class pexpect_test(test.test):
         Trigger test run
         """
         try:
-            os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.call(test_path + '/pexpect_test' + '/pexpect.sh', shell=True)
-            if ret_val != 0:
-                self.nfail += 1
+            os.environ["LTPBIN"] = os.path.join(test_path, "shared")
+            pexpect_test_path = os.path.join(test_path, "pexpect_test")
+            os.chdir(pexpect_test_path)
+            subprocess.call("make uninstall", shell=True)
+            return_val = subprocess.call("patch -p0 < pexpect-pxssh-scripts.diff", shell=True)
+            if return_val == 0:
+                ret_val = subprocess.call(os.path.join(pexpect_test_path, 'pexpect.sh'), shell=True)
+                if ret_val != 0:
+                    self.nfail += 1
+            else:
+                logging.info('Applying Patch failed ')
+                raise error.TestError('\nPatch "pexpect-pxssh-scripts.diff" failed to apply')
 
         except error.CmdError, e:
             self.nfail += 1
