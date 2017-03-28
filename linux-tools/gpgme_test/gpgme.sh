@@ -62,7 +62,7 @@ function run_gpgtest()
 {
    pushd $GPGME_TEST_DIR/gpg &> /dev/null
    export GNUPGHOME=`pwd`
-   sed -i 's:/builddir/build/BUILD/gpgme-[0-9]*.[0-9]*.[0-9]*/tests/gpg/pinentry:${LTPBIN%/shared}/gpgme_test/tests/gpg/pinentry:' gpg-agent.conf
+   sed -i 's:/builddir/build/BUILD/gpgme-[0-9]*.[0-9]*.[0-9]*/tests/gpg/pinentry:'${GPGME_TEST_DIR}'/gpg/pinentry:' gpg-agent.conf
    TESTS=`ls bin/*`
 
    TOTAL=`echo $TESTS | wc -w` 
