@@ -63,8 +63,9 @@ function run_test()
   tc_register "semodule:disable"
   semodule -d $test_module >$stdout 2>$stderr
   tc_fail_if_bad $? "Disable failed"
-  semodule -l | grep $test_module | awk '{print $3}' >$stdout 2>$stderr
-  #grep -q Disabled $stdout
+  semodule --list=full | grep $test_module | awk '{print $4}' >$stdout 2>$stderr
+  grep -qi Disabled $stdout
+
   tc_pass_or_fail $? "Module not disabled"
 
   tc_register "semodule: enable"
