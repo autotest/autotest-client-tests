@@ -63,7 +63,7 @@ function tc_local_setup()
         AUDIT_VALUE=$(sed 's/.*audit=\([0-9]*\).*/\1/' $pro_cmd)
         AUDIT_DEBUG=$(sed 's/.*audit_debug=\([0-9]*\).*/\1/' $pro_cmd)
         if [[ ("$AUDIT_ENABLE" -eq "0") && ("$AUDIT_VALUE" -eq "0") && ("$AUDIT_DEBUG" -eq "0") ]]; then
-        tc_conf "Audit Services are disable at kernal please check the audit status" || exit 
+        tc_conf "Audit Services are disable at kernal please check the audit status" && exit 
         fi
         fi
 
@@ -98,7 +98,7 @@ function tc_local_setup()
 	fi
 }
 
-function tc_local_cleanup()
+function tc_restore()
 {
 	# stop our instance of audit daemon
 	service auditd stop &>/dev/null
@@ -248,4 +248,5 @@ test_basics && {
 	test_syscall_audit
 	test_audit_trace
 	test_audit_logging
+	tc_restore
 }
