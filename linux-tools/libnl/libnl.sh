@@ -53,9 +53,9 @@ function test_link_stats()
 	tc_register "Link statistics using nl-link-stats"
 
 	# Read the rx_, tx_ packet count for $dev
-	rx1=`nl-link-stats all rx_packets 2>$stderr | grep $dev.rx_packets | awk '{print $2}'`
+        rx1=`nl-link-stats  rx_packets 2>$stderr | grep $dev.rx_packets | awk '{print $2}'`
 	tc_fail_if_bad $? "Failed to read the rx_packets for $dev"
-	tx1=`nl-link-stats all tx_packets 2>$stderr | grep $dev.tx_packets | awk '{print $2}'`
+	tx1=`nl-link-stats  tx_packets 2>$stderr | grep $dev.tx_packets | awk '{print $2}'`
 	tc_fail_if_bad $? "Failed to read the tx_packets for $dev"
 	
 	# ping our interface to increment the counters.
@@ -63,9 +63,9 @@ function test_link_stats()
 	tc_fail_if_bad $? "Failed to ping $ip of $dev"
 	
 	# Read the counters again
-	rx2=`nl-link-stats all rx_packets 2>$stderr | grep $dev.rx_packets | awk '{print $2}'`
+	rx2=`nl-link-stats  rx_packets 2>$stderr | grep $dev.rx_packets | awk '{print $2}'`
 	tc_fail_if_bad $? "Failed to read the rx_packets for $dev"
-	tx2=`nl-link-stats all tx_packets 2>$stderr | grep $dev.tx_packets | awk '{print $2}'`
+	tx2=`nl-link-stats  tx_packets 2>$stderr | grep $dev.tx_packets | awk '{print $2}'`
 	tc_fail_if_bad $? "Failed to read the tx_packets for $dev"
 
 	# Make sure the count has gone up.
@@ -115,8 +115,8 @@ function test_list_sockets()
 	# [Hex Address]	[Name/Num]	[Num]	[Num]	[NUM]	[NUM]	[HexAddr]/(null)	[NUM]	[NUM]
 	grep -v "^Address" $stdout > $TCTMP/result.list_sockets
 	cat $TCTMP/result.list_sockets |  \
-	grep "0x[[:xdigit:]]\+[[:space:]]\+[[:alnum:]_]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+\(\(0x[[:xdigit:]]\+\)\|(null)\)[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]" &>/dev/null 
 
+        grep "0x[[:xdigit:]]\+[[:space:]]\+[[:alnum:]_]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+[[:digit:]]\+[[:space:]]\+\(\(0x[[:xdigit:]]\+\)\|(null)\)[[:space:]]\+[[:digit:]]" &>/dev/null
 	tc_pass_or_fail $? "Unexpected format of o/p:"\
 	"Please verify if the format confirms to:"\
 	"[Hex Address] [Name/Num]      [Num]   [Num]   [NUM]   [NUM]   [HexAddr]/(null)       [NUM]        [NUM]" \
@@ -170,17 +170,10 @@ function test_route_get()
 
 	nl-route-get $dst >$stdout 2>$stderr
 	tc_fail_if_bad $? "Execution of nl-route-get failed" || return
-
-	# We should see at least one line that starts with our destination address
-	# and the device which holds the route.
-	# $dst dev <dev> via <ip> scope <scope> *
-	grep "^$dst dev [a-zA-Z0-9\.]\+ via [0-9A-Fa-f:\.]\+ scope [a-zA-Z]\+" $stdout &>/dev/null
-
-	tc_pass_or_fail $? "Expected a route info: of the following fmt in o/p" \
-	"$dst dev <device> via <ip> scope <scope-name> *" \
-	"========= stdout ==============" \
-	"$(< $stdout)" \
-	"==============================" 
+        default_route=`grep preferred-src $stdout`
+        rout_ip=`echo $default_route |grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+        ip route show | grep -q $rout_ip &>/dev/null
+        tc_pass_or_fail $? "Failed to get the route to an address in the network "    
 }
 
 function test_tctree_dump()
