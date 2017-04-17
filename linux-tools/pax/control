@@ -14,9 +14,9 @@ Creates and extracts archives using pax under /tmp/
 Args:ARCHIVE:Absolute path to the Archive 
 
 '''
-
+path = ''
 ARCHIVE = '/tmp/archive-%s' % time.strftime('%Y-%m-%d-%H.%M.%S')
 
 tests = ['create', 'list', 'extract', 'copy']
 for i in tests:
-    job.run_test('linux-tools/pax', test = i, tag = i, archive = ARCHIVE)
+    job.run_test('pax',test_path=path , test = i, tag = i, archive = ARCHIVE)
