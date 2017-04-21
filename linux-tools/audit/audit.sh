@@ -56,7 +56,7 @@ function tc_local_setup()
 	tc_exec_or_break $required || return
         tc_check_kconfig CONFIG_AUDIT;kconfig=$?
         [ $kconfig -ne 0 ] && tc_conf "CONFIG_AUDIT  kernel configuration not enabled" && exit
-        # check if audit condtion set for s390x machine
+        # check if audit condition set for s390x machine
         grep -qi "audit" $pro_cmd
         if [ $? -eq 0 ]; then 
         AUDIT_ENABLE=$(sed 's/.*audit_enable=\([0-9]*\).*/\1/' $pro_cmd)
