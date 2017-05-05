@@ -1,0 +1,160 @@
+--- Tests/026-local/run.sh.org	2016-03-15 05:28:46.501607457 +0000
++++ Tests/026-local/run.sh	2016-03-15 05:32:54.619622026 +0000
+@@ -33,7 +33,7 @@ echo "[csr]"
+ $toolsdir/csrgen request > csr
+ dumpreq csr
+ echo "[issue]"
+-$builddir/../src/local-submit -d $tmpdir csr > cert
++/usr/libexec/certmonger/local-submit -d $tmpdir csr > cert
+ echo "[issuer]"
+ openssl pkcs12 -in creds -passin pass: -nodes | openssl x509 > ca-cert
+ dumpcert ca-cert
+--- Tests/028-dbus/run.sh.org	2016-03-15 05:29:19.671609405 +0000
++++ Tests/028-dbus/run.sh	2016-03-15 05:32:54.623622026 +0000
+@@ -9,8 +9,8 @@ export CERTMONGER_LOCAL_CA_DIR="$tmpdir/
+ libexecdir=`$toolsdir/libexecdir`
+ cp ../certmonger.conf "$tmpdir"/config/
+ cp prequal.sh runsub.sh *.py "$tmpdir"/
+-ln -s `pwd`/../../src/getcert "$tmpdir"/
+-ln -s `pwd`/../../src/local-submit "$tmpdir"/
++ln -s /usr/bin/getcert "$tmpdir"/
++ln -s /usr/libexec/certmonger/local-submit "$tmpdir"/
+ for entry in entry bogus-entry ; do
+ 	sed "s|@tmpdir@|$tmpdir|g" $entry > "$tmpdir"/requests/$entry
+ done
+@@ -23,7 +23,7 @@ EOF
+ $DBUSDAEMON --session --print-address=3 --print-pid=4 --fork 3> $tmpdir/address 4> $tmpdir/pid
+ if test -s $tmpdir/pid ; then
+ 	env DBUS_SESSION_BUS_ADDRESS=`cat $tmpdir/address` \
+-	$toolsdir/../../src/certmonger-session -n -c $tmpdir/runsub.sh
++	/usr/libexec/certmonger/certmonger-session -n -c $tmpdir/runsub.sh
+ fi
+ kill `cat $tmpdir/pid`
+ 
+--- Tests/034-perms/run.sh.org	2016-03-15 05:29:43.718610817 +0000
++++ Tests/034-perms/run.sh	2016-03-15 05:32:54.627622027 +0000
+@@ -12,7 +12,7 @@ function resetperms() {
+ cat > ca << EOF
+ id=Local
+ ca_type=EXTERNAL
+-ca_external_helper=$builddir/../src/local-submit -d $tmpdir
++ca_external_helper=/usr/libexec/certmonger/local-submit -d $tmpdir
+ EOF
+ 
+ owner=`id -un`
+--- Tests/036-getcert/run.sh.org	2016-03-15 05:30:02.273611906 +0000
++++ Tests/036-getcert/run.sh	2016-03-15 05:32:54.630622027 +0000
+@@ -7,7 +7,7 @@ timeout=900
+ cat > $tmpdir/cas/local << EOF
+ id=local
+ ca_type=EXTERNAL
+-ca_external_helper="$builddir"/../src/local-submit -d "$tmpdir"/local
++ca_external_helper=/usr/libexec/certmonger/local-submit -d "$tmpdir"/local
+ EOF
+ cat > $tmpdir/cas/jerkca << EOF
+ id=jerkca
+@@ -19,7 +19,7 @@ run() {
+ 	env CERTMONGER_CONFIG_DIR="$tmpdir" CERTMONGER_TMPDIR="$tmpdir" \
+ 	CERTMONGER_REQUESTS_DIR="$tmpdir"/requests \
+ 	CERTMONGER_CAS_DIR="$tmpdir"/cas \
+-	"$builddir"/../src/certmonger-session -L -P "$tmpdir/certmonger.sock" -n -c "$*"
++	/usr/libexec/certmonger/certmonger-session -L -P "$tmpdir/certmonger.sock" -n -c "$*"
+ }
+ 
+ listfiles() {
+@@ -64,13 +64,13 @@ REQOPTS="-N cn=First"
+ 
+ # First round.
+ echo '[Files, initial.]'
+-run "$builddir"/../src/getcert request -c local -I first -w --wait-timeout=$timeout $REQOPTS -f "$tmpdir"/files/cert -k "$tmpdir"/files/key
++run /usr/bin/getcert request -c local -I first -w --wait-timeout=$timeout $REQOPTS -f "$tmpdir"/files/cert -k "$tmpdir"/files/key
+ listfiles
+ 
+ # Save the key and cert we just generated, and generate a new certificate.
+ cp "$tmpdir"/files/cert "$tmpdir"/files/key "$tmpdir"/backup
+ echo '[Files, resubmit.]'
+-run "$builddir"/../src/getcert resubmit -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
++run /usr/bin/getcert resubmit -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
+ listfiles
+ # Make sure we have a new certificate and the key is unchanged.
+ cmp -s "$tmpdir"/files/key "$tmpdir"/backup/key || echo ERROR: keys were changed on resubmit
+@@ -82,7 +82,7 @@ cmp -s "$tmpdir"/files/cert "$tmpdir"/ba
+ cp "$tmpdir"/files/cert "$tmpdir"/files/key "$tmpdir"/backup
+ echo 1235 > "$tmpdir"/local/serial
+ echo '[Files, rekey]'
+-run "$builddir"/../src/getcert rekey -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
++run /usr/bin/getcert rekey -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
+ listfiles
+ # Make sure we have a new certificate and key.
+ cmp -s "$tmpdir"/files/key "$tmpdir"/backup/key && echo ERROR: keys were not changed on rekey
+@@ -92,7 +92,7 @@ cmp -s "$tmpdir"/files/cert "$tmpdir"/ba
+ echo key_preserve=1 >> "$tmpdir"/requests/*
+ cp "$tmpdir"/files/cert "$tmpdir"/files/key "$tmpdir"/backup
+ echo '[Files, rekey with preserve=1]'
+-run "$builddir"/../src/getcert rekey -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
++run /usr/bin/getcert rekey -c local -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
+ listfiles
+ # Make sure we have a new certificate and key, and that the old key still
+ # exists where we expect it to be.
+@@ -104,7 +104,7 @@ cmp -s "$tmpdir"/backup/key "$tmpdir"/fi
+ rm -f "$tmpdir"/files/key.*
+ cp "$tmpdir"/files/cert "$tmpdir"/files/key "$tmpdir"/backup
+ echo '[Files, rekey with jerk CA]'
+-run "$builddir"/../src/getcert rekey -c jerkca -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
++run /usr/bin/getcert rekey -c jerkca -w --wait-timeout=$timeout -f "$tmpdir"/files/cert
+ listfiles
+ # Make sure we didn't nuke the old key, but we should have been able to get rid of the candidate key.
+ cmp -s "$tmpdir"/files/key "$tmpdir"/backup/key || echo ERROR: keys were changed on failed rekey
+@@ -114,13 +114,13 @@ rm -f "$tmpdir"/requests/* "$tmpdir"/loc
+ 
+ # First round.
+ echo '[Database, initial.]'
+-run "$builddir"/../src/getcert request -c local -I first -w --wait-timeout=$timeout $REQOPTS -d "$tmpdir"/db -n first
++run /usr/bin/getcert request -c local -I first -w --wait-timeout=$timeout $REQOPTS -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/backup
+ 
+ # Save the key and cert we just generated, and generate a new certificate.
+ echo '[Database, resubmit]'
+-run "$builddir"/../src/getcert resubmit -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
++run /usr/bin/getcert resubmit -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/files
+ # Make sure we have a new certificate and the key is unchanged.
+@@ -133,7 +133,7 @@ cmp -s "$tmpdir"/files/cert "$tmpdir"/ba
+ cp "$tmpdir"/files/cert "$tmpdir"/files/key "$tmpdir"/backup
+ echo 1235 > "$tmpdir"/local/serial
+ echo '[Database, rekey]'
+-run "$builddir"/../src/getcert rekey -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
++run /usr/bin/getcert rekey -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/files
+ # Make sure we have a new certificate and key.
+@@ -148,7 +148,7 @@ cp "$tmpdir"/files/cert "$tmpdir"/files/
+ certutil -K -d "$tmpdir"/db -f "$tmpdir"/db/pinfile | grep -v Checking | grep -v '^$' | awk '{print $3}' > "$tmpdir"/backup/id
+ # Generate a new key and certificate.
+ echo '[Database, rekey with preserve=1]'
+-run "$builddir"/../src/getcert rekey -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
++run /usr/bin/getcert rekey -c local -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/files
+ # Make sure we have a new certificate and key, and that the old key still
+@@ -165,7 +165,7 @@ cp "$tmpdir"/files/cert "$tmpdir"/files/
+ certutil -K -d "$tmpdir"/db -f "$tmpdir"/db/pinfile | grep -v Checking | grep -v '^$' | awk '{print $3}' > "$tmpdir"/backup/id
+ # Try to generate a new key and certificate.
+ echo '[Database, rekey with jerk CA]'
+-run "$builddir"/../src/getcert rekey -c jerkca -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
++run /usr/bin/getcert rekey -c jerkca -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/files
+ # Make sure we didn't nuke the old key.
+@@ -180,7 +180,7 @@ cp "$tmpdir"/files/cert "$tmpdir"/files/
+ certutil -K -d "$tmpdir"/db -f "$tmpdir"/db/pinfile | grep -v Checking | grep -v '^$' | awk '{print $3}' > "$tmpdir"/backup/id
+ # Try to generate a new key and certificate.
+ echo '[Database, rekey with jerk CA, nonpreserving]'
+-run "$builddir"/../src/getcert rekey -c jerkca -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
++run /usr/bin/getcert rekey -c jerkca -w --wait-timeout=$timeout -d "$tmpdir"/db -n first
+ listdb
+ extract "$tmpdir"/files
+ # Make sure we didn't nuke the old key.
+
