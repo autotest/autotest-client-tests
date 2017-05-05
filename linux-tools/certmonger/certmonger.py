@@ -32,7 +32,7 @@ class certmonger(test.test):
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
             cwd = os.getcwd()
             os.chdir("%s/certmonger" %(test_path))
-            os.system("patch -p0 -R < change-path.patch")
+            os.system("patch -p0  < change-path.patch")
             os.chdir(cwd)
             ret_val = subprocess.Popen(['./certmonger.sh'], cwd="%s/certmonger" %(test_path))
             ret_val.communicate()
