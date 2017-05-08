@@ -43,7 +43,7 @@ function tc_local_setup()
 function run_test()
 {
 	pushd $TESTS_DIR &>/dev/null
-	TESTS=`ls | sed '/lowlevel-blt-bench/d' | sed '/check-formats/d'`
+	TESTS=`ls | sed '/lowlevel-blt-bench/d' | sed '/check-formats/d' | sed '/affine-bench/d'`
 	TST_TOTAL=`echo $TESTS | wc -w`
 	
 	for test in $TESTS; do
