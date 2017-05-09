@@ -1,7 +1,5 @@
-#cd `dirname $0`
-#LTPBIN=${LTPBIN%/shared}/sqlite
+cd `dirname $0`
 source $LTPBIN/tc_utils.source
-
 sqlite3 examdatabase < examScript
 sqlite3 examdatabase < examLOG
 sqlite3 examdatabase2 < examScript

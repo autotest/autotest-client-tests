@@ -1,8 +1,8 @@
 seq  name             file                                                      
 ---  ---------------  ----------------------------------------------------------
 0    main                                                                       
-2    e1               /opt/fiv/ltp/testcases/fivextra/sqlite/test_files/examdata
-3    e2               /opt/fiv/ltp/testcases/fivextra/sqlite/test_files/examdata
+2    e1               /usr/local/autotest_base/autotest-client-tests/linux-tools
+3    e2               /usr/local/autotest_base/autotest-client-tests/linux-tools
 ln          fn          exam1       exam2       exam3       exam4     
 ----------  ----------  ----------  ----------  ----------  ----------
 Anderson    Bob         551.0       357.0       327.0       481.0     

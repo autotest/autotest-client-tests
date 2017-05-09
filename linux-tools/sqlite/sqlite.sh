@@ -29,9 +29,10 @@
 ## source the utility functions
 
 #cd `dirname $0`
-#LTPBIN=${LTPBIN%/shared}/sqlite
+LTPBIN="/usr/local/autotest_base/autotest-client-tests/linux-tools/shared"
 source $LTPBIN/tc_utils.source
 test_dir=${LTPBIN%/shared}/sqlite/test_files
+cp $test_dir/c_sqlite3  $LTPBIN
 
 
 ################################################################################
@@ -64,6 +65,7 @@ function test03()
 {
 	tc_register "Sqlite3 pivot and attach test"
         $test_dir/runpivot.sh > $TCTMP/test03.out 2>$stderr
+	cp $TCTMP/test03.out /home/logs
 	tc_fail_if_bad $? "Unexpected response from sqlite3 command" || return
 	diff $TCTMP/test03.out $test_dir/sample03 
 	tc_pass_or_fail $? "Unexpected output" || return

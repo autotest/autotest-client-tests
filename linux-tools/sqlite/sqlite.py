@@ -39,7 +39,7 @@ class sqlite(test.test):
         """
         try:
             os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.Popen(['./'], cwd="%s/sqlite" %(test_path))
+            ret_val = subprocess.Popen(['./sqlite.sh'], cwd="%s/sqlite" %(test_path))
             ret_val.communicate()
             if ret_val.returncode != 0:
                 self.nfail += 1
