@@ -13,6 +13,7 @@ git:
     submodules: false
 
 install:
+    - pip install setuptools
     - pip install sphinx
     - AUTOTEST_TOP_PATH="." pip install -r requirements-selftests.txt
 
