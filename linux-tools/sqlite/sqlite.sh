@@ -32,7 +32,8 @@
 #LTPBIN=${LTPBIN%/shared}/sqlite
 source $LTPBIN/tc_utils.source
 test_dir=${LTPBIN%/shared}/sqlite/test_files
-
+test_dir1=${LTPBIN%/shared}
+cp $test_dir/c_sqlite3  $LTPBIN
 
 ################################################################################
 # the testcase functions
@@ -63,10 +64,13 @@ function test02()
 function test03()
 {
 	tc_register "Sqlite3 pivot and attach test"
+	cp $test_dir/sample03 $test_dir/sample03.backup
+	sed -i "s:testdir:$test_dir1:g" $test_dir/sample03
         $test_dir/runpivot.sh > $TCTMP/test03.out 2>$stderr
 	tc_fail_if_bad $? "Unexpected response from sqlite3 command" || return
 	diff $TCTMP/test03.out $test_dir/sample03 
 	tc_pass_or_fail $? "Unexpected output" || return
+	mv  $test_dir/sample03.backup $test_dir/sample03
 }
 
 function test04()

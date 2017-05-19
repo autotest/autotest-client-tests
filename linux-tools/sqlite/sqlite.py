@@ -38,10 +38,10 @@ class sqlite(test.test):
         Trigger test run
         """
         try:
-            os.environ["LTPBIN"] = "%s/shared" %(test_path)
-            ret_val = subprocess.Popen(['./'], cwd="%s/sqlite" %(test_path))
-            ret_val.communicate()
-            if ret_val.returncode != 0:
+	    os.environ["LTPBIN"] = os.path.join(test_path, "shared")
+            sqlite_test_path = os.path.join(test_path, "sqlite")
+            ret_val = subprocess.call(os.path.join(sqlite_test_path, 'sqlite.sh'), shell=True)
+            if ret_val != 0:
                 self.nfail += 1
 
         except error.CmdError, e:
