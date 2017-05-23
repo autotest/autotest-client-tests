@@ -29,14 +29,17 @@
 
 #cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/libdaemon
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/libdaemon/tests"
 
 function tc_local_setup()
 {
 	# check installation and environment 
-        [ -f /usr/lib*/libdaemon.so.0 ] && \
-        tc_break_if_bad $? "libdaemon not installed"
+        #[ -f /usr/lib*/libdaemon.so.0 ] && \
+	tc_check_package "$LIBDAEMON"
+        tc_break_if_bad $? "$LIBDAEMON is  not installed"
 
 }
 

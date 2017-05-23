@@ -38,7 +38,7 @@ function tc_local_setup()
 {
     tc_exec_or_break $Required || return
 
-    rpm -q yajl >$stdout 2>$stderr
+    tc_check_package yajl
     tc_break_if_bad $? "yajl is not installed" || return
 }
 

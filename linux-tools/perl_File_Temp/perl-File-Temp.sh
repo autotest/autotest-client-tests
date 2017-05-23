@@ -31,7 +31,9 @@
 ##
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_File_Temp
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_File_Temp"
 
 ################################################################################
@@ -44,8 +46,8 @@ TESTDIR="${LTPBIN%/shared}/perl_File_Temp"
 
 function tc_local_setup()
 {
-	rpm -q perl-File-Temp 1>$stdout 2>$stderr
-	tc_break_if_bad $? "perl-File-Temp is not installed properly"
+        tc_check_package "$PERL_FILE_TEMP"
+	tc_break_if_bad $? "$PERL_FILE_TEMP is not installed properly"
 
 	#Test 00-compile.t needs lib directory for test
 	mkdir -p $TESTDIR/lib

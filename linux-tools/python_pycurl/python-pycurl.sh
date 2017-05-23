@@ -133,7 +133,7 @@ function tc_local_cleanup()
 function install_check()
 {
     tc_register "Installation check"
-    rpm -q python-pycurl >$stdout 2>$stderr
+      tc_check_package python-pycurl
     tc_pass_or_fail $? "python-pycurl not installed"
 
 

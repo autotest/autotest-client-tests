@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q pyxdg >$stdout 2>$stderr 
+      tc_check_package pyxdg
 	tc_break_if_bad $? "pyxdg not installed"
 }
 

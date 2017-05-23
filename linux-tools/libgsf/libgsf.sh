@@ -43,7 +43,7 @@ TESTS_DIR=${LTPBIN%/shared}/libgsf/
 #        
 function tc_local_setup()
 {       
-	rpm -q libgsf 1>$stdout 2>$stderr
+      tc_check_package libgsf
 	tc_break_if_bad $? "libgsf not installed" || return
 	mkdir $TCTMP/out-dir
 	echo "test file" >> $TCTMP/outt

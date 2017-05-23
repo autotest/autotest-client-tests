@@ -37,7 +37,7 @@ FIPS_CONFIG=`find / -name libgcrypt.so.11 | head -1`
 
 function tc_local_setup()
 {
-	rpm -q libgcrypt >$stdout 2>$stderr
+      tc_check_package libgcrypt
 	tc_break_if_bad $? "libgcrypt required, but not installed" || return
 	fipshmac $FIPS_CONFIG>$stdout 2>$stderr
         tc_break_if_bad $? "Failed to create checksum file using fipshmac"

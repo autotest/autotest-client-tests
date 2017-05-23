@@ -31,14 +31,14 @@
 #LTPBIN=${LTPBIN%/shared}/perl_IO_stringy
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_IO_stringy"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
 	# check installation and environment
 	tc_exec_or_break $required
 
 	# install check
-	rpm -q "perl-IO-stringy" >$stdout 2>$stderr
+        tc_check_package "perl-IO-stringy"
 	tc_break_if_bad $? "perl-IO-stringy not installed"
 	
 

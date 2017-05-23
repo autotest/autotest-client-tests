@@ -28,9 +28,11 @@
 ###########################################################################################
 #cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Font_AFM
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Font_AFM/t"
-required="perl rpm"
+required="perl"
 
 function tc_local_setup()
 {
@@ -38,8 +40,8 @@ function tc_local_setup()
 	tc_exec_or_break $required
 
 	# install check
-	rpm -q "perl-Font-AFM" >$stdout 2>$stderr
-	tc_break_if_bad $? "perl-Font-AFM not installed"
+        tc_check_package "$PERL_FONT_AFM"
+	tc_break_if_bad $? "$PERL_FONT_AFM not installed"
 }
 
 ################################################################################

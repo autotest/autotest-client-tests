@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -37,7 +37,7 @@ function tc_local_setup()
 {
      tc_exec_or_break $REQUIRED || return
 
-     rpm -q os-prober 1>$stdout 2>$stderr
+      tc_check_package os-prober
      tc_break_if_bad $? "os-prober is not installed properly..!"
 
 

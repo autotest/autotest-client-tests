@@ -32,7 +32,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Text_ParseWords
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Text_ParseWords"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -45,7 +45,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-Text-ParseWords >$stdout 2>$stderr
+        tc_check_package perl-Text-ParseWords
         tc_break_if_bad $? "perl-Text-ParseWords is not installed properly"
 }
 

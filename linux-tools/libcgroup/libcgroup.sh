@@ -41,7 +41,7 @@ REQUIRED="cgclassify cgcreate cgdelete cgexec cgget cgset cgsnapshot lscgroup ls
 function tc_local_setup()
 {
     tc_root_or_break
-    rpm -q "libcgroup" >$stdout 2>$stderr 
+      tc_check_package "libcgroup"
     tc_break_if_bad $? "libcgroup package is not installed" 
     tc_exec_or_break $REQUIRED || return
     tc_add_user_or_break 1>$stdout 2>$stderr

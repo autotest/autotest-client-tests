@@ -45,11 +45,11 @@ tc_local_setup()
 {
     tc_root_or_break || exit
     tc_exec_or_break grep || exit
-    rpm -q "sendmail" >$stdout 2>$stderr
+      tc_check_package "sendmail"
     tc_break_if_bad $? "sendmail package is not installed"
     tc_add_user_or_break || return # sets TC_TEMP_USER
    
-    rpm -q "postfix" &> /dev/null 
+      tc_check_package "sendmail"
     if [ $? -eq 0 ]; then
 	#check status of postfix and stop if its already running
         # so as to free port 25 for sendmail

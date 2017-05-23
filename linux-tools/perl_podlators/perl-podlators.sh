@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-    rpm -q perl-podlators >$stdout 2>$stderr
+      tc_check_package perl-podlators
     tc_break_if_bad $? "perl-podlators not installed"
 }
 

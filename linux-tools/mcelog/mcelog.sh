@@ -45,7 +45,7 @@ function tc_local_setup()
 
         tc_root_or_break || return
 
-        rpm -q mcelog >$stdout 2>$stderr
+      tc_check_package mcelog
         tc_break_if_bad $? "mcelog not installed"
 
         lsmod | grep -q mce_inject

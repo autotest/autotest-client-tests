@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -55,7 +55,7 @@ function tc_local_cleanup()
 function install_check()
 {
         tc_register "Installation check"
-        rpm -q libunistring >$stdout 2>$stderr
+      tc_check_package libunistring
         tc_pass_or_fail $? "libunistring not installed"
 }
 

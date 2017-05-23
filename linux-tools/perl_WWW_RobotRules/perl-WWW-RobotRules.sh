@@ -31,14 +31,14 @@
 #LTPBIN=${LTPBIN%/shared}/perl_WWW_RobotRules
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_WWW_RobotRules"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
     # check installation and environment
     tc_exec_or_break $required
 
     # install check
-    rpm -q "perl-WWW-RobotRules" >$stdout 2>$stderr
+      tc_check_package "perl-WWW-RobotRules"
     tc_break_if_bad $? "perl-WWW-RobotRules not installed"
    
 

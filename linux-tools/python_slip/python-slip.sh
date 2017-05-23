@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/python_slip
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/python_slip/example"
-REQUIRED="python rpm"
+REQUIRED="python"
 
 servicedir="/usr/share/dbus-1/system-services"
 service_DATA="org.fedoraproject.slip.example.mechanism.service"
@@ -55,7 +57,7 @@ function tc_local_setup()
 
 function install_check()
 {
-        rpm -q "python-slip" >$stdout 2>$stderr
+      tc_check_package "$PYTHON_SLIP"
         tc_break_if_bad $? "python-slip package is not installed"
 }
 

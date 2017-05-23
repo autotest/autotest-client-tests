@@ -36,8 +36,8 @@ function tc_local_setup()
 {
 
 	# install check
-	rpm -q device-mapper-persistent-data >$stdout 2>$stderr
-	tc_break_if_bad $? "device-mapper-persistent-data package  not installed"
+        tc_check_package device-mapper-persistent-data
+        tc_break_if_bad $? "device-mapper-persistent-data package  not installed"
 	
 
 }

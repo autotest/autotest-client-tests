@@ -114,7 +114,7 @@ function test01()
 	tc_register "installation check"
 
 	# Check that xinetd exists
-	rpm -q xinetd &>/dev/null
+      tc_check_package xinetd
 	tc_pass_or_fail $? "xinetd not installed properly"
 }
 

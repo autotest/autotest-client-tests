@@ -29,13 +29,16 @@
 
 #cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Getopt_Long
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_Getopt_Long/t"
 
 function tc_local_setup()
 {
-    rpm -q perl-Getopt-Long 1>$stdout 2>$stderr
-    tc_break_if_bad $? "perl-Getopt-Long is not installed properly..!"
+    #tc_check_package libgetopt-long-descriptive-perl
+    tc_check_package "$PERL_GETOPT_LONG"
+    tc_break_if_bad $? "$PERL_GETOPT_LONG is not installed properly..!"
 }
 
 

@@ -45,7 +45,7 @@ TESTDIR=${LTPBIN%/shared}/python_dateutil
 #
 function tc_local_setup(){
 	tc_exec_or_break $REQUIRED || return
-	rpm -q python-dateutil >$stdout 2>$stderr
+      tc_check_package python-dateutil
 	tc_break_if_bad $? "python-dateutil package is not installed properly"
 }
 

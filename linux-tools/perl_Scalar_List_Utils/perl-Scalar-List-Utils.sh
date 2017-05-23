@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_Scalar_List_Utils/"
 
 function tc_local_setup()
 {
-    rpm -q perl-Scalar-List-Utils >$stdout 2>$stderr
+      tc_check_package perl-Scalar-List-Utils
     tc_break_if_bad $? "perl-Scalar-List-Utils is not installed"
 }
 

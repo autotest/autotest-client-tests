@@ -35,7 +35,7 @@ LIBHANGUL_TEST_DIR="${LTPBIN%/shared}/libhangul/test"
 
 function tc_local_setup()
 {
-     rpm -q libhangul >$stdout 2>$stderr
+      tc_check_package libhangul
      tc_break_if_bad $? "libhangul  not installed"
 }
 

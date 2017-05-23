@@ -41,7 +41,7 @@ function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
 	tc_root_or_break || return
-	rpm -q $mypkg >$stdout 2>$stderr
+      tc_check_package $mypkg
         tc_break_if_bad $? "\"$mypkg\" package is not installed"
 }
 
@@ -51,8 +51,8 @@ function tc_local_setup()
 function run_test()
 {
 	#This test case tests man pages for the additional packages listed in man-pages"
-	installed_files=`rpm -qld $mypkg | grep /usr/share/man/`
-	TESTS=`rpm -qld $mypkg | grep /usr/share/man/ | wc -l`
+      tc_check_package $mypkg
+      tc_check_package $mypkg
 	TST_TOTAL=`expr $TESTS*2`
 	for file in $installed_files
 	do

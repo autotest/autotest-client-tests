@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/python_lxml/tests"
 
 function tc_local_setup()
 {
-    rpm -q python-lxml >$stdout 2>$stderr
+      tc_check_package python-lxml
     tc_break_if_bad $? "python-lxml not installed"
 }
 

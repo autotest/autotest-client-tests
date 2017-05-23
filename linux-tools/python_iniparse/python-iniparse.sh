@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q "python-iniparse" >$stdout 2>$stderr	
+      tc_check_package "python-iniparse"
 	tc_break_if_bad $? "python-iniparse not installed" 
 }
 

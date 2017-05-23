@@ -31,14 +31,14 @@
 #LTPBIN=${LTPBIN%/shared}/perl_IO_Socket_IP
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_IO_Socket_IP"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
     # check installation and environment
     tc_exec_or_break $required
 
     # install check
-    rpm -q "perl-IO-Socket-IP" >$stdout 2>$stderr
+    tc_check_package "perl-IO-Socket-IP"
     tc_break_if_bad $? "perl-IO-Socket-IP not installed"
    
 

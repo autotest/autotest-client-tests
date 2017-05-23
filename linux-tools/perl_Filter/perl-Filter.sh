@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_Filter/"
 
 function tc_local_setup()
 {
-    rpm -q perl-Filter >$stdout 2>$stderr
+      tc_check_package perl-Filter
     tc_break_if_bad $? "perl-Filter not installed"
 }
 

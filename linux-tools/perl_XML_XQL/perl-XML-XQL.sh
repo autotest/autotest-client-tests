@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_XML_XQL
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_XQL"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -44,7 +44,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-XML-XQL >$stdout 2>$stderr
+      tc_check_package perl-XML-XQL
         tc_break_if_bad $? "perl-XML-XQL is not installed properly"
 }
 

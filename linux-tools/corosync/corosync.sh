@@ -33,7 +33,7 @@ DEAMONSTATUS=""
 function tc_local_setup()
 {
     tc_root_or_break || return
-    rpm -q corosync >$stdout 2>$stderr
+      tc_check_package corosync
     tc_break_if_bad $? "corosync package not installed" 
 
     # For the corosync daemon to work, requires /etc/corosync/corosync.conf

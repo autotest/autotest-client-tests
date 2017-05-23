@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Digest >$stdout 2>$stderr 
+      tc_check_package perl-Digest
 	tc_break_if_bad $? "perl-Digest not installed"
 }
 

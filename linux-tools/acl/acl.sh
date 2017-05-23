@@ -58,12 +58,12 @@ sbits-restore.test
 
 function tc_local_setup()
 {
-    tc_exec_or_break grep rpm perl || return
-    rpm -qa | grep "^perl-[0-9]"
+    tc_exec_or_break grep perl || return
+    tc_check_package "perl" 
     tc_break_if_bad $? "Need full perl installation, not just perl-base" || return
 
     local opts="remount,defaults,errors=remount-ro,acl,user_xattr"
-    mount -o $opts /
+    sudo mount -o $opts /
     tc_break_if_bad $? "could not remount / with $opts" || exit
 }
 

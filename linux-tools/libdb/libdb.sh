@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/libdb/"
 
 function tc_local_setup()
 {
-    rpm -q libdb >$stdout 2>$stderr
+      tc_check_package libdb
     tc_break_if_bad $? "libdb not installed"
 }
 

@@ -29,13 +29,13 @@
 #LTPBIN=${LTPBIN%/shared}/perl_XML_RegExp
 source $LTPBIN/tc_utils.source
 TESTDIR="${LTPBIN%/shared}/perl_XML_RegExp"
-REQUIREl="perl rpm" 
+REQUIREl="perl" 
 
 
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return 
-	rpm -q perl-XML-RegExp >$stdout 2>$stderr
+      tc_check_package perl-XML-RegExp
 	tc_break_if_bad $? "perl-XML-RegExp is not installed properly..!"
 }
 

@@ -35,7 +35,7 @@ TESTS_DIR="${LTPBIN%/shared}/pyxattr/tests"
 function tc_local_setup()
 {
 	# check installation and environment 
-	rpm -q pyxattr >$stdout 2>$stderr
+      tc_check_package pyxattr
 	tc_break_if_bad $? "pyxattr not properly installed"
 }
 

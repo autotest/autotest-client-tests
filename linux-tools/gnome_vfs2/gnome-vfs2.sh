@@ -34,7 +34,7 @@ TESTS_DIR="${LTPBIN%/shared}/gnome_vfs2/tests"
 REQUIRED="vncserver"
 function tc_local_setup()
 {
-        rpm -q "gnome-vfs2" >$stdout 2>$stderr
+      tc_check_package "gnome-vfs2"
 	tc_break_if_bad $? "gnome-vfs2 package is not installed"
 	tc_exec_or_break $REQUIRED
 	#tests need X-window environment as it's obvious 

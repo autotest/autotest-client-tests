@@ -42,7 +42,7 @@ TESTS_DIR=${LTPBIN%/shared}/libglade2/tests
 #
 function tc_local_setup()
 {
-    rpm -q libglade2 1>$stdout 2>$stderr
+      tc_check_package libglade2
     tc_break_if_bad $? "libglade2 not installed" || return
 
     vncserver -kill :4 > /dev/null

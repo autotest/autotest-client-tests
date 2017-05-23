@@ -29,10 +29,10 @@
 ###########################################################################################
 
 #cd $(dirname $0)
-#LTPBIN=${LTPBIN%/shared}/perl_XML_Simple
+LTPBIN=${LTPBIN%/shared}/perl_XML_Simple
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_Simple"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -41,7 +41,7 @@ function tc_local_setup()
 
 function install_check()
 {
-        rpm -q perl-XML-Simple >$stdout 2>$stderr
+      tc_check_package perl-XML-Simple
         tc_break_if_bad $? "perl-XML-Simple is not installed"
 }
 

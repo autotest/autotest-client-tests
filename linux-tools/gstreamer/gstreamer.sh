@@ -30,7 +30,9 @@
 
 #cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/gstreamer
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TEST_DIR=${LTPBIN%/shared}/gstreamer
 BENCHMARK_TEST_DIR="${LTPBIN%/shared}/gstreamer/tests/benchmark"
 TEST1="caps complexity gstbufferstress gstclockstress masselements"
@@ -41,8 +43,8 @@ TST_TOTAL=$((TOTAL1 + TOTAL2))
 
 function tc_local_setup()
 {
-        [ -f /usr/lib*/libgstreamer-0.10.so.0 ] 
-        tc_break_if_bad $? "gstreamer not installed" 
+	tc_check_package  "$GSTREAMER"
+        tc_break_if_bad $? "$GSTREAMER is not installed"
 }
 
 function run_benchmarktests()

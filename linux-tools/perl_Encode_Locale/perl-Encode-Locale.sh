@@ -29,17 +29,19 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Encode_Locale
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Encode_Locale"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
     # check installation and environment
     tc_exec_or_break $required
 
     # install check
-    rpm -q "perl-Encode-Locale" >$stdout 2>$stderr
-    tc_break_if_bad $? "perl-Encode-Locale not installed"
+    tc_check_package "$PERL_ENCODE_LOCALE"
+    tc_break_if_bad $? "$PERL_ENCODE_LOCALE not installed"
    
 
 }

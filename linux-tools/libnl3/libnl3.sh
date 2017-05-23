@@ -57,7 +57,7 @@ EOF
 #
 function tc_local_setup()
 {
-    rpm -q libnl3 1>$stdout 2>$stderr
+      tc_check_package libnl3
     tc_break_if_bad $? "libnl3 not installed" || return
     temp_test 
        

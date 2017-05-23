@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_constant/t"
 
 function tc_local_setup()
 {
-	rpm -q perl-constant 1>$stdout 2>$stderr
+      tc_check_package perl-constant
 	tc_break_if_bad $? "perl-constant is not installed"
 }
 

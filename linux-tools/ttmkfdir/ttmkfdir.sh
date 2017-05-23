@@ -41,7 +41,7 @@ source $LTPBIN/tc_utils.source
 #        
 function tc_local_setup()
 {       
-	rpm -q ttmkfdir 1>$stdout 2>$stderr
+      tc_check_package ttmkfdir
 	tc_break_if_bad $? "ttmkfdir not installed" || return
 
 	TRUETYPE_DIR=`find /usr/share -name truetype`

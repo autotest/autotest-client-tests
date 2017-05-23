@@ -47,13 +47,20 @@ LTDLTEST="${LTPBIN%/shared}/libtool/tests"
 function tc_local_setup()
 {
 	#to check the required package is installed
-	rpm -q libtool-ltdl >$stdout 2>$stderr
+	#tc_check_package "libtool-ltdl" >$stdout 2>$stderr
+	tc_check_package "libltdl7" >$stdout 2>$stderr
 	tc_break_if_bad $? "$PKG_NAME is not installed"
 
 	#to link the libtool to the current path for test execution
         libpath=`which libtool`
 	ln -s $libpath libtool
-	ln -s /usr/lib*/libltdl.so libltdl/.libs/
+        grep -i "ubuntu" /etc/*release >/dev/null 2>&1
+        if [ $? -eq 0 ];then
+		lib_path="`ls /usr/lib/*-linux-gnu/libltdl.so.7`"
+	else
+		lib_path="`ls /usr/lib*/libltdl.so libltdl/.libs/`"
+	fi
+	ln -s $lib_path libltdl/.libs/
 }
 
 

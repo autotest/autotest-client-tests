@@ -41,11 +41,11 @@ TESTS_DIR=${LTPBIN%/shared}/gdk_pixbuf2
 
 function tc_local_setup()
 {
-    rpm -q gdk-pixbuf2 >$stdout 2>$stderr
+      tc_check_package gdk-pixbuf2
     tc_break_if_bad $? "gdk-pixbuf2 not installed" || return
 
 # gdk-pixbuf2-tests rpm provides the testsuite for gdk-pixbuf2 package
-    rpm -q gdk-pixbuf2-tests >$stdout 2>$stderr
+      tc_check_package gdk-pixbuf2
     tc_break_if_bad $? "gdk-pixbuf2-tests not installed" || return
 
     ln -s /usr/libexec/installed-tests/gdk-pixbuf $TESTS_DIR/gdk-pixbuf >$stdout 2>$stderr

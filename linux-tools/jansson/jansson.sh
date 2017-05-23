@@ -35,7 +35,7 @@ export top_srcdir=$TESTS_DIR
 
 function tc_local_setup()
 {
-	rpm -q jansson 1>$stdout 2>$stderr
+      tc_check_package jansson
         tc_break_if_bad $? "jansson not installed" || return
 }
 

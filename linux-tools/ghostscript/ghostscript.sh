@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/ghostscript
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/ghostscript/tiff/test"
-REQUIRED="rpm"
+REQUIRED="bash"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q ghostscript >$stdout 2>$stderr 
+      tc_check_package ghostscript
 	tc_break_if_bad $? "ghostscript not installed"
 	sed -i -e 's/^TOOLS/#TOOLS/' $TESTS_DIR/common.sh
 	export TOOLS="/usr/bin"

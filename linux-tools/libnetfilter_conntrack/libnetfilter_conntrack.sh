@@ -34,7 +34,9 @@
 #=============================================
 #######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/libnetfilter_conntrack
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 TESTS_DIR=${LTPBIN%/shared}/libnetfilter_conntrack/utils
 
 
@@ -43,7 +45,7 @@ TESTS_DIR=${LTPBIN%/shared}/libnetfilter_conntrack/utils
 #=====================================================
 function tc_local_setup()
 {
-        rpm -q libnetfilter_conntrack >$stdout 2>$stderr
+	tc_check_package "$LIBNETFILTER_CONNTRACT"
 	tc_break_if_bad $? " libnetfilter_conntrack not installed"
 }
 

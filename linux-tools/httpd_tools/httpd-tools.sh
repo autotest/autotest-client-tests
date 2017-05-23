@@ -47,7 +47,7 @@ function tc_local_setup()
 	tc_exec_or_break $TOOLS || return
 
 	# apache must be installed
-	rpm -q httpd >$stdout 2>$stderr
+        tc_check_package httpd
 	tc_break_if_bad $? "httpd required, but not installed" || return 
 	
 	tc_exists $HTTPD_CONF

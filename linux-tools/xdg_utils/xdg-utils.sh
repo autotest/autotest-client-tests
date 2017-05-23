@@ -35,7 +35,7 @@ TESTDIR="${LTPBIN%/shared}/xdg_utils/"
 
 function tc_local_setup()
 {
-    rpm -q xdg-utils >$stdout 2>$stderr
+      tc_check_package xdg-utils
     tc_break_if_bad $? "xdg-utils is not installed"
 }
 

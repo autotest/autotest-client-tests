@@ -31,13 +31,15 @@
 
 #cd $(dirname $0)
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 kpartx_img=$TCTMP/kpartx_test.img
 partition_table_types="msdos gpt"
 
 tc_local_setup()
 {
-    tc_exec_or_break kpartx || return
+    tc_exec_or_break "$KPARTX" || return
     tc_executes losetup dd parted || {
         tc_info "You require losetup, dd, parted for running kpartx tests"
         return

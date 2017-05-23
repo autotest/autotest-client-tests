@@ -32,7 +32,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Parse_Yapp
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Parse_Yapp"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -41,7 +41,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Parse-Yapp >$stdout 2>$stderr 
+        tc_check_package perl-Parse-Yapp
 	tc_break_if_bad $? "perl-Parse-Yapp not installed"
 }
 

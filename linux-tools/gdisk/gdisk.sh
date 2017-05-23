@@ -41,7 +41,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q gdisk >$stdout 2>$stderr 
+      tc_check_package gdisk
 	tc_break_if_bad $? "gdisk not installed"
 
 	sed -i  's:\./gdisk:/usr/sbin/gdisk:' ${TESTS_DIR}/${TESTCASE}

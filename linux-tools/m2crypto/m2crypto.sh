@@ -48,7 +48,7 @@ function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
 
-	rpm -q "m2crypto" >$stdout 2>$stderr	
+      tc_check_package "m2crypto"
 	tc_break_if_bad $? "m2crypto not installed" || return
 
 	[ -f $OPENSSLCONF ]

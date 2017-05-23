@@ -44,7 +44,7 @@ TESTS_DIR="${LTPBIN%/shared}/libnfnetlink/tests"
 #=====================================================
 function tc_local_setup()
 {
-        rpm -q $PKG_NAME >$stdout 2>$stderr
+      tc_check_package $PKG_NAME
         tc_break_if_bad $? "$PKG_NAME is not installed"
 }
 

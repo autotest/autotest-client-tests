@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Net_HTTP
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Net_HTTP/t"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 stop_httpd=0
 
 function tc_local_setup()
@@ -41,7 +41,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Net-HTTP >$stdout 2>$stderr 
+        tc_check_package perl-Net-HTTP
 	tc_break_if_bad $? "perl-Net-HTTP not installed"
 
 	tc_install_testdep mod_ssl

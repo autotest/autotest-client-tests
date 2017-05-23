@@ -205,7 +205,7 @@ function test01()
 
         tc_register "Installation check and start webserver"
 
-	rpm -q lighttpd &>/dev/null
+      tc_check_package lighttpd
         tc_fail_if_bad $? "lighttpd not installed properly" || return
 
         # port must not be in use $version

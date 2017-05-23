@@ -34,8 +34,10 @@
 #=============================================
 #######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/libmnl
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
-PKG_NAME="libmnl"
+source $MAPPER_FILE
+PKG_NAME="$LIBMNL"
 TESTS_DIR="${LTPBIN%/shared}/libmnl/tests"
 
 
@@ -44,7 +46,7 @@ TESTS_DIR="${LTPBIN%/shared}/libmnl/tests"
 #=====================================================
 function tc_local_setup()
 {
-	rpm -q $PKG_NAME >$stdout 2>$stderr
+        tc_check_package $PKG_NAME
         tc_break_if_bad $? "$PKG_NAME is not installed"
 }
 

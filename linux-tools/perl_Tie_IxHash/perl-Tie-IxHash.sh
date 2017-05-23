@@ -30,9 +30,11 @@
 
 #cd $(dirname $0)
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Tie_IxHash"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -41,8 +43,8 @@ function tc_local_setup()
 
 function install_check()
 {
-        rpm -q perl-Tie-IxHash >$stdout 2>$stderr
-        tc_break_if_bad $? "perl-Tie-IxHash is not installed"
+        tc_check_package "$PERL_TIE_IXHASH"
+        tc_break_if_bad $? "$PERL_TIE_IXHASH is not installed"
 }
 
 function run_test()

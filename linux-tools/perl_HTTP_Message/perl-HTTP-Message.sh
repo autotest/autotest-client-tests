@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTTP_Message
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_HTTP_Message"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,8 +42,8 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-HTTP-Message >$stdout 2>$stderr 
-	tc_break_if_bad $? "perl-HTTP-Message not installed"
+        tc_check_package "$PERL_HTTP_MESSAGE"
+	tc_break_if_bad $? "$PERL_HTTP_MESSAGE not installed"
 }
 
 function run_test()

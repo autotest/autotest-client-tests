@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Digest_SHA
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Digest_SHA"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -44,8 +46,8 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-Digest-SHA >$stdout 2>$stderr
-        tc_break_if_bad $? "perl-Digest-SHA is not installed properly"
+        tc_check_package "$PERL_DIGEST_SHA"
+        tc_break_if_bad $? "$PERL_DIGEST_SHA is not installed properly"
 	# creating temporary src directory as the tests looks for the src directory and use the SHA module
         if [ ! -d "$TESTS_DIR/src" ]; then
                 mkdir $TESTS_DIR/src

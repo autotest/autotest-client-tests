@@ -40,7 +40,7 @@ REQUIRED="grep expect"
 function tc_local_setup()
 {
  tc_exec_or_break $REQUIRED
- rpm -q checkpolicy >$stdout 2>$stderr
+      tc_check_package checkpolicy
  tc_fail_if_bad $? "checkpolicy not installed properly"
 }
 

@@ -38,7 +38,7 @@ irqd="irqbalance"
 ################################################################################
 function tc_local_setup()
 {
-    rpm -q "irqbalance" >$stdout 2>$stderr
+      tc_check_package "irqbalance"
     tc_break_if_bad $? "irqbalance package is not installed"
 	
     # Check if the machine is multiprocessor or not

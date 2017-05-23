@@ -34,7 +34,7 @@ TESTS_DIR="${LTPBIN%/shared}/xz/tests"
 
 function tc_local_setup()
 {
-        rpm -q "xz" >$stdout 2>$stderr
+      tc_check_package "xz"
 	tc_break_if_bad $? "xz package is not installed"
 
 	#making test to use system installed binaries like xz,xzdec instead

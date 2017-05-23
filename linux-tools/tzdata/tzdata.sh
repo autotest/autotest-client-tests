@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -31,15 +31,15 @@
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
 source $LTPBIN/tc_utils.source
 TEST_DIR="${LTPBIN%/shared}/tzdata"
-required="date zdump rpm timedatectl"
+required="date zdump timedatectl"
 settime=0
 function tc_local_setup()
 {
     tc_root_or_break || return
     tc_exec_or_break "$required" || return
-    rpm -q tzdata >$stdout 2>$stderr
+    tc_check_package "tzdata"
     tc_break_if_bad $? "tzdata not installed" || return
-    rpm -q systemd >$stdout 2>$stderr
+    tc_check_package "systemd"
     tc_break_if_bad $? "systemd package is not installed" || return
 
     timedatectl status >$stdout 2>$stderr

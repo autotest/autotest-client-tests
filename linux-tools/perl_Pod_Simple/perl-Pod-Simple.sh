@@ -35,7 +35,7 @@ TESTDIR="${LTPBIN%/shared}/perl_Pod_Simple/"
 
 function tc_local_setup()
 {
-    rpm -q perl-Pod-Simple 1>$stdout 2>$stderr
+      tc_check_package perl-Pod-Simple
     tc_break_if_bad $? "perl-Pod-Simple is not installed properly..!"
 }
 

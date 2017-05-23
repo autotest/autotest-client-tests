@@ -34,7 +34,7 @@ TESTS_DIR="${LTPBIN%/shared}/libcanberra/tests"
 function tc_local_setup()
 {
         # check installation and environment 
-        rpm -q libcanberra >$stdout 2>$stderr
+      tc_check_package libcanberra
         tc_break_if_bad $? "libcanberra is not properly installed"
 }
 
@@ -58,15 +58,15 @@ function run_test()
         
 	#Check if canberra services are present
 	tc_register "Test canberra-system-bootup service"
-	rpm -ql libcanberra | grep canberra-system-bootup
+      tc_check_package libcanberra
 	tc_pass_or_fail $? "Test canberra-system-bootup service failed"
 	
 	tc_register "Test canberra-system-shutdown-reboot service"
-	rpm -ql libcanberra | grep canberra-system-shutdown-reboot
+      tc_check_package libcanberra
 	tc_pass_or_fail $? "Test canberra-system-shutdown-reboot service failed"
 
 	tc_register "Test canberra-system-shutdown service"
-	rpm -ql libcanberra | grep canberra-system-shutdown
+      tc_check_package libcanberra
 	tc_pass_or_fail $? "Test canberra-system-shutdown service failed"
 
 	for test in $TESTS

@@ -37,12 +37,12 @@ ODDJOB_CMDDIR="${LTPBIN%/shared}/oddjob/tests/cmdparse"
 function tc_local_setup() 
 {
 	# Check Installation
-	rpm -q oddjob >$stdout 2>$stderr
+      tc_check_package oddjob
         tc_break_if_bad $? "oddjob required, but not installed" || return
 
 	cp $TESTDIR/tests/test-oddjobd.sh $TESTDIR/tests/test-oddjobd.sh.bkp
 	sed -e 's/break/exit 1/g' -e '/exit 0/d' -i $TESTDIR/tests/test-oddjobd.sh
- 	pkgname=`rpm -q oddjob | awk -F"-" '{print $1"-"$2}'`
+      tc_check_package oddjob
 	cp $TESTDIR/tests/test-oddjobd.conf $TESTDIR/tests/test-oddjobd.conf.bkp
 	sed -e 's|/builddir/build/BUILD/'$pkgname'/tests/|'$ODDJOB_TESTDIR'|g' -e 's/"mockbuild"/"root"/' -i $TESTDIR/tests/test-oddjobd.conf
 	sed -e 's|\(^[0-9].*\)|0|g' -e 's|mockbuild|root|g' -i $TESTDIR/tests/006/expected_stdout

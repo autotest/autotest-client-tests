@@ -35,14 +35,14 @@ modules_file="${LTPBIN%/shared}/pango/modules/pango.modules"
 
 function tc_local_setup()
 {
-        rpm -q "pango" >$stdout 2>$stderr
+      tc_check_package "pango"
 	tc_break_if_bad $? "pango package is not installed"
 
 	#To resolve a linker issue for 'testboundaries' test
-	version=`rpm -qv pango|cut -d"-" -f2` >$stdout 2>$stderr
-        sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./thai|'${LTPBIN%/shared}'/pango/modules/thai|' $modules_file
-        sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./indic|'${LTPBIN%/shared}'/pango/modules/indic|' $modules_file
-        sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./arabic|'${LTPBIN%/shared}'/pango/modules/arabic|' $modules_file
+      tc_check_package "pango"
+	sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./thai|${LTPBIN%/shared}/pango/modules/thai|' $modules_file
+	sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./indic|${LTPBIN%/shared}/pango/modules/indic|' $modules_file
+	sed -i 's|/builddir/build/BUILD/pango-'$version'/modules/./arabic|${LTPBIN%/shared}/pango/modules/arabic|' $modules_file
 }
 
 function run_test()

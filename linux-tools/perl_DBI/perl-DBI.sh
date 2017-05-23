@@ -45,7 +45,7 @@ function tc_local_setup()
 function install_check()
 {
         tc_register "Installation check"
-        rpm -q perl-DBI >$stdout 2>$stderr
+      tc_check_package perl-DBI
         tc_pass_or_fail $? "perl-DBI not installed"
 }
 

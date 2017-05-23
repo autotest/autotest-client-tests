@@ -34,10 +34,12 @@
 #=============================================
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTTP_Date
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
-PKG_NAME="perl-HTTP-Date"
+source $MAPPER_FILE
+PKG_NAME="$PERL_HTTP_DATE"
 TESTS_DIR="${LTPBIN%/shared}/perl_HTTP_Date"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 
 #=====================================================
@@ -54,7 +56,7 @@ function tc_local_setup()
 #======================================================
 function install_check()
 {
-        rpm -q $PKG_NAME >$stdout 2>$stderr
+      tc_check_package $PKG_NAME
         tc_break_if_bad $? "$PKG_NAME is not installed"
 }
 

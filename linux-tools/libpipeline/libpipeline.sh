@@ -91,7 +91,7 @@ function runtests(){
 
 function installation_check() {
     tc_register     "installation check"
-    rpm -q libpipeline  1>$stdout  2>$stderr
+      tc_check_package libpipeline
     tc_break_if_bad $? "Perl-Exporter is not installed!!"
 }
 ####################################################################################
