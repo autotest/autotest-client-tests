@@ -10,6 +10,7 @@ tests = [["aio-dio-invalidate-failure", "poo"],
          ["aio-free-ring-with-bogus-nr-pages", ""],
          ["aio-io-setup-with-nonwritable-context-pointer", ""],
          ["aio-dio-extend-stat", "file"],
+         ["aio-cve-2016-10044", ""],
          ]
 name = 0
 arglist = 1
