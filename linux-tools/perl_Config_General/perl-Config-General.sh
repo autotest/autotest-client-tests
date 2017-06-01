@@ -29,16 +29,18 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Config_General
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR=${LTPBIN%/shared}/perl_Config_General
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED 
 
-	rpm -q perl-Config-General >$stdout 2>$stderr 
-	tc_break_if_bad $? "perl-Config-General not installed"
+        tc_check_package "$PERL_CONFIG_GENERAL"
+	tc_break_if_bad $? "$PERL_CONFIG_GENERAL not installed"
 }
 
 function run_test()

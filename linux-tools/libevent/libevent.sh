@@ -29,7 +29,9 @@
 # source the utility functions
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/libevent
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 
 
 TEST_DIR="libevent-tests"
@@ -95,8 +97,9 @@ function common_test()
 function test01()
 {
         tc_register "Is libevent installed?"
-	ls /usr/lib*/libevent*.so* >$stdout 2>$stderr
-        tc_pass_or_fail $? "libevent package is not installed"
+	#ls /usr/lib*/libevent*.so* >$stdout 2>$stderr
+	tc_check_package "$LIBEVENT"
+        tc_pass_or_fail $? "$LIBEVENT package is not installed"
 }
 
 #

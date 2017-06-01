@@ -35,7 +35,7 @@ FIV_DIR="${LTPBIN%/shared}/libconfig"
 
 function tc_local_setup()
 {
-	rpm -q libconfig >$stdout 2>$stderr
+      tc_check_package libconfig
 	tc_fail_if_bad $? "libconfig not installed" || return
 
 	set `find /usr/lib* -name libconfig\* `

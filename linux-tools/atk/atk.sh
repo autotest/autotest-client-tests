@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/atk
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/atk/tests/.libs"
-REQUIRED="rpm"
+REQUIRED="which"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q atk >$stdout 2>$stderr 
+        tc_check_package atk
 	tc_break_if_bad $? "atk not installed"
 
 }

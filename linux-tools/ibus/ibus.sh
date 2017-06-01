@@ -33,7 +33,7 @@ TESTS_DIR="${LTPBIN%/shared}/ibus/tests"
 
 function tc_local_setup()
 {
-        rpm -q "ibus" >$stdout 2>$stderr
+      tc_check_package "ibus"
         tc_break_if_bad $? "ibus package is not installed"
 
 }

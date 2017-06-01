@@ -1,0 +1,113 @@
+#!/bin/bash
+grep -i "ubuntu" /etc/*release >/dev/null 2>&1
+if [ $? -eq 0 ];then
+	L_OS="ubuntu"
+else
+	L_OS="redhat"
+fi
+
+case $L_OS in
+redhat) 
+	ATK="atk"						; export ATK
+	BC="bc"							; export BC
+	BRIDGE_UTILS="bridge-utils"				; export BRIDGE_UTILS
+	OPENHPI="openhpid"					; export OPENHPI
+	AUGEAS="augeas"						; export AUGEAS
+	NSCD="nscd"						; export NSCD
+	PERL_TIE_IXHASH="perl-Tie-IxHash"			; export PERL_TIE_IXHASH
+	PERL_BUSINESS_ISBN="perl-Business-ISBN"			; export PERL_BUSINESS_ISBN
+	PERL_CRAP_CLAN="perl-Carp-Clan"				; export PERL_CRAP_CLAN
+	PERL_COMPRESS_RAW_BZIP2="perl-Compress-Raw-Bzip2"	; export PERL_COMPRESS_RAW_BZIP2
+	PERL_COMPRESS_RAW_ZLIB="perl-Compress-Raw-Zlib"		; export PERL_COMPRESS_RAW_ZLIB
+	PERL_CONFIG_GENERAL="perl-Config-General"		; export PERL_CONFIG_GENERAL
+	PERL_CONVERT_ASN1="perl-Convert-ASN1"			; export PERL_CONVERT_ASN1
+	PERL_CRYPT_SSLEAY="perl-Crypt-SSLeay"			; export PERL_CRYPT_SSLEAY
+	PERL_AUTHEN_SASL="perl-Authen-SASL"			; export PERL_AUTHEN_SASL
+	PERL_BIT_VECTOR="perl-Bit-Vector"			; export PERL_BIT_VECTOR
+	PERL_BUSINESS_ISBN_DATA="perl-Business-ISBN-Data"	; export PERL_BUSINESS_ISBN_DATA
+	PERL_DATA_DUMPER="perl-Data-Dumper"			; export PERL_DATA_DUMPER
+	PERL_DATE_CALC="perl-Date-Calc"				; export PERL_DATE_CALC
+	PERL_DATE_MANIP="perl-Date-Manip"			; export PERL_DATE_MANIP
+	PERL_DIGEST_SHA="perl-Digest-SHA"			; export PERL_DIGEST_SHA
+	PERL_ENCODE_LOCALE="perl-Encode-Locale"			; export PERL_ENCODE_LOCALE
+	PERL_FILE_LISTING="perl-File-Listing"			; export PERL_FILE_LISTING
+	PERL_FILE_PATH="perl-File-Path"				; export PERL_FILE_PATH
+	PERL_FILE_TEMP="perl-File-Temp"				; export PERL_FILE_TEMP
+	PERL_FONT_AFM="perl-Font-AFM"				; export PERL_FONT_AFM
+	PERL_GETOPT_LONG="perl-Getopt-Long"			; export PERL_GETOPT_LONG
+	PERL_HTML_FORMAT="perl-HTML-Format"			; export PERL_HTML_FORMAT
+	PERL_HTML_PARSER="perl-HTML-Parser"			; export PERL_HTML_PARSER
+	PERL_HTML_TAGSET="perl-HTML-Tagset"			; export PERL_HTML_TAGSET
+	PERL_HTML_TREE="perl-HTML-Tree"				; export PERL_HTML_TREE
+	PERL_HTTP_COOKIES="perl-HTTP-Cookies"			; export PERL_HTTP_COOKIES
+	PERL_HTTP_DAEMON="perl-HTTP-Daemon"			; export PERL_HTTP_DAEMON
+	PERL_HTTP_DATE="perl-HTTP-Date"				; export PERL_HTTP_DATE
+	PERL_HTTP_MESSAGE="perl-HTTP-Message"			; export PERL_HTTP_MESSAGE
+	PERL_HTTP_NEGOTIATE="perl-HTTP-Negotiate"		; export PERL_HTTP_NEGOTIATE
+	LIBTOOL="libtool"					; export LIBTOOL
+	ACL="perl"						; export ACL
+	ARPTABLES="arptables"					; export ARPTABLES
+	AT="at"							; export AT
+	AUTOFS="autofs"						; export AUTOFS
+	AVAHI="avahi"						; export AVAHI
+	LIBNETFILTER_CONNTRACT="libnetfilter-conntrack"		; export LIBNETFILTER_CONNTRACT
+	LIBMNL="libmnl"						; export LIBMNL
+	KPARTX="kpartx"						; export KPARTX
+        PYTHON_SLIP="python-slip"				; export PYTHON_SLIP
+        GSTREAMER="gstreamer"					; export GSTREAMER
+	LIBDAEMON="libdaemon"					; export LIBDAEMON
+	LIBEVENT="libevent"
+
+;;
+ubuntu) 
+	ACL="perl" 						; export ACL
+	BC="bc"							; export BC
+	BRIDGE_UTILS="bridge-utils"				; export BRIDGE_UTILS
+	OPENHPI="openhpid"					; export OPENHPI
+	AVAHI="libavahi"					; export AVAHI
+	ATK="libatk"						; export ATK
+	AUGEAS="augeas-tools"					; export AUGEAS
+	NSCD="nscd"						; export NSCD
+	PERL_TIE_IXHASH="libtie-ixhash-perl"			; export PERL_TIE_IXHASH
+	PERL_BUSINESS_ISBN="libbusiness-isbn-perl"      	; export PERL_BUSINESS_ISBN
+	PERL_CRAP_CLAN="libcarp-clan-perl"               	; export PERL_CRAP_CLAN
+	PERL_COMPRESS_RAW_BZIP2="libcompress-raw-bzip2-perl"	; export PERL_COMPRESS_RAW_BZIP2
+	PERL_COMPRESS_RAW_ZLIB="libcompress-raw-zlib-perl"	; export PERL_COMPRESS_RAW_ZLIB
+	PERL_CONFIG_GENERAL="libconfig-general-perl"		; export PERL_CONFIG_GENERAL
+	PERL_CONVERT_ASN1="libconvert-asn1-perl"		; export PERL_CONVERT_ASN1
+	PERL_CRYPT_SSLEAY="libcrypt-ssleay-perl"		; export PERL_CRYPT_SSLEAY
+	PERL_AUTHEN_SASL="libauthen-sasl-perl"                  ; export PERL_AUTHEN_SASL
+	PERL_BIT_VECTOR="libbit-vector-perl"			; export PERL_BIT_VECTOR
+	PERL_BUSINESS_ISBN_DATA="libbusiness-isbn-data-perl"	; export PERL_BUSINESS_ISBN_DATA
+	PERL_DATA_DUMPER="libdata-dumper-simple-perl"		; export PERL_DATA_DUMPER
+	PERL_DATE_CALC="libdate-calc-perl"			; export PERL_DATE_CALC
+	PERL_DATE_MANIP="libdate-manip-perl"			; export PERL_DATE_MANIP
+	PERL_DIGEST_SHA="libdigest-sha-perl"			; export PERL_DIGEST_SHA
+	PERL_ENCODE_LOCALE="libencode-locale-perl"		; export PERL_ENCODE_LOCALE
+	PERL_FILE_LISTING="libfile-which-perl"			; export PERL_FILE_LISTING
+	PERL_FILE_PATH="libfile-path-tiny-perl"			; export PERL_FILE_PATH
+	PERL_FILE_TEMP="libfile-fu-perl"			; export PERL_FILE_TEMP
+	PERL_FONT_AFM="libfont-afm-perl"			; export PERL_FONT_AFM
+	PERL_GETOPT_LONG=""					; export PERL_GETOPT_LONG
+	PERL_HTML_FORMAT="libtemplate-plugin-number-format-perl"; export PERL_HTML_FORMAT
+	PERL_HTML_PARSER="libhtml-parser-perl"			; export PERL_HTML_PARSER
+	PERL_HTML_TAGSET="libhtml-parser-perl"			; export PERL_HTML_TAGSET
+	PERL_HTML_TREE="libhtml-tree-perl"			; export PERL_HTML_TREE
+	PERL_HTTP_COOKIES="libhttp-cookies-perl"		; export PERL_HTTP_COOKIES
+	PERL_HTTP_DAEMON="libhttp-daemon-ssl-perl"		; export PERL_HTTP_DAEMON
+	PERL_HTTP_DATE="libghc-http-date-dev"			; export PERL_HTTP_DATE
+	PERL_HTTP_MESSAGE="libhttp-message-perl"		; export PERL_HTTP_MESSAGE
+	PERL_HTTP_NEGOTIATE="liblwp-protocol-https-perl"	; export PERL_HTTP_NEGOTIATE
+	LIBTOOL="libtool-bin"					; export LIBTOOL
+	ARPTABLES="arptables"                                   ; export ARPTABLES
+	AT="at"                                                 ; export AT
+	AUTOFS="autofs"						; export AUTOFS
+	LIBNETFILTER_CONNTRACT="libnetfilter-conntrack3"        ; export LIBNETFILTER_CONNTRACT
+	LIBMNL="libmnl0"					; export LIBMNL
+	KPARTX="kpartx"						; export KPARTX
+        PYTHON_SLIP="python-slip"				; export PYTHON_SLIP
+        GSTREAMER="libgstreamer0"                               ; export GSTREAMER
+	LIBDAEMON="libdaemon0"					; export LIBDAEMON
+	LIBEVENT="libevent"
+;;
+esac

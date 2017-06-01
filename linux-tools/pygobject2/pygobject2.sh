@@ -35,7 +35,7 @@ REQUIRED="python"
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
-	rpm -q pygobject2 >$stdout 2>$stderr
+      tc_check_package pygobject2
 	tc_fail_if_bad $? "pygobject2 not installed" || return
 	
 	#Excluding test_gi.py, test_overrides.py, test_gdbus.py, test_everything.py because

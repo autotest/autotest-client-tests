@@ -44,7 +44,7 @@ TESTS_DIR="${LTPBIN%/shared}/libqb/tests"
 #=====================================================
 function tc_local_setup()
 {
-        rpm -q $PKG_NAME >$stdout 2>$stderr
+      tc_check_package $PKG_NAME
         tc_break_if_bad $? "$PKG_NAME is not installed"
 	# Binary files required q or Quit command to come out
 	echo "q" > /tmp/EOD_FILE
@@ -90,7 +90,6 @@ function tcp_server_client_fn()
         SERVER="tcpserver"
         kill_pid_fn "$SERVER" >$stdout 2>$stderr
         ./$SERVER & >$stdout 2>$stderr
-        sleep 2
         ./$CLIENT</tmp/EOD_FILE >$stdout 2>$stderr
 	RC_TCP="$?"
         kill_pid_fn "$SERVER" >$stdout 2>$stderr

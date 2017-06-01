@@ -28,13 +28,15 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_File_Path
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_File_Path"
 
 function tc_local_setup()
 {
-    rpm -q perl-File-Path 1>$stdout 2>$stderr
-    tc_break_if_bad $? "perl-File-Path is not installed properly..!"
+    tc_check_package "$PERL_FILE_PATH"
+    tc_break_if_bad $? "$PERL_FILE_PATH is not installed properly..!"
 }
 ################################################################################
 # testcase functions                                                           #

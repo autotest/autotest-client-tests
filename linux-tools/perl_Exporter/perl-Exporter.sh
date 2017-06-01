@@ -86,7 +86,7 @@ function installation_check() {
         tc_register     "installation check"
         tc_executes prove
 	tc_break_if_bad $? "Please check if perl-Test-Harness is installed properly !!"
-	rpm -q perl-Exporter  1>$stdout  2>$stderr
+      tc_check_package perl-Exporter
 	tc_break_if_bad $? "Perl-Exporter is not installed!!"
 }
 ####################################################################################

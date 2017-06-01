@@ -32,7 +32,7 @@
 #LTPBIN=${LTPBIN%/shared}/augeas
 source $LTPBIN/tc_utils.source
 TEST_DIR="${LTPBIN%/shared}/augeas"
-REQUIRED="augtool augparse fadot"
+REQUIRED="augtool augparse"
 pushd $TEST_DIR/tests >& /dev/null
 LENSTESTS=`ls lens*.sh`
 TOTAL1=`echo $LENSTESTS | wc -w`
@@ -46,7 +46,7 @@ popd >& /dev/null
 
 function tc_local_setup()
 {
-	rpm -q "augeas" >$stdout 2>$stderr
+      tc_check_package "augeas"
 	tc_break_if_bad $? "augeas package is not installed"
         tc_exec_or_break $REQUIRED
 	export abs_top_srcdir=$TEST_DIR
@@ -57,8 +57,8 @@ function tc_local_cleanup()
 {
 	id tester &> $stdout 2>$stderr
         [ $? -eq 0 ] && userdel -r tester &> $stdout 2>$stderr
-	chown -R root:root ${LTPBIN%/shared}/augeas/tests
-	chown -R root:root /tmp
+	sudo chown -R root:root ${LTPBIN%/shared}/augeas/tests
+	sudo chown -R root:root /tmp
 }
 function test01()
 {       

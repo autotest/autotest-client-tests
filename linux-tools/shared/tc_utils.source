@@ -595,12 +595,25 @@ function tc_wait_for_no_service()
     }
 
     tc_info "checking if service $WAIT_SERVICE is down"
-    while ( systemctl status $WAIT_SERVICE ) &>/dev/null; do
-        tc_info "waiting for service $WAIT_SERVICE to be down"
-        ((--n)) || break
-        sleep 1
-    done
-    ((n>0))
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        while ( service $WAIT_SERVICE $WAIT_SERVICE ) &>/dev/null; do
+            tc_info "waiting for service $WAIT_SERVICE to be down"
+            ((--n)) || break
+            sleep 1
+        done
+        ((n>0))
+    else
+        while ( systemctl status $WAIT_SERVICE ) &>/dev/null; do
+            tc_info "waiting for service $WAIT_SERVICE to be down"
+            ((--n)) || break
+            sleep 1
+        done
+        ((n>0))
+    fi
 }
 
 # tc_service_start_and_wait Start and Wait for a service to be up
@@ -618,9 +631,17 @@ function tc_service_start_and_wait()
     local -i rc=0
     [ "$SERVICE" ]
     tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
-
     tc_info "starting the service $SERVICE"
-    systemctl start $SERVICE >$stdout 2>$stderr
+
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        service $SERVICE start >$stdout 2>$stderr
+    else
+        systemctl start $SERVICE >$stdout 2>$stderr
+    fi
     tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to start" || exit
     tc_wait_for_service $SERVICE $TIMEOUT
 }
@@ -641,11 +662,20 @@ function tc_service_restart_and_wait()
     local -i rc=0
     [ "$SERVICE" ]
     tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
-
     tc_info "restarting the service $SERVICE"
-    systemctl restart $SERVICE >$stdout 2>$stderr  
+
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        service $SERVICE restart >$stdout 2>$stderr
+    else
+        systemctl restart $SERVICE >$stdout 2>$stderr  
+    fi
     tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to start" || exit
     tc_wait_for_service $SERVICE $TIMEOUT
+
 }
 
 function tc_service_status()
@@ -654,9 +684,18 @@ function tc_service_status()
     local -i rc=0
     [ "$SERVICE" ]
     tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
-
     tc_info "checking the status of the service $SERVICE"
-    systemctl status $SERVICE >$stdout 2>$stderr
+
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        service $SERVICE status >$stdout 2>$stderr
+    else
+        systemctl status $SERVICE >$stdout 2>$stderr
+    fi
+
     rc=$?
     if [ $rc -eq 0 ]
     then
@@ -692,16 +731,31 @@ function tc_service_stop_and_wait()
     [ "$SERVICE" ]
     tc_break_if_bad_rc $? "$FUNCNAME: Internal script error: called w/o service." || exit
     tc_info "stopping the service $SERVICE"
-    systemctl stop $SERVICE >$stdout 2>$stderr
-    tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to stop" || exit
-
-    tc_info "checking if service $SERVICE is stopped"
-    while ( systemctl status $SERVICE ) &>/dev/null; do
-        tc_info "waiting for service $SERVICE to be stopped"
-        ((--n)) || break
-        sleep 1
-    done
-    ((n>0))
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        service $SERVICE stop >$stdout 2>$stderr
+        tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to stop" || exit
+        tc_info "checking if service $SERVICE is stopped"
+        while ( systemctl $SERVICE status) &>/dev/null; do
+            tc_info "waiting for service $SERVICE to be stopped"
+            ((--n)) || break
+            sleep 1
+        done
+       ((n>0))
+    else
+        systemctl stop $SERVICE >$stdout 2>$stderr
+        tc_break_if_bad $? "$FUNCNAME: $SERVICE failed to stop" || exit
+        tc_info "checking if service $SERVICE is stopped"
+        while ( systemctl status $SERVICE ) &>/dev/null; do
+            tc_info "waiting for service $SERVICE to be stopped"
+            ((--n)) || break
+            sleep 1
+        done
+       ((n>0))
+    fi
 
 } 
 
@@ -2424,10 +2478,29 @@ function tc_check_kconfig()
 #
 function tc_install_package()
 {
-    local OS_MANIFEST="/etc/redhat-release"
-    local REPO_SERVER="http://mirror.centos.org/centos"
-    local OS_VER=`cat $OS_MANIFEST | awk '{ print $7 }' | cut -d "." -f1`
     local package=$1
+
+
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+	########################################
+	# Testing repo is configured or not
+	########################################
+        apt-get install -y $package >/dev/null 2>&1
+        tc_break_if_bad $? "$package not installed"
+    else
+        local OS_MANIFEST="/etc/redhat-release"
+        local REPO_SERVER="http://mirror.centos.org/centos"
+        local OS_VER=`cat $OS_MANIFEST | awk '{ print $7 }' | cut -d "." -f1`
+
+
+    #################################################
+    # Below code is for internal purpose
+    #################################################
+
     rpm -q --quiet $package
     rc=$?
     if [ $rc -ne 0 ]; then
@@ -2468,6 +2541,9 @@ EOF
     if [ "$repo_created" == "1" ]; then
         rm -f /etc/yum.repos.d/$REPO.base.repo
     fi
+
+    fi # End of OS check
+
 }
 
 
@@ -2477,6 +2553,36 @@ EOF
 function tc_install_testdep()
 {
     local package=$1
-    yum install $package $1 -y &>/dev/null
-    tc_break_if_bad $? "$package not installed"
+
+    ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        apt-get install -y $package >/dev/null 2>&1
+    else
+        yum install $package $1 -y &>/dev/null
+    fi
+        tc_break_if_bad $? "$package not installed"
+}
+
+
+###################################################
+# Function to check package is installed or not
+###################################################
+function tc_check_package()
+{
+   local package=$1
+   ##########################################
+    # check for Ubuntu OS
+    ##########################################
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -eq 0 ];then  # Start of OS check
+        dpkg --list| grep $package >/dev/null 2>&1
+    else
+
+        rpm -qa|grep $package &>/dev/null
+    fi
+    rc=$?
+    return $rc
 }

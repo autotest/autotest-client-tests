@@ -45,7 +45,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-Storable >$stdout 2>$stderr
+      tc_check_package perl-Storable
         tc_break_if_bad $? "perl-Storable is not installed properly"
 }
 

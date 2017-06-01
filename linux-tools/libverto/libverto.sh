@@ -43,14 +43,14 @@ MODULES=""
 #
 function tc_local_setup()
 {
-    rpm -q libverto 1>$stdout 2>$stderr
+      tc_check_package libverto
     tc_break_if_bad $? "libverto not installed" || return
 
-    rpm -q libverto-glib &>$stdout
+      tc_check_package libverto
     [ $? -eq 0 ] && MODULES="$MODULES glib"
-     rpm -q libverto-libevent &>$stdout
+      tc_check_package libverto
     [ $? -eq 0 ] && MODULES="$MODULES libevent"
-    rpm -q libverto-tevent &>$stdout
+      tc_check_package libverto
     [ $? -eq 0 ] && MODULES="$MODULES tevent"
 
     return 0

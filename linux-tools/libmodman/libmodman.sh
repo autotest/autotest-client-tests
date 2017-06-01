@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/libmodman/"
 
 function tc_local_setup()
 {
-	rpm -q libmodman >$stdout 2>$stderr
+      tc_check_package libmodman
 	tc_break_if_bad $? "libmodman is not installed"
 }
 

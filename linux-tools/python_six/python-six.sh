@@ -45,7 +45,7 @@ TESTDIR=${LTPBIN%/shared}/python_six
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
-	rpm -q python-six >$stdout 2>$stderr
+      tc_check_package python-six
 	tc_break_if_bad $? "python-six package is not installed properly"
 }
 

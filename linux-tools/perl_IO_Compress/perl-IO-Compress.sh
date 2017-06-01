@@ -36,7 +36,7 @@ REQUIRED="perl"
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED
-    rpm -q perl-IO-Compress >$stdout 2>$stderr
+      tc_check_package perl-IO-Compress
     tc_break_if_bad $? "perl-IO-Compress not installed"
 }
 

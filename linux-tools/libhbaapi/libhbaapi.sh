@@ -35,7 +35,7 @@ mod_ixgbe=0
 mod_zfcp=0
 function tc_local_setup()
 {
-        rpm -q "libhbaapi" >$stdout 2>$stderr
+      tc_check_package "libhbaapi"
         tc_break_if_bad $? "libhbaapi package is not installed"
 	tc_get_os_arch
     #Load zfcp module for s390x arch

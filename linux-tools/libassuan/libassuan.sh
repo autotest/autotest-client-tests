@@ -41,7 +41,7 @@ TESTS_DIR=${LTPBIN%/shared}/libassuan/tests/
 #
 function tc_local_setup()
 {
-    rpm -q libassuan 1>$stdout 2>$stderr
+      tc_check_package libassuan
     tc_break_if_bad $? "libassuan not installed" || return
 
     cp $TESTS_DIR/motd $TESTS_DIR/.libs/

@@ -48,8 +48,8 @@ TST_TOTAL=1
 
 function tc_local_setup()
 {
-	tc_exec_or_break grep rpm perl || return
-	rpm -qa | grep "^perl-[0-9]"
+	tc_exec_or_break grep perl || return
+	tc_check_package "perl"
 	tc_break_if_bad $? "Need full perl installation, not just perl-base" || return
 
 	local msg1="'/' filesystem support "

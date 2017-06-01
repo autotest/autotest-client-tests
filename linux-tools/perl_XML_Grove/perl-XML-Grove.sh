@@ -36,7 +36,7 @@ REQUIRED="perl"
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED
-    rpm -q perl-XML-Grove >$stdout 2>$stderr
+      tc_check_package perl-XML-Grove
     tc_pass_or_fail $? "perl-XML-Grove not installed"
 }
 

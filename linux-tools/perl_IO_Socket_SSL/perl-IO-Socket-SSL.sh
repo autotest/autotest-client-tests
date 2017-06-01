@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_IO_Socket_SSL
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_IO_Socket_SSL"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-IO-Socket-SSL >$stdout 2>$stderr 
+        tc_check_package perl-IO-Socket-SSL
 	tc_break_if_bad $? "perl-IO-Socket-SSL not installed"
 }
 

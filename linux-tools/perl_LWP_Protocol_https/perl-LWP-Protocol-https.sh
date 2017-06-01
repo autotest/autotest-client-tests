@@ -31,17 +31,17 @@
 #LTPBIN=${LTPBIN%/shared}/perl_LWP_Protocol_https
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_LWP_Protocol_https"
-REQUIRED="openssl sed perl rpm"
+REQUIRED="openssl sed perl"
 HTTP_CONF="/etc/httpd/conf/httpd.conf"
 SSL_CONF="/etc/httpd/conf.d/ssl.conf"
 
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
-	rpm -q perl-LWP-Protocol-https >$stdout 2>$stderr
+        tc_check_package perl-LWP-Protocol-https
 	tc_break_if_bad $? "perl-LWP-Protocol-https not installed"
 	tc_install_testdep mod_ssl
-	rpm -q httpd  >$stdout 2>$stderr
+        tc_check_package perl-LWP-Protocol-https
 	tc_break_if_bad $? "httpd not installed"
 
 	tc_get_os_arch

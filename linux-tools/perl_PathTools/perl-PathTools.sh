@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_PathTools/"
 
 function tc_local_setup()
 {
-    rpm -q perl-PathTools >$stdout 2>$stderr
+      tc_check_package perl-PathTools
     tc_break_if_bad $? "perl-PathTools not installed"
 }
 

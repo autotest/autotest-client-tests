@@ -31,14 +31,14 @@
 #LTPBIN=${LTPBIN%/shared}/perl_XML_SAX_Base
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_SAX_Base"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
 	# check installation and environment
 	tc_exec_or_break $required
 
 	# install check
-	rpm -q "perl-XML-SAX-Base" >$stdout 2>$stderr
+      tc_check_package "perl-XML-SAX-Base"
 	tc_break_if_bad $? "perl-XML-SAX-Base not installed"
 	
 

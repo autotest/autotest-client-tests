@@ -42,7 +42,7 @@ TESTS_DIR=${LTPBIN%/shared}/snappy/
 #
 function tc_local_setup()
 {
-    rpm -q snappy 1>$stdout 2>$stderr
+      tc_check_package snappy
     tc_break_if_bad $? "snappy not installed" || return
 
 }

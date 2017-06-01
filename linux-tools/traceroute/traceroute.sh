@@ -38,7 +38,7 @@ tc_get_iface
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
-	rpm -q "traceroute" >$stdout 2>$stderr	
+      tc_check_package "traceroute"
 	tc_break_if_bad $? "traceroute not installed" || return
 
 	# Machine in boe lab cant access kjdev1.au.example.com

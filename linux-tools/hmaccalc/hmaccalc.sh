@@ -35,7 +35,7 @@ REQUIRED="sha1hmac sha256hmac sha384hmac sha512hmac prelink"
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
-	rpm -q hmaccalc >$stdout 2>$stderr
+      tc_check_package hmaccalc
 	tc_fail_if_bad $? "hmaccalc not installed" || return
 
 	set `find /usr/lib* -name hmaccalc\* `

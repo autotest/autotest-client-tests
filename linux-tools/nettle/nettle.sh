@@ -36,7 +36,7 @@ REQUIRED="pkcs1-conv sexp-conv nettle-hash"
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
-	rpm -q nettle >$stdout 2>$stderr
+      tc_check_package nettle
 	tc_fail_if_bad $? "nettle not installed" || return
 
 	cp $TESTDIR/sexp-conv-test $TESTDIR/sexp-conv-test.org

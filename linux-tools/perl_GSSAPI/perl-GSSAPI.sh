@@ -40,7 +40,7 @@ function tc_local_setup()
 function install_check()
 {
         tc_register "Installation check"
-        rpm -q perl-GSSAPI >$stdout 2>$stderr
+      tc_check_package perl-GSSAPI
         tc_pass_or_fail $? "perl-GSSAPI not installed"
 }
 

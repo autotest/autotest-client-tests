@@ -49,10 +49,10 @@ function tc_local_setup()
 	#check installation and environment
 	tc_root_or_break || return
         
-	rpm -q libnfsidmap >$stdout 2>$stderr
+      tc_check_package libnfsidmap
 	tc_break_if_bad $? "libnfsidmap required, but not installed" || return
 
-	rpm -q krb5-server >$stdout 2>$stderr
+      tc_check_package libnfsidmap
 	tc_fail_if_bad $? "krb5-server not present" || return
 	
 

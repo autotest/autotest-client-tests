@@ -35,7 +35,7 @@ LIBCROCO_TESTS_DIR="${LTPBIN%/shared}/libcroco/tests"
 function tc_local_setup()
 {
 	##Installation check ##
-	[ -f /usr/lib*/libcroco-0.6.so.3.0.1 ]
+	tc_check_package "libcroco"
 	tc_break_if_bad $? "libcroco not installed properly"
 }
 

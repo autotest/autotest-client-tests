@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Compress_Raw_Bzip2
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Compress_Raw_Bzip2"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,8 +42,8 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Compress-Raw-Bzip2 >$stdout 2>$stderr 
-	tc_break_if_bad $? "perl-Compress-Raw-Bzip2 not installed"
+        tc_check_package "$PERL_COMPRESS_RAW_BZIP2"
+	tc_break_if_bad $? "$PERL_COMPRESS_RAW_BZIP2 not installed"
 }
 
 function run_test()

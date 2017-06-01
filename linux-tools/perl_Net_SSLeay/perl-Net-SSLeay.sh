@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Net_SSLeay
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Net_SSLeay"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Net-SSLeay >$stdout 2>$stderr 
+        tc_check_package perl-Net-SSLeay
 	tc_break_if_bad $? "perl-Net-SSLeay not installed"
 }
 

@@ -32,7 +32,7 @@ TESTDIR="${LTPBIN%/shared}/perl_XML_SAX"
 
 function tc_local_setup()
 {
-    rpm -q perl-XML-SAX 1>$stdout 2>$stderr
+      tc_check_package perl-XML-SAX
     tc_break_if_bad $? "perl-XML-SAX is not installed properly..!"
 }
 ################################################################################

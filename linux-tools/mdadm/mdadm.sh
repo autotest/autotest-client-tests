@@ -69,12 +69,12 @@ function tc_local_setup()
     [ "x$part1" != "x" -a "x$part2" != "x" -a "x$part3" != "x" ] || tc_break_if_bad 1 "Unable to allocate loop devices" || exit
     [ -e /etc/mdadm.conf ] && mv /etc/mdadm.conf /etc/mdadm.conf.bak
 
-    rpm -q $sendmail_service >$stdout 2> $stderr
+      tc_check_package $sendmail_service
     if [ $? -eq 0 ]; then
 	mail_service="sendmail"
 	restore_service="postfix"
     else
-	rpm -q $postfix_service >$stdout 2> $stderr
+      tc_check_package $sendmail_service
 	if [ $? -eq 0 ]; then
 		mail_service="postfix"
 	fi

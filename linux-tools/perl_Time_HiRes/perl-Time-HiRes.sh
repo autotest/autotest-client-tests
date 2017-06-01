@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Time_HiRes
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Time_HiRes"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -44,7 +44,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-Time-HiRes >$stdout 2>$stderr
+      tc_check_package perl-Time-HiRes
         tc_break_if_bad $? "perl-Time-HiRes is not installed properly"
 }
 

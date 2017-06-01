@@ -46,7 +46,7 @@ function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
 
-	rpm -q "stunnel" >$stdout 2>$stderr	
+      tc_check_package "stunnel"
 	tc_break_if_bad $? "stunnel not installed" || return
 
 	[ -f $OPENSSLCONF ]

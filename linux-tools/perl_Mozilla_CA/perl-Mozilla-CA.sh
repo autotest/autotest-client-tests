@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_Mozilla_CA
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_Mozilla_CA"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -44,7 +44,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-Mozilla-CA >$stdout 2>$stderr
+        tc_check_package perl-Mozilla-CA
         tc_break_if_bad $? "perl-Mozilla-CA is not installed properly"
 }
 

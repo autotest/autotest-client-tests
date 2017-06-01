@@ -39,7 +39,7 @@ TEST_DIR="${LTPBIN%/shared}/apr"
 
 function tc_local_setup()
 {
-	rpm -q "apr" >$stdout 2>$stderr
+      tc_check_package "apr"
 	tc_break_if_bad $? "apr package is not installed"
 }
 

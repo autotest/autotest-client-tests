@@ -54,7 +54,7 @@ function run_test()
     done
 
     tc_register "Test test-unicode"
-    rpm -q harfbuzz-icu &>/dev/null
+      tc_check_package harfbuzz-icu
     if [ $? -eq 0 ];then
        ./test-unicode >$stdout 2>$stderr
        tc_pass_or_fail $? "Test failed"

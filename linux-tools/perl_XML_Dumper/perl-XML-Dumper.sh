@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_XML_Dumper
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_Dumper"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-XML-Dumper >$stdout 2>$stderr 
+      tc_check_package perl-XML-Dumper
 	tc_break_if_bad $? "perl-XML-Dumper not installed"
 }
 

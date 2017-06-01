@@ -32,7 +32,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_XML_DOM
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_XML_DOM"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -41,7 +41,7 @@ function tc_local_setup()
 
 function install_check()
 {
-        rpm -q perl-XML-DOM >$stdout 2>$stderr
+      tc_check_package perl-XML-DOM
         tc_break_if_bad $? "perl-XML-DOM is not installed"
 }
 

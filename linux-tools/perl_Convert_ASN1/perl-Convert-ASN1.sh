@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Convert_ASN1
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_Convert_ASN1"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED
@@ -40,7 +42,7 @@ function tc_local_setup()
 function install_check()
 {
         tc_register "Installation check"
-        rpm -q perl-Convert-ASN1 >$stdout 2>$stderr
+        tc_check_package "$PERL_CONVERT_ASN1"
         tc_pass_or_fail $? "perl-Convert-ASN1 not installed"
 }
 

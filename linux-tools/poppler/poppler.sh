@@ -35,7 +35,7 @@ POPPLER_TEST_DIR="${LTPBIN%/shared}/poppler/tests"
 
 function tc_local_setup()
 {
-        rpm -q poppler > /dev/null 2>&1 
+      tc_check_package poppler
         tc_break_if_bad $? "poppler not installed" 
 }
 

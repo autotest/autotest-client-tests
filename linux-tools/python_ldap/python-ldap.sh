@@ -42,7 +42,7 @@ TST_TOTAL=5
 
 function tc_local_setup()
 {
-	rpm -q python-ldap >$stdout 2>$stderr 
+      tc_check_package python-ldap
 	tc_break_if_bad $? "python-ldap required, but not installed" || return 
 
 
@@ -236,7 +236,7 @@ function ldap_test()
 
 	tc_register "Test for ldap sasl module"
 
-	rpm -q krb5-server >$stdout 2>$stderr 
+      tc_check_package python-ldap
 	tc_fail_if_bad $? "krb5-server not present for SASL GSSAPI" || return
 
 	# Start rngd to create entropy

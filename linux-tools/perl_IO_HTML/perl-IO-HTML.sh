@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_IO_HTML
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_IO_HTML"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -44,7 +44,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-        rpm -q perl-IO-HTML >$stdout 2>$stderr
+        tc_check_package perl-IO-HTML
         tc_break_if_bad $? "perl-IO-HTML is not installed properly"
 }
 

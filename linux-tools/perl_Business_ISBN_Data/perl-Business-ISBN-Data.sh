@@ -34,10 +34,12 @@
 #=============================================
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Business_ISBN_Data
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
-PKG_NAME="perl-Business-ISBN-Data"
+source  $MAPPER_FILE
+PKG_NAME="$PERL_BUSINESS_ISBN_DATA"
 TESTS_DIR="${LTPBIN%/shared}/perl_Business_ISBN_Data"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 
 #=====================================================
@@ -46,7 +48,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {
         tc_exec_or_break $REQUIRED || return
-	rpm -q $PKG_NAME >$stdout 2>$stderr
+        tc_check_package $PKG_NAME
         tc_break_if_bad $? "$PKG_NAME is not installed"
 
 	# check_data_structure.t test will be looking for RangeMessage.xml file under lib localy.

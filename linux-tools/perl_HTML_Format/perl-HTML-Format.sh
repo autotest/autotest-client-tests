@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTML_Format
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_HTML_Format/t"
-required="perl rpm"
+required="perl"
 LINK="/usr/share/perl5/vendor_perl/HTML"
 function tc_local_setup()
 {
@@ -39,10 +41,10 @@ function tc_local_setup()
 	tc_exec_or_break $required
 
 	# install check
-	rpm -q "perl-HTML-Format" >$stdout 2>$stderr
-	tc_break_if_bad $? "perl-HTML-Format not installed"
+        tc_check_package "$PERL_HTML_FORMAT"
+	tc_break_if_bad $? "$PERL_HTML_FORMAT not installed"
 	
-	#creating folder lib and soft linking modules (instead of copying lib folder from test source as this modules will be installed along with source rpm ) ,as one of the test provided by source is written to take this modules from  lib folder and execute test.
+	#creating folder lib and soft linking modules (instead of copying lib folder from test source as this modules will be installed along with source dpkg ) ,as one of the test provided by source is written to take this modules from  lib folder and execute test.
 	mkdir -p $TESTS_DIR/lib
 	ln -s $LINK/FormatPS.pm $TESTS_DIR/lib
 	ln -s $LINK/FormatRTF.pm $TESTS_DIR/lib

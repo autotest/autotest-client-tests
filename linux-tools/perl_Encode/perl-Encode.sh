@@ -44,7 +44,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Encode >$stdout 2>$stderr 
+      tc_check_package perl-Encode
 	tc_break_if_bad $? "perl-Encode not installed"
 }
 

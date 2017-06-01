@@ -41,7 +41,7 @@ TESTDIR=${LTPBIN%/shared}/python_configobj/tests
 # local setup
 #
 function tc_local_setup(){
-	rpm -q python-configobj >$stdout 2>$stderr
+      tc_check_package python-configobj
 	tc_break_if_bad $? "python-configobj package is not installed properly"
 }
 

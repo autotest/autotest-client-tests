@@ -39,7 +39,7 @@ TESTDIR=${LTPBIN%/shared}/lshw
 #
 function tc_local_setup()
 {
-	rpm -q lshw >$stdout 2>$stderr
+      tc_check_package lshw
 	tc_break_if_bad $? "lshw package is not installed properly"
 	tc_get_iface
 }

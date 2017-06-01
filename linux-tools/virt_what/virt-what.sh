@@ -32,7 +32,7 @@ TESTS_DIR=${LTPBIN%/shared}/virt_what/tests/
 ################################################################################
 function tc_local_setup()
 {
-    rpm -q virt-what 1>$stdout 2>$stderr
+      tc_check_package virt-what
     tc_break_if_bad $? "virt-what not installed" || return
     ln -s /usr/libexec/virt-what-cpuid-helper ${PWD}/virt-what-cpuid-helper
     ln -s /usr/sbin/virt-what ${PWD}/virt-what

@@ -34,17 +34,17 @@ TESTS_DIR="${LTPBIN%/shared}/python_decorator"
 
 #Global Variables
 oldline='from setup import VERSION'
-python_decorator_ver=`rpm -q --info python-decorator | awk '/Version/ {print $NF}'`
+      tc_check_package python-decorator
 newline="VERSION='$python_decorator_ver'"
 test=0
 
 function tc_local_setup()
 {
-        rpm -q python-decorator >$stdout 2>$stderr
+      tc_check_package python-decorator
         tc_break_if_bad $? "python-decorator package is not installed properly"
 
 	# Check python version and run the test accordingly as per README
-	python_version=`rpm -q --info python | awk '/Version/ {print $3}'`
+      tc_check_package python-decorator
 	if [[ $python_version < 3 ]] 
 	then
 		test=documentation.py

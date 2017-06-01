@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_Socket/"
 
 function tc_local_setup()
 {
-    rpm -q perl-Socket >$stdout 2>$stderr
+      tc_check_package perl-Socket
     tc_break_if_bad $? "perl-Socket is not installed"
 }
 

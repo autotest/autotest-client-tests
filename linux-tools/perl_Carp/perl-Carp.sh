@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Carp >$stdout 2>$stderr 
+      tc_check_package perl-Carp
 	tc_break_if_bad $? "perl-Carp not installed"
 }
 

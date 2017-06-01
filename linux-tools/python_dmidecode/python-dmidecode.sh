@@ -51,7 +51,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q "python-dmidecode" >$stdout 2>$stderr	
+      tc_check_package "python-dmidecode"
 	tc_break_if_bad $? "python-dmidecode not installed"
 }
 

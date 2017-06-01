@@ -31,14 +31,14 @@
 #LTPBIN=${LTPBIN%/shared}/perl_LWP_MediaTypes
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_LWP_MediaTypes"
-required="perl rpm"
+required="perl"
 function tc_local_setup()
 {
 	# check installation and environment
 	tc_exec_or_break $required
 
 	# install check
-	rpm -q "perl-LWP-MediaTypes" >$stdout 2>$stderr
+        tc_check_package "perl-LWP-MediaTypes"
 	tc_break_if_bad $? "perl-LWP-MediaTypes not installed"i
 	
 	#creating file named README,as this test will take README as input and give media type for the same.

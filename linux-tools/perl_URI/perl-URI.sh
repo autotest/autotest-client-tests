@@ -36,7 +36,7 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED
-    rpm -q perl-URI >$stdout 2>$stderr
+      tc_check_package perl-URI
     tc_break_if_bad $? "perl-URI  not installed"
 }
 

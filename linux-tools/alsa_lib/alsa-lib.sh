@@ -34,7 +34,7 @@ TESTS_DIR="${LTPBIN%/shared}/alsa_lib/tests"
 
 function tc_local_setup()
 {
-        rpm -q alsa-lib >$stdout 2>$stderr
+      tc_check_package alsa-lib
         tc_break_if_bad $? "alsa-lib not installed" || return
 }
 

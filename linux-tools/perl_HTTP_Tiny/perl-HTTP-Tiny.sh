@@ -35,7 +35,7 @@ TESTDIR="${LTPBIN%/shared}/perl_HTTP_Tiny"
 
 function tc_local_setup()
 {
-    rpm -q perl-HTTP-Tiny 1>$stdout 2>$stderr
+      tc_check_package perl-HTTP-Tiny
     tc_break_if_bad $? "perl-HTTP-Tiny is not installed properly..!"
 
     # 00-compile.t Test requires the lib directory.

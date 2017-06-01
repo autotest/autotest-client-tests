@@ -37,7 +37,7 @@ GAMIN_TEST_DIR="${LTPBIN%/shared}/gamin/tests"
 
 function tc_local_setup()
 {
-    rpm -q gamin >$stdout 2>$stderr 
+      tc_check_package gamin
     tc_break_if_bad $? "gamin not installed" || return 
     rm -rf /tmp/test_gamin 
 }

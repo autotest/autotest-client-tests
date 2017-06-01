@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Compress_Raw_Zlib
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Compress_Raw_Zlib"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,8 +42,8 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-Compress-Raw-Zlib >$stdout 2>$stderr 
-	tc_break_if_bad $? "perl-Compress-Raw-Zlib not installed"
+        tc_check_package "$PERL_COMPRESS_RAW_ZLIB"
+	tc_break_if_bad $? "$PERL_COMPRESS_RAW_ZLIB not installed"
 }
 
 function run_test()

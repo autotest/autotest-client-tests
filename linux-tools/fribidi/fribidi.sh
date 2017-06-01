@@ -42,7 +42,7 @@ TESTS_DIR="${LTPBIN%/shared}/fribidi"
 
 function tc_local_setup()
 {	
-        rpm -q fribidi >$stdout 2>$stderr
+      tc_check_package fribidi
         tc_break_if_bad $? "fribidi is not installed properly"
 
 	# creating bin directory and linking fribidi binary for test purpose	

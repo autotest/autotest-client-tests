@@ -37,7 +37,7 @@ REQUIRED="sed awk interdiff combinediff filterdiff fixcvsdiff lsdiff splitdiff r
 
 function tc_local_setup()
 {
-	rpm -q "patchutils" >$stdout 2>$stderr   
+      tc_check_package "patchutils"
 	tc_break_if_bad $? "patchutils not installed" || return
 	tc_exec_or_break $REQUIRED
 	sed -i 's:${top_builddir}/src/::g' $PATCHUTILS_TESTS_DIR/tests/common.sh

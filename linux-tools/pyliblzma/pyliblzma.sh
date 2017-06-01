@@ -35,7 +35,7 @@ REQUIRED="python"
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED
-	rpm -q pyliblzma >$stdout 2>$stderr
+      tc_check_package pyliblzma
 	tc_fail_if_bad $? "pyliblzma not installed" || return
 }
 

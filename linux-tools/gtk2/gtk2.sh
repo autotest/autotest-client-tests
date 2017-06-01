@@ -38,7 +38,7 @@ REQUIRED="Xvfb"
 function tc_local_setup()
 {
     
-    rpm -q gtk2 >$stdout 2>$stderr
+      tc_check_package gtk2
     tc_break_if_bad $? "gtk2 package is not installed"
 
     tc_exec_or_break $REQUIRED

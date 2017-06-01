@@ -43,7 +43,7 @@ REQUIRED="libtool"
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED || exit
-    rpm -q man-db 1>$stdout 2>$stderr
+      tc_check_package man-db
     tc_break_if_bad $? "man-db not installed" || return
     ln -s /usr/bin/libtool $TESTS_DIR/libtool
     ln -s /usr/libexec/man-db/manconv $TESTS_DIR/manconv

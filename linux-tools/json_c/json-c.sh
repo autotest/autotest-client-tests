@@ -34,7 +34,7 @@ TESTS_DIR="${LTPBIN%/shared}/json_c"
 
 function tc_local_setup()
 {
-	rpm -q json-c 1>$stdout 2>$stderr
+      tc_check_package json-c
         tc_break_if_bad $? "json-c not installed" || return
 }
 

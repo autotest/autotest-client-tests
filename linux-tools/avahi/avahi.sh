@@ -35,7 +35,7 @@ AVAHI_TESTS_DIR="${LTPBIN%/shared}/avahi/tests"
 function tc_local_setup()
 {
 	# check installation and environment 
-	rpm -q avahi >$stdout 2>$stderr
+      tc_check_package avahi
         tc_break_if_bad $? "avahi not installed"
 }
 

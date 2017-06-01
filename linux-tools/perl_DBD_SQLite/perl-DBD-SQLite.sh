@@ -31,7 +31,7 @@
 #LTPBIN=${LTPBIN%/shared}/perl_DBD_SQLite
 source $LTPBIN/tc_utils.source
 TESTS_DIR="${LTPBIN%/shared}/perl_DBD_SQLite"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,7 +40,7 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-DBD-SQLite >$stdout 2>$stderr 
+        tc_check_package libdbd-sqlite2-perl
 	tc_break_if_bad $? "perl-DBD-SQLite not installed"
 }
 

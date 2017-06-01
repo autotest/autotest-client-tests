@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/perl_threads_shared/"
 
 function tc_local_setup()
 {
-	rpm -q perl-threads-shared >$stdout 2>$stderr
+       tc_check_package perl-threads-shared
 	tc_break_if_bad $? "perl-threads-shared is not installed"
 }
 

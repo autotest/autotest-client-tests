@@ -44,7 +44,7 @@ TESTDIR=${LTPBIN%/shared}/hostname
 #
 function tc_local_setup()
 {
-        rpm -q hostname >$stdout 2>$stderr
+        tc_check_package hostname
         tc_break_if_bad $? "hostname is not installed properly"
 	tc_get_iface
 }

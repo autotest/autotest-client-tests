@@ -48,7 +48,7 @@ function tc_local_setup()
 	cp $TEST_DIR/dummy.module /usr/share/p11-kit/modules/
 
 	# Installation check for ca-certificates
-	rpm -q ca-certificates >$stdout 2>$stdout 2>$stderr
+      tc_check_package ca-certificates
 	tc_break_if_bad $? "ca-certificates not installed"
 
 	# Check for PKCS#11 proxy module installed

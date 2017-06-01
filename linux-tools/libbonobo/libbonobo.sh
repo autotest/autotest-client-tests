@@ -42,7 +42,7 @@ TESTS_DIR=${LTPBIN%/shared}/libbonobo/tests
 #
 function tc_local_setup()
 {
-    rpm -q libbonobo 1>$stdout 2>$stderr
+      tc_check_package libbonobo
     tc_break_if_bad $? "libbonobo not installed" || return
 
     sed -i "s:^BONOBO_ACTIVATION_SERVER=.*:BONOBO_ACTIVATION_SERVER=\"/usr/libexec/bonobo-activation-server\";:g" \

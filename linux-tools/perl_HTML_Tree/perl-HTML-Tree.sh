@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTML_Tree
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_HTML_Tree"
-required="perl rpm"
+required="perl"
 
 function tc_local_setup()
 {
@@ -39,8 +41,8 @@ function tc_local_setup()
         tc_exec_or_break $required
 
         # install check
-        rpm -q "perl-HTML-Tree" >$stdout 2>$stderr
-        tc_break_if_bad $? "perl-HTML-Tree not installed"
+        tc_check_package "$PERL_HTML_TREE"
+        tc_break_if_bad $? "$PERL_HTML_TREE not installed"
 }
 ################################################################################
 # testcase functions                                                           #

@@ -34,7 +34,7 @@ TESTDIR="${LTPBIN%/shared}/tuned/"
 
 function tc_local_setup()
 {
-	rpm -q tuned >$stdout 2>$stderr
+      tc_check_package tuned
 	tc_break_if_bad $? "tuned is not installed"
 }
 

@@ -34,11 +34,11 @@
 #=============================================
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTML_Tagset
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
-PKG_NAME="perl-HTML-Tagset"
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_HTML_Tagset"
-REQUIRED="perl rpm"
-
+REQUIRED="perl"
 
 #=====================================================
 # Function to check prerequisites to run this test
@@ -54,8 +54,8 @@ function tc_local_setup()
 #======================================================
 function install_check()
 {
-        rpm -q $PKG_NAME >$stdout 2>$stderr
-        tc_break_if_bad $? "$PKG_NAME is not installed"
+        tc_check_package  "$PERL_HTML_TAGSET"
+        tc_break_if_bad $? "$PERL_HTML_TAGSET is not installed"
 }
 
 

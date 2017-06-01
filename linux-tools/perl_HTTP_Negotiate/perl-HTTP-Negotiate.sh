@@ -29,9 +29,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_HTTP_Negotiate
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_HTTP_Negotiate"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
@@ -40,8 +42,8 @@ function tc_local_setup()
 
 function install_check()
 {
-	rpm -q perl-HTTP-Negotiate >$stdout 2>$stderr 
-	tc_break_if_bad $? "perl-HTTP-Negotiate not installed"
+        tc_check_package "$PERL_HTTP_NEGOTIATE"
+	tc_break_if_bad $? "$PERL_HTTP_NEGOTIATE is not installed"
 }
 
 function run_test()

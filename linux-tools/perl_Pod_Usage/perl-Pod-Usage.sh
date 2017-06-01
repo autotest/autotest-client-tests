@@ -97,7 +97,7 @@ function installation_check() {
         tc_info     "installation check"
         tc_executes prove
 	tc_break_if_bad $? "Please check if perl-Test-Harness is installed properly !!"
-	rpm -q perl-Pod-Usage 1>$stdout 2>$stderr
+      tc_check_package perl-Pod-Usage
 	tc_break_if_bad $? "perl-Pod-Usage package is not installed !!"
 }
 ####################################################################################

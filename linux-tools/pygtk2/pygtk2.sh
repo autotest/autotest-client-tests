@@ -40,7 +40,7 @@ function tc_local_setup()
         tc_exec_or_break $REQUIRED
         
         # search the pygtk2 packages
-        rpm -q "pygtk2" >$stdout 2>$stderr
+      tc_check_package "pygtk2"
         tc_break_if_bad $? "pygtk2 package is not installed"
 
         # test case were failing to set the display

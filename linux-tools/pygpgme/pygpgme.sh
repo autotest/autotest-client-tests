@@ -49,7 +49,7 @@ function tc_local_cleanup()
 
 function install_check()
 {
-	rpm -q pygpgme >$stdout 2>$stderr 
+      tc_check_package pygpgme
 	tc_break_if_bad $? "pygpgme not installed"
 }
 
