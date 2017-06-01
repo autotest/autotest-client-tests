@@ -4,7 +4,8 @@ CFLAGS=-W -Wall
 
 TESTS=aio-dio-invalidate-failure aio-dio-subblock-eof-read \
       aio-free-ring-with-bogus-nr-pages \
-      aio-io-setup-with-nonwritable-context-pointer aio-dio-extend-stat
+      aio-io-setup-with-nonwritable-context-pointer aio-dio-extend-stat \
+      aio-cve-2016-10044
 
 all: $(TESTS)
 
@@ -22,3 +23,6 @@ aio-io-setup-with-nonwritable-context-pointer: aio-io-setup-with-nonwritable-con
 
 aio-dio-extend-stat: aio-dio-extend-stat.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -lpthread -o $@ $^
+
+aio-cve-2016-10044: aio-cve-2016-10044.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
