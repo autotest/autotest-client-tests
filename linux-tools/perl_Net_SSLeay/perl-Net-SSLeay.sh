@@ -29,7 +29,9 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Net_SSLeay
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Net_SSLeay"
 REQUIRED="perl"
 
@@ -40,8 +42,8 @@ function tc_local_setup()
 
 function install_check()
 {
-        tc_check_package perl-Net-SSLeay
-	tc_break_if_bad $? "perl-Net-SSLeay not installed"
+        tc_check_package "$PERL_NET_SSLEAY"
+	tc_break_if_bad $? "$PERL_NET_SSLEAY is not installed"
 }
 
 function run_test()
@@ -53,6 +55,13 @@ function run_test()
 	TESTS=`ls t/local/*.t t/handle/local/*.t | grep -v t/local/00_ptr_cast.t | grep -v t/local/04_basic.t`
 	TST_TOTAL=`echo $TESTS | wc -w`+1
 	for test in $TESTS; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "$test" == "t/local/33_x509_create_cert.t" ];then
+				TST_TOTAL=`expr $TST_TOTAL - 1`
+				continue
+			fi
+		fi
 		tc_register "Test $test" 
 		perl $test >$stdout 2>$stderr 
 		tc_pass_or_fail $? "$test failed"

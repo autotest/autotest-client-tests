@@ -53,6 +53,15 @@ function run_test()
 	TST_TOTAL=`echo $TESTS | wc -w`
 	
 	for single_test in $TESTS; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			ubuntu_skips="date.parse.dst.t date.parse.iso.t date.parse.misc.0.t orig.parsedatestring.t recur.dates.0.t tz.zone.t"
+			echo $ubuntu_skips| grep $single_test >$stdout 2>$stderr
+			if [ $? -eq 0 ];then
+				TST_TOTAL=`expr $TST_TOTAL - 1`
+				continue
+			fi
+		fi
 		tc_register "Test ${single_test%%.t}"
 		perl $single_test >$stdout 2>$stderr
 		rc=`grep "not ok" $stdout`

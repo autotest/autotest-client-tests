@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -29,15 +29,17 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_URI
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_URI"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 function tc_local_setup()
 {
     tc_exec_or_break $REQUIRED
-      tc_check_package perl-URI
-    tc_break_if_bad $? "perl-URI  not installed"
+    tc_check_package "$PERL_URI"
+    tc_break_if_bad $? "$PERL_URI is  not installed"
 }
 
 function runtests()
@@ -53,6 +55,7 @@ function runtests()
 	else
 		perl -T $test >$stdout 2>$stderr
 	fi
+	tc_ignore_warnings "Unescaped left brace in regex is deprecated, passed through in regex"
 	tc_pass_or_fail $? "$test failed"
     done
     popd >$stdout 2>$stderr

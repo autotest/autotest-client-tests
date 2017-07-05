@@ -68,9 +68,10 @@ function runtests()
   sed -i 's/configure.in/shconfig/g' $TESTDIR/testsuite/itemize.test
   sed -i 's/config.h.in/config.h/g' $TESTDIR/testsuite/itemize.test
   sed -i 's/rsync.h/shconfig/g' $TESTDIR/testsuite/itemize.test
-
+  patch -p0 < ubuntu_fixed.patch
   $TESTDIR/runtests.sh 1> $stdout 2>$stderr 
   tc_pass_or_fail $? "Test Failed"
+  patch -R <ubuntu_fixed.patch
   popd &>/dev/null
 
 }

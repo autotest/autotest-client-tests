@@ -30,9 +30,11 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Storable
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Storable"
-REQUIRED="perl rpm"
+REQUIRED="perl"
 
 ################################################################################
 # Utility functions                                                            
@@ -45,8 +47,8 @@ REQUIRED="perl rpm"
 function tc_local_setup()
 {	
 	tc_exec_or_break $REQUIRED || return
-      tc_check_package perl-Storable
-        tc_break_if_bad $? "perl-Storable is not installed properly"
+        tc_check_package "$PERL_STORABLE"
+        tc_break_if_bad $? "$PERL_STORABLE is not installed properly"
 }
 
 function runtests()
@@ -56,6 +58,13 @@ function runtests()
        TST_TOTAL=`echo $TESTS | wc -w`
 	for test in $TESTS;
         do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "$test" == "t/malice.t" ];then
+				TST_TOTAL=`expr $TST_TOTAL - 1`
+				continue
+			fi
+		fi
           	tc_register "Test $test"
                 perl $test >$stdout 2>$stderr
 		tc_ignore_warnings "Will use Digest::MD5"

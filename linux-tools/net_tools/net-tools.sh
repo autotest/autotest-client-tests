@@ -35,7 +35,13 @@ TESTDIR=${LTPBIN%/shared}/net_tools
 
 iface=0		# system network interface
 
-COMMANDS="arp hostname ifconfig ipmaddr iptunnel netstat route traceroute traceroute6"
+#traceroute6 is having an open bug for ubuntu
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -eq 0 ];then  # Start of OS check
+	COMMANDS="arp hostname ifconfig ipmaddr iptunnel netstat route traceroute"
+else
+	COMMANDS="arp hostname ifconfig ipmaddr iptunnel netstat route traceroute traceroute6"
+fi
 set $COMMANDS
 TST_TOTAL=$#
 

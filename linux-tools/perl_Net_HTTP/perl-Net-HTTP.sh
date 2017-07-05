@@ -29,22 +29,33 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Net_HTTP
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Net_HTTP/t"
 REQUIRED="perl"
 stop_httpd=0
+SERVICE_NAME=""
 
 function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return 
+
 }
 
 function install_check()
 {
-        tc_check_package perl-Net-HTTP
-	tc_break_if_bad $? "perl-Net-HTTP not installed"
+        tc_check_package "$PERL_NET_HTTP"
+	tc_break_if_bad $? "$PERL_NET_HTTP is not installed"
 
-	tc_install_testdep mod_ssl
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+                SERVICE_NAME="apache2"
+        else
+                SERVICE_NAME="httpd"
+		tc_install_testdep mod_ssl
+        fi
+
 
 	sed -i  's/www.apache.org/localhost/g' $TESTS_DIR/apache-https.t
 	sed -i  's/www.apache.org/localhost/g' $TESTS_DIR/apache.t
@@ -52,9 +63,9 @@ function install_check()
 	##LIVE_TESTS file is needded for the Execution Testcases
 	touch $TESTS_DIR/LIVE_TESTS
 
-	tc_service_status httpd
+	tc_service_status $SERVICE_NAME
 	if [ $? -ne 0 ]; then
-		tc_service_start_and_wait httpd 
+		tc_service_start_and_wait $SERVICE_NAME
 		stop_httpd=1
 	fi
 
@@ -63,7 +74,7 @@ function install_check()
 function tc_local_cleanup()
 {
 	rm $TESTS_DIR/LIVE_TESTS
-	[ $stop_httpd -eq 1 ] && tc_service_stop_and_wait httpd
+	[ $stop_httpd -eq 1 ] && tc_service_stop_and_wait $SERVICE_NAME
 }
 
 function run_test()
@@ -72,6 +83,13 @@ function run_test()
 	TESTS=`ls *.t`
 	TST_TOTAL=`echo $TESTS | wc -w` 
 	for test in $TESTS; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "$test" == "apache.t" ];then
+				TST_TOTAL=`expr $TST_TOTAL - 1`
+				continue
+			fi
+		fi
 		tc_register "Test $test" 
 		perl $test >$stdout 2>$stderr
 		RC=$?

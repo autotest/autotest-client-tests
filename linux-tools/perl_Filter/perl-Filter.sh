@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -29,13 +29,15 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Filter
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_Filter/"
 
 function tc_local_setup()
 {
-      tc_check_package perl-Filter
-    tc_break_if_bad $? "perl-Filter not installed"
+    tc_check_package "$PERL_FILTER"
+    tc_break_if_bad $? "$PERL_FILTER is not installed"
 }
 
 function runtests()
@@ -44,6 +46,13 @@ function runtests()
     pfiles=`ls t/*.t`
     TST_TOTAL=`echo $pfiles | wc -w`
     for test in $pfiles; do
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		if [ "$test" == "t/order.t" ] ||  [ "$test" == "t/tee.t" ];then
+			TST_TOTAL=`expr $TST_TOTAL - 1`
+			continue
+		fi
+	fi
     tc_register "Test $test"
     perl $test &>$stdout 2>$stderr
     tc_pass_or_fail $? "$test failed"

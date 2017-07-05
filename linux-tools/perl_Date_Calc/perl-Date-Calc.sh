@@ -52,6 +52,13 @@ function run_test()
 	TESTS=`ls t/*.t`
 	TST_TOTAL=`echo $TESTS | wc -w` 
 	for test in $TESTS; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "$test" == "t/f035.t" ];then
+				TST_TOTAL=`expr $TST_TOTAL - 1`
+				continue
+			fi
+		fi
 		tc_register "Test $test" 
 		perl $test >$stdout 2>$stderr
 		tc_pass_or_fail $? "$test failed"

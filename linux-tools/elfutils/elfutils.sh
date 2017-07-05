@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -54,6 +54,8 @@ function tc_local_setup()
 	# Following paths are needed for running the tests
 	export libdir=$(dirname $Libpath)
 	export bindir=/usr/bin
+	# Chnage the shell to bash so that code can work on ubuntu too
+	sed  -i "1s/.*/#\!\/bin\/bash/" $TESTDIR/test-wrapper.sh
 }
  
 #

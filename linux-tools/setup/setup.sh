@@ -38,7 +38,7 @@ source $LTPBIN/tc_utils.source
 
 function tc_local_setup()
 {
-	rpm -q "setup" >$stdout 2>$stderr
+        tc_check_package "setup"
         tc_break_if_bad $? "setup package is not installed"
 }
 
@@ -48,7 +48,13 @@ function tc_local_setup()
 function run_test()
 {
         #This test case check for existence of coniguration files provided by setup package"
-        installed_files=`rpm -ql setup | grep /etc/`
+        tc_check_package "setup"
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -ne 0 ];then  # Start of OS check
+		installed_files=`rpm -ql setup | grep /etc/`
+	else
+		installed_files="/etc/aliases  /etc/environment /etc/exports /etc/fstab /etc/group /etc/gshadow /etc/host.conf /etc/hosts /etc/hosts.allow /etc/hosts.deny /etc/inputrc /etc/passwd /etc/printcap /etc/profile /etc/profile.d /etc/protocols /etc/securetty /etc/services /etc/shadow /etc/shells /etc/subgid /etc/subuid"
+	fi
         TST_TOTAL=`echo $installed_files | wc -l`
         for file in $installed_files
         do

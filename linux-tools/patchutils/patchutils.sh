@@ -31,13 +31,20 @@
 #LTPBIN=${LTPBIN%/shared}/patchutils
 source $LTPBIN/tc_utils.source
 PATCHUTILS_TESTS_DIR="${LTPBIN%/shared}/patchutils"
-REQUIRED="sed awk interdiff combinediff filterdiff fixcvsdiff lsdiff splitdiff rediff \
-	grepdiff recountdiff unwrapdiff dehtmldiff flipdiff espdiff editdiff"
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -eq 0 ];then  # Start of OS check
+	REQUIRED="sed awk interdiff combinediff filterdiff fixcvsdiff lsdiff splitdiff rediff \
+		grepdiff recountdiff unwrapdiff dehtmldiff flipdiff editdiff"
+else
+	REQUIRED="sed awk interdiff combinediff filterdiff fixcvsdiff lsdiff splitdiff rediff \
+                grepdiff recountdiff unwrapdiff dehtmldiff espdiff flipdiff editdiff"
+fi
+
 
 
 function tc_local_setup()
 {
-      tc_check_package "patchutils"
+        tc_check_package "patchutils"
 	tc_break_if_bad $? "patchutils not installed" || return
 	tc_exec_or_break $REQUIRED
 	sed -i 's:${top_builddir}/src/::g' $PATCHUTILS_TESTS_DIR/tests/common.sh
@@ -56,7 +63,12 @@ function tc_local_cleanup()
 function run_test()
 {
 pushd $PATCHUTILS_TESTS_DIR >$stdout 2>$stderr
-TST_TOTAL=`ls tests -I common.sh -I soak-test | wc -l`
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -eq 0 ];then  # Start of OS check
+	TST_TOTAL=`expr $TST_TOTAL - 1`
+else
+	TST_TOTAL=`ls tests -I common.sh -I soak-test | wc -l`
+fi
 for dir in `cd tests; find . -mindepth 1 -type d -not -name delhunk5  -not -name delhunk6`
 do
 	test_name=`echo $dir | awk -F/ '{print $2}'`

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ############################################################################################
 ## Copyright 2003, 2015 IBM Corp                                                          ##
 ##                                                                                        ##
@@ -77,14 +77,21 @@ function test01()
 #
 function test02()
 {
-	tc_register     "which --all command"
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+                ARG_OPT="-a"
+        else
+                ARG_OPT="--all"
+        fi
+
+	tc_register     "which $ARG_OPT command"
 	
 	mkdir $TCTMP/newpath
 	cp -r $TCTMP/sample $TCTMP/newpath/sample
 	PATH=$PATH:$TCTMP/newpath
  
-	which --all sample | grep -q "$TCTMP/newpath/sample" && which --all sample | grep -q "/usr/bin/sample"
-	tc_pass_or_fail $? "which --all command failed" 
+	which $ARG_OPT sample | grep -q "$TCTMP/newpath/sample" && which $ARG_OPT sample | grep -q "/usr/bin/sample"
+	tc_pass_or_fail $? "which $ARG_OPT command failed" 
 }
 
 #
@@ -103,7 +110,7 @@ function test03()
 	EOF
   
 	chmod +x $TCTMP/sample.sh 
-    $TCTMP/sample.sh | grep -q "echo \"Foo\"" 2>stderr
+        $TCTMP/sample.sh | grep -q "echo \"Foo\"" 2>stderr
 	tc_pass_or_fail $? "which failed to read function fname" 
 }
 
@@ -113,11 +120,15 @@ function test03()
 ################################################################################
 # main
 ################################################################################
-
-TST_TOTAL=3
-
 tc_setup
-
-test01 
-test02
-test03
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -eq 0 ];then  # Start of OS check
+	TST_TOTAL=2
+	test01
+	test02
+else
+	TST_TOTAL=3
+	test01
+	test02
+	test03
+fi

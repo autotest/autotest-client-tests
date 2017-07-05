@@ -167,14 +167,27 @@ function test_fuser_socket()
 ################################################################################
 # main
 ################################################################################
-TST_TOTAL=7
-
 tc_setup
 
-test00 || exit  # installation check
-test_pstree
-test_killall1
-test_killall2
-test_killall3
-test_fuser_file
-test_fuser_socket
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -eq 0 ];then  # Start of OS check
+	TST_TOTAL=6
+	test00 || exit  # installation check
+	test_pstree
+	test_killall1
+	test_killall2
+	test_killall3
+	test_fuser_socket
+
+else
+	TST_TOTAL=7
+	test00 || exit  # installation check
+	test_pstree
+	test_killall1
+	test_killall2
+	test_killall3
+	test_fuser_file
+	test_fuser_socket
+
+
+fi
