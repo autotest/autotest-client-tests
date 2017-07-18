@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 	/* Turn on update interrupts (one per second) */
 	retval = ioctl(fd, RTC_UIE_ON, 0);
 	if (retval == -1) {
-		if (errno == ENOTTY) {
+		if (errno == ENOTTY || errno == EINVAL) {
 			fprintf(stderr,
 				"\n...Update IRQs not supported.\n");
 			goto test_READ;
@@ -168,6 +168,11 @@ test_READ:
 	/* Enable alarm interrupts */
 	retval = ioctl(fd, RTC_AIE_ON, 0);
 	if (retval == -1) {
+        if (errno == EIO) {
+            fprintf(stderr,
+                    "\n...EIO when enabling alarm interrupts.");
+            goto test_PIE;
+        }
 		perror("RTC_AIE_ON ioctl");
 		exit(errno);
 	}
