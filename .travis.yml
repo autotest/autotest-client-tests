@@ -14,7 +14,7 @@ git:
 
 install:
     - pip install setuptools
-    - pip install sphinx
+    - pip install sphinx==1.4.9
     - AUTOTEST_TOP_PATH="." pip install -r requirements-selftests.txt
 
 script:
