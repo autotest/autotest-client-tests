@@ -15,7 +15,7 @@ class fio(test.test):
     def initialize(self):
         self.job.require_gcc()
 
-    def setup(self, tarball='fio-2.3.tar.bz2'):
+    def setup(self, tarball='fio-2.99.tar.bz2'):
         """
         Compiles and installs fio.
 
