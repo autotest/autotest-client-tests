@@ -79,7 +79,10 @@ function runtest()
     #$TESTDIR/run $cmd >$stdout 2>$stderr
     cd $TESTDIR
     ./run $cmd >$stdout 2>$stderr
-    tc_fail_if_bad $? "unexpected response" || return
+    C=$?
+        [ $RC -eq 0 ] && tc_ignore_warnings "Unescaped left brace in regex is deprecated, passed through"
+
+    tc_fail_if_bad $RC "unexpected response" || return
     cd ..
     set $(cat $stdout | grep "passed, 0 failed)" | wc -l)
     [ $1 -eq 1 ]

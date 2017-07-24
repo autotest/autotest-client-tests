@@ -55,6 +55,7 @@ function TC_libxml2()
 	if [ $? == 1 ]; then
 		cat /dev/null > $stderr
 	fi
+	[ $? -eq 0 ] && tc_ignore_multiple_warnings "Missing result file result/errors/"
 	tc_pass_or_fail $? "libxml2 runtest failure"
 }
 
