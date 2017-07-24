@@ -114,7 +114,11 @@ function runtest()
 	tc_register "$tst"
 
 	srcdir=. PATH_SEPARATOR=: make -f Makefile.am $tst >$stdout 2>$stderr
-	tc_pass_or_fail $?
+	RC=$?
+        if [ $tst = "fnamedat" ] || [ $tst = "fnarray" ] || [ $tst = "fnarray2" ] || [ $tst = "fnarydel" ] || [ $tst = "fnasgnm" ] || [ $tst = "fnparydl" ] || [ $tst = "funsmnam" ] || [ $tst = "gsubasgn" ] || [ $tst = "parseme" ] || [ $tst = "badargs" ] || [ $tst = "match2" ] && [ $RC -eq 0 ]; then
+                tc_ignore_warnings "make:"
+        fi
+	tc_pass_or_fail $RC
 	rm -f _$tst
 }
 
