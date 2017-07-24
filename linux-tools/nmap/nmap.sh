@@ -37,7 +37,6 @@ source $LTPBIN/domain_names.source
 installed="ncat ndiff nmap"
 required="cp echo grep"
 restart_xinetd="no"
-restart_iptables="no"
 
 ################################################################################
 # test functions
@@ -52,7 +51,7 @@ function tc_local_setup()
 
 	# check the status of other services used by test
 	systemctl status xinetd.service &>/dev/null && restart_xinetd="yes"
-	systemctl status iptables.service &>/dev/null && restart_iptables="yes"
+	iptables-save > $TCTMP/iptables.bak
 	return 0
 }
 
@@ -64,8 +63,6 @@ function tc_local_cleanup()
 	[ -e $TCTMP/echo-stream ] && cp $TCTMP/echo-stream /etc/xinetd.d/
 	[ $restart_xinetd = "yes" ] && tc_service_start_and_wait xinetd >$stdout 2>$stderr
 
-	# reload iptables if required.
-	[ $restart_iptables = "yes" ] && iptables-restore < $TCTMP/iptables.bak
 }
 
 #
@@ -140,6 +137,8 @@ function test_os_detection()
 	# a failure at this time.
 	tc_register "check OS detection"
 	nmap -sT localhost -p 22 -O 1>$stdout 2>$stderr
+	RC=$?
+          [ $RC -eq 0 ] && tc_ignore_multiple_warnings "RTTVAR has grown to over 2.3 seconds, decreasing to 2.0"
 	tc_pass_or_fail $? "OS detection failed"
 }
 
@@ -171,7 +170,6 @@ function test_firewall()
 	tc_fail_if_bad $? "echo (tcp/7) should be unfiltered"
 
 	tc_info "blocking echo tcp/7 port"
-	[ "$restart_iptables" = "yes" ] && iptables-save > $TCTMP/iptables.bak
 	# Please check bug 84359
 	#iptables -A INPUT -i lo -p tcp --dport 7 -j REJECT 1>$stdout 2>$stderr
 	iptables -A INPUT -i lo -p tcp --dport 7 -j DROP 1>$stdout 2>$stderr
@@ -186,10 +184,7 @@ function test_firewall()
 	tc_pass_or_fail $? "echo (tcp/7) should be filtered in -sA scan"
 
 	tc_info "cleaning up test rule from iptables"
-	if [ "$restart_iptables" = "yes" ]; then
-		iptables-restore < $TCTMP/iptables.bak
-		restart_iptables="no"
-	fi
+	iptables-restore < $TCTMP/iptables.bak
 }
 
 #
