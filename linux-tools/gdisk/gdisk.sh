@@ -41,11 +41,11 @@ function tc_local_setup()
 
 function install_check()
 {
-      tc_check_package gdisk
+	tc_check_package gdisk
 	tc_break_if_bad $? "gdisk not installed"
 
-	sed -i  's:\./gdisk:/usr/sbin/gdisk:' ${TESTS_DIR}/${TESTCASE}
-	sed -i  's:\./sgdisk:/usr/sbin/sgdisk:' ${TESTS_DIR}/${TESTCASE}
+	sed -i  's:\./gdisk:$(which gdisk):' ${TESTS_DIR}/${TESTCASE}
+	sed -i  's:\./sgdisk:$(which sgdisk):' ${TESTS_DIR}/${TESTCASE}
 }
 
 function run_test()
