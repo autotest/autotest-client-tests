@@ -89,8 +89,13 @@ function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
 
-	#tc_exist_or_break /etc/prelink.conf /etc/sysconfig/prelink || return
-	tc_exist_or_break /etc/prelink.conf /usr/sbin/prelink || return
+	# /etc/sysconfig/prelink file is not appicable on ubuntu, Ubuntu has /usr/sbin/prelink 
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		tc_exist_or_break /etc/prelink.conf /usr/sbin/prelink || return
+	else
+		tc_exist_or_break /etc/prelink.conf /etc/sysconfig/prelink || return
+	fi
 
 	tc_get_os_arch
 	userlibdir=/usr/lib
@@ -101,8 +106,8 @@ function tc_local_setup()
 	# On Ubuntu usrlib and lib paths are diff, so modified the code based on that
 	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
         if [ $? -eq 0 ];then  # Start of OS check
-		 userlibdir="/usr/lib/x86_64-linux-gnu/"
-		 libdir=/lib/x86_64-linux-gnu/
+		 userlibdir="/usr/lib/*-linux-gnu/"
+		 libdir="/lib/*-linux-gnu/"
 	fi
 
 	PRELINK="/usr/sbin/prelink -c ./prelink.conf -C ./prelink.cache --ld-library-path=."
@@ -192,6 +197,7 @@ function test02()
 	fi
 	
 	# cycle1lib1.so libs are not part of Ubuntu, so excluding this test
+	# This is only for test purpose
 	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
         if [ $? -ne 0 ];then  # Start of OS check
 		grep -q "^`echo $PRELINK | sed 's/ .*$/: .*has a dependency cycle/'`" $BINS.log

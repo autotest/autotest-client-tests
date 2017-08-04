@@ -2,7 +2,7 @@
 ##
 ##         FILE: README.txt
 ##
-##  DESCRIPTION:  This File contains the steps of build and test autotest tests for all Linux Destro
+##  DESCRIPTION:  This File contains the steps of build and test autotest tests for all Linux Distribution
 ##
 ##      OPTIONS:  ---
 ## REQUIREMENTS:  ---
@@ -24,8 +24,8 @@ Supported Linux Destro : Redhat,Ubuntu,suse,CentOS
 Below steps are automted in run.py script, for better understanding steps are written down.
 
 1) Git clone the latest autotest and autotest-linux-tools
-2) Based on the arguments build the required packages and copy to autotest-linux-tools
-3) Run the Regression test.
+2) Based on the arguments build the required packages and copy to autotest-linux-tools/linux-tools
+3) Run Autotest-client-tests
 
 
 NOTE : Before running the run.py script please verify modules/build_conf.py script
