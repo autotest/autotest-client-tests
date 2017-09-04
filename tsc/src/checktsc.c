@@ -152,7 +152,7 @@ static inline uint64_t rdtsc(void)
 
 	return ((uint64_t)tsc_hi << 32) | tsc_lo;
 }
-#else
+#elif defined(__i386__)
 static inline uint64_t rdtsc(void)
 {
 	uint64_t	tsc;
@@ -161,6 +161,26 @@ static inline uint64_t rdtsc(void)
 
 	return tsc;
 }
+#elif defined(__powerpc64__)
+static inline uint64_t rdtsc(void)
+{
+	uint64_t	tb;
+
+	__asm__ __volatile__("mfspr %0,268" : "=r"(tb));
+
+	return tb;
+}
+#elif defined(__s390x__)
+static inline uint64_t rdtsc(void)
+{
+	uint64_t clk;
+
+	__asm__ __volatile__("stck %0" : : "Q"(clk) : "memory");
+
+	return clk;
+}
+#else
+#error Unsupported architecture
 #endif
 
 #define	READY	1
