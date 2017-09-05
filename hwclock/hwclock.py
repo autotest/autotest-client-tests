@@ -14,7 +14,7 @@ class hwclock(test.test):
         effect in the system.
         """
         logging.info('Setting hwclock to 2/2/80 03:04:00')
-        utils.system('/sbin/hwclock --set --date "2/2/80 03:04:00"')
+        utils.system_output('/sbin/hwclock --set --date "2/2/80 03:04:00"', retain_output=True)
         date = utils.system_output('LC_ALL=C /sbin/hwclock')
         if not re.match('Sat *Feb *2 *03:04:.. 1980', date):
             raise error.TestFail("Failed to set hwclock back to the eighties. "
