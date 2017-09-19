@@ -31,6 +31,7 @@
  * Use the command line to specify another RTC if you need one.
  */
 static const char default_rtc[] = "/dev/rtc0";
+static int maxfreq = 64;
 
 static struct rtc_time cutoff_dates[] = {
 	{
@@ -100,16 +101,18 @@ int main(int argc, char **argv)
 	struct timeval start, end, diff;
 
 	switch (argc) {
-	case 3:
+	case 4:
 		if (*argv[2] == 'd')
 			dangerous = 1;
+	case 3:
+		maxfreq = atoi(argv[2]);
 	case 2:
 		rtc = argv[1];
 		/* FALLTHROUGH */
 	case 1:
 		break;
 	default:
-		fprintf(stderr, "usage:  rtctest [rtcdev] [d]\n");
+		fprintf(stderr, "usage:  rtctest [rtcdev] [maxfreq] [d]\n");
 		return 1;
 	}
 
@@ -282,7 +285,7 @@ test_PIE:
 	fflush(stderr);
 
 	/* The frequencies 128Hz, 256Hz, ... 8192Hz are only allowed for root. */
-	for (tmp=2; tmp<=64; tmp*=2) {
+	for (tmp=2; tmp<=maxfreq; tmp*=2) {
 
 		retval = ioctl(fd, RTC_IRQP_SET, tmp);
 		if (retval == -1) {
