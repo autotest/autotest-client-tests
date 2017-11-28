@@ -4,18 +4,6 @@ from autotest.client import test, utils
 
 
 
-# tests is a simple array of "cmd" "arguments"
-tests = [["aio-dio-invalidate-failure", "poo"],
-         ["aio-dio-subblock-eof-read", "eoftest"],
-         ["aio-free-ring-with-bogus-nr-pages", ""],
-         ["aio-io-setup-with-nonwritable-context-pointer", ""],
-         ["aio-dio-extend-stat", "file"],
-         ["aio-cve-2016-10044", ""],
-         ]
-name = 0
-arglist = 1
-
-
 class aio_dio_bugs(test.test):
     version = 5
     preserve_srcdir = True
@@ -31,13 +19,11 @@ class aio_dio_bugs(test.test):
         os.chdir(self.srcdir)
         utils.make('"CFLAGS=' + self.gcc_flags + '"')
 
-    def execute(self, args=''):
+    def run_once(self, test_name, args=''):
         os.chdir(self.tmpdir)
         libs = self.autodir + '/deps/libaio/lib/'
         ld_path = utils.prepend_path(libs,
                                      utils.environ('LD_LIBRARY_PATH'))
         var_ld_path = 'LD_LIBRARY_PATH=' + ld_path
-        for test in tests:
-            cmd = self.srcdir + '/' + test[name] + ' ' + args + ' ' \
-                + test[arglist]
-            utils.system(var_ld_path + ' ' + cmd)
+        cmd = self.srcdir + '/' + test_name + ' ' + args
+        utils.system(var_ld_path + ' ' + cmd)
