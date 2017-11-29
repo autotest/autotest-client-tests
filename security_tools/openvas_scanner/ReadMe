@@ -1,0 +1,48 @@
+OPENVAS Automation suits contains 2 major component. 
+
+"openvas_setup_cli.py" script will be used to setup repo, install the require package, 
+download/setup the vulnerability database from openvas server,client server certificate setup,
+restart the relevent services, add users and launch prechecks before scan on local system.
+setup script will take around 40-50 min to complete all processes.
+
+"openvas_omp.py" will be used to setup target, create task, launch scan, monitor scan 
+from callback function and generate the report in human readable format on local system.
+Scan will take around 30-45 min once openvas related setup will be done
+
+* Steps to execute OPENVAS:-
+
+1) simple scan:-
+
+run the "openvas_omp.py" script from terminal, it will do everything and generate the report in 
+
+openvas_scanner directory.
+
+Total time to complete:- 1.5 hr(apprx)
+
+Min Space Require:- More than 1GB
+
+$ ./openvas_omp.py
+
+2) Scan from autotest:-
+
+go to security_tools/openvas_scanner directory and locate the control file
+
+For example:- 
+
+cd /usr/local/autotest_base/autotest-client-tests/security_tools/openvas_scanner
+
+$ /usr/local/autotest_base/autotest/client/autotest -d /usr/local/autotest_base/autotest-client-tests/linux-tools control
+
+
+* ISSUES:-
+
+1) There is known issue with openvas8/9 due to libssh binary.so download the "0.6.4" source (https://red.libssh.org/projects/libssh/files 
+and close the 0.6.4 version) and compile it. Had to fiddle with the "cmake" and "make" putting the compiled libs in the /usr/lib directory 
+and not /usr/lib64 directory. Finally just moved them manually and fixed the symbolic links.  
+
+https://forums.atomicorp.com/viewtopic.php?t=8047&p=43818
+
+openvassd: symbol lookup error: /lib64/libopenvas_base.so.8: undefined symbol: ssh_pki_key_ecdsa_name
+
+2) Since the script support x86_64, ia32, ppc64, ppc64le and s390x based arch. so i kept the public repo key for reference. it may possible
+that key need to be changed in future, so kindly update new key if repo setup fail. 
