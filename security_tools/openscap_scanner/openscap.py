@@ -185,6 +185,7 @@ class openscap(object):
         except IOError as err:
             logging.debug(err)
 
+
 if __name__ == "__main__":
 
     try:

@@ -16,7 +16,6 @@ import os
 import time
 import logging
 import pexpect
-from time import sleep
 from ConfigParser import SafeConfigParser
 
 
@@ -222,7 +221,7 @@ class openvas_setup_cli(object):
 
             # setting repo for
             if arch is None:
-                logging.debug(err)("Arch not listing")
+                logging.debug("Arch not listing")
 
             elif arch in ("x86_64", "ia32"):
                 # setting the atomic repo
@@ -471,8 +470,8 @@ class openvas_setup_cli(object):
                     file.writelines("unixsocket /tmp/redis.sock \n")
                     file.close()
 
-        except FileNotFoundError:
-            logging.debug(err)
+        except OSError:
+            logging.debug("Failed to find redis config file")
 
         logging.info("Downloading/Updating NVT, CERT, and SCAP data")
         default_downloader = 'rsync'

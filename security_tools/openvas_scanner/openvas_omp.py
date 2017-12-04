@@ -18,7 +18,6 @@ import os
 import time
 import csv
 from functools import partial
-from ConfigParser import SafeConfigParser
 from threading import Event, Timer, Semaphore
 from openvas_setup_cli import *
 
@@ -316,7 +315,7 @@ class openvas_cli(openvas_setup_cli):
             (status_task_file, self.task_id)).read().rstrip('\n')
 
         if task_status is None:
-            logging.debug(err)("Task not found")
+            logging.debug("Task not found")
         else:
             return task_status in ("Running", "Requested")
 
@@ -338,7 +337,7 @@ class openvas_cli(openvas_setup_cli):
             "cat %s | grep  -i \"%s\" | awk '{print $2}'" %
             (status_task_file, self.task_id)).read().rstrip('\n')
         if task_status is None:
-            logging.debug(err)("Task not found")
+            logging.debug("Task not found")
 
         elif task_status in ("Running", "Pause Requested", "Paused"):
             h1 = os.popen("cat %s | grep  -i \"%s\" | awk '{print $3}'" % (
@@ -472,8 +471,9 @@ class openvas_cli(openvas_setup_cli):
 
         except ResultError as e:
             raise OpenVasTaskNotFinishedError(
-                "Unable to Create report Error: %s" %
+                "Unable to Create report Error: %s %s" %
                 (self.report_id, e.message))
+
 
 if __name__ == "__main__":
 
