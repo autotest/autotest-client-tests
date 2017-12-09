@@ -26,6 +26,9 @@ class pam_krb5(test.test):
         if not sm.check_installed('gcc'):
             logging.debug("gcc missing - trying to install")
             sm.install('gcc')
+        if not sm.check_installed('pam-devel'):
+            logging.debug("pam-devel missing - trying to install")
+            sm.install('pam-devel')
         ret_val = subprocess.Popen(['make', 'all'], cwd="%s/pam_krb5" %(test_path))
         ret_val.communicate()
         if ret_val.returncode != 0:
