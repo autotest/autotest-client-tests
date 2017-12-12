@@ -280,6 +280,11 @@ tc_local_setup()
 	[ "$RANDOM_PID" != "0" ] && kill -9 $RANDOM_PID 2>/dev/null
 	# If we are here, then KRB5 has started and RANDOM_PID is killed.
 	RANDOM_PID=0
+
+        if [ -e /etc/krb5.keytab ]; then
+            keytab=1
+            mv /etc/krb5.keytab /etc/krb5.keytab.bckup
+        fi
 }
 
 function tc_local_cleanup()
@@ -287,6 +292,10 @@ function tc_local_cleanup()
 	tc_info "Stoping krb5 servers"
 	kdcstop
 	[ "$RANDOM_PID" != "0" ] && kill -9 $RANDOM_PID 2>/dev/null
+
+        if [ $keytab -eq 1 ]; then
+            mv /etc/krb5.keytab.bckup /etc/krb5.keytab
+        fi
 }
 
 test_password()
