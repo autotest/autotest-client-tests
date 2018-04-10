@@ -219,7 +219,6 @@ function tc_local_cleanup()
         # unmount the NFS directory
         tc_service_stop_and_wait nfs
         tc_service_stop_and_wait nfs-secure
-	tc_service_stop_and_wait nfs-secure-server
 	umount /mnt
         umount /mnt/NFS_PARTITION
         rm -f $TESTDIR/ext3.img
