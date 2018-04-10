@@ -30,7 +30,7 @@
 #cd `dirname $0`
 #LTPBIN=${LTPBIN%/shared}/httpd_tools
 source $LTPBIN/tc_utils.source
-SDIR=${LTPBIN%/shared}/httpd_tools/
+SDIR=${LTPBIN%/shared}/httpd_tools
 
 # system files
 HTTPD_CONF="/etc/httpd/conf/httpd.conf"
@@ -41,6 +41,7 @@ TOOLS="ab htdbm htdigest htpasswd logresolve"
 #
 function tc_local_setup()
 {
+	TCTMP=$SDIR/tmp
 	tc_root_or_break || exit
         tc_exec_or_break cat grep || exit
 
@@ -59,6 +60,7 @@ function tc_local_setup()
 		httpd_cleanup=1
 
 	# backup files which are touched by the testcase.
+	mkdir $TCTMP
         cp -f $HTTPD_CONF $TCTMP/httpd.conf
 
 	HOST="127.0.0.1"
@@ -76,8 +78,7 @@ function tc_local_setup()
 		<Directory "$TCTMP/test">
 		Options Indexes MultiViews FollowSymLinks ExecCGI
 		AllowOverride None
-		Order allow,deny
-		Allow from all
+		Require all granted
 		</Directory>
 
 	EOF
@@ -106,10 +107,14 @@ function tc_local_cleanup()
 {
 	cp -rf $TCTMP/httpd.conf $HTTPD_CONF
 	service httpd restart >$stdout 2>$stderr
+
+	if [ -d $TCTMP ]; then
+		rm -rf $TCTMP
+	fi
 	
 	# Restore status of httpd service
 	if [ $httpd_cleanup -eq 0 ]; then
-		service httpd stop >$stdout 2>$stderr
+		systemctl stop httpd >$stdout 2>$stderr
 		tc_break_if_bad $? "failed to stop httpd"
 	fi 
 }
@@ -204,7 +209,7 @@ function htdbm_test()
 	
 	sed -i 's/AuthType Digest/AuthType Basic/g' $HTTPD_CONF
 	sed -i 's/AuthBasicProvider file/AuthBasicProvider dbm/g' $HTTPD_CONF
-	sed -i 's:AuthUserFile $TCTMP/test/passwd_file:AuthDBMUserFile $TCTMP/test/passwd_file:g' $HTTPD_CONF
+	sed -i 's:AuthUserFile:AuthDBMUserFile:g' $HTTPD_CONF
 	
 	expect -c "spawn htdbm -c $TCTMP/test/passwd_file $USER; expect \"*password*:\"; send -- \"password\r\"; expect \"*password*:\"; send -- \"password\r\"; expect eof"
 	tc_fail_if_bad $? "htdbm -c failed to create password"
