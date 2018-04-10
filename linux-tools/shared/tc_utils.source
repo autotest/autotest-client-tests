@@ -2586,3 +2586,18 @@ function tc_check_package()
     rc=$?
     return $rc
 }
+
+###################################################
+# Function to print package name and version
+###################################################
+function tc_print_package_version()
+{
+   local package=$1
+   # check for Ubuntu OS
+   grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+   if [ $? -eq 0 ];then  # Start of OS check
+       dpkg --list| grep $package
+   else
+       rpm -q $package | sed -En  "/$package-[0-9].*/p"
+   fi
+}
