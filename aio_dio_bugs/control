@@ -15,5 +15,17 @@ The bug was fixed in the fs/direct-io.c completion reworking that appeared
 in 2.6.20.  This test should fail on 2.6.19.
 """
 
+# tests is a simple array of "cmd" "arguments"
+tests = [["aio-dio-invalidate-failure", "poo"],
+         ["aio-dio-subblock-eof-read", "eoftest"],
+         ["aio-free-ring-with-bogus-nr-pages", ""],
+         ["aio-io-setup-with-nonwritable-context-pointer", ""],
+         ["aio-dio-extend-stat", "file"],
+         ["aio-cve-2016-10044", ""],
+         ]
+name = 0
+arglist = 1
 
-job.run_test('aio_dio_bugs')
+
+for test in tests:
+    results = job.run_test('aio_dio_bugs', test_name=test[name], tag=test[name], args=test[arglist])
