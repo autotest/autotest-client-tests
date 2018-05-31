@@ -291,8 +291,8 @@ function test03()
 	pvchange -x y $part1 &>$stdout
 	tc_pass_or_fail $? "unexpected response" || return
 
-	tc_register "pvmove $part1"
-	pvmove $part1 &>$stdout
+	tc_register "pvmove -v -n $part1"
+	pvmove -v -n $part1 &>$stdout
 	tc_pass_or_fail $? "unexpected response" || return
 	
 	tc_register "lvremove -f $vgname1/$lvname"
