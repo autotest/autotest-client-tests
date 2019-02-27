@@ -40,8 +40,12 @@ REQUIRED="grep expect"
 function tc_local_setup()
 {
  tc_exec_or_break $REQUIRED
-      tc_check_package checkpolicy
+ tc_check_package checkpolicy
  tc_fail_if_bad $? "checkpolicy not installed properly"
+ tc_executes sedismod sedispol
+ if [ $? -ne 0 ]; then
+  TST_TOTAL=3
+ fi
 }
 
 function tc_local_cleanup()
@@ -49,7 +53,7 @@ function tc_local_cleanup()
   rm -f policy.mod
 }
 
-function run_test()
+function run_test01()
 {
    pushd $CHECKPOLICY_DIR >$stdout 2>$stderr
    tc_register "Checkmodule: Compiling the policy file"
@@ -66,6 +70,10 @@ function run_test()
    checkpolicy -b policy.mod >$stdout 2>$stderr
    tc_pass_or_fail $? "Binary policy file not loaded"
 
+}
+
+function run_test02()
+{
    tc_register "sedismod"
    ./sedismod.exp >$stdout 2>$stderr
    tc_pass_or_fail $? "sedismod failed"
@@ -82,4 +90,5 @@ function run_test()
 
 TST_TOTAL=5
 tc_setup
-run_test
+run_test01
+[ $TST_TOTAL -eq 5 ] && run_test02
