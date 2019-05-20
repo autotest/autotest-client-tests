@@ -1,0 +1,225 @@
+--- yum-release-test.sh.orig	2016-05-11 06:34:26.215585643 -0500
++++ yum-release-test.sh	2016-05-11 06:52:13.204522977 -0500
+@@ -4,7 +4,7 @@
+ ### Settings ##########################################
+ #######################################################
+ 
+-USE_LOCAL_YUM_CONF=0
++USE_LOCAL_YUM_CONF=1
+ 
+ FIXWORKDIR=/tmp/yum-release-test
+ 
+@@ -16,12 +16,12 @@
+ # path to executables
+ YUMBINARY=/home/ffesti/CVS/yum/yummain.py
+ YUMBINARY=yum
+-YUMDOWNLOADER=(yumdownloader -d 0 --disablerepo=updates)
+-YUMDOWNLOADERUPDATES=(yumdownloader -d 0 --enablerepo=updates)
++YUMDOWNLOADER=(yumdownloader -d 0 --disablerepo=myrepo-updates)
++YUMDOWNLOADERUPDATES=(yumdownloader -d 0 --enablerepo=myrepo-updates)
+ 
+ # for testing fedora releases
+-YUM=($YUMBINARY -d 0 --installroot=$WORKDIR --disablerepo=updates )
+-YUMUPDATES=($YUMBINARY -d 0 --installroot=$WORKDIR --enablerepo=updates )
++YUM=($YUMBINARY -d 0 --installroot=$WORKDIR --disablerepo=myrepo-updates )
++YUMUPDATES=($YUMBINARY -d 0 --installroot=$WORKDIR --enablerepo=myrepo-updates )
+ 
+ # for fedora devel
+ # XXX TODO
+@@ -30,7 +30,7 @@
+ 
+ # Adjust size of base install
+ #DEFAULTGROUPS=("Office/Productivity" "GNOME Desktop Environment" "Games and Entertainment" "Sound and Video" "Graphical Internet" "System Tools" Core Base Editors "X Window System" )
+-DEFAULTGROUPS=(Base Core)
++DEFAULTGROUPS=(MyGroup1 MyGroup2)
+ 
+ 
+ 
+@@ -69,11 +69,11 @@
+   echo "yum groupinstall ${DEFAULTGROUPS[@]}"
+   "${YUM[@]}" -y groupinstall "${DEFAULTGROUPS[@]}"
+   if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-  echo "Check for vim-minimal"
+-  "${RPM[@]}" -q vim-minimal > /dev/null
++  echo "Check for yum5_rpm"
++  "${RPM[@]}" -q yum5_rpm > /dev/null
+   if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ else
+-  echo Omitting base install
++  echo Omitting MyGroup1 MyGroup2 install
+ fi
+ 
+ #"${YUMUPDATES[@]}" list updates
+@@ -81,47 +81,47 @@
+ #exit 0
+ 
+ echo
+-echo "yum remove vim-minimal"
+-"${YUM[@]}" -y remove vim-minimal
++echo "yum remove yum5_rpm"
++"${YUM[@]}" -y remove yum5_rpm
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-echo "Check if vim-minimal is removed"
+-"${RPM[@]}" -q vim-minimal > /dev/null
++echo "Check if yum5_rpm is removed"
++"${RPM[@]}" -q yum5_rpm > /dev/null
+ if [ "X$?" == "X1" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum install vim-minimal | cat"
+-"${YUM[@]}" -y install vim-minimal | cat
++echo "yum install yum5_rpm | cat"
++"${YUM[@]}" -y install yum5_rpm | cat
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-echo "Check vim-minimal"
+-"${RPM[@]}" -q vim-minimal > /dev/null
++echo "Check yum5_rpm"
++"${RPM[@]}" -q yum5_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum install bash (already installed)"
+-"${YUM[@]}" install bash
++echo "yum install yum1_rpm (already installed)"
++"${YUM[@]}" install yum1_rpm
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+ echo "yum install fOObAr (not available)"
+ "${YUM[@]}" install fOObAr
+-if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
++if [ "X$?" == "X1" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ if [ $WORKDIR != $FIXWORKDIR ] ; then
+ 
+   echo
+-  echo "yum groupinstall Graphics"
+-  "${YUM[@]}" -y groupinstall Graphics
++  echo "yum groupinstall MyGroup3"
++  "${YUM[@]}" -y groupinstall MyGroup3
+   if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-  echo "Check gimp"
+-  "${RPM[@]}" -q gimp > /dev/null
++  echo "Check yum11_rpm"
++  "${RPM[@]}" -q yum11_rpm > /dev/null
+   if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+   echo
+-  echo "yum groupremove Graphics"
+-  "${YUM[@]}" -y groupremove Graphics
++  echo "yum groupremove MyGroup3"
++  "${YUM[@]}" -y groupremove MyGroup3
+   if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-  echo "Check if gimp is removed"
+-  "${RPM[@]}" -q gimp > /dev/null
++  echo "Check if yum11_rpm is removed"
++  "${RPM[@]}" -q yum11_rpm > /dev/null
+   if [ "X$?" == "X1" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+   echo
+@@ -137,25 +137,23 @@
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo yumdownloader emacs
+-"${YUMDOWNLOADER[@]}" --destdir $WORKDIR/tmp --resolve emacs
+-"${YUMDOWNLOADER[@]}" --destdir $WORKDIR/tmp --resolve emacs-common
++echo yumdownloader yum14_rpm
++"${YUMDOWNLOADER[@]}" --destdir $WORKDIR/tmp --resolve yum14_rpm
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-echo yum localinstall emacs\*.rpm
++echo yum localinstall yum14_rpm\*.rpm
+ "${YUM[@]}" localinstall -y $WORKDIR/tmp/*.rpm
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+-echo "Check emacs"
+-"${RPM[@]}" -q emacs > /dev/null
++echo "Check yum14_rpm"
++"${RPM[@]}" -q yum14_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ rm -f $WORKDIR/tmp/*.rpm
+ 
+ echo
+-echo yumdownloader emacs
+-"${YUMDOWNLOADERUPDATES[@]}" --destdir $WORKDIR/tmp --resolve emacs
+-"${YUMDOWNLOADERUPDATES[@]}" --destdir $WORKDIR/tmp --resolve emacs-common
+-echo yum localupdate emacs\*.rpm
+-"${YUM[@]}" localupdate -y $WORKDIR/tmp/emacs*.rpm
++echo yumdownloader yum14_rpm
++"${YUMDOWNLOADERUPDATES[@]}" --destdir $WORKDIR/tmp --resolve yum14_rpm
++echo yum localupdate yum14_rpm\*.rpm
++"${YUM[@]}" localupdate -y $WORKDIR/tmp/yum14_rpm*.rpm
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+@@ -167,27 +165,16 @@
+ if [ "X$?" == "X100" ] ; then echo " OK"; else echo " FAILED or uptodate"; fi
+ 
+ echo
+-echo yum update glibc
+-GLIBC=`"${RPM[@]}" -q glibc`
+-"${YUMUPDATES[@]}" -y update glibc
+-UGLIBC=`"${RPM[@]}" -q glibc`
++echo yum update yum5_rpm
++GLIBC=`"${RPM[@]}" -q yum5_rpm`
++"${YUMUPDATES[@]}" -y update yum5_rpm
++UGLIBC=`"${RPM[@]}" -q yum5_rpm`
+ if [ "$GLIBC" != "$UGLIBC" ] ; then 
+   echo " OK"; 
+ else 
+   echo " FAILED or uptodate"; 
+ fi
+ 
+-echo 
+-echo yum update
+-KERNEL=`"${RPM[@]}" -q kernel`
+-"${YUMUPDATES[@]}" -y update
+-UKERNEL=`"${RPM[@]}" -q kernel` 
+-if [ "$KERNEL" != "$UKERNEL" ] ; then 
+-  echo " OK"; 
+-else 
+-  echo " FAILED or uptodate"; 
+-fi
+-
+ echo
+ echo "yum --version"
+ "${YUM[@]}" --version
+@@ -199,28 +186,28 @@
+ #   etc  
+ 
+ echo
+-echo "yum search kernel"
+-"${YUM[@]}" search kernel > /dev/null
++echo "yum search yum10_rpm"
++"${YUM[@]}" search yum10_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum provides kernel"
+-"${YUM[@]}" provides kernel > /dev/null
++echo "yum provides yum10_rpm"
++"${YUM[@]}" provides yum10_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum info kernel"
+-"${YUM[@]}" info kernel > /dev/null
++echo "yum info yum10_rpm"
++"${YUM[@]}" info yum10_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum groupinfo Core"
+-"${YUM[@]}" groupinfo Core > /dev/null
++echo "yum groupinfo MyGroup1"
++"${YUM[@]}" groupinfo MyGroup1 > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
+-echo "yum deplist bash"
+-"${YUM[@]}" deplist bash > /dev/null
++echo "yum deplist yum7_rpm"
++"${YUM[@]}" deplist yum7_rpm > /dev/null
+ if [ "X$?" == "X0" ] ; then echo " OK"; else echo " FAILED"; fi
+ 
+ echo
