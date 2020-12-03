@@ -26,3 +26,6 @@ aio-dio-extend-stat: aio-dio-extend-stat.c
 
 aio-cve-2016-10044: aio-cve-2016-10044.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+
+aio-completions-lp-1641129: aio-completions-lp-1641129.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
