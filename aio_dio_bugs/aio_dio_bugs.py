@@ -11,6 +11,7 @@ tests = [["aio-dio-invalidate-failure", "poo"],
          ["aio-io-setup-with-nonwritable-context-pointer", ""],
          ["aio-dio-extend-stat", "file"],
          ["aio-cve-2016-10044", ""],
+         ["aio-completions-lp-1641129", ""],
          ]
 name = 0
 arglist = 1
