@@ -89,7 +89,13 @@ function tc_local_setup()
 {
 	tc_exec_or_break $REQUIRED || return
 
-	tc_exist_or_break /etc/prelink.conf /etc/sysconfig/prelink || return
+	# /etc/sysconfig/prelink file is not appicable on ubuntu, Ubuntu has /usr/sbin/prelink 
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		tc_exist_or_break /etc/prelink.conf /usr/sbin/prelink || return
+	else
+		tc_exist_or_break /etc/prelink.conf /etc/sysconfig/prelink || return
+	fi
 
 	tc_get_os_arch
 	userlibdir=/usr/lib
@@ -97,6 +103,13 @@ function tc_local_setup()
 	[ $TC_OS_ARCH = "x86_64" ] || [ $TC_OS_ARCH = "ppc64" ] || [ $TC_OS_ARCH = "s390x" ] \
         && userlibdir=/usr/lib64/ && \
 		libdir=/lib64/
+	# On Ubuntu usrlib and lib paths are diff, so modified the code based on that
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		 userlibdir="/usr/lib/*-linux-gnu/"
+		 libdir="/lib/*-linux-gnu/"
+	fi
+
 	PRELINK="/usr/sbin/prelink -c ./prelink.conf -C ./prelink.cache --ld-library-path=."
 
 	cat >> $TSTDIR/prelink.conf <<-EOF
@@ -182,9 +195,14 @@ function test02()
 		tc_fail "prelink failed on bogus library dependency" || return
 
 	fi
-
-	grep -q "^`echo $PRELINK | sed 's/ .*$/: .*has a dependency cycle/'`" $BINS.log
-	tc_fail_if_bad $? "prelink failed on cycle1" || return
+	
+	# cycle1lib1.so libs are not part of Ubuntu, so excluding this test
+	# This is only for test purpose
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -ne 0 ];then  # Start of OS check
+		grep -q "^`echo $PRELINK | sed 's/ .*$/: .*has a dependency cycle/'`" $BINS.log
+		tc_fail_if_bad $? "prelink failed on cycle1" || return
+	fi
 
 	LD_LIBRARY_PATH=. ./$BINS 
 	tc_fail_if_bad $? "Failed to execute the binary" || return

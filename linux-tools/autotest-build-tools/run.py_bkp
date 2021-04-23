@@ -1,0 +1,67 @@
+#==========================================================================================================
+#
+#         FILE: run.py
+#
+#	Usage: run.py -c run.conf
+#
+#	      -c      run.conf file will contain the steps to execute run.py, you can modify based 
+#             -d      Full path of datafile, which hold the detail of filesystem to be created
+#             -h      help
+#
+#  DESCRIPTION:  Script to build/test autotest test packages and run regression
+#
+#      OPTIONS:  ---
+# REQUIREMENTS:  ---
+#         BUGS:  ---
+#        NOTES:  ---
+#       AUTHOR:  IBM LTC Test Team
+#      COMPANY:  IBM
+#      VERSION:  1.0
+#      CREATED:  22-Feb-2017 Abhishek Sharma < abhisshm@in.ibm.com >
+#     REVISION:  ---
+#==========================================================================================================
+
+#=========================================================
+#  Importing python predefine and user defined modules
+#=========================================================
+import os,sys,getopt,os.path        # importing OS module for performing os related activity.
+if sys.version[0:3] == "2.7":
+    import subprocess
+
+from modules.generic_module import *
+from build_conf import *
+
+os.system('clear')
+
+def main(argv):
+    conf_file = ''
+    try:
+       option,argument = getopt.getopt(argv,"h:c:",["conf_file"])
+    except getopt.GetoptError:
+        print col.red + '\n%s -c run.conf\n' %prog_name + col.norm
+        sys.exit(2)
+    for opt,argu in option:
+       if opt == '-h':
+          print col.red + '\n%s -c run.conf\n' %prog_name + col.red
+       elif opt in ("-c","conf_file"):
+           conf_file = argu
+       else:
+           print col.red + '\n%s -c run.conf\n' %prog_name + col.red
+           sys.exit(2)
+
+    if os.path.isfile(conf_file):
+        print col.green +  "\nWelcome, config file is %s \n"%conf_file + col.norm
+	print os.environ['BUILD_TYPE']
+    else:
+	print col.red +  "\nconfig file \"%s\" is not exits, check and rerun \n"%conf_file + col.norm
+	sys.exit(2)
+
+
+if __name__ == "__main__":
+    prog_name = sys.argv[0]
+    count=len(sys.argv[1:])
+    if count < 2:
+        print col.red + "\n%30s -c run.conf \n" %prog_name + col.norm
+	sys.exit(2)
+    else:
+        main(sys.argv[1:])

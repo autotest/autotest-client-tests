@@ -46,9 +46,12 @@ function tc_local_setup()
 
 function test01()
 {
-    tc_register "passwd --stdin"
-    echo PASSW0RD | passwd --stdin $TC_TEMP_USER 1>$stdout 2>$stderr
-    tc_pass_or_fail $? "Password setting using --stdin failed for $TC_TEMP_USER"
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -ne 0 ];then  # Start of OS check
+        tc_register "passwd --stdin"
+    	echo PASSW0RD | passwd --stdin $TC_TEMP_USER 1>$stdout 2>$stderr
+    	tc_pass_or_fail $? "Password setting using --stdin failed for $TC_TEMP_USER"
+    fi
 
     tc_register "passwd --lock"
     passwd --lock $TC_TEMP_USER 1>$stdout 2>$stderr
@@ -61,17 +64,20 @@ function test01()
 
 function test02()
 {
-    tc_register "passwd --maximum"
-    passwd --maximum=90 $TC_TEMP_USER 1>$stdout 2>$stderr
-    tc_pass_or_fail $? "Setting maximum password lifetime to 90 Days failed"
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -ne 0 ];then  # Start of OS check
+    	tc_register "passwd --maximum"
+    	passwd --maximum=90 $TC_TEMP_USER 1>$stdout 2>$stderr
+    	tc_pass_or_fail $? "Setting maximum password lifetime to 90 Days failed"
 
-    tc_register "passwd --minimum"
-    passwd --minimum=30 $TC_TEMP_USER 1>$stdout 2>$stderr
-    tc_pass_or_fail $? "Setting minimum password lifetime to 30 days failed"
+    	tc_register "passwd --minimum"
+    	passwd --minimum=30 $TC_TEMP_USER 1>$stdout 2>$stderr
+    	tc_pass_or_fail $? "Setting minimum password lifetime to 30 days failed"
 
-    tc_register "passwd --warning"
-    passwd --warning=9 $TC_TEMP_USER 1>$stdout 2>$stderr
-    tc_pass_or_fail $? "settings to warn user before 9 days of password expiration failed"
+    	tc_register "passwd --warning"
+    	passwd --warning=9 $TC_TEMP_USER 1>$stdout 2>$stderr
+    	tc_pass_or_fail $? "settings to warn user before 9 days of password expiration failed"
+    fi
 
     tc_register "passwd --inactive"
     passwd --inactive=2 $TC_TEMP_USER 1>$stdout 2>$stderr
@@ -79,30 +85,40 @@ function test02()
 }
 function test03()
 {
-    #--keep-tokens is used to indicate that the update should only
-    #be for  expired  authentication  tokens(passwords)
-    tc_register "passwd --keep-tokens"
-    tc_info "Expecting \"Authentication token manipulation error\""
-    echo PASSW0RD |    passwd --keep-tokens $TC_TEMP_USER 1>$stdout
-    if [ $? -eq 0 ]; then
-        tc_fail "Non expired password got changed using option --keep-tokens!"||return
+    grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+    if [ $? -ne 0 ];then  # Start of OS check
+    	#--keep-tokens is used to indicate that the update should only
+    	#be for  expired  authentication  tokens(passwords)
+    	tc_register "passwd --keep-tokens"
+    	tc_info "Expecting \"Authentication token manipulation error\""
+    	echo PASSW0RD |    passwd --keep-tokens $TC_TEMP_USER 1>$stdout
+    	if [ $? -eq 0 ]; then
+    	    tc_fail "Non expired password got changed using option --keep-tokens!"||return
+    	fi
+    	tc_pass
+	
+	#Force to unlock user password which is empty
+    	tc_register "passwd --force"
+    	passwd --unlock --force $TC_TEMP_USER 1>$stdout 2>$stderr
+    	tc_pass_or_fail $? "Failed to force unlock passwd for $TC_TEMP_USER"
     fi
-    tc_pass
+
 
     tc_register "passwd --delete"
     passwd --delete $TC_TEMP_USER 1>$stdout 2>$stderr
     tc_pass_or_fail $? "Passwd deletion failed for $TC_TEMP_USER"
 
-    #Force to unlock user password which is empty
-    tc_register "passwd --force"
-    passwd --unlock --force $TC_TEMP_USER 1>$stdout 2>$stderr
-    tc_pass_or_fail $? "Failed to force unlock passwd for $TC_TEMP_USER"
 }
 ################################################################################
 # main
 ################################################################################
 tc_setup
-TST_TOTAL=10
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -ne 0 ];then 
+	TST_TOTAL=10
+else
+	TST_TOTAL=4
+fi
 test01
 test02
 test03
