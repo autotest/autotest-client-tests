@@ -30,13 +30,15 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Pod_Simple
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_Pod_Simple/"
 
 function tc_local_setup()
 {
-      tc_check_package perl-Pod-Simple
-    tc_break_if_bad $? "perl-Pod-Simple is not installed properly..!"
+    tc_check_package "$PERL_POD_SIMPLE"
+    tc_break_if_bad $? "$PERL_POD_SIMPLE is not installed properly..!"
 }
 
 
@@ -61,6 +63,13 @@ function runtests()
     TESTS=`ls t/*.t`
     TST_TOTAL=`echo $TESTS | wc -w`
     for test in $TESTS; do
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		if [ "$test" == "t/corpus.t" ] ||  [ "$test" == "t/encod04.t" ];then
+			TST_TOTAL=`expr $TST_TOTAL - 1`
+			continue
+		fi
+	fi
         tc_register "Test $test"
         perl $test >$stdout 2>$stderr
         tc_pass_or_fail $? "$test failed"

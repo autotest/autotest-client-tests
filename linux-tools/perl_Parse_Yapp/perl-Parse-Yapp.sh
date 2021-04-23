@@ -30,7 +30,9 @@
 
 ######cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_Parse_Yapp
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTS_DIR="${LTPBIN%/shared}/perl_Parse_Yapp"
 REQUIRED="perl"
 
@@ -41,8 +43,8 @@ function tc_local_setup()
 
 function install_check()
 {
-        tc_check_package perl-Parse-Yapp
-	tc_break_if_bad $? "perl-Parse-Yapp not installed"
+        tc_check_package "$PERL_PARSE_YAPP"
+	tc_break_if_bad $? "$PERL_PARSE_YAPP is not installed"
 }
 
 function run_test()
@@ -53,6 +55,7 @@ function run_test()
 	for test in $TESTS; do
 		tc_register "Test $test" 
 		perl $test >$stdout 2>$stderr 
+		tc_ignore_warnings "Unescaped left brace in regex is deprecated"
 		tc_pass_or_fail $? "$test failed"
 	done
 	popd >$stdout 2>$stderr

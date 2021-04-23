@@ -40,6 +40,9 @@ function tc_local_setup()
 
 function run_test()
 {
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -ne 0 ];then  # Start of OS check
+
   tc_register "loadpolicy"
   load_policy >$stdout 2>$stderr
   tc_pass_or_fail $? "loadpolicy failed"
@@ -47,6 +50,24 @@ function run_test()
   tc_register "secon"
   secon --parent >$stdout 2>$stderr
   tc_pass_or_fail $? "secon failed"
+
+  tc_register "setsebool"
+  bool_name=`getsebool -a | sed -n 1p | awk '{print $1}'`
+  bool_status=`getsebool -a | sed -n 1p | awk '{print $3}'`
+  if [ "$bool_status" == "off" ] 
+     then
+       setsebool $bool_name=1 >$stdout 2>$stderr
+       tc_fail_if_bad $? "Turning on bool value failed"
+       setsebool $bool_name=0 >$stdout 2>$stderr
+       tc_pass_or_fail $? "Turning off bool value failed"
+     else
+       setsebool $bool_name=0 >$stdout 2>$stderr
+       tc_fail_if_bad $? "Turning off bool value failed"
+       setsebool $bool_name=1 >$stdout 2>$stderr
+       tc_pass_or_fail $? "Turning on bool value failed"
+  fi
+
+fi
 
   tc_register "restorecond"
   restorecond -f /etc/selinux/restorecond.conf >$stdout 2>$stderr
@@ -78,23 +99,13 @@ function run_test()
   sestatus >$stdout 2>$stderr
   tc_pass_or_fail $? "sestatus failed"
 
-  tc_register "setsebool"
-  bool_name=`getsebool -a | sed -n 1p | awk '{print $1}'`
-  bool_status=`getsebool -a | sed -n 1p | awk '{print $3}'`
-  if [ "$bool_status" == "off" ] 
-     then
-       setsebool $bool_name=1 >$stdout 2>$stderr
-       tc_fail_if_bad $? "Turning on bool value failed"
-       setsebool $bool_name=0 >$stdout 2>$stderr
-       tc_pass_or_fail $? "Turning off bool value failed"
-     else
-       setsebool $bool_name=0 >$stdout 2>$stderr
-       tc_fail_if_bad $? "Turning off bool value failed"
-       setsebool $bool_name=1 >$stdout 2>$stderr
-       tc_pass_or_fail $? "Turning on bool value failed"
-  fi
 }
 
-TST_TOTAL=9
+grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+if [ $? -ne 0 ];then  # Start of OS check
+	TST_TOTAL=9
+else
+	TST_TOTAL=6
+fi
 tc_setup
 run_test

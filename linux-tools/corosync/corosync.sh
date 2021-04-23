@@ -24,6 +24,7 @@
 #LTPBIN=${PWD%%/testcases/*}/testcases/bin
 source $LTPBIN/tc_utils.source
 TSTDIR=${LTPBIN%/shared}/corosync/Test
+corosync_conf_yes=0
 ## Author:  Sohny Thomas <sohthoma@in.ibm.com>
 ###########################################################################################
 ## source the utility functions
@@ -33,7 +34,7 @@ DEAMONSTATUS=""
 function tc_local_setup()
 {
     tc_root_or_break || return
-      tc_check_package corosync
+    tc_check_package corosync
     tc_break_if_bad $? "corosync package not installed" 
 
     # For the corosync daemon to work, requires /etc/corosync/corosync.conf

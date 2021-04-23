@@ -180,7 +180,11 @@ function run_base_test
 {
 	tc_register "basic language test"
 	run_tests tests >$stdout 2>$stderr
-	tc_pass_or_fail $?
+	RC="$?"
+	if [ "$RC" -eq 0 ];then
+		cat /dev/null >$stderr
+	fi
+	tc_pass_or_fail $RC
 }
 
 #
@@ -193,6 +197,11 @@ function run_ext_test
 
 	if [ -d $PHP_TESTS_DIR/ext/$module/tests ] ; then
 		run_tests ext/$module/tests >$stdout 2>$stderr
+		 RC="$?"
+	         if [ "$RC" -eq 0 ];then
+        	        cat /dev/null >$stderr
+         	 fi
+
 	elif [ -d $PHP_TESTS_DIR/addons/$module/tests ]; then
 		run_tests addons/$module/tests >$stdout 2>$stderr
 	else 

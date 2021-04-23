@@ -371,6 +371,13 @@ if [ "$IF_NAME" == "lo" ]; then
 else
 	i=1
 	while (( i <= TST_TOTAL )) ; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "test0$i" == "test02" ];then
+				((++i))
+				continue
+			fi
+		fi
 		test0$i
 		((++i))
 	done
@@ -407,8 +414,19 @@ else
 	
 	PROTO="ip6"
 
-	((TST_TOTAL+=8))
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		((TST_TOTAL=13))
+	else
+		((TST_TOTAL+=8))
+	fi
 	for i in 01 02 03 04 05 06 07 08 ; do
+		grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+	        if [ $? -eq 0 ];then  # Start of OS check
+			if [ "test$i" == "test02" ] || [ "test$i" == "test06" ];then
+                		continue
+			fi
+		fi
 		test$i
 	done
 fi

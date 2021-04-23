@@ -29,13 +29,16 @@
 
 #cd $(dirname $0)
 #LTPBIN=${LTPBIN%/shared}/perl_constant
+MAPPER_FILE="$LTPBIN/mapper_file"
 source $LTPBIN/tc_utils.source
+source  $MAPPER_FILE
 TESTDIR="${LTPBIN%/shared}/perl_constant/t"
+MSG="Testing constant 1.27, Perl 5.016003"
 
 function tc_local_setup()
 {
-      tc_check_package perl-constant
-	tc_break_if_bad $? "perl-constant is not installed"
+        tc_check_package "$PERL_CONSTANT"
+	tc_break_if_bad $? "$PERL_CONSTANT is not installed"
 }
 
 ################################################################################
@@ -48,12 +51,21 @@ function runtests()
     TESTS=`ls *.t`
     TST_TOTAL=`echo $TESTS | wc -w`
     for test in $TESTS; do
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then  # Start of OS check
+		MSG="Testing constant 1.33, Perl 5.022001, /usr/bin/perl"
+		if [ "$test" == "constant.t" ];then
+			TST_TOTAL="`expr $TST_TOTAL - 1`"
+			continue
+		fi
+	fi
+
         tc_register "Test $test"
         perl -T $test &>$stdout 2>$stderr
         RC=$?
         if [ $test = "00-load.t" ]; then
 		# its not an error, we can ignore it#
-                tc_ignore_warnings "Testing constant 1.27, Perl 5.016003"
+                tc_ignore_warnings "$MSG"
         fi
 
         tc_pass_or_fail $RC "$test failed"

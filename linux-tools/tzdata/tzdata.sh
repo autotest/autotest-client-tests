@@ -76,7 +76,7 @@ function test01()
 {
     tc_register "test with date"
     date >$stdout 2>$stderr
-    grep -q -E "CEST|CET|IST|GMT|EDT|EST|CDT|CST" $stdout
+    grep -q -E "CEST|CET|IST|GMT|EDT|EST|CDT|CST|UTC" $stdout
     tc_pass_or_fail $? "Test with date fail" || return
 
     tc_register "test for correct time"

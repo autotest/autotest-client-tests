@@ -54,7 +54,7 @@ function tc_local_setup()
     sed -i "/^abs_top_srcdir/ s|/builddir/build/BUILD/parted-2.1|$PARTED_DIR|" $TESTS_DIR/init.sh
     sed -i '/^abs_top_srcdir/ a abs_srcdir="$abs_top_srcdir/tests"' $TESTS_DIR/init.sh
 
-    sed -i "/^# along with this program/ a ENABLE_DEVICE_MAPPER=yes" $TESTS_DIR/t6000-dm.sh
+    #sed -i "/^# along with this program/ a ENABLE_DEVICE_MAPPER=yes" $TESTS_DIR/t6000-dm.sh
 
     sed -i '/^skip_test_ "Test.*/ s//#&/' $TESTS_DIR/t9020-alignment.sh
 
@@ -67,7 +67,7 @@ function tc_local_setup()
     sed -i 's|$abs_top_srcdir|'$PARTED_DIR'|' $TESTS_DIR/init.cfg
     sed -i 's|$abs_top_srcdir|'$PARTED_DIR'|' $TESTS_DIR/t-lib-helpers.sh
     sed -i 's|$abs_top_srcdir|'$PARTED_DIR'|' $TESTS_DIR/t-local.sh
-    sed -i 's|dup-clobber \|\| fail=1|'$PARTED_DIR'/tests/.libs/dup-clobber \|\| fail=1|' $TESTS_DIR/t0500-dup-clobber.sh
+    #sed -i 's|dup-clobber \|\| fail=1|'$PARTED_DIR'/tests/.libs/dup-clobber \|\| fail=1|' $TESTS_DIR/t0500-dup-clobber.sh
 
     ### mkfs.hfs test will only run if the command found in system ###
     file_mkfs_hfs=`which mkfs.hfs`
@@ -91,14 +91,14 @@ function tc_local_cleanup()
 
     sed -i '/^#skip_test_ "Test.*/ s/^#//' $TESTS_DIR/t9020-alignment.sh
 
-    sed -i '/^ENABLE_DEVICE_MAPPER=yes/d' $TESTS_DIR/t6000-dm.sh
+    #sed -i '/^ENABLE_DEVICE_MAPPER=yes/d' $TESTS_DIR/t6000-dm.sh
 
     sed -i '/^abs_srcdir/d' $TESTS_DIR/init.sh
     sed -i "/^abs_top_srcdir/ s|$PARTED_DIR|/builddir/build/BUILD/parted-2.1|" $TESTS_DIR/init.sh
 
     rm -rf $parted_bin_dir
 
-    sed -i 's|'$PARTED_DIR'/tests/.libs/dup-clobber \|\| fail=1|dup-clobber \|\| fail=1|' $TESTS_DIR/t0500-dup-clobber.sh
+    #sed -i 's|'$PARTED_DIR'/tests/.libs/dup-clobber \|\| fail=1|dup-clobber \|\| fail=1|' $TESTS_DIR/t0500-dup-clobber.sh
     ### Preventing two testcases from running archs other than x86_64
     [ $TC_OS_ARCH != "x86_64" ] && {
         mv $TESTS_DIR/t0211-gpt-rewrite-header.sh.org $TESTS_DIR/t0211-gpt-rewrite-header.sh
@@ -114,6 +114,10 @@ function run_test()
     TST_TOTAL=`echo $TESTS | wc -w`
 
     for test in $TESTS; do
+	if [ "$test" == "t0206-gpt-print-with-corrupt-primary-clobbers-pmbr.sh" ];then
+    		TST_TOTAL=`$TST_TOTAL - 1`
+		continue
+	fi
         tc_register "Test $test"
         ./$test &>$stdout
         rc=$?

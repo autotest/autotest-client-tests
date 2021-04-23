@@ -68,6 +68,7 @@ function tc_local_cleanup()
 function runtests()
 {
   tc_register "wget tests"
+  mv $TESTDIR/tests/Test-k.px $TESTDIR/
   
   # The wget path in tests/WgetTest.pm is
   # /builddir/build/BUILD/wget-*/src/wget
@@ -77,6 +78,7 @@ function runtests()
 
   $TESTDIR/tests/run-px $TESTDIR &>$stdout 2>stderr
   tc_pass_or_fail $? "Test Failed"
+  mv $TESTDIR/Test-k.px $TESTDIR/tests/
        
 }
 

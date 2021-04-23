@@ -52,7 +52,6 @@ function tc_local_cleanup()
 
 function run_test()
 {
-    tc_register "Tests for numactl"
     tc_info "Tests for numactl are covered in numa01 tests under base ltp"    
 
 } 
@@ -60,5 +59,6 @@ function run_test()
 ################################################################################
 # main
 ################################################################################
+TST_COUNT="1"
 tc_setup 
 run_test

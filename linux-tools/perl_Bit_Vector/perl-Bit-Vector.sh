@@ -72,6 +72,7 @@ function run_test()
         for test in $TESTS; do
                 tc_register "Test $test"
                 perl $test >$stdout 2>$stderr
+		tc_ignore_warnings "Argument"
                 tc_pass_or_fail $? "$test failed"
         done
         popd >$stdout 2>$stderr
