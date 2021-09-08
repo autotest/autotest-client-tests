@@ -104,7 +104,9 @@ function test02(){
 	let TST_TOTAL=$TST_TOTAL+1
 	tc_register "libtool: linking library: foo.lo, hello.lo --> libhello.la"
 	$LIBTOOL --mode=link --tag=CC $GCC -g -O -o libhello.la foo.lo hello.lo -rpath $TCTMP/libs -lm >$stdout 2>$stderr
-	tc_pass_or_fail $? "linking library libhello.la failed"
+	RC=$?
+          [ $RC -eq 0 ] && tc_ignore_warnings "ar:"
+	tc_pass_or_fail $RC "linking library libhello.la failed"
 }
 
 #
