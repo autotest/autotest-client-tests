@@ -1,0 +1,11 @@
+AUTHOR = " Anup Kumar, anupkumk@in.ibm.com  " 
+NAME = "openscap_scanner" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Security Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Security Scan through openvas
+    ''' 
+path = '/usr/local/autotest_base/autotest-client-tests/security_tools' 
+job.run_test('openscap_scanner',test_path=path) 
