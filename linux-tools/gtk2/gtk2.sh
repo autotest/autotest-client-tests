@@ -73,13 +73,20 @@ function run_test()
 
 function test-query-modules()
 {
-   tc_register "gtk-query-immodules-2.0-64 testing"
-   gtk-query-immodules-2.0-64 >$stdout 2>$stderr
-   tc_pass_or_fail $? "test failed"
+    tc_get_os_arch
+    if [[ $TC_OS_ARCH == "ppc" || $TC_OS_ARCH == "i686" ]]; then
+        tc_register "gtk-query-immodules-2.0-32 testing"
+        gtk-query-immodules-2.0-32 >$stdout 2>$stderr
+    else
+        tc_register "gtk-query-immodules-2.0-64 testing"
+        gtk-query-immodules-2.0-64 >$stdout 2>$stderr
+    fi
 
-   tc_register "gtk-update-icon-cache"
-   gtk-update-icon-cache -v /usr/share/icons/hicolor/ >$stdout 2>$stderr
-   tc_pass_or_fail $? "test for gtk-update-icon-cache failed"
+    tc_pass_or_fail $? "test failed"
+
+    tc_register "gtk-update-icon-cache"
+    gtk-update-icon-cache -v /usr/share/icons/hicolor/ >$stdout 2>$stderr
+    tc_pass_or_fail $? "test for gtk-update-icon-cache failed"
 }
 
 ################################################################################
