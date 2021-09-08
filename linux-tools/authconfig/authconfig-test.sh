@@ -212,6 +212,8 @@ function test_winbind()
 	grep "USEWINBINDAUTH" /etc/sysconfig/authconfig | grep -q "no"
 	tc_pass_or_fail $? "test --disablewinbindauth failed"
 
+	tc_check_package samba
+        if [ $? -eq 0 ]; then
 	#Test smbsecurity types
 	local smb_security_types="user server domain ads"
 	for types in $smb_security_types; do
@@ -239,6 +241,10 @@ function test_winbind()
 	authconfig --test 1>$stdout 2>$stderr
 	grep "SMB workgroup" $stdout | grep -q "TESTGROUP"
 	tc_pass_or_fail $? "test --smbworkgroup failed"
+
+	else
+	tc_info "skipped samba related tests as Samba package is not installed"
+	fi
 }
 
 function test_hesiod()
