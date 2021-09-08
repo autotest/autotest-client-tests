@@ -137,7 +137,12 @@ function test07()
 	tc_register	"ltrace -L -S command"
 	ltrace -L -S ./ltracetest1 &>$stdout
 	tc_fail_if_bad $? "ltrace -L -S command failed" || return	
-	grep -q "open@SYS" $stdout
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        if [ $? -eq 0 ];then
+                grep -q "SYS_open" $stdout
+        else
+                grep -q "open@SYS" $stdout
+        fi
 	tc_pass_or_fail $? "ltrace -L -S command failed"
 }
 

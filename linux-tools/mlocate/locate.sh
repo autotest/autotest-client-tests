@@ -56,14 +56,25 @@ function tc_local_setup()
         touch $locate_this
 
 	# temporarily stop cron process
-	tc_service_stop_and_wait crond
+	grep -i "ubuntu" /etc/*-release >/dev/null 2>&1
+        rc=$?
+        if [ $rc -eq 0 ];then
+                tc_service_stop_and_wait cron
+        else
+                tc_service_stop_and_wait crond
+        fi
 	cron_stopped="yes"
 	return 0
 }
 
 function tc_local_cleanup()
 {
-        [ "$cron_stopped" = "yes" ] && tc_service_start_and_wait crond
+	if [ $rc -eq 0 ];then
+                [ "$cron_stopped" = "yes" ] && tc_service_start_and_wait cron
+        else
+                [ "$cron_stopped" = "yes" ] && tc_service_start_and_wait crond
+        fi
+
 }
 
 #
