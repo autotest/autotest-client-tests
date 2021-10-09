@@ -73,8 +73,9 @@ function run_test()
 
 function test-query-modules()
 {
-   tc_register "gtk-query-immodules-2.0-64 testing"
-   gtk-query-immodules-2.0-64 >$stdout 2>$stderr
+   [ "$HOSTTYPE" == "i686" ] && bin="gtk-query-immodules-2.0-32" || bin="gtk-query-immodules-2.0-64"
+   tc_register "$bin testing"
+   $bin >$stdout 2>$stderr
    tc_pass_or_fail $? "test failed"
 
    tc_register "gtk-update-icon-cache"
