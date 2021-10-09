@@ -1,0 +1,23 @@
+Yum is a utility that can check for and automatically download and
+install updated RPM packages. Dependencies are obtained and downloaded
+automatically, prompting the user for permission as necessary.
+
+Source RPM has many test scripts but yum-release-test.sh has all the 
+major functionality tests for yum.
+
+yum-release-test.sh, executes some of the below options of yum command:
+- update [package list]
+- install <package list>
+- remove <package list>
+- list [package list]
+
+Custom repository has been created for use by yum-release-test.sh
+The repo is placed in test machine. Following is the list of packages
+provided by the repo:
+
+MyGroup1: yum1_rpm, yum2_rpm, yum3_rpm
+MyGroup2: yum4_rpm, yum5_rpm
+MyGroup3: yum11_rpm, yum12_rpm
+yum14_rpm and yum5_rpm have updates
+yum7_rpm has a dependency on yum6_rpm
+
