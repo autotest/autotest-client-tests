@@ -33,6 +33,7 @@
 source $LTPBIN/tc_utils.source
 load_rng_mod=0
 rng_service=rngd
+rngd_cleanup=0
 
 ################################################################################
 # Utility functions 
@@ -43,13 +44,9 @@ rng_service=rngd
 #	 
 function tc_local_setup()
 {
+	tc_register "Setting up machine to run the tests"
 	tc_root_or_break || return	
 	tc_exec_or_break rngd rngtest || return
-
-	rngd_cleanup=0	
-	# Check if RNG device, RANDOM NUMBER GENERATOR
-        tc_exists /dev/random /dev/urandom
-	tc_break_if_bad $? "RNG device doesnot exist" || return
 
 	cat >> $TCTMP/entropy.py <<-EOF
 	#!/usr/bin/python
@@ -59,15 +56,6 @@ function tc_local_setup()
 
 	chmod +x $TCTMP/entropy.py
 	
-	# rngd init script is missing 
-	# Bug in redhat bugzilla - Bug 215371
-        systemctl is-active rngd 2>&1 >/dev/null 
-        [ $? -eq 0 ] && \
-                 rngd_cleanup=1
-
-	systemctl stop $rng_service 2>&1 >/dev/null
-	tc_service_start_and_wait $rng_service
-
 }
 
 #
@@ -92,6 +80,37 @@ function tc_local_cleanup()
 ################################################################################
 # Testcase functions
 ################################################################################
+
+#
+#Check TPM device.
+#
+function check_rng()
+{
+
+        tc_register "checking TPM  device"
+        tc_exists /dev/random /dev/urandom /dev/tpm*
+        if [ $? -ne 0 ]; then
+                tc_conf "TPM devices were not found, Skipping tests"
+                exit 0
+        else
+                lsmod |grep -qw tpm-rng
+                if [ $? -ne 0 ]; then
+                        modprobe tpm-rng >/dev/null
+                        if [ $? -eq 0 ]; then
+                                load_rng_mod=1
+                        else
+                                tc_conf "Failed to load tpm-rng module"
+                                exit 0
+                        fi
+                fi
+        fi
+        systemctl is-active rngd 2>&1 >/dev/null
+        [ $? -eq 0 ] && \
+                rngd_cleanup=1
+
+
+        tc_service_restart_and_wait $rng_service
+}
 
 #
 # test01	rngd test
@@ -175,9 +194,10 @@ function test03()
 # main
 ################################################################################
 
-TST_TOTAL=3
 
 tc_setup
+check_rng
+TST_TOTAL=4
 test01
 test02
 test03
