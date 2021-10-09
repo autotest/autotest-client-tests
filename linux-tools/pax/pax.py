@@ -1,7 +1,10 @@
 #!/bin/python
 import os
+import shutil
 import logging
 
+from autotest.client.shared  import software_manager
+from autotest.client import utils
 from autotest.client import test
 from autotest.client.shared import error
 

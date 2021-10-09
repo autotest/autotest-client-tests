@@ -4,6 +4,7 @@ import aexpect
 import logging
 import time
 import subprocess
+from autotest.client import utils
 from distutils.spawn import find_executable
 from autotest.client import test
 from autotest.client.shared import error
