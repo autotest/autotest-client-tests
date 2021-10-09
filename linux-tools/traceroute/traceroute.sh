@@ -88,6 +88,7 @@ function run_test()
 	# If this is the only test that passes for a system, then we can guess
 	# that there is some system in the probe path that expects some delay
 	# between probes
+	sleep 05
 	tc_register "Set time delay between probes"
 	traceroute -z 300 $dest_host|sed "1 d"|awk '{print $2}' 1>$stdout 2>$stderr
 	grep -q $dest_host $stdout
