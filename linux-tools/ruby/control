@@ -1,0 +1,11 @@
+AUTHOR = " Anup Kumar, anupkumk@linux.vnet.ibm.com                       ##  " 
+NAME = "ruby" 
+TEST_CATEGORY = "Functional" 
+TEST_CLASS = "Linux Tools" 
+TEST_TYPE = "client" 
+TIME = 'SHORT' 
+DOC = ''' 
+    Test ruby package 
+    ''' 
+path = '' 
+job.run_test('ruby',test_path=path) 

@@ -1,0 +1,7 @@
+<!-- Test configuration for 'ruby' -->
+<TEST>
+    <TYPE>AUTO</TYPE>
+    <PACKAGE>ruby</PACKAGE>
+    <COMMAND>ruby.sh</COMMAND>
+    <DESCRIPTION>Test basic functionality of the ruby program.</DESCRIPTION>
+</TEST>
