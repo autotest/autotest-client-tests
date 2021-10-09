@@ -88,7 +88,8 @@ function run_kpartx_tests()
 
     tc_register "Test kpartx -d"
     kpartx -d $kpartx_img >$stdout 2>$stderr
-    grep "loop deleted" $stdout | grep -q  /dev/$loopdev
+    # wait for max 10 sec to update
+    tc_wait_for_file_text $stdout "loop deleted : /dev/$loopdev"
     tc_fail_if_bad $? "kpartx -d fail1" || return
     loopdev_free=`losetup -f | cut -d '/' -f3`
     test $loopdev == $loopdev_free
